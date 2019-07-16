@@ -1,5 +1,11 @@
-%standard packages
-\usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=green,linkcolor=red]{hyperref}
+%%%%%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%%%%  
+\usepackage{xcolor}
+\definecolor{nicered}{rgb}{0.6, 0, 0.1}
+\definecolor{niceblue}{rgb}{0.06, 0.3, 0.57}
+\definecolor{nicegreen}{rgb}{0.0, 0.51, 0.5}
+
+%%%%%%%%%%%%%%%%%% Assorted Packages %%%%%%%%%%%%%%%%%%  
+\usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=nicegreen,linkcolor=niceblue,urlcolor=nicered]{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -7,13 +13,12 @@
 \usepackage{mathrsfs}
 \usepackage[mathcal]{euscript}
 
-
 %clever ref package 
 %must come before following 3 sections
 \usepackage{cleveref}  %must be consistent with names in following 3 sections
 \crefname{equation}{Eq.}{Eqs.}
 \crefname{theorem}{Theorem}{Theorems} 
-\crefname{lemma}{Lemma}{Lemmata}
+\crefname{lemma}{Lemma}{Lemmas}
 \crefname{corollary}{Corollary}{Corollaries}
 \crefname{proposition}{Proposition}{Propositions}
 \crefname{definition}{Definition}{Definitions}
@@ -115,6 +120,8 @@
 %inequalities
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
 
 %abbreviations
 \newcommand{\cf}{\emph{cf}.}
