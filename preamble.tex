@@ -1,0 +1,134 @@
+%standard packages
+\usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=green,linkcolor=red]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[mathcal]{euscript}
+
+
+%clever ref package 
+%must come before following 3 sections
+\usepackage{cleveref}  %must be consistent with names in following 3 sections
+\crefname{equation}{Eq.}{Eqs.}
+\crefname{theorem}{Theorem}{Theorems} 
+\crefname{lemma}{Lemma}{Lemmata}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\crefname{notation}{Notation}{Notations}
+\crefname{setup}{Setup}{Setup}
+\crefname{question}{Question}{Question}
+
+ %theorem style environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+%definition style environments
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{setup}[theorem]{Setup}
+
+%remark style environments
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{convention}{Convention}
+
+
+%numbering
+\numberwithin{equation}{section} %Can replace {subsection} with {theorem} if you want
+
+%spacing
+\usepackage{setspace}
+%\singlespacing
+%\onehalfspacing
+%\doublespacing
+\setstretch{1.1}
+
+
+%various thresholds
+\DeclareMathOperator{\lct}{lct}
+\DeclareMathOperator{\fpt}{fpt}
+\newcommand{\ft}[2]{\operatorname{ft}(#1, #2)}
+ 
+%ideals
+\newcommand{\ideal}[1]{\langle #1 \rangle}
+\newcommand{\ideala}{\mathfrak{a}}
+\newcommand{\idealb}{\mathfrak{b}}
+\newcommand{\ideald}{\mathfrak{d}}
+\newcommand{\idealm}{\mathfrak{m}}
+\newcommand{\idealp}{\mathfrak{p}}
+
+%linear & integer programs
+\newcommand{\LP}{\mathrm{P}}
+\newcommand{\IP}{\Pi}
+\newcommand{\ip}{\Theta}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\opt}{\operatorname{opt}}
+\newcommand{\val}{\operatorname{val}}
+
+%convexity
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\cone}{\operatorname{cone}}
+\newcommand{\rb}{\operatorname{rb}}
+\newcommand{\ri}{\operatorname{ri}}
+
+%euclidean space
+\newcommand{\vv}[1]{\mathbf{#1}} %vectors
+\newcommand{\iprod}[2]{\langle #1, #2 \rangle} %dot product
+\newcommand{\norm}[1]{ \| #1 \| } % norm
+
+%representation of rational numbers
+\newcommand{\tail}[1]{\left[ #1 \right]} 
+\newcommand{\lpr}[2]{ [ \hspace{.01in} #1 \, \% \, #2 \hspace{.01in} ]} %least positive residue
+\newcommand{\up}[1]{\left\lceil #1 \right\rceil} %ceiling
+\newcommand{\down}[1]{\left\lfloor #1 \right\rfloor} %floor
+
+%random
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\mf}{\operatorname{mf}}
+\newcommand{\mc}{\operatorname{mc}}
+\newcommand{\rep}{\operatorname{rep}}
+\newcommand{\lis}{\operatorname{list}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\N}{\mathrm{N}}
+\newcommand{\M}{\mathrm{M}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\Z}{\mathcal{Z}}
+
+%sets
+\newcommand{\kk}{\Bbbk}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\NN}{\mathbb{N}}
+\renewcommand{\emptyset}{\varnothing}
+
+%inequalities
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+%abbreviations
+\newcommand{\cf}{\emph{cf}.}
+\newcommand{\eg}{e.g., }
+\newcommand{\ie}{i.e., }
+
+%notes
+\usepackage[textwidth=3.3 cm,textsize=small,shadow
+%disable
+%%option disable removes the notes
+]{todonotes}
+\newcommand{\comment}[2][]{\todo[linecolor=gray,backgroundcolor=orange!30!,caption={}, #1]{#2}} % color-name! intensity ! 
+\newcommand{\alert}[2][]{\todo[linecolor=gray,backgroundcolor=red!50!,caption={}, #1]{#2}} % color-name! intensity ! 
+
+\newcommand{\emily}[2][]{\todo[linecolor=gray,backgroundcolor=green!30!,caption={}, #1]{#2}}
+\newcommand{\daniel}[2][]{\todo[linecolor=green,backgroundcolor=blue!30!,caption={}, #1]{#2}}  
+\newcommand{\pedro}[2][]{\todo[linecolor=blue,backgroundcolor=gray!20!,caption={}, #1]{#2}} 
