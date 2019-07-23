@@ -166,7 +166,7 @@ If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $\vv{a}$ is nonnegative, and th
 
 \begin{proof}  If $\vv{c} \in \O$, then adding to $\vv{c}$ any nonnegative point in $\RR^d$ produces a point in $\N$.  In particular, $\iprod{\vv{a}}{\vv{c}} = \beta$ and $\iprod{\vv{a}}{\vv{c} + \lambda \vv{e}_i} \geq \beta$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.  This observation implies that $\vv{a} \geq \vv{0}$, and that $\vv{c} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
 
-Similar logic will show that if $\rb(\O) := \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
 \begin{equation}
 \label{face: e}
 \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
@@ -186,7 +186,6 @@ Our choice of terminology is motivated by the following observation.
 \end{remark}
 
 \subsection{Collapses} 
-
 
 \begin{definition}  
 \label{collapse: D}
@@ -412,8 +411,8 @@ We have just shown that $\mc(A, \vv{u})$ is nonempty, and it clear that this set
 
 \comment[inline]{An example in which these sets (the set of minimal coordinates, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 
-%\!{Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
-%where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the minimal coordinates of $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.}
+% Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
+% where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the minimal coordinates of $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
 \begin{theorem}  
 \label{uniform denominators for mc:  T}
@@ -737,7 +736,7 @@ The following may be regarded as a partial converse to \Cref{easy but important:
 
 \begin{proposition}
 \label{uniform value: P}
-Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition:  If $(A, \vv{u})$ is a pair and $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, then every point in
+Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair and $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, then every point in
 \[ \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q) \] is optimal for $\IP(A, \vv{u}q)$ whenever $q >  \beta D$. 
 \end{proposition}
 
@@ -791,7 +790,7 @@ where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 \begin{corollary}  
 \label{uniform value and image: C}
-Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition:  If $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
+Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
 %
 \[ \val \IP(A, \vv{u}q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
 %
@@ -829,8 +828,6 @@ do not depend on  $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.
 \begin{proof}
 Fix $\vv{s}$ and $\tilde{\vv{s}}$ in $\mc_{\QQ}(A, \vv{u})$, as well as a common denominator $D$ for these points.  As these quantities clearly depend only on $q \bmod D$, it suffices to show that $\delta(A, \vv{u}, \vv{s}, q) = \delta(A, \vv{u}, \tilde{\vv{s}}, q)$  and $ \Delta(A, \vv{u}, \vv{s}, q) = \Delta(A, \vv{u}, \tilde{\vv{s}}, q)$ whenever $q \gg 0$.  However, this is follows from \Cref{uniform value and image: C}.
 \end{proof}
-
-
 
 \begin{definition}  
 \label{independence: D}  
@@ -906,7 +903,7 @@ Given a monomial matrix $A$, there exists a integer $\beta$ with the following p
 The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform uniform value and image: T}.
 
 \begin{corollary}
-Given a monomial matrix $A$, there exists an integer $\beta$ with the following property:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(B, \ol{\vv{u}}q)$ and $\ol{ \im(A, \vv{u}q)} = \im(B, \ol{\vv{u}}q)$ where $B$ (respectively, $\ol{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
+Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(B, \ol{\vv{u}}q)$ and $\ol{ \im(A, \vv{u}q)} = \im(B, \ol{\vv{u}}q)$ where $B$ (respectively, $\ol{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
 \end{corollary}
 
 \comment[inline]{At this point, we've given new proofs of the main results in the sequence of ``other BMS" papers on the $\nu_{\ideala}^{\ideald}(q)$ when $\ideala$ is a monomial ideal.  Our methods are a lot more careful though. Everything that follows is meant to address the ``arithmetic" in the phrase ``arithmetic integer programming".  I think we need all the technical results above to deal with the arithmetic programs, but I could be wrong.}
@@ -1161,7 +1158,7 @@ Given a monomial matrix $A$, there exists an integer $\beta$ with the following 
 %
 %\begin{proof}  If $\vv{c} \in \O$, then adding to $\vv{c}$ any nonnegative point in $\RR^d$ produces a point in $\N$.  In particular, $\iprod{\vv{a}}{\vv{c}} = \beta$ and $\iprod{\vv{a}}{\vv{c} + \lambda \vv{e}_i} \geq \beta$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.  This observation implies that $\vv{a} \geq \vv{0}$, and that $\vv{c} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
 %
-%Similar logic will show that if $\rb(\O) := \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
+%Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
 %\begin{equation}
 %\label{face: e}
 %\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
@@ -1497,7 +1494,7 @@ Note that $(A, \vv{u})$ is small if and only if only $\vv{0}$ is feasible for $\
 \begin{proposition}
 Suppose $(A, \vv{u})$ is a monomial pair.  If \[ \im \IP(A, \vv{u}) = \vv{u} - \Z\] then every pair $(A, \vv{z})$ with $\vv{z} \in \Z$ is small, and if $p \gg 0$ and $e \geq 0$, then 
 \[ \val \IP_p(A, \vv{u} p^e) = \val \IP(A, \vv{u}) \cdot p^e + \max \val \IP_p(A, \vv{z}p^e) \]
-where the max is over all points $\vv{z} \in \Z$.
+where the maximum is over all points $\vv{z} \in \Z$.
 \end{proposition}
 
 \begin{proof}  The constraints of $\IP(A, \vv{u})$ imply that $\Z$ is a finite set of lattice points with positive coordinates.   These constraints and optimality also imply that if $\vv{e}$ is a standard basis vector in the domain of $A$, then no point in the Minkowski sum $\vv{e} + \opt \IP(A, \vv{u})$ can be feasible for $\IP(A, \vv{u})$.  Applying $A$ to this shows that no point in 
@@ -1516,8 +1513,9 @@ $\vv{h}^{\ast} = \vv{g}^{\ast} \cdot p^e + \vv{k}^{\ast}$ satisfies the linear c
 We have just shown that to compute the value of $\IP_p(A, \vv{u}p^e)$ for all $p \gg 0$ and $e \geq 1$, we may assume that $(A, \vv{u})$ is small.  Below, consider an important special case of this simplified situation.
 
 \begin{theorem}
-\label{trivial max value: T}  Given a monomial matrix $A$, there exists an integer $\beta$ with the following property:   
+\label{trivial max value: T}  Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:   
 If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
+\comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}
 \end{theorem}
 
 \begin{proof} Suppose that $(A, \vv{u})$ is small, but not very small, and fix $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, so that $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$.   
@@ -1525,7 +1523,7 @@ Set  $\vv{t} = \vv{s} / \norm{\vv{s}}$ and note that $\vv{0} \leq \vv{t} \leq \v
 
 Next, fix an index $i$ such that the $i$-th coordinate of $\vv{s}$ is positive.  As $\tail{\vv{t}}_p$ obtains only finitely many values as $p$ varies, our choice of $i$ guarantees that 
 \[ 0 \leq \vv{t} - \frac{\tail{\vv{t}}_p}{p} + \frac{\norm{\tail{\vv{t}}_p}}{p} \cdot \vv{e}_i  \leq \vv{s} \]
-for all $p \gg 0$, with the with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  For such $p \gg 0$,  \Cref{less than u: L} tells us that 
+for all $p \gg 0$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  For such $p \gg 0$,  \Cref{less than u: L} tells us that 
 %
  \[ A \left(  \vv{t}p - \tail{\vv{t}}_p + \norm{\tail{\vv{t}}_p} \cdot \vv{e}_i  \right) < \vv{u}p. \]
 %
@@ -1541,10 +1539,10 @@ To conclude the proof, it suffices to recall that, as noted in \Cref{finitely ma
 \end{proof}
 
 
-\comment[inline]{At this point, it suffices to deal with the case that $(A, \vv{u})$ is small}
+\comment[inline]{At this point, it suffices to deal with the case that $(A, \vv{u})$ is very small}
 
 \begin{theorem}
-\label{arithmetic uniform value and image: T}   Given a monomial matrix $A$, there exists an integer $\beta$ with the following property:  
+\label{arithmetic uniform value and image: T}   Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  
 If $(A, \vv{u})$ is a very small and $p > \beta$, then  \[ \val \IP_p(A, \vv{u}p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p). \] 
 and 
 \[ \ol{ \im \IP_p(A, \vv{u}p)} = \ol{\vv{u}}p - \Delta(A, \vv{u}, p) \] where $\ol{X}$ denotes the collapse of a subset $X$ of $\RR^d$ along $\O = \mf(A, \vv{u})$.
@@ -1574,11 +1572,11 @@ As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomi
 The following statement may be regarded as a refinement of the upper bound given in \Cref{natural bounds: C}, at least when $p$ is large enough.
 
 \begin{corollary}
-Given a monomial matrix $A$, there exists an integer $\beta$ with the following property:  If $(A, \vv{u})$ is very small, then
+Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $(A, \vv{u})$ is very small, then
 %
 \[ \val \IP_p(A, \vv{u}p^{e+1})  \leq  \val \IP_p(A, \vv{u}p) \cdot p^e +  \max \val \IP_p(B, \vv{v}p^e) \] 
 %
-for all $p > \beta$ and $e \geq 1$, where the max is over all $p$-sprouts $(B, \vv{v})$ of $(A, \vv{u})$.  
+for all $p > \beta$ and $e \geq 1$, where the maximum is over all $p$-sprouts $(B, \vv{v})$ of $(A, \vv{u})$.  
 \end{corollary}
 
 \begin{proof}  Let $\beta$ be as in \Cref{arithmetic uniform value and image: T}, and fix a pair $(A, \vv{u})$ that is very small.
@@ -1640,7 +1638,7 @@ If $p > 0$ is an integer and $(A, \vv{u})$ is very small, we define the directed
 \begin{enumerate}
 \item  The set of vertices of $\mathfrak{W}^{\infty}(A, \vv{u}, p)$ is the disjoint union \[ \bigsqcup_{e=1}^{\infty} \, \mathfrak{W}^e(A, \vv{u}, p).\]
 The vertices in the component $\mathfrak{W}^e(A, \vv{u}, p)$ are said to be of \emph{level} $e$.  
-\item  There is a directed edge from a vertex in level $e$ to one in level $e+1$ whenever the later is a $p$-sprout of the former.
+\item  There is a directed edge from a vertex in level $e$ to one in level $e+1$ whenever the latter is a $p$-sprout of the former.
 \end{enumerate}
 \end{definition}
 
@@ -1658,7 +1656,7 @@ If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then
 
 
 \begin{theorem}
-If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then the following holds:  If 
+If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then the following holds\textup:  If 
 $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path of length $e-1$ in $\mathfrak{W}_p(A, \vv{u})$, and $(B, \vv{v})$ is any vertex of $\mathfrak{W}_p(A, \vv{u})$ whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then the value of $\IP_p(B, \vv{v}p^e)$ is at most \daniel{equal?}
 %
  \[ \left( \sum_{s=1}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^e. \] 
@@ -1671,7 +1669,7 @@ We will induce on $e \geq 1$.  The above observation settles the base case $e=1$
 %
 \[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
 %
-where the max is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this max is at most
+where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
 %
 \begin{equation}
 \label{target bound: e}
@@ -1703,7 +1701,7 @@ is optimal for $\IP_p(A, \vv{u}p^e)$ for every $e \geq 1$ whenever $p \geq \beta
 \begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a minimal coordinate for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\mathfrak{W}_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
 \[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] satisfies the arithmetic constraint of $\IP_p(A, \vv{u}p^e)$ for every $p \gg 0$ and $e \geq 1$.  
 
-Therefore, to compete the proof, it suffices to show that 
+Therefore, to complete the proof, it suffices to show that 
 \begin{equation}
 \label{goal: e}
 A   \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) < \vv{u} 
@@ -1767,7 +1765,7 @@ As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \le
 
 \begin{lemma}
 \label{positive polynomial: L}
-Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
+Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition\textup:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
 \end{lemma}
 
 \begin{proof}
