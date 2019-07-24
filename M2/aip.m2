@@ -50,6 +50,14 @@ optP = method()
 optP ( Matrix, List ) := ( A, u ) -> maxFace( transpose matrix {u}, split(A, u) )
 optP Matrix := A -> maxFace( transpose matrix { constantList( 1, rank source A) }, split A )     
 
+ft = method()
+ft ( Matrix, List ) := (A,u) -> (
+    NA := newton A;
+    intPt := first entries vertices intersection( coneFromVData transpose matrix {u}, NA );
+    u#0/intPt#0
+)
+ft Matrix := A -> ft( A, constantList( 1, rank target A ) )
+    
 -- minimal face mf(A,u)
 minFace = method()
 minFace ( Matrix, List ) := (A,u) -> (
@@ -61,8 +69,23 @@ minFace Matrix := A -> minFace( A, constantList( 1, rank target A ) )
      
 -- recession basis for minimal face     
 rb = method()
-rb ( Matrix, List ) := (A,u) -> tailCone minFace(A,u)
-rb Matrix := A -> tailCone minFace A
+rb ( Matrix, List ) := (A,u) -> rays tailCone minFace(A,u)
+rb Matrix := A -> rays tailCone minFace A
+
+collapse = method()
+collapse (Matrix, List) := (A,u) -> (
+    rbasis := entries transpose rb(A,u);
+    d := rank target A;
+    idMat := entries identityMatrix d;
+    proj := matrix select( idMat, v -> not member( v, rbasis ) );
+    proj*A
+)
+collapse Matrix := A -> collapse( A, constantList( 1, rank target A ) )
+
+-- a minimal coordinate
+minCoord = method()
+minCoord (Matrix,List) := (A,u) -> interiorPoint optP(A,u)
+minCoord Matrix := A -> interiorPoint optP A
     
 --------------------------------------------------------------------------------------------------     
 A = matrix { {2, 7}, {7, 2}, {5, 5} }    
@@ -96,3 +119,20 @@ vertices optB
 rays rb B
 vertices minFace B
 vertices optP B
+
+minCoord A
+minCoord B
+
+ft A
+ft B
+
+sum minCoord A
+sum minCoord B
+
+minCoord A
+A*(minCoord A)
+B*(minCoord B)
+
+rb A
+A
+collapse B
