@@ -1,27 +1,12 @@
 loadPackage("Polyhedra", Reload => true)
 
+-------------------------------------------------------------------------------
+-- Auxiliary Functions
+-------------------------------------------------------------------------------
+
 constantList := (c,n) -> apply( n, x -> c )
 
 identityMatrix := n -> id_(ZZ^n)
-
-newton := A -> convexHull( A ) + posOrthant( rank target A )
-
-split = method()
-
-split ( Matrix, List ) := ( A, u ) -> 
-(
-    n := rank source A;
-    M := A || - identityMatrix n; 
-    v := u | constantList( 0, n );
-    polyhedronFromHData( M, transpose matrix {v} )
-) 
-
-split Matrix := A -> split( A, constantList( 1, rank target A) )
-
-optP = method()
-
-optP ( Matrix, List ) := ( A, u ) -> maxFace( transpose matrix {u}, split(A, u) )
-optP Matrix := A -> maxFace( transpose matrix { constantList( 1, rank source A) }, split A )     
 
 denominator List := L -> lcm apply( L, denominator )
 numerator List := L -> denominator(L) * L
@@ -42,6 +27,30 @@ bracket (QQ,ZZ) := (t,q) -> (
 bracket (ZZ,ZZ) := (t,q) -> bracket(t/1,q)
 bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
 
+-------------------------------------------------------------------------------
+-- Polyhedral Stuff
+-------------------------------------------------------------------------------
+
+-- newtonPolyhedron
+newton := A -> convexHull( A ) + posOrthant( rank target A )
+
+-- splitting polytope
+split = method() 
+split ( Matrix, List ) := ( A, u ) -> 
+(
+    n := rank source A;
+    M := A || - identityMatrix n; 
+    v := u | constantList( 0, n );
+    polyhedronFromHData( M, transpose matrix {v} )
+) 
+split Matrix := A -> split( A, constantList( 1, rank target A) )
+
+-- optimal set for linear program P(A,u)
+optP = method()
+optP ( Matrix, List ) := ( A, u ) -> maxFace( transpose matrix {u}, split(A, u) )
+optP Matrix := A -> maxFace( transpose matrix { constantList( 1, rank source A) }, split A )     
+
+-- minimal face mf(A,u)
 minFace = method()
 minFace ( Matrix, List ) := (A,u) -> (
     NA := newton A;
@@ -50,10 +59,10 @@ minFace ( Matrix, List ) := (A,u) -> (
 )
 minFace Matrix := A -> minFace( A, constantList( 1, rank target A ) )
      
+-- recession basis for minimal face     
 rb = method()
 rb ( Matrix, List ) := (A,u) -> tailCone minFace(A,u)
 rb Matrix := A -> tailCone minFace A
-
     
 --------------------------------------------------------------------------------------------------     
 A = matrix { {2, 7}, {7, 2}, {5, 5} }    
@@ -85,3 +94,5 @@ optB = optP B
 vertices optB
 
 rays rb B
+vertices minFace B
+vertices optP B
