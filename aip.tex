@@ -1489,6 +1489,14 @@ Note that $(A, \vv{u})$ is small if and only if only $\vv{0}$ is feasible for $\
 %\begin{proof} If $\vv{k}$ is feasible for $\IP_p(A, \vv{u}p^e)$ and $ p^e \vv{e}_i  \leq \vv{k}$ for some standard basis vector $\vv{e}_i$ of $\ZZ^n$, then $p^e A \vv{e}_i  \leq A \vv{k} < \vv{u}p^e$, and therefore $A \vv{e}_i < \vv{u}$, which contradicts the smallness of $(A, \vv{u})$.  Thus, every coordinate of $\vv{k}$ is less than $p^e$, and so the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} p^{e-1}$.  The arithmetic constraint of the program then implies that $\norm{\vv{k}} \leq p^e-1$.
 %\end{proof}
 
+\emily[inline]{If 
+\[
+ \ideala^{\left[ \mu_\ideala^{\vv{u}}(q) \right] } \equiv \langle x^{\vv{u}q - \vv{z}} \mid \vv{z} \in \Z \subseteq \NN_+^d \rangle \bmod \operatorname{diag}(\vv{u}q)\]
+ then 
+ \[
+\operatorname{crit}(\ideala, \vv{u}) = \frac{1}{q}\left( \mu^{\vv{u}}_\ideala(q) + \max \{ \operatorname{crit}(\ideala, \vv{z}) \mid \vv{z} \in \Z \}  \} \right)
+\]
+}
 
 
 \begin{proposition}
@@ -1499,7 +1507,7 @@ where the maximum is over all points $\vv{z} \in \Z$.
 
 \begin{proof}  The constraints of $\IP(A, \vv{u})$ imply that $\Z$ is a finite set of lattice points with positive coordinates.   These constraints and optimality also imply that if $\vv{e}$ is a standard basis vector in the domain of $A$, then no point in the Minkowski sum $\vv{e} + \opt \IP(A, \vv{u})$ can be feasible for $\IP(A, \vv{u})$.  Applying $A$ to this shows that no point in 
 \[ A \vv{e} + \im \IP(A, \vv{u}) = A \vv{e} + \vv{u} - \Z \] 
-is less than $\vv{u}$.  Thus, $A \vv{e}$ is not less than any point in $\Z$, and as $\vv{e}$ was arbitrarty, it follows that $(A, \vv{z})$ is small for every $\vv{z} \in \Z$.
+is less than $\vv{u}$.  Thus, $A \vv{e}$ is not less than any point in $\Z$, and as $\vv{e}$ was arbitrary, it follows that $(A, \vv{z})$ is small for every $\vv{z} \in \Z$.
 
 The finiteness of $\Z$ allows us to choose $p$ large enough so that \[ \val \IP(A, \vv{v}) \leq p -1 \] for every point $\vv{v} \in \Z \cup \{ \vv{u} \}$.  In this case, every feasible point for $\IP(A, \vv{v})$  automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{v})$, which allows us to conclude that $\IP(A, \vv{v}) = \IP_p(A, \vv{v})$.  In particular, \[ \im \IP_p(A, \vv{u}) =\vv{u} - \Z. \] 
 
@@ -1608,8 +1616,62 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \newpage
 
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\crit}{\operatorname{crit}}
+
+\section{Working in Lawrence}
+
+Suppose that $\ideala$ is $\idealm$-primary.  If $\vv{u} \in \NN^d_+$, then this forces $\O = \mf(A, \vv{u})$ to be compact.  Suppose $\vv{u} \in \NN^d_+$ satisfies $\ft{A}{\vv{u}} \leq 1$.  Then 
+%
+\[ \mu_{\ideala}^{\vv{u}}(p) = \nu_{\ideala}^{\vv{u}}(p) =  \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] and 
+ \[ \ideala^{[\mu_{\ideala}^{\vv{u}}(p) ]} \equiv \langle x^{\vv{u}p - \vv{z}} : \vv{z} \in \Delta(A, \vv{u}, p) \rangle \bmod \diag(\vv{u}p) \]
+%
+A key ingredient is the identity 
+\[ \crit(\ideala ,\vv{u}) = \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} + \frac{\max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \}}{p} \]
+
+We want to compute this max.  If there exists a point $\vv{z} \in \Delta(A, \vv{u}, p)$ that is small, but not very small, then the max equals $1$.  Otherwise, suppose that every point in $\Delta(A, \vv{u}, p)$ is very small.  
+
+Let's look at 
+\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} \]
+There exists $\vv{z}^{\ast} \in \Delta(A, \vv{u}, p)$ such that \daniel{If $p \gg 0$ then we can pick $\vv{z}^{\ast}$ so that it is independent of $p$.}
+
+\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} = \frac{\mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p} \]
+
+Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
+%
+\[
+\crit(\ideala, \vv{u}) =  \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} +  \frac{ \mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p^2} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p^2}
+\]
+%
 
 
+\newcommand{\witt}{\mathfrak{W}}
+
+\emily[inline]{Question:  If $\vv{z}$ is medium small, then the set $\Delta(A, \vv{z}, p)$ contains a medium small element.  If this is true, then we can make the definition uniform, as in the second case below.}
+
+\begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
+
+\begin{enumerate}
+\item  $\witt_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
+\item Suppose $\witt_e$ has been defined for some $e \geq 1$.  Then 
+\[ \witt_{e+1} = \begin{cases} \{ \vv{z} \} & \exists \text{ medium small point $\vv{z}$ in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
+\end{enumerate}
+
+\end{definition}
+
+
+Let $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
+Since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
+Then 
+\[
+ \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right)
+\]
+
+
+
+
+
+\newpage
 
 
 \section{A graph}
