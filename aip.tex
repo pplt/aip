@@ -564,6 +564,7 @@ Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $B\vv{k} <B
 which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $B\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
 \end{proof}
 
+\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
 
 \begin{corollary}
 \label{finite image: C}
@@ -603,7 +604,6 @@ The finiteness results above facilitate the following definition.
 
 \begin{definition}
 \label{orep: D}
-
   For every monomial list $(A, \vv{u}, \vv{s}, q)$, we fix a set 
 \[ \orep(A, \vv{u}, \vv{s}, q) \] satisfying the following conditions.
 \begin{enumerate}
@@ -621,7 +621,7 @@ We stress that there is typically no canonical choice for the sets in \Cref{orep
 
 \begin{remark}
 \label{finiteness of optimal reps: R}
-The finiteness result \Cref{finitely many secondary programs: L} implies that \[ \cup  \ \orep( A, \vv{s}, \vv{u}, q ) \] where the union is over all $A$-lists, is a finite for every monomial matrix $A$.
+The finiteness result \Cref{finitely many secondary programs: L} implies that \[ \orep(A) := \cup  \ \orep( A, \vv{s}, \vv{u}, q ) \] where the union is over all $A$-lists, is a finite for every monomial matrix $A$.
 \end{remark}
 
 \newpage
@@ -733,6 +733,8 @@ from which it follows that $B \vv{h} < B \tail{\vv{s}}_q$.  To see that $\vv{h}$
 The following may be regarded as a partial converse to \Cref{easy but important: L}
 
 \emily[inline]{Restate as a lemma first.  Do this point-by-point, and appeal to the finiteness of the $\mathbb{O}$.}
+
+\emily[inline]{The statement below appears to be the ``lifting lemma'' in disguise!}
 
 \begin{proposition}
 \label{uniform value: P}
@@ -1579,6 +1581,10 @@ As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomi
 
 The following statement may be regarded as a refinement of the upper bound given in \Cref{natural bounds: C}, at least when $p$ is large enough.
 
+\emily[inline]{We can just directly prove that $\mu^{\overline{\vv{u}}}_{\overline{\ideala}}(q) \geq \mu^{\vv{u}}_\ideala(q)$:  If $\vv{v} \in \NN^d_+$ and $\overline{\vv{v}} \not< \overline{\vv{u}} p$, then $\vv{v}\not< \vv{u}p$.
+The opposite inequality holds if and only if $\ideala^{[\overline{\mu}]} \not\subseteq \deg(\vv{u}q)$.
+}
+
 \begin{corollary}
 Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $(A, \vv{u})$ is very small, then
 %
@@ -1614,11 +1620,77 @@ which allows us to conclude that \[ \iprod{\ol{\vv{a}}}{\vv{v}} \leq \norm{\tail
 We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^d$.  Furthermore, the positivity of the grading implies that the point $\vv{a} \in \RR^d$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^d$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\vv{a} = \ol{\vv{a}}$ with another point must be, in fact, an equality.  The details are left to the reader.
 \end{proof}
 
+
+\emily[inline]{
+\textbf{A more intuitive proof that} $\mu(\ideala, \vv{u}, p) \subseteq \mu(\overline{\ideala}, \overline{\vv{u}}, p)$.
+
+\vspace{.3cm}
+
+Suppose that $\ft{A}{\vv{u}} \leq 1$.  
+We know the following about $(\overline{A}, \overline{\vv{u}})$:
+\begin{enumerate}
+ \item $\mu(\overline{A}, \overline{\vv{u}}, p) = \ft{\overline{A}}{\overline{\vv{u}}} p - \delta(\overline{A}, \overline{\vv{u}},p)$.
+ \item $\overline{\ideala}^{\mu(\overline{A}, \overline{\vv{u}}, p)} \equiv \langle x^{\overline{\vv{u}} p - \vv{z}} : \vv{z} \in \Delta(\overline{A}, \overline{\vv{u}}, p) \rangle \bmod \diag(\vv{u}p)$.
+ Moreover, fix any such $x^{\overline{\vv{u}} p - \vv{z}}$.  Then for every representation \[\vv{z} = \overline{A} [\vv{s}]_q - \overline{A} \vv{h}
+ \]
+ with $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, p)$, there exists $\beta$ (that depends on this representation) such that 
+ \[
+  x^{A(\vv{s}p-[\vv{s}]_p + \vv{h})} \in \ideala^{\mu(\overline{\ideala}, \overline{\vv{u}}, p)} \setminus \diag(\vv{u}p)
+ \]
+ for all $p > \beta$.
+\end{enumerate}
+
+\begin{lemma}[A lifting lemma]
+There exists $\beta = \beta(A)$ with the following property:  For all $\vv{z}\in \Delta(A, \vv{u}, q)$, there exists some monomial in $\ideala^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\vv{u}q)$ that lifts $x^{\overline{\vv{u}}q-\vv{z}} \in \overline{\ideala}^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\overline{\vv{u}}q)$ when $p > \beta$.  
+\end{lemma}
+
+
+\begin{proof}[Sketch of proof]
+Pick an integer $D$ relative to $A$ as in 
+\Cref{uniform denominators for mc:  T}, and sets $\orep(A, \vv{u}, \vv{s},q)$ as in \Cref{orep: D}. 
+Choose $p \gg 0$ such that $p/D$ overwhelms any entry of any point in any $\orep(A, \vv{u}, \vv{s},q)$, and for which $p/D$ is greater than any coordinate of any point in $A(\orep(A))$, where $\orep(A)$ is as in \Cref{finiteness of optimal reps: R}.
+Moreover, pick $\vv{s} \in \mc(A,\vv{u})
+$ with denominator $D$ such that 
+\[
+ \Delta(A, \vv{u}, q) = \overline{A}[\vv{s}]_q - \im \ip(A, \vv{u}, q).
+\]
+Then $\vv{h} \in \orep(A, \vv{u}, \vv{s},q)$ such that 
+\[
+ \vv{z} = \overline{A}[\vv{s}]_q - \overline{A} \vv{h}.
+\] 
+Then
+$\vv{s} q - [\vv{s}]_q + \vv{h} \geq \vv{0}$ since $q \gg 0$.  Note that $\vv{s} q - [\vv{s}]_q + \vv{h}$ has nonnegative integer coordinates, and has norm $\nu(\overline{\ideala}, \overline{\vv{u}}, q)$.  
+Hence
+\[
+ x^{A(\vv{s} q - [\vv{s}]_q + \vv{h})} \in \ideala^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)}.
+\]
+We claim that this monomial is not in $\diag(\vv{u}q)$, i.e., 
+$A(\vv{s} q - [\vv{s}]_q + \vv{h}) < \vv{u} q$. 
+Projecting the left-hand side to  $\RR \rb(\mathcal{O})^\perp$, this becomes $\overline{\vv{u}} q - \vv{z}$ by construction. 
+
+If $\widetilde{(\bullet)}$ denotes projection onto $\RR \rb(\mathcal{O})^\perp$, then we claim that 
+\begin{equation} \label{projection-claim}
+ \widetilde{A \vv{s}} q - \widetilde{A [\vv{s}]_q} + \widetilde{A \vv{h}} < \widetilde{\vv{u}} q.
+\end{equation}
+Our choice of $\vv{s}$ implies that $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in \RR_+ \rb(\mathcal{O})$. Since $D$ is a denominator for $\vv{s}$ and $\vv{u}$ has integer coordinates, $\vv{w}$ must also have denominator $D$. 
+Note that \eqref{projection-claim} holds if and only if
+\[
+  \widetilde{A \vv{h}} - \widetilde{A [\vv{s}]_q} < \widetilde{\vv{w}} q
+\]
+so that it suffices to show that $  \widetilde{A \vv{h}}  < \widetilde{\vv{w}} q$. 
+Since $\vv{h} \in \orep(A)$, $A\vv{h} \in A(\orep(A))$, so by our choice of $p$, $p/D$ is greater than every entry of $A \vv{h}$.  On the other hand, each coordinate of $\widetilde{\vv{w}}$ must be at least $1/D$, and $\widetilde{A \vv{h}}  < \widetilde{\vv{w}} q$.
+\end{proof}
+
+We could restate in terms of programs:
+\begin{lemma}
+There exists $\beta = \beta(A)$ such that for all $q > \beta$ and $\vv{z} \in \Delta(A, \vv{u}, q)$, there exists $\vv{k} \in \operatorname{feas} \Pi(A, \vv{u}, q)$ with $\norm{\vv{k}} = \ft{A}{\vv{u}} q - \delta(A, \vv{u}, q)$ for which $\overline{A \vv{k}} = \overline{\vv{u}} q - \vv{z}$
+\end{lemma}
+
+Notice that these statements are very similar to \Cref{uniform value: P}. 
+}
+
+
 \newpage
-
-\newcommand{\diag}{\operatorname{diag}}
-\newcommand{\crit}{\operatorname{crit}}
-
 \section{Working in Lawrence}
 
 Suppose that $\ideala$ is $\idealm$-primary.  If $\vv{u} \in \NN^d_+$, then this forces $\O = \mf(A, \vv{u})$ to be compact.  Suppose $\vv{u} \in \NN^d_+$ satisfies $\ft{A}{\vv{u}} \leq 1$.  Then 
@@ -1644,6 +1716,12 @@ Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
 \]
 %
 
+\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
+In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
+= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
+(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
+}
+
 
 \newcommand{\witt}{\mathfrak{W}}
 
@@ -1654,17 +1732,23 @@ Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
 \begin{enumerate}
 \item  $\witt_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
 \item Suppose $\witt_e$ has been defined for some $e \geq 1$.  Then 
-\[ \witt_{e+1} = \begin{cases} \{ \vv{z} \} & \exists \text{ medium small point $\vv{z}$ in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
+\[ \witt_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
 \end{enumerate}
 
 \end{definition}
 
 
-Let $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
-Since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
+For $\witt_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
+
+If $\witt_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
+\[
+ \crit(\ideala, \vv{u}) = \left( \sum_{i=1}^{t-1} \frac{\mu_i}{p^i}\right) +  \frac{1}{p^t}.
+\]
+
+Otherwise, since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
 Then 
 \[
- \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right)
+ \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right).
 \]
 
 
@@ -1830,11 +1914,18 @@ As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \le
 Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition\textup:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
 \end{lemma}
 
+
 \begin{proof}
 Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
 %
 \[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
 \end{proof}
+
+
+{\small
+\bibliographystyle{amsalpha}
+\bibliography{bibdatabase}
+}	
 
 
 
