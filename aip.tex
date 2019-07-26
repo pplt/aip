@@ -1696,7 +1696,7 @@ Then
 
 \newpage
 
-\textbf{A more intuitive proof that} $\mu(\ideala, \vv{u}, p) \subseteq \mu(\overline{\ideala}, \overline{\vv{u}}, p)$.
+\textbf{A more intuitive proof that} $\mu(\ideala, \vv{u}, p) \leq \mu(\overline{\ideala}, \overline{\vv{u}}, p)$.
 
 \vspace{.3cm}
 
@@ -1759,6 +1759,15 @@ We could restate in terms of programs:
 \begin{lemma}
 There exists $\beta = \beta(A)$ such that for all $q > \beta$ and $\vv{z} \in \Delta(A, \vv{u}, q)$, there exists $\vv{k} \in \operatorname{feas} \Pi(A, \vv{u}, q)$ with $\norm{\vv{k}} = \ft{A}{\vv{u}} q - \delta(A, \vv{u}, q)$ for which $\overline{A \vv{k}} = \overline{\vv{u}} q - \vv{z}$. 
 \end{lemma}
+
+\emily[inline]{
+If we have a path 
+\[
+ (A, \vv{u}) \to (B, \vv{z})
+\]
+we can build $\vv{k}$ with $A \vv{k} < \vv{u} p$ and $\overline{A\vv{k}} < \overline{\vv{u}} p - \vv{z}$ 
+}
+
 
 Notice that these statements are very similar to \Cref{uniform value: P}. 
 
@@ -1836,7 +1845,12 @@ For $e\geq 0$, we define the set $\witt^e(A, \vv{u}) \subseteq \witt^e(A)$ induc
 Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\witt}^e(A)$ inductively as follows:
 \begin{enumerate}
 \item $\widehat{\witt}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
-\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.  If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
+\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.
+
+
+If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
+\emily{or say $\emptyset$ whenever $\witt^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
+
 Otherwise, $\widehat{\witt}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
 
 \begin{enumerate}
@@ -1886,10 +1900,45 @@ using the bounds in this paper, and from this, we can find that the only element
 
 \item Pedro pointed out the better question is that if $(A, \vv{u})$ is small and $\mu(A, \vv{u}, p) = p-1$, then is the whole critical exponent $\crit(A, \vv{u}) = 1$?
 \end{enumerate}  
-
-
-
 }
+
+
+\subsection*{Finiteness properties}
+
+Once $A$ is fixed,
+\begin{itemize}
+ \item $\bigcup_{e=1}^\infty \witt^e(A)$ is finite.
+ \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \witt^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
+ \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \witt^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
+ \item Add the last point
+\end{itemize}
+
+
+\begin{theorem}
+ There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\witt(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
+ \[
+  \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}, p^e).
+ \]
+\end{theorem}
+
+\begin{proof}
+For every $1 \leq i \leq e$, set 
+ \[
+\vv{k}_i = \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i,
+\]
+where $\vv{s}_i \in \mc(A_i, \vv{u}_i)$, and $\vv{h} \in \mathbb{O}(A_i, \vv{u}_i, \vv{s}_i, p)$ is chosen so that $A_{i+1} [\vv{s}_i] - A_{i+1} \vv{h}_i = \vv{u}_{i+1}$.
+Notice that the sets of all $\vv{s}_i$, and of all $\vv{h}_i$, are both finite. 
+
+The conclusion holds when $e=1$ by \Cref{uniform value: P}. 
+Now, assume that $e \geq 2$, and consider a path
+
+\end{proof}
+
+\begin{corollary}
+ \[ \val \Pi(A_1, \vv{u}_1 p^e) \geq \val \Pi(A_1, \vv{u}_1 p) p^{e-1} + \val \Pi(A_2, \vv{u}_2 p) p^{e-2} + \cdots + \val \Pi(A_{e}, \vv{u}_{e} p).
+\]
+\end{corollary}
+
 
 \newpage
 
