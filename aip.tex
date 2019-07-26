@@ -1,9 +1,6 @@
 \documentclass[11pt]{amsart}
 \input{preamble.tex}
 
-\renewcommand{\!}[1]{{\color{red}\text{$\star$\,}#1\,$\star$}}
-\newcommand{\ol}[1]{\overline{#1}}
-
 \begin{document}
 
 \title[Arithmetic programming and Frobenius powers]{Arithmetic integer programming
@@ -576,6 +573,9 @@ $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
 If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\ol{\vv{a}}}{B \vv{k}}\] and so $B \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\RR \rb(\O)^{\perp}$ with $\vv{b} < B \tail{\vv{s}_q}$  and $\iprod{\ol{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.  
 \end{proof}
 
+\emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property. 
+Potentially move it up before \Cref{bounded value: L}.}
+
 \begin{lemma} 
 \label{finitely many secondary programs: L} 
 If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
@@ -599,8 +599,6 @@ The finiteness results above facilitate the following definition.
 
 
 \daniel[inline]{What we are trying to do is fix, once and for all, a finite set of representatives for the optimal set of all the programs $\Theta(A, \vv{u}, \vv{s}, q)$ with $A$ fixed.  I don't know how to clearly express this, or what notation we might want to use for it.}
-
-\newcommand{\orep}{\mathbb{O}}
 
 \begin{definition}
 \label{orep: D}
@@ -859,6 +857,22 @@ We conclude that no column of $B$ is less than $B\tail{\vv{s}}_q - B\vv{k}$.
 
 We conclude with some finiteness properties.
 
+
+\emily[inline]{
+The sets 
+\[ 
+\{ \delta(A, \vv{u},q) : \} \vv{u} \in \ZZ_+^d, q \in \ZZ_+ \}
+\]
+and, for all $\beta > 0$, 
+\[
+ \{ \Delta(A, \vv{u},q) : \vv{u} \in \ZZ_+^d, q \in \ZZ_+, \ft{A}{\vv{u}} \}
+\]
+are finite.
+
+However, below is true as stated. 
+}
+
+
 \begin{proposition}
 \label{finitely many deltas for a fixed A: P}
  Given a monomial matrix $A$, there are only finitely many objects of the form $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
@@ -1073,10 +1087,7 @@ Given a monomial matrix $A$, there exists an integer $\beta$ with the following 
 
 
 \newpage
- 
-%
-%\newcommand{\obj}{\operatorname{obj}} 
-%\newcommand{\feas}{\operatorname{feas}} 
+
 %
 %\section{Linear programming and Newton polyhedra}
 %
@@ -1621,7 +1632,70 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \end{proof}
 
 
-\emily[inline]{
+
+\newpage
+\section{Working in Lawrence}
+
+Suppose that $\ideala$ is $\idealm$-primary.  If $\vv{u} \in \NN^d_+$, then this forces $\O = \mf(A, \vv{u})$ to be compact.  Suppose $\vv{u} \in \NN^d_+$ satisfies $\ft{A}{\vv{u}} \leq 1$.  Then 
+%
+\[ \mu_{\ideala}^{\vv{u}}(p) = \nu_{\ideala}^{\vv{u}}(p) =  \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] and 
+ \[ \ideala^{[\mu_{\ideala}^{\vv{u}}(p) ]} \equiv \langle x^{\vv{u}p - \vv{z}} : \vv{z} \in \Delta(A, \vv{u}, p) \rangle \bmod \diag(\vv{u}p) \]
+%
+A key ingredient is the identity 
+\[ \crit(\ideala ,\vv{u}) = \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} + \frac{\max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \}}{p} \]
+
+We want to compute this max.  If there exists a point $\vv{z} \in \Delta(A, \vv{u}, p)$ that is small, but not very small, then the max equals $1$.  Otherwise, suppose that every point in $\Delta(A, \vv{u}, p)$ is very small.  
+
+Let's look at 
+\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} \]
+There exists $\vv{z}^{\ast} \in \Delta(A, \vv{u}, p)$ such that \daniel{If $p \gg 0$ then we can pick $\vv{z}^{\ast}$ so that it is independent of $p$.}
+
+\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} = \frac{\mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p} \]
+
+Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
+%
+\[
+\crit(\ideala, \vv{u}) =  \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} +  \frac{ \mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p^2} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p^2}
+\]
+%
+
+\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
+In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
+= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
+(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
+}
+
+
+
+\emily[inline]{Question:  If $\vv{z}$ is medium small, then the set $\Delta(A, \vv{z}, p)$ contains a medium small element.  If this is true, then we can make the definition uniform, as in the second case below.}
+
+\begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
+
+\begin{enumerate}
+\item  $\witt_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
+\item Suppose $\witt_e$ has been defined for some $e \geq 1$.  Then 
+\[ \witt_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
+\end{enumerate}
+
+\end{definition}
+
+
+For $\witt_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
+
+If $\witt_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
+\[
+ \crit(\ideala, \vv{u}) = \left( \sum_{i=1}^{t-1} \frac{\mu_i}{p^i}\right) +  \frac{1}{p^t}.
+\]
+
+Otherwise, since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
+Then 
+\[
+ \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right).
+\]
+
+
+\newpage
+
 \textbf{A more intuitive proof that} $\mu(\ideala, \vv{u}, p) \subseteq \mu(\overline{\ideala}, \overline{\vv{u}}, p)$.
 
 \vspace{.3cm}
@@ -1693,74 +1767,129 @@ For $p \gg 0$,
  $\nu(A, \vv{u}, q) = \nu(\overline{A}, \overline{\vv{u}}, q)$. 
 \end{corollary}
 
-
-}
-
-
-\newpage
-\section{Working in Lawrence}
-
-Suppose that $\ideala$ is $\idealm$-primary.  If $\vv{u} \in \NN^d_+$, then this forces $\O = \mf(A, \vv{u})$ to be compact.  Suppose $\vv{u} \in \NN^d_+$ satisfies $\ft{A}{\vv{u}} \leq 1$.  Then 
-%
-\[ \mu_{\ideala}^{\vv{u}}(p) = \nu_{\ideala}^{\vv{u}}(p) =  \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] and 
- \[ \ideala^{[\mu_{\ideala}^{\vv{u}}(p) ]} \equiv \langle x^{\vv{u}p - \vv{z}} : \vv{z} \in \Delta(A, \vv{u}, p) \rangle \bmod \diag(\vv{u}p) \]
-%
-A key ingredient is the identity 
-\[ \crit(\ideala ,\vv{u}) = \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} + \frac{\max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \}}{p} \]
-
-We want to compute this max.  If there exists a point $\vv{z} \in \Delta(A, \vv{u}, p)$ that is small, but not very small, then the max equals $1$.  Otherwise, suppose that every point in $\Delta(A, \vv{u}, p)$ is very small.  
-
-Let's look at 
-\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} \]
-There exists $\vv{z}^{\ast} \in \Delta(A, \vv{u}, p)$ such that \daniel{If $p \gg 0$ then we can pick $\vv{z}^{\ast}$ so that it is independent of $p$.}
-
-\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} = \frac{\mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p} \]
-
-Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
-%
+\emily[inline]{
+Given $A$, the following set is finite: 
 \[
-\crit(\ideala, \vv{u}) =  \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} +  \frac{ \mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p^2} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p^2}
+ \bigcup_{\vv{u} \in \NN_+^d} \{\text{all descendants  of } (A,\vv{u}) \text{ of length } \geq 1 \}
 \]
-%
-
-\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
-In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
-= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
-(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
 }
 
+\begin{lemma}[Extended lifting lemma]
+ There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and 
+ \[
+(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
+ \]
+ is a sequence of $p$-sprouts, then for every $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_{i-1}, \vv{u}_{i-1} p)$ 
+ %with $\norm{\vv{k}_i} = \nu(A_{i-1}, \vv{u}_{i-1}, p)$ 
+ for which $A_i \vv{k}_i = \overline{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds: 
+ \[
+  \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}p^e).
+ \]
+\end{lemma}
 
-\newcommand{\witt}{\mathfrak{W}}
+\begin{corollary}
+There exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and 
+ \[
+(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
+ \]
+is a sequence of $p$-sprouts,
+then $\val \Pi(A, \vv{u} p^e)$ is at least
+\[
+\val \Pi(A_0, \vv{u}_0 p) p^{e-1} + \val \Pi(A_1, \vv{u}_1 p) p^{e-2} + \cdots + \val \Pi(A_{e-1}, \vv{u}_{e-1} p).
+\]
+\end{corollary}
 
-\emily[inline]{Question:  If $\vv{z}$ is medium small, then the set $\Delta(A, \vv{z}, p)$ contains a medium small element.  If this is true, then we can make the definition uniform, as in the second case below.}
+\emily[inline]
+{
 
-\begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
+\textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e)$ is the max of the above expression, over sequences of $p$-sprouts of length $e$. 
 
+\vspace{.4cm}
+
+\textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \witt_i(A, \vv{u}) \}$.  
+}
+
+\begin{definition}
+ Define
 \begin{enumerate}
-\item  $\witt_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
-\item Suppose $\witt_e$ has been defined for some $e \geq 1$.  Then 
-\[ \witt_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
+\item $\witt^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
+\item $\witt^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \witt^e  \}$ for $e \geq 1$. 
 \end{enumerate}
-
 \end{definition}
 
 
-For $\witt_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
+We think that $\{ \witt^e : e \geq 1 \}$ is finite, but only care that $\bigcup_{e=1}^\infty \witt^e(A)$ is.
 
-If $\witt_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
+\emily[inline]{verify that $\witt_e(A, \vv{u})$ and $\witt_e(A)$ are eventually periodic}
+
+\begin{definition}
+Fix $(A, \vv{u})$. 
+For $e\geq 0$, we define the set $\witt^e(A, \vv{u}) \subseteq \witt^e(A)$ inductively as follows:
+\begin{enumerate}
+ \item $\witt^0(A, \vv{u}) = \{ (A, \vv{u}) \}$.
+\item $\witt^{e+1}(A, \vv{u}) = \{ p\text{-sprout of } (B, \vv{v}) : \vv{v} \in \witt^e(A, \vv{u}) \}$ for $e \geq 1$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{definition}
+Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\witt}^e(A)$ inductively as follows:
+\begin{enumerate}
+\item $\widehat{\witt}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
+\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.  If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
+Otherwise, $\widehat{\witt}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
+
+\begin{enumerate}
+\item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
+\item Among all pairs in $S$ that achieve this maximum, the value of $\delta(B, \vv{v}, p)$ is minimal.
+\end{enumerate}
+i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $p \gg 0$. 
+\end{enumerate}
+
+
+\end{definition}
+
+\todo[inline]{Set notation for sprouts/set of sprouts/sprouts of sets.}
+
+\begin{lemma}
+Suppose that $(A, \vv{u})$ is very small.
+There exists $\beta = \beta(A)$ such that for all $p \geq \beta$ and $e \geq 1$, the following holds:
+There exists some $1 \leq k \leq e$, and a path of length $k \leq e$
+ \[
+(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
+ \]
+in $\witt^e(A, \vv{u})$, for which $\val \Pi_p(A, \vv{u}, p^e)$ is at most 
 \[
- \crit(\ideala, \vv{u}) = \left( \sum_{i=1}^{t-1} \frac{\mu_i}{p^i}\right) +  \frac{1}{p^t}.
-\]
+ \val \Pi_p(A, \vv{u}, p) p^{e-1} + \val \Pi_p(A_1, \vv{u}_1, p) p^{e-2} + \cdots + \val \Pi_p (A_k, \vv{u}_k, p) p^{e-k} + p^{e-k} - 1.
+\] 
+\end{lemma}
 
-Otherwise, since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
-Then 
-\[
- \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right).
-\]
+\begin{proof}
+ Induction on $e \geq 1$. For $e=1$, can choose any $p$-sprout $(A_1, \vv{u}_1)$ of $(A, \vv{u})$. 
+\end{proof}
+
+\emily[inline]{
+
+\textbf{Important Questions}.
+
+\begin{enumerate}
+ \item Does a medium-small pair always have a medium-small sprout?
+ We think the answer is NO:  
+ Let $A = \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}$ and $\vv{u} = (2,2)$, so that 
+$(A, \vv{u})$ is small but not very small.  Then the unique minimal coordinate is $\vv{s} = (2/3,2/3)$, so that if $p=2 \bmod 3$, then $[\vv{s}]_p = (2[p\%3]/3, 2[p\%3]/3) = (1/3,1/3)$. 
+
+The value of $\Theta(A, \vv{u}, \vv{s}, p)$ is $0$
+using the bounds in this paper, and from this, we can find that the only element of $\Delta(A, \vv{u}, \vv{s}, p)$ is $(1,1)$, which is very small. 
+
+\item Is it true that if some digit of a critical exponent of the monomial ideal $\ideala$ equals $p-1$, then \emph{all subsequent digits} must also be $p-1$.  This seems to be true if we run into a \emph{medium small} point.  Are there points $\vv{v}$ with $\mu(A,\vv{v}, p) = p-1$ where $(A,\vv{v})$ is not medium small?  Sure, look at $A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ and $\vv{v} = (1,1)$.  Then our Frobenius examples paper should tell us that $(A, \vv{v})$ is very small but $\mu(A, \vv{u}, p)$ should equal $1$ often.
+\item We saw earlier that a medium small pair need not sprout a medium small pair.  But does a pair $(A, \vv{u})$ that is small and satisfies $\mu(A, \vv{u}, p) = p-1$ then must it sprout a pair $(B, \vv{v})$ with $\mu(B, \vv{v}, p) = p-1$?
+
+\item Pedro pointed out the better question is that if $(A, \vv{u})$ is small and $\mu(A, \vv{u}, p) = p-1$, then is the whole critical exponent $\crit(A, \vv{u}) = 1$?
+\end{enumerate}  
 
 
 
-
+}
 
 \newpage
 
@@ -1785,6 +1914,8 @@ Otherwise, $\mathfrak{W}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv
 \end{enumerate}
 \end{enumerate}
 \end{definition}
+
+
 
 \begin{definition}
 If $p > 0$ is an integer and $(A, \vv{u})$ is very small, we define the directed graph $\mathfrak{W}^{\infty}(A, \vv{u}, p)$ as follows.
@@ -1923,7 +2054,7 @@ Given a positive real number $w$, and a set $\Omega$ of real numbers that is bou
 
 
 \begin{proof}
-Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
+Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
 %
 \[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
 \end{proof}
