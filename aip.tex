@@ -1467,7 +1467,7 @@ If $(A, \vv{u})$ is a monomial pair and $e \geq 1$, then
 These bounds follow from a direct computation of the norm of the optimal point $\vv{g}$ in the proof of \Cref{optimal division: L}
 \end{proof}
 
-\begin{corollary}  If $(A, \vv{u})$ and $(B, \vv{v})$ are monomial pairs such that \[ \val \IP_p(A, \vv{u}) > \val \IP_p(B, \vv{v})\] then $\val \IP_p(A, \vv{u}p^e) > \val \IP_p(B, \vv{v}p^e)$ for all $e \geq 0$.
+\begin{corollary}\label{cor: mu comparison}  If $(A, \vv{u})$ and $(B, \vv{v})$ are monomial pairs such that \[ \val \IP_p(A, \vv{u}) > \val \IP_p(B, \vv{v})\] then $\val \IP_p(A, \vv{u}p^e) > \val \IP_p(B, \vv{v}p^e)$ for all $e \geq 0$.
 \end{corollary}
 
 \begin{proof}   If $\val \IP_p(A, \vv{u}) \geq \val \IP_p(B, \vv{v}) + 1$, then \Cref{natural bounds: C} tells us that 
@@ -1596,7 +1596,7 @@ The following statement may be regarded as a refinement of the upper bound given
 The opposite inequality holds if and only if $\ideala^{[\overline{\mu}]} \not\subseteq \deg(\vv{u}q)$.
 }
 
-\begin{corollary}
+\begin{corollary}\label{cor: upper bound for higher mus}
 Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $(A, \vv{u})$ is very small, then
 %
 \[ \val \IP_p(A, \vv{u}p^{e+1})  \leq  \val \IP_p(A, \vv{u}p) \cdot p^e +  \max \val \IP_p(B, \vv{v}p^e) \] 
@@ -1988,9 +1988,9 @@ If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then
 \end{corollary}
 
 
-\begin{theorem}
+\begin{theorem}\label{thm: higher mu formula for paths}
 If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then the following holds\textup:  If 
-$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path of length $e-1$ in $\mathfrak{W}_p(A, \vv{u})$, and $(B, \vv{v})$ is any vertex of $\mathfrak{W}_p(A, \vv{u})$ whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then the value of $\IP_p(B, \vv{v}p^e)$ is at most \daniel{equal?}
+$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path of length $e-1$ in $\mathfrak{W}_p(A, \vv{u})$, and $(B, \vv{v})$ is any vertex of $\mathfrak{W}_p(A, \vv{u})$ whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then the value of $\IP_p(B, \vv{v}p^e)$ is at most \pedro{Hence equal, by the lifting lemma}
 %
  \[ \left( \sum_{s=1}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^e. \] 
 \end{theorem}
@@ -2008,8 +2008,6 @@ where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to 
 \label{target bound: e}
 \left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
 
-
-
 Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\mathfrak{W}_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
 \[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
 and our induction hypothesis applied to the path 
@@ -2019,6 +2017,49 @@ On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ o
 $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
 \end{proof}
 
+
+\newpage
+
+\pedro[inline]{
+\begin{corollary}\label{cor: constant mus}
+   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\witt}(A,\vv{u},p)$ for every $p\ge \beta$. 
+\end{corollary}
+\todo[inline]{Restate more precisely}
+\begin{corollary}
+   If $(A,\vv{u})$ is a small monomial pair, then there exists $\beta = \beta(A)$ such that for all $p \ge \beta$ the following holds\textup:
+   If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\mathfrak{W}}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\mathfrak{W}}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
+   \begin{equation*}
+     \mu(B,\vv{v},qp^e)
+         \le \mu(A_1,\vv{u}_1,p)qp^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)qp + \mu(A_e,\vv{u}_e,qp)
+   \end{equation*}
+   for every $q$.
+\end{corollary}
+\begin{proof}
+   This follows by induction on $e$, arguing exactly as in \Cref{thm: higher mu formula for paths}, and noticing that \Cref{cor: constant mus} gives us the case $e=1$.
+\end{proof}
+
+\details[inline]{
+Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\witt}(A, \vv{u},p)$ whenever $p > \beta$.
+    In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\mu(B,\vv{v},qp) = \mu(A_1, \vv{u}_1, qp)$, proving the result for $e=1$.
+
+    Suppose that $e \geq 2$, and the result holds for paths of length $e-2$.
+    \Cref{cor: upper bound for higher mus} tells us that
+    \begin{align*}
+      \mu(B,\vv{v},qp^e) &\le \mu(B,\vv{v},p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}) \\
+      &= \mu(A_1,\vv{u}_1,p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}).
+    \end{align*}
+    Therefore, to complete our inductive step, it suffices to show that
+    \[\mu(C,\vv{z},qp^{e-1}) \le \mu(A_2,\vv{u}_2,qp^{e-1}) \]
+    for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$, and the induction hypothesis does the rest. 
+    Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\witt}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
+    In light of this, \Cref{cor: mu comparison} then tells us that \ldots
+% and our induction hypothesis applied to the path 
+% \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
+
+% On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+% $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
+}
+}
 
 \newpage
 
