@@ -11,55 +11,73 @@
 \author{Emily E. Witt}
 \maketitle
 
-
-\section{The main players (repeated later on)}
-
-\begin{definition}
-A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
-\end{definition}
-
-\begin{definition}
-A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
-\end{definition}
-
-
-\comment[inline]{In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
- Think about $A$ as the matrix whose columns correspond to the generators of a monomial ideal $\ideala$, and let $\ideald$ be the diagonal ideal determined by $\vv{u}$. }
-
-
-\begin{definition}
-$\LP(A, \vv{u})$ is the linear program defined as follows:
+\emily[inline]{
+TO DO LIST:
 \begin{enumerate}
-\item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
-\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+ \item Write essential statements/proofs.
+ \item Decide on name of paper.
+ \item Decide on name for minimal coordinate.
+ \item Make sprout notation.
+ \item Put in examples.
+ \item Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
+ \item Fill in/rewrite preliminaries.
+ \item Reorganize and motivate the $\Pi$ and $\Theta$, and their connection, in Sections 5 and 6.
+ \item ``fractal linear program;'' solve $P$ in ``Sierpinski gasket''
+ \item Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
+ \item Minimize and/or ``algebrafy'' statements.
+ \item Background section on Frobenius powers, $\mu$, $\nu$, etc.
+ \item Derive some easy corollaries for very general hypersurfaces.
 \end{enumerate}
-\end{definition}
-
-\comment[inline]{$ \val \LP(A, \vv{u}) = \ft{\ideala}{\ideald}$, as recorded in \Cref{FT descriptions: P}.}
+}
 
 
-\begin{definition}
-$\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
-\begin{enumerate}
-\item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. 
-\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-\end{enumerate}
-\end{definition}
+% \section{The main players (repeated later on)}
+% 
+% \begin{definition}
+% A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
+% \end{definition}
+% 
+% \begin{definition}
+% A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
+% \end{definition}
+% 
+% 
+% \comment[inline]{In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
+%  Think about $A$ as the matrix whose columns correspond to the generators of a monomial ideal $\ideala$, and let $\ideald$ be the diagonal ideal determined by $\vv{u}$. }
+% 
+% 
+% \begin{definition}
+% $\LP(A, \vv{u})$ is the linear program defined as follows:
+% \begin{enumerate}
+% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$ \val \LP(A, \vv{u}) = \ft{\ideala}{\ideald}$, as recorded in \Cref{FT descriptions: P}.}
+% 
+% 
+% \begin{definition}
+% $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
+% \begin{enumerate}
+% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. 
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$\val \IP(A, \vv{u} q) = \nu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
+% 
+% 
+% \begin{definition} If $p>0$ is a prime integer, then $\IP_p(A, \vv{u})$ is the arithmetic integer program in $\ZZ^n$ defined as follows:
+% \begin{enumerate}
+% \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$.  
+% \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.  By Lucas' Theorem, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_s} < p$ for all $0 \leq s \leq l $.
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$\val \IP_p(A, \vv{u} q) = \mu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
 
-\comment[inline]{$\val \IP(A, \vv{u} q) = \nu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-
-
-\begin{definition} If $p>0$ is a prime integer, then $\IP_p(A, \vv{u})$ is the arithmetic integer program in $\ZZ^n$ defined as follows:
-\begin{enumerate}
-\item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$.  
-\item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.  By Lucas' Theorem, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_s} < p$ for all $0 \leq s \leq l $.
-\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-\end{enumerate}
-\end{definition}
-
-\comment[inline]{$\val \IP_p(A, \vv{u} q) = \mu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-
-\newpage
 
 \section{Preliminaries}
 
@@ -183,6 +201,8 @@ Our choice of terminology is motivated by the following observation.
 \end{remark}
 
 \subsection{Collapses} 
+
+\pedro[inline]{Why don't we just define recession subspaces instead?}
 
 \begin{definition}  
 \label{collapse: D}
@@ -373,7 +393,10 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 
 \subsection{Minimal coordinates}
 
-\ \daniel[inline]{The idea is that a minimal coordinate is a special kind of optimal point.  Maybe we should call it a \emph{distinguished optimal point}, or something similar (\emph{optimal coordinate}?), to emphasize this.  I am kinda worried about calling a point a coordinate.  The only time we need to distinguish between a minimal coordinate and optimal point is when the corresponding minimal face is not bounded.}
+\ \daniel[inline]{The idea is that a minimal coordinate is a special kind of optimal point.  Maybe we should call it a \emph{distinguished optimal point}, or something similar (\emph{optimal coordinate}?), to emphasize this.  I am kinda worried about calling a point a coordinate.  The only time we need to distinguish between a minimal coordinate and optimal point is when the corresponding minimal face is not bounded.
+\emily[inline]{special point?}
+}
+
 
 \comment[inline]{Minimal coordinates are how we construct canonical solutions to the integer program $\IP(A, \vv{u}q)$;  see \Cref{canonical-feasible: R} for more details.}
 
@@ -466,20 +489,99 @@ $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
 The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt \IP(A, \vv{u}) ). \] 
 \end{definition}
 
-\comment[inline]{Our objective is to study $\IP(A, \vv{u}q)$ whenever $q = p^e$ and $p \gg 0$.}
+% \comment[inline]{Our objective is to study $\IP(A, \vv{u}q)$ whenever $q = p^e$ and $p \gg 0$.}
 
-\daniel[inline]{We ``solve" the program $\IP(A, \vv{u}q)$ as is done in the other paper, or as discussed at AIM.  We recall the rough outline below.
-\begin{enumerate}
-\item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many minimal coordinates, whereas in each of those other cases, there is a unique one.  In any case, we associate to each minimal coordinate for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: R}.
-\item Step 2:  Fix a minimal coordinate for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
-\item Step 3:  Study the finiteness properties of $\ip$.  This is done in this section, before the connection between $\IP$ and $\ip$ is discussed, since these finiteness properties of $\ip$ are called upon to tie down the connection with $\IP$.  The downside is that this order of things makes things here seem really unmotivated.
-\item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of minimal coordinate we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
-\end{enumerate}
-}
+% \daniel[inline]{We ``solve" the program $\IP(A, \vv{u}q)$ as is done in the other paper, or as discussed at AIM.  We recall the rough outline below.
+% \begin{enumerate}
+% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many minimal coordinates, whereas in each of those other cases, there is a unique one.  In any case, we associate to each minimal coordinate for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: R}.
+% \item Step 2:  Fix a minimal coordinate for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
+% \item Step 3:  Study the finiteness properties of $\ip$.  This is done in this section, before the connection between $\IP$ and $\ip$ is discussed, since these finiteness properties of $\ip$ are called upon to tie down the connection with $\IP$.  The downside is that this order of things makes things here seem really unmotivated.
+% \item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of minimal coordinate we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
+% \end{enumerate}
+% }
 
 In this section, we introduce and study a family of integer programs that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.    
 
-However, the exact relationship between these families of programs will not be discussed until the next section.  Therefore, after digesting the first few definitions below, the reader may chose to omit the remainder of this section, and return to it as necessary when reading \Cref{solving: S}.  
+
+\begin{lemma}
+\label{less than u: L}  Suppose that $\vv{s}$ is a minimal coordinate for a pair $(A, \vv{u})$.  If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
+\end{lemma}
+
+\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\RR \rb(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\RR \rb(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\RR \rb(\O)^{\perp}$.  
+
+Towards this, let $(B,\ol{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $B( \vv{s} - \vv{t})$ and $B \vv{s} = \ol{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Therefore, since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, then the same must be true for $B(\vv{s} - \vv{t})$.  In other words, $B \vv{t} < B \vv{s} = \ol{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\RR \rb(\O) \oplus \RR \rb(\O)^{\perp}$.
+\end{proof}
+
+
+%A crucial notion in our upcoming arguments is the following basic construction from elementary number theory.
+%
+%\begin{definition}  If $\lambda \in \QQ$ is nonzero and $q$  is a positive integer, we set \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b} \] where $\lambda = a/b$ is some representation for $\lambda$ and $\lpr{c}{b}$ is the least \emph{positive} residue of the integer $c$ modulo $b$.   In the case that $\lambda = 0$, we set $\tail{\lambda}_q = 0$.  We extend this definition to points of $\QQ^n$ in a coordinate-wise manner.
+%\end{definition}
+%
+%\begin{remark} This definition is clearly independent of the representation of $\lambda \neq 0$ as a fraction.  In fact, in this case, the positive rational number $\tail{\lambda}_q$ depends only on the residue of $q$ modulo the least denominator of $\lambda$.
+%\end{remark}
+%
+%\begin{remark}  If $\vv{s} \in \QQ^n$ has nonnegative coordinates, then \[ \vv{s}q - \tail{\vv{s}}_q \] has nonnegative integer coordinates for every positive integer $q$.  We will use this fact often in the sequel, typically without explicitly mentioning it.
+%\end{remark}
+
+
+
+%One again, suppose $(A, \vv{u})$ is a monomial pair and that $q$ is a positive integer.  
+
+\begin{remark}[A canonical feasible point]
+\label{canonical-feasible: R}
+Fix a rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and an integer $q>0$.  We may then set \[ \vv{t} = \vv{s} - \frac{\tail{\vv{s}}_q}{q} \] in \Cref{less  than u: L} to deduce that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  However, by construction, the point $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative integer coordinates, and therefore \[ \vv{s}q - \tail{\vv{s}}_q\] is feasible for the integer program $\IP(A, \vv{u}q)$. 
+\end{remark}
+
+ In what follows, our strategy will be to compare an arbitrary feasible point for $\IP(A, \vv{u}q)$ to the canonical one constructed above.   
+
+
+%To clarify the statements of the results that follow, we fix the following notation.
+
+%\begin{setup}
+%\label{collapse: S}
+%Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\ol{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $B$ be the collapse of $A$ along $\O$.  With these conventions, $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    
+%\end{setup}
+%
+%\begin{remark}  The main upshot to working with the collapsed matrix $B$ is the following observation:  If $\vv{s} \in \mc(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
+%\[ B \vv{s} = \ol{A \vv{s}} = \ol{\vv{u}}.\] 
+%\end{remark}
+
+
+
+%\subsection{A critical secondary linear program}  We continue to adopt the notation in \Cref{collapse: S}.  Below, we define and study a secondary integer program that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.
+%
+%
+%\begin{definition} If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
+%\[ \ip_q(A, \vv{u}, \vv{s}) \] 
+%is  the integer program  in $\ZZ^n$ is defined as follows:
+%\begin{enumerate}
+%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $B \vv{k}  < B \tail{\vv{s}}_q$.
+%\end{enumerate}
+%
+%The \emph{image} of $\ip_q(A, \vv{u}, \vv{s})$ is the subset of $\ZZ \rb(\O)^{\perp}$ given by \[ \im \ip_q(A, \vv{u}, \vv{s})  = B (\opt \ip_q(A, \vv{u}, \vv{s})). \] 
+%\end{definition}
+%
+%Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
+
+\emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
+
+\begin{lemma}
+\label{easy but important: L}
+Suppose $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.   If  $\vv{h} \in \ZZ^n$ is such that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is feasible for $\IP(A, \vv{u}q)$, then $\vv{h}$ must be feasible for $\ip(A, \vv{u}, \vv{s}, q)$.
+\end{lemma}
+
+\begin{proof} As the constraints of $\IP(B, \ol{\vv{u}}q)$ are a subset of those of $\IP(A, \vv{u}q)$, it follows that $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is also feasible for the former program.  In particular,  
+\[ B ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) < \ol{\vv{u}}q = B \vv{s}q \] 
+from which it follows that $B \vv{h} < B \tail{\vv{s}}_q$.  To see that $\vv{h}$ satisfies the remaining constraint of $\ip(A, \vv{u}, \vv{s}, q)$, note that the feasibility of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for $\IP(A, \vv{u}q)$ implies that this vector is nonnegative, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  
+\end{proof}
+
+
+
+
+
+
 
 \begin{definition}
 A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
@@ -532,6 +634,52 @@ Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(B, \ol{\vv{u}})$ is the collap
 \[ (B, \ol{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
 \[ \ip(A, \vv{u}, \vv{s}, q) = \ip(B, \ol{\vv{u}}, \vv{s}, q). \] 
 \end{remark}
+
+
+
+The following may be regarded as a partial converse to \Cref{easy but important: L}
+
+\emily[inline]{Restate as a lemma first.  Do this point-by-point, and appeal to the finiteness of the $\mathbb{O}$.
+We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for $\ldots$''
+}
+
+\emily[inline]{The statement below appears to be the ``lifting lemma'' in disguise!.  More precisely, it looks like the base case of ILL}
+
+\begin{proposition}
+\label{uniform value: P}
+Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair and $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, then every point in
+\[ \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q) \] is optimal for $\IP(A, \vv{u}q)$ whenever $q >  \beta D$. 
+\end{proposition}
+
+\begin{proof} As noted in \Cref{finiteness of optimal reps: R}, 
+%
+\[ \mathbb{M} = \cup  \ \orep( A, \vv{s}, \vv{u}, q )\]
+%
+is a finite subset of the domain lattice of $A$, where the union is over all $A$-lists.  Therefore, there exists a negative integer $\alpha$ such that every coordinate of every point in $\mathbb{M}$ is at least $\alpha$, and an integer $\mu$ such that every coordinate of every point of $A (\mathbb{M})$ is at most $\mu$.  Set \[ \beta =  \max \{ 1-\alpha, \mu \}.\]
+
+Next, consider a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, and a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, so that  \[ \vv{u} = A \vv{s} + \vv{w} \] for some positive rational point $\vv{w}$ in $\RR \rb(\O)^{\perp}$.  Note that the integrality of $\vv{u}$ implies that $D$ is also a denominator for $\vv{w}$.  Finally, fix an integer $q > \beta D$ and a point $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  Below, we will demonstrate that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is optimal for $\IP(A, \vv{u}q)$.  
+
+First, note that this lattice point is nonnegative, that is,   $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $1/D$.  Thus, as $q > \beta D$, the $i$-th coordinate of $\vv{s}q$ is greater than $\beta$.  However, the definition of $\tail{\vv{s}}_q$ and $\alpha$ guarantee that the coordinates of $\tail{\vv{s}}_q - \vv{h}$ are at most $1-\alpha$, which in turn is at most $\beta$.
+
+Thus, $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$ if and only if
+\[ A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q.\] 
+which we rewrite as 
+\begin{equation} 
+\label{equivalent ineq: e}
+A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
+\end{equation}
+
+Let $B$ be the collapse of $A$ along $\O$.  In $\RR \rb(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $B \vv{h} < B \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$.  
+
+If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\RR \rb(\O)$ is at least $\vv{w}q$, and our choice of $D$ and $q$ then guarantee that the coordinates of $\vv{w}q$ are greater than $\beta$.  However,  our choice of $\mu$ tells us that the coordinates of the left-hand side of \eqref{equivalent ineq: e} are at most $\mu$, and hence, at most $\beta$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \RR \rb(\O) \oplus \rb(\O)^{\perp}$.
+
+In summary, we have just shown that $\vv{s}q-\tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$, and so it follows that the value of $\IP(A, \vv{u}q)$ at least 
+\[  \norm{\vv{s}}q - \norm{\tail{\vv{s}}_q} + \norm{\vv{h}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
+where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  To establish the optimality of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$, it remains to show that the $\val \IP(A, \vv{u}q)$ equals this lower bound.  However, this is a consequence of \Cref{easy but important: L}.
+\end{proof}
+
+
+
 
 \subsection{Some finiteness properties}  
 
@@ -600,6 +748,9 @@ The finiteness results above facilitate the following definition.
 
 \daniel[inline]{What we are trying to do is fix, once and for all, a finite set of representatives for the optimal set of all the programs $\Theta(A, \vv{u}, \vv{s}, q)$ with $A$ fixed.  I don't know how to clearly express this, or what notation we might want to use for it.}
 
+\emily[inline]{Track where $\mathbb{O}$ is used:  Maybe it is only used in a few proofs.  Then we could take out the definition and just remark that these finiteness properties exist. }
+
+
 \begin{definition}
 \label{orep: D}
   For every monomial list $(A, \vv{u}, \vv{s}, q)$, we fix a set 
@@ -622,8 +773,7 @@ We stress that there is typically no canonical choice for the sets in \Cref{orep
 The finiteness result \Cref{finitely many secondary programs: L} implies that \[ \orep(A) := \cup  \ \orep( A, \vv{s}, \vv{u}, q ) \] where the union is over all $A$-lists, is a finite for every monomial matrix $A$.
 \end{remark}
 
-\newpage
-\section{Title}
+\section{Toward solving $\Pi$}
 \label{solving: S}
 
 Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer. The goal in this subsection is to demonstrate that the value and image of \[ \IP(A, \vv{u}q) \] vary with $q$ in a uniform way as $q \to \infty$.
@@ -631,78 +781,6 @@ Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer. 
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
 
-\begin{lemma}
-\label{less than u: L}  Suppose that $\vv{s}$ is a minimal coordinate for a pair $(A, \vv{u})$.  If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
-\end{lemma}
-
-\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\RR \rb(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\RR \rb(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\RR \rb(\O)^{\perp}$.  
-
-Towards this, let $(B,\ol{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $B( \vv{s} - \vv{t})$ and $B \vv{s} = \ol{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Therefore, since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, then the same must be true for $B(\vv{s} - \vv{t})$.  In other words, $B \vv{t} < B \vv{s} = \ol{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\RR \rb(\O) \oplus \RR \rb(\O)^{\perp}$.
-\end{proof}
-
-
-%A crucial notion in our upcoming arguments is the following basic construction from elementary number theory.
-%
-%\begin{definition}  If $\lambda \in \QQ$ is nonzero and $q$  is a positive integer, we set \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b} \] where $\lambda = a/b$ is some representation for $\lambda$ and $\lpr{c}{b}$ is the least \emph{positive} residue of the integer $c$ modulo $b$.   In the case that $\lambda = 0$, we set $\tail{\lambda}_q = 0$.  We extend this definition to points of $\QQ^n$ in a coordinate-wise manner.
-%\end{definition}
-%
-%\begin{remark} This definition is clearly independent of the representation of $\lambda \neq 0$ as a fraction.  In fact, in this case, the positive rational number $\tail{\lambda}_q$ depends only on the residue of $q$ modulo the least denominator of $\lambda$.
-%\end{remark}
-%
-%\begin{remark}  If $\vv{s} \in \QQ^n$ has nonnegative coordinates, then \[ \vv{s}q - \tail{\vv{s}}_q \] has nonnegative integer coordinates for every positive integer $q$.  We will use this fact often in the sequel, typically without explicitly mentioning it.
-%\end{remark}
-
-
-
-%One again, suppose $(A, \vv{u})$ is a monomial pair and that $q$ is a positive integer.  
-
-\begin{remark}[A canonical feasible point]
-\label{canonical-feasible: R}
-Fix a rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and an integer $q>0$.  We may then set \[ \vv{t} = \vv{s} - \frac{\tail{\vv{s}}_q}{q} \] in \Cref{less  than u: L} to deduce that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  However, by construction, the point $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative integer coordinates, and therefore \[ \vv{s}q - \tail{\vv{s}}_q\] is feasible for the integer program $\IP(A, \vv{u}q)$. 
-\end{remark}
-
- In what follows, our strategy will be to compare an arbitrary feasible point for $\IP(A, \vv{u}q)$ to the canonical one constructed above.   
-
-
-%To clarify the statements of the results that follow, we fix the following notation.
-
-%\begin{setup}
-%\label{collapse: S}
-%Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\ol{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $B$ be the collapse of $A$ along $\O$.  With these conventions, $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    
-%\end{setup}
-%
-%\begin{remark}  The main upshot to working with the collapsed matrix $B$ is the following observation:  If $\vv{s} \in \mc(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
-%\[ B \vv{s} = \ol{A \vv{s}} = \ol{\vv{u}}.\] 
-%\end{remark}
-
-
-
-%\subsection{A critical secondary linear program}  We continue to adopt the notation in \Cref{collapse: S}.  Below, we define and study a secondary integer program that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.
-%
-%
-%\begin{definition} If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
-%\[ \ip_q(A, \vv{u}, \vv{s}) \] 
-%is  the integer program  in $\ZZ^n$ is defined as follows:
-%\begin{enumerate}
-%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $B \vv{k}  < B \tail{\vv{s}}_q$.
-%\end{enumerate}
-%
-%The \emph{image} of $\ip_q(A, \vv{u}, \vv{s})$ is the subset of $\ZZ \rb(\O)^{\perp}$ given by \[ \im \ip_q(A, \vv{u}, \vv{s})  = B (\opt \ip_q(A, \vv{u}, \vv{s})). \] 
-%\end{definition}
-%
-%Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
-
-
-\begin{lemma}
-\label{easy but important: L}
-Suppose $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.   If  $\vv{h} \in \ZZ^n$ is such that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is feasible for $\IP(A, \vv{u}q)$, then $\vv{h}$ must be feasible for $\ip(A, \vv{u}, \vv{s}, q)$.
-\end{lemma}
-
-\begin{proof} As the constraints of $\IP(B, \ol{\vv{u}}q)$ are a subset of those of $\IP(A, \vv{u}q)$, it follows that $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is also feasible for the former program.  In particular,  
-\[ B ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) < \ol{\vv{u}}q = B \vv{s}q \] 
-from which it follows that $B \vv{h} < B \tail{\vv{s}}_q$.  To see that $\vv{h}$ satisfies the remaining constraint of $\ip(A, \vv{u}, \vv{s}, q)$, note that the feasibility of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for $\IP(A, \vv{u}q)$ implies that this vector is nonnegative, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  
-\end{proof}
 
 %\begin{lemma}
 %\label{key step: L}
@@ -727,45 +805,6 @@ from which it follows that $B \vv{h} < B \tail{\vv{s}}_q$.  To see that $\vv{h}$
 %Throughout, $q$ will always be a positive integer with $q \equiv r \bmod D$,  so that $\vv{s}q - \tail{\vv{s}}_r = \vv{s}q - \tail{\vv{s}}_q$ has nonnegative integer coordinates.  The constraints of $\ip_r(A, \vv{u}, \vv{s})$ imply that if the $i$-th coordinate of $\vv{h}$ is negative, then the $i$-th coordinate of $\vv{s}$ must be positive, and so the $i$-th coordinate of $\vv{s}q-\tail{\vv{s}}_r$ tends to infinity as $q$ grows.  As $\vv{h}$ is fixed, this observation implies that $\vv{s}q  - \tail{\vv{s}}_r + \vv{h} \geq 0$ whenever $q \gg 0$. 
 %\end{proof}
 
-
-The following may be regarded as a partial converse to \Cref{easy but important: L}
-
-\emily[inline]{Restate as a lemma first.  Do this point-by-point, and appeal to the finiteness of the $\mathbb{O}$.}
-
-\emily[inline]{The statement below appears to be the ``lifting lemma'' in disguise!}
-
-\begin{proposition}
-\label{uniform value: P}
-Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair and $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, then every point in
-\[ \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q) \] is optimal for $\IP(A, \vv{u}q)$ whenever $q >  \beta D$. 
-\end{proposition}
-
-\begin{proof} As noted in \Cref{finiteness of optimal reps: R}, 
-%
-\[ \mathbb{M} = \cup  \ \orep( A, \vv{s}, \vv{u}, q )\]
-%
-is a finite subset of the domain lattice of $A$, where the union is over all $A$-lists.  Therefore, there exists a negative integer $\alpha$ such that every coordinate of every point in $\mathbb{M}$ is at least $\alpha$, and an integer $\mu$ such that every coordinate of every point of $A (\mathbb{M})$ is at most $\mu$.  Set \[ \beta =  \max \{ 1-\alpha, \mu \}.\]
-
-Next, consider a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, and a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, so that  \[ \vv{u} = A \vv{s} + \vv{w} \] for some positive rational point $\vv{w}$ in $\RR \rb(\O)^{\perp}$.  Note that the integrality of $\vv{u}$ implies that $D$ is also a denominator for $\vv{w}$.  Finally, fix an integer $q > \beta D$ and a point $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  Below, we will demonstrate that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is optimal for $\IP(A, \vv{u}q)$.  
-
-First, note that this lattice point is nonnegative, that is,   $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $1/D$.  Thus, as $q > \beta D$, the $i$-th coordinate of $\vv{s}q$ is greater than $\beta$.  However, the definition of $\tail{\vv{s}}_q$ and $\alpha$ guarantee that the coordinates of $\tail{\vv{s}}_q - \vv{h}$ are at most $1-\alpha$, which in turn is at most $\beta$.
-
-Thus, $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$ if and only if
-\[ A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q.\] 
-which we rewrite as 
-\begin{equation} 
-\label{equivalent ineq: e}
-A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
-\end{equation}
-
-Let $B$ be the collapse of $A$ along $\O$.  In $\RR \rb(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $B \vv{h} < B \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$.  
-
-If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\RR \rb(\O)$ is at least $\vv{w}q$, and our choice of $D$ and $q$ then guarantee that the coordinates of $\vv{w}q$ are greater than $\beta$.  However,  our choice of $\mu$ tells us that the coordinates of the left-hand side of \eqref{equivalent ineq: e} are at most $\mu$, and hence, at most $\beta$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \RR \rb(\O) \oplus \rb(\O)^{\perp}$.
-
-In summary, we have just shown that $\vv{s}q-\tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$, and so it follows that the value of $\IP(A, \vv{u}q)$ at least 
-\[  \norm{\vv{s}}q - \norm{\tail{\vv{s}}_q} + \norm{\vv{h}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
-where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  To establish the optimality of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$, it remains to show that the $\val \IP(A, \vv{u}q)$ equals this lower bound.  However, this is a consequence of \Cref{easy but important: L}.
-\end{proof}
 
 %\begin{lemma}
 %\label{tail projection: L}
@@ -858,19 +897,7 @@ We conclude that no column of $B$ is less than $B\tail{\vv{s}}_q - B\vv{k}$.
 We conclude with some finiteness properties.
 
 
-\emily[inline]{
-The sets 
-\[ 
-\{ \delta(A, \vv{u},q) : \} \vv{u} \in \ZZ_+^d, q \in \ZZ_+ \}
-\]
-and, for all $\beta > 0$, 
-\[
- \{ \Delta(A, \vv{u},q) : \vv{u} \in \ZZ_+^d, q \in \ZZ_+, \ft{A}{\vv{u}} \}
-\]
-are finite.
-
-However, below is true as stated. 
-}
+\emily[inline]{Maybe we should restate \Cref{finitely many deltas for a fixed A: P} more precisely. }
 
 
 \begin{proposition}
@@ -922,7 +949,12 @@ The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform u
 Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(B, \ol{\vv{u}}q)$ and $\ol{ \im(A, \vv{u}q)} = \im(B, \ol{\vv{u}}q)$ where $B$ (respectively, $\ol{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
 \end{corollary}
 
-\comment[inline]{At this point, we've given new proofs of the main results in the sequence of ``other BMS" papers on the $\nu_{\ideala}^{\ideald}(q)$ when $\ideala$ is a monomial ideal.  Our methods are a lot more careful though. Everything that follows is meant to address the ``arithmetic" in the phrase ``arithmetic integer programming".  I think we need all the technical results above to deal with the arithmetic programs, but I could be wrong.}
+\emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language?}
+
+\begin{corollary}
+For $p \gg 0$, 
+ $\nu(A, \vv{u}, q) = \nu(\overline{A}, \overline{\vv{u}}, q)$. 
+\end{corollary}
 
 
 \newpage
@@ -930,500 +962,13 @@ Given a monomial matrix $A$, there exists an integer $\beta$ with the following 
 
 
 
-
-%\newpage
-%\section{Monomial lists and associated programs}
-%
-%In this section, we introduce and study concepts that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.    However, the exact relationship between the objects of interest in this section and the above family of integer programs will not be explored until the next section.  Therefore, after digesting the first few definitions below, the reader may chose to omit the remainder of this section, and return to it after having read \Cref{solving: S}.  
-%
-%\begin{definition}
-%A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
-%\begin{enumerate}
-%\item A monomial pair $(A, \vv{u})$.
-%\item A rational minimal coordinate $\vv{s}$ for $(A, \vv{u})$.
-%\item An integer $q>0$.
-%\end{enumerate}
-%\end{definition}
-%
-%\begin{definition}  If $A$ is a monomial matrix, then 
-%\[ \lis(A) \] is the set of all lists whose first term is $A$.  We call such a list an $A$-list.
-%
-%\end{definition}
-%
-%
-%\begin{definition}  
-%\label{aux program: D}
-%If $(A, \vv{u}, \vv{s}, q)$ is a list, then
-%\[ \ip(A, \vv{u}, \vv{s}, q) \] 
-%is the integer program in domain lattice of $A$ defined as follows:
-%\begin{enumerate}
-%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ B \vv{k}  < B \tail{\vv{s}}_q\]
-%where $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$.
-%\end{enumerate}
-%\end{definition}
-%
-%\begin{definition}
-%The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  = B (\opt \ip(A, \vv{u}, \vv{s}, q))\] 
-%where $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$.
-%\end{definition}
-%
-%\begin{remark}
-%Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(B, \ol{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
-%\[ (B, \ol{\vv{u}}, \vv{s}, q) \] is also a monomial list.  Furthermore, it follows from \Cref{aux program: D} that 
-%\[ \ip(A, \vv{u}, \vv{s}, q) = \ip(B, \ol{\vv{u}}, \vv{s}, q). \] 
-%\end{remark}
-%
-%\begin{lemma}
-%\label{tail projection: L}
-%If $(A, \vv{u}, \vv{s}, q)$ is a list, then\[ B\tail{\vv{s}}_q \in \ZZ_+ \rb(\O)^{\perp} \]
-%where $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$.
-%\end{lemma}
-%
-%\begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
-%$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\RR \rb(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
-%\end{proof}
-%
-%\begin{proposition}
-%\label{bounded value and image: P}
-%If $(A, \vv{u}, \vv{s}, q)$ is a list, then
-%\[ 0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]   Furthermore the image of $\ip(A, \vv{u}, \vv{s}, q)$ is a finite subset of $\ZZ_+ \rb(\O)^{\perp}$.
-%\end{proposition}
-%
-%\begin{proof}   Suppose $A$ is $d \times n$, and set $\ip =  \ip(A, \vv{u}, \vv{s}, q)$.  The positivity statement in \Cref{tail projection: L} immediately implies that $\vv{0}$ in $\ZZ^n$ must be feasible for $\ip$.  In particular,  the value of $\ip$ is nonnegative.
-%
-%We establish the upper bound for $\val \ip$ below.  Towards this, fix a point $\vv{a} \in \RR^d$ that defines $\O  = \mf(A, \vv{u})$, and let $\ol{X}$ denote the collapse of a subset $X$ of $\RR^d$ along $\O$.  Recall that, if $B$ is the collapse of $A$ along $\O$, then
-%\[ \iprod{{\vv{a}}}{A \vv{t}} = \iprod{\ol{\vv{a}}}{\ol{A \vv{t}}} = \iprod{\ol{\vv{a}}}{B \vv{t}} \] for every $\vv{t} \in \RR^n$.
-%
-%Now, let $\vv{v}_i$ be the $i$-th column of $A$ and let $\Z$ be the set of indices corresponding to the zero coordinates of $\vv{s}$;  our choice of $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ guarantees that if $i \notin \Z$, then $\vv{v}_i \in \O$.  It follows that $\iprod{\vv{a}}{\vv{v}_i} \geq 1$ for all $1 \leq i \leq n$, with equality holding for all $i \notin \Z$.  
-%
-%If $\vv{k} = (k_1, \cdots, k_n)$ is feasible for $\ip$, then $k_i \geq 0$ for all $i \in \Z$, and so for such an index, we must have that $\iprod{\vv{a}}{k_i \vv{v}_i} \geq k_i$.  On the other hand, if $i \notin \Z$, then $\iprod{\vv{a}}{k_i\vv{v}_i} = k_i$.  Therefore 
-%%
-%\[ \norm{\vv{k}} \leq  \sum_{i=1}^n \iprod{\vv{a}}{k_i\vv{v}_i} =  \iprod{ \vv{a}}{A \vv{k}}  = \iprod{\ol{\vv{a}}}{B \vv{k}}\]
-%%
-%and a similar argument will show that 
-%\begin{equation}
-%\label{invariant norm: e}
-% \iprod{\ol{\vv{a}}}{B \tail{\vv{s}}_q}  = \iprod{\vv{a}}{A \tail{\vv{s}}_q}  = \norm{\tail{\vv{s}}_q}.
-% \end{equation}  
-%
-%However, the constraints of $\ip$ ensure that $B\vv{k} <B \tail{\vv{s}_q}$, and this and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\ol{\vv{a}}}{B \vv{k}} < \iprod{\ol{\vv{a}}}{B \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}.\] 
-%
-%If $\vv{k} \in \opt \ip$, then as above, $\alpha = \val \ip = \norm{\vv{k}} \leq \iprod{\ol{\vv{a}}}{B \vv{k}}$, and so $B \vv{k}$ is a lattice point in the polyhedron given by all points $\vv{w}$  in $\RR \rb(\O)^{\perp}$ with $\vv{w} < B \tail{\vv{s}_q}$  and $\iprod{\ol{\vv{a}}}{\vv{w}} \geq\alpha$.  The positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ and the following lemma then tell us  that this polyhedron is bounded.  
-%\end{proof}
-%
-%\begin{lemma}  
-%\label{bounded polytope: L}
-%Let $\vv{a}$ and $\vv{c}$ be points in $\RR^m$, and suppose that $\vv{a}$ has positive coordinates.    If $\alpha$ is any real number, then the polytope consisting of all points $\vv{b} \in \RR^m$ such that  $\vv{b} < \vv{c} \text{ and } \iprod{\vv{a}}{\vv{b}} \geq \alpha$ is bounded.
-%\end{lemma}
-%
-%\begin{proof}  Suppose that the polytope $P$ described above is nonempty.   To show that $P$ is bounded, it suffices to show that its recession cone is trivial.  In other words, fix $\vv{b} \in P$ and suppose that $\vv{d} \in \RR^m$ is such that $\vv{b} + \lambda \vv{d} \in P$ for all $\lambda > 0$.  To show that $P$ is bounded, we must show that $\vv{d} = \vv{0}$.   However,  the constraint $\vv{b} + \lambda \vv{d} < \vv{c}$ for all $\lambda>0$ implies that $\vv{d} \leq \vv{0}$, and combining this with the constraint $\iprod{\vv{a}}{\vv{b} + \lambda \vv{d}} \geq \alpha$ for all $\lambda > 0$ and the positivity of $\vv{a}$ then implies that no coordinate of $\vv{d}$ can be negative.
-%\end{proof}
-%
-%\subsection{An equivalence relation}  In this subsection, we consider a natural equivalence relation on the set of all $A$-lists.
-%
-%\begin{definition} We say that lists $(A, \tilde{\vv{u}}, \tilde{\vv{s}}, \tilde{q})$ and $(A, \vv{u}, \vv{s}, q)$ are equivalent whenever the following conditions are satisfied.
-%\begin{enumerate}
-%\item $\mf(A, \tilde{\vv{u}}) = \mf(A, \vv{u})$
-%\item The supporting indices of of $\tilde{\vv{s}}$ and $\vv{s}$ agree.
-%\item If $B$ is the collapse of $A$ along $\O = \mf(A, \tilde{\vv{u}}) = \mf(A, \vv{u})$, then 
-%\[ B \tail{\tilde{\vv{s}}}_{\tilde{q}} = B \tail{\vv{s}}_{q}.\] 
-%\end{enumerate}
-%
-%We denote the resulting equivalence relation on $\lis(A)$ by $`` \equiv "$.
-%\end{definition}
-%
-%\begin{remark}  It is immediate from the definitions that the function   
-%\[ (A, \vv{u}, \vv{s}, q) \mapsto \ip(A, \vv{u}, \vv{s}, q) \] on $\lis(A)$ is constant on equivalence classes.
-%\end{remark}
-%
-%\begin{remark}
-%Similarly, \eqref{invariant norm: e} demonstrates that the function 
-%\[ (A, \vv{u}, \vv{s}, q) \mapsto  \norm{\tail{\vv{s}}_q} \]
-%on $\lis(A)$ is also constant on equivalence classes.
-%\end{remark}
-%
-%\begin{theorem} 
-%\label{finitely many equivalence classes: T}
-%If $A$ is a monomial matrix, then \[ \# \( \frac{\lis(A)}{\equiv} \)  < \infty. \] 
-%\end{theorem}
-%
-%\begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
-%
-%Next, let $B$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, 
-%%
-%\[ \vv{0} \leq B \tail{\vv{s}}_q \leq B \vv{1} \] 
-%%
-%and combining this with \Cref{tail projection: L}, we see that there are also only finitely many possibilities for the point $B \tail{\vv{s}}_q$.
-% \end{proof}
-%
-%The finiteness result \Cref{bounded value and image: P} facillitates the following definition.
-%
-%\begin{definition}
-%\label{T: D}
-%
-%  For every monomial list $(A, \vv{u}, \vv{s}, q)$, we fix a set 
-%\[ T(A, \vv{u}, \vv{s}, q) \] in the domain lattice of $A$ satisfying the following conditions.
-%\begin{enumerate}
-%\item  $\T(A, \vv{u}, \vv{s}, q)$ is finite subset of $\opt \ip(A, \vv{u}, \vv{s}, q)$ with \[ B( \T_q(A, \vv{u}, \vv{s}) ) = \im \ip(A, \vv{u}, \vv{s}, q) \]
-%where $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$.
-% 
-%\item The function \[ (A, \vv{u}, \vv{s}, q) \mapsto \T(A, \vv{u}, \vv{s}, q) \]  on $\lis(A)$ is constant on equivalence classes.
-%\end{enumerate} 
-%\end{definition}
-%
-%\begin{remark}
-%We stress that there is typically no canonical choice of the sets defined in \Cref{T: D} above.  Nevertheless, as it our arguments will depend on the existence of some choice of $T$, we fix one once and for all.
-%\end{remark}
-%
-%\begin{remark}
-%\label{finiteness of optimal reps: R}
-%The finiteness result \Cref{finitely many equivalence classes: T} implies that \[ \cup  \ T( A, \vv{s}, \vv{u}, q ) \] where the union is over all $A$-lists, is a finite for every monomial matrix $A$, 
-%\end{remark}
-%
-%
-%\newpage
-
-
-
 \newpage
 
-%
-%\section{Linear programming and Newton polyhedra}
-%
-%\subsection{Linear and integer programming}
-%
-%\begin{definition}
-%Let $\mathbb{D}$ be either $\RR$ or $\ZZ$.  A \emph{linear program} $\Pi$ in $\mathbb{D}^n$ is an optimization problem in which one seeks to maximize a fixed linear \emph{objective function} $\RR^n \to \RR$ on the subset of $\mathbb{D}^n$ defined by a fixed system of linear inequalities.  We refer to this subset as the \emph{feasible set} of $\Pi$, and the inequalities as the \emph{constraints} of $\Pi$.  In the case that $\mathbb{D} = \ZZ$, we will refer to $\Pi$ as an \emph{integer linear program}, or simply \emph{integer program} for short.
-%\end{definition}
-%
-%If $\mathbb{D} = \RR$, then the feasible set  will be a polyhedron in $\RR^n$, and if $\mathbb{D} = \ZZ$, then the feasible set will be the lattice points in a polyhedron in $\RR^n$.  As will often be the case throughout this article, if the constraints of $\Pi$ define a polytope (that is, a compact polyhedron), then there will always exist feasible points that maximize the objective function.  Such a feasible point is called \emph{optimal}, and the optimal value obtained by the objective function is called the \emph{value} of the program.  We use $\opt \Pi$ to denote the set of all optimal points of $\Pi$, and $\val \Pi$ to denote the value of $\Pi$. 
-%
-%\begin{definition}
-%We say that integer programs $\mathrm{P}$ and $\mathrm{Q}$ are \emph{equal} if their defining constraints are identical, and \emph{equivalent} if their feasible sets agree. 
-%\end{definition}
-%
-%
-%\subsection{Programs associated to monomial pairs}
-%
-%\begin{definition}
-%A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative nonzero rows and columns.  A  $d \times n$ \emph{monomial pair} $(A, \vv{u})$ consists of a $d \times n$ monomial matrix $A$ and a lattice point $\vv{u} \in \ZZ^d$ with $\vv{u} > \vv{0}$.
-%\end{definition}
-%
-%
-%In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair and $\vv{1}=(1, \cdots, 1) \in \ZZ^d$.
-%
-%\begin{definition}
-%$\LP(A, \vv{u})$ is the linear program in $\RR^n$ defined as follows:
-%\begin{enumerate}
-%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
-%\end{enumerate}
-%\end{definition}
-%
-%\begin{remark}[Regarding the feasible polytope]
-%If $(A, \vv{u})$ is monomial, then the feasible set $\Q$ of $\LP = \LP(A, \vv{u})$ is a full-dimensional rational polytope in the nonnegative orthant of $\RR^n$.  Indeed, it is easily shown that $\Q$ is bounded and contains all points $\vv{k} \in \RR^n$ whose coordinates are positive and sufficiently small.  As is intuitively clear, is also true that $\val \LP$ is a positive rational number (e.g., this follows from \Cref{uniformity:  T}).  By definition, $\opt \LP$ is a nonempty proper face of the feasible polytope $\Q$.  
-%\end{remark}
-%
-%We will relate the value of $\LP(A, \vv{u})$ to other invariants in \Cref{FT descriptions: P}, and will establish the basic properties of $\opt \LP(A, \vv{u})$ in \Cref{opt sets: SS}.
-%
-%
-%
-%\begin{definition}
-%$\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
-%\begin{enumerate}
-%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. %(equivalently, $A \vv{k} \leq \vv{u}  - \vv{1}$).
-%\end{enumerate}
-%\end{definition}
-%
-%The \emph{image} of $\IP(A, \vv{u})$ is the subset of $\ZZ^d$ given by \[ \im \IP(A, \vv{u}) = A ( \opt \IP(A, \vv{u}) ). \] 
-%
-%\!{Some stuff commented out here}
-%
-%%\!{Relate $\val \IP(A, \vv{u}q)$ to the $\nu$ sequence.}
-%%
-%%Note that the feasible set of $\IP(A, \vv{u})$ is the set of feasible lattice points for $\LP(A, \vv{u}-\vv{1})$ whenever $\vv{u} > \vv{1}$.  In particular, if $q > 1$ is an integer, then 
-%% \[ \val \IP(A, \vv{u}q) \leq \val \LP(A, \vv{u}q- \vv{1}) < \val \LP(A, \vv{u}q) = \val \LP(A, \vv{u}) \, q.\]
-%%
-%%\!{Tie this up} 
-%
-%\subsection{Faces of Newton polyhedra} 
-%
-%\begin{definition}
-%
-%The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
-%\[ \N = \conv( \col(A) ) + \cone( \vv{e}_1, \cdots, \vv{e}_d) \] where $\col(A)$ is the set of columns of $A$. 
-%\end{definition}
-%
-%In this subsection, we gather some basic results concerning the faces Newton polyhedra that will be crucial in our future computations.  %We have included proofs for the convenience of the reader.
-%
-%\begin{lemma}
-%\label{face: L}
-%Suppose that $\O$ is a proper and nonempty face of $\N$.  If $\vv{a} \in \RR^d$ and $\beta \in \RR$ are such that $\iprod{\vv{a}}{\vv{c}} \geq \beta$ for all $\vv{c} \in \N$, with equality holding if and only if $\vv{c} \in \O$, then the following hold.
-% 
-%\begin{enumerate}
-%\item $\vv{a} \in \RR^d$ has nonnegative coordinates. 
-%\item \label{rb_independence: e} The $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{c} + \lambda \vv{e}_i \in \O$  for every point $\vv{c} \in \O$ and $\lambda > 0$.
-%\item  \label{rb_bounded: e} $\O$ is bounded if and only if $\vv{a} > \vv{0}$.
-%\end{enumerate}
-%\end{lemma}
-%
-%\begin{proof}  If $\vv{c} \in \O$, then adding to $\vv{c}$ any nonnegative point in $\RR^d$ produces a point in $\N$.  In particular, $\iprod{\vv{a}}{\vv{c}} = \beta$ and $\iprod{\vv{a}}{\vv{c} + \lambda \vv{e}_i} \geq \beta$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.  This observation implies that $\vv{a} \geq \vv{0}$, and that $\vv{c} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
-%
-%Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
-%\begin{equation}
-%\label{face: e}
-%\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-%\end{equation}
-%where we agree that the $\cone(\emptyset) = \vv{0}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.  
-%\end{proof}
-%
-%
-%
-%
-%
-%\begin{definition} With notation as in \Cref{face: L}, the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\vv{e}_i$ in $\RR^d$ with $\iprod{\vv{a}}{\vv{e}_i} = 0$.
-%\end{definition}
-%
-%\begin{remark} \Cref{face: L}\eqref{rb_independence: e} implies that the recession basis of $\O$ is independent of the choice of the defining vector $\vv{a}$, while \Cref{face: L}\eqref{rb_bounded: e} tells us that $\O$ is bounded if and only if $\rb(\O) = \emptyset$.    
-%\end{remark}
-%
-%The following motivates our choice of terminology.
-%
-%\begin{remark}  Recall that the \emph{recession cone} of a polyhedron $\mathcal{Q}$ in $\RR^d$ is the set of all directions $\vv{d} \in \RR^d$ such that $\vv{c} + \lambda \vv{d} \in \mathcal{Q}$ for every $\vv{c} \in \mathcal{Q}$ and $\lambda > 0$.  It is a well-known fact from convex geometry that  \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$.
-%\end{remark}
-%
-%In this article, we will focus mostly on faces of Newton polyhedra that contain a point with positive coordinates.
-%
-%\begin{definition} Let $\N$ be as above.
-%\begin{enumerate}
-%\item A face $\O$ of $\N$ is \emph{standard} if it is proper, nonempty, and does not lie in any coordinate subspace of $\RR^d$.  
-%
-%\item If $\O$ is a standard face of $\N$, then there exists $\vv{a} \in \RR^d$ such that $\iprod{\vv{a}}{\vv{c}} \geq 1$ for all $\vv{c} \in \N$, with equality if and only if $\vv{c} \in \O$.  In this case, we say that $\vv{a}$ \emph{defines} $\O$ in $\N$.  
-%\end{enumerate}
-%\end{definition}
-%
-%\subsection{$F$-thresholds and minimal coordinates}
-%\label{opt sets: SS}
-%
-%\ \!{Fix notation}
-%
-%\begin{definition}
-%The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$ is the unique positive real number $\ft{A}{\vv{u}} = \lambda$ with the property that  \[ (1/\lambda)  \vv{u} \in \partial \N \] and $\mf(A, \vv{u})$ is the unique {minimal face} of $\N$, with respect to inclusion, containing this scaled point.
-%\end{definition}
-%
-%
-%\begin{remark}  The positivity of $\vv{u}$ implies that $\ft{A}{\vv{u}}$ is well-defined, and that $\O = \mf(A, \vv{u})$ is a standard face of $\N$.  As is intuitively clear, $\ft{A}{\vv{u}}$ is a positive rational number. \!{}%and this assertion will follow, e.g., from 
-%\end{remark}
-%
-%\begin{proposition}
-%\label{FT descriptions: P}
-%  If $A$ is as above, then
-%\[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}) \] where the min is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
-%\end{proposition}
-%
-%\begin{proof} Let $\O$ be a face of $\N$ containing $\mf(A,\vv{u})$, and fix $\vv{c} \in \RR^d$ defining $\O$ in $\N$.  By definition, $\vv{u} \in \lambda \O$, and so $\iprod{\vv{c}}{\vv{u}} = \lambda$.    Similarly, if $\vv{d}$ defines a standard face of $\N$, then $\vv{u} \in \lambda \N$ implies that $\iprod{\vv{d}}{\vv{u}} \geq \lambda$.
-%
-%Set $\lambda = \ft{A}{\vv{u}}$.  It remains to show that $\val \LP(A, \vv{u}) = \lambda$.  Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $A \vv{s} \leq \vv{u}$, and the nonnegativity of $\vv{c}$ then implies that  $\iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$.  Furthermore, the fact that $\vv{s} \geq \vv{0}$ and that the inner product of $\vv{c}$ with any column of $A$ is at least one implies that $\iprod{\vv{c}}{A \vv{s}}$ is at least $\norm{\vv{s}}$.  We conclude that $\val \LP \leq \lambda$.  
-%
-%On the other hand, \eqref{face: e} and our choice of $\O$ imply that 
-%\begin{equation}
-%\label{cone containment: e}
-% (1/\lambda) \cdot \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
-%\end{equation}
-%
-%Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\norm{\vv{s}} = \lambda$ and $\vv{w} \geq 0$.  Apparently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
-%\end{proof}
-%
-%The identity in \eqref{cone containment: e} above implies that $\vv{u}$ is a convex combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.  Typically, there are many ways to express $\vv{u}$ as a convex combination of these points, and the set of all such expressions is closely related to $\LP(A, \vv{u})$.  
-%
-%\begin{corollary}  
-%\label{opt set description: C}  If $\O = \mf(A, \vv{u})$, then $\opt \LP(A, \vv{u})$ is in bijective correspondence with the set of all realizations of $\vv{u}$ as an element of the cone generated by the union of $\col(A) \cap \O$ and $\rb(\O)$.  Precisely, a point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
-%\begin{enumerate}
-%\item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O$.
-%\item  \label{mc decomposition: e} $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in  \cone(\rb(\O))$.   
-%%\item  \label{mc sum: e}$\norm{\vv{s}} = \ft{A}{\vv{u}}$.
-%\end{enumerate}
-%\end{corollary}
-%
-%\begin{proof}  
-%Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines $\O$. 
-%
-%First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.  Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\vv{a}}{\vv{w}} = \vv{0}$, which allows us to compute that $\lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
-%\Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\vv{a}$ with every column of $A$ contained in $\O$ is one.
-%
-%Next, suppose that $\vv{s}$ is optimal for $\LP$, and let $\vv{w}$ be the unique point in $\RR^d$ with $\vv{u} = A \vv{s} + \vv{w}$.  The optimality of $\vv{s}$ implies that $\norm{\vv{s}} = \lambda$, while the constraints of $\LP$ imply that $\vv{w} \geq \vv{0}$.  A direct computation shows that
-%%
-%\[ \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}} = \lambda + \iprod{\vv{a}}{\vv{w}} \]
-%%
-%which allows us to conclude that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = \vv{0}$.  It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\vv{a}$, that the point $\vv{s}$ must satisfy the two asserted conditions.
-%\end{proof}
-%
-%Technicalities that arise in future sections whenever $\mf(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set description: C}.
-%
-%
-%\begin{definition}
-%\label{mc: D} 
-%Let $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{minimal coordinate} for $(A, \vv{u})$ if it satisfies the following conditions.
-%\begin{enumerate}
-%\item $\vv{s} \in \opt \LP(A, \vv{u})$.
-%\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.  
-%\end{enumerate}
-%
-%The set of all such points is denoted $\mc(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\mc_{\QQ}(A, \vv{u})$.  
-%\end{definition}
-%
-%%We see below that $\mc(A, \vv{u})$ and $\opt \LP(A, \vv{u})$ are equal, or close to equal.
-%
-%\begin{proposition}  
-%\label{opt versus mc: P}  If $\O = \mf(A, \vv{u})$ is bounded, then $\mc(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\mc(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
-%\end{proposition}
-%
-%\begin{proof}    
-%If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \vv{0}$ is equal to its relative interior.  Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
-%
-% The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums, the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a minimal coordinate.
-%
-%We have just shown that $\mc(A, \vv{u})$ is nonempty, and it clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the minimal coordinate constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\RR \rb(\O)$.  
-%\end{proof}
-%
-%
-%\!{Example in which all these sets are different is commented out}
-%
-%%\!{Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
-%%where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the minimal coordinates of $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.}
-%
-%\newpage
-%\subsection{Rationality and universal denominators} 
-%
-%The following uniformity result is the main result of this subsection.
-%
-%\begin{theorem}  
-%\label{uniform denominators:  T}
-%Suppose $A$ is a monomial matrix.
-%\begin{enumerate}
-%\item There exists an integer $D_1$ such that for every monomial pair $(A, \vv{u})$,  every vertex of $\opt \LP(A, \vv{u})$ is rational with denominator $D_1$.
-%\item  There exists an integer $D_2$ such that for every monomial pair $(A, \vv{u})$, there is a rational point in $\mc(A, \vv{u})$ with denominator $D_2$.
-%\end{enumerate}
-%\end{theorem}
-%
-%The main technical result we'll need to establish \Cref{uniformity: T} is \Cref{vertex: L} below.  Though variations of this lemma are well-known, we include the straightforward proof for lack of an appropriate reference.
-%
-%
-%\begin{lemma}  
-%\label{vertex: L}
-%Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point contained in the cone generated by the columns of $M$.  If $\Q$ is the polyhedron in $\RR^n$  consisting of all points $\vv{t}$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{b}$, then a point $\vv{t}^{\ast} \in \Q$ is a vertex of $\Q$ if and only if the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent.  In particular, $\Q$ contains a vertex.
-%\end{lemma}
-%
-%\begin{proof}  The fact that $\vv{b}$ lies in the cone generated by the columns of $M$ implies that $\Q \neq  \emptyset$.  Next, fix a point $\vv{t}^{\ast} \in \Q$.  Before proceeding, recall that $\vv{t}^{\ast}$ is a vertex of $\Q$ if and only if the only expression of $\vv{t}^{\ast}$ as a convex combination of points $\vv{r} \in \Q$ and $\vv{s} \in \Q$ is when $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-%
-%First, assume that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent, and suppose that $\vv{t}^{\ast} = \lambda \vv{r} + \mu \vv{s}$ is a convex combination of points $\vv{r}, \vv{s} \in \Q$.  It follows that the $i$-th coordinate $\vv{r}$ and of $\vv{s}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  On the other hand, the fact that $\vv{r}$ and $\vv{s}$ lie in $\Q$ also implies that 
-%\[ M \vv{t}^{\ast} = \vv{u} = M \vv{r} = M \vv{s} \] 
-%and the assumption that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent then implies that $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-%
-%Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}$ is a convex combination of these points, it will then follow that $\vv{t}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ has nonnegative coordinates for all $0 < \varepsilon \ll 1$.  
-%
-%To conclude the proof, it remains to show that $\Q$ contains a vertex.  However, Carath\'eodory's Theorem for cones tells us that the cone generated by the columns of $M$ is the union of the cones generated by the sublists of these columns that are linearly independent.  This observation and the fact that $\Q$ is nonempty imply that this polyhedron must contain a vertex.
-%\end{proof}
-%
-%
-%\begin{proof}[Proof of \Cref{uniformity: T}]  
-%
-%Fix a pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\mu$ be the least common multiple of all the nonzero minors of $M$.
-%
-%If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set description: C} implies that there exists a linear bijection $\opt \LP \to \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: L} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\mu$.  The linear bijection $\opt \LP \to \Q$ implies the same must be true for every vertex of $\opt \LP$.
-%
-%If $\O$ is bounded, then $\mc(A, \vv{u}) = \opt \LP$, and so there is always a vertex in $\mc(A, \vv{u})$ with denominator $\mu$.  Next,  suppose $\O$ is unbounded, which implies that $A$ has $d \geq 2$ many rows.    Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \cdots, \vv{e}_l \}$ for some $1 \leq l \leq d-1$, and fix \emph{positive} integers $d_1, \cdots, d_l$ that sum to $d-1$.  As was shown in the proof of \Cref{opt versus mc: P}, for every $1 \leq i \leq l$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  As in that proof, \[ \vv{s}^{\ast} = \frac{d_1}{d-1} \cdot \vv{s}_1 + \cdots + \frac{d_l}{d-1} \cdot  \vv{s}_l \]
-%is a minimal coordinate for $(A, \vv{u})$ with denominator $(d-1)\mu$.  
-%
-%The integers $\mu$ and $(d-1)\mu$ depend on $A$ and $\O$, but not on the point $\vv{u}$ with $\O = \mf(A, \vv{u})$.  Our assertions then follow from the fact that there are only finitely many faces of the Newton polyhedron associated to $A$.
-%\end{proof}
-%
-%
-%
-%
-%
-%
-%
-%\newpage
-%
-%\subsection{Collapsing along a face}
-%
-%\begin{definition}  
-%\label{collapse: D} Let $A$ be a monomial matrix with $d$ rows, and suppose that $\O$ is a face of the Newton polyhedron $\N$ associated to $A$.
-%\begin{enumerate}
-%
-%\item The set $\rb(\O)^{\perp}$ is the nonempty complement of $\rb(\O)$ in $\{ \vv{e}_1, \cdots, \vv{e}_d \}$.
-%\item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the canonical linear projection $\RR^d \longrightarrow \RR \rb(\O)^{\perp}$.
-%\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.  That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
-%%
-%\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \RR \rb(\O)^{\perp}.\]  
-%%
-%\end{enumerate}
-%\end{definition}     
-%
-%\begin{setup}  
-%\label{collapse_ss: SU}
-%In this subsection, we adopt the notation established in \Cref{collapse: D} above.  Furthermore,  $\ol{X}$ denotes the collapse of a subset $X$ of $\RR^d$ along $\O$, and $B$ denotes the collapse of $A$ along $\O$.  
-%\end{setup}
-%
-%\begin{remark}
-%\label{collapse of a defining vector: R}
-%If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}}$ agrees with $\iprod{\ol{\vv{a}}}{\ol{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
-%\end{remark}
-%
-%\begin{remark}
-%\label{collapse of monomial is monomial: R}
-%The collapsed matrix $B$ is monomial.  Indeed, each row of $B$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\ol{\vv{a}}$ with every column of $B$ is at least one.  In particular, the columns of $B$ are nonzero.
-%\end{remark}
-%
-%
-%\begin{remark}[Collapsed programs]
-%\label{collapsed programs: R}
-%Throughout this article, we will compare linear and integer programs with analogous systems of constraints defined by $A$ and $B$ (e.g., $\LP(A, \vv{u})$ and $\LP(B, \ol{\vv{u}})$, and $\IP(A, \vv{u})$ and $\IP(B, \ol{\vv{u}})$).  
-%
-%By construction, $A$ and $B$ have the same number of columns, and so the feasible sets of these programs live in the same Euclidean space.   Furthermore, as $B$ is obtained by $A$ by omitting some its rows, the constraints imposed by $B$ in the above programs are a subset of those imposed by $A$.  Of course, these programs will differ only when $\O$ is unbounded.  
-%\end{remark}
-%
-%
-%\begin{lemma}
-%\label{collapse of Newton polyhedron: L} 
-%If $\M$ is the Newton polyhedron in the coordinate subspace $\RR \rb(\O)^{\perp}$ associated to the monomial matrix $B$, then $\ol{\O}$ is a bounded face of $\M = \ol{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \ol{\vv{a}}$ defines $\ol{\O}$ in $\M$. 
-%\end{lemma}
-%
-%\begin{proof}
-%By definition, the Newton polyhedron $\M$ equals
-%%
-%\[  \conv( \col(B) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\vv{e}_1, \cdots, \vv{e}_d)} =  \ol{\N}.\]
-%
-%Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\ol{\vv{a}}$ defines $\ol{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ then implies that $\ol{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\RR \rb(\O)^{\perp}$ to see that the collapsed face $\ol{\O}$ equals $\conv( \ol{ \col(A) \cap \O}) = \conv( \col(B) \cap \ol{\O})$.  
-%\end{proof}
-%
-%\!{This is the only part of this subsection that isn't just about collapsing.}
-%
-%\begin{corollary}
-%\label{collapse of mf and mc: C}
-%In the context of \Cref{collapse_ss: SU}, the following hold.
-%\begin{enumerate}
-%\item $\mf(B, \ol{\vv{u}}) = \ol{\O}$ and $\ft{A}{\vv{u}} = \ft{B}{\ol{\vv{u}}}$.
-%\item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(B, \ol{\vv{u}})$.  
-%\item Each minimal coordinate of $(A, \vv{u})$ is a minimal coordinate of $(B, \ol{\vv{u}})$.
-%\end{enumerate}
-%\end{corollary}
-%
-%\begin{proof}
-%Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the relative interior of $\O$.  It is clear that projection preserves relative interiors, and so $(1/\lambda) \cdot \ol{\vv{u}}$ must lie in the relative interior of $\ol{\O}$, which is a bounded face of $\ol{\N}$ by \Cref{collapse of Newton polyhedron: L}.  This observation demonstrates both that $\ol{\O}$ is the minimal face of $\ol{\N}$ containing $(1/\lambda) \cdot \ol{\vv{u}}$, and that $\lambda = \ft{B}{\ol{\vv{u}}}$.  
-%
-%Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{B}{\ol{\vv{u}}} = \val \LP(B, \ol{\vv{u}}). \] 
-%As discussed in \Cref{collapsed programs: R}, the constraints of $\LP(B, \ol{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$, and so it follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(B, \ol{\vv{u}})$.  The boundedness of $\ol{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
-%\[ \mc(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(B, \ol{\vv{u}}) = \mc(B, \ol{\vv{u}}).\] 
-%\end{proof}
 
-
-
-\newpage
 \section{Arithmetic integer programming}
+
+
+\emily[inline]{Motivate this via $\mu$s.}
 
 In this section, we consider a variant of an integer program in which we impose an additional, and {highly} nonlinear, constraint.  As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}, and we will focus exclusively on one such family of optimization problems.  We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in the analogous way.   
 
@@ -1438,6 +983,9 @@ In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
 \end{enumerate}
 
 \end{definition}
+
+
+\daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
 
 \begin{definition}
 The \emph{image} of $\IP_p(A, \vv{u})$ is the set $\im \IP_p(A, \vv{u})$ of all points  $A \vv{k}$ with $\vv{k} \in \opt \IP_p(A, \vv{u})$. 
@@ -1458,6 +1006,8 @@ The arithmetic constraint satisfied by $\vv{g}$ implies that both $\binom{\norm{
 
 We record some corollaries of \Cref{optimal division: L} below.
 
+\daniel[inline]{Should we just think about \Cref{natural bounds: C} algebraically?}
+
 \begin{corollary} 
 \label{natural bounds: C}
 If $(A, \vv{u})$ is a monomial pair and $e \geq 1$, then 
@@ -1474,9 +1024,11 @@ These bounds follow from a direct computation of the norm of the optimal point $
 $\val \IP_p(A, \vv{u}p^e)  \geq \IP_p(A, \vv{u}) \cdot p^e   \geq (\IP_p(B, \vv{v})+1)\cdot p^e > \val \IP_p(B, \vv{u}p^e)$.
 \end{proof}
 
-\section{Small pairs and $p$-sprouts}
+\subsection{Small pairs}
 
- 
+
+\pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\witt}$ graph?}
+
 \begin{definition}
 A monomial pair $(A, \vv{u})$ is \emph{small} if no column of $A$ is less than $\vv{u}$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one.
 \end{definition}
@@ -1502,14 +1054,14 @@ Note that $(A, \vv{u})$ is small if and only if only $\vv{0}$ is feasible for $\
 %\begin{proof} If $\vv{k}$ is feasible for $\IP_p(A, \vv{u}p^e)$ and $ p^e \vv{e}_i  \leq \vv{k}$ for some standard basis vector $\vv{e}_i$ of $\ZZ^n$, then $p^e A \vv{e}_i  \leq A \vv{k} < \vv{u}p^e$, and therefore $A \vv{e}_i < \vv{u}$, which contradicts the smallness of $(A, \vv{u})$.  Thus, every coordinate of $\vv{k}$ is less than $p^e$, and so the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} p^{e-1}$.  The arithmetic constraint of the program then implies that $\norm{\vv{k}} \leq p^e-1$.
 %\end{proof}
 
-\emily[inline]{If 
-\[
- \ideala^{\left[ \mu_\ideala^{\vv{u}}(q) \right] } \equiv \langle x^{\vv{u}q - \vv{z}} \mid \vv{z} \in \Z \subseteq \NN_+^d \rangle \bmod \operatorname{diag}(\vv{u}q)\]
- then 
- \[
-\operatorname{crit}(\ideala, \vv{u}) = \frac{1}{q}\left( \mu^{\vv{u}}_\ideala(q) + \max \{ \operatorname{crit}(\ideala, \vv{z}) \mid \vv{z} \in \Z \}  \} \right)
-\]
-}
+% \emily[inline]{If 
+% \[
+%  \ideala^{\left[ \mu_\ideala^{\vv{u}}(q) \right] } \equiv \langle x^{\vv{u}q - \vv{z}} \mid \vv{z} \in \Z \subseteq \NN_+^d \rangle \bmod \operatorname{diag}(\vv{u}q)\]
+%  then 
+%  \[
+% \operatorname{crit}(\ideala, \vv{u}) = \frac{1}{q}\left( \mu^{\vv{u}}_\ideala(q) + \max \{ \operatorname{crit}(\ideala, \vv{z}) \mid \vv{z} \in \Z \}  \} \right)
+% \]
+% }
 
 
 \begin{proposition}
@@ -1517,6 +1069,8 @@ Suppose $(A, \vv{u})$ is a monomial pair.  If \[ \im \IP(A, \vv{u}) = \vv{u} - \
 \[ \val \IP_p(A, \vv{u} p^e) = \val \IP(A, \vv{u}) \cdot p^e + \max \val \IP_p(A, \vv{z}p^e) \]
 where the maximum is over all points $\vv{z} \in \Z$.
 \end{proposition}
+
+\daniel[inline]{This proof seems way to long.  Might be shortened if we think about things algebraically}
 
 \begin{proof}  The constraints of $\IP(A, \vv{u})$ imply that $\Z$ is a finite set of lattice points with positive coordinates.   These constraints and optimality also imply that if $\vv{e}$ is a standard basis vector in the domain of $A$, then no point in the Minkowski sum $\vv{e} + \opt \IP(A, \vv{u})$ can be feasible for $\IP(A, \vv{u})$.  Applying $A$ to this shows that no point in 
 \[ A \vv{e} + \im \IP(A, \vv{u}) = A \vv{e} + \vv{u} - \Z \] 
@@ -1532,6 +1086,8 @@ $\vv{h}^{\ast} = \vv{g}^{\ast} \cdot p^e + \vv{k}^{\ast}$ satisfies the linear c
 
 
 We have just shown that to compute the value of $\IP_p(A, \vv{u}p^e)$ for all $p \gg 0$ and $e \geq 1$, we may assume that $(A, \vv{u})$ is small.  Below, consider an important special case of this simplified situation.
+
+\daniel[inline]{\Cref{trivial max value: T} looks like it could follow from ILL and then just modifying the $\vv{k}'s$ immediately.  But, the following is more direct.}
 
 \begin{theorem}
 \label{trivial max value: T}  Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:   
@@ -1562,6 +1118,8 @@ To conclude the proof, it suffices to recall that, as noted in \Cref{finitely ma
 
 \comment[inline]{At this point, it suffices to deal with the case that $(A, \vv{u})$ is very small}
 
+\daniel[inline]{Should we state this more algebraically?}
+
 \begin{theorem}
 \label{arithmetic uniform value and image: T}   Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  
 If $(A, \vv{u})$ is a very small and $p > \beta$, then  \[ \val \IP_p(A, \vv{u}p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p). \] 
@@ -1572,9 +1130,27 @@ and
 \begin{proof}  If $\beta$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every pair $(A, \vv{u})$ and $p > \beta$.  If this pair is very small, so that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore satisfies the arithmetic constraint of $\IP_p(A, \vv{u}p)$.  We conclude that $\IP(A, \vv{u}p) = \IP_p(A, \vv{u}p)$ whenever $(A, \vv{u})$ is very small and $p > \beta$.
 \end{proof}
 
-\comment[inline]{With this theorem in hand, we have now computed $\mu_{\ideala}^{\ideald}(p)$ when $p \gg 0$, where $\ideala$ and $\ideald$ are as in the comments on the first page.  The rest of the paper is dedicated to glueing all of these computations to inductively determine $\mu_{\ideala}^{\ideald}(p^e)$ for all  $p \gg 0$ and $e \geq 1$}
+\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
+In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
+= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
+(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
+}
+
+
+
+
+\newpage
+
+
+\section{A graph}
+
+\todo[inline]{Set notation for sprouts/set of sprouts/sprouts of sets.}
+
 
 \daniel[inline]{Perhaps we should motivate why we would want to look at $p$-sprouts.  The point is that they determine which $\mu$'s we should compute next.}
+
+
+\subsection{Sprouting}
 
 \begin{definition}
 \label{p-sprout: D}
@@ -1592,8 +1168,7 @@ As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomi
 
 The following statement may be regarded as a refinement of the upper bound given in \Cref{natural bounds: C}, at least when $p$ is large enough.
 
-\emily[inline]{We can just directly prove that $\mu^{\overline{\vv{u}}}_{\overline{\ideala}}(q) \geq \mu^{\vv{u}}_\ideala(q)$:  If $\vv{v} \in \NN^d_+$ and $\overline{\vv{v}} \not< \overline{\vv{u}} p$, then $\vv{v}\not< \vv{u}p$.
-The opposite inequality holds if and only if $\ideala^{[\overline{\mu}]} \not\subseteq \deg(\vv{u}q)$.
+\emily[inline]{It seems like we prove that $\mu(A, \vv{u}, q) = \mu(\overline{A}, \overline{\vv{u}}, q)$.  Let's make sure to state that later.
 }
 
 \begin{corollary}\label{cor: upper bound for higher mus}
@@ -1615,6 +1190,219 @@ Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] f
 \end{proof}
 
 
+\subsection{The Witt graph}
+
+
+\begin{definition}
+ Define
+\begin{enumerate}
+\item $\witt^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
+\item $\witt^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \witt^e  \}$ for $e \geq 1$. 
+\end{enumerate}
+\end{definition}
+
+
+\emily[inline]{We think that $\{ \witt^e : e \geq 1 \}$ is finite, but only care that $\bigcup_{e=1}^\infty \witt^e(A)$ is.}
+
+\emily[inline]{verify that $\witt_e(A, \vv{u})$ and $\witt_e(A)$ are eventually periodic}
+
+\subsection*{Finiteness properties}
+
+Once $A$ is fixed,
+\begin{itemize}
+ \item $\bigcup_{e=1}^\infty \witt^e(A)$ is finite.
+ \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \witt^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
+ \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \witt^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
+ \item Add the last point
+\end{itemize}
+
+
+\begin{theorem}[Iterated lifting]
+ There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\witt(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
+ \[
+  \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}, p^e).
+ \]
+\end{theorem}
+
+\begin{proof}
+For every $1 \leq i \leq e$, set 
+ \[
+\vv{k}_i = \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i,
+\]
+where $\vv{s}_i \in \mc(A_i, \vv{u}_i)$, and $\vv{h} \in \mathbb{O}(A_i, \vv{u}_i, \vv{s}_i, p)$ is chosen so that $A_{i+1} [\vv{s}_i] - A_{i+1} \vv{h}_i = \vv{u}_{i+1}$.
+Notice that the sets of all $\vv{s}_i$, and of all $\vv{h}_i$, are both finite. 
+
+The conclusion holds when $e=1$ by \Cref{uniform value: P}. 
+Now, assume that $e \geq 2$, and consider a path
+
+\end{proof}
+
+
+\begin{corollary}
+There exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and 
+ \[
+(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
+ \]
+is a sequence of $p$-sprouts,
+then 
+ \[ \val \Pi(A_1, \vv{u}_1 p^e) \geq \val \Pi(A_1, \vv{u}_1 p) p^{e-1} + \val \Pi(A_2, \vv{u}_2 p) p^{e-2} + \cdots + \val \Pi(A_{e}, \vv{u}_{e} p).
+\]
+\end{corollary}
+
+\daniel[inline]{Don't we just need this with $\mu$'s instead?  If so, should we combine this with the result that follows?}
+
+
+\begin{proposition}
+ There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and $e \geq 2$ and
+ \[
+  (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
+ \]
+ is a sequence of $p$-sprouts with $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$ and $(A_e, \vv{u}_e)$ \emph{medium small}, then 
+\emily[inline]{This is a terminating path in $\widehat{\witt}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
+\[
+ \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
+\]
+\end{proposition}
+
+\subsection{The Witt graph for a pair}
+\begin{definition}
+Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\witt}^e(A)$ inductively as follows:
+\begin{enumerate}
+\item $\widehat{\witt}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
+\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.
+
+
+If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
+\emily{or say $\emptyset$ whenever $\witt^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
+
+Otherwise, $\widehat{\witt}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
+
+\begin{enumerate}
+\item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
+\item Among all pairs in $S$ that achieve this maximum, the value of $\delta(B, \vv{v}, p)$ is minimal.
+\end{enumerate}
+i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $p \gg 0$. 
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\witt}_p(A, \vv{u}) = \widehat{\witt}_q(A, \vv{u})$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
+\end{proposition}
+
+\alert[inline]{Include the proof.  It has to do with some finiteness property of $\ip$.}
+
+
+% \begin{corollary}
+% If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then
+% \[ \val \IP_p(B, \vv{v}p) = \ft{B}{\vv{v}} \cdot p - \delta_p(B, \vv{v}) \] for any vertex $(B, \vv{v})$ of $\widehat{\witt}_p(A, \vv{u})$.    In addition, if $(B, \vv{v})$ and $(D, \vv{z})$ are any two such vertices, then $\val \IP_p(B, \vv{v}) < \val \IP_p(D, \vv{z})$ if and only if $\ft{B}{\vv{v}} < \ft{D}{\vv{z}}$, or these two quantities agree and $\delta_p(B, \vv{v}) > \delta_p(D, \vv{z})$.  
+% \end{corollary}
+
+\emily[inline]{It's important for us to go back and fix/finish the proof. }
+
+
+\begin{theorem}\label{thm: higher mu formula for paths}
+\daniel{Can we fix a $\beta= \beta(A)$ and take $p \geq \beta$ as in other results?}
+If $(A, \vv{u})$ is a very small monomial pair and $p \gg 0$, then the following holds\textup:  If 
+$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\witt}(A, \vv{u}, p)$, and $(B, \vv{v})$ is any vertex in this graph whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then $\mu(B, \vv{v}, p^e)$ equals \daniel{The proof will show $\leq$.  To get equality, just make sure to prove iterated lifting lemma before this.}
+%
+ \[     \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p)
+\]
+\end{theorem}
+
+\begin{proof}  
+\todo{Maybe write this algebraically, when possible?}
+
+Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
+\[ \val \IP_p(B, \vv{v}p) = \val \IP_p (A_1, \vv{u}_1 \cdot p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
+
+We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\mathfrak{W}_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
+%
+\[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
+%
+where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
+%
+\begin{equation}
+\label{target bound: e}
+\left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
+
+Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\mathfrak{W}_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
+\[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
+and our induction hypothesis applied to the path 
+\[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
+
+On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+$(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
+\end{proof}
+
+
+\newpage
+
+\pedro[inline]{
+\begin{corollary}\label{cor: constant mus}
+   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\witt}(A,\vv{u},p)$ for every $p\ge \beta$. 
+\end{corollary}
+\todo[inline]{Restate more precisely}
+% \begin{corollary}
+%    If $(A,\vv{u})$ is a small monomial pair, then there exists $\beta = \beta(A)$ such that for all $p \ge \beta$ the following holds\textup:
+%    If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\mathfrak{W}}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\mathfrak{W}}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
+%    \begin{equation*}
+%      \mu(B,\vv{v},qp^e)
+%          \le \mu(A_1,\vv{u}_1,p)qp^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)qp + \mu(A_e,\vv{u}_e,qp)
+%    \end{equation*}
+%    for every $q$.
+% \end{corollary}
+% \begin{proof}
+%    This follows by induction on $e$, arguing exactly as in \Cref{thm: higher mu formula for paths}, and noticing that \Cref{cor: constant mus} gives us the case $e=1$.
+% \end{proof}
+% 
+% \details[inline]{
+% Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\witt}(A, \vv{u},p)$ whenever $p > \beta$.
+%     In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\mu(B,\vv{v},qp) = \mu(A_1, \vv{u}_1, qp)$, proving the result for $e=1$.
+% 
+%     Suppose that $e \geq 2$, and the result holds for paths of length $e-2$.
+%     \Cref{cor: upper bound for higher mus} tells us that
+%     \begin{align*}
+%       \mu(B,\vv{v},qp^e) &\le \mu(B,\vv{v},p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}) \\
+%       &= \mu(A_1,\vv{u}_1,p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}).
+%     \end{align*}
+%     Therefore, to complete our inductive step, it suffices to show that
+%     \[\mu(C,\vv{z},qp^{e-1}) \le \mu(A_2,\vv{u}_2,qp^{e-1}) \]
+%     for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$, and the induction hypothesis does the rest. 
+%     Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\witt}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
+%     In light of this, \Cref{cor: mu comparison} then tells us that \ldots
+% % and our induction hypothesis applied to the path 
+% % \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
+% 
+% % On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+% % $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
+% }
+}
+
+\newpage
+
+
+
+
+\newpage
+
+\daniel[inline]{Maybe this Lemma should go in the Preliminaries section?}
+
+\begin{lemma}
+\label{positive polynomial: L}
+Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition\textup:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
+\end{lemma}
+
+
+\begin{proof}
+Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
+%
+\[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
+\end{proof}
+
+
+\comment[inline]{The point of this Lemma is to show positivity of the coefficients in the polynomials that define the $\mu$'s. A consequence is that if $\ideala$ is $\idealm$-primary and homogeneous, then all coefficients of every intermediate power of $p$ in this polynomials vanishes.}
+
 \begin{lemma}  If  $p>0$ is prime and $(B, \vv{v})$ is a $p$-sprout of  $(A, \vv{u})$, then \[ \delta(A, \vv{u}, p) \geq \ft{B}{\vv{v}}\]
 with equality if $A$ is the monomial matrix associated to a monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading, and primary to the ambient homogeneous maximal ideal.
 \end{lemma}
@@ -1632,6 +1420,38 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \end{proof}
 
 
+\todo[inline]{Point out that the levels of $\widehat{\witt}(A, \vv{u})$ are eventually periodic. This will give an independent proof the rationality of critical exponents.  The way we present a formula for critical exponents may need this observation.}
+
+
+\newpage
+\emily[inline]{
+
+\textbf{Important Questions}.
+
+\begin{enumerate}
+ \item Does a medium-small pair always have a medium-small sprout?
+ We think the answer is NO:  
+ Let $A = \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}$ and $\vv{u} = (2,2)$, so that 
+$(A, \vv{u})$ is small but not very small.  Then the unique minimal coordinate is $\vv{s} = (2/3,2/3)$, so that if $p=2 \bmod 3$, then $[\vv{s}]_p = (2[p\%3]/3, 2[p\%3]/3) = (1/3,1/3)$. 
+
+The value of $\Theta(A, \vv{u}, \vv{s}, p)$ is $0$
+using the bounds in this paper, and from this, we can find that the only element of $\Delta(A, \vv{u}, \vv{s}, p)$ is $(1,1)$, which is very small. 
+
+\item Is it true that if some digit of a critical exponent of the monomial ideal $\ideala$ equals $p-1$, then \emph{all subsequent digits} must also be $p-1$.  This seems to be true if we run into a \emph{medium small} point.  Are there points $\vv{v}$ with $\mu(A,\vv{v}, p) = p-1$ where $(A,\vv{v})$ is not medium small?  Sure, look at $A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ and $\vv{v} = (1,1)$.  Then our Frobenius examples paper should tell us that $(A, \vv{v})$ is very small but $\mu(A, \vv{u}, p)$ should equal $1$ often.
+\item We saw earlier that a medium small pair need not sprout a medium small pair.  But does a pair $(A, \vv{u})$ that is small and satisfies $\mu(A, \vv{u}, p) = p-1$ then must it sprout a pair $(B, \vv{v})$ with $\mu(B, \vv{v}, p) = p-1$?
+
+\item Pedro pointed out the better question is that if $(A, \vv{u})$ is small and $\mu(A, \vv{u}, p) = p-1$, then is the whole critical exponent $\crit(A, \vv{u}) = 1$?
+\item The answer to the last question is FALSE:  In our Frobenius examples paper, there is a critical point $1-(1/p^2) = p-1 : p-2 : \overline{p-1}$.
+\end{enumerate}  
+}
+
+{\small
+\bibliographystyle{amsalpha}
+\bibliography{bibdatabase}
+}	
+
+
+\end{document}
 
 \newpage
 \section{Working in Lawrence}
@@ -1665,9 +1485,6 @@ In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ do
 (Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
 }
 
-
-
-\emily[inline]{Question:  If $\vv{z}$ is medium small, then the set $\Delta(A, \vv{z}, p)$ contains a medium small element.  If this is true, then we can make the definition uniform, as in the second case below.}
 
 \begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
 
@@ -1771,298 +1588,40 @@ we can build $\vv{k}$ with $A \vv{k} < \vv{u} p$ and $\overline{A\vv{k}} < \over
 
 Notice that these statements are very similar to \Cref{uniform value: P}. 
 
-\begin{corollary}
-For $p \gg 0$, 
- $\nu(A, \vv{u}, q) = \nu(\overline{A}, \overline{\vv{u}}, q)$. 
-\end{corollary}
 
-\emily[inline]{
-Given $A$, the following set is finite: 
-\[
- \bigcup_{\vv{u} \in \NN_+^d} \{\text{all descendants  of } (A,\vv{u}) \text{ of length } \geq 1 \}
-\]
-}
 
-\begin{lemma}[Extended lifting lemma]
- There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and 
- \[
-(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
- \]
- is a sequence of $p$-sprouts, then for every $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_{i-1}, \vv{u}_{i-1} p)$ 
- %with $\norm{\vv{k}_i} = \nu(A_{i-1}, \vv{u}_{i-1}, p)$ 
- for which $A_i \vv{k}_i = \overline{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds: 
- \[
-  \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}p^e).
- \]
-\end{lemma}
 
-\begin{corollary}
-There exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and 
- \[
-(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
- \]
-is a sequence of $p$-sprouts,
-then $\val \Pi(A, \vv{u} p^e)$ is at least
-\[
-\val \Pi(A_0, \vv{u}_0 p) p^{e-1} + \val \Pi(A_1, \vv{u}_1 p) p^{e-2} + \cdots + \val \Pi(A_{e-1}, \vv{u}_{e-1} p).
-\]
-\end{corollary}
+% \begin{lemma}[Extended lifting lemma]
+%  There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and 
+%  \[
+% (A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
+%  \]
+%  is a sequence of $p$-sprouts, then for every $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_{i-1}, \vv{u}_{i-1} p)$ 
+%  %with $\norm{\vv{k}_i} = \nu(A_{i-1}, \vv{u}_{i-1}, p)$ 
+%  for which $A_i \vv{k}_i = \overline{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds: 
+%  \[
+%   \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}p^e).
+%  \]
+% \end{lemma}
 
-\emily[inline]
-{
 
-\textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e)$ is the max of the above expression, over sequences of $p$-sprouts of length $e$. 
+% \emily[inline]
+% {
+% 
+% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e)$ is the max of the above expression, over sequences of $p$-sprouts of length $e$. 
+% 
+% \vspace{.4cm}
+% 
+% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \witt_i(A, \vv{u}) \}$.  
+% }
 
-\vspace{.4cm}
 
-\textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \witt_i(A, \vv{u}) \}$.  
-}
 
-\begin{definition}
- Define
-\begin{enumerate}
-\item $\witt^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
-\item $\witt^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \witt^e  \}$ for $e \geq 1$. 
-\end{enumerate}
-\end{definition}
 
 
-We think that $\{ \witt^e : e \geq 1 \}$ is finite, but only care that $\bigcup_{e=1}^\infty \witt^e(A)$ is.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\emily[inline]{verify that $\witt_e(A, \vv{u})$ and $\witt_e(A)$ are eventually periodic}
-
-\begin{definition}
-Fix $(A, \vv{u})$. 
-For $e\geq 0$, we define the set $\witt^e(A, \vv{u}) \subseteq \witt^e(A)$ inductively as follows:
-\begin{enumerate}
- \item $\witt^0(A, \vv{u}) = \{ (A, \vv{u}) \}$.
-\item $\witt^{e+1}(A, \vv{u}) = \{ p\text{-sprout of } (B, \vv{v}) : \vv{v} \in \witt^e(A, \vv{u}) \}$ for $e \geq 1$.
-\end{enumerate}
-\end{definition}
-
-
-\begin{definition}
-Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\witt}^e(A)$ inductively as follows:
-\begin{enumerate}
-\item $\widehat{\witt}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
-\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.
-
-
-If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
-\emily{or say $\emptyset$ whenever $\witt^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
-
-Otherwise, $\widehat{\witt}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
-
-\begin{enumerate}
-\item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
-\item Among all pairs in $S$ that achieve this maximum, the value of $\delta(B, \vv{v}, p)$ is minimal.
-\end{enumerate}
-i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $p \gg 0$. 
-\end{enumerate}
-
-
-\end{definition}
-
-\todo[inline]{Set notation for sprouts/set of sprouts/sprouts of sets.}
-
-\begin{lemma}
-Suppose that $(A, \vv{u})$ is very small.
-There exists $\beta = \beta(A)$ such that for all $p \geq \beta$ and $e \geq 1$, the following holds:
-There exists some $1 \leq k \leq e$, and a path of length $k \leq e$
- \[
-(A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
- \]
-in $\witt^e(A, \vv{u})$, for which $\val \Pi_p(A, \vv{u}, p^e)$ is at most 
-\[
- \val \Pi_p(A, \vv{u}, p) p^{e-1} + \val \Pi_p(A_1, \vv{u}_1, p) p^{e-2} + \cdots + \val \Pi_p (A_k, \vv{u}_k, p) p^{e-k} + p^{e-k} - 1.
-\] 
-\end{lemma}
-
-\begin{proof}
- Induction on $e \geq 1$. For $e=1$, can choose any $p$-sprout $(A_1, \vv{u}_1)$ of $(A, \vv{u})$. 
-\end{proof}
-
-\emily[inline]{
-
-\textbf{Important Questions}.
-
-\begin{enumerate}
- \item Does a medium-small pair always have a medium-small sprout?
- We think the answer is NO:  
- Let $A = \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}$ and $\vv{u} = (2,2)$, so that 
-$(A, \vv{u})$ is small but not very small.  Then the unique minimal coordinate is $\vv{s} = (2/3,2/3)$, so that if $p=2 \bmod 3$, then $[\vv{s}]_p = (2[p\%3]/3, 2[p\%3]/3) = (1/3,1/3)$. 
-
-The value of $\Theta(A, \vv{u}, \vv{s}, p)$ is $0$
-using the bounds in this paper, and from this, we can find that the only element of $\Delta(A, \vv{u}, \vv{s}, p)$ is $(1,1)$, which is very small. 
-
-\item Is it true that if some digit of a critical exponent of the monomial ideal $\ideala$ equals $p-1$, then \emph{all subsequent digits} must also be $p-1$.  This seems to be true if we run into a \emph{medium small} point.  Are there points $\vv{v}$ with $\mu(A,\vv{v}, p) = p-1$ where $(A,\vv{v})$ is not medium small?  Sure, look at $A = \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ and $\vv{v} = (1,1)$.  Then our Frobenius examples paper should tell us that $(A, \vv{v})$ is very small but $\mu(A, \vv{u}, p)$ should equal $1$ often.
-\item We saw earlier that a medium small pair need not sprout a medium small pair.  But does a pair $(A, \vv{u})$ that is small and satisfies $\mu(A, \vv{u}, p) = p-1$ then must it sprout a pair $(B, \vv{v})$ with $\mu(B, \vv{v}, p) = p-1$?
-
-\item Pedro pointed out the better question is that if $(A, \vv{u})$ is small and $\mu(A, \vv{u}, p) = p-1$, then is the whole critical exponent $\crit(A, \vv{u}) = 1$?
-\end{enumerate}  
-}
-
-
-\subsection*{Finiteness properties}
-
-Once $A$ is fixed,
-\begin{itemize}
- \item $\bigcup_{e=1}^\infty \witt^e(A)$ is finite.
- \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \witt^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
- \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \witt^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
- \item Add the last point
-\end{itemize}
-
-
-\begin{theorem}
- There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\witt(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
- \[
-  \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}, p^e).
- \]
-\end{theorem}
-
-\begin{proof}
-For every $1 \leq i \leq e$, set 
- \[
-\vv{k}_i = \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i,
-\]
-where $\vv{s}_i \in \mc(A_i, \vv{u}_i)$, and $\vv{h} \in \mathbb{O}(A_i, \vv{u}_i, \vv{s}_i, p)$ is chosen so that $A_{i+1} [\vv{s}_i] - A_{i+1} \vv{h}_i = \vv{u}_{i+1}$.
-Notice that the sets of all $\vv{s}_i$, and of all $\vv{h}_i$, are both finite. 
-
-The conclusion holds when $e=1$ by \Cref{uniform value: P}. 
-Now, assume that $e \geq 2$, and consider a path
-
-\end{proof}
-
-\begin{corollary}
- \[ \val \Pi(A_1, \vv{u}_1 p^e) \geq \val \Pi(A_1, \vv{u}_1 p) p^{e-1} + \val \Pi(A_2, \vv{u}_2 p) p^{e-2} + \cdots + \val \Pi(A_{e}, \vv{u}_{e} p).
-\]
-\end{corollary}
-
-
-\newpage
-
-
-\section{A graph}
-
-\comment[inline]{Things get a lot uglier from here onward.  }
-
-\daniel[inline]{Though things are ugly, I think that there is a lot of truth to the stuff in this section.  The idea is to construct a graph that encodes all the $p$-sprouts we need in each step of computing $\mu_{\ideala}^{\ideald}(p^e)$.  Many of the finiteness results come into play here.  These finiteness properties should tells us that this graph is eventually periodic, and this periodicity should tell us that critical exponents of monomial ideals are rational numbers (which we already knew).  I am also not committed to the notation $\mathfrak{W}$ for the graph.  }
-
-\begin{definition}  If $p>0$ is an integer and $(A, \vv{u})$ is very small, we define the finite set of monomial pairs $\mathfrak{W}^e(A, \vv{u}, p)$ for every integer $e \geq 1$ as follows.
-
-\begin{enumerate}
-\item $\mathfrak{W}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
-\item Suppose that $\mathfrak{W}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\mathfrak{W}^e(A, \vv{u}, p)$.  If  $S$ is empty (that is, $\mathfrak{W}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \mathfrak{W}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
-
-Otherwise, $\mathfrak{W}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
-
-\begin{enumerate}
-\item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
-\item Among all pairs in $S$ that achieve this maximum, the value of $\delta(B, \vv{v}, p)$ is minimal.
-\end{enumerate}
-\end{enumerate}
-\end{definition}
-
-
-
-\begin{definition}
-If $p > 0$ is an integer and $(A, \vv{u})$ is very small, we define the directed graph $\mathfrak{W}^{\infty}(A, \vv{u}, p)$ as follows.
-\begin{enumerate}
-\item  The set of vertices of $\mathfrak{W}^{\infty}(A, \vv{u}, p)$ is the disjoint union \[ \bigsqcup_{e=1}^{\infty} \, \mathfrak{W}^e(A, \vv{u}, p).\]
-The vertices in the component $\mathfrak{W}^e(A, \vv{u}, p)$ are said to be of \emph{level} $e$.  
-\item  There is a directed edge from a vertex in level $e$ to one in level $e+1$ whenever the latter is a $p$-sprout of the former.
-\end{enumerate}
-\end{definition}
-
-
-\begin{proposition}
-Given a monomial matrix $A$, there exists an integer $D$ such that $\mathfrak{W}_p(A, \vv{u}) = \mathfrak{W}_q(A, \vv{u})$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
-\end{proposition}
-
-\alert[inline]{Include the proof.  It has to do with some finiteness property of $\ip$}
-
-\begin{corollary}
-If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then
-\[ \val \IP_p(B, \vv{v}p) = \ft{B}{\vv{v}} \cdot p - \delta_p(B, \vv{v}) \] for any vertex $(B, \vv{v})$ of $\mathfrak{W}_p(A, \vv{u})$.    In addition, if $(B, \vv{v})$ and $(D, \vv{z})$ are any two such vertices, then $\val \IP_p(B, \vv{v}) < \val \IP_p(D, \vv{z})$ if and only if $\ft{B}{\vv{v}} < \ft{D}{\vv{z}}$, or these two quantities agree and $\delta_p(B, \vv{v}) > \delta_p(D, \vv{z})$.  
-\end{corollary}
-
-
-\begin{theorem}\label{thm: higher mu formula for paths}
-If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then the following holds\textup:  If 
-$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path of length $e-1$ in $\mathfrak{W}_p(A, \vv{u})$, and $(B, \vv{v})$ is any vertex of $\mathfrak{W}_p(A, \vv{u})$ whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then the value of $\IP_p(B, \vv{v}p^e)$ is at most \pedro{Hence equal, by the lifting lemma}
-%
- \[ \left( \sum_{s=1}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^e. \] 
-\end{theorem}
-
-\begin{proof}  Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
-\[ \val \IP_p(B, \vv{v}p) = \val \IP_p (A_1, \vv{u}_1 \cdot p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
-
-We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\mathfrak{W}_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
-%
-\[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
-%
-where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
-%
-\begin{equation}
-\label{target bound: e}
-\left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
-
-Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\mathfrak{W}_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
-\[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
-and our induction hypothesis applied to the path 
-\[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
-
-On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
-$(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
-\end{proof}
-
-
-\newpage
-
-\pedro[inline]{
-\begin{corollary}\label{cor: constant mus}
-   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\witt}(A,\vv{u},p)$ for every $p\ge \beta$. 
-\end{corollary}
-\todo[inline]{Restate more precisely}
-\begin{corollary}
-   If $(A,\vv{u})$ is a small monomial pair, then there exists $\beta = \beta(A)$ such that for all $p \ge \beta$ the following holds\textup:
-   If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\mathfrak{W}}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\mathfrak{W}}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
-   \begin{equation*}
-     \mu(B,\vv{v},qp^e)
-         \le \mu(A_1,\vv{u}_1,p)qp^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)qp + \mu(A_e,\vv{u}_e,qp)
-   \end{equation*}
-   for every $q$.
-\end{corollary}
-\begin{proof}
-   This follows by induction on $e$, arguing exactly as in \Cref{thm: higher mu formula for paths}, and noticing that \Cref{cor: constant mus} gives us the case $e=1$.
-\end{proof}
-
-\details[inline]{
-Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\witt}(A, \vv{u},p)$ whenever $p > \beta$.
-    In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\mu(B,\vv{v},qp) = \mu(A_1, \vv{u}_1, qp)$, proving the result for $e=1$.
-
-    Suppose that $e \geq 2$, and the result holds for paths of length $e-2$.
-    \Cref{cor: upper bound for higher mus} tells us that
-    \begin{align*}
-      \mu(B,\vv{v},qp^e) &\le \mu(B,\vv{v},p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}) \\
-      &= \mu(A_1,\vv{u}_1,p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}).
-    \end{align*}
-    Therefore, to complete our inductive step, it suffices to show that
-    \[\mu(C,\vv{z},qp^{e-1}) \le \mu(A_2,\vv{u}_2,qp^{e-1}) \]
-    for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$, and the induction hypothesis does the rest. 
-    Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\witt}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
-    In light of this, \Cref{cor: mu comparison} then tells us that \ldots
-% and our induction hypothesis applied to the path 
-% \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
-
-% On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
-% $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
-}
-}
-
-\newpage
-
+\daniel[inline]{This Proposition eventually becomes ``iterated lifting lemma''.  Once that proof is written down, this can go away}
 
 \begin{proposition}
 Suppose $A$ is a $d \times n$ monomial matrix and $\vv{u} \in \ZZ^d_+$.  Given an infinite rooted path 
@@ -2133,28 +1692,11 @@ As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \le
 \end{proof}
 
 
-\newpage
-
-\daniel[inline]{Maybe this Lemma should go in the Preliminaries section?}
-
-\begin{lemma}
-\label{positive polynomial: L}
-Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition\textup:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
-\end{lemma}
-
-
-\begin{proof}
-Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
-%
-\[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
-\end{proof}
-
-
-{\small
-\bibliographystyle{amsalpha}
-\bibliography{bibdatabase}
-}	
 
 
 
-\end{document}
+
+
+
+
+
