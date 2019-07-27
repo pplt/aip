@@ -4,7 +4,7 @@
 \begin{document}
 
 \title[Arithmetic programming and Frobenius powers]{Arithmetic integer programming
-% and generalized Frobenius powers of monomial ideals
+ and Frobenius powers of monomial ideals
 }
 \author{Daniel J.\ Hern\'andez}
 \author{Pedro Teixeira}
@@ -14,19 +14,21 @@
 \emily[inline]{
 TO DO LIST:
 \begin{enumerate}
- \item Write essential statements/proofs.
- \item Decide on name of paper.
- \item Decide on name for minimal coordinate.
- \item Make sprout notation.
- \item Put in examples.
- \item Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
- \item Fill in/rewrite preliminaries.
- \item Reorganize and motivate the $\Pi$ and $\Theta$, and their connection, in Sections 5 and 6.
- \item ``fractal linear program;'' solve $P$ in ``Sierpinski gasket''
- \item Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
- \item Minimize and/or ``algebrafy'' statements.
- \item Background section on Frobenius powers, $\mu$, $\nu$, etc.
- \item Derive some easy corollaries for very general hypersurfaces.
+   %\item[$\CheckedBox$]
+ \item[$\Box$] Write essential statements/proofs.
+ \item[$\Box$] Decide on name of paper.
+ \item[$\Box$] Decide on name for minimal coordinate.
+ \item[$\Box$] Make sprout notation.
+ \item[$\Box$] Put in examples.
+ \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
+ \pedro[inline]{I'm trying $\graph$ for the notation, for ``sprouting graph''}
+ \item[$\Box$] Fill in/rewrite preliminaries.
+ \item[$\Box$] Reorganize and motivate the $\Pi$ and $\Theta$, and their connection, in Sections 5 and 6.
+ \item[$\Box$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
+ \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
+ \item[$\Box$] Minimize and/or ``algebrafy'' statements.
+ \item[$\Box$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
+ \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
 \end{enumerate}
 }
 
@@ -1027,7 +1029,7 @@ $\val \IP_p(A, \vv{u}p^e)  \geq \IP_p(A, \vv{u}) \cdot p^e   \geq (\IP_p(B, \vv{
 \subsection{Small pairs}
 
 
-\pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\witt}$ graph?}
+\pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\graph}$ graph?}
 
 \begin{definition}
 A monomial pair $(A, \vv{u})$ is \emph{small} if no column of $A$ is less than $\vv{u}$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one.
@@ -1190,35 +1192,35 @@ Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] f
 \end{proof}
 
 
-\subsection{The Witt graph}
+\subsection{The Sprouting graph}
 
 
 \begin{definition}
  Define
 \begin{enumerate}
-\item $\witt^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
-\item $\witt^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \witt^e  \}$ for $e \geq 1$. 
+\item $\graph^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
+\item $\graph^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \graph^e  \}$ for $e \geq 1$. 
 \end{enumerate}
 \end{definition}
 
 
-\emily[inline]{We think that $\{ \witt^e : e \geq 1 \}$ is finite, but only care that $\bigcup_{e=1}^\infty \witt^e(A)$ is.}
+\emily[inline]{We think that $\{ \graph^e : e \geq 1 \}$ is finite, but only care that $\bigcup_{e=1}^\infty \graph^e(A)$ is.}
 
-\emily[inline]{verify that $\witt_e(A, \vv{u})$ and $\witt_e(A)$ are eventually periodic}
+\emily[inline]{verify that $\graph_e(A, \vv{u})$ and $\graph_e(A)$ are eventually periodic}
 
 \subsection*{Finiteness properties}
 
 Once $A$ is fixed,
 \begin{itemize}
- \item $\bigcup_{e=1}^\infty \witt^e(A)$ is finite.
- \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \witt^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
- \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \witt^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
+ \item $\bigcup_{e=1}^\infty \graph^e(A)$ is finite.
+ \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \graph^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
+ \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \graph^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
  \item Add the last point
 \end{itemize}
 
 
 \begin{theorem}[Iterated lifting]
- There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\witt(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
+ There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
  \[
   \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}, p^e).
  \]
@@ -1258,7 +1260,7 @@ then
   (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
  \]
  is a sequence of $p$-sprouts such that $(A, \vv{u}_e)$ is \emph{medium small} and  $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$, then  
-\emily[inline]{This is a terminating path in $\widehat{\witt}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
+\emily[inline]{This is a terminating path in $\widehat{\graph}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
 \daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 \[
  \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
@@ -1267,16 +1269,16 @@ then
 
 \subsection{The Witt graph for a pair}
 \begin{definition}
-Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\witt}^e(A)$ inductively as follows:
+Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\graph}^e(A)$ inductively as follows:
 \begin{enumerate}
-\item $\widehat{\witt}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
-\item Suppose that $\widehat{\witt}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\witt}^e(A, \vv{u}, p)$.
+\item $\widehat{\graph}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
+\item Suppose that $\widehat{\graph}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\graph}^e(A, \vv{u}, p)$.
 
 
-If  $S$ is empty (that is, $\widehat{\witt}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\witt}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
-\emily{or say $\emptyset$ whenever $\witt^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
+If  $S$ is empty (that is, $\widehat{\graph}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\graph}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
+\emily{or say $\emptyset$ whenever $\graph^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
 
-Otherwise, $\widehat{\witt}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
+Otherwise, $\widehat{\graph}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
 
 \begin{enumerate}
 \item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
@@ -1288,7 +1290,7 @@ i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $
 
 
 \begin{proposition}
-Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\witt}_p(A, \vv{u}) = \widehat{\witt}_q(A, \vv{u})$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
+Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\graph}_p(A, \vv{u}) = \widehat{\graph}_q(A, \vv{u})$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
 \end{proposition}
 
 \alert[inline]{Include the proof.  It has to do with some finiteness property of $\ip$.}
@@ -1296,7 +1298,7 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\wi
 
 % \begin{corollary}
 % If $(A, \vv{u})$ is a monomial pair and $p \gg 0$, then
-% \[ \val \IP_p(B, \vv{v}p) = \ft{B}{\vv{v}} \cdot p - \delta_p(B, \vv{v}) \] for any vertex $(B, \vv{v})$ of $\widehat{\witt}_p(A, \vv{u})$.    In addition, if $(B, \vv{v})$ and $(D, \vv{z})$ are any two such vertices, then $\val \IP_p(B, \vv{v}) < \val \IP_p(D, \vv{z})$ if and only if $\ft{B}{\vv{v}} < \ft{D}{\vv{z}}$, or these two quantities agree and $\delta_p(B, \vv{v}) > \delta_p(D, \vv{z})$.  
+% \[ \val \IP_p(B, \vv{v}p) = \ft{B}{\vv{v}} \cdot p - \delta_p(B, \vv{v}) \] for any vertex $(B, \vv{v})$ of $\widehat{\graph}_p(A, \vv{u})$.    In addition, if $(B, \vv{v})$ and $(D, \vv{z})$ are any two such vertices, then $\val \IP_p(B, \vv{v}) < \val \IP_p(D, \vv{z})$ if and only if $\ft{B}{\vv{v}} < \ft{D}{\vv{z}}$, or these two quantities agree and $\delta_p(B, \vv{v}) > \delta_p(D, \vv{z})$.  
 % \end{corollary}
 
 \emily[inline]{It's important for us to go back and fix/finish the proof. }
@@ -1305,7 +1307,7 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\wi
 \begin{theorem}\label{thm: higher mu formula for paths}
 \daniel{Can we fix a $\beta= \beta(A)$ and take $p \geq \beta$ as in other results?}
 If $(A, \vv{u})$ is a very small monomial pair and $p \gg 0$, then the following holds\textup:  If 
-$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\witt}(A, \vv{u}, p)$, and $(B, \vv{v})$ is any vertex in this graph whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then $\mu(B, \vv{v}, p^e)$ equals \daniel{The proof will show $\leq$.  To get equality, just make sure to prove iterated lifting lemma before this.}
+$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$, and $(B, \vv{v})$ is any vertex in this graph whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then $\mu(B, \vv{v}, p^e)$ equals \daniel{The proof will show $\leq$.  To get equality, just make sure to prove iterated lifting lemma before this.}
 %
  \[     \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p)
 \]
@@ -1317,7 +1319,7 @@ $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\witt}(A
 Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
 \[ \val \IP_p(B, \vv{v}p) = \val \IP_p (A_1, \vv{u}_1 \cdot p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
 
-We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\mathfrak{W}_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
+We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\graph_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
 %
 \[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
 %
@@ -1327,12 +1329,12 @@ where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to 
 \label{target bound: e}
 \left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
 
-Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\mathfrak{W}_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
+Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\graph_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
 \[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
 and our induction hypothesis applied to the path 
 \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
 
-On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
 $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
 \end{proof}
 
@@ -1341,12 +1343,12 @@ $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ onc
 
 \pedro[inline]{
 \begin{corollary}\label{cor: constant mus}
-   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\witt}(A,\vv{u},p)$ for every $p\ge \beta$. 
+   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\graph}(A,\vv{u},p)$ for every $p\ge \beta$. 
 \end{corollary}
 \todo[inline]{Restate more precisely}
 % \begin{corollary}
 %    If $(A,\vv{u})$ is a small monomial pair, then there exists $\beta = \beta(A)$ such that for all $p \ge \beta$ the following holds\textup:
-%    If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\mathfrak{W}}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\mathfrak{W}}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
+%    If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\graph}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
 %    \begin{equation*}
 %      \mu(B,\vv{v},qp^e)
 %          \le \mu(A_1,\vv{u}_1,p)qp^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)qp + \mu(A_e,\vv{u}_e,qp)
@@ -1358,7 +1360,7 @@ $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ onc
 % \end{proof}
 % 
 % \details[inline]{
-% Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\witt}(A, \vv{u},p)$ whenever $p > \beta$.
+% Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$.
 %     In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\mu(B,\vv{v},qp) = \mu(A_1, \vv{u}_1, qp)$, proving the result for $e=1$.
 % 
 %     Suppose that $e \geq 2$, and the result holds for paths of length $e-2$.
@@ -1370,12 +1372,12 @@ $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ onc
 %     Therefore, to complete our inductive step, it suffices to show that
 %     \[\mu(C,\vv{z},qp^{e-1}) \le \mu(A_2,\vv{u}_2,qp^{e-1}) \]
 %     for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$, and the induction hypothesis does the rest. 
-%     Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\witt}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
+%     Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
 %     In light of this, \Cref{cor: mu comparison} then tells us that \ldots
 % % and our induction hypothesis applied to the path 
 % % \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
 % 
-% % On the other hand, if $(C, \vv{z})$ is a vertex of $\mathfrak{W}_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+% % On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
 % % $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
 % }
 }
@@ -1421,7 +1423,7 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \end{proof}
 
 
-\todo[inline]{Point out that the levels of $\widehat{\witt}(A, \vv{u})$ are eventually periodic. This will give an independent proof the rationality of critical exponents.  The way we present a formula for critical exponents may need this observation.}
+\todo[inline]{Point out that the levels of $\widehat{\graph}(A, \vv{u})$ are eventually periodic. This will give an independent proof the rationality of critical exponents.  The way we present a formula for critical exponents may need this observation.}
 
 
 \newpage
@@ -1490,22 +1492,22 @@ In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ do
 \begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
 
 \begin{enumerate}
-\item  $\witt_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
-\item Suppose $\witt_e$ has been defined for some $e \geq 1$.  Then 
-\[ \witt_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\witt_e$}\\ \bigcup \limits_{\vv{z} \in \witt_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
+\item  $\graph_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
+\item Suppose $\graph_e$ has been defined for some $e \geq 1$.  Then 
+\[ \graph_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\graph_e$}\\ \bigcup \limits_{\vv{z} \in \graph_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
 \end{enumerate}
 
 \end{definition}
 
 
-For $\witt_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \witt_e \}$.
+For $\graph_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \graph_e \}$.
 
-If $\witt_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
+If $\graph_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
 \[
  \crit(\ideala, \vv{u}) = \left( \sum_{i=1}^{t-1} \frac{\mu_i}{p^i}\right) +  \frac{1}{p^t}.
 \]
 
-Otherwise, since each $\witt_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\witt_{e+s} = \witt_e$.  
+Otherwise, since each $\graph_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\graph_{e+s} = \graph_e$.  
 Then 
 \[
  \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right).
@@ -1613,7 +1615,7 @@ Notice that these statements are very similar to \Cref{uniform value: P}.
 % 
 % \vspace{.4cm}
 % 
-% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \witt_i(A, \vv{u}) \}$.  
+% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \graph_i(A, \vv{u}) \}$.  
 % }
 
 
@@ -1626,13 +1628,13 @@ Notice that these statements are very similar to \Cref{uniform value: P}.
 
 \begin{proposition}
 Suppose $A$ is a $d \times n$ monomial matrix and $\vv{u} \in \ZZ^d_+$.  Given an infinite rooted path 
-\[ (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e) \to \cdots \] in $\mathfrak{W}_r(A, \vv{u})$ 
+\[ (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e) \to \cdots \] in $\graph_r(A, \vv{u})$ 
 that is eventually periodic, there exists an integer $\beta$ such that 
 \[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] 
 is optimal for $\IP_p(A, \vv{u}p^e)$ for every $e \geq 1$ whenever $p \geq \beta$ and $p \equiv r \bmod D$.
 \end{proposition}
 
-\begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a minimal coordinate for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\mathfrak{W}_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
+\begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a minimal coordinate for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\graph_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
 \[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] satisfies the arithmetic constraint of $\IP_p(A, \vv{u}p^e)$ for every $p \gg 0$ and $e \geq 1$.  
 
 Therefore, to complete the proof, it suffices to show that 
@@ -1650,7 +1652,7 @@ We will next establish \eqref{goal: e} in general by inducing on $d$, the number
 Next, assume that $d>1$ and that \eqref{goal: e} has been proved for all $c \times n$ monomial matrices with $1 \leq c < d$.    By our earlier work, we may assume that $\mf(A_c, \vv{u}_c)$ is unbounded for some $c \geq 1$.  Let $l \geq 1$ be the minimum integer such that $\mf(A_l, \vv{u}_l)$ is unbounded.  If $l=1$, then obviously $A_l = A$. Otherwise, the minimality of $l$ implies that $\mf(A_c, \vv{u}_c)$ is bounded for all $1 \leq c < l$, which would then imply that $A_c = A$ for all $1 \leq c \leq l$.  Thus, setting $(B, \vv{v}) = (A_{l+1}, \vv{u}_{l+1})$, the path under consideration is of the form \[ (A, \vv{u}_1) \to \cdots \to (A, \vv{u}_l) \to (B, \vv{v}) \to \cdots. \]
 
  Set  $\O = \mf(A, \vv{u}_l)$, which is an unbounded face of the Newton polyhedron of $A$.  The unboundedness of $\O$ implies that $B$  is a monomial matrix with fewer than $d$ rows.  Moreover, the tail sequence 
-\[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] is a realization of the path \[ (B, \vv{v}) \to \cdots \to (A_{l+e}, \vv{u}_{l+e}) \to \cdots \] in the graph $\mathfrak{W}_r(B, \vv{v})$.  For every $e \geq 1$ set \[ \vv{k}_e = \frac{ \vv{s}_{l+1} \cdot p - \vv{t}_{l+1}}{p} + \cdots + \frac{ \vv{s}_{l+e} \cdot p - \vv{t}_{l+e}}{p^e}.  \]   By our induction hypothesis, we know that $B \vv{k}_e < \vv{v}$ for all $p \gg 0$ and $e \geq 1$.
+\[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] is a realization of the path \[ (B, \vv{v}) \to \cdots \to (A_{l+e}, \vv{u}_{l+e}) \to \cdots \] in the graph $\graph_r(B, \vv{v})$.  For every $e \geq 1$ set \[ \vv{k}_e = \frac{ \vv{s}_{l+1} \cdot p - \vv{t}_{l+1}}{p} + \cdots + \frac{ \vv{s}_{l+e} \cdot p - \vv{t}_{l+e}}{p^e}.  \]   By our induction hypothesis, we know that $B \vv{k}_e < \vv{v}$ for all $p \gg 0$ and $e \geq 1$.
 
 Next, set \[ \vv{h} = \frac{\vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_l \cdot p - \vv{t}_l}{p^l}. \] 
 As $\vv{s}_l$ is a minimal coordinate for $(A, \vv{u}_l)$, we may write 
@@ -1676,7 +1678,7 @@ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) < \vv{u}.
 %
 for all $p \gg 0$ and $e \geq 1$.
 
-We begin by verifying \eqref{ineq to end proof: e} in $\RR \rb(\O)^{\perp}$.  Let $\ol{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \RR \rb(\O)^{\perp}$, so that $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\RR \rb(\O)$.  In any case, $B \vv{s}_1 = \ol{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\mathfrak{W}_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
+We begin by verifying \eqref{ineq to end proof: e} in $\RR \rb(\O)^{\perp}$.  Let $\ol{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \RR \rb(\O)^{\perp}$, so that $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\RR \rb(\O)$.  In any case, $B \vv{s}_1 = \ol{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
 $B \vv{h} = \ol{A \vv{h}}$ equals $\ol{\vv{u}} - p^{-l} \cdot \vv{v}$.  Thus, 
 \[  B \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) = \ol{\vv{u}} -  \frac{\vv{v} - B \vv{k}_e}{p^l}. \]
 However, as noted above, our induction hypothesis tells us that the difference  $\vv{v} - B \vv{k}_e$ is positive in $\RR \rb(\O)^{\perp}$ for every $p \gg 0$ and $e \geq 1$.    
