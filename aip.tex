@@ -1253,12 +1253,13 @@ then
 
 
 \begin{proposition}
- There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and $e \geq 2$ and
+ There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and $e \geq 1$ and
  \[
   (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
  \]
- is a sequence of $p$-sprouts with $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$ and $(A_e, \vv{u}_e)$ \emph{medium small}, then 
+ is a sequence of $p$-sprouts such that $(A, \vv{u}_e)$ is \emph{medium small} and  $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$, then  
 \emily[inline]{This is a terminating path in $\widehat{\witt}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
+\daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 \[
  \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
 \]
