@@ -29,6 +29,7 @@ TO DO LIST:
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  \item[$\Box$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
  \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
+ \item[$\Box$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?  
 \end{enumerate}
 }
 
@@ -326,7 +327,7 @@ The following is a consequence of the discreteness of the $F$-jumping numbers as
 
 
 \begin{lemma}
-\label{discreteness of F-thresholds: L}
+\label{discreteness: L}
 Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
 %In particular, once $A$ is fixed, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ with $(A, \vv{u})$ very small.
 \end{lemma}
@@ -436,9 +437,12 @@ We have just shown that $\mc(A, \vv{u})$ is nonempty, and it clear that this set
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
 % where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the minimal coordinates of $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
+\begin{definition}  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\delta = \delta(A)$ such that for every pair $(A, \vv{u})$, there exists a point $\vv{s} \in \mc(A, \vv{u})$ so that $\delta \cdot \vv{s}$ has integer coordinates.
+\end{definition}
+
 \begin{theorem}  
-\label{uniform denominators for mc:  T}
-Given a monomial matrix $A$, there exists an integer $D$ such that for every monomial pair $(A, \vv{u})$, there is a point in $\mc_{\QQ}(A, \vv{u})$ with denominator $D$.
+\label{special-denominators-exist:  T}
+Special denominators exist.
 \end{theorem}
 
 
@@ -570,8 +574,7 @@ Fix a rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and an integer $q>0$.  We
 \emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
 
 \begin{lemma}
-\label{easy but important: L}
-Suppose $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.   If  $\vv{h} \in \ZZ^n$ is such that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is feasible for $\IP(A, \vv{u}q)$, then $\vv{h}$ must be feasible for $\ip(A, \vv{u}, \vv{s}, q)$.
+\label{easy but important: L}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  If $\vv{k}$ is feasible for $\IP(A, \vv{u}, q)$, then the difference $\vv{k} - (\vv{s}q-\tail{\vv{s}}_q)$ is feasible for $\ip(A, \vv{u}, \vv{s}, q)$.
 \end{lemma}
 
 \begin{proof} As the constraints of $\IP(B, \ol{\vv{u}}q)$ are a subset of those of $\IP(A, \vv{u}q)$, it follows that $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is also feasible for the former program.  In particular,  
@@ -619,15 +622,15 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then
 \[ \ip(A, \vv{u}, \vv{s}, q) \] 
 is the integer program in domain lattice of $A$ defined as follows:
 \begin{enumerate}
-\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ B \vv{k}  < B \tail{\vv{s}}_q\]
-where $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$.
-\end{enumerate}
+\item The objective function is $\vv{h} \mapsto \norm{\vv{h}}$.
+\item The constraints are that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ \ol{A \vv{h}}  < \ol{A \tail{\vv{s}}_q}\]
+\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} where $\ol{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.\end{enumerate}
 \end{definition}
 
+
 \begin{definition}
-The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  = B (\opt \ip(A, \vv{u}, \vv{s}, q))\] 
-where $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$.
+The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \ol{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\] 
+where $\ol{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
 \begin{remark}
@@ -647,19 +650,16 @@ We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for
 
 \emily[inline]{The statement below appears to be the ``lifting lemma'' in disguise!.  More precisely, it looks like the base case of ILL}
 
+\daniel[inline]{This has been changed to a ``point-by-point" statement, since in its current placement, we haven't established any finiteness properties of $\ip$}
+
 \begin{proposition}
 \label{uniform value: P}
-Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair and $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, then every point in
-\[ \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q) \] is optimal for $\IP(A, \vv{u}q)$ whenever $q >  \beta D$. 
+Given a list $(A, \vv{u}, \vv{s}, q)$ and point $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, the point 
+$\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$ whenever $q \gg 0$. 
 \end{proposition}
 
-\begin{proof} As noted in \Cref{finiteness of optimal reps: R}, 
-%
-\[ \mathbb{M} = \cup  \ \orep( A, \vv{s}, \vv{u}, q )\]
-%
-is a finite subset of the domain lattice of $A$, where the union is over all $A$-lists.  Therefore, there exists a negative integer $\alpha$ such that every coordinate of every point in $\mathbb{M}$ is at least $\alpha$, and an integer $\mu$ such that every coordinate of every point of $A (\mathbb{M})$ is at most $\mu$.  Set \[ \beta =  \max \{ 1-\alpha, \mu \}.\]
-
-Next, consider a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, and a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, so that  \[ \vv{u} = A \vv{s} + \vv{w} \] for some positive rational point $\vv{w}$ in $\RR \rb(\O)^{\perp}$.  Note that the integrality of $\vv{u}$ implies that $D$ is also a denominator for $\vv{w}$.  Finally, fix an integer $q > \beta D$ and a point $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  Below, we will demonstrate that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is optimal for $\IP(A, \vv{u}q)$.  
+\begin{proof} 
+Set $\O = \mf(A, \vv{u})$, and write  $\vv{u} = A \vv{s} + \vv{w}$ for some positive rational point $\vv{w}$ in $\RR \rb(\O)^{\perp}$.  Note that the integrality of $\vv{u}$ implies that $D$ is also a denominator for $\vv{w}$.  Finally, fix an integer $q > \beta D$ and a point $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  Below, we will demonstrate that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is optimal for $\IP(A, \vv{u}q)$.  
 
 First, note that this lattice point is nonnegative, that is,   $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $1/D$.  Thus, as $q > \beta D$, the $i$-th coordinate of $\vv{s}q$ is greater than $\beta$.  However, the definition of $\tail{\vv{s}}_q$ and $\alpha$ guarantee that the coordinates of $\tail{\vv{s}}_q - \vv{h}$ are at most $1-\alpha$, which in turn is at most $\beta$.
 
@@ -684,11 +684,11 @@ where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 
 \subsection{Some finiteness properties}  
+We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
 \begin{lemma}
 \label{bounded value: L} 
-$0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
-\daniel[inline]{For some future applications, we might need tighter inequality on RHS, e.g., a bound that involves $\norm{\vv{a}}$, where $\vv{a}$ defines $\O = \mf(A, \vv{u})$.}
+If $(A, \vv{u}, \vv{s}, q)$ is a list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
 \end{lemma}
 
 \begin{proof}   
@@ -715,7 +715,7 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
 
 \begin{corollary}
 \label{finite image: C}
-$\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
+If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{corollary}
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
@@ -734,7 +734,7 @@ If $A$ is fixed, then there are only finitely many integer programs of the form 
 \begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
 
 Next, let $B$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq B \tail{\vv{s}}_q \leq B \vv{1}$, and as \Cref{tail projection: L} tells us that $B \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
- \end{proof}
+\end{proof}
 
 \begin{corollary} 
 \label{finitely many coord sums: C}
@@ -745,36 +745,20 @@ Next, let $B$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\
 \end{proof}
 
 
-The finiteness results above facilitate the following definition.
+These finiteness properties above facilitate the following result.
+
+\newcommand{\fsr}{\mathcal{R}}
+
+\begin{theorem}[Existence of finite sets of representatives]  Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\overline{ A \vv{h}} = \vv{v}$, where $\ol{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+\end{theorem}
+
+\begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
+\[ \ol{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
+and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
+\end{proof}
 
 
-\daniel[inline]{What we are trying to do is fix, once and for all, a finite set of representatives for the optimal set of all the programs $\Theta(A, \vv{u}, \vv{s}, q)$ with $A$ fixed.  I don't know how to clearly express this, or what notation we might want to use for it.}
-
-\emily[inline]{Track where $\mathbb{O}$ is used:  Maybe it is only used in a few proofs.  Then we could take out the definition and just remark that these finiteness properties exist. }
-
-
-\begin{definition}
-\label{orep: D}
-  For every monomial list $(A, \vv{u}, \vv{s}, q)$, we fix a set 
-\[ \orep(A, \vv{u}, \vv{s}, q) \] satisfying the following conditions.
-\begin{enumerate}
-\item  $\orep(A, \vv{u}, \vv{s}, q)$ is finite subset of $\opt \ip(A, \vv{u}, \vv{s}, q)$ with \[ B( \orep(A, \vv{u}, \vv{s}, q) ) = \im \ip(A, \vv{u}, \vv{s}, q) \]
-where $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$.
- 
-\item $\orep(A, \vv{u}, \vv{s}, q) = \orep(A, \tilde{\vv{u}}, \tilde{\vv{s}}, \tilde{q})$ whenever  
-$\ip(A, \vv{u}, \vv{s}, q) = \ip(A, \tilde{\vv{u}}, \tilde{\vv{s}}, \tilde{q})$.
-\end{enumerate} 
-\end{definition}
-
-\begin{remark}
-We stress that there is typically no canonical choice for the sets in \Cref{orep: D} above.  Nevertheless, as it our arguments will depend on the existence of such sets, we fix them once and for all.
-\end{remark}
-
-\begin{remark}
-\label{finiteness of optimal reps: R}
-The finiteness result \Cref{finitely many secondary programs: L} implies that \[ \orep(A) := \cup  \ \orep( A, \vv{s}, \vv{u}, q ) \] where the union is over all $A$-lists, is a finite for every monomial matrix $A$.
-\end{remark}
-
+\newpage
 \section{Toward solving $\Pi$}
 \label{solving: S}
 
@@ -784,49 +768,6 @@ Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer. 
 \label{relating-programs: ss}
 
 
-%\begin{lemma}
-%\label{key step: L}
-%Adopt the context of \Cref{projection + IP: S}.  If $q$ is a positive integer, then every feasible point for the program  $\IP(\overline{A}, \ol{\vv{u}}q)$ in $\RR A(\O)$  is of the form \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h} \] where $\vv{h}$ is feasible for the  program $\IP(\overline{A}, \overline{A}  \tail{\vv{s}}_q, I )$ in $\ZZ A(\O)$.
-%\end{lemma}
-%
-%\begin{proof} 
-%\Cref{projection of a min expression: L} tells us that $\overline{A} \vv{s} = \ol{\vv{u}}$, and so $\vv{g} \in \ZZ^n$ satisfies the constraint $\overline{A} \vv{g} < \ol{\vv{u}}q = \overline{A} \vv{s} q$ if and only if $\vv{h} = \vv{g} - \vv{s}q + \tail{\vv{s}}_q$ satisfies the constraint $\overline{A} \vv{h} <  \overline{A} \tail{\vv{s}}_q$.  It then follows from this that if $\vv{g} \in \ZZ^n$ is feasible for $\IP(\overline{A}, \ol{\vv{u}}q)$, then $\vv{h} = \vv{g} - \vv{s}q + \tail{\vv{s}}_q$ is feasible for $\IP(\overline{A}, \overline{A}  \tail{\vv{s}}_q \, , I )$.
-%\end{proof}
-
-
-%\begin{lemma}
-%\label{nonnegative coords: L}
-%Suppose that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$.  If $r>0$ is an integer and $\vv{h}$ is feasible for $\ip_r(A, \vv{u}, \vv{s})$, then 
-%\[  \vv{s}q - \tail{\vv{s}}_r + \vv{h} = \vv{s}q - \tail{\vv{s}}_q + \vv{h} \] 
-%has nonnegative integer coordinates for all $q \gg 0$ with $q \equiv r \bmod D$.
-%\end{lemma}
-%
-%
-%\begin{proof}
-%
-%Throughout, $q$ will always be a positive integer with $q \equiv r \bmod D$,  so that $\vv{s}q - \tail{\vv{s}}_r = \vv{s}q - \tail{\vv{s}}_q$ has nonnegative integer coordinates.  The constraints of $\ip_r(A, \vv{u}, \vv{s})$ imply that if the $i$-th coordinate of $\vv{h}$ is negative, then the $i$-th coordinate of $\vv{s}$ must be positive, and so the $i$-th coordinate of $\vv{s}q-\tail{\vv{s}}_r$ tends to infinity as $q$ grows.  As $\vv{h}$ is fixed, this observation implies that $\vv{s}q  - \tail{\vv{s}}_r + \vv{h} \geq 0$ whenever $q \gg 0$. 
-%\end{proof}
-
-
-%\begin{lemma}
-%\label{tail projection: L}
-%If $\vv{s}  \in \mc_{\QQ}(A, \vv{u})$ and $q$ is a positive integer, then \[ B\tail{\vv{s}}_q \in \ZZ_+ \rb(\O)^{\perp}.\]  
-%\end{lemma}
-%
-%\begin{proof}  By construction, $\vv{s}q - \vv{s}_q $ has nonnegative integer coordinates, and the identity 
-%$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\RR \rb(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
-%\end{proof}
-%
-%\begin{corollary}  
-%\label{ip basic properties: C}
-%If $\vv{s}  \in \mc_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
-%\[ 0 \leq \val \ip(B, \tail{\vv{s}}_q) < \norm{ \tail{\vv{s}}_q}\] 
-%and the image of $\ip(B, \tail{\vv{s}}_q)$  is a finite subset of $\ZZ \rb(\O)^{\perp}$.
-%\end{corollary}
-%
-%\begin{proof}
-%By construction, the $i$-th coordinate of $\vv{s}$ is nonzero if and only the $i$-th coordinate of $\tail{\vv{s}}_q$ is nonzero, while \Cref{tail projection: L} tells us that $B \tail{\vv{s}}_q$ is positive in $\RR \rb(\O)^{\perp}$.  Consequently,  we may apply \Cref{bounded value and image: P} relative to the matrix $B$ and point $\vv{t} = \tail{\vv{s}}_q$ to justify our assertions.
-%\end{proof}
 
 
 \begin{corollary}  
@@ -951,7 +892,7 @@ The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform u
 Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(B, \ol{\vv{u}}q)$ and $\ol{ \im(A, \vv{u}q)} = \im(B, \ol{\vv{u}}q)$ where $B$ (respectively, $\ol{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
 \end{corollary}
 
-\emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language?}
+\emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
 
 \begin{corollary}
 For $p \gg 0$, 
@@ -1032,7 +973,7 @@ $\val \IP_p(A, \vv{u}p^e)  \geq \IP_p(A, \vv{u}) \cdot p^e   \geq (\IP_p(B, \vv{
 \pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\graph}$ graph?}
 
 \begin{definition}
-A monomial pair $(A, \vv{u})$ is \emph{small} if no column of $A$ is less than $\vv{u}$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one.
+A monomial pair $(A, \vv{u})$ is \emph{small} $\vv{u}$ is not greater than any column of $A$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one.
 \end{definition}
 
 \begin{remark}
@@ -1041,6 +982,16 @@ Geometrically, $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in th
 
 It is clear from this geometric interpretation that ``very small'' implies ``small.''  Furthermore, once $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small. \daniel{Do we need a proof?}
 \end{remark}
+
+\begin{lemma}
+\label{refined-discreteness: L}
+Given a monomial matrix $A$, there exists $\delta = \delta(A)$ such that $\ft{A}{\vv{u}} < \delta$ whenever $(A, \vv{u})$ is small.
+\end{lemma}
+
+\begin{proof}   Fix a small pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$.  If $\epsilon$ is the number of columns of $A$ lying on $\O$, then it suffices to prove that $\ft{A}{\vv{u}} \leq \epsilon$.
+
+By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s} \in \mc(A,\vv{u})$, then $\norm{\vv{s}} = \ft{A}{\vv{u}} > \epsilon$, and as $\vv{s}$ has at most $\epsilon$ nonzero entries, some entry of $\vv{s}$ must be greater than $1$.  Thus, $A \vv{s}$ is greater than some column of $A$.  However, our choice of $\vv{s}$ also implies that $A \vv{s} \leq \vv{u}$, which then implies that $\vv{u}$ is greater than some column of $A$, contradicting the smallness of $(A, \vv{u})$.
+\end{proof}
 
 \begin{lemma}
 \label{trivial value bound: L}
@@ -1067,6 +1018,7 @@ Note that $(A, \vv{u})$ is small if and only if only $\vv{0}$ is feasible for $\
 
 
 \begin{proposition}
+\label{follow-leftovers: P}
 Suppose $(A, \vv{u})$ is a monomial pair.  If \[ \im \IP(A, \vv{u}) = \vv{u} - \Z\] then every pair $(A, \vv{z})$ with $\vv{z} \in \Z$ is small, and if $p \gg 0$ and $e \geq 0$, then 
 \[ \val \IP_p(A, \vv{u} p^e) = \val \IP(A, \vv{u}) \cdot p^e + \max \val \IP_p(A, \vv{z}p^e) \]
 where the maximum is over all points $\vv{z} \in \Z$.
@@ -1149,7 +1101,7 @@ In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ do
 \todo[inline]{Set notation for sprouts/set of sprouts/sprouts of sets.}
 
 
-\daniel[inline]{Perhaps we should motivate why we would want to look at $p$-sprouts.  The point is that they determine which $\mu$'s we should compute next.}
+\daniel[inline]{Perhaps we should motivate why we would want to look at $p$-sprouts.  The point is that they determine which $\mu$'s we should compute next, at least in terms of the collapse.}
 
 
 \subsection{Sprouting}
@@ -1162,6 +1114,8 @@ We say that $(B, \vv{v})$ is a \emph{$p$-sprout} of a monomial pair $(A, \vv{u})
 \item $\vv{v}$ is any point in $\Delta(A, \vv{u}, p)$.
 \end{enumerate}
 \end{definition}
+
+
 
 \begin{remark}
 \label{p-sprout: R} 
@@ -1198,7 +1152,7 @@ Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] f
 \begin{definition}
  Define
 \begin{enumerate}
-\item $\graph^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$.
+\item $\graph^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$. \daniel{I think $\graph^1(A)$ should consist of all small $A$-pairs.  }
 \item $\graph^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \graph^e  \}$ for $e \geq 1$. 
 \end{enumerate}
 \end{definition}
