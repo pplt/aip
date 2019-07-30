@@ -1171,7 +1171,7 @@ Now, assume that $e \geq 2$, and consider a path
 \end{proof}
 
 
-\begin{corollary}
+\begin{corollary}\label{cor: iterated lifting}
 There exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and 
  \[
 (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
@@ -1233,7 +1233,7 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
 % \end{corollary}
 
 
-\begin{lemma}\label{lem: higher mu formula for paths}
+\begin{lemma}\label{lem: upper bound for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
    \[
@@ -1254,8 +1254,8 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
     Suppose that $e \geq 2$, and the result holds for paths of length $e-2$; consider a path $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$, and $(B,\vv{v})$ on the same level as $(A_1,\vv{v}_1)$.
     \Cref{cor: upper bound for higher mus} tells us that
     \begin{align*}
-      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) p^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},p^{e-1}) \\
-      &= \mu(A_1,\vv{u}_1,p) p^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},p^{e-1}),
+      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}) \\
+      &= \mu(A_1,\vv{u}_1,p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}),
     \end{align*}
     and to complete our inductive step, it suffices to show that
     \begin{equation*}\label{ineq}
@@ -1290,54 +1290,28 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
 % $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
 % \end{proof}
 
+\Cref{cor: iterated lifting,lem: upper bound for higher mu} immediately give us the following theorem.
 
-\newpage
+\begin{theorem}\label{thm: formula for higher mu}
+   Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
+   For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
+   \[ \pushQED{\qed}
+      \mu(A_1, \vv{u}_1, p^e) = \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p). \qedhere\popQED
+   \]
+\end{theorem}
 
-\pedro[inline]{
+
+\comment[inline]{
 \begin{corollary}\label{cor: constant mus}
-   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{thm: higher mu formula for paths}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\graph}(A,\vv{u},p)$ for every $p\ge \beta$. 
+   If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{lem: upper bound for higher mu}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\graph}(A,\vv{u},p)$ for every $p\ge \beta$. 
 \end{corollary}
 \todo[inline]{Restate more precisely}
-% \begin{corollary}
-%    If $(A,\vv{u})$ is a small monomial pair, then there exists $\beta = \beta(A)$ such that for all $p \ge \beta$ the following holds\textup:
-%    If $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A,\vv{u},p)$, and $(B, \vv{v})$ is any vertex of $\widehat{\graph}(A, \vv{u},p)$ whose level is the same as that of $(A_1, \vv{u}_1)$, then
-%    \begin{equation*}
-%      \mu(B,\vv{v},qp^e)
-%          \le \mu(A_1,\vv{u}_1,p)qp^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)qp + \mu(A_e,\vv{u}_e,qp)
-%    \end{equation*}
-%    for every $q$.
-% \end{corollary}
-% \begin{proof}
-%    This follows by induction on $e$, arguing exactly as in \Cref{thm: higher mu formula for paths}, and noticing that \Cref{cor: constant mus} gives us the case $e=1$.
-% \end{proof}
-% 
-% \details[inline]{
-% Choose $\beta$ so that the conclusions of \Cref{arithmetic uniform value and image: T,trivial max value: T,cor: upper bound for higher mus} (and maybe more\ldots) hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$.
-%     In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\mu(B,\vv{v},qp) = \mu(A_1, \vv{u}_1, qp)$, proving the result for $e=1$.
-% 
-%     Suppose that $e \geq 2$, and the result holds for paths of length $e-2$.
-%     \Cref{cor: upper bound for higher mus} tells us that
-%     \begin{align*}
-%       \mu(B,\vv{v},qp^e) &\le \mu(B,\vv{v},p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}) \\
-%       &= \mu(A_1,\vv{u}_1,p) qp^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},qp^{e-1}).
-%     \end{align*}
-%     Therefore, to complete our inductive step, it suffices to show that
-%     \[\mu(C,\vv{z},qp^{e-1}) \le \mu(A_2,\vv{u}_2,qp^{e-1}) \]
-%     for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$, and the induction hypothesis does the rest. 
-%     Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},qp^{e-1}) < \mu(A_2,\vv{u}_2, qp^{e-1})$.
-%     In light of this, \Cref{cor: mu comparison} then tells us that \ldots
-% % and our induction hypothesis applied to the path 
-% % \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
-% 
-% % On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
-% % $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
-% }
+\pedro[inline]{
+   I'm not a believer anymore.
+   If $(A_1,\vv{u}_1)$ and $(B,\vv{v})$ are as in \Cref{lem: upper bound for higher mu}, we only get the inequality $\mu(B,\vv{v},p^e) \le \mu(A_1,\vv{u}_1,p^e)$, and to conclude that we have equality we'd need to know that there is a path of length $e-1$ starting at $(B,\vv{v})$.
+   But we don't know if we have this kind of uniformity in the graph.
 }
-
-\newpage
-
-
-
+}
 
 \newpage
 
@@ -1394,7 +1368,7 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
       \[\val \fip_p(A,\vv{u}) = \norm{\vv{t}} = \lim_{q\to\infty}\norm{\frac{\vv{v}_q}{q}} \le \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).\]
       Otherwise, we'd have to modify the expansion of $\vv{t}$, but it's hard (maybe impossible?) to do that in a way that the $\vv{v}_q$ all satisfy $A\vv{v}_q < q\vv{u}$ (at least for $q\gg 0$).
       (Need to think more about this\ldots)
-      \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
+      % \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
    \end{itemize}
 }
 
