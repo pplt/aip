@@ -1172,7 +1172,7 @@ Now, assume that $e \geq 2$, and consider a path \todo{TBC}
 \begin{corollary}\label{cor: iterated lifting}
    Given a monomial matrix $A$, there exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and
    $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A,p)$,
- \[ \pushQED{\qed} \mu(A_1, \vv{u}_1, p^e) \geq \mu(A_1, \vv{u}_1, p)\cdot p^{e-1} + \mu(A_2, \vv{u}_2, p)\cdot p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p). \qedhere\popQED\]
+ \[ \pushQED{\qed} \mu(A_1, \vv{u}_1, p^e) \geq \mu(A_1, \vv{u}_1, p)p^{e-1} + \mu(A_2, \vv{u}_2, p) p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p). \qedhere\popQED\]
 \end{corollary}
 
 \daniel[inline]{Should we combine this with the result that follows?}
@@ -1183,12 +1183,13 @@ Now, assume that $e \geq 2$, and consider a path \todo{TBC}
   (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
  \]
  is a sequence of $p$-sprouts such that $(A, \vv{u}_e)$ is \emph{medium small} and  $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$, then  
-\emily[inline]{This is a terminating path in $\widehat{\graph}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
-\daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 \[
  \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
 \]
 \end{proposition}
+
+\emily[inline]{This is a terminating path in $\widehat{\graph}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
+\daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 
 \subsection{The Witt graph for a pair}
 \begin{definition}
@@ -1229,30 +1230,25 @@ i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
    \[
-      \mu(B, \vv{v}, p^e) \le \mu(A_1, \vv{u}_1, p^e) \geq \mu(A_1, \vv{u}_1, p)\cdot p^{e-1} + \mu(A_2, \vv{u}_2, p)\cdot p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p)
+      \mu(B, \vv{v}, p^e) \le \mu(A_1, \vv{u}_1, p)p^{e-1} + \mu(A_2, \vv{u}_2, p)p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p)
    \]
    for any vertex $(B, \vv{v})$ of $\widehat{\graph}(A, \vv{u}, p)$ on the same level as $(A_1, \vv{u}_1)$.
 \end{lemma}
 
-\pedro[inline]{
-   Giving this a shot.
-   Work in progress\ldots
-}
-
 \begin{proof}
-   Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$.
-    In this case, by virtue of \Cref{arithmetic uniform value and image: T} and the construction of $\widehat{\graph}(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
+   Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$, and fix such $p$.
+    By virtue of \Cref{arithmetic uniform value and image: T} and the construction of $\widehat{\graph}(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
 
     Suppose that $e \geq 2$ and the result holds for paths of length $e-2$.
     \Cref{cor: upper bound for higher mus} tells us that
     \begin{align*}
-      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) \cdot p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}) \\
-      &= \mu(A_1,\vv{u}_1,p) \cdot p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}),
+      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}) \\
+      &= \mu(A_1,\vv{u}_1,p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}),
     \end{align*}
     and to complete our inductive step, it suffices to show that
-    \begin{equation*}\label{ineq}
-        \mu(C,\vv{z},p^{e-1}) \le \mu(A_2,\vv{u}_1,p)\cdot p^{e-2} + \cdots + \mu(A_e,\vv{u}_e,p)
-    \end{equation*}
+    \begin{equation}\label{ineq}
+        \mu(C,\vv{z},p^{e-1}) \le \mu(A_2,\vv{u}_1,p) p^{e-2} + \cdots + \mu(A_e,\vv{u}_e,p)
+    \end{equation}
     for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$.
     
     Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applied to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
