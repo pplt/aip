@@ -165,7 +165,7 @@ Our choice of terminology is motivated by the following observation.
 \begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
 \end{remark}
 
-Below, we adopt the notation established in \Cref{collapse: D}.  Furthermore,  $B$ (respectively, $\collapse{X}$) is the collapse of $A$ (respectively, a set $X$) along $\O$.
+Below, we adopt the notation established in \Cref{collapse: D}.  Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) is the collapse of $A$ (respectively, a set $X$) along $\O$.
 
 
 \begin{remark}
@@ -175,29 +175,29 @@ If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $
 
 \begin{remark}
 \label{collapse of monomial is monomial: R}
-The collapsed matrix $B$ is monomial.  Indeed, each row of $B$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\vv{a}}$ with every column of $B$ is at least one.  In particular, the columns of $B$ are nonzero.
+The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\vv{a}}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
 \end{remark}
 
 
 %\begin{remark}[Collapsed programs]
 %\label{collapsed programs: R}
-%Throughout this article, we will compare linear and integer programs with analogous systems of constraints defined by $A$ and $B$ (e.g., $\LP(A, \vv{u})$ and $\LP(B, \collapse{\vv{u}})$, and $\IP(A, \vv{u})$ and $\IP(B, \collapse{\vv{u}})$).  
+%Throughout this article, we will compare linear and integer programs with analogous systems of constraints defined by $A$ and $\collapse{A}$ (e.g., $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$, and $\IP(A, \vv{u})$ and $\IP(\collapse{A}, \collapse{\vv{u}})$).  
 %
-%By construction, $A$ and $B$ have the same number of columns, and so the feasible sets of these programs live in the same Euclidean space.   Furthermore, as $B$ is obtained by $A$ by omitting some its rows, the constraints imposed by $B$ in the above programs are a subset of those imposed by $A$.  Of course, these programs will differ only when $\O$ is unbounded.  
+%By construction, $A$ and $\collapse{A}$ have the same number of columns, and so the feasible sets of these programs live in the same Euclidean space.   Furthermore, as $\collapse{A}$ is obtained by $A$ by omitting some its rows, the constraints imposed by $\collapse{A}$ in the above programs are a subset of those imposed by $A$.  Of course, these programs will differ only when $\O$ is unbounded.  
 %\end{remark}
 
 
 \begin{lemma}
 \label{collapse of Newton polyhedron: L} 
-If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $B$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
+If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
 \end{lemma}
 
 \begin{proof}
 By definition, the Newton polyhedron $\M$ equals
 %
-\[  \conv( \col(B) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \cdots, \vv{e}_d)} =  \collapse{\N}.\]
+\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \cdots, \vv{e}_d)} =  \collapse{\N}.\]
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ equals $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(B) \cap \collapse{\O})$.  
+Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ equals $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
 
 
@@ -274,7 +274,7 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 \end{lemma}
 
 \begin{proof}   
-It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.   Consider such a pair, and let $B$ (respectively, $\collapse{X}$) be the collapse of $A$ (respectively,  a set $X$) along $\O$.
+It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.   Consider such a pair, and let $\collapse{A}$ (respectively, $\collapse{X}$) be the collapse of $A$ (respectively,  a set $X$) along $\O$.
 
 Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that 
 %
@@ -401,22 +401,22 @@ Below, we describe the relationship between collapses and the other notions intr
 
 \begin{corollary}
 \label{collapse of mf and mc: C}
-Consider a monomial pair $(A, \vv{u})$.  If $B$ (respectively, $\collapse{X}$) is the collapse of $A$ (respectively, a set $X$) along $\O = \mf(A, \vv{u})$, then the following hold.
+Consider a monomial pair $(A, \vv{u})$.  If $\collapse{A}$ (respectively, $\collapse{X}$) is the collapse of $A$ (respectively, a set $X$) along $\O = \mf(A, \vv{u})$, then the following hold.
 
 \begin{enumerate}
-\item $\mf(B, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{B}{\collapse{\vv{u}}}$.
-\item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(B, \collapse{\vv{u}})$.  
-\item Each minimal coordinate of $(A, \vv{u})$ is a minimal coordinate of $(B, \collapse{\vv{u}})$.
+\item $\mf(\collapse{A}, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
+\item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  
+\item Each minimal coordinate of $(A, \vv{u})$ is a minimal coordinate of $(\collapse{A}, \collapse{\vv{u}})$.
 \end{enumerate}
 \end{corollary}
 
 \begin{proof}
-Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the relative interior of $\O$.  It is clear that projection preserves relative interiors, and so $(1/\lambda) \cdot \collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: L}.  This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $(1/\lambda) \cdot \collapse{\vv{u}}$, and that $\lambda = \ft{B}{\collapse{\vv{u}}}$.  
+Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the relative interior of $\O$.  It is clear that projection preserves relative interiors, and so $(1/\lambda) \cdot \collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: L}.  This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $(1/\lambda) \cdot \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.  
 
-Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{B}{\collapse{\vv{u}}} = \val \LP(B, \collapse{\vv{u}}). \] 
+Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \] 
 %
-By construction, each row of $B$ is a row of $A$, and so the constraints of $\LP(B, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(B, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
-\[ \mc(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(B, \collapse{\vv{u}}) = \mc(B, \collapse{\vv{u}}).\] 
+By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
+\[ \mc(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \mc(\collapse{A}, \collapse{\vv{u}}).\] 
 \end{proof}
 
 
@@ -482,7 +482,7 @@ Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\la
 
 \begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
 
-Towards this, let $(B,\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $B( \vv{s} - \vv{t})$ and $B \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Therefore, since $\collapse{\vv{u}} = B \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $B(\vv{s} - \vv{t})$.  In other words, $B \vv{t} < B \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\rs(\O) \oplus \rs(\O)^{\perp}$.
+Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.  In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\rs(\O) \oplus \rs(\O)^{\perp}$.
 \end{proof}
 
 
@@ -516,11 +516,11 @@ If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s
 
 %\begin{setup}
 %\label{collapse: S}
-%Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $B$ be the collapse of $A$ along $\O$.  With these conventions, $\collapse{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    
+%Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $\collapse{A}$ be the collapse of $A$ along $\O$.  With these conventions, $\collapse{A \vv{t}} = \collapse{A} \vv{t}$ for every $\vv{t} \in \RR^n$.    
 %\end{setup}
 %
-%\begin{remark}  The main upshot to working with the collapsed matrix $B$ is the following observation:  If $\vv{s} \in \mc(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
-%\[ B \vv{s} = \collapse{A \vv{s}} = \collapse{\vv{u}}.\] 
+%\begin{remark}  The main upshot to working with the collapsed matrix $\collapse{A}$ is the following observation:  If $\vv{s} \in \mc(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
+%\[ \collapse{A} \vv{s} = \collapse{A \vv{s}} = \collapse{\vv{u}}.\] 
 %\end{remark}
 
 
@@ -533,10 +533,10 @@ If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s
 %is  the integer program  in $\ZZ^n$ is defined as follows:
 %\begin{enumerate}
 %\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $B \vv{k}  < B \tail{\vv{s}}_q$.
+%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $\collapse{A} \vv{k}  < \collapse{A} \tail{\vv{s}}_q$.
 %\end{enumerate}
 %
-%The \emph{image} of $\ip_q(A, \vv{u}, \vv{s})$ is the subset of $\ZZ \rb(\O)^{\perp}$ given by \[ \im \ip_q(A, \vv{u}, \vv{s})  = B (\opt \ip_q(A, \vv{u}, \vv{s})). \] 
+%The \emph{image} of $\ip_q(A, \vv{u}, \vv{s})$ is the subset of $\ZZ \rb(\O)^{\perp}$ given by \[ \im \ip_q(A, \vv{u}, \vv{s})  = \collapse{A} (\opt \ip_q(A, \vv{u}, \vv{s})). \] 
 %\end{definition}
 %
 %Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
@@ -605,19 +605,19 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\feas \IP(A, \vv{u}, q)$ lies in
 
 \begin{lemma}
 \label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then $B\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $B$ is the collapse of $A$ along $\O$.
+If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $\collapse{A}$ is the collapse of $A$ along $\O$.
 \end{lemma}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
-$\collapse{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\collapse{\vv{u}} = B \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
+$\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Given this, it is easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
 
 
 \begin{remark}
 \label{collapsed aux program: R}
-Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(B, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
-\[ (B, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
-\[ \ip(A, \vv{u}, \vv{s}, q) = \ip(B, \collapse{\vv{u}}, \vv{s}, q). \] 
+Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
+\[ (\collapse{A}, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
+\[ \ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q). \] 
 \end{remark}
 
 
@@ -670,23 +670,23 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}
 \end{lemma}
 
 \begin{proof}   
-Fix a point $\vv{a} \in \RR^d$ that defines $\O  = \mf(A, \vv{u})$, and let $\collapse{X}$ denote the collapse of a subset $X$ along $\O$.  Thus, if $B$ is the collapse of $A$ along $\O$, then
-\[ \iprod{{\vv{a}}}{A \vv{t}} = \iprod{\collapse{\vv{a}}}{\collapse{A \vv{t}}} = \iprod{\collapse{\vv{a}}}{B \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
+Fix a point $\vv{a} \in \RR^d$ that defines $\O  = \mf(A, \vv{u})$, and let $\collapse{X}$ denote the collapse of a subset $X$ along $\O$.  Thus, if $\collapse{A}$ is the collapse of $A$ along $\O$, then
+\[ \iprod{{\vv{a}}}{A \vv{t}} = \iprod{\collapse{\vv{a}}}{\collapse{A \vv{t}}} = \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
 
 The product $\vv{a}^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\vv{a}$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\vv{a}^{\mathrm{T}} A$ must equal one.  In particular, 
 %
 \begin{equation} 
 \label{bound in inner product: e}
-\norm{\vv{k}} \leq (\vv{a}^{\mathrm{T}} A) \vv{k} =  \vv{a}^{\mathrm{T}} (A \vv{k}) = \iprod{\vv{a}}{A \vv{k}} = \iprod{\collapse{\vv{a}}}{B \vv{k}} 
+\norm{\vv{k}} \leq (\vv{a}^{\mathrm{T}} A) \vv{k} =  \vv{a}^{\mathrm{T}} (A \vv{k}) = \iprod{\vv{a}}{A \vv{k}} = \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}} 
 \end{equation}
 whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that 
 \begin{equation}  
 \label{norm of tail: e}
-\norm{\tail{\vv{s}}_q} =  \iprod{\vv{a}}{A \tail{\vv{s}}_q} = \iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_q}.
+\norm{\tail{\vv{s}}_q} =  \iprod{\vv{a}}{A \tail{\vv{s}}_q} = \iprod{\collapse{\vv{a}}}{\collapse{A} \tail{\vv{s}}_q}.
 \end{equation}
 
-Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $B\vv{k} <B \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{B \vv{k}} < \iprod{\collapse{\vv{a}}}{B \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\] 
-which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $B\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
+Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}} < \iprod{\collapse{\vv{a}}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\] 
+which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
 \end{proof}
 
 \emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
@@ -698,7 +698,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is f
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
 
-If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{B \vv{k}}\] and so $B \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\rs(\O)^{\perp}$ with $\vv{b} < B \tail{\vv{s}_q}$  and $\iprod{\collapse{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.  
+If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}}\] and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\rs(\O)^{\perp}$ with $\vv{b} < \collapse{A} \tail{\vv{s}_q}$  and $\iprod{\collapse{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.  
 \end{proof}
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property. 
@@ -711,7 +711,7 @@ If $A$ is fixed, then there are only finitely many integer programs of the form 
 
 \begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
 
-Next, let $B$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq B \tail{\vv{s}}_q \leq B \vv{1}$, and as \Cref{tail projection: L} tells us that $B \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A} \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
 \begin{corollary} 
@@ -755,20 +755,20 @@ Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the foll
 \[ \val \IP(A, \vv{u}q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
 %
 and 
-\[ \collapse{\im \IP(A, \vv{u}q)} = \collapse{\vv{u}} q - B \tail{\vv{s}}_q + \im \ip(A, \vv{u}, \vv{s}, q) \] 
-where $B$ (respectively, $\collapse{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
+\[ \collapse{\im \IP(A, \vv{u}q)} = \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip(A, \vv{u}, \vv{s}, q) \] 
+where $\collapse{A}$ (respectively, $\collapse{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
 \end{corollary}
 
 \begin{proof}
-Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $B$ and $\collapse{X}$ be as above.
+Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
 
-The asserted value of $\IP(A, \vv{u}q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $B \vv{h} \in \im \ip$.  Furthermore, as $B \vv{s} = \collapse{\vv{u}}$, 
+The asserted value of $\IP(A, \vv{u}q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $\collapse{A} \vv{h} \in \im \ip$.  Furthermore, as $\collapse{A} \vv{s} = \collapse{\vv{u}}$, 
 
-\[ B \vv{k} = \collapse{\vv{u}} q - B \tail{\vv{s}}_q + B \vv{h}\]  
-which shows that $B ( \opt \IP(A, \vv{u}q))$ = $\collapse{\im \IP(A, \vv{u}q)}$ is contained in 
-\[ \collapse{\vv{u}} q - B \tail{\vv{s}}_q + \im \ip.\]
+\[ \collapse{A} \vv{k} = \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \collapse{A} \vv{h}\]  
+which shows that $\collapse{A} ( \opt \IP(A, \vv{u}q))$ = $\collapse{\im \IP(A, \vv{u}q)}$ is contained in 
+\[ \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip.\]
 
-We now establish the opposite containment:  \Cref{uniform value: P} tells us that \[  \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q)\] is optimal for $\IP(A, \vv{u}q)$,  while \[ B( \orep(A, \vv{u}, \vv{s}, q)) = \im \ip \] by \Cref{orep: D}.   It follows that $B(\opt \IP(A, \vv{u}q)) = \collapse{\im(A, \vv{u}q)}$ contains the set $\collapse{\vv{u}} q - B \tail{\vv{s}}_q + \im \ip$.
+We now establish the opposite containment:  \Cref{uniform value: P} tells us that \[  \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q)\] is optimal for $\IP(A, \vv{u}q)$,  while \[ \collapse{A}( \orep(A, \vv{u}, \vv{s}, q)) = \im \ip \] by \Cref{orep: D}.   It follows that $\collapse{A}(\opt \IP(A, \vv{u}q)) = \collapse{\im(A, \vv{u}q)}$ contains the set $\collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip$.
 \end{proof}
 
 \subsection{Some useful invariants}
@@ -779,9 +779,9 @@ In this subsection, we study the quantities appearing in \Cref{uniform value and
 \emily[inline]{Can we give a direct proof that $\delta$ does not depend on $\vv{s}$?}
 
 \begin{corollary}  
-\label{independence: C} Fix a pair $(A, \vv{u})$ and an integer $q>0$.  If $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
+\label{independence: C} Fix a pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
 \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
-\[ \Delta(A, \vv{u}, \vv{s}, q)  = B \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \] 
+\[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \] 
 do not depend on  $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.  
 \end{corollary}
 
@@ -792,8 +792,8 @@ Fix $\vv{s}$ and $\tilde{\vv{s}}$ in $\mc_{\QQ}(A, \vv{u})$, as well as a common
 \begin{definition}  
 \label{independence: D}  
 If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, we set \[ \delta(A, \vv{u}, q) = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
-\[\Delta(A, \vv{u}, q) = B \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
-where $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$. 
+\[\Delta(A, \vv{u}, q) = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
+where $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$. 
 \end{definition}
 
 %\begin{remark} Above, we referred to \Cref{uniform value and image: C} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one. 
@@ -801,18 +801,18 @@ where $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$.
 
 \begin{lemma}  
 \label{independence: L}  
-If $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then the following hold.
+If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then the following hold.
 
 \begin{enumerate}
 \item $\delta(A, \vv{u}, q)$  is a positive rational number.
 \item $\Delta(A, \vv{u}, q)$ is a finite set of positive lattice points in $\rs(\O)^{\perp}$.
-\item No column of $B$ is less than any point in $\Delta(A, \vv{u}, q)$.
+\item No column of $\collapse{A}$ is less than any point in $\Delta(A, \vv{u}, q)$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof} 
-Fix a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $B$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $B( \vv{k} + \vv{e}_i) \not < B \tail{\vv{s}}_q$ for each standard basis vector $\vv{e}_i$ in the domain of $B$, which we rewrite as  \[ B \vv{e}_i \not < B \tail{\vv{s}}_q - B \vv{k}.\] 
-We conclude that no column of $B$ is less than $B\tail{\vv{s}}_q - B\vv{k}$.
+Fix a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \vv{e}_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\vv{e}_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \vv{e}_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\] 
+We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
 \end{proof}
 
 We conclude with some finiteness properties.
@@ -832,8 +832,8 @@ This follows immediately from \Cref{finitely many secondary programs: L} and \Cr
 
 \begin{remark}  
 \label{comparing deltas: R}
-If $(B, \collapse{\vv{u}})$ is the collapse of $(A, \vv{u})$ along $\O = \mf(A, \vv{u})$, then  
-\[ \delta(A, \vv{u}, q) = \delta(B, \collapse{\vv{u}}, q)  \text{ and }  \Delta(A, \vv{u},q) = \Delta(B, \collapse{\vv{u}}, q)\] for all integers $q>0$ (e.g., this follows from \Cref{collapsed aux program: R}).   Consequently, one may replace the point in $\mc_{\QQ}(A, \vv{u})$ in \Cref{independence: D}   with one in $\mc_{\QQ}(B, \collapse{\vv{u}})$ without affecting the value of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
+If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A, \vv{u})$ along $\O = \mf(A, \vv{u})$, then  
+\[ \delta(A, \vv{u}, q) = \delta(\collapse{A}, \collapse{\vv{u}}, q)  \text{ and }  \Delta(A, \vv{u},q) = \Delta(\collapse{A}, \collapse{\vv{u}}, q)\] for all integers $q>0$ (e.g., this follows from \Cref{collapsed aux program: R}).   Consequently, one may replace the point in $\mc_{\QQ}(A, \vv{u})$ in \Cref{independence: D}   with one in $\mc_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the value of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
 \end{remark}
 
 \begin{remark}
@@ -842,7 +842,7 @@ If $(A, \vv{u})$ is fixed, then $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)
 \begin{equation}
 \label{periodicity: e}
  \delta(A, \vv{u}, p) = \delta(A, \vv{u}, q)  \text{ and } \Delta(A, \vv{u}, p) = \Delta(A, \vv{u}, q)
-\end{equation} whenever $p \equiv q \bmod D$.    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $D$ is the denominator of a point in $\mc_{\QQ}(B, \collapse{\vv{u}})$.
+\end{equation} whenever $p \equiv q \bmod D$.    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $D$ is the denominator of a point in $\mc_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
 \end{remark}
 
 \begin{remark}
@@ -867,7 +867,7 @@ Given a monomial matrix $A$, there exists a integer $\beta$ with the following p
 The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform uniform value and image: T}.
 
 \begin{corollary}
-Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(B, \collapse{\vv{u}}q)$ and $\collapse{ \im(A, \vv{u}q)} = \im(B, \collapse{\vv{u}}q)$ where $B$ (respectively, $\collapse{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
+Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}q) = \val \IP(\collapse{A}, \collapse{\vv{u}}q)$ and $\collapse{ \im(A, \vv{u}q)} = \im(\collapse{A}, \collapse{\vv{u}}q)$ where $\collapse{A}$ (respectively, $\collapse{X}$) is the collapse of $A$  (respectively, $X$) along $\O$.
 \end{corollary}
 
 \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
