@@ -1166,25 +1166,18 @@ where $\vv{s}_i \in \mc(A_i, \vv{u}_i)$, and $\vv{h} \in \mathbb{O}(A_i, \vv{u}_
 Notice that the sets of all $\vv{s}_i$, and of all $\vv{h}_i$, are both finite. 
 
 The conclusion holds when $e=1$ by \Cref{uniform value: P}. 
-Now, assume that $e \geq 2$, and consider a path
-
+Now, assume that $e \geq 2$, and consider a path \todo{TBC}
 \end{proof}
 
 \begin{corollary}\label{cor: iterated lifting}
-There exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and 
- \[
-(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
- \]
-is a sequence of $p$-sprouts,
-then 
- \[ \val \Pi(A_1, \vv{u}_1 p^e) \geq \val \Pi(A_1, \vv{u}_1 p) p^{e-1} + \val \Pi(A_2, \vv{u}_2 p) p^{e-2} + \cdots + \val \Pi(A_{e}, \vv{u}_{e} p).
-\]
+   Given a monomial matrix $A$, there exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and
+   $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A,p)$,
+ \[ \pushQED{\qed} \mu(A_1, \vv{u}_1, p^e) \geq \mu(A_1, \vv{u}_1, p)\cdot p^{e-1} + \mu(A_2, \vv{u}_2, p)\cdot p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p). \qedhere\popQED\]
 \end{corollary}
 
-\daniel[inline]{Don't we just need this with $\mu$'s instead?  If so, should we combine this with the result that follows?}
+\daniel[inline]{Should we combine this with the result that follows?}
 
-
-\begin{proposition}
+\begin{proposition}\label{prop: ineq for higher mus in terminal paths}
  There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and $e \geq 1$ and
  \[
   (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
@@ -1220,7 +1213,7 @@ i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $
 
 
 \begin{proposition}
-Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\graph}_p(A, \vv{u}) = \widehat{\graph}_q(A, \vv{u})$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
+   Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\graph}(A, \vv{u}, p) = \widehat{\graph}(A, \vv{u}, q)$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
 \end{proposition}
 
 \alert[inline]{Include the proof.  It has to do with some finiteness property of $\ip$.}
@@ -1236,7 +1229,7 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
    \[
-      \mu(B, \vv{v}, p^e) \le \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p)
+      \mu(B, \vv{v}, p^e) \le \mu(A_1, \vv{u}_1, p^e) \geq \mu(A_1, \vv{u}_1, p)\cdot p^{e-1} + \mu(A_2, \vv{u}_2, p)\cdot p^{e-2} + \cdots + \mu(A_{e}, \vv{u}_{e}, p)
    \]
    for any vertex $(B, \vv{v})$ of $\widehat{\graph}(A, \vv{u}, p)$ on the same level as $(A_1, \vv{u}_1)$.
 \end{lemma}
@@ -1248,22 +1241,22 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
 
 \begin{proof}
    Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$.
-    In this case, in view of \Cref{arithmetic uniform value and image: T} and the construction of $\graph(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
+    In this case, by virtue of \Cref{arithmetic uniform value and image: T} and the construction of $\widehat{\graph}(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
 
-    Suppose that $e \geq 2$, and the result holds for paths of length $e-2$; consider a path $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$, and $(B,\vv{v})$ on the same level as $(A_1,\vv{v}_1)$.
+    Suppose that $e \geq 2$ and the result holds for paths of length $e-2$.
     \Cref{cor: upper bound for higher mus} tells us that
     \begin{align*}
-      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}) \\
-      &= \mu(A_1,\vv{u}_1,p) p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}),
+      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) \cdot p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}) \\
+      &= \mu(A_1,\vv{u}_1,p) \cdot p^{e-1} + \max_{\sproutsfrom{(C,\vv{z})}{(B,\vv{v})}} \ \mu(C,\vv{z},p^{e-1}),
     \end{align*}
     and to complete our inductive step, it suffices to show that
     \begin{equation*}\label{ineq}
-        \mu(C,\vv{z},p^{e-1}) \le \mu(A_2,\vv{u}_1,p)p^{e-2} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p).
+        \mu(C,\vv{z},p^{e-1}) \le \mu(A_2,\vv{u}_1,p)\cdot p^{e-2} + \cdots + \mu(A_e,\vv{u}_e,p)
     \end{equation*}
     for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$.
     
-    Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applies to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
-    On the other hand, if $(C, \vv{z})$ lies in $\graph(A, \vv{u},p)$, then it lies on the same level as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
+    Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applied to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
+    On the other hand, if $(C, \vv{z})$ lies in $\widehat{\graph}(A, \vv{u},p)$, then it lies on the same level as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
 %%% OLD PROOF
@@ -1289,15 +1282,25 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
 % $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
 % \end{proof}
 
-\Cref{cor: iterated lifting,lem: upper bound for higher mu} immediately give us the following theorem.
+
 
 \begin{theorem}\label{thm: formula for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
-   \[ \pushQED{\qed}
-      \mu(A_1, \vv{u}_1, p^e) = \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p). \qedhere\popQED
+   \[ 
+      \mu(A_1, \vv{u}_1, p^e) = \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p).
    \]
+   If, in addition, that path is terminal \textup(that is, $(A_e,\vv{u}_e)$ is not very small\textup), then
+      \[ 
+ \mu(A_1, \vv{u}_1, p^{e+s}) = \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1
+\]
+for every nonnegative integer $s$.
 \end{theorem}
+
+\begin{proof}
+   The first identity follows from \Cref{cor: iterated lifting,lem: upper bound for higher mu}, while the second follows from \Cref{prop: ineq for higher mus in terminal paths} and the first, together with the fact that $\mu(A_1, \vv{u}_1, p^{e+s}) \le \mu(A_1, \vv{u}_1, p^{e}) p^{s+1}+p^{s+1}-1$, a general fact about these invariants.
+   \pedro{Include in preliminaries?}
+\end{proof}
 
 
 \comment[inline]{
