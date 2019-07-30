@@ -132,13 +132,14 @@ Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \ipr
 where we agree that the $\cone(\emptyset) = \vv{0}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.  
 \end{proof}
 
-\begin{definition} If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set \[ \rb(\O) \] of all standard basis vectors $\vv{e}_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero.  As noted above, this set depends on $\O$, but not on the choice of $\vv{a}$.
+\begin{definition}
+   If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\vv{e}_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
+   As noted above, these definitions depend only on $\O$, but not on the choice of $\vv{a}$.
 \end{definition}
 
-\pedro[inline]{Why don't we just define recession subspaces instead?}
-
-%\begin{remark} \Cref{face: L}\eqref{rb_independence: e} implies that the recession basis of $\O$ is independent of the choice of the defining vector $\vv{a}$, while \Cref{face: L}\eqref{rb_bounded: e} tells us that $\O$ is bounded if and only if $\rb(\O) = \emptyset$.    
-%\end{remark}
+\pedro[inline]{Why don't we just define recession subspaces instead?
+   I'll give it a try, and let's see if it works.
+}
 
 Our choice of terminology is motivated by the following observation.
 
@@ -152,11 +153,11 @@ Our choice of terminology is motivated by the following observation.
  Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows.  
 
 \begin{enumerate}
-\item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \vv{e}_1, \cdots, \vv{e}_d \}$.
-\item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the canonical linear projection $\RR^d \longrightarrow \RR \rb(\O)^{\perp}$.
+\item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \vv{e}_1, \ldots, \vv{e}_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
+\item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the canonical linear projection $\RR^d \longrightarrow \rs(\O)^{\perp}$.
 \item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.  That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
 %
-\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \RR \rb(\O)^{\perp}.\]  
+\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}.\]  
 %
 \end{enumerate}
 \end{definition}     
@@ -169,7 +170,7 @@ Below, we adopt the notation established in \Cref{collapse: D}.  Furthermore,  $
 
 \begin{remark}
 \label{collapse of a defining vector: R}
-If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in the coordinate subspace $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\ol{\vv{a}}}{\ol{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
+If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\ol{\vv{a}}}{\ol{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
 \end{remark}
 
 \begin{remark}
@@ -188,7 +189,7 @@ The collapsed matrix $B$ is monomial.  Indeed, each row of $B$ is a row of $A$, 
 
 \begin{lemma}
 \label{collapse of Newton polyhedron: L} 
-If $\M$ is the Newton polyhedron in the coordinate subspace $\RR \rb(\O)^{\perp}$ associated to the monomial matrix $B$, then $\ol{\O}$ is a bounded face of $\M = \ol{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \ol{\vv{a}}$ defines $\ol{\O}$ in $\M$. 
+If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $B$, then $\ol{\O}$ is a bounded face of $\M = \ol{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \ol{\vv{a}}$ defines $\ol{\O}$ in $\M$. 
 \end{lemma}
 
 \begin{proof}
@@ -196,7 +197,7 @@ By definition, the Newton polyhedron $\M$ equals
 %
 \[  \conv( \col(B) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\vv{e}_1, \cdots, \vv{e}_d)} =  \ol{\N}.\]
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\ol{\vv{a}}$ defines $\ol{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ then implies that $\ol{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\RR \rb(\O)^{\perp}$ to see that the collapsed face $\ol{\O}$ equals $\conv( \ol{ \col(A) \cap \O}) = \conv( \col(B) \cap \ol{\O})$.  
+Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\ol{\vv{a}}$ defines $\ol{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\ol{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\ol{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\ol{\O}$ equals $\conv( \ol{ \col(A) \cap \O}) = \conv( \col(B) \cap \ol{\O})$.  
 \end{proof}
 
 
@@ -283,7 +284,7 @@ Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that
 \end{equation}
 % 
 
-The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\ol{\vv{u}}$ must lie in the set of all $\vv{w} \in \RR \rb(\O)^{\perp}$ with $\vv{w} > \vv{0}$ and $\iprod{\ol{\vv{a}}}{\vv{w}} < \beta$.  However, the positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ implies that this polyhedron is bounded (e.g., one may argue as in the proof of \Cref{bounded polytope: L}).  
+The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\ol{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} > \vv{0}$ and $\iprod{\ol{\vv{a}}}{\vv{w}} < \beta$.  However, the positivity of $\ol{\vv{a}}$ in $\rs(\O)^{\perp}$ implies that this polyhedron is bounded (e.g., one may argue as in the proof of \Cref{bounded polytope: L}).  
 
 In summary, as $\vv{u}$ varies through all points with  $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\ol{\vv{u}}$ obtains only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
 \end{proof}
@@ -337,7 +338,8 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 \subsection{Minimal coordinates}
 
 \ \daniel[inline]{The idea is that a minimal coordinate is a special kind of optimal point.  Maybe we should call it a \emph{distinguished optimal point}, or something similar (\emph{optimal coordinate}?), to emphasize this.  I am kinda worried about calling a point a coordinate.  The only time we need to distinguish between a minimal coordinate and optimal point is when the corresponding minimal face is not bounded.
-\emily[inline]{special point?}
+   \emily[inline]{special point?}
+   \pedro[inline]{I like ``special point''.}
 }
 
 
@@ -368,7 +370,7 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \vv{0}
 
  The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums | see, e.g., \cite[Theorem 4.10(b)]{van-tiel.convex-analysis} | , the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a minimal coordinate.
 
-We have just shown that $\mc(A, \vv{u})$ is nonempty, and it clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the minimal coordinate constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\RR \rb(\O)$.  
+We have just shown that $\mc(A, \vv{u})$ is nonempty, and it clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the minimal coordinate constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.  
 \end{proof}
 
 
@@ -474,12 +476,13 @@ Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\la
 
 
 \begin{lemma}
-\label{less than u: L}  Suppose that $\vv{s}$ is a minimal coordinate for a pair $(A, \vv{u})$.  If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
+   \label{less than u: L}  Suppose that $\vv{s}$ is a minimal coordinate for a pair $(A, \vv{u})$.
+   If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
-\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\RR \rb(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\RR \rb(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\RR \rb(\O)^{\perp}$.  
+\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
 
-Towards this, let $(B,\ol{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $B( \vv{s} - \vv{t})$ and $B \vv{s} = \ol{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Therefore, since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, then the same must be true for $B(\vv{s} - \vv{t})$.  In other words, $B \vv{t} < B \vv{s} = \ol{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\RR \rb(\O) \oplus \RR \rb(\O)^{\perp}$.
+Towards this, let $(B,\ol{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $B( \vv{s} - \vv{t})$ and $B \vv{s} = \ol{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Therefore, since $\ol{\vv{u}} = B \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $B(\vv{s} - \vv{t})$.  In other words, $B \vv{t} < B \vv{s} = \ol{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\rs(\O) \oplus \rs(\O)^{\perp}$.
 \end{proof}
 
 
@@ -548,7 +551,7 @@ Adopt the context of \Cref{canonical-feasible: T}, and fix an arbitrary point $\
 between $\vv{k}$, and the feasible point $\vv{s}q-\tail{\vv{s}}_q$ described in \Cref{canonical-feasible: T}.
 
 
-Towards this, let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  Our choice $\vv{k}$ guarantees that $A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \RR \rb(\O)$ is as in \Cref{mc: D}, and inequality is preserved by collapses, it follows that
+Towards this, let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  Our choice $\vv{k}$ guarantees that $A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}, and inequality is preserved by collapses, it follows that
 %
 \[ \ol{A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h})} = \ol{A \vv{k}}  < \ol{\vv{u}}q = \ol{A \vv{s}q + \vv{w}q} = \ol{A \vv{s}q} \] 
 %
@@ -602,13 +605,11 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\feas \IP(A, \vv{u}, q)$ lies in
 
 \begin{lemma}
 \label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then 
-\[ B\tail{\vv{s}}_q \in \ZZ_+ \rb(\O)^{\perp} \]
-where $B$ is the collapse of $A$ along $\O$.
+If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then $B\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $B$ is the collapse of $A$ along $\O$.
 \end{lemma}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
-$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\RR \rb(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
+$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
 \end{proof}
 
 
@@ -638,7 +639,7 @@ $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$ whenever 
 
 \begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\delta \in \ZZ$ for $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\delta$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
 
-Let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$, and write  \[ \vv{u} = A \vv{s} + \vv{w} \] for some $\vv{w}$ that is positive in $\RR \rb(\O)$, as in \Cref{mc: D}.  As $\vv{u}$ has integer coordinates, it follows that $\delta$ is also a denominator for $\vv{w}$.  
+Let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$, and write  \[ \vv{u} = A \vv{s} + \vv{w} \] for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.  As $\vv{u}$ has integer coordinates, it follows that $\delta$ is also a denominator for $\vv{w}$.  
 
 \Cref{tail-basics: R} tells us $\vv{k} := \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ has integer coordinates, and we claim that $\vv{k} \geq \vv{0}$, that is, $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$, whenever $q \gg 0$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $q/\delta$, and so the $i$-th coordinate of $\vv{s}q$ is at least $q/\delta$, which is greater than $1 - h_i$ by our choice of $q \gg 0$.  However, \Cref{tail-basics: R} also tells us that the $i$-th coordinate of $\tail{\vv{s}}_q - \vv{h}$ is at most $1-h_i$.  In summary, we have just shown that $\vv{k}$ is a nonnegative lattice point whenever $q \gg 0$.
 
@@ -650,7 +651,7 @@ which we rewrite as
 A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
 \end{equation}
 
-After projecting to $\RR \rb(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\ol{A \vv{h}} < \ol{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\RR \rb(\O)$ is at least $\vv{w}q$.  However, as $\delta$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\delta$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\RR \rb(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \RR \rb(\O) \oplus \rb(\O)^{\perp}$.
+After projecting to $\rs(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\ol{A \vv{h}} < \ol{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\rs(\O)$ is at least $\vv{w}q$.  However, as $\delta$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\delta$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\rs(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \rs(\O) \oplus \rb(\O)^{\perp}$.
 
 In summary, we have just shown that $\vv{k}$ is feasible for $\IP(A, \vv{u}q)$, and so 
 \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip \] 
@@ -697,7 +698,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is f
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
 
-If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\ol{\vv{a}}}{B \vv{k}}\] and so $B \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\RR \rb(\O)^{\perp}$ with $\vv{b} < B \tail{\vv{s}_q}$  and $\iprod{\ol{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\ol{\vv{a}}$ in $\RR \rb(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.  
+If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\ol{\vv{a}}}{B \vv{k}}\] and so $B \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\rs(\O)^{\perp}$ with $\vv{b} < B \tail{\vv{s}_q}$  and $\iprod{\ol{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\ol{\vv{a}}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.  
 \end{proof}
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property. 
@@ -726,7 +727,7 @@ These finiteness properties above facilitate the following result.
 
 \newcommand{\fsr}{\mathcal{R}}
 
-\begin{theorem}[Existence of finite sets of representatives]  Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\overline{ A \vv{h}} = \vv{v}$, where $\ol{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+\begin{theorem}[Existence of finite sets of representatives]  Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\overline{ A \vv{h}} = \vv{v}$, where $\ol{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
 \begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
@@ -804,7 +805,7 @@ If $B$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an intege
 
 \begin{enumerate}
 \item $\delta(A, \vv{u}, q)$  is a positive rational number.
-\item $\Delta(A, \vv{u}, q)$ is a finite subset of $\ZZ_+\rb(\O)^{\perp}$.
+\item $\Delta(A, \vv{u}, q)$ is a finite set of positive lattice points in $\rs(\O)^{\perp}$.
 \item No column of $B$ is less than any point in $\Delta(A, \vv{u}, q)$.
 \end{enumerate}
 \end{lemma}
@@ -855,7 +856,7 @@ We record another application of \Cref{uniform denominators for mc:  T} below.
 
 \begin{theorem}
 \label{uniform uniform value and image: T}
-Given a monomial matrix $A$, there exists a integer $\beta$ with the following property:  If $q > \beta$ and $(A, \vv{u})$ is a pair, then \[ \val \IP(A, \vv{u}q) = \ft{A}{\vv{u}} \cdot q - \delta(A, \vv{u}, q) \] and
+Given a monomial matrix $A$, there exists a integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair, then \[ \val \IP(A, \vv{u}q) = \ft{A}{\vv{u}} \cdot q - \delta(A, \vv{u}, q) \] and
 \[ \ol{ \im \IP(A, \vv{u}q)} = \ol{\vv{u}}q - \Delta(A, \vv{u},q) \] where $\ol{X}$ denotes the collapse of a subset $X$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
@@ -1119,7 +1120,7 @@ Suppose $\vv{g}$ is optimal for $\IP_p(A, \vv{u}p^{e+1})$, and let $\vv{h}$ and 
 
 Let $\ol{X}$ be the collapse of a subset $X$ of $\RR^d$ along $\O = \mf(A, \vv{u})$.  \Cref{optimal division: L} tells us that $\vv{h}$ must be optimal for $\IP_p(A, \vv{u}p)$, and \Cref{arithmetic uniform value and image: T} then implies that $B \vv{h} = \ol{A \vv{h}} \in \ol{\im \IP_p(A, \vv{u}p)} = \ol{\vv{u}}p - \Delta(A, \vv{u}, p)$ for all $p > \beta$.   
 
-Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] for some $\vv{v} \in \Delta(A, \vv{u}, p)$.  On the other hand, our choice of $\vv{g}$ guarantees that $A \vv{g} < \vv{u}p^{e+1}$, which leads to the inequality $B \vv{h} p^e + B \vv{k} = B \vv{g} <  \ol{\vv{u}}p^{e+1}$  in $\RR \rb(\O)^{\perp}$.  Comparing this with the above description of $B \vv{h}$ shows that \[ B \vv{k} < \vv{v} p^e \] which allows us to conclude that $\vv{k} \in \IP_p(B, \vv{v} p^e)$.  %The corollary then follows from the fact that $\norm{\vv{g}} = \norm{\vv{h}} \cdot p^e + \norm{\vv{k}}$.
+Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] for some $\vv{v} \in \Delta(A, \vv{u}, p)$.  On the other hand, our choice of $\vv{g}$ guarantees that $A \vv{g} < \vv{u}p^{e+1}$, which leads to the inequality $B \vv{h} p^e + B \vv{k} = B \vv{g} <  \ol{\vv{u}}p^{e+1}$  in $\rs(\O)^{\perp}$.  Comparing this with the above description of $B \vv{h}$ shows that \[ B \vv{k} < \vv{v} p^e \] which allows us to conclude that $\vv{k} \in \IP_p(B, \vv{v} p^e)$.  %The corollary then follows from the fact that $\norm{\vv{g}} = \norm{\vv{h}} \cdot p^e + \norm{\vv{k}}$.
 \end{proof}
 
 
@@ -1127,10 +1128,10 @@ Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] f
 
 
 \begin{definition}
- Define
+Given a monomial matrix $A$ and a prime $p$, define
 \begin{enumerate}
-\item $\graph^1(A) = \{ p\text{-sprout of } (A, \vv{u}) : \vv{u} \in \NN_+^d \}$. \daniel{I think $\graph^1(A)$ should consist of all small $A$-pairs.  }
-\item $\graph^{e+1}(A) = \{ p\text{-sprout of } (B, \vv{v}) : (B, \vv{v}) \in \graph^e  \}$ for $e \geq 1$. 
+   \item $\graph^0(A,p) = \{(A,\vv{u}) : (A,\vv{u})\text{ is a small monomial pair} \}$;
+   \item $\displaystyle\graph^{e+1}(A,p) = \bigcup_{(B,\vv{v})\in \graph^e(A,p)}\sprouts(B,\vv{v})$ for $e \geq 0$. 
 \end{enumerate}
 \end{definition}
 
@@ -1143,15 +1144,16 @@ Therefore, for $p > \beta$, we may write \[ B \vv{h} = \ol{\vv{u}}p - \vv{v}\] f
 
 Once $A$ is fixed,
 \begin{itemize}
- \item $\bigcup_{e=1}^\infty \graph^e(A)$ is finite.
- \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \graph^e(A)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
+ \item $\bigcup_{e=1}^\infty \graph^e(A,p)$ is finite.
+ \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \graph^e(A,p)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
  \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \graph^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
  \item Add the last point
 \end{itemize}
 
 
 \begin{theorem}[Iterated lifting]
- There exists $\beta = \beta(A)$ with the following property:  If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
+   For each monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property\textup:
+   If $p>\beta$ and $(A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A,p)$, then for all $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_i, \vv{u}_i,p)$  for which 
  \[
   \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}, p^e).
  \]
@@ -1169,6 +1171,22 @@ The conclusion holds when $e=1$ by \Cref{uniform value: P}.
 Now, assume that $e \geq 2$, and consider a path \todo{TBC}
 \end{proof}
 
+\daniel[inline]{Maybe this Lemma should go in the Preliminaries section?}
+
+\begin{lemma}
+   \label{positive polynomial: L}
+   Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, there exists an integer $\beta$ satisfying the following condition\textup:
+   For every integer $e \geq 1$ and every finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
+\end{lemma}
+
+
+\begin{proof}
+Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
+%
+\[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
+\end{proof}
+
+
 \begin{corollary}\label{cor: iterated lifting}
    Given a monomial matrix $A$, there exists $\beta = \beta(A)$ such that, whenever $p > \beta$ and
    $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\graph(A,p)$,
@@ -1178,11 +1196,11 @@ Now, assume that $e \geq 2$, and consider a path \todo{TBC}
 \daniel[inline]{Should we combine this with the result that follows?}
 
 \begin{proposition}\label{prop: ineq for higher mus in terminal paths}
- There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and $e \geq 1$ and
+ There exists $\beta = \beta(A)$ with the following property\textup:  If $p > \beta$ and $e \geq 1$ and
  \[
   (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
  \]
- is a sequence of $p$-sprouts such that $(A, \vv{u}_e)$ is \emph{medium small} and  $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$, then  
+ is a path in $\graph(A,p})$ with $(A_e, \vv{u}_e)$ not very small and  $(A_i, \vv{u}_i)$ very small for $1 \leq i \leq e-1$, then  
 \[
  \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
 \]
@@ -1312,20 +1330,6 @@ for every nonnegative integer $s$.
 }
 
 \newpage
-
-\daniel[inline]{Maybe this Lemma should go in the Preliminaries section?}
-
-\begin{lemma}
-\label{positive polynomial: L}
-Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, then there exists an integer $\beta$ satisfying the following condition\textup:  For every integer $e \geq 1$ and finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
-\end{lemma}
-
-
-\begin{proof}
-Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega$.    If $p$ is at least $(w-\mu)/w$, then $wp + \mu - w = w(p-1) + \mu$ must be positive.  Multiplying this by $p^e$ and adding the positive number $-\mu$ then shows that
-%
-\[ wp^e ( p-1 ) + \mu (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e + \mu \cdot \frac{ p^e - 1}{p-1} = wp^e + \mu p^{e-1} + \cdots + \mu p + \mu \] is positive for every integer $e \geq 1$.   To conclude the proof, simply observe that the polynomial expression appearing in the statement of the lemma is at least equal to the positive one constructed above.
-\end{proof}
 
 
 \comment[inline]{The point of this Lemma is to show positivity of the coefficients in the polynomials that define the $\mu$'s. A consequence is that if $\ideala$ is $\idealm$-primary and homogeneous, then all coefficients of every intermediate power of $p$ in this polynomials vanishes.}
@@ -1479,7 +1483,7 @@ We know the following about $(\overline{A}, \overline{\vv{u}})$:
 \end{enumerate}
 
 \begin{lemma}[A lifting lemma]
-There exists $\beta = \beta(A)$ with the following property:  For all $\vv{z}\in \Delta(A, \vv{u}, q)$, there exists some monomial in $\ideala^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\vv{u}q)$ that lifts $x^{\overline{\vv{u}}q-\vv{z}} \in \overline{\ideala}^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\overline{\vv{u}}q)$ when $p > \beta$.  
+There exists $\beta = \beta(A)$ with the following property\textup:  For all $\vv{z}\in \Delta(A, \vv{u}, q)$, there exists some monomial in $\ideala^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\vv{u}q)$ that lifts $x^{\overline{\vv{u}}q-\vv{z}} \in \overline{\ideala}^{\nu(\overline{\ideala}, \overline{\vv{u}}, q)} \setminus \diag(\overline{\vv{u}}q)$ when $p > \beta$.  
 \end{lemma}
 
 
@@ -1504,9 +1508,9 @@ Hence
 \]
 We claim that this monomial is not in $\diag(\vv{u}q)$, i.e., 
 $A(\vv{s} q - [\vv{s}]_q + \vv{h}) < \vv{u} q$. 
-Projecting the left-hand side to  $\RR \rb(\mathcal{O})^\perp$, this becomes $\overline{\vv{u}} q - \vv{z}$ by construction. 
+Projecting the left-hand side to  $\rs(\mathcal{O})^\perp$, this becomes $\overline{\vv{u}} q - \vv{z}$ by construction. 
 
-If $\widetilde{(\bullet)}$ denotes projection onto $\RR \rb(\mathcal{O})^\perp$, then we claim that 
+If $\widetilde{(\bullet)}$ denotes projection onto $\rs(\mathcal{O})^\perp$, then we claim that 
 \begin{equation} \label{projection-claim}
  \widetilde{A \vv{s}} q - \widetilde{A [\vv{s}]_q} + \widetilde{A \vv{h}} < \widetilde{\vv{u}} q.
 \end{equation}
@@ -1539,13 +1543,13 @@ Notice that these statements are very similar to \Cref{uniform value: P}.
 
 
 % \begin{lemma}[Extended lifting lemma]
-%  There exists $\beta = \beta(A)$ with the following property:  If $p > \beta$ and 
+%  There exists $\beta = \beta(A)$ with the following property\textup:  If $p > \beta$ and 
 %  \[
 % (A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
 %  \]
 %  is a sequence of $p$-sprouts, then for every $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_{i-1}, \vv{u}_{i-1} p)$ 
 %  %with $\norm{\vv{k}_i} = \nu(A_{i-1}, \vv{u}_{i-1}, p)$ 
-%  for which $A_i \vv{k}_i = \overline{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds: 
+%  for which $A_i \vv{k}_i = \overline{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds\textup: 
 %  \[
 %   \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}p^e).
 %  \]
@@ -1622,19 +1626,19 @@ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) < \vv{u}.
 %
 for all $p \gg 0$ and $e \geq 1$.
 
-We begin by verifying \eqref{ineq to end proof: e} in $\RR \rb(\O)^{\perp}$.  Let $\ol{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \RR \rb(\O)^{\perp}$, so that $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\RR \rb(\O)$.  In any case, $B \vv{s}_1 = \ol{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
+We begin by verifying \eqref{ineq to end proof: e} in $\rs(\O)^{\perp}$.  Let $\ol{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \rs(\O)^{\perp}$, so that $\ol{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\rs(\O)$.  In any case, $B \vv{s}_1 = \ol{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
 $B \vv{h} = \ol{A \vv{h}}$ equals $\ol{\vv{u}} - p^{-l} \cdot \vv{v}$.  Thus, 
 \[  B \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) = \ol{\vv{u}} -  \frac{\vv{v} - B \vv{k}_e}{p^l}. \]
-However, as noted above, our induction hypothesis tells us that the difference  $\vv{v} - B \vv{k}_e$ is positive in $\RR \rb(\O)^{\perp}$ for every $p \gg 0$ and $e \geq 1$.    
+However, as noted above, our induction hypothesis tells us that the difference  $\vv{v} - B \vv{k}_e$ is positive in $\rs(\O)^{\perp}$ for every $p \gg 0$ and $e \geq 1$.    
 
-We now turn our attention to verifying \eqref{ineq to end proof: e} in $\RR \rb(\O)$.   Rewrite
+We now turn our attention to verifying \eqref{ineq to end proof: e} in $\rs(\O)$.   Rewrite
 \[ \frac{\vv{k}_e}{p^l} = \frac{\vv{s}_{l+1}}{p^{l+1}}- \left ( \sum_{i=1}^{e-1} \frac{ \vv{t}_{l+i} - \vv{s}_{l+i+1}}{p^{l+i}}  + \frac{ \vv{t}_{l+e}}{p^{l+e}} \right) \] as a polynomial in $p^{-1}$.  If we define the sequences $\{ \vv{c}_i \}_{i=1}^{\infty}$ and $\{ \vv{d}_i \}_{i=1}^{\infty}$ in $\RR^d$ according to the rule $\vv{c}_i = A ( \vv{t}_i - \vv{s}_{i+1})$ and $\vv{d}_i = A \vv{t}_i$, then the eventual periodicity of the realization path 
 \[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] implies that $\vv{c}_i$ and $\vv{d}_i$ take on only finitely many values as $i$ varies.    Moreover, the above polynomial expression in $p^{-1}$ and \eqref{A telescoping: e} tell us that 
 %
 \[ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right)  =  A \vv{s}_1 - \left( \frac{\vv{w}}{p^{l-1}} + \frac{ \vv{c}_{l}}{p^{l}} + \cdots +  \frac{ \vv{c}_{l+e-1}}{p^{l+e-1}} + \frac{\vv{d}_{l+e}}{p^{l+e}} \right).  \] 
 %
-As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \leq \vv{u}$, and so to conclude the proof, it suffices to show that quantity being subtracted above is positive in $\RR \rb(\O)$ for all $p \gg 0$ and $e \geq 1$.  Equivalently, multiplying this expression by $p^{l+e}$, we have reduced to showing that 
-\[ \vv{w} \cdot p^{e+1} + \vv{c}_l \cdot p^{e} + \cdots + \vv{c}_{l+e-1} \cdot p + \vv{d}_{l+e} \] is positive in $\RR \rb(\O)$ for all $p \gg 0$ and $e \geq 1$.  However, $\vv{w}$ is positive in $\RR \rb(\O)$ and the sequences $\{ \vv{c}_i \}$ and $\{ \vv{d}_i \}$ obtain only finitely many values, and so \Cref{positive polynomial: L} below allows us to conclude our proof.
+As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \leq \vv{u}$, and so to conclude the proof, it suffices to show that quantity being subtracted above is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  Equivalently, multiplying this expression by $p^{l+e}$, we have reduced to showing that 
+\[ \vv{w} \cdot p^{e+1} + \vv{c}_l \cdot p^{e} + \cdots + \vv{c}_{l+e-1} \cdot p + \vv{d}_{l+e} \] is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  However, $\vv{w}$ is positive in $\rs(\O)$ and the sequences $\{ \vv{c}_i \}$ and $\{ \vv{d}_i \}$ obtain only finitely many values, and so \Cref{positive polynomial: L} below allows us to conclude our proof.
 
 \end{proof}
 
