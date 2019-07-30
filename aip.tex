@@ -88,23 +88,6 @@ TO DO LIST:
 
 \comment[inline]{The only things in this section that are ``new" are \Cref{bounded polytope: L} (which is kind of obvious) and \Cref{vertex: L} (a technical result we will need later)}
 
-\subsection{Elementary number theory}   
-
-\ \comment[inline]{This subsection needs to be paraphrased, to avoid overlap with other paper}
-
-
-If $a$ and $b$ are integers, then the least \emph{positive} residue of $a$ modulo $b$ is denoted $\lpr{a}{b}$. 
-
-\begin{definition}  If $\lambda \in \QQ$ is nonzero and $q>0$ is an integer, then \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b} \] 
-where $a$ and $b$ are positive integers with $\lambda = a/b$.
-
-We extend this to all rational numbers by setting $\tail{0}_q = 0$ for all integers $q>0$, and to all Cartesian products of $\QQ$ in a coordinate-wise manner.
-\end{definition}
-
-This definition is clearly independent of the representation of $\lambda \in \QQ$ as a fraction.  If $\lambda$ is nonzero, then $\tail{\lambda}_q$ is positive and rational (indeed, it can be represented with the same denominator as $\lambda$) and lies in the unit interval.  Furthermore, this number depends on $\lambda$ and the residue of $q$ mod the least denominator of $\lambda$, but not on $q$ itself.
-
-\begin{remark}  If $\vv{s} \in \QQ^n$ has nonnegative coordinates, then \[ \vv{s}q - \tail{\vv{s}}_q \] has nonnegative integer coordinates for every integer $q>0$.
-\end{remark}
 
 
 \subsection{Euclidean spaces, convexity and polyhedra} 
@@ -401,7 +384,7 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 }
 
 
-\comment[inline]{Minimal coordinates are how we construct canonical solutions to the integer program $\IP(A, \vv{u}q)$;  see \Cref{canonical-feasible: R} for more details.}
+\comment[inline]{Minimal coordinates are how we construct canonical solutions to the integer program $\IP(A, \vv{u}q)$;  see \Cref{canonical-feasible: T} for more details.}
 
 Technicalities that arise in future sections whenever $\mf(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
 
@@ -483,6 +466,8 @@ By construction, each row of $B$ is a row of $A$, and so the constraints of $\LP
 \newpage
 \section{An auxiliary integer program}
 
+\
+
 \begin{definition}
 $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
 \begin{enumerate}
@@ -499,14 +484,36 @@ The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt
 
 % \daniel[inline]{We ``solve" the program $\IP(A, \vv{u}q)$ as is done in the other paper, or as discussed at AIM.  We recall the rough outline below.
 % \begin{enumerate}
-% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many minimal coordinates, whereas in each of those other cases, there is a unique one.  In any case, we associate to each minimal coordinate for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: R}.
+% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many minimal coordinates, whereas in each of those other cases, there is a unique one.  In any case, we associate to each minimal coordinate for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: T}.
 % \item Step 2:  Fix a minimal coordinate for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
 % \item Step 3:  Study the finiteness properties of $\ip$.  This is done in this section, before the connection between $\IP$ and $\ip$ is discussed, since these finiteness properties of $\ip$ are called upon to tie down the connection with $\IP$.  The downside is that this order of things makes things here seem really unmotivated.
 % \item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of minimal coordinate we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
 % \end{enumerate}
 % }
 
-In this section, we introduce and study a family of integer programs that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.    
+
+
+\todo[inline]{Relate $\IP$ to $\nu$'s and leftovers of $\ideala^{[\nu]}$.}
+
+\subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\mc_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this construction, we call upon some basic notions from number theory.   
+
+\begin{definition} If $m,n \in \ZZ$ are positive, then $\lpr{m}{n}$ is the \emph{least positive residue} of $m$ modulo $n$, i.e.,  and $m \equiv \lpr{m}{n} \bmod n$ and $1 \leq \lpr{m}{n} \leq n$.
+\end{definition}
+
+\begin{definition}
+\label{tail: D}
+Suppose that $\lambda \in \QQ$ is nonnegative and $q \in \ZZ$ is positive.   If $\lambda = \frac{a}{b}$ for some \emph{positive} integers $a$ and $b$, and we then define\footnote{It is clear that this expression depends only on $\lambda$, but not on the integers $a$ and $b$.}
+\[ \tail{\lambda}_q := \frac{ \lpr{aq}{b}}{b}. \] 
+%
+We set $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ satisfies $\vv{s} \geq \vv{0}$, then we define $\tail{\vv{s}}_q$ to be the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
+\end{definition}
+
+\begin{remark}
+\label{tail-basics: R}
+Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\lambda = \frac{a}{b}$ with $a$ and $b$ positive integers.  Then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.  Furthermore, 
+%
+\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}.
+\end{remark}
 
 
 \begin{lemma}
@@ -534,12 +541,15 @@ Towards this, let $(B,\ol{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$. 
 
 %One again, suppose $(A, \vv{u})$ is a monomial pair and that $q$ is a positive integer.  
 
-\begin{remark}[A canonical feasible point]
-\label{canonical-feasible: R}
-Fix a rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and an integer $q>0$.  We may then set \[ \vv{t} = \vv{s} - \frac{\tail{\vv{s}}_q}{q} \] in \Cref{less  than u: L} to deduce that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  However, by construction, the point $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative integer coordinates, and therefore \[ \vv{s}q - \tail{\vv{s}}_q\] is feasible for the integer program $\IP(A, \vv{u}q)$. 
-\end{remark}
 
- In what follows, our strategy will be to compare an arbitrary feasible point for $\IP(A, \vv{u}q)$ to the canonical one constructed above.   
+\begin{theorem}
+\label{canonical-feasible: T}
+If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
+\end{theorem}
+
+\begin{proof}  \Cref{tail-basics: R} tells us that if $\vv{t} := \vv{s} - q^{-1} \cdot {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates.  In fact, \Cref{tail-basics: R} also tells us that we may take $\vv{t}$ in \Cref{less  than u: L} to deduce that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
+\end{proof}
+
 
 
 %To clarify the statements of the results that follow, we fix the following notation.
@@ -572,20 +582,26 @@ Fix a rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and an integer $q>0$.  We
 %Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
 
 \emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
+\daniel[inline]{I'm giving this a shot below.}
 
-\begin{lemma}
-\label{easy but important: L}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  If $\vv{k}$ is feasible for $\IP(A, \vv{u}, q)$, then the difference $\vv{k} - (\vv{s}q-\tail{\vv{s}}_q)$ is feasible for $\ip(A, \vv{u}, \vv{s}, q)$.
-\end{lemma}
-
-\begin{proof} As the constraints of $\IP(B, \ol{\vv{u}}q)$ are a subset of those of $\IP(A, \vv{u}q)$, it follows that $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is also feasible for the former program.  In particular,  
-\[ B ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) < \ol{\vv{u}}q = B \vv{s}q \] 
-from which it follows that $B \vv{h} < B \tail{\vv{s}}_q$.  To see that $\vv{h}$ satisfies the remaining constraint of $\ip(A, \vv{u}, \vv{s}, q)$, note that the feasibility of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for $\IP(A, \vv{u}q)$ implies that this vector is nonnegative, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  
-\end{proof}
+\begin{remark}[Comparisons with canonical feasible points] 
+\label{comparison: R}
+Adopt the context of \Cref{canonical-feasible: T}, and fix an arbitrary point $\vv{k} \in \feas \IP(A, \vv{u}, q)$.  Our goal here is to describe some natural constraints on the difference 
+\[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]   
+between $\vv{k}$, and the feasible point $\vv{s}q-\tail{\vv{s}}_q$ described in \Cref{canonical-feasible: T}.
 
 
+Towards this, let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  Our choice $\vv{k}$ guarantees that $A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \RR \rb(\O)$ is as in \Cref{mc: D}, and inequality is preserved by collapses, it follows that
+%
+\[ \ol{A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h})} = \ol{A \vv{k}}  < \ol{\vv{u}}q = \ol{A \vv{s}q + \vv{w}q} = \ol{A \vv{s}q} \] 
+%
+from which it follows that $\ol{A \vv{h}} < \ol{A \tail{\vv{s}}_q}$. Furthermore, our choice of $\vv{k}$ also guarantees that $\vv{k} \geq 0$, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  In particular, the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero.
+\end{remark}
 
 
 
+
+\subsection{Another integer program}
 
 
 \begin{definition}
@@ -597,28 +613,16 @@ A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \end{enumerate}
 \end{definition}
 
-\begin{definition}
 We call a list whose first term is the matrix $A$ an $A$-list.
-\end{definition}
 
 %\begin{definition}  If $A$ is a monomial matrix, then 
 %\[ \lis(A) \] is the set of all lists whose first term is $A$.  We call such a list an $A$-list.
 %\end{definition}
 
-\begin{lemma}
-\label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then 
-\[ B\tail{\vv{s}}_q \in \ZZ_+ \rb(\O)^{\perp} \]
-where $B$ is the collapse of $A$ along $\O$.
-\end{lemma}
-
-\begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
-$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\RR \rb(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
-\end{proof}
 
 \begin{definition}  
 \label{aux program: D}
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then
 \[ \ip(A, \vv{u}, \vv{s}, q) \] 
 is the integer program in domain lattice of $A$ defined as follows:
 \begin{enumerate}
@@ -633,6 +637,24 @@ The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u},
 where $\ol{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
+\begin{proposition}  
+\label{comparison: P}
+If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\feas \IP(A, \vv{u}, q)$ lies in 
+\[ \vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q).\]
+\end{proposition}
+
+\begin{lemma}
+\label{tail projection: L}
+If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then 
+\[ B\tail{\vv{s}}_q \in \ZZ_+ \rb(\O)^{\perp} \]
+where $B$ is the collapse of $A$ along $\O$.
+\end{lemma}
+
+\begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
+$\ol{\vv{u}} q =B \vv{s} q = B ( \vv{s}q - \tail{\vv{s}}_q ) +B \tail{\vv{s}}_q$ then shows that $B \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\RR \rb(\O)^{\perp}$, note that $\ol{\vv{u}} = B \vv{s}$ and $B \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $B$.  Given this, it is easy to see that since $\ol{\vv{u}} = B \vv{s}$ is positive in $\RR \rb(\O)^{\perp}$, the same must be true for $B \tail{\vv{s}}_q$.
+\end{proof}
+
+
 \begin{remark}
 \label{collapsed aux program: R}
 Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(B, \ol{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
@@ -642,15 +664,14 @@ Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(B, \ol{\vv{u}})$ is the collap
 
 
 
-The following may be regarded as a partial converse to \Cref{easy but important: L}
+The following may be regarded as a partial converse to \Cref{comparison: R}
 
 \emily[inline]{Restate as a lemma first.  Do this point-by-point, and appeal to the finiteness of the $\mathbb{O}$.
 We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for $\ldots$''
 }
 
-\emily[inline]{The statement below appears to be the ``lifting lemma'' in disguise!.  More precisely, it looks like the base case of ILL}
 
-\daniel[inline]{This has been changed to a ``point-by-point" statement, since in its current placement, we haven't established any finiteness properties of $\ip$}
+\daniel[inline]{This has been changed to a ``point-by-point" statement.  This was necessary, since in its current placement, we haven't established any finiteness properties of $\ip$, and the old proof used $\mathbb{O}$}
 
 \begin{proposition}
 \label{uniform value: P}
@@ -658,26 +679,25 @@ Given a list $(A, \vv{u}, \vv{s}, q)$ and point $\vv{h} \in \opt \ip(A, \vv{u}, 
 $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$ whenever $q \gg 0$. 
 \end{proposition}
 
-\begin{proof} 
-Set $\O = \mf(A, \vv{u})$, and write  $\vv{u} = A \vv{s} + \vv{w}$ for some positive rational point $\vv{w}$ in $\RR \rb(\O)^{\perp}$.  Note that the integrality of $\vv{u}$ implies that $D$ is also a denominator for $\vv{w}$.  Finally, fix an integer $q > \beta D$ and a point $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  Below, we will demonstrate that \[ \vv{s}q - \tail{\vv{s}}_q + \vv{h}\] is optimal for $\IP(A, \vv{u}q)$.  
+\begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\delta \in \ZZ$ for $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\delta$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
 
-First, note that this lattice point is nonnegative, that is,   $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $1/D$.  Thus, as $q > \beta D$, the $i$-th coordinate of $\vv{s}q$ is greater than $\beta$.  However, the definition of $\tail{\vv{s}}_q$ and $\alpha$ guarantee that the coordinates of $\tail{\vv{s}}_q - \vv{h}$ are at most $1-\alpha$, which in turn is at most $\beta$.
+Let $\ol{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$, and write  \[ \vv{u} = A \vv{s} + \vv{w} \] for some $\vv{w}$ that is positive in $\RR \rb(\O)$, as in \Cref{mc: D}.  As $\vv{u}$ has integer coordinates, it follows that $\delta$ is also a denominator for $\vv{w}$.  
 
-Thus, $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$ if and only if
-\[ A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q.\] 
+\Cref{tail-basics: R} tells us $\vv{k} := \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ has integer coordinates, and we claim that $\vv{k} \geq \vv{0}$, that is, $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$, whenever $q \gg 0$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $q/\delta$, and so the $i$-th coordinate of $\vv{s}q$ is at least $q/\delta$, which is greater than $1 - h_i$ by our choice of $q \gg 0$.  However, \Cref{tail-basics: R} also tells us that the $i$-th coordinate of $\tail{\vv{s}}_q - \vv{h}$ is at most $1-h_i$.  In summary, we have just shown that $\vv{k}$ is a nonnegative lattice point whenever $q \gg 0$.
+
+Thus, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
+\[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q.\] 
 which we rewrite as 
 \begin{equation} 
 \label{equivalent ineq: e}
 A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
 \end{equation}
 
-Let $B$ be the collapse of $A$ along $\O$.  In $\RR \rb(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $B \vv{h} < B \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip(A, \vv{u}, \vv{s}, q)$.  
+After projecting to $\RR \rb(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\ol{A \vv{h}} < \ol{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\RR \rb(\O)$ is at least $\vv{w}q$.  However, as $\delta$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\delta$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\RR \rb(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \RR \rb(\O) \oplus \rb(\O)^{\perp}$.
 
-If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\RR \rb(\O)$ is at least $\vv{w}q$, and our choice of $D$ and $q$ then guarantee that the coordinates of $\vv{w}q$ are greater than $\beta$.  However,  our choice of $\mu$ tells us that the coordinates of the left-hand side of \eqref{equivalent ineq: e} are at most $\mu$, and hence, at most $\beta$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \RR \rb(\O) \oplus \rb(\O)^{\perp}$.
-
-In summary, we have just shown that $\vv{s}q-\tail{\vv{s}}_q + \vv{h}$ is feasible for $\IP(A, \vv{u}q)$, and so it follows that the value of $\IP(A, \vv{u}q)$ at least 
-\[  \norm{\vv{s}}q - \norm{\tail{\vv{s}}_q} + \norm{\vv{h}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
-where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in \orep(A, \vv{u}, \vv{s}, q)$.  To establish the optimality of $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$, it remains to show that the $\val \IP(A, \vv{u}q)$ equals this lower bound.  However, this is a consequence of \Cref{easy but important: L}.
+In summary, we have just shown that $\vv{k}$ is feasible for $\IP(A, \vv{u}q)$, and so 
+\[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip \] 
+where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.  To establish the optimality of $\vv{k}$, it remains to show that the $\val \IP$ equals this lower bound.  However, this is a consequence of \Cref{comparison: P}.
 \end{proof}
 
 
@@ -754,7 +774,7 @@ These finiteness properties above facilitate the following result.
 
 \begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
 \[ \ol{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
-and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
+and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
 
 
@@ -784,7 +804,7 @@ where $B$ (respectively, $\ol{X}$) is the collapse of $A$  (respectively, $X$) a
 \begin{proof}
 Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $B$ and $\ol{X}$ be as above.
 
-The asserted value of $\IP(A, \vv{u}q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{easy but important: L} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $B \vv{h} \in \im \ip$.  Furthermore, as $B \vv{s} = \ol{\vv{u}}$, 
+The asserted value of $\IP(A, \vv{u}q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $B \vv{h} \in \im \ip$.  Furthermore, as $B \vv{s} = \ol{\vv{u}}$, 
 
 \[ B \vv{k} = \ol{\vv{u}} q - B \tail{\vv{s}}_q + B \vv{h}\]  
 which shows that $B ( \opt \IP(A, \vv{u}q))$ = $\ol{\im \IP(A, \vv{u}q)}$ is contained in 
