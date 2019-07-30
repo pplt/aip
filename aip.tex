@@ -110,7 +110,7 @@ There are clearly multiple reasonable notions of equality for integer programs. 
 \daniel[inline]{One thing we can do is change the presentation so that it is more informal.  We can include some general ideas, to make it intuitive, but can refer to the other paper for technical details that are obvious, but perhaps annoying to check.}
 \pedro[inline]{I'm trying mathcal font for the Newton polyhedron; this way (I think) we'll be consistently using mathcal font for polyhedra.}
 \subsection{Faces of Newton polyhedra} The \emph{Newton polyhedron} associated to a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
-\[ \N = \conv( \col(A) ) + \cone( \vv{e}_1, \cdots, \vv{e}_d) \] where $\col(A)$ is the set of columns of $A$.  
+\[ \N = \conv( \col(A) ) + \cone( \vv{e}_1, \ldots, \vv{e}_d) \] where $\col(A)$ is the set of columns of $A$.  
 
 Recall that a proper  subset $\O$ of $\N$ is a \emph{face} of $\N$  if there exists $\vv{a} \in \RR^d$ and $\beta \in \RR$ are such that $\iprod{\vv{a}}{\vv{c}} \geq \beta$ for all $\vv{c} \in \N$, with equality if and only if $\vv{c} \in \O$.  We say that  such a point $\vv{a}$ \emph{defines} $\O$ in $\N$.    In this article, we will be concerned with faces $\O$ that do not lie in any coordinate subspace of $\RR^d$.  We call such a face \emph{standard}, and when considering points that define such a face, we will always assume that we have rescaled so that $\beta = 1$. 
 
@@ -195,7 +195,7 @@ If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ as
 \begin{proof}
 By definition, the Newton polyhedron $\M$ equals
 %
-\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \cdots, \vv{e}_d)} =  \collapse{\N}.\]
+\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \ldots, \vv{e}_d)} =  \collapse{\N}.\]
 
 Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ equals $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
@@ -392,7 +392,7 @@ Special denominators exist.
 
 If $\O = \mf(A, \vv{u})$ is bounded, then $\mc(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so there is always a vertex in this set with denominator $D_{\circ}$.  
 
-Next,  suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.  Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \cdots, \vv{e}_l \}$ for some $1 \leq l \leq d-1$, and fix \emph{positive} integers $d_1, \cdots, d_l$ that sum to $d-1$.  As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq l$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  It then follows from the definition of minimal coordinate that the point \[  \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_l \cdot  \vv{s}_l}{d-1}  \]
+Next,  suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.  Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \ldots, \vv{e}_l \}$ for some $1 \leq l \leq d-1$, and fix \emph{positive} integers $d_1, \ldots, d_l$ that sum to $d-1$.  As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq l$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  It then follows from the definition of minimal coordinate that the point \[  \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_l \cdot  \vv{s}_l}{d-1}  \]
 lies in $\mc_{\QQ}(A, \vv{u})$ and has denominator $(d-1)D_{\circ}$.  
 \end{proof}
 
@@ -1114,12 +1114,9 @@ for all $p > \beta$ and $e \geq 1$, where the maximum is over all $p$-sprouts $(
 \end{corollary}
 
 \begin{proof}  Let $\beta$ be as in \Cref{arithmetic uniform value and image: T}, and fix a pair $(A, \vv{u})$ that is very small.
-
-
 Suppose $\vv{g}$ is optimal for $\IP_p(A, \vv{u}p^{e+1})$, and let $\vv{h}$ and $\vv{k}$ be the quotient and remainder, respectively, when dividing $\vv{g}$ by $p^e$.
 
 Let $\collapse{X}$ be the collapse of a subset $X$ of $\RR^d$ along $\O = \mf(A, \vv{u})$.  \Cref{optimal division: L} tells us that $\vv{h}$ must be optimal for $\IP_p(A, \vv{u}p)$, and \Cref{arithmetic uniform value and image: T} then implies that $B \vv{h} = \collapse{A \vv{h}} \in \collapse{\im \IP_p(A, \vv{u}p)} = \collapse{\vv{u}}p - \Delta(A, \vv{u}, p)$ for all $p > \beta$.   
-
 Therefore, for $p > \beta$, we may write \[ B \vv{h} = \collapse{\vv{u}}p - \vv{v}\] for some $\vv{v} \in \Delta(A, \vv{u}, p)$.  On the other hand, our choice of $\vv{g}$ guarantees that $A \vv{g} < \vv{u}p^{e+1}$, which leads to the inequality $B \vv{h} p^e + B \vv{k} = B \vv{g} <  \collapse{\vv{u}}p^{e+1}$  in $\rs(\O)^{\perp}$.  Comparing this with the above description of $B \vv{h}$ shows that \[ B \vv{k} < \vv{v} p^e \] which allows us to conclude that $\vv{k} \in \IP_p(B, \vv{v} p^e)$.  %The corollary then follows from the fact that $\norm{\vv{g}} = \norm{\vv{h}} \cdot p^e + \norm{\vv{k}}$.
 \end{proof}
 
@@ -1176,7 +1173,7 @@ Now, assume that $e \geq 2$, and consider a path \todo{TBC}
 \begin{lemma}
    \label{positive polynomial: L}
    Given a positive real number $w$, and a set $\Omega$ of real numbers that is bounded from below, there exists an integer $\beta$ satisfying the following condition\textup:
-   For every integer $e \geq 1$ and every finite sequence $\beta_1, \cdots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
+   For every integer $e \geq 1$ and every finite sequence $\beta_1, \ldots, \beta_e$ of elements of $\Omega$, the polynomial expression \[ wp^{e} + \beta_1 \cdot p^{e-1} + \cdots + \beta_{e-1} \cdot p + \beta_e  \] is positive for all integers $p \geq \beta$.
 \end{lemma}
 
 
@@ -1209,24 +1206,22 @@ Let $\mu$ be any negative number with $\mu \leq \beta$ for all $\beta \in \Omega
 \emily[inline]{This is a terminating path in $\widehat{\graph}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
 \daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 
-\subsection{The Witt graph for a pair}
+\subsection{The Sprouting graph for a pair}
 \begin{definition}
-Suppose that $(A, \vv{u})$ is very small.  For $e \geq 0$, we define the set $\widehat{\graph}^e(A)$ inductively as follows:
+   Suppose that $(A, \vv{u})$ is very small.
+   For $e \geq 0$, we define the set $\widehat{\graph}^e(A,\vv{u},p)$ inductively as follows:
 \begin{enumerate}
-\item $\widehat{\graph}^1(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
-\item Suppose that $\widehat{\graph}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 1$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\graph}^e(A, \vv{u}, p)$.
-
-
+\item $\widehat{\graph}^0(A, \vv{u}, p)$ consists of the single monomial pair $(A, \vv{u})$.
+\item Suppose that $\widehat{\graph}^e(A, \vv{u}, p)$ has been defined for some integer $e \geq 0$, and let $S$ be the set of all $p$-sprouts of all monomial pairs in $\widehat{\graph}^e(A, \vv{u}, p)$.
 If  $S$ is empty (that is, $\widehat{\graph}^e(A, \vv{u}, p)$ itself is empty) or contains a pair that is not very small, then \[ \widehat{\graph}^{e+1}(A, \vv{u}, p) = \emptyset.\]  
 \emily{or say $\emptyset$ whenever $\graph^e(A, \vv{u}, p)$ is empty, or contains a medium-small pair}
-
 Otherwise, $\widehat{\graph}^{e+1}(A, \vv{u}, p)$ is the set of all sprouts $(B, \vv{v})$ in $S$ satisfying the following conditions:    
 
 \begin{enumerate}
 \item Among all pairs in $S$, the value of  $\ft{B}{\vv{v}}$ is maximal.
 \item Among all pairs in $S$ that achieve this maximum, the value of $\delta(B, \vv{v}, p)$ is minimal.
 \end{enumerate}
-i.e., the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $p \gg 0$. 
+Consequently, the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S$ when $p \gg 0$. 
 \end{enumerate}
 \end{definition}
 
@@ -1317,11 +1312,11 @@ for every nonnegative integer $s$.
 \end{proof}
 
 
-\comment[inline]{
+\alert[inline]{
 \begin{corollary}\label{cor: constant mus}
    If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{lem: upper bound for higher mu}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\graph}(A,\vv{u},p)$ for every $p\ge \beta$. 
 \end{corollary}
-\todo[inline]{Restate more precisely}
+%\todo[inline]{Restate more precisely}
 \pedro[inline]{
    I'm not a believer anymore.
    If $(A_1,\vv{u}_1)$ and $(B,\vv{v})$ are as in \Cref{lem: upper bound for higher mu}, we only get the inequality $\mu(B,\vv{v},p^e) \le \mu(A_1,\vv{u}_1,p^e)$, and to conclude that we have equality we'd need to know that there is a path of length $e-1$ starting at $(B,\vv{v})$.
