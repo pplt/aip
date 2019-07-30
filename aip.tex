@@ -4,7 +4,7 @@
 \begin{document}
 
 \title[Arithmetic programming and Frobenius powers]{Arithmetic integer programming
- and Frobenius powers of monomial ideals
+% and Frobenius powers of monomial ideals
 }
 \author{Daniel J.\ Hern\'andez}
 \author{Pedro Teixeira}
@@ -21,10 +21,14 @@ TO DO LIST:
  \item[$\Box$] Make sprout notation.
  \item[$\Box$] Put in examples.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
- \pedro[inline]{I'm trying $\graph$ for the notation, for ``sprouting graph''}
+ \pedro[inline]{I'm trying $\graph$ for the notation, for ``sprouting graph''. Let's see if we like it.}
  \item[$\Box$] Fill in/rewrite preliminaries.
  \item[$\Box$] Reorganize and motivate the $\Pi$ and $\Theta$, and their connection, in Sections 5 and 6.
  \item[$\Box$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
+ \pedro[inline]{
+    I started an outline as a separate section, at the end.
+    However, some of this could be introduced along with the AIPs.
+ }
  \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  \item[$\Box$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
@@ -33,54 +37,7 @@ TO DO LIST:
 \end{enumerate}
 }
 
-
-% \section{The main players (repeated later on)}
-% 
-% \begin{definition}
-% A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
-% \end{definition}
-% 
-% \begin{definition}
-% A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
-% \end{definition}
-% 
-% 
-% \comment[inline]{In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
-%  Think about $A$ as the matrix whose columns correspond to the generators of a monomial ideal $\ideala$, and let $\ideald$ be the diagonal ideal determined by $\vv{u}$. }
-% 
-% 
-% \begin{definition}
-% $\LP(A, \vv{u})$ is the linear program defined as follows:
-% \begin{enumerate}
-% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$ \val \LP(A, \vv{u}) = \ft{\ideala}{\ideald}$, as recorded in \Cref{FT descriptions: P}.}
-% 
-% 
-% \begin{definition}
-% $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
-% \begin{enumerate}
-% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. 
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$\val \IP(A, \vv{u} q) = \nu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-% 
-% 
-% \begin{definition} If $p>0$ is a prime integer, then $\IP_p(A, \vv{u})$ is the arithmetic integer program in $\ZZ^n$ defined as follows:
-% \begin{enumerate}
-% \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$.  
-% \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.  By Lucas' Theorem, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_s} < p$ for all $0 \leq s \leq l $.
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$\val \IP_p(A, \vv{u} q) = \mu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-
+\newpage
 
 \section{Preliminaries}
 
@@ -151,7 +108,7 @@ There are clearly multiple reasonable notions of equality for integer programs. 
 
 \comment[inline]{This section needs to be paraphrased, to avoid overlap with other paper}
 \daniel[inline]{One thing we can do is change the presentation so that it is more informal.  We can include some general ideas, to make it intuitive, but can refer to the other paper for technical details that are obvious, but perhaps annoying to check.}
-
+\pedro[inline]{I'm trying mathcal font for the Newton polyhedron; this way (I think) we'll be consistently using mathcal font for polyhedra.}
 \subsection{Faces of Newton polyhedra} The \emph{Newton polyhedron} associated to a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
 \[ \N = \conv( \col(A) ) + \cone( \vv{e}_1, \cdots, \vv{e}_d) \] where $\col(A)$ is the set of columns of $A$.  
 
@@ -178,6 +135,8 @@ where we agree that the $\cone(\emptyset) = \vv{0}$.  We see from this that $\O$
 \begin{definition} If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set \[ \rb(\O) \] of all standard basis vectors $\vv{e}_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero.  As noted above, this set depends on $\O$, but not on the choice of $\vv{a}$.
 \end{definition}
 
+\pedro[inline]{Why don't we just define recession subspaces instead?}
+
 %\begin{remark} \Cref{face: L}\eqref{rb_independence: e} implies that the recession basis of $\O$ is independent of the choice of the defining vector $\vv{a}$, while \Cref{face: L}\eqref{rb_bounded: e} tells us that $\O$ is bounded if and only if $\rb(\O) = \emptyset$.    
 %\end{remark}
 
@@ -187,8 +146,6 @@ Our choice of terminology is motivated by the following observation.
 \end{remark}
 
 \subsection{Collapses} 
-
-\pedro[inline]{Why don't we just define recession subspaces instead?}
 
 \begin{definition}  
 \label{collapse: D}
@@ -1275,42 +1232,63 @@ Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\gr
 % \[ \val \IP_p(B, \vv{v}p) = \ft{B}{\vv{v}} \cdot p - \delta_p(B, \vv{v}) \] for any vertex $(B, \vv{v})$ of $\widehat{\graph}_p(A, \vv{u})$.    In addition, if $(B, \vv{v})$ and $(D, \vv{z})$ are any two such vertices, then $\val \IP_p(B, \vv{v}) < \val \IP_p(D, \vv{z})$ if and only if $\ft{B}{\vv{v}} < \ft{D}{\vv{z}}$, or these two quantities agree and $\delta_p(B, \vv{v}) > \delta_p(D, \vv{z})$.  
 % \end{corollary}
 
-\emily[inline]{It's important for us to go back and fix/finish the proof. }
 
+\begin{lemma}\label{lem: higher mu formula for paths}
+   Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
+   For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
+   \[
+      \mu(B, \vv{v}, p^e) \le \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p)
+   \]
+   for any vertex $(B, \vv{v})$ of $\widehat{\graph}(A, \vv{u}, p)$ on the same level as $(A_1, \vv{u}_1)$.
+\end{lemma}
 
-\begin{theorem}\label{thm: higher mu formula for paths}
-\daniel{Can we fix a $\beta= \beta(A)$ and take $p \geq \beta$ as in other results?}
-If $(A, \vv{u})$ is a very small monomial pair and $p \gg 0$, then the following holds\textup:  If 
-$(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$, and $(B, \vv{v})$ is any vertex in this graph whose level is the same as that of the initial point $(A_1, \vv{u}_1)$, then $\mu(B, \vv{v}, p^e)$ equals \daniel{The proof will show $\leq$.  To get equality, just make sure to prove iterated lifting lemma before this.}
-%
- \[     \mu(A_1,\vv{u}_1,p)p^{e-1} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p)
-\]
-\end{theorem}
+\pedro[inline]{
+   Giving this a shot.
+   Work in progress\ldots
+}
 
-\begin{proof}  
-\todo{Maybe write this algebraically, when possible?}
+\begin{proof}
+   Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$.
+    In this case, in view of \Cref{arithmetic uniform value and image: T} and the construction of $\graph(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
 
-Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
-\[ \val \IP_p(B, \vv{v}p) = \val \IP_p (A_1, \vv{u}_1 \cdot p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
-
-We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\graph_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
-%
-\[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
-%
-where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
-%
-\begin{equation}
-\label{target bound: e}
-\left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
-
-Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\graph_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
-\[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
-and our induction hypothesis applied to the path 
-\[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
-
-On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
-$(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
+    Suppose that $e \geq 2$, and the result holds for paths of length $e-2$; consider a path $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$, and $(B,\vv{v})$ on the same level as $(A_1,\vv{v}_1)$.
+    \Cref{cor: upper bound for higher mus} tells us that
+    \begin{align*}
+      \mu(B,\vv{v},p^e) &\le \mu(B,\vv{v},p) p^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},p^{e-1}) \\
+      &= \mu(A_1,\vv{u}_1,p) p^{e-1} + \max_{\tiny (C,\vv{z})\leftarrow (B,\vv{v})} \ \mu(C,\vv{z},p^{e-1}),
+    \end{align*}
+    and to complete our inductive step, it suffices to show that
+    \begin{equation*}\label{ineq}
+        \mu(C,\vv{z},p^{e-1}) \le \mu(A_2,\vv{u}_1,p)p^{e-2} + \cdots + \mu(A_{e-1},\vv{u}_{e-1},p)p + \mu(A_e,\vv{u}_e,p).
+    \end{equation*}
+    for each $(C,\vv{z})$ sprouting from $(B,\vv{v})$.
+    
+    Towards this, first note that if $(C, \vv{z})$ does not lie in $\widehat{\graph}(A,\vv{u},p)$, then \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applies to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
+    On the other hand, if $(C, \vv{z})$ lies in $\graph(A, \vv{u},p)$, then it lies on the same level as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
+
+%%% OLD PROOF
+% Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
+% \[ \val \IP_p(B, \vv{v}p) = \val \IP_p (A_1, \vv{u}_1 \cdot p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
+
+% We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\graph_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}p^{e+1})$ is at most
+% %
+% \[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) \]
+% %
+% where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
+% %
+% \begin{equation}
+% \label{target bound: e}
+% \left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
+
+% Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\graph_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}p) < \val \IP_p(A_2, \vv{u}_2 \cdot p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
+% \[  \max_{\vv{z}} \val \IP_p(C, \vv{z}p^e) < \val \IP_p(A_2, \vv{u}_2 \cdot p^e)\]  
+% and our induction hypothesis applied to the path 
+% \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  
+
+% On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
+% $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2 \cdot p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
+% \end{proof}
 
 
 \newpage
@@ -1399,8 +1377,27 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \todo[inline]{Point out that the levels of $\widehat{\graph}(A, \vv{u})$ are eventually periodic. This will give an independent proof the rationality of critical exponents.  The way we present a formula for critical exponents may need this observation.}
 
+\section{Fractal linear programs}
 
-\newpage
+\pedro[inline]{
+   OUTLINE:
+   \begin{itemize}
+      \item The Sierpinsky $p$-gasket in $\RR^n$ is the set $\sierp_p$ consisting of every point $\vv{t}\in \RRnn^n$ that has \ul{\emph{some}} base $p$ expansion $\vv{t} = \down{\vv{t}} + \frac{\vv{d_1}}{p} +\frac{\vv{d_2}}{p^2}+\cdots$ with ``digits'' $\vv{d}_i$ of norm $<p$.
+      This is typically defined in $[0,1]^n$, but I see no harm in extending it to $\RRnn^n$.
+      \item The fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{k}\mapsto \norm{\vv{k}}$, subjected to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
+      Since the feasible set is compact, this program has a nonempty optimal set.
+      \item For each $q=p^e$, $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in the feasible set for $\fip_p(A,\vv{u})$.
+      So, $\val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u})$.
+      \item It would be nice if we had equality in general, but I'm not super hopeful\ldots
+      To prove equality, we'd pick an optimal point $\vv{t}$ for $\fip_p(A,\vv{u})$, and take truncations (of the nonterminating base $p$ expansion, as usual), to obtain a sequence $(\frac{\vv{v}_q}{q})_q$ that converges to $\vv{t}$.
+      If that expansion already has ``digits'' of norm $<p$, it's all cool: then each truncation $\frac{\vv{v}_q}{q}$ lies in $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$, so
+      \[\val \fip_p(A,\vv{u}) = \norm{\vv{t}} = \lim_{q\to\infty}\norm{\frac{\vv{v}_q}{q}} \le \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).\]
+      Otherwise, we'd have to modify the expansion of $\vv{t}$, but it's hard (maybe impossible?) to do that in a way that the $\vv{v}_q$ all satisfy $A\vv{v}_q < q\vv{u}$ (at least for $q\gg 0$).
+      (Need to think more about this\ldots)
+      \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
+   \end{itemize}
+}
+
 \emily[inline]{
 
 \textbf{Important Questions}.
@@ -1421,6 +1418,7 @@ using the bounds in this paper, and from this, we can find that the only element
 \item The answer to the last question is FALSE:  In our Frobenius examples paper, there is a critical point $1-(1/p^2) = p-1 : p-2 : \overline{p-1}$.
 \end{enumerate}  
 }
+
 
 {\small
 \bibliographystyle{amsalpha}
@@ -1668,6 +1666,54 @@ As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \le
 
 \end{proof}
 
+
+
+% \section{The main players (repeated later on)}
+% 
+% \begin{definition}
+% A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
+% \end{definition}
+% 
+% \begin{definition}
+% A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
+% \end{definition}
+% 
+% 
+% \comment[inline]{In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
+%  Think about $A$ as the matrix whose columns correspond to the generators of a monomial ideal $\ideala$, and let $\ideald$ be the diagonal ideal determined by $\vv{u}$. }
+% 
+% 
+% \begin{definition}
+% $\LP(A, \vv{u})$ is the linear program defined as follows:
+% \begin{enumerate}
+% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$ \val \LP(A, \vv{u}) = \ft{\ideala}{\ideald}$, as recorded in \Cref{FT descriptions: P}.}
+% 
+% 
+% \begin{definition}
+% $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
+% \begin{enumerate}
+% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. 
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$\val \IP(A, \vv{u} q) = \nu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
+% 
+% 
+% \begin{definition} If $p>0$ is a prime integer, then $\IP_p(A, \vv{u})$ is the arithmetic integer program in $\ZZ^n$ defined as follows:
+% \begin{enumerate}
+% \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$.  
+% \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.  By Lucas' Theorem, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_s} < p$ for all $0 \leq s \leq l $.
+% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
+% \end{enumerate}
+% \end{definition}
+% 
+% \comment[inline]{$\val \IP_p(A, \vv{u} q) = \mu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
 
 
 
