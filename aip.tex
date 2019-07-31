@@ -560,7 +560,7 @@ between $\vv{k}$, and the feasible point $\vv{s}q-\tail{\vv{s}}_q$ described in 
 
 Towards this, let $\collapse{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  Our choice $\vv{k}$ guarantees that $A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}, and inequality is preserved by collapses, it follows that
 %
-\[ \collapse{A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h})} = \collapse{A \vv{k}}  < \collapse{\vv{u}}q = \collapse{A \vv{s}q + \vv{w}q} = \collapse{A \vv{s}q} \] 
+\[ \ol{A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h})} = \collapse{A \vv{k}}  < \collapse{\vv{u}}q = \collapse{A \vv{s}q + \vv{w}q} = \collapse{A \vv{s}q} \] 
 %
 from which it follows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$. Furthermore, our choice of $\vv{k}$ also guarantees that $\vv{k} \geq 0$, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  In particular, the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero.
 \end{remark}
@@ -572,47 +572,41 @@ from which it follows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$.
 
 
 \begin{definition}
-A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
+A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \begin{enumerate}
 \item A monomial pair $(A, \vv{u})$.
 \item A rational minimal coordinate $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.
 \item An integer $q>0$.
 \end{enumerate}
+We call a monomial list whose first term is the matrix $A$ an \emph{$A$-list}.
 \end{definition}
-
-We call a list whose first term is the matrix $A$ an $A$-list.
-
-%\begin{definition}  If $A$ is a monomial matrix, then 
-%\[ \lis(A) \] is the set of all lists whose first term is $A$.  We call such a list an $A$-list.
-%\end{definition}
-
 
 \begin{definition}  
 \label{aux program: D}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then
-\[ \ip(A, \vv{u}, \vv{s}, q) \] 
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\ip(A, \vv{u}, \vv{s}, q)$
 is the integer program in domain lattice of $A$ defined as follows:
 \begin{enumerate}
 \item The objective function is $\vv{h} \mapsto \norm{\vv{h}}$.
-\item The constraints are that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ \collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}\]
-\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.\end{enumerate}
+\item The constraints are that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ \collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q},\]
+\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$}
+where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.\end{enumerate}
 \end{definition}
 
 
 \begin{definition}
-The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\] 
+The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \ol{A (\opt \ip(A, \vv{u}, \vv{s}, q))},\] 
 where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
 \begin{proposition}  
 \label{comparison: P}
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\feas \IP(A, \vv{u}, q)$ lies in 
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ lies in 
 \[ \vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q).\]
 \end{proposition}
 
 \begin{lemma}
 \label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $\collapse{A}$ is the collapse of $A$ along $\O$.
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $\collapse{A}$ is the collapse of $A$ along $\O$.
 \end{lemma}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
@@ -622,8 +616,7 @@ $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv
 
 \begin{remark}
 \label{collapsed aux program: R}
-Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
-\[ (\collapse{A}, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
+Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list.  It is then clear from \Cref{aux program: D} that 
 \[ \ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q). \] 
 \end{remark}
 
@@ -640,7 +633,7 @@ We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for
 
 \begin{proposition}
 \label{uniform value: P}
-Given a list $(A, \vv{u}, \vv{s}, q)$ and point $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, the point 
+Given a monomial list $(A, \vv{u}, \vv{s}, q)$ and point $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, the point 
 $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$ whenever $q \gg 0$. 
 \end{proposition}
 
@@ -673,7 +666,7 @@ We now explore some finiteness properties, and our results are of two types:  \C
 
 \begin{lemma}
 \label{bounded value: L} 
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
 \end{lemma}
 
 \begin{proof}   
@@ -700,7 +693,7 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
 
 \begin{corollary}
 \label{finite image: C}
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{corollary}
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
@@ -716,9 +709,9 @@ Potentially move it up before \Cref{bounded value: L}.}
 If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{lemma}
 
-\begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
+\begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
 
-Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A} \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
 \begin{corollary} 
@@ -738,7 +731,7 @@ These finiteness properties above facilitate the following result.
 \end{theorem}
 
 \begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
-\[ \collapse{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
+\[ \ol{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
 and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
 
@@ -1372,7 +1365,6 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
       \[\val \fip_p(A,\vv{u}) = \norm{\vv{t}} = \lim_{q\to\infty}\norm{\frac{\vv{v}_q}{q}} \le \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).\]
       Otherwise, we'd have to modify the expansion of $\vv{t}$, but it's hard (maybe impossible?) to do that in a way that the $\vv{v}_q$ all satisfy $A\vv{v}_q < q\vv{u}$ (at least for $q\gg 0$).
       (Need to think more about this\ldots)
-      % \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
    \end{itemize}
 }
 
@@ -1397,307 +1389,9 @@ using the bounds in this paper, and from this, we can find that the only element
 \end{enumerate}  
 }
 
-
 {\small
 \bibliographystyle{amsalpha}
 \bibliography{bibdatabase}
 }	
 
-
 \end{document}
-
-\newpage
-\section{Working in Lawrence}
-
-Suppose that $\ideala$ is $\idealm$-primary.  If $\vv{u} \in \NN^d_+$, then this forces $\O = \mf(A, \vv{u})$ to be compact.  Suppose $\vv{u} \in \NN^d_+$ satisfies $\ft{A}{\vv{u}} \leq 1$.  Then 
-%
-\[ \mu_{\ideala}^{\vv{u}}(p) = \nu_{\ideala}^{\vv{u}}(p) =  \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] and 
- \[ \ideala^{[\mu_{\ideala}^{\vv{u}}(p) ]} \equiv \langle x^{\vv{u}p - \vv{z}} : \vv{z} \in \Delta(A, \vv{u}, p) \rangle \bmod \diag(\vv{u}p) \]
-%
-A key ingredient is the identity 
-\[ \crit(\ideala ,\vv{u}) = \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} + \frac{\max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \}}{p} \]
-
-We want to compute this max.  If there exists a point $\vv{z} \in \Delta(A, \vv{u}, p)$ that is small, but not very small, then the max equals $1$.  Otherwise, suppose that every point in $\Delta(A, \vv{u}, p)$ is very small.  
-
-Let's look at 
-\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} \]
-There exists $\vv{z}^{\ast} \in \Delta(A, \vv{u}, p)$ such that \daniel{If $p \gg 0$ then we can pick $\vv{z}^{\ast}$ so that it is independent of $p$.}
-
-\[ \max \{ \crit(\ideala, \vv{z}) : \vv{z} \in \Delta(A, \vv{u}, p) \} = \frac{\mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p} \]
-
-Substitute this into formula for $\crit(\ideala, \vv{u})$ to get that
-%
-\[
-\crit(\ideala, \vv{u}) =  \frac{ \mu_{\ideala}^{\vv{u}}(p)}{p} +  \frac{ \mu_{\ideala}^{\vv{z}^{\ast}}(p)}{p^2} + \frac{\max \{  \crit(\ideala, \vv{w}) : \vv{w} \in \cup_{\vv{z} \in \Delta(A, \vv{u}, p)} \Delta(A, \vv{z}, p)\} }{p^2}
-\]
-%
-
-\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
-In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
-= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
-(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
-}
-
-
-\begin{definition}  We are trying to define a sequence of subsets of the union of \[ \Delta(A) := \cup_{\vv{z} \in \NN^d_+, p} \Delta(A, \vv{z}, p)\] which is a finite set, with $\{ \vv{u} \}$. \daniel{This $\vv{u}$ is probably already in the first set, if we allow $p \equiv 1$ mod whatever.}
-
-\begin{enumerate}
-\item  $\graph_1 = \{ \vv{u} \}$.  We are assuming that $(A, \vv{u})$ is small.
-\item Suppose $\graph_e$ has been defined for some $e \geq 1$.  Then 
-\[ \graph_{e+1} = \begin{cases} \emptyset & \exists \text{ medium small point in $\graph_e$}\\ \bigcup \limits_{\vv{z} \in \graph_e} \Delta(A, \vv{z},p) & \text{otherwise} \end{cases} \]
-\end{enumerate}
-
-\end{definition}
-
-
-For $\graph_e \neq \emptyset$, set $\mu_e = \max \{ \mu_\ideala^{\vv{z}}(p) \ : \ \vv{z} \in \graph_e \}$.
-
-If $\graph_t = \emptyset$ for some $t \geq 1$, suppose that this is the smallest $t$ with this property. Then 
-\[
- \crit(\ideala, \vv{u}) = \left( \sum_{i=1}^{t-1} \frac{\mu_i}{p^i}\right) +  \frac{1}{p^t}.
-\]
-
-Otherwise, since each $\graph_e$ is a subset of the finite set $\Delta(A)$, there are only finitely many such distinct sets.  Hence there exist $e, s \geq 1$ for which $\graph_{e+s} = \graph_e$.  
-Then 
-\[
- \crit(\ideala, \vv{u}) = \sum_{i = 1}^\infty \frac{\mu_i}{p^i} = \left( \sum_{i=1}^{e-1} \frac{\mu_i}{p^i}\right) +  \frac{p^s}{p^s-1} \left(\sum_{i=e}^{e+s-1} \frac{\mu_i}{p^i}\right).
-\]
-
-
-\newpage
-
-\textbf{A more intuitive proof that} $\mu(\ideala, \vv{u}, p) \leq \mu(\collapse{\ideala}, \collapse{\vv{u}}, p)$.
-
-\vspace{.3cm}
-
-Suppose that $\ft{A}{\vv{u}} \leq 1$.  
-We know the following about $(\collapse{A}, \collapse{\vv{u}})$:
-\begin{enumerate}
- \item $\mu(\collapse{A}, \collapse{\vv{u}}, p) = \ft{\collapse{A}}{\collapse{\vv{u}}} p - \delta(\collapse{A}, \collapse{\vv{u}},p)$.
- \item $\collapse{\ideala}^{\mu(\collapse{A}, \collapse{\vv{u}}, p)} \equiv \langle x^{\collapse{\vv{u}} p - \vv{z}} : \vv{z} \in \Delta(\collapse{A}, \collapse{\vv{u}}, p) \rangle \bmod \diag(\vv{u}p)$.
- Moreover, fix any such $x^{\collapse{\vv{u}} p - \vv{z}}$.  Then for every representation \[\vv{z} = \collapse{A} [\vv{s}]_q - \collapse{A} \vv{h}
- \]
- with $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, p)$, there exists $\beta$ (that depends on this representation) such that 
- \[
-  x^{A(\vv{s}p-[\vv{s}]_p + \vv{h})} \in \ideala^{\mu(\collapse{\ideala}, \collapse{\vv{u}}, p)} \setminus \diag(\vv{u}p)
- \]
- for all $p > \beta$.
-\end{enumerate}
-
-\begin{lemma}[A lifting lemma]
-There exists $\beta = \beta(A)$ with the following property\textup:  For all $\vv{z}\in \Delta(A, \vv{u}, q)$, there exists some monomial in $\ideala^{\nu(\collapse{\ideala}, \collapse{\vv{u}}, q)} \setminus \diag(\vv{u}q)$ that lifts $x^{\collapse{\vv{u}}q-\vv{z}} \in \collapse{\ideala}^{\nu(\collapse{\ideala}, \collapse{\vv{u}}, q)} \setminus \diag(\collapse{\vv{u}}q)$ when $p > \beta$.  
-\end{lemma}
-
-
-\begin{proof}[Sketch of proof]
-Pick an integer $D$ relative to $A$ as in 
-\Cref{uniform denominators for mc:  T}, and sets $\orep(A, \vv{u}, \vv{s},q)$ as in \Cref{orep: D}. 
-Choose $p \gg 0$ such that $p/D$ overwhelms any entry of any point in any $\orep(A, \vv{u}, \vv{s},q)$, and for which $p/D$ is greater than any coordinate of any point in $A(\orep(A))$, where $\orep(A)$ is as in \Cref{finiteness of optimal reps: R}.
-Moreover, pick $\vv{s} \in \mc(A,\vv{u})
-$ with denominator $D$ such that 
-\[
- \Delta(A, \vv{u}, q) = \collapse{A}[\vv{s}]_q - \im \ip(A, \vv{u}, q).
-\]
-Then $\vv{h} \in \orep(A, \vv{u}, \vv{s},q)$ such that 
-\[
- \vv{z} = \collapse{A}[\vv{s}]_q - \collapse{A} \vv{h}.
-\] 
-Then
-$\vv{s} q - [\vv{s}]_q + \vv{h} \geq \vv{0}$ since $q \gg 0$.  Note that $\vv{s} q - [\vv{s}]_q + \vv{h}$ has nonnegative integer coordinates, and has norm $\nu(\collapse{\ideala}, \collapse{\vv{u}}, q)$.  
-Hence
-\[
- x^{A(\vv{s} q - [\vv{s}]_q + \vv{h})} \in \ideala^{\nu(\collapse{\ideala}, \collapse{\vv{u}}, q)}.
-\]
-We claim that this monomial is not in $\diag(\vv{u}q)$, i.e., 
-$A(\vv{s} q - [\vv{s}]_q + \vv{h}) < \vv{u} q$. 
-Projecting the left-hand side to  $\rs(\mathcal{O})^\perp$, this becomes $\collapse{\vv{u}} q - \vv{z}$ by construction. 
-
-If $\widetilde{(\bullet)}$ denotes projection onto $\rs(\mathcal{O})^\perp$, then we claim that 
-\begin{equation} \label{projection-claim}
- \widetilde{A \vv{s}} q - \widetilde{A [\vv{s}]_q} + \widetilde{A \vv{h}} < \widetilde{\vv{u}} q.
-\end{equation}
-Our choice of $\vv{s}$ implies that $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in \RR_+ \rb(\mathcal{O})$. Since $D$ is a denominator for $\vv{s}$ and $\vv{u}$ has integer coordinates, $\vv{w}$ must also have denominator $D$. 
-Note that \eqref{projection-claim} holds if and only if
-\[
-  \widetilde{A \vv{h}} - \widetilde{A [\vv{s}]_q} < \widetilde{\vv{w}} q
-\]
-so that it suffices to show that $  \widetilde{A \vv{h}}  < \widetilde{\vv{w}} q$. 
-Since $\vv{h} \in \orep(A)$, $A\vv{h} \in A(\orep(A))$, so by our choice of $p$, $p/D$ is greater than every entry of $A \vv{h}$.  On the other hand, each coordinate of $\widetilde{\vv{w}}$ must be at least $1/D$, and $\widetilde{A \vv{h}}  < \widetilde{\vv{w}} q$.
-\end{proof}
-
-We could restate in terms of programs:
-\begin{lemma}
-There exists $\beta = \beta(A)$ such that for all $q > \beta$ and $\vv{z} \in \Delta(A, \vv{u}, q)$, there exists $\vv{k} \in \operatorname{feas} \Pi(A, \vv{u}, q)$ with $\norm{\vv{k}} = \ft{A}{\vv{u}} q - \delta(A, \vv{u}, q)$ for which $\collapse{A \vv{k}} = \collapse{\vv{u}} q - \vv{z}$. 
-\end{lemma}
-
-\emily[inline]{
-If we have a path 
-\[
- (A, \vv{u}) \to (B, \vv{z})
-\]
-we can build $\vv{k}$ with $A \vv{k} < \vv{u} p$ and $\collapse{A\vv{k}} < \collapse{\vv{u}} p - \vv{z}$ 
-}
-
-
-Notice that these statements are very similar to \Cref{uniform value: P}. 
-
-
-
-
-% \begin{lemma}[Extended lifting lemma]
-%  There exists $\beta = \beta(A)$ with the following property\textup:  If $p > \beta$ and 
-%  \[
-% (A, \vv{u}) = (A_0, \vv{u}_0) \to (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)
-%  \]
-%  is a sequence of $p$-sprouts, then for every $1 \leq i \leq e$, there exists $\vv{k}_i \in \opt \Pi(A_{i-1}, \vv{u}_{i-1} p)$ 
-%  %with $\norm{\vv{k}_i} = \nu(A_{i-1}, \vv{u}_{i-1}, p)$ 
-%  for which $A_i \vv{k}_i = \collapse{\vv{u}_{i-1}} p - \vv{u}_i$, where the bar denotes the collapse along $\mf(A_{i-1}, \vv{u}_{i-1})$, such that the following holds\textup: 
-%  \[
-%   \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e \in \feas \Pi(A, \vv{u}p^e).
-%  \]
-% \end{lemma}
-
-
-% \emily[inline]
-% {
-% 
-% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e)$ is the max of the above expression, over sequences of $p$-sprouts of length $e$. 
-% 
-% \vspace{.4cm}
-% 
-% \textbf{Conjecture.} $\val \Pi(A, \vv{u} p^e) = M_2 p^{e-1} + M_3 p^{e-2} + \cdots + M_{e-1}$, where $M_i = \max \{ \nu(B, \vv{z}, p) : (B, \vv{z} \in \graph_i(A, \vv{u}) \}$.  
-% }
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\daniel[inline]{This Proposition eventually becomes ``iterated lifting lemma''.  Once that proof is written down, this can go away}
-
-\begin{proposition}
-Suppose $A$ is a $d \times n$ monomial matrix and $\vv{u} \in \ZZ^d_+$.  Given an infinite rooted path 
-\[ (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e) \to \cdots \] in $\graph_r(A, \vv{u})$ 
-that is eventually periodic, there exists an integer $\beta$ such that 
-\[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] 
-is optimal for $\IP_p(A, \vv{u}p^e)$ for every $e \geq 1$ whenever $p \geq \beta$ and $p \equiv r \bmod D$.
-\end{proposition}
-
-\begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a minimal coordinate for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\graph_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
-\[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] satisfies the arithmetic constraint of $\IP_p(A, \vv{u}p^e)$ for every $p \gg 0$ and $e \geq 1$.  
-
-Therefore, to complete the proof, it suffices to show that 
-\begin{equation}
-\label{goal: e}
-A   \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) < \vv{u} 
-\end{equation}
-for all $p \gg 0$ and $e \geq 1$.  We begin by considering the simple case that $\mf(A_e, \vv{u}_e)$ is bounded for every $e \geq 1$.  In this case, $A = A_e$ and $\vv{u}_e$ is positive in $\RR^d$ for all $e$.  Furthermore, $A \vv{s}_1 = \vv{u}$ while \[ A \vv{t}_c = \vv{u}_{c+1} = A \vv{s}_{c+1} \] for every $c \geq 1$.   Given this, a direct computation will show that 
-\[ A   \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right)  = A \vv{s}_1 - \frac{A \vv{t}_e}{p^e} = \vv{u} - \frac{\vv{u}_{e+1}}{p^e} \] which is less than $\vv{u}$ since $\vv{u}_{e+1}$ is positive.  
-
-
-
-We will next establish \eqref{goal: e} in general by inducing on $d$, the number of rows of $A$.    If $d=1$, then the only proper face of the Newton polyhedron associated to $A$ is bounded, and so we are in the case considered above.    
-
-Next, assume that $d>1$ and that \eqref{goal: e} has been proved for all $c \times n$ monomial matrices with $1 \leq c < d$.    By our earlier work, we may assume that $\mf(A_c, \vv{u}_c)$ is unbounded for some $c \geq 1$.  Let $l \geq 1$ be the minimum integer such that $\mf(A_l, \vv{u}_l)$ is unbounded.  If $l=1$, then obviously $A_l = A$. Otherwise, the minimality of $l$ implies that $\mf(A_c, \vv{u}_c)$ is bounded for all $1 \leq c < l$, which would then imply that $A_c = A$ for all $1 \leq c \leq l$.  Thus, setting $(B, \vv{v}) = (A_{l+1}, \vv{u}_{l+1})$, the path under consideration is of the form \[ (A, \vv{u}_1) \to \cdots \to (A, \vv{u}_l) \to (B, \vv{v}) \to \cdots. \]
-
- Set  $\O = \mf(A, \vv{u}_l)$, which is an unbounded face of the Newton polyhedron of $A$.  The unboundedness of $\O$ implies that $B$  is a monomial matrix with fewer than $d$ rows.  Moreover, the tail sequence 
-\[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] is a realization of the path \[ (B, \vv{v}) \to \cdots \to (A_{l+e}, \vv{u}_{l+e}) \to \cdots \] in the graph $\graph_r(B, \vv{v})$.  For every $e \geq 1$ set \[ \vv{k}_e = \frac{ \vv{s}_{l+1} \cdot p - \vv{t}_{l+1}}{p} + \cdots + \frac{ \vv{s}_{l+e} \cdot p - \vv{t}_{l+e}}{p^e}.  \]   By our induction hypothesis, we know that $B \vv{k}_e < \vv{v}$ for all $p \gg 0$ and $e \geq 1$.
-
-Next, set \[ \vv{h} = \frac{\vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_l \cdot p - \vv{t}_l}{p^l}. \] 
-As $\vv{s}_l$ is a minimal coordinate for $(A, \vv{u}_l)$, we may write 
-%
-\begin{equation}
- \label{l-th term: e}
- \vv{u}_l = A \vv{s}_l + \vv{w}
- \end{equation}
- %
- for some $\vv{w} \in \QQ_+ \rb(\O)$, and we claim that   
-\begin{equation} 
-\label{A telescoping: e}
-A \vv{h} = A \vv{s}_1 - \left( \frac{\vv{w}}{p^{l-1}} + \frac{A \vv{t}_l}{p^l} \right).  
-\end{equation}  
-The assertion is trivial if $l =1$.  If $l > 1$, then the face $\mf(A, \vv{u})$ is bounded, and so $A \vv{s}_1 = \vv{u}$.  In fact,  the face $(A, \vv{u}_c)$ is also bounded for every $1 \leq c < l$, which implies that $A \vv{t}_c = \vv{u}_{c+1} = A \vv{s}_{c+1}$ for every such $c$.  On the other hand, \eqref{l-th term: e} tells us that $A \vv{s}_l = \vv{u}_l - \vv{w}$.  A direct computation of the telescoping sum $A \vv{h}$ will then produce the identity recorded above.  
-
-To conclude the proof, it remains to show that 
-%
-\begin{equation} 
-\label{ineq to end proof: e}
-A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) < \vv{u}. 
-\end{equation}
-%
-for all $p \gg 0$ and $e \geq 1$.
-
-We begin by verifying \eqref{ineq to end proof: e} in $\rs(\O)^{\perp}$.  Let $\collapse{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \rs(\O)^{\perp}$, so that $\collapse{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\rs(\O)$.  In any case, $B \vv{s}_1 = \collapse{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
-$B \vv{h} = \collapse{A \vv{h}}$ equals $\collapse{\vv{u}} - p^{-l} \cdot \vv{v}$.  Thus, 
-\[  B \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) = \collapse{\vv{u}} -  \frac{\vv{v} - B \vv{k}_e}{p^l}. \]
-However, as noted above, our induction hypothesis tells us that the difference  $\vv{v} - B \vv{k}_e$ is positive in $\rs(\O)^{\perp}$ for every $p \gg 0$ and $e \geq 1$.    
-
-We now turn our attention to verifying \eqref{ineq to end proof: e} in $\rs(\O)$.   Rewrite
-\[ \frac{\vv{k}_e}{p^l} = \frac{\vv{s}_{l+1}}{p^{l+1}}- \left ( \sum_{i=1}^{e-1} \frac{ \vv{t}_{l+i} - \vv{s}_{l+i+1}}{p^{l+i}}  + \frac{ \vv{t}_{l+e}}{p^{l+e}} \right) \] as a polynomial in $p^{-1}$.  If we define the sequences $\{ \vv{c}_i \}_{i=1}^{\infty}$ and $\{ \vv{d}_i \}_{i=1}^{\infty}$ in $\RR^d$ according to the rule $\vv{c}_i = A ( \vv{t}_i - \vv{s}_{i+1})$ and $\vv{d}_i = A \vv{t}_i$, then the eventual periodicity of the realization path 
-\[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] implies that $\vv{c}_i$ and $\vv{d}_i$ take on only finitely many values as $i$ varies.    Moreover, the above polynomial expression in $p^{-1}$ and \eqref{A telescoping: e} tell us that 
-%
-\[ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right)  =  A \vv{s}_1 - \left( \frac{\vv{w}}{p^{l-1}} + \frac{ \vv{c}_{l}}{p^{l}} + \cdots +  \frac{ \vv{c}_{l+e-1}}{p^{l+e-1}} + \frac{\vv{d}_{l+e}}{p^{l+e}} \right).  \] 
-%
-As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \leq \vv{u}$, and so to conclude the proof, it suffices to show that quantity being subtracted above is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  Equivalently, multiplying this expression by $p^{l+e}$, we have reduced to showing that 
-\[ \vv{w} \cdot p^{e+1} + \vv{c}_l \cdot p^{e} + \cdots + \vv{c}_{l+e-1} \cdot p + \vv{d}_{l+e} \] is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  However, $\vv{w}$ is positive in $\rs(\O)$ and the sequences $\{ \vv{c}_i \}$ and $\{ \vv{d}_i \}$ obtain only finitely many values, and so \Cref{positive polynomial: L} below allows us to conclude our proof.
-
-\end{proof}
-
-
-
-% \section{The main players (repeated later on)}
-% 
-% \begin{definition}
-% A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
-% \end{definition}
-% 
-% \begin{definition}
-% A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
-% \end{definition}
-% 
-% 
-% \comment[inline]{In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair.
-%  Think about $A$ as the matrix whose columns correspond to the generators of a monomial ideal $\ideala$, and let $\ideald$ be the diagonal ideal determined by $\vv{u}$. }
-% 
-% 
-% \begin{definition}
-% $\LP(A, \vv{u})$ is the linear program defined as follows:
-% \begin{enumerate}
-% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$ \val \LP(A, \vv{u}) = \ft{\ideala}{\ideald}$, as recorded in \Cref{FT descriptions: P}.}
-% 
-% 
-% \begin{definition}
-% $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
-% \begin{enumerate}
-% \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$. 
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$\val \IP(A, \vv{u} q) = \nu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-% 
-% 
-% \begin{definition} If $p>0$ is a prime integer, then $\IP_p(A, \vv{u})$ is the arithmetic integer program in $\ZZ^n$ defined as follows:
-% \begin{enumerate}
-% \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}$.  
-% \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.  By Lucas' Theorem, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_s} < p$ for all $0 \leq s \leq l $.
-% \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-% \end{enumerate}
-% \end{definition}
-% 
-% \comment[inline]{$\val \IP_p(A, \vv{u} q) = \mu_{\ideala}^{\ideald}(q)$ for every $q = p^e$.}
-
-
-
-
-
-
-
-
-
