@@ -7,6 +7,16 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{HTW19}
 
+\bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
+M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
+  rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
+  43--61.
+
+\bibitem[Dic02]{dickson.multinomial}
+L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
+  respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
+  (1902), 378--384.
+
 \bibitem[HTW19]{hernandez+etal.frobenius_examples}
 D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers of some
   monomial ideals}, to appear in J.\ Pure Appl.\ Algebra,
