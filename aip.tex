@@ -1455,6 +1455,7 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
       % \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
    \end{itemize}
 }
+\daniel[inline]{We can cheat and define the bound in $\Sigma_p$ to be $<$ instead of $\leq$.  Then, given any  $\vv{t} \in \sierp_p$ that is feasible for this modified program, take any (not necessarily non-terminating) expansion of $\vv{t}$ that realizes it as an element of $\sierp_p$, and truncate this expansion at the $e$-th term.  This truncation is $\geq \vv{0}$ and $\leq \vv{t}$ for all $e$, and so feasible for this new $\Sigma_p$.  If we then multiply this truncation by $p^e$, we should get something feasible for $\IP(A, \vv{u}, p^e)$.  Then, doing this for every $e$ would give the result.  Maybe this is cheating too much.  I will also think a bit about what to do about $\Sigma_p$ as defined.}
 
 \emily[inline]{
 
