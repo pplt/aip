@@ -16,6 +16,7 @@ syntax: glob
 *.bib
 *.dropbox
 *.png
+*.jpg
 _region_.tex
 *.dvi
 *.fmt
