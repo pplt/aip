@@ -23,6 +23,8 @@ TO DO LIST:
  \item[$\Box$] Decide on name for minimal coordinate.
  \item[$\Box$] Make sprout notation.
  \daniel[inline]{I saw that someone used $\operatorname{sp}$ for sprouts.  One possible issue is that we may want to reserve this for ``special points", which we had already proposed as a replacement for ``minimal corodinate".  Another things to keep in mind is that sprouting depends on $p \in \ZZ$, so this should also be taken into account.}
+ \pedro[inline]{Good point. How about simply ``$\operatorname{sprout}(A,\vv{u},p)$''? ``$\operatorname{sprout}_p(A,\vv{u})$''? ``$p\text{-sprout}(A,\vv{u})$"? I think the first is probably the most obvious and consistent with other notation in the paper.
+ }
  \item[$\Box$] Put in examples.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  \pedro[inline]{I'm trying $\graph$ for the notation, for ``sprouting graph''. Let's see if we like it.}  \daniel[inline]{Can someone explain why the graphs now start at the $0$-th level? }
@@ -968,8 +970,7 @@ $\val \IP_p(A, \vv{u}p^e)  \geq \IP_p(A, \vv{u}) \cdot p^e   \geq (\IP_p(B, \vv{
 
 \subsection{Small pairs}
 
-
-\pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\graph}$ graph?}
+\ \pedro[inline]{Postpone introduction of medium small points until immediately before definition of $\widehat{\graph}$ graph?}
 
 \begin{definition}
 A monomial pair $(A, \vv{u})$ is \emph{small} $\vv{u}$ is not greater than any column of $A$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one.
@@ -1394,8 +1395,9 @@ for every nonnegative integer $s$.
 \end{theorem}
 
 \begin{proof}
-   The first identity follows from \Cref{cor: iterated lifting,lem: upper bound for higher mu}, while the second follows from \Cref{prop: ineq for higher mus in terminal paths} and the first, together with the fact that $\mu(A_1, \vv{u}_1, p^{e+s}) \le \mu(A_1, \vv{u}_1, p^{e}) p^s+p^s-1$, a general fact about these invariants (see \cite[Proposition~2.2]{hernandez+etal.frobenius_examples})
+   The first identity follows from \Cref{cor: iterated lifting}(1) and \Cref{lem: upper bound for higher mu}, while the second follows from \Cref{cor: iterated lifting}(2) and the first, together with the fact that $\mu(A_1, \vv{u}_1, p^{e+s}) \le \mu(A_1, \vv{u}_1, p^{e}) p^s+p^s-1$, which follows from the second inequality in \Cref{natural bounds: C}.
    \pedro{Include in preliminaries?} \daniel{I think the bound you seek is in \Cref{natural bounds: C}}
+   \pedro{Thanks!}
 \end{proof}
 
 \alert[inline]{
