@@ -1,0 +1,24 @@
+syntax: glob
+*.pdf
+*\#
+*~
+*.aux
+*.blg
+*.fls
+*.gz
+*.orig
+*.m2
+*.nb
+*.brf
+*latexmk
+*.log
+*.out
+*.bib
+*.dropbox
+*.png
+_region_.tex
+*.dvi
+*.fmt
+*.ods
+Related papers + notes
+*.backup
