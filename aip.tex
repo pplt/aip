@@ -1457,7 +1457,13 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
       % \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
    \end{itemize}
 }
-\daniel[inline]{We can cheat and define the bound in $\Sigma_p$ to be $<$ instead of $\leq$.  Then, given any  $\vv{t} \in \sierp_p$ that is feasible for this modified program, take any (not necessarily non-terminating) expansion of $\vv{t}$ that realizes it as an element of $\sierp_p$, and truncate this expansion at the $e$-th term.  This truncation is $\geq \vv{0}$ and $\leq \vv{t}$ for all $e$, and so feasible for this new $\Sigma_p$.  If we then multiply this truncation by $p^e$, we should get something feasible for $\IP(A, \vv{u}, p^e)$.  Then, doing this for every $e$ would give the result.  Maybe this is cheating too much.  I will also think a bit about what to do about $\Sigma_p$ as defined.}
+\emily[inline]{
+Let $\Xi_p(A, \vv{u})$ be defined the same way as $\Sigma_p(A, \vv{u})$, but with $A \vv{t} \leq \vv{u}$ replaced with $A \vv{t} < \vv{u}$.  Since $\Xi_p(A, \vv{u})$ lives in the compact set  $\Sigma_p(A, \vv{u})$ and the objective function is continuous, we can define $\val \Xi_p := \sup_{\vv{j} \in \Xi_p}\norm{\vv{j}} < \infty$, and since 
+$\Sigma_p(A, \vv{u})$ is the closure of $\Xi_p(A, \vv{u})$, we have that $\val \Xi_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$. 
+Using the analog of Pedro's above argument, we directly see that $\val \Xi_p(A, \vv{u}) \leq \crit(A, \vv{u})$.  Now, for any $\vv{t} \in \Xi_p(A, \vv{u})$, fix a base $p$ expansion for $\vv{t}$ that satisfies the carrying condition in $\Xi_p(A, \vv{u})$, and let $\vv{t}^\star_q$ be the $q$-th truncation of $\vv{t}$ with respect to this truncation.  Then $q \vv{t}^\star_q \in \Pi_p(A, \vv{u}q)$ (note that it is possible that $\vv{t}^\star_q = \vv{t}$, so it is important that  $\leq$ was changed to $<$ ). Hence $\val \Pi_p(A, \vv{u}q) \geq \norm{\vv{t}^\star_q}$ for all $q$, and by dividing by $q$ and taking limits, we conclude that $\crit(A, \vv{q}) \geq \val \Xi_p(A, \vv{u} q)$.}
+
+
+
 
 \emily[inline]{
 
