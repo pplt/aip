@@ -98,7 +98,9 @@ A  monomial matrix $B$ is a \emph{successor} of $A$ if $B$ can be obtained from 
 
 \subsection{Linear programming}  
 
-Let $\mathbb{D}$ be either $\RR$ or $\ZZ$.  A \emph{linear program} $\Pi$ in $\mathbb{D}^n$ is an optimization problem in which one seeks to maximize a fixed linear \emph{objective function} $\RR^n \to \RR$ on the subset of $\mathbb{D}^n$ defined by a fixed system of linear inequalities.  We refer to this subset as the \emph{feasible set} of $\Pi$, and the inequalities as the \emph{constraints} of $\Pi$.  In the case that $\mathbb{D} = \ZZ$, we will refer to $\Pi$ as an \emph{integer linear program}, or simply \emph{integer program} for short.  
+Let $\mathbb{D}$ be either $\RR$ or $\ZZ$.  A \emph{linear program} $\Pi$ in $\mathbb{D}^n$ is an optimization problem in which one seeks to maximize a fixed linear \emph{objective function} $\RR^n \to \RR$ on the subset of $\mathbb{D}^n$ defined by a fixed system of linear inequalities.  We refer to this subset as the \emph{feasible set} of $\Pi$, and denote it $\feas \Pi$, 
+and we refer to the inequalities as the \emph{constraints} of $\Pi$.  
+In the case that $\mathbb{D} = \ZZ$, we will refer to $\Pi$ as an \emph{integer linear program}, or simply \emph{integer program} for short.  
 
 If $\mathbb{D} = \RR$, then the feasible set  will be a polyhedron in $\RR^n$, and if $\mathbb{D} = \ZZ$, then the feasible set will be the lattice points in a polyhedron in $\RR^n$.  
 
@@ -110,6 +112,13 @@ There are clearly multiple reasonable notions of equality for integer programs. 
 
 
 \newpage
+
+\section{Frobenius powers and critical exponents}
+
+\daniel[inline]{
+Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
+\[ \ideala^{[\lambda]} = \langle x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > \lambda \rangle.\]  This also tells us that every critical value of $\ideala$ is of the form $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{0}$. Whatever we include in this section should be enough to at least justify this observation.  When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
+}
 
 \section{Newton polyhedra}
 \label{newton-polyhedra: S}
