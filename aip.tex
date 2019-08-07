@@ -758,11 +758,11 @@ These finiteness properties above facilitate the following result.
 
 \begin{theorem}[Existence of finite sets of representatives]  
 \label{fsr-exist: T}
-Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\collapse{A} \vv{h} = \collapse{ A \vv{h}} = \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
 \begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
-\[ \collapse{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
+\[ \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)  = \collapse{ A(\fsr(A, \vv{u}, \vv{s}, q) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
 and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
 
