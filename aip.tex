@@ -463,6 +463,8 @@ $\IP(A, \vv{u})$ is the integer program in $\ZZ^n$ defined as follows:
 \end{enumerate}
 \end{definition}
 
+\emily[inline]{Note somewhere that the feasible set of $\IP$ is bounded:  This is used in the fractal linear program later on.}
+
 \begin{definition}
 The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt \IP(A, \vv{u}) ). \] 
 \end{definition}
@@ -1448,28 +1450,45 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \section{Fractal linear programs}
 
-\emily[inline]{Here, I am working to fill in the details of the proof I sketched out below.}
+\emily[inline]{Here, I am working to fill in the details of the proof I sketched out below, sticking with $[0,1]^n$ for now (but we can modify it at any point).}
+
 
 \begin{definition}
- The \emph{Sierpi\'nski $p$-gasket} in $\RR^n$ is the set $\sierp_p$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{d}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{d}_e} < p$ and 
+ The \emph{Sierpi\'nski $p$-gasket} in $[0,1]^n$ is the set $\sierp_p$ consisting of all points $\vv{t}\in [0,1]^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
  \[
-\vv{t} = \down{\vv{t}} + \frac{\vv{d_1}}{p} +\frac{\vv{d_2}}{p^2}+\cdots +\frac{\vv{d_e}}{p^e} + \cdots.  
+\vv{t} = \frac{\vv{t_1}}{p} +\frac{\vv{t_2}}{p^2}+\cdots +\frac{\vv{t_e}}{p^e} + \cdots.  
  \]
 \end{definition}
 
-We immediately see that every point in $\RR^n_{\geq 0}$ whose nonterminating base $p$ expansion adds without carrying is in $\sierp_p$ \emily{Have these notions been defined?}.
+
+From the definition, we immediately see that a point in the unit cube $[0,1]^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its digits \emph{add without carrying}.  However, this is not a complete description of $\sierp_p$.  For instance, if $p=2$, then $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ added to itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RR^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$.
+
+
+This description of the Sierpi\'nski $p$-gasket in terms of ``expansions'' is not hard to translate geometrically into its fractal description. 
+For instance, $\sierp_2$ in $[0,1]^2$ is the familiar Sierpi\'nski triangle:   
+The points $\vv{t}$ in the unit cube that have \emph{no} expansion $\vv{t} = \frac{\vv{t_1}}{2} +\frac{\vv{t_2}}{2^2}+\cdots +\frac{\vv{t_e}}{2^e} + \cdots$
+ for which all $\vv{t_e} \in \NN^2$, and $\norm{\vv{t_1}} < 2$ are precisely 
+the points lying above the line $x+y=1$; i.e., we are removing the triangle given by $x+y>1$.  
+At the next stage, the points for which there are no expansion for which 
+$\norm{\vv{t_1}} < 2$ and  $\norm{\vv{t_2}} < 2$ further removes the similar triangle of points $(x,y)$ with $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$, and iteratively, the stages can be described analogously.
+Notice, in particular, that since they can be realized by removing a union of open sets from $[0,1]^n$, all $\sierp_p$ are compact.  
+
+
+
+
+
 
 The critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
-In order to make this relation concrete, we consider the following optimization problem, which essentially adds an ``arithmetic constraint'' to a linear program. 
+Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
+the linear program $\LP(A, \vv{u})$; we call this a \emph{fractal linear program}.
 
 \begin{definition}
-We define the \emph{fractal linear program} $\Sigma_p(A, \vv{u})$ in $\RR^n$ to be the optimization program with feasible set consisting of all $\vv{t} \in \RR^n$ satisfying the constraints $A\vv{t} <  \vv{u}$ and $\vv{t}\in \sierp_p$, with respect to maximizing $\norm{\vv{t}}$.
+The fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{k}\mapsto \norm{\vv{k}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
 \end{definition}
 
-Notice that $\feas \Sigma_p(A, \vv{u}) = \feas \IP(A, \vv{u}) \cap \sierp_p$.
-By refining the integer program $\IP(A, \vv{u})$ in this way, we can provide a 
-
-
+\begin{remark}
+The feasible set of $\Sigma_p(A, \vv{u})$ is the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket, and since this feasible set is compact, the program $\Sigma_p(A, \vv{u})$ has a nonempty optimal set.
+\end{remark}
 
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
