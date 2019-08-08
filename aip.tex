@@ -1448,6 +1448,35 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \section{Fractal linear programs}
 
+\emily[inline]{Here, I am working to fill in the details of the proof I sketched out below.}
+
+\begin{definition}
+ The \emph{Sierpi\'nski $p$-gasket} in $\RR^n$ is the set $\sierp_p$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{d}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{d}_e} < p$ and 
+ \[
+\vv{t} = \down{\vv{t}} + \frac{\vv{d_1}}{p} +\frac{\vv{d_2}}{p^2}+\cdots +\frac{\vv{d_e}}{p^e} + \cdots.  
+ \]
+\end{definition}
+
+We immediately see that every point in $\RR^n_{\geq 0}$ whose nonterminating base $p$ expansion adds without carrying is in $\sierp_p$ \emily{Have these notions been defined?}.
+
+The critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
+In order to make this relation concrete, we consider the following optimization problem, which essentially adds an ``arithmetic constraint'' to a linear program. 
+
+\begin{definition}
+We define the \emph{fractal linear program} $\Sigma_p(A, \vv{u})$ in $\RR^n$ to be the optimization program with feasible set consisting of all $\vv{t} \in \RR^n$ satisfying the constraints $A\vv{t} <  \vv{u}$ and $\vv{t}\in \sierp_p$, with respect to maximizing $\norm{\vv{t}}$.
+\end{definition}
+
+Notice that $\feas \Sigma_p(A, \vv{u}) = \feas \IP(A, \vv{u}) \cap \sierp_p$.
+By refining the integer program $\IP(A, \vv{u})$ in this way, 
+
+
+
+\begin{proposition}  
+Given a monomial pair $(A, \vv{u})$, we have that 
+\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
+\end{proposition}
+
+
 \pedro[inline]{
    OUTLINE:
    \begin{itemize}
