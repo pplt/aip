@@ -1225,7 +1225,7 @@ We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i \cdot p^{e-i}$ is
 tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \cdot p^{e-i} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.  To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.  However,  \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and hence, we must only show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
 
 To do so,  recall that our choice of $\vv{s}_1 \in \mc(A_1, \vv{u}_1)$ allows us to express $\vv{u}_1$ as 
-$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the special denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to 
+$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the special denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to 
 %
 \begin{equation}
 \label{target-inequality: e}
@@ -1436,8 +1436,7 @@ with equality if $A$ is the monomial matrix associated to a monomial ideal that 
 \begin{proof}
 By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$ of the Newton polyhedron $\N$ associated to $A$.  Suppose that $A$ has $d$ rows, and let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along $\O$.  
 
-If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, \Cref{collapse of Newton polyhedron: L}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron associated to $B$.  Therefore,
-\[ \ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}} \] according to \Cref{FT descriptions: P}.
+If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: L}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron associated to $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}}.\]
 
 Thus, it suffices to show that $\iprod{\collapse{\vv{a}}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\vv{a}$ guarantees that the inner product of $\collapse{\vv{a}}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\vv{a}}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
 which allows us to conclude that \[ \iprod{\collapse{\vv{a}}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
