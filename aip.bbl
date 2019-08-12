@@ -5,7 +5,7 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{BMS08}
+\begin{thebibliography}{HTW18}
 
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
@@ -16,5 +16,10 @@ M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
 L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
   respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
   (1902), 378--384.
+
+\bibitem[HTW18]{hernandez+etal.frobenius_powers}
+D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers},
+  preprint, \href{https://arxiv.org/abs/1802.02705}{arXiv:1802.02705
+  [math.AC]}, 2018.
 
 \end{thebibliography}
