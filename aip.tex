@@ -544,8 +544,8 @@ The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt
 
 \begin{definition}
 \label{tail: D}
-Suppose that $\lambda \in \QQ$ is nonnegative and $q \in \ZZ$ is positive.   If $\lambda = \frac{a}{b}$ for some \emph{positive} integers $a$ and $b$, and we then define\footnote{It is clear that this expression depends only on $\lambda$, but not on the integers $a$ and $b$.}
-\[ \tail{\lambda}_q := \frac{ \lpr{aq}{b}}{b}. \] 
+Suppose that $\lambda \in \QQ$ is nonnegative and $q \in \ZZ$ is positive.   If $\lambda = \frac{a}{b}$ for some \emph{positive} integers $a$ and $b$, then we define\footnote{It is clear that this expression depends only on $\lambda$, but not on the integers $a$ and $b$.}
+\[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \] 
 %
 We set $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ satisfies $\vv{s} \geq \vv{0}$, then we define $\tail{\vv{s}}_q$ to be the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
@@ -590,10 +590,8 @@ Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{
 If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
 \end{theorem}
 
-\begin{proof}  \Cref{tail-basics: R} tells us that if $\vv{t} = \vv{s} - (1/q) \cdot {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates.  In fact, \Cref{tail-basics: R} also allows us to take $\vv{t}$ in \Cref{less  than u: L} to see that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
+\begin{proof}  \Cref{tail-basics: R} tells us that if $\vv{t} = \vv{s} - (1/q) {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates.  In fact, \Cref{tail-basics: R} also allows us to apply \Cref{less  than u: L} with $\vv{t}$ as defined here to see that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
 \end{proof}
-
-
 
 %To clarify the statements of the results that follow, we fix the following notation.
 
@@ -624,21 +622,21 @@ If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s
 %
 %Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
 
-\emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
-\daniel[inline]{I'm giving this a shot below.}
+%\emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
+%\daniel[inline]{I'm giving this a shot below.}
 
 \begin{remark}[Comparisons with canonical feasible points] 
 \label{comparison: R}
-Adopt the context of \Cref{canonical-feasible: T}, and fix an arbitrary point $\vv{k} \in \feas \IP(A, \vv{u}, q)$.  Our goal here is to describe some natural constraints on the difference 
+Adopt the context of \Cref{canonical-feasible: T}, and fix a point $\vv{k}$ that is feasible for $\IP = \IP(A, \vv{u}, q)$.    
+
+Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the feasible point  described in \Cref{canonical-feasible: T}.  Toward this, set 
+%
 \[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]   
-between $\vv{k}$, and the feasible point $\vv{s}q-\tail{\vv{s}}_q$ described in \Cref{canonical-feasible: T}.
+%
+and, let $\collapse{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  
 
 
-Towards this, let $\collapse{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  Our choice $\vv{k}$ guarantees that $A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}, and inequality is preserved by collapses, it follows that
-%
-\[ \collapse{A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h})} = \collapse{A \vv{k}}  < \collapse{\vv{u}}q = \collapse{A \vv{s}q + \vv{w}q} = \collapse{A \vv{s}q} \] 
-%
-from which it follows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$. Furthermore, our choice of $\vv{k}$ also guarantees that $\vv{k} \geq 0$, and so $\vv{h} \geq - \vv{s}q + \tail{\vv{s}}_q$.  In particular, the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero.
+Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$, where the last bound follows from the nonnegativity constraint of $\IP$.  The definition of $\vv{h}$ and constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.  Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$.
 \end{remark}
 
 
@@ -652,7 +650,7 @@ A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \begin{enumerate}
 \item A monomial pair $(A, \vv{u})$.
 \item A rational minimal coordinate $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.
-\item An integer $q>0$.
+\item A positive integer $q$.
 \end{enumerate}
 \end{definition}
 
@@ -1582,6 +1580,9 @@ $\crit(A, \vv{u}) \geq \val \Xi_p(A, \vv{u} q)$.}
       \end{pmatrix}
    \]
 }
+
+\daniel[inline]{These look cool!  What are the orange regions?  Areas that you know for sure contain the optimal set?  Also, I've seen some pictures of Sierpinski gaskets when $n=3$.  I suspect that this might be possible to do in Mathematica, but I also wouldn't be surprised if it were hard.  If this were possible, to we would also still need to intersect with a polytope to illustrate an AIP with $n=3$.  This may not be reasonable, or even possible.}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=.48\textwidth]{Pictures/ex1_char2.pdf}\hskip .04\textwidth
