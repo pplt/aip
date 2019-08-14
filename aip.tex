@@ -548,7 +548,7 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \[ \mc(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \mc(\collapse{A}, \collapse{\vv{u}}).\] 
 \end{proof}
 
-
+\daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
 
 
 \newpage
@@ -763,8 +763,8 @@ We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for
 \newpage
 \begin{proposition}
 \label{uniform value: P}
-Given a list $(A, \vv{u}, \vv{s}, q)$ and point $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, the point 
-$\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$ whenever $q \gg 0$. 
+Consider a list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\ell$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\ell$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point 
+$\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$. 
 \end{proposition}
 
 \begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\denom \in \ZZ$ for $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
