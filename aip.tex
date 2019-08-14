@@ -1595,12 +1595,12 @@ Given a monomial pair $(A, \vv{u})$, we have that
 \end{proposition}
 
 \begin{proof}
-Let $\Sigma^\circ_p(A, \vv{u})$ be the fractal linear program defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with $A \vv{t} < \vv{u}$.  If we define the value of the program as the supremum of $\norm{\vv{k}}$ among all $\vv{k} \in \feas \Sigma^\circ_p(A, \vv{u})$, then $\val \Sigma^\circ_p(A, \vv{u}) < \infty$ since $\feas \Sigma^\circ_p(A, \vv{u}) \subseteq \feas \Sigma_p(A, \vv{u})$, and the latter set is compact.
+Let $\Sigma^\circ_p(A, \vv{u})$ be the optimization problem defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with the condition that $A \vv{t} < \vv{u}$.  If we define the value of $\Sigma^\circ_p(A, \vv{u})$ as the supremum of $\norm{\vv{k}}$ among all $\vv{k}$ in the feasible set of $\Sigma^\circ_p(A, \vv{u})$, then its value is finite since $\feas \Sigma^\circ_p(A, \vv{u}) \subseteq \feas \Sigma_p(A, \vv{u})$, and the latter set is compact.
 
-Moreover, given a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in the feasible set of $\Sigma^\circ_p(A, \vv{u})$,
-since $A \vv{s}_e < \vv{u}$ for all $e$, 
-their limit $\vv{s}$ satisfies $A \vv{s} \leq \vv{u}$.  
-Hence the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ 
+the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ 
+
+\emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
+
 
 This, and the fact that the objective function is continuous, tell us that $\val \Sigma^\circ_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
 
