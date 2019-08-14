@@ -1595,30 +1595,22 @@ Given a monomial pair $(A, \vv{u})$, we have that
 \end{proposition}
 
 \begin{proof}
-Let $\Sigma^\circ_p(A, \vv{u})$ be the optimization problem defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with the condition that $A \vv{t} < \vv{u}$.  If we define the value of $\Sigma^\circ_p(A, \vv{u})$ as the supremum of $\norm{\vv{k}}$ among all $\vv{k}$ in the feasible set of $\Sigma^\circ_p(A, \vv{u})$, then its value is finite since $\feas \Sigma^\circ_p(A, \vv{u}) \subseteq \feas \Sigma_p(A, \vv{u})$, and the latter set is compact.
+Let $\Xi_p(A, \vv{u})$ be the fractal linear program defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with $A \vv{t} < \vv{u}$.  If we define the value of the program as the supremum of $\norm{\vv{k}}$ among all $\vv{k} \in \feas \Xi_p(A, \vv{u})$, then $\val \Xi_p(A, \vv{u}) < \infty$ since $\Xi_p(A, \vv{u})$ lives in the compact set $\Sigma_p(A, \vv{u})$.
+Moreover, since $\feas \Sigma_p(A, \vv{u})$ is the closure of $\feas\Xi_p(A, \vv{u})$ and the objective function is continuous, we have that $\val \Xi_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
+Hence it suffices to show that $\crit(A,\vv{u}) = \val\Xi_p(A,\vv{u})$. 
 
-the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ 
-
-\emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
-
-
-This, and the fact that the objective function is continuous, tell us that $\val \Sigma^\circ_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
-
-
-Therefore, it suffices to show that $\crit(A,\vv{u}) = \val \Sigma^\circ_p(A,\vv{u})$. 
-
-For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Sigma^\circ_p(A,\vv{u})$, so 
+For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Xi_p(A,\vv{u})$, so 
 \[
-\val\Sigma^\circ_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).
+\val\Xi_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).
  \]
-On the other hand, given $\vv{t} \in \feas\Sigma^\circ_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
-$\vv{t} = \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots$.  For $q = p^e$, let 
- $\vv{t}^\star_q = \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}$.  Then $q \cdot \vv{t}^\star_q \in \Pi_p(A, \vv{u}, q)$ for all $q$, so that $\val \Pi_p(A, \vv{u}, q) \geq q \norm{\vv{t}^\star_q}$. 
+On the other hand, given $\vv{t} \in \feas \Xi_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
+$\vv{t} = \frac{\vv{t_1}}{p} +\frac{\vv{t_2}}{p^2}+\cdots$.  For $q = p^e$, let 
+ $\vv{t}^\star_q = \frac{\vv{t_1}}{p} + \cdots + \frac{\vv{t_e}}{p^e}$.  Then $q \cdot \vv{t}^\star_q \in \Pi_p(A, \vv{u}, q)$ for all $q$, so that $\val \Pi_p(A, \vv{u}, q) \geq q \norm{\vv{t}^\star_q}$. 
  Dividing by $q$ and taking limits, we find that  
  \[
 \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \Pi_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
  \]
-Finally, since $\vv{t} \in \feas \Sigma^\circ_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \Sigma^\circ_p(A, \vv{u})$ as well, and equality holds. 
+Finally, since $\vv{t} \in \feas \Xi_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \Xi_p(A, \vv{u})$ as well, and equality holds. 
 \end{proof}
 
 
