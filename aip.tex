@@ -585,7 +585,7 @@ The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt
 
 \todo[inline]{Relate $\IP$ to $\nu$'s and leftovers of $\ideala^{[\nu]}$.}
 
-\subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\mc_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this construction, we call upon some basic notions from number theory.   
+\subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\mc_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this, we call upon some basic notions from modular arithmetic.   
 
 \begin{definition} If $m,n \in \ZZ$ are positive, then $\lpr{m}{n}$ is the \emph{least positive residue} of $m$ modulo $n$, i.e.,  and $m \equiv \lpr{m}{n} \bmod n$ and $1 \leq \lpr{m}{n} \leq n$.
 \end{definition}
@@ -1550,9 +1550,6 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \section{Fractal linear programs}
 
-\emily[inline]{Here, I am working to fill in the details of the proof I sketched out below, sticking with $[0,1]^n$ for now (but we can modify it at any point).}
-
-
 \begin{definition}
  The \emph{Sierpi\'nski $p$-gasket} in $[0,1]^n$ is the set $\sierp_p$ consisting of all points $\vv{t}\in [0,1]^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
  \[
@@ -1561,17 +1558,19 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \end{definition}
 
 
-From the definition, we immediately see that a point in the unit cube $[0,1]^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its digits \emph{add without carrying}.  However, this is not a complete description of $\sierp_p$.  For instance, if $p=2$, then $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ added to itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RR^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$.
+From the definition, we immediately see that a point in the unit cube $[0,1]^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.  However, this is not a complete description of $\sierp_p$.  For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $[0,1]^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$; i.e., in its \emph{terminating} expansion.
 
 
-This description of the Sierpi\'nski $p$-gasket in terms of ``expansions'' is not hard to translate geometrically into its fractal description. 
+This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
 For instance, $\sierp_2$ in $[0,1]^2$ is the familiar Sierpi\'nski triangle:   
 The points $\vv{t}$ in the unit cube that have \emph{no} expansion $\vv{t} = \frac{\vv{t_1}}{2} +\frac{\vv{t_2}}{2^2}+\cdots +\frac{\vv{t_e}}{2^e} + \cdots$
  for which all $\vv{t_e} \in \NN^2$, and $\norm{\vv{t_1}} < 2$ are precisely 
-the points lying above the line $x+y=1$; i.e., we are removing the triangle given by $x+y>1$.  
-At the next stage, the points for which there are no expansion for which 
-$\norm{\vv{t_1}} < 2$ and  $\norm{\vv{t_2}} < 2$ further removes the similar triangle of points $(x,y)$ with $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$, and iteratively, the stages can be described analogously.
-Notice, in particular, that since they can be realized by removing a union of open sets from $[0,1]^n$, all $\sierp_p$ are compact.  
+the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
+At the next stage, the points with no expansion satisfying
+$\norm{\vv{t_1}} < 2$ and  $\norm{\vv{t_2}} < 2$
+are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
+The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
+Notice, in particular, that since each can be realized by removing a union of open sets from $[0,1]^n$, all $\sierp_p$ are compact.  
 
 
 
@@ -1583,17 +1582,36 @@ Toward making this relation precise, consider the following optimization problem
 the linear program $\LP(A, \vv{u})$; we call this a \emph{fractal linear program}.
 
 \begin{definition}
-The fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{k}\mapsto \norm{\vv{k}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
+Given a monomial pair $(A, \vv{u})$, the fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{k}\mapsto \norm{\vv{k}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
 \end{definition}
 
 \begin{remark}
-The feasible set of $\Sigma_p(A, \vv{u})$ is the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket, and since this feasible set is compact, the program $\Sigma_p(A, \vv{u})$ has a nonempty optimal set.
+The feasible set of $\Sigma_p(A, \vv{u})$ is the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket, and so is compact.  Hence the fractal linear program $\Sigma_p(A, \vv{u})$ has a nonempty optimal set.
 \end{remark}
 
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
 \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
 \end{proposition}
+
+\begin{proof}
+Let $\Xi_p(A, \vv{u})$ be the fractal linear program defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with $A \vv{t} < \vv{u}$.  If we define the value of the program as the supremum of $\norm{\vv{k}}$ among all $\vv{k} \in \feas \Xi_p(A, \vv{u})$, then $\val \Xi_p(A, \vv{u}) < \infty$ since $\Xi_p(A, \vv{u})$ lives in the compact set $\Sigma_p(A, \vv{u})$.
+Moreover, since $\feas \Sigma_p(A, \vv{u})$ is the closure of $\feas\Xi_p(A, \vv{u})$ and the objective function is continuous, we have that $\val \Xi_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
+Hence it suffices to show that $\crit(A,\vv{u}) = \val\Xi_p(A,\vv{u})$. 
+
+For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Xi_p(A,\vv{u})$, so 
+\[
+\val\Xi_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).
+ \]
+On the other hand, given $\vv{t} \in \feas \Xi_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
+$\vv{t} = \frac{\vv{t_1}}{p} +\frac{\vv{t_2}}{p^2}+\cdots$.  For $q = p^e$, let 
+ $\vv{t}^\star_q = \frac{\vv{t_1}}{p} + \cdots + \frac{\vv{t_e}}{p^e}$.  Then $q \cdot \vv{t}^\star_q \in \Pi_p(A, \vv{u}, q)$ for all $q$, so that $\val \Pi_p(A, \vv{u}, q) \geq q \norm{\vv{t}^\star_q}$. 
+ Dividing by $q$ and taking limits, we find that  
+ \[
+\crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \Pi_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
+ \]
+Finally, since $\vv{t} \in \feas \Xi_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \Xi_p(A, \vv{u})$ as well, and equality holds. 
+\end{proof}
 
 
 \pedro[inline]{
@@ -1614,11 +1632,7 @@ Given a monomial pair $(A, \vv{u})$, we have that
       % \item In the case of a very small pair, sprouting and the lifting lemma allows us to explicitly construct an optimal point for  $\fip_p(A,\vv{u})$, when $\widehat{\graph}(A,\vv{u})$ is finite.
    \end{itemize}
 }
-\emily[inline]{
-Let $\Xi_p(A, \vv{u})$ be defined the same way as $\Sigma_p(A, \vv{u})$, but with $A \vv{t} \leq \vv{u}$ replaced with $A \vv{t} < \vv{u}$.  Since $\Xi_p(A, \vv{u})$ lives in the compact set  $\Sigma_p(A, \vv{u})$ and the objective function is continuous, we can define $\val \Xi_p := \sup_{\vv{j} \in \Xi_p}\norm{\vv{j}} < \infty$, and since 
-$\Sigma_p(A, \vv{u})$ is the closure of $\Xi_p(A, \vv{u})$, we have that $\val \Xi_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$. 
-Using the analog of Pedro's above argument, we directly see that $\val \Xi_p(A, \vv{u}) \geq \crit(A, \vv{u})$.  Now, for any $\vv{t} \in \Xi_p(A, \vv{u})$, fix a base $p$ expansion for $\vv{t}$ that satisfies the carrying condition in $\Xi_p(A, \vv{u})$, and let $\vv{t}^\star_q$ be the $q$-th truncation of $\vv{t}$ with respect to this expansion.  Then $q \vv{t}^\star_q \in \Pi_p(A, \vv{u}q)$ (note that it is possible that $\vv{t}^\star_q = \vv{t}$, so it is important that  $\leq$ was changed to $<$ ). Hence $\val \Pi_p(A, \vv{u}q) \geq q \norm{\vv{t}^\star_q}$ for all $q$, and by dividing by $q$ and taking limits, we conclude that $\crit(A, \vv{u}) \geq \norm{\vv{t}}$, and since $\vv{t}$ was arbitrary, 
-$\crit(A, \vv{u}) \geq \val \Xi_p(A, \vv{u} q)$.}
+
 
 \pedro[inline]{We could include a 2D example, with pictures, such as the following, where
    \[
