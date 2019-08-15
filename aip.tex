@@ -24,12 +24,12 @@ TO DO LIST:
     Do we have a consensus for ``special points''? If so, I'll go ahead and make the change. 
  }
  \item[$\Box$] Make sprout notation.
- \daniel[inline]{I saw that someone used $\operatorname{sp}$ for sprouts.  One possible issue is that we may want to reserve this for ``special points", which we had already proposed as a replacement for ``minimal corodinate".  Another things to keep in mind is that sprouting depends on $p \in \ZZ$, so this should also be taken into account.}
- \pedro[inline]{Good point. How about simply ``$\operatorname{sprout}(A,\vv{u},p)$''? ``$\operatorname{sprout}_p(A,\vv{u})$''? ``$p\text{-sprout}(A,\vv{u})$"? I think the first is probably the most obvious and consistent with other notation in the paper.
+ % \daniel[inline]{I saw that someone used $\operatorname{sp}$ for sprouts.  One possible issue is that we may want to reserve this for ``special points", which we had already proposed as a replacement for ``minimal corodinate".  Another things to keep in mind is that sprouting depends on $p \in \ZZ$, so this should also be taken into account.}
+ \pedro[inline]{How about simply ``$\operatorname{sprout}(A,\vv{u},p)$''? ``$\operatorname{sprout}_p(A,\vv{u})$''? ``$p\text{-sprout}(A,\vv{u})$"? I think the first is probably the most obvious and most consistent with other notation in the paper.
  }
  \item[$\Box$] Put in examples.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
- \pedro[inline]{I'm trying $\graph$ for the notation, for ``sprouting graph''. Let's see if we like it.}
+
  % \daniel[inline]{Can someone explain why the graphs now start at the $0$-th level? }
  % \pedro[inline]{
  %    I did that, because I think that's how we were thinking of them in our conversations in Lawrence.
@@ -39,10 +39,6 @@ TO DO LIST:
  \item[$\Box$] Fill in/rewrite preliminaries.
  \item[$\Box$] Reorganize and motivate the $\Pi$ and $\Theta$, and their connection, in Sections 5 and 6.
  \item[$\Box$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
- \pedro[inline]{
-    I started an outline as a separate section, at the end.
-    However, some of this could be introduced along with the AIPs.
- }
  \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  \item[$\Box$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
@@ -1582,7 +1578,7 @@ Toward making this relation precise, consider the following optimization problem
 the linear program $\LP(A, \vv{u})$; we call this a \emph{fractal linear program}.
 
 \begin{definition}
-Given a monomial pair $(A, \vv{u})$, the fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{k}\mapsto \norm{\vv{k}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
+Given a monomial pair $(A, \vv{u})$, the fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
 \end{definition}
 
 \begin{remark}
@@ -1600,14 +1596,21 @@ Given a monomial pair $(A, \vv{u})$, we have that
 the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ 
 
 \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
-
+\pedro[inline]{
+   Unfortunately, I think this is not true.
+   Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
+   Then $(\frac12,\frac12)$ is in $\feas\Sigma_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
+   So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
+}
 
 This, and the fact that the objective function is continuous, tell us that $\val \Sigma^\circ_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
 
 
 Therefore, it suffices to show that $\crit(A,\vv{u}) = \val \Sigma^\circ_p(A,\vv{u})$. 
 
-For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Sigma^\circ_p(A,\vv{u})$, so 
+For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Sigma^\circ_p(A,\vv{u})$,
+\pedro{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
+so 
 \[
 \val\Sigma^\circ_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).
  \]
