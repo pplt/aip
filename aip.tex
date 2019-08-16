@@ -1643,30 +1643,32 @@ Finally, since $\vv{t} \in \feas \fip_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{
    \[
       A =
       \begin{pmatrix}
-        1&11\\ 5&10\\ 9&8\\ 11&1
+         3&11\\ 11&2 \\ 5&10 \\ 2&0
       \end{pmatrix}
    \]
+   (I changed the example; I think in this new one it is easier to see the optimal points.)
 }
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.48\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
+  \includegraphics[width=.48\textwidth]{Pictures/ex4_char3.pdf}
+  \\[.04\textwidth]
+  \includegraphics[width=.48\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
+  \includegraphics[width=.48\textwidth]{Pictures/ex4_char7.pdf}
+\end{figure}
 
 \daniel[inline]{These look cool!  What are the orange regions?  Areas that you know for sure contain the optimal set?  Also, I've seen some pictures of Sierpinski gaskets when $n=3$.  I suspect that this might be possible to do in Mathematica, but I also wouldn't be surprised if it were hard.  If this were possible, to we would also still need to intersect with a polytope to illustrate an AIP with $n=3$.  This may not be reasonable, or even possible.}
 
 \pedro[inline]{
    The orange disks are centered around the optimal points (in each of those cases, there's only one point; that point coincides with the optimal point for the linear program in characteristic 5).
-   In the second picture, the optimal set is that entire line segment.
+   In the first and second picture, the optimal set is that entire line segment.
 
    I've created a picture of a 3D Sierpinski gasket in Mathematica, but I wasn't very happy with the result.
    But maybe things can be improved a bit.
    (See \texttt{Sierpinski3D.pdf} in the folder \texttt{aip/Pictures}.)
 }
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=.48\textwidth]{Pictures/ex1_char2.pdf}\hskip .04\textwidth
-  \includegraphics[width=.48\textwidth]{Pictures/ex1_char3.pdf}
-  \\[.04\textwidth]
-  \includegraphics[width=.48\textwidth]{Pictures/ex1_char5.pdf}\hskip .04\textwidth
-  \includegraphics[width=.48\textwidth]{Pictures/ex1_char7.pdf}
-\end{figure}
 
 \newpage
 
