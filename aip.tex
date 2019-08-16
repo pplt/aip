@@ -1586,11 +1586,6 @@ The feasible set of $\Sigma_p(A, \vv{u})$ sits inside the intersection of the fe
 Since this intersection is a compact set and objective function is continuous, the value of $\Sigma_p(A, \vv{u})$ is finite.
 \end{remark}
 
-\begin{proposition}  
-Given a monomial pair $(A, \vv{u})$, we have that 
-\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
-\end{proposition}
-
 \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
 \pedro[inline]{
    Unfortunately, I think this is not true.
@@ -1599,12 +1594,34 @@ Given a monomial pair $(A, \vv{u})$, we have that
    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
 }
 \emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
+\pedro[inline]{
+   ``Great minds think alike''?   :-)
+}
+
+\begin{proposition}  
+Given a monomial pair $(A, \vv{u})$, we have that 
+\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
+\end{proposition}
+
+\pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
+\emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
+\pedro[inline]{
+   Indeed!
+   That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
+   \begin{center}
+      \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
+   \end{center}
+   Instead, the ``holes'' get arbitrarily large:
+   \begin{center}
+      \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
+   \end{center}
+   Makes a lot more sense\ldots
+}
+
+
 
 \begin{proof}
-For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$,
-\pedro{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
-\emily{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
-so 
+For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so 
 \[
 \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
  \]
