@@ -1575,25 +1575,21 @@ Notice, in particular, that since each can be realized by removing a union of op
 
 The critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
 Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
-the linear program $\LP(A, \vv{u})$; we call this a \emph{fractal linear program}.
+the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$. 
 
 \begin{definition}
-Given a monomial pair $(A, \vv{u})$, the fractal linear program $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $A\vv{t}\le \vv{u}$ and $\vv{t}\in \sierp_p$.
+Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$.  The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
 \end{definition}
 
 \begin{remark}
-The feasible set of $\Sigma_p(A, \vv{u})$ is the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket, and so is compact.  Hence the fractal linear program $\Sigma_p(A, \vv{u})$ has a nonempty optimal set.
+The feasible set of $\Sigma_p(A, \vv{u})$ sits inside the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
+Since this intersection is a compact set and objective function is continuous, the value of $\Sigma_p(A, \vv{u})$ is finite.
 \end{remark}
 
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
 \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
 \end{proposition}
-
-\begin{proof}
-   Let $\Sigma^\circ_p(A, \vv{u})$ be the optimization problem defined the same way as $\Sigma_p(A, \vv{u})$, but with the condition $A \vv{t} \leq \vv{u}$ replaced with the condition that $A \vv{t} < \vv{u}$.  If we define the value of $\Sigma^\circ_p(A, \vv{u})$ as the supremum of $\norm{\vv{k}}$ among all $\vv{k}$ in the feasible set of $\Sigma^\circ_p(A, \vv{u})$, then its value is finite since $\feas \Sigma^\circ_p(A, \vv{u}) \subseteq \feas \Sigma_p(A, \vv{u})$, and the latter set is compact.
-
-the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ 
 
 \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
 \pedro[inline]{
@@ -1602,26 +1598,24 @@ the closure of $\feas\Sigma^\circ_p(A, \vv{u})$
    Then $(\frac12,\frac12)$ is in $\feas\Sigma_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
 }
+\emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
 
-This, and the fact that the objective function is continuous, tell us that $\val \Sigma^\circ_p(A, \vv{u}) = \val \Sigma_p(A, \vv{u})$.
-
-
-Therefore, it suffices to show that $\crit(A,\vv{u}) = \val \Sigma^\circ_p(A,\vv{u})$. 
-
-For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}q)$ is contained in $\feas \Sigma^\circ_p(A,\vv{u})$,
+\begin{proof}
+For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$,
 \pedro{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
+\emily{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
 so 
 \[
-\val\Sigma^\circ_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}q)}{q} = \crit(A,\vv{u}).
+\val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
  \]
-On the other hand, given $\vv{t} \in \feas\Sigma^\circ_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
+On the other hand, given $\vv{t} \in \feas\fip_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
 $\vv{t} = \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots$.  For $q = p^e$, let 
  $\vv{t}^\star_q = \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}$.  Then $q \cdot \vv{t}^\star_q \in \Pi_p(A, \vv{u}, q)$ for all $q$, so that $\val \Pi_p(A, \vv{u}, q) \geq q \norm{\vv{t}^\star_q}$. 
  Dividing by $q$ and taking limits, we find that  
  \[
 \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \Pi_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
  \]
-Finally, since $\vv{t} \in \feas \Sigma^\circ_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \Sigma^\circ_p(A, \vv{u})$ as well, and equality holds. 
+Finally, since $\vv{t} \in \feas \fip_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$ as well, and equality holds. 
 \end{proof}
 
 \pedro[inline]{We could include a 2D example, with pictures, such as the following, where
