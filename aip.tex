@@ -219,19 +219,30 @@ However, there is no analogue to \eqref{eq: recovering mus from crit}, unless $\
 
 In this subsection, we introduce some notation and gather some basic results concerning Frobenius powers and critical exponents of monomial ideals.
 Here, $R$ is a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_d$.
-We adopt conventional multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.
 
-\begin{remark}
+\begin{notation}
+   We adopt usual multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal} $\ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
+   When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
+   For instance, $\crit(\ideala,\diag(\vv{u}))$ will be simply denoted $\crit(\ideala,\vv{u})$.   
+   Likewise, we shall often replace a monomial ideal with its exponent matrix in our notation.
+%   For instance, if $\ideala$ is a monomial ideal of $R$, and $A$ is its exponent matrix, then $\crit(\ideala,\vv{u})$ will also be denoted $\crit(A,\vv{u})$.
+\end{notation}
+
+\begin{remark}\label{rmk: Frobenius powers of monomial ideals are monomial ideals}
    Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals. 
 \end{remark}
 
-\begin{notation}
-   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal} $\ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
-   When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
-   Likewise, we shall often replace a monomial ideal with its exponent matrix in our notation.
-   For instance, if $\ideala$ is a monomial ideal of $R$, and $A$ is its exponent matrix, then $\crit(\ideala,\diag(\vv{u}))$ will be denoted $\crit(A,\vv{u})$.
-\end{notation}
+\begin{proposition}
+   If $\ideala$ is a monomial ideal of $R$, then
+   \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
+   Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
+\end{proposition}
 
+\begin{proof}
+   The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
+   As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
+   The final conclusion follows from the fact that $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
+\end{proof}
 \daniel[inline]{
 Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
 \[ \ideala^{[\lambda]} = \langle x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > \lambda \rangle.\]  This also tells us that every critical value of $\ideala$ is of the form $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{0}$. Whatever we include in this section should be enough to at least justify this observation.  When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
