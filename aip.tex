@@ -218,7 +218,7 @@ However, there is no analogue to \eqref{eq: recovering mus from crit}, unless $\
 \subsection{Frobenius powers and critical exponents of monomial ideals}
 
 In this subsection, we introduce some notation and gather some basic results concerning Frobenius powers and critical exponents of monomial ideals.
-Here, $R$ is a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_d$.
+We work in a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_d$.
 
 \begin{notation}
    We adopt usual multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal} $\ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
@@ -233,7 +233,7 @@ Here, $R$ is a polynomial ring over a field of characteristic $p>0$, in the vari
 \end{remark}
 
 \begin{proposition}
-   If $\ideala$ is a monomial ideal of $R$, then
+   If $\ideala$ is a monomial ideal, then
    \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
    Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
 \end{proposition}
@@ -243,9 +243,18 @@ Here, $R$ is a polynomial ring over a field of characteristic $p>0$, in the vari
    As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
    The final conclusion follows from the fact that $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
 \end{proof}
+
+\begin{proposition}
+   If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
+\end{proposition}
+
+
 \daniel[inline]{
-Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
-\[ \ideala^{[\lambda]} = \langle x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > \lambda \rangle.\]  This also tells us that every critical value of $\ideala$ is of the form $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{0}$. Whatever we include in this section should be enough to at least justify this observation.  When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
+% Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
+% \[ \ideala^{[\lambda]} = \langle x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > \lambda \rangle.\]
+   % This tells us that every critical value of $\ideala$ is of the form $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{0}$.
+   % Whatever we include in this section should be enough to at least justify this observation.
+   When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
 }
 
 \section{Newton polyhedra}
