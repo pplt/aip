@@ -254,7 +254,11 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \begin{proof}
    Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$, for every $0 \le t <\lambda$.
    Since every Frobenius power of $\ideala$ is a monomial ideal, and intersections of monomial ideals are monomial ideals, there exists a monomial $x^\vv{v}$ that lies in $\ideala^{[t]}$ for every $0\le t < \lambda$, but does not lie in $\ideala^{[\lambda]}$.
-   \Cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
+   \pedro{
+      I think we need discreteness of crits here.
+      If it weren't for discreteness, $\bigcap_{t<\lambda} \ideala^{[t]}$ could equal $\ideala^{[\lambda]}$.
+   }
+   \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
 \end{proof}
 
 \daniel[inline]{
