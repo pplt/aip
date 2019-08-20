@@ -82,7 +82,7 @@ The \emph{Minkowski--Weyl Theorem} asserts that a subset $\mathcal{P}$ of $\RR^n
 Consequently, $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone. 
 
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
-\pedro{Is there a more explicit characterization for polyhedra/polytopes?}
+\pedro{Is there a more explicit/concrete characterization for polyhedra/polytopes?}
 For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
 \pedro[inline]{
@@ -235,7 +235,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
    Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals. 
 \end{remark}
 
-\begin{proposition}
+\begin{proposition}\label{prop: description of frobenius powers in terms of crits}
    If $\ideala$ is a monomial ideal, then
    \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
    Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
@@ -247,10 +247,15 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
    The final conclusion follows from the fact that $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
 \end{proof}
 
-\begin{proposition}
+\begin{corollary}
    If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
-\end{proposition}
+\end{corollary}
 
+\begin{proof}
+   Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$, for every $0 \le t <\lambda$.
+   Since every Frobenius power of $\ideala$ is a monomial ideal, and intersections of monomial ideals are monomial ideals, there exists a monomial $x^\vv{v}$ that lies in $\ideala^{[t]}$ for every $0\le t < \lambda$, but does not lie in $\ideala^{[\lambda]}$.
+   \Cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lamnda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
+\end{proof}
 
 \daniel[inline]{
 % Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
