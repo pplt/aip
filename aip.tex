@@ -1619,31 +1619,25 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \section{Fractal linear programs}
 
 \begin{definition}
- The \emph{Sierpi\'nski $p$-gasket} in $[0,1]^n$ is the set $\sierp_p$ consisting of all points $\vv{t}\in [0,1]^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
+   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_p$
+   \pedro{Should we include $n$ in the notation? E.g., $\sierp_p^n$?}
+   consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
+   \pedro{This seemed like a clean way to extend the definition to $\RRnn^n$, but if anyone has a better idea, feel free to modify it.}
  \[
-\vv{t} = \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots.  
+\vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).  
  \]
 \end{definition}
 
-
-From the definition, we immediately see that a point in the unit cube $[0,1]^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.  However, this is not a complete description of $\sierp_p$.  For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $[0,1]^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$; i.e., in its \emph{terminating} expansion.
-
+From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
+However, this is not a complete description of $\sierp_p$.
+For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
 
 This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
-For instance, $\sierp_2$ in $[0,1]^2$ is the familiar Sierpi\'nski triangle:   
-The points $\vv{t}$ in the unit cube that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$
- for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely 
-the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
-At the next stage, the points with no expansion satisfying
-$\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$
-are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
+For instance, the points of $\sierp_2$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:   
+The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
+At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
 The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
 Notice, in particular, that since each can be realized by removing a union of open sets from $[0,1]^n$, all $\sierp_p$ are compact.  
-
-
-
-
-
 
 The critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
 Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
