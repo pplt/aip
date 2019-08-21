@@ -1,5 +1,6 @@
 \documentclass[11pt]{amsart}
 \input{preamble.tex}
+\usepackage{subcaption}
 
 \begin{document}
 
@@ -1694,7 +1695,24 @@ Given a monomial pair $(A, \vv{u})$, we have that
 }
 
 \daniel[inline]{This is really cool!  We should include the gasket in the unit cube, and also the more general picture in an example.}
+\pedro[inline]{
+   We could include something like \Cref{fig: sierpinski 3-gasket}.
+}
 
+\begin{figure}[ht]
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Pictures/sierpinski3_a.pdf}
+  \caption{Sierpi\'nski 3-gasket in $[0,1]^2$}
+\end{subfigure}
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \includegraphics[width=.987\linewidth]{Pictures/sierpinski3_b.pdf}  
+  \caption{Sierpi\'nski 3-gasket in $[0,9]^2$}
+\end{subfigure}
+\caption{}
+\label{fig: sierpinski 3-gasket}
+\end{figure}
 
 \begin{proof}
 For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so 
