@@ -11,7 +11,7 @@
 \maketitle
 
 
-\newcommand{\denom}{\ell} %We should stick to the same notation for the denominator of a minimal coordinate.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
+\newcommand{\denom}{\ell} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
 
@@ -21,16 +21,26 @@ TO DO LIST:
  \item[$\CheckedBox$] Write essential statements/proofs.
  \item[$\Box$] Decide on name of paper.
  \emily[inline]{How about \emph{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}?}
- \item[$\Box$] Decide on name for minimal coordinate.
- \pedro[inline]{
-    Do we have a consensus for ``special points''? If so, I'll go ahead and make the change. 
- \daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.} }
- \item[$\Box$] Make sprout notation.
+\pedro[inline]{I like that!}
+ \item[$\CheckedBox$] Decide on name for minimal coordinate.
+\pedro[inline]{
+    Do we have a consensus for ``special points''? 
+} 
+\daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.
+}
+\pedro[inline]{
+   I've made the changes.
+   ``Special point for $(A,\vv{u})$'' sounds good to me.
+   For the notation, $\operatorname{sp}(A,\vv{u})$ aligns better with other notation we are using ($\ri$, $\rb$, $\opt$, \ldots), so that's what I've used; however, if anyone doesn't like it, please feel free to change it.
+}
+ 
+\item[$\CheckedBox$] Make sprout notation.
+\comment[inline]{Going with $\sprout(A,\vv{u},p)$}
  % \daniel[inline]{I saw that someone used $\operatorname{sp}$ for sprouts.  One possible issue is that we may want to reserve this for ``special points", which we had already proposed as a replacement for ``minimal corodinate".  Another things to keep in mind is that sprouting depends on $p \in \ZZ$, so this should also be taken into account.}
- \pedro[inline]{How about simply ``$\operatorname{sprout}(A,\vv{u},p)$''? ``$\operatorname{sprout}_p(A,\vv{u})$''? ``$p\text{-sprout}(A,\vv{u})$"? I think the first is probably the most obvious and most consistent with other notation in the paper.
- \emily[inline]{I like the first option.} \daniel[inline]{OK.  Let's adopt this then.}
- }
- \item[$\Box$] Put in examples.
+ % \pedro[inline]{How about simply ``$\operatorname{sprout}(A,\vv{u},p)$''? ``$\operatorname{sprout}_p(A,\vv{u})$''? ``$p\text{-sprout}(A,\vv{u})$"? I think the first is probably the most obvious and most consistent with other notation in the paper.
+ % \emily[inline]{I like the first option.} \daniel[inline]{OK.  Let's adopt this then.}
+ % }
+\item[$\Box$] Put in examples.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
 
  % \daniel[inline]{Can someone explain why the graphs now start at the $0$-th level? }
@@ -49,6 +59,7 @@ TO DO LIST:
  \item[$\Box$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?  
  \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
  \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
+ \pedro[inline]{Let's change to $\IP(A,\vv{u},q)$, then.}
 \end{enumerate}
 }
 
@@ -521,51 +532,45 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 \end{proof}
 
 
-\subsection{Minimal coordinates}
+\subsection{Special points}
 
-\ \daniel[inline]{The idea is that a minimal coordinate is a special kind of optimal point.  Maybe we should call it a \emph{distinguished optimal point}, or something similar (\emph{optimal coordinate}?), to emphasize this.  I am kinda worried about calling a point a coordinate.  The only time we need to distinguish between a minimal coordinate and optimal point is when the corresponding minimal face is not bounded.
-   \emily[inline]{special point?}
-   \pedro[inline]{I like ``special point''.}
-}
-
-
-\comment[inline]{Minimal coordinates are how we construct canonical solutions to the integer program $\IP(A, \vv{u}q)$;  see \Cref{canonical-feasible: T} for more details.}
+\comment[inline]{Special points are how we construct canonical solutions to the integer program $\IP(A, \vv{u}q)$;  see \Cref{canonical-feasible: T} for more details.}
 
 Technicalities that arise in future sections whenever $\mf(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
 
 
 \begin{definition}
 \label{mc: D} 
-Let $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{minimal coordinate} for $(A, \vv{u})$ if it satisfies the following conditions.
+Let $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.  
 \end{enumerate}
 
-The set of all such points is denoted $\mc(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\mc_{\QQ}(A, \vv{u})$.  
+The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.  
 \end{definition}
 
-%We see below that $\mc(A, \vv{u})$ and $\opt \LP(A, \vv{u})$ are equal, or close to equal.
+%We see below that $\sp(A, \vv{u})$ and $\opt \LP(A, \vv{u})$ are equal, or close to equal.
 
 \begin{proposition}  
-\label{opt versus mc: P}  If $\O = \mf(A, \vv{u})$ is bounded, then $\mc(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\mc(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
+\label{opt versus mc: P}  If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
 \end{proposition}
 
 \begin{proof}    
 If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.  Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
 
- The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a minimal coordinate.
+ The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
-We have just shown that $\mc(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the minimal coordinate constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.  
+We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.  
 \end{proof}
 
 
-\comment[inline]{An example in which these sets (the set of minimal coordinates, the optimal set, and the relative interior of the optimal set) all differ is commented out}
+\comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
-% where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the minimal coordinates of $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
+% where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the special points for $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
-\begin{definition}  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every pair $(A, \vv{u})$, there exists a point $\vv{s} \in \mc(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
+\begin{definition}  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
 \end{definition}
 
 \begin{theorem}  
@@ -576,14 +581,14 @@ Special denominators exist.
 
 \begin{proof}
    Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a pair $(A, \vv{u})$.
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\mc(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so there is always a vertex in this set with denominator~$\ell_{\circ}$.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so there is always a vertex in this set with denominator~$\ell_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.
    Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \ldots, \vv{e}_c \}$ for some $1 \leq c \leq d-1$, and fix \emph{positive} integers $d_1, \ldots, d_c$ that sum to $d-1$.
    As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq c$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
-   It then follows from the definition of minimal coordinate that the point
+   It then follows from the definition of special point that the point
    \[ \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_c \cdot  \vv{s}_c}{d-1}  \]
-   lies in $\mc_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.  
+   lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.  
 \end{proof}
 
 
@@ -596,7 +601,7 @@ Consider a monomial pair $(A, \vv{u})$.  If $\collapse{A}$ \textup(respectively,
 \begin{enumerate}
 \item $\mf(\collapse{A}, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
 \item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  
-\item Each minimal coordinate of $(A, \vv{u})$ is a minimal coordinate of $(\collapse{A}, \collapse{\vv{u}})$.
+\item Each special point for $(A, \vv{u})$ is a special point for $(\collapse{A}, \collapse{\vv{u}})$.
 \end{enumerate}
 \end{corollary}
 
@@ -606,7 +611,7 @@ Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the
 Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \] 
 %
 By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
-\[ \mc(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \mc(\collapse{A}, \collapse{\vv{u}}).\] 
+\[ \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).\] 
 \end{proof}
 
 \daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
@@ -635,10 +640,10 @@ The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt
 
 % \daniel[inline]{We ``solve" the program $\IP(A, \vv{u}q)$ as is done in the other paper, or as discussed at AIM.  We recall the rough outline below.
 % \begin{enumerate}
-% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many minimal coordinates, whereas in each of those other cases, there is a unique one.  In any case, we associate to each minimal coordinate for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: T}.
-% \item Step 2:  Fix a minimal coordinate for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
+% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many special points, whereas in each of those other cases, there is a unique one.  In any case, we associate to each special point for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}q)$.  This will be done in \Cref{canonical-feasible: T}.
+% \item Step 2:  Fix a special point for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
 % \item Step 3:  Study the finiteness properties of $\ip$.  This is done in this section, before the connection between $\IP$ and $\ip$ is discussed, since these finiteness properties of $\ip$ are called upon to tie down the connection with $\IP$.  The downside is that this order of things makes things here seem really unmotivated.
-% \item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of minimal coordinate we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
+% \item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of special point we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
 % \end{enumerate}
 % }
 
@@ -646,7 +651,7 @@ The \emph{image} of $\IP(A, \vv{u})$ is the set \[ \im \IP(A, \vv{u}) = A ( \opt
 
 \todo[inline]{Relate $\IP$ to $\nu$'s and leftovers of $\ideala^{[\nu]}$.}
 
-\subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\mc_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this, we call upon some basic notions from modular arithmetic.   
+\subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\sp_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this, we call upon some basic notions from modular arithmetic.   
 
 \begin{definition} If $m,n \in \ZZ$ are positive, then $\lpr{m}{n}$ is the \emph{least positive residue} of $m$ modulo $n$, i.e.,  and $m \equiv \lpr{m}{n} \bmod n$ and $1 \leq \lpr{m}{n} \leq n$.
 \end{definition}
@@ -668,11 +673,11 @@ Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\la
 
 
 \begin{lemma}
-   \label{less than u: L}  Suppose that $\vv{s}$ is a minimal coordinate for a pair $(A, \vv{u})$.
+   \label{less than u: L}  Suppose that $\vv{s}$ is a special point for a pair $(A, \vv{u})$.
    If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
-\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \mc(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
+\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \sp(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
 
 Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.  In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\rs(\O) \oplus \rs(\O)^{\perp}$.
 \end{proof}
@@ -696,7 +701,7 @@ Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{
 
 \begin{theorem}
 \label{canonical-feasible: T}
-If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
+If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
 \end{theorem}
 
 \begin{proof}  \Cref{tail-basics: R} tells us that if $\vv{t} = \vv{s} - (1/q) {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates.  In fact, \Cref{tail-basics: R} also allows us to apply \Cref{less  than u: L} with $\vv{t}$ as defined here to see that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
@@ -709,7 +714,7 @@ If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s
 %Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $\collapse{A}$ be the collapse of $A$ along $\O$.  With these conventions, $\collapse{A \vv{t}} = \collapse{A} \vv{t}$ for every $\vv{t} \in \RR^n$.    
 %\end{setup}
 %
-%\begin{remark}  The main upshot to working with the collapsed matrix $\collapse{A}$ is the following observation:  If $\vv{s} \in \mc(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
+%\begin{remark}  The main upshot to working with the collapsed matrix $\collapse{A}$ is the following observation:  If $\vv{s} \in \sp(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
 %\[ \collapse{A} \vv{s} = \collapse{A \vv{s}} = \collapse{\vv{u}}.\] 
 %\end{remark}
 
@@ -718,7 +723,7 @@ If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s
 %\subsection{A critical secondary linear program}  We continue to adopt the notation in \Cref{collapse: S}.  Below, we define and study a secondary integer program that will play a key role in our solution of $\IP(A, \vv{u}q)$ for $q \gg 0$.
 %
 %
-%\begin{definition} If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
+%\begin{definition} If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
 %\[ \ip_q(A, \vv{u}, \vv{s}) \] 
 %is  the integer program  in $\ZZ^n$ is defined as follows:
 %\begin{enumerate}
@@ -758,7 +763,7 @@ Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$, where the last bound follows
 A monomial \emph{list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \begin{enumerate}
 \item A monomial pair $(A, \vv{u})$.
-\item A rational minimal coordinate $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.
+\item A rational special point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \item A positive integer $q$.
 \end{enumerate}
 \end{definition}
@@ -828,7 +833,7 @@ Consider a list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\ell$ for the speci
 $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u},q)$. 
 \end{proposition}
 
-\begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\denom \in \ZZ$ for $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
+\begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\denom \in \ZZ$ for $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
 
 Let $\collapse{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$, and write  \[ \vv{u} = A \vv{s} + \vv{w} \] for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.  As $\vv{u}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.  
 
@@ -846,7 +851,7 @@ After projecting to $\rs(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} beco
 
 In summary, we have just shown that $\vv{k}$ is feasible for $\IP(A, \vv{u}q)$, and so 
 \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip \] 
-where above we have used that $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.  To establish the optimality of $\vv{k}$, it remains to show that the $\val \IP$ equals this lower bound.  However, this is a consequence of \Cref{comparison: P}.
+where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.  To establish the optimality of $\vv{k}$, it remains to show that the $\val \IP$ equals this lower bound.  However, this is a consequence of \Cref{comparison: P}.
 \end{proof}
 
 
@@ -900,9 +905,9 @@ Potentially move it up before \Cref{bounded value: L}.}
 If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{lemma}
 
-\begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \mc_{\QQ}(A ,\vv{u})$.  
+\begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.  
 
-Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
 \begin{corollary} 
@@ -945,7 +950,7 @@ Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer. 
 
 \begin{corollary}  
 \label{uniform value and image: C}
-Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
+Given a monomial matrix $A$, there exists an integer $\beta$ satisfying the following condition\textup:  If $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
 %
 \[ \val \IP(A, \vv{u}q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
 %
@@ -955,7 +960,7 @@ where $\collapse{A}$ \textup(respectively, $\collapse{X}$\textup) is the collaps
 \end{corollary}
 
 \begin{proof}
-Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
+Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
 
 The asserted value of $\IP(A, \vv{u}q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $\collapse{A} \vv{h} \in \im \ip$.  Furthermore, as $\collapse{A} \vv{s} = \collapse{\vv{u}}$, 
 
@@ -977,11 +982,11 @@ In this subsection, we study the quantities appearing in \Cref{uniform value and
 \label{independence: C} Fix a pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
 \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
 \[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \] 
-do not depend on  $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.  
+do not depend on  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  
 \end{corollary}
 
 \begin{proof}
-Fix $\vv{s}$ and $\vv{s}'$ in $\mc_{\QQ}(A, \vv{u})$, as well as a common denominator $\denom$ for these points.  As these quantities clearly depend only on $q \bmod \denom$, it suffices to show that $\delta(A, \vv{u}, \vv{s}, q) = \delta(A, \vv{u}, \vv{s}', q)$  and $ \Delta(A, \vv{u}, \vv{s}, q) = \Delta(A, \vv{u}, \vv{s}', q)$ whenever $q \gg 0$.  However, this is follows from \Cref{uniform value and image: C}.
+Fix $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(A, \vv{u})$, as well as a common denominator $\denom$ for these points.  As these quantities clearly depend only on $q \bmod \denom$, it suffices to show that $\delta(A, \vv{u}, \vv{s}, q) = \delta(A, \vv{u}, \vv{s}', q)$  and $ \Delta(A, \vv{u}, \vv{s}, q) = \Delta(A, \vv{u}, \vv{s}', q)$ whenever $q \gg 0$.  However, this is follows from \Cref{uniform value and image: C}.
 \end{proof}
 
 \begin{definition}  
@@ -990,10 +995,10 @@ Fix $\vv{s}$ and $\vv{s}'$ in $\mc_{\QQ}(A, \vv{u})$, as well as a common denomi
 Given a pair $(A, \vv{u})$ and positive integer $q$, we set 
  \[ \delta(A, \vv{u}, q) = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
 \[\Delta(A, \vv{u}, q) = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
-where  $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, and $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$. 
+where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$. 
 \end{definition}
 
-%\begin{remark} Above, we referred to \Cref{uniform value and image: C} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one. 
+%\begin{remark} Above, we referred to \Cref{uniform value and image: C} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one. 
 %\end{remark}
 
 \begin{lemma}  
@@ -1008,7 +1013,7 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \end{lemma}
 
 \begin{proof} 
-Fix a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \vv{e}_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\vv{e}_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \vv{e}_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\] 
+Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \vv{e}_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\vv{e}_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \vv{e}_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\] 
 We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
 \end{proof}
 
@@ -1030,23 +1035,23 @@ This follows immediately from \Cref{finitely many secondary programs: L} and \Cr
 \begin{remark}  
 \label{comparing deltas: R}
 If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A, \vv{u})$ along $\O = \mf(A, \vv{u})$, then  
-\[ \delta(A, \vv{u}, q) = \delta(\collapse{A}, \collapse{\vv{u}}, q)  \text{ and }  \Delta(A, \vv{u},q) = \Delta(\collapse{A}, \collapse{\vv{u}}, q)\] for all integers $q>0$ (e.g., this follows from \Cref{collapsed aux program: R}).   Consequently, one may replace the point in $\mc_{\QQ}(A, \vv{u})$ in \Cref{independence: D}   with one in $\mc_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the value of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
+\[ \delta(A, \vv{u}, q) = \delta(\collapse{A}, \collapse{\vv{u}}, q)  \text{ and }  \Delta(A, \vv{u},q) = \Delta(\collapse{A}, \collapse{\vv{u}}, q)\] for all integers $q>0$ (e.g., this follows from \Cref{collapsed aux program: R}).   Consequently, one may replace the point in $\sp_{\QQ}(A, \vv{u})$ in \Cref{independence: D}   with one in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the value of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
 \end{remark}
 
 \begin{remark}
 \label{pair periodicity: R}
-If $(A, \vv{u})$ is fixed, then $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ are periodic in $q$.  Indeed, if $\denom$ is the denominator of some point in $\mc_{\QQ}(A, \vv{u})$, then 
+If $(A, \vv{u})$ is fixed, then $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ are periodic in $q$.  Indeed, if $\denom$ is the denominator of some point in $\sp_{\QQ}(A, \vv{u})$, then 
 \begin{equation}
 \label{periodicity: e}
  \delta(A, \vv{u}, p) = \delta(A, \vv{u}, q)  \text{ and } \Delta(A, \vv{u}, p) = \Delta(A, \vv{u}, q)
-\end{equation} whenever $p \equiv q \bmod \denom$.    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $\denom$ is the denominator of a point in $\mc_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
+\end{equation} whenever $p \equiv q \bmod \denom$.    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $\denom$ is the denominator of a point in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
 \end{remark}
 
 \begin{remark}
 \label{uniform periodicity: R}
  If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.  
  
- Indeed,  this follows from the observation that if $\denom$ is as in \Cref{uniform denominators for mc:  T}, then we may compute  $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ for all pairs $(A, \vv{u})$ and integers $q>0$ in terms of a point in $\mc_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+ Indeed,  this follows from the observation that if $\denom$ is as in \Cref{uniform denominators for mc:  T}, then we may compute  $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ for all pairs $(A, \vv{u})$ and integers $q>0$ in terms of a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
 \end{remark}
 
 We record another application of \Cref{uniform denominators for mc:  T} below.
@@ -1058,7 +1063,7 @@ Given a monomial matrix $A$, there exists a integer $\beta$ with the following p
 \end{theorem}
 
 \begin{proof}  
-\Cref{uniform denominators for mc:  T}  tells us that once $A$ has been fixed, there exists a positive integer $D$ such that for every pair $(A, \vv{u})$, there exists a point in $\mc_{\QQ}(A, \vv{u})$ with denominator $D$.  Therefore, if $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: C}, then we may take $\beta = D \beta_{\circ}$.  
+\Cref{uniform denominators for mc:  T}  tells us that once $A$ has been fixed, there exists a positive integer $D$ such that for every pair $(A, \vv{u})$, there exists a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $D$.  Therefore, if $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: C}, then we may take $\beta = D \beta_{\circ}$.  
 \end{proof}
 
 The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform uniform value and image: T}.
@@ -1167,7 +1172,7 @@ Given a monomial matrix $A$, there exists $\delta = \delta(A)$ such that $\ft{A}
 
 \begin{proof}   Fix a small pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$.  If $\epsilon$ is the number of columns of $A$ lying on $\O$, then it suffices to prove that $\ft{A}{\vv{u}} \leq \epsilon$.
 
-By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s} \in \mc(A,\vv{u})$, then $\norm{\vv{s}} = \ft{A}{\vv{u}} > \epsilon$, and as $\vv{s}$ has at most $\epsilon$ nonzero entries, some entry of $\vv{s}$ must be greater than $1$.  Thus, $A \vv{s}$ is greater than some column of $A$.  However, our choice of $\vv{s}$ also implies that $A \vv{s} \leq \vv{u}$, which then implies that $\vv{u}$ is greater than some column of $A$, contradicting the smallness of $(A, \vv{u})$.
+By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s} \in \sp(A,\vv{u})$, then $\norm{\vv{s}} = \ft{A}{\vv{u}} > \epsilon$, and as $\vv{s}$ has at most $\epsilon$ nonzero entries, some entry of $\vv{s}$ must be greater than $1$.  Thus, $A \vv{s}$ is greater than some column of $A$.  However, our choice of $\vv{s}$ also implies that $A \vv{s} \leq \vv{u}$, which then implies that $\vv{u}$ is greater than some column of $A$, contradicting the smallness of $(A, \vv{u})$.
 \end{proof}
 
 \begin{lemma}
@@ -1226,7 +1231,7 @@ If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}p^e)
 \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}
 \end{theorem}
 
-\begin{proof} Suppose that $(A, \vv{u})$ is small, but not very small, and fix $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, so that $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$.   
+\begin{proof} Suppose that $(A, \vv{u})$ is small, but not very small, and fix $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, so that $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$.   
 Set  $\vv{t} = \vv{s} / \norm{\vv{s}}$ and note that $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  
 
 Next, fix an index $i$ such that the $i$-th coordinate of $\vv{s}$ is positive.  As $\tail{\vv{t}}_p$ obtains only finitely many values as $p$ varies, our choice of $i$ guarantees that 
@@ -1342,7 +1347,7 @@ Given a monomial matrix $A$ and a prime $p$, define
 %Once $A$ is fixed,
 %\begin{itemize}
 % \item $\bigcup_{e=1}^\infty \graph^e(A,p)$ is finite.
-% \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \graph^e(A,p)$, there exists $\vv{s} \in \mc(B, \vv{v})$ with denominator $D$. 
+% \item There exist $D$ such that for all $e \geq 1$ and $(B, \vv{v}) \in \graph^e(A,p)$, there exists $\vv{s} \in \sp(B, \vv{v})$ with denominator $D$. 
 % \item $\mathbb{O}(A)$ is finite, and $\bigcup_{(B, \vv{v}) \in \graph^e(A), \text{ some } e} \mathbb{O}(B, \vv{v}, \vv{s}, p)$ is finite.
 % \item Add the last point
 %\end{itemize}
@@ -1370,7 +1375,7 @@ Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
 
 The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which \eqref{p-big-1} and \eqref{p-big-2} hold whenever $p > \beta$.  In what follows, we assume that $p$ is chosen so that these conditions are satisfied.
 
-Now, consider a finite path \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] in $\graph_p(A)$.  For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \mc(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that $\vv{u}_{i+1} \in \Delta(A_i, \vv{u}_i, q) = A_{i+1} \tail{\vv{s}_i}_p - \im  \ip( A_i, \vv{u}_i, \vv{s}_i, p)$.  Theorem \Cref{fsr-exist: T}, and our choice of $\fsr$, then allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that 
+Now, consider a finite path \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] in $\graph_p(A)$.  For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that $\vv{u}_{i+1} \in \Delta(A_i, \vv{u}_i, q) = A_{i+1} \tail{\vv{s}_i}_p - \im  \ip( A_i, \vv{u}_i, \vv{s}_i, p)$.  Theorem \Cref{fsr-exist: T}, and our choice of $\fsr$, then allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that 
 $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.  Finally, we take $\vv{h}_e$ to be an arbitrary point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
 
@@ -1390,7 +1395,7 @@ We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i \cdot p^{e-i}$ is
 %
 tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \cdot p^{e-i} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.  To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.  However,  \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and hence, we must only show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
 
-To do so,  recall that our choice of $\vv{s}_1 \in \mc(A_1, \vv{u}_1)$ allows us to express $\vv{u}_1$ as 
+To do so,  recall that our choice of $\vv{s}_1 \in \sp(A_1, \vv{u}_1)$ allows us to express $\vv{u}_1$ as 
 $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the special denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to 
 %
 \begin{equation}
@@ -1602,7 +1607,7 @@ By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \m
 
 If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: L}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron associated to $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}}.\]
 
-Thus, it suffices to show that $\iprod{\collapse{\vv{a}}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \mc_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\vv{a}$ guarantees that the inner product of $\collapse{\vv{a}}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\vv{a}}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
+Thus, it suffices to show that $\iprod{\collapse{\vv{a}}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\vv{a}$ guarantees that the inner product of $\collapse{\vv{a}}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\vv{a}}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
 which allows us to conclude that \[ \iprod{\collapse{\vv{a}}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
 
 We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^d$.  Furthermore, the positivity of the grading implies that the point $\vv{a} \in \RR^d$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^d$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\vv{a} = \collapse{\vv{a}}$ with another point must be, in fact, an equality.  The details are left to the reader.
@@ -1748,7 +1753,7 @@ Finally, since $\vv{t} \in \feas \fip_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{
  \item Does a medium-small pair always have a medium-small sprout?
  We think the answer is NO:  
  Let $A = \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix}$ and $\vv{u} = (2,2)$, so that 
-$(A, \vv{u})$ is small but not very small.  Then the unique minimal coordinate is $\vv{s} = (2/3,2/3)$, so that if $p=2 \bmod 3$, then $[\vv{s}]_p = (2[p\%3]/3, 2[p\%3]/3) = (1/3,1/3)$. 
+$(A, \vv{u})$ is small but not very small.  Then the unique special point is $\vv{s} = (2/3,2/3)$, so that if $p=2 \bmod 3$, then $[\vv{s}]_p = (2[p\%3]/3, 2[p\%3]/3) = (1/3,1/3)$. 
 
 The value of $\Theta(A, \vv{u}, \vv{s}, p)$ is $0$
 using the bounds in this paper, and from this, we can find that the only element of $\Delta(A, \vv{u}, \vv{s}, p)$ is $(1,1)$, which is very small. 
@@ -1857,7 +1862,7 @@ There exists $\beta = \beta(A)$ with the following property\textup:  For all $\v
 Pick an integer $D$ relative to $A$ as in 
 \Cref{uniform denominators for mc:  T}, and sets $\orep(A, \vv{u}, \vv{s},q)$ as in \Cref{orep: D}. 
 Choose $p \gg 0$ such that $p/D$ overwhelms any entry of any point in any $\orep(A, \vv{u}, \vv{s},q)$, and for which $p/D$ is greater than any coordinate of any point in $A(\orep(A))$, where $\orep(A)$ is as in \Cref{finiteness of optimal reps: R}.
-Moreover, pick $\vv{s} \in \mc(A,\vv{u})
+Moreover, pick $\vv{s} \in \sp(A,\vv{u})
 $ with denominator $D$ such that 
 \[
  \Delta(A, \vv{u}, q) = \collapse{A}[\vv{s}]_q - \im \ip(A, \vv{u}, q).
@@ -1948,7 +1953,7 @@ that is eventually periodic, there exists an integer $\beta$ such that
 is optimal for $\IP_p(A, \vv{u}p^e)$ for every $e \geq 1$ whenever $p \geq \beta$ and $p \equiv r \bmod D$.
 \end{proposition}
 
-\begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a minimal coordinate for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\graph_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
+\begin{proof}   Throughout this proof, $p$ will always be a prime integer congruent to $r$ modulo $D$.  As such, the point $\vv{s}_c \cdot p - \vv{t}_c$  has nonnegative integer coordinates for every $e \geq 1$, and the eventual periodicity of the realization sequence implies that $\vv{s}_c \cdot p - \vv{t}_c$ has nonnegative integer coordinates for all $p \gg 0$ and $e \geq 1$.   Furthermore, the fact that $\vv{s}_c$ is a special point for $(A_c, \vv{u}_c)$ tells us that the norm of $\vv{s}_c \cdot p - \vv{t}_c$ is $\ft{A_c}{\vv{u}_c} \cdot p - \norm{\vv{t}_c}$.  However, by definition of the graph $\graph_r(A, \vv{u})$, we know that the $\ft{A_c}{\vv{u}_c} \leq 1$ and that $\norm{\vv{t}_c} > 0$, and so the point above has norm less than $p$.  In summary, we have just seen that the point
 \[  \left( \frac{ \vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_e \cdot p - \vv{t}_e}{p^e} \right) \cdot p^e \] satisfies the arithmetic constraint of $\IP_p(A, \vv{u}p^e)$ for every $p \gg 0$ and $e \geq 1$.  
 
 Therefore, to complete the proof, it suffices to show that 
@@ -1969,7 +1974,7 @@ Next, assume that $d>1$ and that \eqref{goal: e} has been proved for all $c \tim
 \[ (\vv{s}_{l+1}, \vv{t}_{l+1}) \to \cdots \to (\vv{s}_{l+e}, \vv{t}_{l+e}) \to \cdots \] is a realization of the path \[ (B, \vv{v}) \to \cdots \to (A_{l+e}, \vv{u}_{l+e}) \to \cdots \] in the graph $\graph_r(B, \vv{v})$.  For every $e \geq 1$ set \[ \vv{k}_e = \frac{ \vv{s}_{l+1} \cdot p - \vv{t}_{l+1}}{p} + \cdots + \frac{ \vv{s}_{l+e} \cdot p - \vv{t}_{l+e}}{p^e}.  \]   By our induction hypothesis, we know that $B \vv{k}_e < \vv{v}$ for all $p \gg 0$ and $e \geq 1$.
 
 Next, set \[ \vv{h} = \frac{\vv{s}_1 \cdot p - \vv{t}_1}{p} + \cdots + \frac{ \vv{s}_l \cdot p - \vv{t}_l}{p^l}. \] 
-As $\vv{s}_l$ is a minimal coordinate for $(A, \vv{u}_l)$, we may write 
+As $\vv{s}_l$ is a special point for $(A, \vv{u}_l)$, we may write 
 %
 \begin{equation}
  \label{l-th term: e}
@@ -1992,7 +1997,7 @@ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) < \vv{u}.
 %
 for all $p \gg 0$ and $e \geq 1$.
 
-We begin by verifying \eqref{ineq to end proof: e} in $\rs(\O)^{\perp}$.  Let $\collapse{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \rs(\O)^{\perp}$, so that $\collapse{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a minimal coordinate of $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\rs(\O)$.  In any case, $B \vv{s}_1 = \collapse{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
+We begin by verifying \eqref{ineq to end proof: e} in $\rs(\O)^{\perp}$.  Let $\collapse{X}$ denote the image of a subset $X$ of $\RR^d$ under the projection $\RR^d \to \rs(\O)^{\perp}$, so that $\collapse{A \vv{t}} = B \vv{t}$ for every $\vv{t} \in \RR^n$.    By construction, $\vv{s}_1$ is a special point for $(A, \vv{u})$.  If $l > 1$, then $A \vv{s}_1 = \vv{u}$, and if $l =1$, then $A \vv{s}_1$ differs from $\vv{u}$ by an element of $\rs(\O)$.  In any case, $B \vv{s}_1 = \collapse{\vv{u}}$.   The assumption that there is an edge  between $(A, \vv{u}_l)$ and $(B, \vv{v})$ in $\graph_r(A, \vv{u})$ also tells us that $B \vv{t}_l = \vv{v}$, and combining these observations with \eqref{A telescoping: e} shows that
 $B \vv{h} = \collapse{A \vv{h}}$ equals $\collapse{\vv{u}} - p^{-l} \cdot \vv{v}$.  Thus, 
 \[  B \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right) = \collapse{\vv{u}} -  \frac{\vv{v} - B \vv{k}_e}{p^l}. \]
 However, as noted above, our induction hypothesis tells us that the difference  $\vv{v} - B \vv{k}_e$ is positive in $\rs(\O)^{\perp}$ for every $p \gg 0$ and $e \geq 1$.    
@@ -2003,7 +2008,7 @@ We now turn our attention to verifying \eqref{ineq to end proof: e} in $\rs(\O)$
 %
 \[ A \left( \vv{h} + \frac{\vv{k}_e}{p^l} \right)  =  A \vv{s}_1 - \left( \frac{\vv{w}}{p^{l-1}} + \frac{ \vv{c}_{l}}{p^{l}} + \cdots +  \frac{ \vv{c}_{l+e-1}}{p^{l+e-1}} + \frac{\vv{d}_{l+e}}{p^{l+e}} \right).  \] 
 %
-As $\vv{s}_1$ is a minimal coordinate for $\vv{u}$, we have that $A \vv{s}_1 \leq \vv{u}$, and so to conclude the proof, it suffices to show that quantity being subtracted above is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  Equivalently, multiplying this expression by $p^{l+e}$, we have reduced to showing that 
+As $\vv{s}_1$ is a special point for $(A,\vv{u})$, we have that $A \vv{s}_1 \leq \vv{u}$, and so to conclude the proof, it suffices to show that quantity being subtracted above is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  Equivalently, multiplying this expression by $p^{l+e}$, we have reduced to showing that 
 \[ \vv{w} \cdot p^{e+1} + \vv{c}_l \cdot p^{e} + \cdots + \vv{c}_{l+e-1} \cdot p + \vv{d}_{l+e} \] is positive in $\rs(\O)$ for all $p \gg 0$ and $e \geq 1$.  However, $\vv{w}$ is positive in $\rs(\O)$ and the sequences $\{ \vv{c}_i \}$ and $\{ \vv{d}_i \}$ obtain only finitely many values, and so \Cref{positive polynomial: L} below allows us to conclude our proof.
 
 \end{proof}

@@ -29,6 +29,8 @@ bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
 
 canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
+randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -79,8 +81,7 @@ collapse (Matrix, List) := (A,u) -> (
     rbasis := rb(A,u);
     d := rank target A;
     idMat := entries identityMatrix d;
-    proj := matrix select( idMat, v -> not member( v, rbasis ) );
-    proj*A
+    proj := matrix select( idMat, v -> not member( v, rbasis ) )
 )
 collapse Matrix := A -> collapse( A, constantList( 1, rank target A ) )
 
@@ -102,6 +103,8 @@ consTheta = (A,u,s,q) -> (
     print( constraints | constraintsRHS );
     polyhedronFromHData( constraints, constraintsRHS )
 )
+
+--------------------------------------------
 
 PA = consTheta(A,{1,1,1},minCoord A,2)        
 
@@ -168,3 +171,115 @@ rb A
 A
 collapse B
 minCoord B
+
+---------------
+-- Example 1
+
+A = matrix {{3, 1}, {9, 1}, {0, 4}, {3, 10}, {7, 8}}
+
+split A
+
+toString entries transpose vertices split A
+
+vertices optP A
+
+ZZ/11[x,y,z,u,v]
+fpt(x^3*y^9*u^3*v^7+x*y*z^4*u^10*v^8)
+
+---------------
+-- Example 2
+
+A = matrix {{6, 9}, {6, 8}, {10, 4}, {4, 10}}
+
+split A
+
+toString entries transpose vertices split A
+
+vertices optP A
+
+ZZ/7[x,y,z,u]
+fpt(x^6*y^6*z^10*u^4 + x^9*y^8*z^4*u^10)
+
+---------------
+-- Example 3
+
+A = matrix {{1, 11}, {5, 10}, {9, 8}, {11, 1}}
+
+split A
+
+toString entries transpose vertices split A
+
+vertices optP A
+
+ZZ/2[x,y,z,u]
+fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
+
+---------------
+-- Example 3
+
+A = matrix {{4, 9}, {6, 7}, {9, 3}, {1, 7}}
+
+split A
+
+toString entries transpose vertices split A
+
+vertices optP A
+
+ZZ/2[x,y,z,u]
+fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
+
+---------------
+-- Example 4
+
+A = matrix {{3, 11}, {11, 2}, {5, 10}, {2, 0}}
+
+toString entries transpose vertices split A
+
+vertices optP A
+
+ZZ/5[x,y,z,u]
+fpt(x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0)
+
+----------------
+ZZ/2[x,y]
+fpt(x + y)
+
+apply(1..7, i -> nu(i,ideal(x,y))/2^i)
+
+---------------------
+
+scan(100, i ->
+    ( 
+        A = randomMatrix(3,3,10);
+        c = collapse A;
+        if #(rb A) == 1 and vertices optP A != vertices optP(c*A)
+            then (print toString entries transpose A; print "\n")        
+    )
+)
+
+
+A = transpose matrix {{7, 6, 6}, {3, 5, 7}, {7, 8, 6}}
+vertices minFace A
+rb(A)
+halfspaces split A
+halfspaces optP A
+halfspaces optP(c*A)
+
+entries A -- {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}} -- optimal set different from optimal set of collapse
+
+-- matrix {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}}
+
+ft(A)
+ft(c*A)
+
+halfspaces split A
+halfspaces split (c*A)
+contains(split(c*A),optP(c*A))
+halfspaces( optP(c*A) )
+toString entries transpose vertices optP(c*A)
+
+contains(optP(c*A),optP A)
+contains(split(c*A),split A)
+
+toString entries transpose vertices split A
+toString entries transpose vertices split(c*A)
