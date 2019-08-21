@@ -276,13 +276,18 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
    If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
 \end{corollary}
 
+\pedro[inline]{
+   I think we need discreteness of crits here.
+   If it weren't for discreteness, $\bigcap_{t<\lambda} \ideala^{[t]}$ could equal $\ideala^{[\lambda]}$.
+}
+\daniel[inline]{
+   Nice catch.  It looks like we do need this.  I think probably can just state that critical exponents are discrete, and just cite our paper, in the proof.
+}
+
 \begin{proof}
-   Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$, for every $0 \le t <\lambda$.
-   Since every Frobenius power of $\ideala$ is a monomial ideal, and intersections of monomial ideals are monomial ideals, there exists a monomial $x^\vv{v}$ that lies in $\ideala^{[t]}$ for every $0\le t < \lambda$, but does not lie in $\ideala^{[\lambda]}$.
-   \pedro{
-      I think we need discreteness of crits here.
-      If it weren't for discreteness, $\bigcap_{t<\lambda} \ideala^{[t]}$ could equal $\ideala^{[\lambda]}$.
-   } \daniel{Nice catch.  It looks like we do need this.  I think probably can just state that critical exponents are discrete, and just cite our paper, in the proof.}
+   Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$ for every $0 \le t <\lambda$.
+   Since the critical exponents of $\ideala$ form a discrete set \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}, the intersection of all such $\ideala^{[t]}$ properly contains $\ideala^{[\lambda]}$.
+   In view of \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}, this intersection is a monomial ideal, and thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
    \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
 \end{proof}
 
