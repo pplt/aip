@@ -20,14 +20,15 @@ TO DO LIST:
 \begin{enumerate}
  \item[$\CheckedBox$] Write essential statements/proofs.
  \item[$\CheckedBox$] Decide on name of paper.
- \emily[inline]{How about \emph{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}?}
-\pedro[inline]{I like that!}
+%  \emily[inline]{How about \emph{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}?}
+% \pedro[inline]{I like that!}
  \item[$\CheckedBox$] Decide on name for minimal coordinate.
-\pedro[inline]{
-    Do we have a consensus for ``special points''? 
-} 
-\daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.
-}
+ \comment[inline]{Going with ``special point''.}
+% \pedro[inline]{
+%     Do we have a consensus for ``special points''? 
+% } 
+% \daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.
+% }
 \pedro[inline]{
    I've made the changes.
    ``Special point for $(A,\vv{u})$'' sounds good to me.
@@ -53,10 +54,11 @@ TO DO LIST:
  \item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
  \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
  \item[$\Box$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?  
- \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
- \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
+ % \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
+ % \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
  \pedro[inline]{I started changing to $\IP(A,\vv{u},q)$. Are we going to abbreviate $\IP(A,\vv{u},1)$ by $\IP(A,\vv{u})$? Or insist on always having a $q$, so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
-\emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
+    \emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
+    \pedro[inline]{Sounds good. Will complete the changes soon.}
  }
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
@@ -426,7 +428,7 @@ $\LP(A, \vv{u})$ is the linear program in $\RR^n$ defined as follows:
 
 \begin{definition}
 The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$ is the unique positive real number $\ft{A}{\vv{u}} = \lambda$ with the property that  \[ (1/\lambda)  \cdot \vv{u}  \] 
-lies in the boundary of the Newton polytope of $A$.  
+lies in the boundary of the Newton polyhedron of $A$.  
 \end{definition}
 
 \begin{definition}
@@ -539,7 +541,7 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 
 \subsection{Special points}
 
-\comment[inline]{Special points are how we construct canonical solutions to the integer program $\IP(A, \vv{u}, q)$;  see \Cref{canonical-feasible: T} for more details.}
+\ \comment[inline]{Special points are how we construct canonical solutions to the integer program $\IP(A, \vv{u}, q)$;  see \Cref{canonical-feasible: T} for more details.}
 
 Technicalities that arise in future sections whenever $\mf(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
 
@@ -624,7 +626,7 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
    I like that idea.
    I've searched for random examples of $3 \times 3$ matrices (so we can picture not only the feasible sets, but also the Newton polyhedra) for which the optimal sets are different, and found that they are not super rare.
    Below are pictures of a couple of examples.
-   In the first, $A=\left(\begin{smallmatrix}9&4&2\\ 0&5&0\\ 7&3&7\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
+   In the first, $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
    The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, shown in yellow.
    The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
 }
@@ -957,10 +959,7 @@ Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer. 
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
 
-
-
-
-\daniel[inline]{This needs updating.  Will give it a shot soon}
+\ \daniel[inline]{This needs updating.  Will give it a shot soon}
 
 \begin{corollary}  
 \label{uniform value and image: C}
