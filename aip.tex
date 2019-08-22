@@ -287,7 +287,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \begin{proof}
    Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$ for every $0 \le t <\lambda$.
    Since the critical exponents of $\ideala$ form a discrete set \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}, the intersection of all such $\ideala^{[t]}$ properly contains $\ideala^{[\lambda]}$.
-   In view of \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}, this intersection is a monomial ideal, and thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
+   This intersection---a monomial ideal by \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}---thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
    \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
 \end{proof}
 
@@ -622,7 +622,18 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \end{proof}
 
 \daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
+\pedro[inline]{
+   I like that idea.
+   Examples where the optimal sets are different are not hard to find (that is, they are not very rare).
+   Below are pictures of a couple of examples.
+   In the first, $A=\left(\begin{smallmatrix}9&4&2\\ 0&5&0\\ 7&3&7\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
+   The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, shown in yellow.
+   The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
+   These examples are nice, because we can also show the pictures of the Newton polyhedra.
+}
 
+\includegraphics[width=.45\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
+\includegraphics[width=.45\textwidth]{Pictures/opt_for_collapse_may_change_2.pdf}
 
 \newpage
 \section{An auxiliary integer program}
