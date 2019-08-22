@@ -4,8 +4,7 @@
 
 \begin{document}
 
-\title[Arithmetic programming and Frobenius powers]{Arithmetic integer programming and Frobenius powers of monomial ideals
-}
+\title[Fractal and arithmetic programs]{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}
 \author{Daniel J.\ Hern\'andez}
 \author{Pedro Teixeira}
 \author{Emily E. Witt}
@@ -20,7 +19,7 @@
 TO DO LIST:
 \begin{enumerate}
  \item[$\CheckedBox$] Write essential statements/proofs.
- \item[$\Box$] Decide on name of paper.
+ \item[$\CheckedBox$] Decide on name of paper.
  \emily[inline]{How about \emph{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}?}
 \pedro[inline]{I like that!}
  \item[$\CheckedBox$] Decide on name for minimal coordinate.
@@ -57,7 +56,7 @@ TO DO LIST:
  \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
  \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
  \pedro[inline]{I started changing to $\IP(A,\vv{u},q)$. Are we going to abbreviate $\IP(A,\vv{u},1)$ by $\IP(A,\vv{u})$? Or insist on always having a $q$, so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
-
+\emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
  }
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
@@ -68,10 +67,6 @@ TO DO LIST:
 \section{Preliminaries}
 
 \subsection{Euclidean spaces, convexity, and polyhedra} 
-
-\ \pedro[inline]{If anyone wishes, we can make some or all of this more formal: definitions, remarks, theorems\ldots}
-\emily[inline]{I like it how it is.  Is ``euclidean'' typically capitalized?}
-\pedro[inline]{Google Ngram shows that ``Euclidean'' beats ``euclidean'' by far, so I made the change.}
 
 We review in this subsection some of the terminology, notation, and constructions concerning Euclidean spaces and convex geometry used throughout the paper.
 We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter, in regular font, to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
@@ -171,7 +166,10 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    Let me know your thoughts.
 
 \daniel[inline]{I removed the stuff on \emph{successors}.  I agree the monomial matrix stuff should appear immediately before the definition of Newton polyhedra.  About moving Newton stuff to the preliminaries:  This seems reasonable, but I would at least want to emphasize (in the prose) that collapsing seems to be a new idea (unlike the rest of the preliminaries, which is much more established).  Collapsing seems to first appear in my paper with Emily;  I searched for a while, and couldn't find that construction anywhere else.}
+
+\emily[inline]{Maybe we should introduce collapsing right before it is used, to emphasize that it is a new idea?}
 }
+
 
 \subsection{Linear programming}  
 
@@ -192,7 +190,7 @@ In this article,  we say that two integer programs are \emph{equal} if their obj
 \pedro[inline]{
    Maybe include a subsection on multinomial coefficients, including Dickson's Theorem?
 \daniel[inline]{This is OK with me, but we will need to update \Cref{aip: D} accordingly.}
-
+\emily[inline]{This sounds good to me.}
 }
 
 
