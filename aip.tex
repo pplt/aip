@@ -628,6 +628,7 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
    The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, shown in yellow.
    The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
 }
+\emily[inline]{These look awesome!  Maybe we should include a simple 2D example as well? }
 
 \includegraphics[width=.45\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
 \includegraphics[width=.45\textwidth]{Pictures/opt_for_collapse_may_change_2.pdf}
@@ -1293,9 +1294,6 @@ In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ do
 
 \section{A graph}
 
-\todo[inline]{Set notation for sprouts/set of sprouts/sprouts of sets.}
-
-
 \daniel[inline]{Perhaps we should motivate why we would want to look at $p$-sprouts.  The point is that they determine which $\mu$'s we should compute next, at least in terms of the collapse.}
 
 
@@ -1634,8 +1632,10 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \begin{definition}
    The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_p$
    \pedro{Should we include $n$ in the notation? E.g., $\sierp_p^n$?}
+   \emily{There might be some confusion that this is a set to the $n^\text{th}$ power?  What about $\sierp_{p,n}$?}
    consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
    \pedro{This seemed like a clean way to extend the definition to $\RRnn^n$, but if anyone has a better idea, feel free to modify it.}
+   \emily{This looks good to me.}
  \[
 \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).  
  \]
@@ -1657,12 +1657,15 @@ Toward making this relation precise, consider the following optimization problem
 the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$. 
 
 \begin{definition}
-Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$.  The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
+Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$. 
+We define the feasible set for $\fip_p(A,\vv{u})$, $\feas \fip_p(A,\vv{u})$, to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
+% The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
 \end{definition}
 
 \begin{remark}
-The feasible set of $\Sigma_p(A, \vv{u})$ sits inside the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
-Since this intersection is a compact set and objective function is continuous, the value of $\Sigma_p(A, \vv{u})$ is finite.
+The points in $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$ are in the intersection of 
+the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
+Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and the value of $\Sigma_p(A, \vv{u})$ is finite.
 \end{remark}
 
 \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
@@ -1680,6 +1683,7 @@ Since this intersection is a compact set and objective function is continuous, t
    This way we can talk about value in the usual way, and can also talk about optimal points.
    We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
 }
+\emily[inline]{This is a good idea.}
 
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
@@ -1705,6 +1709,7 @@ Given a monomial pair $(A, \vv{u})$, we have that
 \pedro[inline]{
    We could include something like \Cref{fig: sierpinski 3-gasket}.
 }
+\emily[inline]{Very nice!}
 
 \begin{figure}[ht]
 \begin{subfigure}{.48\textwidth}
