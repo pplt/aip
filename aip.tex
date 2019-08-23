@@ -192,12 +192,48 @@ We use $\opt \Pi$ to denote optimal set of $\Pi$, and $\val \Pi$ to denote the v
 There are clearly multiple reasonable notions of equality for integer programs.
 In this article,  we say that two integer programs are \emph{equal} if their objective functions and defining constraints are identical, and \emph{equivalent} if their objective functions are identical and their feasible sets agree. 
 
-\pedro[inline]{
-   Maybe include a subsection on multinomial coefficients, including Dickson's Theorem?
-\daniel[inline]{This is OK with me, but we will need to update \Cref{aip: D} accordingly.}
-\emily[inline]{This sounds good to me.}
-\pedro[inline]{Will work on it soon.}
-}
+% \pedro[inline]{
+%    Maybe include a subsection on multinomial coefficients, including Dickson's Theorem?
+% \daniel[inline]{This is OK with me, but we will need to update \Cref{aip: D} accordingly.}
+% \emily[inline]{This sounds good to me.}
+% \pedro[inline]{Will work on it soon.}
+% }
+
+\subsection{Multinomial coefficients}
+
+If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows: 
+\[
+   \binom{k}{\vv{u}} = \binom{k}{u_1,\ldots,u_n} \coloneqq \frac{k!}{u_1!\cdots u_n!}.
+\]
+If $\norm{\vv{u}} \ne k$, on the other hand, we set $\binom{k}{\vv{u}}=0$.
+	
+\begin{theorem}[\cite{dickson.multinomial}]
+   \label{thm: dickson}
+   Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
+   Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
+   \begin{equation*}
+      k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
+   \end{equation*}
+   where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$.
+   \textup{(}Note that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$.\textup{)}
+   Then
+   \[
+      \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
+   \]
+   In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
+\qed
+\end{theorem}
+
+\begin{corollary}
+   \label{cor: multinomial congruence}
+   Let $k,l,e\in \NN$, with $l<p^e$, and $\vv{u},\vv{v}\in \NN^n$, with $\vv{v}<p^e\cdot \vv{1}$.
+   Then
+   \[
+      \pushQED{\qed}
+      \binom{kp^e+l}{\vv{u}p^e+\vv{v}}\equiv \binom{k}{\vv{u}}\binom{l}{\vv{v}} \mod{p}.\qedhere
+      \popQED
+   \]
+\end{corollary}
 
 
 \newpage
@@ -1124,7 +1160,7 @@ If $q$ is a power of $p$, then $\IP_p(A, \vv{u}, q)$ is the arithmetic integer p
 \begin{enumerate}
 \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$.  
 \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
-By Dickson's Theorem \cite{dickson.multinomial}, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the unique terminating base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l $.
+By \Cref{thm: dickson}, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^r\] is the unique terminating base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq r$.
 \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
 \end{enumerate}
 
@@ -1151,7 +1187,7 @@ We gather some basic general results pertaining to these programs below;  more s
 \begin{proof}  Suppose $\vv{g} \in \opt \IP_p(A, \vv{u}, qp^e)$ and write 
 \[ \vv{g} = \vv{h} p^e + \vv{k} \]
 with $\vv{h}$ and $\vv{k}$ in $\NN^d$ such that every coordinate of $\vv{k}$ is less than $p^e$.
-The arithmetic constraint satisfied by $\vv{g}$ implies that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ are nonzero mod $p$.
+By \Cref{cor: multinomial congruence}, the arithmetic constraint satisfied by $\vv{g}$ implies that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ are nonzero mod $p$.
 By construction,  the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} \cdot p^{e-1}$, and so the arithmetic constraint satisfied by $\vv{k}$ implies that $\norm{\vv{k}} < p^e$.
 Consequently, if $\vv{h}$ were not optimal for $\IP_p(A, \vv{u}, q)$, then there would exist $\vv{m}$ feasible for $\IP_p(A, \vv{u}, q)$ with $\norm{\vv{m}} \geq \norm{\vv{h}} + 1$, which would lead to a point $\vv{m}p^e$ feasible for $\IP_p(A, \vv{u}, qp^e)$ whose norm is \[ \norm{\vv{m}}p^e \geq \norm{\vv{h}} \cdot p^e + p^e >  \norm{\vv{h}} \cdot p^e + \norm{\vv{k}} = \norm{\vv{g}}\] which contradicts the optimality of $\vv{g}$. % We conclude that $\vv{h} \in \opt \IP_p(A, \vv{u}, q)$.
 \end{proof}
