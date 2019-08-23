@@ -60,6 +60,7 @@ TO DO LIST:
     % , so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
     \emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
     \pedro[inline]{Almost done! Do you guys feel that way too about \Cref{follow-leftovers: P}? Somehow it felt unnatural to stick a ``$q$'' in that statement\ldots}
+    \emily[inline]{Hmm, I like it as-is.}
  }
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
@@ -1692,89 +1693,26 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \todo[inline]{Point out that the levels of $\widehat{\graph}(A, \vv{u})$ are eventually periodic. This will give an independent proof the rationality of critical exponents.  The way we present a formula for critical exponents may need this observation.}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Fractal linear programs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{definition}
    The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_p$
    \pedro{Should we include $n$ in the notation? E.g., $\sierp_p^n$?}
-   \emily{There might be some confusion that this is a set to the $n^\text{th}$ power?  What about $\sierp_{p,n}$?}
+   \emily{There might be some confusion that this is a set $\sierp_{p}$ to the $n^\text{th}$ power?  What about $\sierp_{p,n}$?}
    consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
-   \pedro{This seemed like a clean way to extend the definition to $\RRnn^n$, but if anyone has a better idea, feel free to modify it.}
-   \emily{This looks good to me.}
+%    \pedro{This seemed like a clean way to extend the definition to $\RRnn^n$, but if anyone has a better idea, feel free to modify it.}
+%    \emily{This looks good to me.}
  \[
 \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).  
  \]
 \end{definition}
-
-From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
-However, this is not a complete description of $\sierp_p$.
-For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
-
-This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
-For instance, the points of $\sierp_2$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:   
-The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
-At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
-The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
-Notice, in particular, that since each can be realized by removing a union of open sets from $[0,1]^n$, all $\sierp_p$ are compact.  
-
-The critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
-Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
-the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$. 
-
-\begin{definition}
-Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$. 
-We define the feasible set for $\fip_p(A,\vv{u})$, $\feas \fip_p(A,\vv{u})$, to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
-% The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
-\end{definition}
-
-\begin{remark}
-The points in $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$ are in the intersection of 
-the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
-Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and the value of $\Sigma_p(A, \vv{u})$ is finite.
-\end{remark}
-
-% \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
-% \pedro[inline]{
-%    Unfortunately, I think this is not true.
-%    Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
-%    Then $(\frac12,\frac12)$ is in $\feas\Sigma_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
-%    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
-% }
-% \emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
-% \pedro[inline]{
-%    ``Great minds think alike''?   :-)
-
-%    Maybe what we should do is define the feasible set for $\fip_p(A,\vv{u})$ to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
-%    This way we can talk about value in the usual way, and can also talk about optimal points.
-%    We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
-% }
-% \emily[inline]{This is a good idea.}
-
-\begin{proposition}  
-Given a monomial pair $(A, \vv{u})$, we have that 
-\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
-\end{proposition}
-
-% \pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
-% \emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
-% \pedro[inline]{
-%    Indeed!
-%    That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
-%    \begin{center}
-%       \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
-%    \end{center}
-%    Instead, the ``holes'' get arbitrarily large:
-%    \begin{center}
-%       \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
-%    \end{center}
-%    Makes a lot more sense\ldots
-% }
-
-\daniel[inline]{This is really cool!  We should include the gasket in the unit cube, and also the more general picture in an example.}
-\pedro[inline]{
-   We could include something like \Cref{fig: sierpinski 3-gasket}.
-}
-\emily[inline]{Very nice!}
 
 \begin{figure}[ht]
 \begin{subfigure}{.48\textwidth}
@@ -1791,46 +1729,158 @@ Given a monomial pair $(A, \vv{u})$, we have that
 \label{fig: sierpinski 3-gasket}
 \end{figure}
 
+From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
+However, this is not a complete description of $\sierp_p$.
+For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
+
+This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
+For instance, the points of $\sierp_2$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:   
+The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
+At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
+The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
+
+\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.  In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_p$ are closed sets.  
+
+Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
+Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
+the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$. 
+
+\begin{definition}
+Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$. 
+We define the feasible set for $\fip_p(A,\vv{u})$, $\feas \fip_p(A,\vv{u})$, to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
+% The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
+\end{definition}
+
+\begin{remark}
+The points in $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$ are precisely those in the intersection of 
+the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
+Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and $\val \fip_p(A, \vv{u}) = \max\{ \norm{\vv{t}} : \vv{t} \in \feas \fip_p(A, \vv{u}) \}$, the value of $\fip_p(A, \vv{u})$,  exists and is finite.  
+%Moreover, there is exists an optimal point
+%$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
+\end{remark}
+
+\begin{example} \label{ex: feas fip}
+ Consider the optimization problem $\fip_p(A, \vv{u})$, where 
+\[ A = \begin{pmatrix}
+ 3&11\\ 11&2 \\ 5&10 \\ 2&0
+ \end{pmatrix} 
+\text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
+\]
+Figure \ref{fig: feas fip}
+
+\end{example}
+
+
+% \pedro[inline]{We could include a 2D example, with pictures, such as the following, where
+%    \[
+%       A =
+%       \begin{pmatrix}
+%          3&11\\ 11&2 \\ 5&10 \\ 2&0
+%       \end{pmatrix}
+%    \]
+%    (I changed the example; I think in this new one it is easier to see the optimal points.)
+% }
+
+\begin{figure}[h]
+  \centering
+\begin{subfigure}{.48\textwidth}
+\centering
+  \includegraphics[width=1\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
+\caption{$p=2$}  
+\end{subfigure} 
+\begin{subfigure}{.48\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{Pictures/ex4_char3.pdf}
+\caption{$p=3$}  
+\end{subfigure}
+
+\begin{subfigure}{.48\textwidth}
+\centering
+  \includegraphics[width=1\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
+\caption{$p=5$}  
+\end{subfigure}  
+\begin{subfigure}{.48\textwidth}
+\centering
+  \includegraphics[width=1\textwidth]{Pictures/ex4_char7.pdf}
+\caption{$p=7$}  
+\end{subfigure}  
+\caption{The feasible set of $\Sigma_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
+\label{fig: feas fip}
+\end{figure}
+
+
+
+% \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is \fip_p(A, \vv{u})$.}
+% \pedro[inline]{
+%    Unfortunately, I think this is not true.
+%    Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
+%    Then $(\frac12,\frac12)$ is in $\feas \fip_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
+%    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
+% }
+% \emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
+% \pedro[inline]{
+%    ``Great minds think alike''?   :-)
+% 
+%    Maybe what we should do is define the feasible set for $\fip_p(A,\vv{u})$ to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
+%    This way we can talk about value in the usual way, and can also talk about optimal points.
+%    We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
+% }
+% \emily[inline]{This is a good idea; this change is now implemented.}
+
+
+% \pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
+% \emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
+% \pedro[inline]{
+%    Indeed!
+%    That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
+%    \begin{center}
+%       \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
+%    \end{center}
+%    Instead, the ``holes'' get arbitrarily large:
+%    \begin{center}
+%       \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
+%    \end{center}
+%    Makes a lot more sense\ldots
+% }
+
+% \daniel[inline]{This is really cool!  We should include the gasket in the unit cube, and also the more general picture in an example.}
+% \pedro[inline]{
+%    We could include something like \Cref{fig: sierpinski 3-gasket}.
+% }
+% \emily[inline]{Very nice!}
+
+
+
+\begin{proposition}  
+Given a monomial pair $(A, \vv{u})$, we have that 
+\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
+\end{proposition}
+
+
 \begin{proof}
 For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so 
 \[
 \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
  \]
-On the other hand, given $\vv{t} \in \feas\fip_p(A, \vv{u})$, fix a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and 
-$\vv{t} = \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots$.  For $q = p^e$, let 
- $\vv{t}^\star_q = \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}$.  Then $q \cdot \vv{t}^\star_q \in \IP_p(A, \vv{u}, q)$ for all $q$, so that $\val \IP_p(A, \vv{u}, q) \geq q \norm{\vv{t}^\star_q}$. 
- Dividing by $q$ and taking limits, we find that  
+On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_p$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and 
+$\vv{t} = q \cdot \left( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \right)$.  For $e \geq 1$, let 
+ $\vv{t}^\star_{p^e} = q \cdot \left( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \right)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$. 
+ Dividing by $p^e$ and taking limits, we find that  
  \[
 \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
  \]
-Finally, since $\vv{t} \in \feas \fip_p(A, \vv{u})$ is arbitrary, $\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$ as well, and equality holds. 
+Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_p$ that limit to $\vv{s}$. Since $\vv{t} \to \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
+Now, since $\vv{s}$ is an arbitrary element of $\feas \fip_p(A, \vv{u}, p)$, we have that
+$\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$, and equality holds. 
 \end{proof}
 
-\pedro[inline]{We could include a 2D example, with pictures, such as the following, where
-   \[
-      A =
-      \begin{pmatrix}
-         3&11\\ 11&2 \\ 5&10 \\ 2&0
-      \end{pmatrix}
-   \]
-   (I changed the example; I think in this new one it is easier to see the optimal points.)
-}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=.48\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
-  \includegraphics[width=.48\textwidth]{Pictures/ex4_char3.pdf}
-  \\[.04\textwidth]
-  \includegraphics[width=.48\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
-  \includegraphics[width=.48\textwidth]{Pictures/ex4_char7.pdf}
-\end{figure}
 
 % \daniel[inline]{These look cool!  What are the orange regions?  Areas that you know for sure contain the optimal set?  Also, I've seen some pictures of Sierpinski gaskets when $n=3$.  I suspect that this might be possible to do in Mathematica, but I also wouldn't be surprised if it were hard.  If this were possible, to we would also still need to intersect with a polytope to illustrate an AIP with $n=3$.  This may not be reasonable, or even possible.}
 
 % \pedro[inline]{
 %    The orange disks are centered around the optimal points (in each of those cases, there's only one point; that point coincides with the optimal point for the linear program in characteristic 5).
 %    In the first and second picture, the optimal set is that entire line segment.
-
+% 
 %    I've created a picture of a 3D Sierpinski gasket in Mathematica, but I wasn't very happy with the result.
 %    But maybe things can be improved a bit.
 %    (See \texttt{Sierpinski3D.pdf} in the folder \texttt{aip/Pictures}.)
