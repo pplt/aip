@@ -173,7 +173,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
 \pedro[inline]{
    I like this idea.
    We could just put monomial matrices and the basics of Newton polyhedra here, and postpone collapsing.
-   We can gather the results on collapsing at the end of Section~4 or, better, have a whole section on collapsing.
+   We can gather the results on collapsing in a subsection at the end of the current Section~4 or, better, have a whole section on collapsing.
 }
 
 
@@ -1672,42 +1672,42 @@ the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p
 Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and the value of $\Sigma_p(A, \vv{u})$ is finite.
 \end{remark}
 
-\emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
-\pedro[inline]{
-   Unfortunately, I think this is not true.
-   Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
-   Then $(\frac12,\frac12)$ is in $\feas\Sigma_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
-   So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
-}
-\emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
-\pedro[inline]{
-   ``Great minds think alike''?   :-)
+% \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is $\feas\Sigma_p(A, \vv{u})$.}
+% \pedro[inline]{
+%    Unfortunately, I think this is not true.
+%    Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
+%    Then $(\frac12,\frac12)$ is in $\feas\Sigma_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
+%    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
+% }
+% \emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
+% \pedro[inline]{
+%    ``Great minds think alike''?   :-)
 
-   Maybe what we should do is define the feasible set for $\fip_p(A,\vv{u})$ to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
-   This way we can talk about value in the usual way, and can also talk about optimal points.
-   We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
-}
-\emily[inline]{This is a good idea.}
+%    Maybe what we should do is define the feasible set for $\fip_p(A,\vv{u})$ to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
+%    This way we can talk about value in the usual way, and can also talk about optimal points.
+%    We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
+% }
+% \emily[inline]{This is a good idea.}
 
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
 \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
 \end{proposition}
 
-\pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
-\emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
-\pedro[inline]{
-   Indeed!
-   That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
-   \begin{center}
-      \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
-   \end{center}
-   Instead, the ``holes'' get arbitrarily large:
-   \begin{center}
-      \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
-   \end{center}
-   Makes a lot more sense\ldots
-}
+% \pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
+% \emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
+% \pedro[inline]{
+%    Indeed!
+%    That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
+%    \begin{center}
+%       \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
+%    \end{center}
+%    Instead, the ``holes'' get arbitrarily large:
+%    \begin{center}
+%       \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
+%    \end{center}
+%    Makes a lot more sense\ldots
+% }
 
 \daniel[inline]{This is really cool!  We should include the gasket in the unit cube, and also the more general picture in an example.}
 \pedro[inline]{
