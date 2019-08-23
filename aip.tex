@@ -29,11 +29,11 @@ TO DO LIST:
 % } 
 % \daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.
 % }
-\pedro[inline]{
-   I've made the changes.
-   ``Special point for $(A,\vv{u})$'' sounds good to me.
-   For the notation, $\operatorname{sp}(A,\vv{u})$ aligns better with other notation we are using ($\ri$, $\rb$, $\opt$, \ldots), so that's what I've used; however, if anyone doesn't like it, please feel free to change it.
-}
+% \pedro[inline]{
+%    I've made the changes.
+%    ``Special point for $(A,\vv{u})$'' sounds good to me.
+%    For the notation, $\operatorname{sp}(A,\vv{u})$ aligns better with other notation we are using ($\ri$, $\rb$, $\opt$, \ldots), so that's what I've used; however, if anyone doesn't like it, please feel free to change it.
+% }
  
 \item[$\CheckedBox$] Make sprout notation.
 \comment[inline]{Going with $\sprout(A,\vv{u},p)$}
@@ -1768,7 +1768,7 @@ Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compac
  \end{pmatrix} 
 \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
 \]
-In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in red, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
+In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in blue, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
 \begin{figure}
   \centering
 \begin{subfigure}{.48\textwidth}
@@ -1796,52 +1796,10 @@ In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in red
 \end{figure}
 \end{example}
 
-% \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is \fip_p(A, \vv{u})$.}
-% \pedro[inline]{
-%    Unfortunately, I think this is not true.
-%    Consider, for example, $A=\big(\begin{smallmatrix}2&0\\ 0&2\end{smallmatrix}\big)$, $\vv{u}=(1,1)$, and $p=2$.
-%    Then $(\frac12,\frac12)$ is in $\feas \fip_p(A, \vv{u})$, but is not in the closure of $\feas\Sigma^\circ_p(A, \vv{u})$, which consists of points of norm $\le \frac12$.
-%    So maybe the best we can hope for is to work directly with $\Sigma^\circ_p(A,\vv{u})$.
-% }
-% \emily[inline]{Thanks, Pedro.  It's like you exactly read our minds--we came up with the \emph{exact same} example yesterday on the bus after I got stuck on the proof!  We also concluded that it would be best to describe everything in terms of $\Sigma^\circ$.  I've started this}
-% \pedro[inline]{
-%    ``Great minds think alike''?   :-)
-% 
-%    Maybe what we should do is define the feasible set for $\fip_p(A,\vv{u})$ to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
-%    This way we can talk about value in the usual way, and can also talk about optimal points.
-%    We can also include a remark saying that that is not as simple as taking the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} \le \vv{u}$ (though these sets often agree), and present our example.
-% }
-% \emily[inline]{This is a good idea; this change is now implemented.}
-
-
-% \pedro[inline]{For this to be true, I think we need to extend $\sierp_p$ to $\RR^n$, or assume that $(A,\vv{u})$ is small}
-% \emily[inline]{I see your point. It seems that if we extend it to $\RR^n_{\geq 0}$, to get the reverse inclusion, we need both the integer and fraction parts to have expansions that add without carrying. }
-% \pedro[inline]{
-%    Indeed!
-%    That is different from the picture I had originally in mind---that of $\RRnn^n$ ``tiled'' with Sierpinski triangles, all of the same size.
-%    \begin{center}
-%       \includegraphics[width=.4\textwidth]{Pictures/sierp.pdf}
-%    \end{center}
-%    Instead, the ``holes'' get arbitrarily large:
-%    \begin{center}
-%       \includegraphics[width=.4\textwidth]{Pictures/sierp2.pdf}
-%    \end{center}
-%    Makes a lot more sense\ldots
-% }
-
-% \daniel[inline]{This is really cool!  We should include the gasket in the unit cube, and also the more general picture in an example.}
-% \pedro[inline]{
-%    We could include something like \Cref{fig: sierpinski 3-gasket}.
-% }
-% \emily[inline]{Very nice!}
-
-
-
 \begin{proposition}  
 Given a monomial pair $(A, \vv{u})$, we have that 
 \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
 \end{proposition}
-
 
 \begin{proof}
 For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so 
