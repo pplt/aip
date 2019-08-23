@@ -53,15 +53,16 @@ TO DO LIST:
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  \item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
  \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
- \item[$\Box$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?  
+ \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
+ \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
  % \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
  % \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
- \pedro[inline]{I started changing to $\IP(A,\vv{u},q)$. Are we going to abbreviate $\IP(A,\vv{u},1)$ by $\IP(A,\vv{u})$? Or insist on always having a $q$?
-    % , so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
-    \emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
-    \pedro[inline]{Almost done! Do you guys feel that way too about \Cref{follow-leftovers: P}? Somehow it felt unnatural to stick a ``$q$'' in that statement\ldots}
-    \emily[inline]{Hmm, I like it as-is.}
- }
+ % \pedro[inline]{I started changing to $\IP(A,\vv{u},q)$. Are we going to abbreviate $\IP(A,\vv{u},1)$ by $\IP(A,\vv{u})$? Or insist on always having a $q$?
+ %    % , so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
+ %    \emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
+ %    \pedro[inline]{Almost done! Do you guys feel that way too about \Cref{follow-leftovers: P}? Somehow it felt unnatural to stick a ``$q$'' in that statement\ldots}
+ %    \emily[inline]{Hmm, I like it as-is.}
+ %}
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
 }
@@ -290,7 +291,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 \begin{notation}
    We adopt usual multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal} 
-   \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}} = \langle x^{\vv{v}} : \vv{v} \in \NN^d \text{ and } \vv{v} \not < \vv{u} \rangle.\]
+   \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}} = \ideal{x^{\vv{v}} : \vv{v} \in \NN^d \text{ and } \vv{v} \not < \vv{u}}.\]
    %\daniel{I added another easy description that I think we use often}
    When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
    For instance, $\crit(\ideala,\diag(\vv{u}))$ will be simply denoted $\crit(\ideala,\vv{u})$.   
@@ -659,7 +660,10 @@ Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the
 Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \] 
 %
 By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
-\[ \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).\] 
+\begin{equation*}
+   \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).
+   \qedhere
+\end{equation*}
 \end{proof}
 
 \daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
@@ -903,7 +907,7 @@ which we rewrite as
 A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
 \end{equation}
 
-After projecting to $\rs(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\rs(\O)$ is at least $\vv{w}q$.  However, as $\denom$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\denom$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\rs(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \rs(\O) \oplus \rb(\O)^{\perp}$.
+After projecting to $\rs(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\rs(\O)$ is at least $\vv{w}q$.  However, as $\denom$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\denom$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\rs(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^d = \rs(\O) \oplus \rs(\O)^{\perp}$.
 
 In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so 
 \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip \] 
@@ -914,7 +918,7 @@ where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 
 \subsection{Some finiteness properties}  
-We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
+We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list< varies.
 
 \begin{lemma}
 \label{bounded value: L} 
@@ -981,7 +985,7 @@ These finiteness properties above facilitate the following result.
 
 \begin{theorem}[Existence of finite sets of representatives]  
 \label{fsr-exist: T}
-Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \Theta(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \ip(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
 \begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
@@ -1296,7 +1300,7 @@ The finiteness of $\Z$ allows us to choose $p$ large enough so that \[ \val \IP(
 Next, fix $\vv{g}$ optimal for $\IP_p(A, \vv{u}, p^e)$.  If $\vv{h}$ is the quotient, and $\vv{k}$ the remainder, when dividing $\vv{g}$ by $p^e$, then \Cref{optimal division: L} tells us that $\vv{h}$ is optimal for $\IP_p(A, \vv{u}, 1)$, so that $A \vv{h} = \vv{u}-\vv{z}$ for some $\vv{z} \in \Z$.  The feasibility of $\vv{g}=\vv{h}p^e + \vv{k}$ for $\IP_p(A, \vv{u}, p^e)$ then implies the feasibility of $\vv{k}$ for $\IP_p(A, \vv{z}, p^e)$.  This establishes that $\norm{\vv{g}} = \val \IP_p(A, \vv{u}, p^e)$ is at most the asserted value.
 
 To establish the opposite inequality, suppose $\vv{z}^{\ast}$ is a point in $\Z$ with $\val \IP_p(A, \vv{z}^{\ast}, p^e)$ maximal.  By virtue of being in $\Z$, we may write $\vv{z}^{\ast} = \vv{u} - A \vv{g}^{\ast}$ for some $\vv{g}^{\ast} \in \opt \IP(A, \vv{u}, 1)$.  If $\vv{k}^{\ast}$ is optimal for $\IP_p(A, \vv{z}^{\ast}, p^e)$, then a direct computation will show that 
-$\vv{h}^{\ast} = \vv{g}^{\ast} \cdot p^e + \vv{k}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, p^e)$.  Furthermore, the feasibility of $\vv{k}^{\ast}$ implies that $\binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$, and the smallness of $(A, \vv{z}^{\ast})$ and \Cref{trivial value bound: L} tell us that $\norm{\vv{k}^{\ast}} \leq p^e-1$.  On the other hand, our choice of $p \gg 0$ tells us that $\norm{\vv{g}^{\ast}} = \val \IP_p(A, \vv{u}, 1) = \val \IP(A, \vv{u}, 1) \leq p-1$, and it follows that $\vv{h}^{\ast}$ also satisfies that the arithmetic constraint of $\IP_p(A, \vv{u}, p^e)$.
+$\vv{h}^{\ast} = \vv{g}^{\ast} p^e + \vv{k}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, p^e)$.  Furthermore, the feasibility of $\vv{k}^{\ast}$ implies that $\binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$, and the smallness of $(A, \vv{z}^{\ast})$ and \Cref{trivial value bound: L} tell us that $\norm{\vv{k}^{\ast}} \leq p^e-1$.  On the other hand, our choice of $p \gg 0$ tells us that $\norm{\vv{g}^{\ast}} = \val \IP_p(A, \vv{u}, 1) = \val \IP(A, \vv{u}, 1) \leq p-1$, and it follows that $\vv{h}^{\ast}$ also satisfies that the arithmetic constraint of $\IP_p(A, \vv{u}, p^e)$.
 \end{proof}
 
 
@@ -1703,18 +1707,28 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{definition}
-   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_p$
+   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$
    \pedro{Should we include $n$ in the notation? E.g., $\sierp_p^n$?}
    \emily{There might be some confusion that this is a set $\sierp_{p}$ to the $n^\text{th}$ power?  What about $\sierp_{p,n}$?}
+   \pedro{I like that, and have incorporated it.}
    consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
-%    \pedro{This seemed like a clean way to extend the definition to $\RRnn^n$, but if anyone has a better idea, feel free to modify it.}
-%    \emily{This looks good to me.}
  \[
 \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).  
  \]
 \end{definition}
 
-\begin{figure}[ht]
+From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_{p,n}$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
+However, this is not a complete description of $\sierp_{p,n}$.
+For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
+
+This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
+For instance, the points of $\sierp_{2,2}$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:   
+The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
+At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
+The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
+
+\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.  In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.  
+\begin{figure}
 \begin{subfigure}{.48\textwidth}
   \centering
   \includegraphics[width=\linewidth]{Pictures/sierpinski3_a.pdf}
@@ -1729,30 +1743,18 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \label{fig: sierpinski 3-gasket}
 \end{figure}
 
-From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_p$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
-However, this is not a complete description of $\sierp_p$.
-For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
-
-This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal. 
-For instance, the points of $\sierp_2$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:   
-The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
-At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
-The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
-
-\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.  In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_p$ are closed sets.  
-
 Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
-Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_p$ to 
+Toward making this relation precise, consider the following optimization problem, which adds the extra ``fractal'' constraint from the definition of $\sierp_{p,n}$ to 
 the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$. 
 
 \begin{definition}
-Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_p$. 
-We define the feasible set for $\fip_p(A,\vv{u})$, $\feas \fip_p(A,\vv{u})$, to be the \emph{closure} of the set of all $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$.
+Given a monomial pair $(A, \vv{u})$, the optimization problem $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, subject to the constraints $\vv{t} \geq \vv{0}$, $A\vv{t} < \vv{u}$, and $\vv{t}\in \sierp_{p,n}$. 
+We define the feasible set for $\fip_p(A,\vv{u})$, $\feas \fip_p(A,\vv{u})$, to be the \emph{closure} of the set of all $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$.
 % The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.  
 \end{definition}
 
 \begin{remark}
-The points in $\vv{t}\in \sierp_p$ satisfying $A\vv{t} < \vv{u}$ are precisely those in the intersection of 
+The points in $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ are precisely those in the intersection of 
 the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
 Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and $\val \fip_p(A, \vv{u}) = \max\{ \norm{\vv{t}} : \vv{t} \in \feas \fip_p(A, \vv{u}) \}$, the value of $\fip_p(A, \vv{u})$,  exists and is finite.  
 %Moreover, there is exists an optimal point
@@ -1766,21 +1768,8 @@ Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compac
  \end{pmatrix} 
 \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
 \]
-In \Cref{fig: feas fip}, the feasible set for the problem is shown in red, and the optimal set is highlighted in green, for small values of $p$.  
-\end{example}
-
-
-% \pedro[inline]{We could include a 2D example, with pictures, such as the following, where
-%    \[
-%       A =
-%       \begin{pmatrix}
-%          3&11\\ 11&2 \\ 5&10 \\ 2&0
-%       \end{pmatrix}
-%    \]
-%    (I changed the example; I think in this new one it is easier to see the optimal points.)
-% }
-
-\begin{figure}[h]
+In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in red, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
+\begin{figure}
   \centering
 \begin{subfigure}{.48\textwidth}
 \centering
@@ -1792,7 +1781,6 @@ In \Cref{fig: feas fip}, the feasible set for the problem is shown in red, and t
 \includegraphics[width=1\textwidth]{Pictures/ex4_char3.pdf}
 \caption{$p=3$}  
 \end{subfigure}
-
 \begin{subfigure}{.48\textwidth}
 \centering
   \includegraphics[width=1\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
@@ -1806,8 +1794,7 @@ In \Cref{fig: feas fip}, the feasible set for the problem is shown in red, and t
 \caption{The feasible set of $\Sigma_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
 \label{fig: feas fip}
 \end{figure}
-
-
+\end{example}
 
 % \emily[inline]{Still need to justify that the closure of $\feas\Sigma^\circ_p(A, \vv{u})$ is \fip_p(A, \vv{u})$.}
 % \pedro[inline]{
@@ -1861,14 +1848,14 @@ For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\f
 \[
 \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
  \]
-On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_p$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and 
+On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_{p,n}$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and 
 $\vv{t} = q \cdot \left( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \right)$.  For $e \geq 1$, let 
  $\vv{t}^\star_{p^e} = q \cdot \left( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \right)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$. 
  Dividing by $p^e$ and taking limits, we find that  
  \[
 \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
  \]
-Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_p$ that limit to $\vv{s}$. Since $\vv{t} \to \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
+Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_{p,n}$ that limit to $\vv{s}$. Since $\vv{t} \to \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
 Now, since $\vv{s}$ is an arbitrary element of $\feas \fip_p(A, \vv{u}, p)$, we have that
 $\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$, and equality holds. 
 \end{proof}
