@@ -573,7 +573,7 @@ Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)
 \end{theorem}
 
 \begin{proof}
-Fix a pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
+Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
 
 If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: C} implies that there exists a linear bijection $\opt \LP 
 \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: L} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
@@ -620,7 +620,7 @@ We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this 
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
 % where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the special points for $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
-\begin{definition}  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
+\begin{definition}  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
 \end{definition}
 
 \begin{theorem}  
@@ -630,7 +630,7 @@ Special denominators exist.
 
 
 \begin{proof}
-   Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a pair $(A, \vv{u})$.
+   Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so there is always a vertex in this set with denominator~$\ell_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.
@@ -735,7 +735,7 @@ Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\la
 
 
 \begin{lemma}
-   \label{less than u: L}  Suppose that $\vv{s}$ is a special point for a pair $(A, \vv{u})$.
+   \label{less than u: L}  Suppose that $\vv{s}$ is a special point for a monomial pair $(A, \vv{u})$.
    If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
@@ -830,11 +830,7 @@ A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \end{enumerate}
 \end{definition}
 
-We call a list whose first term is the matrix $A$ an $A$-list.
-
-%\begin{definition}  If $A$ is a monomial matrix, then 
-%\[ \lis(A) \] is the set of all lists whose first term is $A$.  We call such a list an $A$-list.
-%\end{definition}
+We call a monomial list whose first term is the matrix $A$ an $A$-list.
 
 \begin{definition}  
 \label{aux program: D}
@@ -861,7 +857,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ l
 
 \begin{lemma}
 \label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $\collapse{A}$ is the collapse of $A$ along $\O$.
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where $\collapse{A}$ is the collapse of $A$ along $\O$.
 \end{lemma}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity 
@@ -871,7 +867,7 @@ $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv
 
 \begin{remark}
 \label{collapsed aux program: R}
-Suppose $(A, \vv{u}, \vv{s}, q)$ is a list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
+Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
 \[ (\collapse{A}, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
 \[ \ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q). \] 
 \end{remark}
@@ -919,11 +915,11 @@ where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 
 \subsection{Some finiteness properties}  
-We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list< varies.
+We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
 \begin{lemma}
 \label{bounded value: L} 
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.  
 \end{lemma}
 
 \begin{proof}   
@@ -950,7 +946,7 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
 
 \begin{corollary}
 \label{finite image: C}
-If $(A, \vv{u}, \vv{s}, q)$ is a list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{corollary}
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
@@ -966,7 +962,7 @@ Potentially move it up before \Cref{bounded value: L}.}
 If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{lemma}
 
-\begin{proof}  Consider a list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.  
+\begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.  
 
 Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
@@ -986,10 +982,10 @@ These finiteness properties above facilitate the following result.
 
 \begin{theorem}[Existence of finite sets of representatives]  
 \label{fsr-exist: T}
-Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \ip(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \ip(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
-\begin{proof}  \Cref{finite image: C} implies that for every list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
+\begin{proof}  \Cref{finite image: C} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
 \[ \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q))  = \ol{ A(\fsr(A, \vv{u}, \vv{s}, q)) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
 and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
@@ -1010,7 +1006,7 @@ The goal in this subsection is to demonstrate that the value and image of $\IP(A
 \begin{corollary}  
 \label{uniform value and image: C}
 Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ satisfying the following condition\textup:
-If $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
+If $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then 
 %
 \[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \] 
 %
@@ -1020,7 +1016,7 @@ where $\collapse{A}$ \textup(respectively, $\collapse{X}$\textup) is the collaps
 \end{corollary}
 
 \begin{proof}
-Let $\beta$ be as in \Cref{uniform value: P}.  Fix a pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
+Let $\beta$ be as in \Cref{uniform value: P}.  Fix a monomial pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
 
 The asserted value of $\IP(A, \vv{u}, q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}, q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}, q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}, q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $\collapse{A} \vv{h} \in \im \ip$.  Furthermore, as $\collapse{A} \vv{s} = \collapse{\vv{u}}$, 
 
@@ -1039,7 +1035,7 @@ In this subsection, we study the quantities appearing in \Cref{uniform value and
 \emily[inline]{Can we give a direct proof that $\delta$ does not depend on $\vv{s}$?}
 
 \begin{corollary}  
-\label{independence: C} Fix a pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
+\label{independence: C} Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
 \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
 \[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \] 
 do not depend on  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  
@@ -1052,7 +1048,7 @@ Fix $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(A, \vv{u})$, as well as a common denomi
 \begin{definition}  
 \label{independence: D}  
 
-Given a pair $(A, \vv{u})$ and positive integer $q$, we set 
+Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we set 
  \[ \delta(A, \vv{u}, q) = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and 
 \[\Delta(A, \vv{u}, q) = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
 where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$. 
@@ -1109,9 +1105,9 @@ If $(A, \vv{u})$ is fixed, then $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)
 
 \begin{remark}
 \label{uniform periodicity: R}
- If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.  
+ If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.  
  
- Indeed,  this follows from the observation that if $\denom$ is as in \Cref{uniform denominators for mc:  T}, then we may compute  $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ for all pairs $(A, \vv{u})$ and integers $q>0$ in terms of a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+ Indeed,  this follows from the observation that if $\denom$ is as in \Cref{uniform denominators for mc:  T}, then we may compute  $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and integers $q>0$ in terms of a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
 \end{remark}
 
 We record another application of \Cref{uniform denominators for mc:  T} below.
@@ -1125,13 +1121,13 @@ If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
 \end{theorem}
 
 \begin{proof}  
-\Cref{uniform denominators for mc:  T}  tells us that once $A$ has been fixed, there exists a positive integer $D$ such that for every pair $(A, \vv{u})$, there exists a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $D$.  Therefore, if $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: C}, then we may take $\beta = D \beta_{\circ}$.  
+\Cref{uniform denominators for mc:  T}  tells us that once $A$ has been fixed, there exists a positive integer $D$ such that for every monomial pair $(A, \vv{u})$, there exists a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $D$.  Therefore, if $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: C}, then we may take $\beta = D \beta_{\circ}$.  
 \end{proof}
 
 The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform uniform value and image: T}.
 
 \begin{corollary}
-Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where $\collapse{A}$ \textup(respectively, $\collapse{X}$\textup) is the collapse of $A$  \textup(respectively, $X$\textup) along $\O$.
+Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where $\collapse{A}$ \textup(respectively, $\collapse{X}$\textup) is the collapse of $A$  \textup(respectively, $X$\textup) along $\O$.
 \end{corollary}
 
 \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
@@ -1239,7 +1235,7 @@ A monomial pair $(A, \vv{u})$ is \emph{small} $\vv{u}$ is not greater than any c
 \label{finitely many small but not very small: R}
 Geometrically, $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the upper staircase associated to the columns of $A$, and very small if $\vv{u}$ does not lie in the interior of the Newton polyhedron of $A$.  
 
-It is clear from this geometric interpretation that ``very small'' implies ``small.''  Furthermore, once $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small. \daniel{Do we need a proof?}
+It is clear from this geometric interpretation that ``very small'' implies ``small.''  Furthermore, once $A$ is fixed, there are only finitely monomial pairs $(A, \vv{u})$ that are small, but not very small. \daniel{Do we need a proof?}
 \end{remark}
 
 \begin{lemma}
@@ -1283,7 +1279,7 @@ By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s}
    Suppose $(A, \vv{u})$ is a monomial pair.
    If
    \[ \im \IP(A, \vv{u}, 1) = \vv{u} - \Z\]
-   then every pair $(A, \vv{z})$ with $\vv{z} \in \Z$ is small, and if $p \gg 0$ and $e \geq 0$, then
+   then every monomial pair $(A, \vv{z})$ with $\vv{z} \in \Z$ is small, and if $p \gg 0$ and $e \geq 0$, then
    \[ \val \IP_p(A, \vv{u}, p^e) = \val \IP(A, \vv{u}, 1) \cdot p^e + \max \val \IP_p(A, \vv{z}, p^e) \]
    where the maximum is over all points $\vv{z} \in \Z$.
 \end{proposition}
@@ -1350,7 +1346,7 @@ and
 \[ \ol{ \im \IP_p(A, \vv{u}, p)} = \collapse{\vv{u}}p - \Delta(A, \vv{u}, p) \] where $\collapse{X}$ denotes the collapse of a subset $X$ of $\RR^d$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
-\begin{proof}  If $\beta$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every pair $(A, \vv{u})$ and $p > \beta$.  If this pair is very small, so that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $(A, \vv{u})$ is very small and $p > \beta$.
+\begin{proof}  If $\beta$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  If this pair is very small, so that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $(A, \vv{u})$ is very small and $p > \beta$.
 \end{proof}
 
 \emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
@@ -1401,7 +1397,7 @@ Given a monomial matrix $A$, there exists an integer $\beta$ with the following 
 for all $p > \beta$ and $e \geq 1$, where the maximum is over all $p$-sprouts $(B, \vv{v})$ of $(A, \vv{u})$.  
 \end{corollary}
 
-\begin{proof}  Let $\beta$ be as in \Cref{arithmetic uniform value and image: T}, and fix a pair $(A, \vv{u})$ that is very small.
+\begin{proof}  Let $\beta$ be as in \Cref{arithmetic uniform value and image: T}, and fix a monomial pair $(A, \vv{u})$ that is very small.
 Suppose $\vv{g}$ is optimal for $\IP_p(A, \vv{u}, p^{e+1})$, and let $\vv{h}$ and $\vv{k}$ be the quotient and remainder, respectively, when dividing $\vv{g}$ by $p^e$.
 
 Let $\collapse{X}$ be the collapse of a subset $X$ of $\RR^d$ along $\O = \mf(A, \vv{u})$.  \Cref{optimal division: L} tells us that $\vv{h}$ must be optimal for $\IP_p(A, \vv{u}, p)$, and \Cref{arithmetic uniform value and image: T} then implies that $B \vv{h} = \collapse{A \vv{h}} \in \ol{\im \IP_p(A, \vv{u}, p)} = \collapse{\vv{u}}p - \Delta(A, \vv{u}, p)$ for all $p > \beta$.   
@@ -1561,7 +1557,7 @@ and recall that $\norm{\vv{k}_i} \leq p-1$ for every $1 \leq i < e$.  Therefore,
 %\daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
 
 \newpage
-\subsection{The Sprouting graph for a pair}
+\subsection{The Sprouting graph for a very small pair}
 \begin{definition}
    Suppose that $(A, \vv{u})$ is very small.
    For $e \geq 0$, we define the set $\widehat{\graph}^e(A,\vv{u},p)$ inductively as follows:
@@ -1582,7 +1578,7 @@ Consequently, the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S
 
 
 \begin{proposition}
-   Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\graph}(A, \vv{u}, p) = \widehat{\graph}(A, \vv{u}, q)$ for every pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
+   Given a monomial matrix $A$, there exists an integer $D$ such that $\widehat{\graph}(A, \vv{u}, p) = \widehat{\graph}(A, \vv{u}, q)$ for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod D$.
 \end{proposition}
 
 \alert[inline]{Include the proof.  It has to do with some finiteness property of $\ip$.}
@@ -1604,7 +1600,7 @@ Consequently, the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S
 \end{lemma}
 
 \begin{proof}
-   Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$, and fix such $p$.
+   Choose $\beta = \beta(A)$ so that the conclusions of \Cref{arithmetic uniform value and image: T,cor: upper bound for higher mus} \pedro{Maybe more?} hold for each one of the finitely many monomial pairs in $\widehat{\graph}(A, \vv{u},p)$ whenever $p > \beta$, and fix such $p$.
     By virtue of \Cref{arithmetic uniform value and image: T} and the construction of $\widehat{\graph}(A,\vv{u},p)$, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie on the same level implies that $\mu(B,\vv{v},p) = \mu(A_1, \vv{u}_1, p)$, proving the result for $e = 1$.
 
     Suppose that $e \geq 2$ and the result holds for paths of length $e-2$.
