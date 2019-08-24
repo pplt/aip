@@ -673,18 +673,19 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
    I've searched for random examples of $3 \times 3$ matrices (so we can picture not only the feasible sets, but also the Newton polyhedra) for which the optimal sets are different, and found that they are not super rare.
    Below are pictures of a couple of examples.
    In the first, $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
-   The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, shown in yellow.
-   The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
+   The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the yellow region.
+   The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the optimal set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
 }
 \emily[inline]{These look awesome!  Maybe we should include a simple 2D example as well? }
 \pedro[inline]{I'll try to find a good 2D example.}
+\vskip .5cm
 \includegraphics[width=.47\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
 \includegraphics[width=.52\textwidth]{Pictures/opt_for_collapse_may_change_2.pdf}
-
+\vskip .5cm
 \pedro[inline]{The Newton polyhedra for the first example, and its collapse.}
-\vskip 1cm
+\vskip .5cm
 \includegraphics[width=.5\textwidth]{Pictures/newton_polyhedron.pdf}
-\includegraphics[width=.4\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}
+\includegraphics[width=.45\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}
 
 \newpage
 \section{An auxiliary integer program}
