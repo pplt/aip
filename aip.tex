@@ -329,13 +329,17 @@ where $\col(A)$ is the set of columns of $A$.
 Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\vv{a} \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\vv{a}}{\vv{c}} \geq \alpha$ for all $\vv{c} \in \N$, with equality if and only if $\vv{c} \in \O$.
 We say that such a point $\vv{a}$ \emph{defines} $\O$ in $\N$.
 In this article, we will be concerned with faces $\O$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
-\textbf{When considering a point that defines a standard face, we will always assume that we have scaled the point so that $\bm{\alpha = 1}$}. 
+\textbf{When considering a point that defines a standard face, we will always assume that we have scaled the point so that $\bm{\alpha = 1}$}.
+\pedro{
+   Trying to emphasize this, as it's essential to understand some computations that will follow.
+   Maybe we should even use a ``Convention'' environment, and refer to it a couple of times, to remind the reader.
+}
 
 The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
 \begin{proposition} 
    \label{face: P}
-   If $\vv{a} \in \RR^d$ defines a face $\O$ of $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{c} + \lambda \vv{e}_i \in \O$  for every $\vv{c} \in \O$ and $\lambda > 0$.
+   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{c} + \lambda \vv{e}_i \in \O$  for every $\vv{c} \in \O$ and $\lambda > 0$.
    In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
 \end{proposition}
 
@@ -418,25 +422,19 @@ By definition, the Newton polyhedron $\M$ equals
 %
 \[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \ldots, \vv{e}_d)} =  \collapse{\N}.\]
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ equals $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
+Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
-
-
 
 \newpage
 
-
-
 \section{Linear programs associated to monomial pairs}
-
 
 \begin{definition}
 A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
 \end{definition}
 
-
 \begin{definition}
-$\LP(A, \vv{u})$ is the linear program in $\RR^n$ defined as follows:
+Given a monomial pair $(A,\vv{u})$, where $A$ is a matrix with $n$ columns, $\LP(A, \vv{u})$ is the linear program in $\RR^n$ defined as follows:
 \begin{enumerate}
 \item The constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
 \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
@@ -445,31 +443,47 @@ $\LP(A, \vv{u})$ is the linear program in $\RR^n$ defined as follows:
 
 \comment[inline]{The objective of this section is to connect this program to $F$-thresholds, and to study the optimal set of this linear program.  }
 
-
+It is easy to see that the feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in $\RR^n$.
+Consequently, $\LP(A,\vv{u})$ has a well-defined value.
 
 \subsection{Relations with $F$-thresholds}
 \label{opt sets: SS}
 
 \begin{definition}
-The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$ is the unique positive real number $\ft{A}{\vv{u}} = \lambda$ with the property that  \[ (1/\lambda)  \cdot \vv{u}  \] 
-lies in the boundary of the Newton polyhedron of $A$.  
+   The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$, denoted $\ft{A}{\vv{u}}$, is the unique positive real number $\lambda$ with the property that $(1/\lambda)  \cdot \vv{u}$ lies in the boundary of the Newton polyhedron of $A$.  
 \end{definition}
 
 \begin{definition}
-The \emph{minimal face} of a monomial pair $(A, \vv{u})$ is the minimal\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.} face $\mf(A, \vv{u})$ of the Newton polyhedron of $A$ containing the scaled point $(1/\lambda) \cdot \vv{u}$, where $\lambda = \ft{A}{\vv{u}}$.
+   The \emph{minimal face} of a monomial pair $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of the Newton polyhedron of $A$ that is minimal, with respect to inclusion, among the faces of $\N$ containing the scaled point $(1/\lambda) \cdot \vv{u}$, where $\lambda = \ft{A}{\vv{u}}$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
 \end{definition}
 
+The positivity of $\vv{u}$ implies that $\ft{A}{\vv{u}}$ is well-defined, and that $\mf(A, \vv{u})$ is a standard face of the Newton polyhedron of $A$.
+Our choice of notation and terminology is justified by the observation that if $\ideala$ is a monomial ideal with exponent matrix $A$, then the positive real number $\lambda$ described above is the $F$-threshold of $\ideala$ with respect to the diagonal ideal $\diag(\vv{u})$; see \cite[Proposition~4.12]{budur+mustata+saito.roots_bs_polys_for_mon_ideals} and the comments preceding it.
+\pedro{We can also justify this later, with our description of mus}
 
-\begin{remark}  The positivity of $\vv{u}$ implies that $\ft{A}{\vv{u}}$ is well-defined, and that $\O = \mf(A, \vv{u})$ is a standard face of the Newton polyhedron of $A$.
-\end{remark}
+\pedro[inline]{
+This (or something similar) could be a running example, to illustrate the various notions and results, like optimal set, collapses, etc.
+\begin{example}\label{ex: ft}
+   Let $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$ and $\vv{u} = (1,1,1)$.
+   The Newton polyhedron $\N$ of $A$ is shown in \Cref{fig: newton polyhedron}.
+   The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
+   \[\O = \conv(\col(A)) + \cone(\canvec_2),\]
+   so $\ft{A}{\vv{u}} = 4/17$ and $\mf(A,\vv{u}) = \O$.
+\end{example}
+}
+\begin{figure}
+   \centering
+   \includegraphics[width=.5\textwidth]{Pictures/newton_polyhedron.pdf}
+   \caption{The Newton polyhedron of the matrix $A$ described in }
+\label{fig: newton polyhedron}
+\end{figure}
+
 
 \begin{proposition}
 \label{FT descriptions: P}
   If $\N$ is the Newton polyhedron in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows, then
 \[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}) \] where the minimum is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
 \end{proposition}
-
-\alert[inline]{Will need to connect this to $F$-thresholds of ideals}
 
 \begin{proof}
    Let $\O$ be a face of $\N$ containing $\mf(A,\vv{u})$, and fix $\vv{c} \in \RR^d$ defining $\O$ in $\N$.
