@@ -491,7 +491,8 @@ This (or something similar) could be a running example, to illustrate the variou
 
 \begin{proposition}
    \label{FT descriptions: P}
-   If $\N$ is the Newton polyhedron in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows, then
+   Let $(A,\vv{u})$ be a monomial pair, where $A$ is a matrix with $d$ rows.
+   If $\N$ is the Newton polyhedron associated to $A$, then
    \[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}), \]
    where the minimum is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
 \end{proposition}
@@ -576,11 +577,12 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 The identity \eqref{cone containment: e} above implies that 
  %
 %\[ \vv{u} \in \cone (\O) = \cone \left( (\col(A) \cap \O) \cup \rb(\O)  \right). \]
-$\vv{u}$ is a convex combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.  Typically, there are many ways to express $\vv{u}$ as such a convex combination, and as we see below, each such expression determines an optimal point of $\LP(A, \vv{u})$.
+$\vv{u}$ is a conical combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.
+Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, each such expression determines an optimal point of $\LP(A, \vv{u})$.
 
-\begin{corollary}  
-\label{opt set: C}
-A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
+\begin{corollary}\label{opt set: C}
+   Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $d\times n$ matrix.
+   A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
 \item  \label{mc decomposition: e} $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in  \cone(\rb(\O))$.   
