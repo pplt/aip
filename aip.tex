@@ -340,6 +340,10 @@ In this article, we will be concerned with faces $\O$ that do not lie in any coo
    Maybe we should even use a ``Convention'' environment, and refer to it a couple of times, to remind the reader.
 }
 
+\begin{remark}\label{rmk: inner product with columns of A}
+   In view of the above convention, if $\vv{a}$ defines a standard face $\O$ of the Newton polyhedron of $A$ and $\vv{s} \in \RR^n$ then $\iprod{\vv{a}}{A\vv{s}} \ge \norm{\vv{s}}$, and if $\vv{s}\ge \vv{0}$, then equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
+\end{remark}
+
 The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
 \begin{proposition} 
@@ -425,7 +429,7 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 \begin{proof}
 By definition, the Newton polyhedron $\M$ equals
 %
-\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \collapse{\conv( \col(A))} + \collapse{\cone(\vv{e}_1, \ldots, \vv{e}_d)} =  \collapse{\N}.\]
+\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\vv{e}_1, \ldots, \vv{e}_d)} =  \collapse{\N}.\]
 
 Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
@@ -500,8 +504,9 @@ This (or something similar) could be a running example, to illustrate the variou
    Similarly, if $\vv{d}$ defines a standard face of $\N$, then $\vv{u} \in \lambda \N$ implies that $\iprod{\vv{d}}{\vv{u}} \geq \lambda$.
 
    It remains to show that $\val \LP(A, \vv{u}) = \lambda$.
-   Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $A \vv{s} \leq \vv{u}$, and the nonnegativity of $\vv{c}$, established in \Cref{face: P}, implies that $\iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$.
-   Furthermore, the fact that $\vv{s} \geq \vv{0}$ and that the inner product of $\vv{c}$ with any column of $A$ is at least one implies that $\iprod{\vv{c}}{A \vv{s}}$ is at least $\norm{\vv{s}}$.
+   Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
+   \[\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda,\]
+   where the first inequality follows from \Cref{rmk: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$, established in \Cref{face: P}.
    We conclude that $\val \LP \leq \lambda$.
 
    On the other hand, \eqref{face: e} and our choice of $\O$ imply that
@@ -548,7 +553,7 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 \end{proposition}
 
 \pedro[inline]{
-   We can probably simplify this proof, as it is very believable that if $\vv{a}$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\vv{a}}{\vv{u}}$ takes on only finitely many values less than $\beta$---when $a_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $a_i = 0$, the value of $u_i$ does not affect the inner product.
+   We can probably simplify this proof, as it is very believable that if $\vv{a}$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\vv{a}}{\vv{u}}$ takes on only finitely many values less than $\beta$ (when $a_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $a_i = 0$, the value of $u_i$ does not affect the inner product).
 }
 
 \begin{proof}
@@ -583,22 +588,40 @@ A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it sat
 \end{enumerate}
 \end{corollary}
 
-\begin{proof}  
-Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron associated to $A$. 
+% \begin{proof}
+%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron associated to $A$.
 
-First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.
-Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\vv{a}}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
-\Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\vv{a}$ with every column of $A$ contained in $\O$ is one.
+%    First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.
+%    Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\vv{a}}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
+% \Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\vv{a}$ with every column of $A$ contained in $\O$ is one.
 
-Next, suppose that $\vv{s}$ is optimal for $\LP$, and let $\vv{w}$ be the unique point in $\RR^d$ with $\vv{u} = A \vv{s} + \vv{w}$.  The optimality of $\vv{s}$ implies that $\norm{\vv{s}} = \lambda$, while the constraints of $\LP$ imply that $\vv{w} \geq \vv{0}$.  A direct computation shows that
-%
-\[ \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}} = \lambda + \iprod{\vv{a}}{\vv{w}} \]
-%
-which allows us to conclude that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = 0$.
-It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\vv{a}$, that the point $\vv{s}$ must satisfy the two asserted conditions.
+% Next, suppose that $\vv{s}$ is optimal for $\LP$, and let $\vv{w}$ be the unique point in $\RR^d$ with $\vv{u} = A \vv{s} + \vv{w}$.  The optimality of $\vv{s}$ implies that $\norm{\vv{s}} = \lambda$, while the constraints of $\LP$ imply that $\vv{w} \geq \vv{0}$.  A direct computation shows that
+% %
+% \[ \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}} = \lambda + \iprod{\vv{a}}{\vv{w}}, \]
+% %
+% which allows us to conclude that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = 0$.
+% It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\vv{a}$, that the point $\vv{s}$ must satisfy the two asserted conditions.
+% \end{proof}
+
+\pedro[inline]{
+   Trying to simplify the proof a bit; the original is commented out, in case someone wishes to restore it.
+}
+
+\begin{proof}
+   Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron associated to $A$.
+   Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
+   % If $\vv{s}$ is optimal for $\LP$, then $\vv{s}\ge \vv{0}$, $\vv{w} \coloneqq \vv{u} - A\vv{s} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$.
+   By \Cref{FT descriptions: P,rmk: inner product with columns of A},
+   %
+   \begin{equation}\label{eq 1}
+      \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}}.
+   \end{equation}
+   %
+   If $\vv{s}$ is optimal for $\LP$, then $\vv{s} \ge \vv{0}$, $\vv{w} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$, and \eqref{eq 1} shows that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = 0$.
+   The first identity and \Cref{rmk: inner product with columns of A} show that $\vv{s}$ satisfies~(1); the second identity shows that $\vv{w}\in \cone(\rb(\O))$, so $\vv{s}$ satisfies~(2).
+   Conversely, if $\vv{s}$ satisfies (1) and (2), then $\vv{s}$ is feasible for $\LP$, $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$, and $\iprod{\vv{a}}{\vv{w}} = 0$.
+   By \eqref{eq 1}, $\norm{\vv{s}} = \lambda$, so $\vv{s}$ is optimal for $\LP$.
 \end{proof}
-
-
 
 \begin{theorem}  
 \label{uniform denominators for vertices:  T}
