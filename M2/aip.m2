@@ -63,18 +63,18 @@ ft ( Matrix, List ) := (A,u) -> (
 ft Matrix := A -> ft( A, constantList( 1, rank target A ) )
     
 -- minimal face mf(A,u)
-minFace = method()
-minFace ( Matrix, List ) := (A,u) -> (
+minimalFace = method()
+minimalFace ( Matrix, List ) := (A,u) -> (
     NA := newton A;
     int := intersection( coneFromVData transpose matrix {u}, NA );
     smallestFace( vertices int, NA )
 )
-minFace Matrix := A -> minFace( A, constantList( 1, rank target A ) )
+minimalFace Matrix := A -> minimalFace( A, constantList( 1, rank target A ) )
      
 -- recession basis for minimal face     
 rb = method()
-rb ( Matrix, List ) := (A,u) -> entries transpose rays tailCone minFace(A,u)
-rb Matrix := A -> entries transpose rays tailCone minFace A
+rb ( Matrix, List ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
+rb Matrix := A -> entries transpose rays tailCone minimalFace A
 
 collapse = method()
 collapse (Matrix, List) := (A,u) -> (
@@ -257,15 +257,40 @@ scan(100, i ->
     )
 )
 
+entries A
 
-A = transpose matrix {{7, 6, 6}, {3, 5, 7}, {7, 8, 6}}
-vertices minFace A
-rb(A)
-halfspaces split A
+ZZ/5[x,y,z]
+I := L -> ideal apply( L, u -> x^(u#0)*y^(u#1)*z^(u#2) )
+trim( I {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}} )
+
+A = transpose matrix {{9, 0, 7}, {4, 5, 3}, {2, 0, 7}}
+ft A
+
+A = transpose matrix {{8, 6, 7}, {4, 4, 9}, {4, 9, 4}}
+ft A
+
+--- tHiS!
+A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
+--- ThIs!
+
+vertices minimalFace A
+isCompact minimalFace A
+rb A
+c = collapse A
+
+toString entries transpose vertices split A
+toString entries transpose vertices optP A
+
+toString entries transpose vertices split(c*A)
+toString entries transpose vertices optP(c*A)
+
+ft A
+
 halfspaces optP A
 halfspaces optP(c*A)
 
 entries A -- {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}} -- optimal set different from optimal set of collapse
+
 
 -- matrix {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}}
 

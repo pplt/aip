@@ -502,6 +502,25 @@ Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ w
 Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
 \end{proof}
 
+\pedro[inline]{
+   \begin{example}\label{ex: illustrating FT descriptions}
+      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\vv{c} = (3/17, 0, 1/17)$.
+      \Cref{FT descriptions: P} then tells us that
+      \[\ft{A}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = 4/17.\]
+
+      From another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
+      \[\opt \LP(A,\vv{u}) = \conv((1/17, 0, 3/17),(2/17, 1/17, 1/17)),\]
+      highlighted in green.
+      Thus, \Cref{FT descriptions: P} again tells us that
+      \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{(1/17, 0, 3/17)} = 4/17.\]
+   \end{example}
+}
+\begin{figure}
+   \centering
+   \includegraphics[width=.5\textwidth]{Pictures/splitting_polytope.pdf}
+   \caption{The feasible region of the linear program $\LP(A,\vv{u})$ in \Cref{ex: illustrating FT descriptions}}
+\label{fig: splitting polytope}
+\end{figure}
 
 The following is a consequence of the discreteness of the $F$-jumping exponents associated to an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
