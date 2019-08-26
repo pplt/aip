@@ -68,6 +68,11 @@ TO DO LIST:
 \end{enumerate}
 }
 
+\pedro[inline]{
+   Should we say ``associated to'' or ``associated with''?
+   We're using the former, but Google Ngram shows that the latter is a lot more popular. 
+}
+
 \newpage
 
 \section{Preliminaries}
@@ -412,9 +417,9 @@ If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $
 The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\vv{a}}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
 \end{remark}
 
-\begin{proposition}
-\label{collapse of Newton polyhedron: P} 
-If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
+\begin{proposition}\label{collapse of Newton polyhedron: P}
+   If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.
+   In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
 \end{proposition}
 
 \begin{proof}
@@ -481,32 +486,37 @@ This (or something similar) could be a running example, to illustrate the variou
 
 
 \begin{proposition}
-\label{FT descriptions: P}
-  If $\N$ is the Newton polyhedron in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows, then
-\[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}) \] where the minimum is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
+   \label{FT descriptions: P}
+   If $\N$ is the Newton polyhedron in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows, then
+   \[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}), \]
+   where the minimum is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
 \end{proposition}
 
 \begin{proof}
    Let $\O$ be a face of $\N$ containing $\mf(A,\vv{u})$, and fix $\vv{c} \in \RR^d$ defining $\O$ in $\N$.
    Set $\lambda = \ft{A}{\vv{u}}$.
-   By definition, $\vv{u} \in \lambda \O$, and so $\iprod{\vv{c}}{\vv{u}} = \lambda$.    Similarly, if $\vv{d}$ defines a standard face of $\N$, then $\vv{u} \in \lambda \N$ implies that $\iprod{\vv{d}}{\vv{u}} \geq \lambda$.
+   By definition, $\vv{u} \in \lambda \O$, and so $\iprod{\vv{c}}{\vv{u}} = \lambda$.
+   \pedro{Maybe a good point to remind the reader of our convention about rescaling points defining standard faces.}
+   Similarly, if $\vv{d}$ defines a standard face of $\N$, then $\vv{u} \in \lambda \N$ implies that $\iprod{\vv{d}}{\vv{u}} \geq \lambda$.
 
-It remains to show that $\val \LP(A, \vv{u}) = \lambda$.  Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $A \vv{s} \leq \vv{u}$, and the nonnegativity of $\vv{c}$ then implies that  $\iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$.  Furthermore, the fact that $\vv{s} \geq \vv{0}$ and that the inner product of $\vv{c}$ with any column of $A$ is at least one implies that $\iprod{\vv{c}}{A \vv{s}}$ is at least $\norm{\vv{s}}$.  We conclude that $\val \LP \leq \lambda$.  
+   It remains to show that $\val \LP(A, \vv{u}) = \lambda$.
+   Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $A \vv{s} \leq \vv{u}$, and the nonnegativity of $\vv{c}$, established in \Cref{face: P}, implies that $\iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$.
+   Furthermore, the fact that $\vv{s} \geq \vv{0}$ and that the inner product of $\vv{c}$ with any column of $A$ is at least one implies that $\iprod{\vv{c}}{A \vv{s}}$ is at least $\norm{\vv{s}}$.
+   We conclude that $\val \LP \leq \lambda$.
 
-On the other hand, \eqref{face: e} and our choice of $\O$ imply that 
-\begin{equation}
-\label{cone containment: e}
- (1/\lambda) \cdot \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
-\end{equation}
-Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\norm{\vv{s}} = \lambda$ and $\vv{w} \geq \vv{0}$.
-Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
+   On the other hand, \eqref{face: e} and our choice of $\O$ imply that
+   \begin{equation}\label{cone containment: e}
+      (1/\lambda) \cdot \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
+   \end{equation}
+   Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\norm{\vv{s}} = \lambda$ and $\vv{w} \geq \vv{0}$.
+   Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
 \end{proof}
 
 \pedro[inline]{
    \begin{example}\label{ex: illustrating FT descriptions}
-      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\vv{c} = (3/17, 0, 1/17)$.
+      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\vv{a} = (3/17, 0, 1/17)$.
       \Cref{FT descriptions: P} then tells us that
-      \[\ft{A}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = 4/17.\]
+      \[\ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = 4/17.\]
 
       From another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
       \[\opt \LP(A,\vv{u}) = \conv((1/17, 0, 3/17),(2/17, 1/17, 1/17)),\]
@@ -522,32 +532,41 @@ Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lamb
 \label{fig: splitting polytope}
 \end{figure}
 
+\pedro[inline]{
+   The stuff below seems out of place here.
+   Maybe move it to the end of this section?
+}
+
+\comment[inline]{
 The following is a consequence of the discreteness of the $F$-jumping exponents associated to an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
 
-
-\begin{lemma}
+\begin{proposition}
 \label{discreteness: L}
 Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
 %In particular, once $A$ is fixed, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ with $(A, \vv{u})$ very small.
-\end{lemma}
+\end{proposition}
 
-\begin{proof}   
-It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.   Consider such a pair, and let $\collapse{A}$ (respectively, $\collapse{X}$) be the collapse of $A$ (respectively,  a set $X$) along $\O$.
+\pedro[inline]{
+   We can probably simplify this proof, as it is very believable that if $\vv{a}$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\vv{a}}{\vv{u}}$ takes on only finitely many values less than $\beta$---when $a_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $a_i = 0$, the value of $u_i$ does not affect the inner product.
+}
 
-Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that 
-%
-\begin{equation} 
-\label{ft inner product identity: e}
-\ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{u}}}. 
-\end{equation}
-% 
+\begin{proof}
+   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
+   Consider such a pair, and let $\collapse{\vv{u}}$ denote the collapse of the point $\vv{u}$ along $\O$.
 
-The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} > \vv{0}$ and $\iprod{\collapse{\vv{a}}}{\vv{w}} < \beta$.  However, the positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ implies that this polyhedron is bounded (e.g., one may argue as in the proof of \Cref{bounded polytope: P}).  
+   Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that
+   %
+   \begin{equation}\label{ft inner product identity: e}
+      \ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{\collapse{\vv{u}}}.
+   \end{equation}
+   %
+   The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\vv{a}}{\vv{w}} < \beta$.
+   However, the positivity of $\vv{a}$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
 
-In summary, as $\vv{u}$ varies through all points with  $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ obtains only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
+   In summary, as $\vv{u}$ varies through all points with $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ takes on only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
 \end{proof}
-
+}
 
 The identity \eqref{cone containment: e} above implies that 
  %
