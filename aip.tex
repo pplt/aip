@@ -162,7 +162,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    \end{proposition}
 
    Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-   By \Cref{opt set: C}, $\opt \LP$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge 0$, with equality in some specific rows, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
+   By \Cref{opt set: C}, $\opt \LP$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
    Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
 
    \bigskip
@@ -660,6 +660,7 @@ Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \
 
 If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: C} implies that there exists a linear bijection $\opt \LP 
 \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
+\pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
 
 Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
 \end{proof}
@@ -669,24 +670,24 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 
 \ \comment[inline]{Special points are how we construct canonical solutions to the integer program $\IP(A, \vv{u}, q)$;  see \Cref{canonical-feasible: T} for more details.}
 
-Technicalities that arise in future sections whenever $\mf(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
-
+Technicalities that arise in future sections whenever the minimal face of a monomial pair $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
 
 \begin{definition}
 \label{mc: D} 
-Let $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
+Let $(A,\vv{u})$ be a monomial pair, and $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.  
 \end{enumerate}
-
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.  
 \end{definition}
 
 %We see below that $\sp(A, \vv{u})$ and $\opt \LP(A, \vv{u})$ are equal, or close to equal.
 
 \begin{proposition}  
-\label{opt versus mc: P}  If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
+   \label{opt versus mc: P}
+   Let $(A,\vv{u})$ be a monomial pair.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
 \end{proposition}
 
 \begin{proof}    
@@ -694,12 +695,17 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
 
  The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
-We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.  
+ We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
+ \pedro{I'm confused by this argument. What characterization of relative interior is being used here?}
 \end{proof}
 
 
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
+\pedro[inline]{
+   Maybe we should include it.
+   Or bring back \Cref{ex: ft} again, where $\opt \LP(A,\vv{u})$ is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$, and only the second endpoint is special for $(A,\vv{u})$.
 
+}
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
 % where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the special points for $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
