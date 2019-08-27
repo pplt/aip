@@ -106,8 +106,15 @@ The cone in this decomposition is the set of all directions $\vv{d} \in \RR^n$ i
 
 The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone. 
 
+\pedro[inline]{
+   Maybe we should gather what we need about faces and vertices of polyhedra right here.
+}
+
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
-\pedro{Is there a more explicit/concrete characterization for polyhedra/polytopes?}
+\pedro{
+   Is there a more concrete characterization for polyhedra?
+   E.g., points not in any proper face?
+}
 For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
 \begin{proposition}  
@@ -144,6 +151,23 @@ Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point containe
 
 Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}^{\ast}$ is a convex combination of these points, it will then follow that $\vv{t}^{\ast}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ is nonnegative for all $0 < \varepsilon \ll 1$.  
 \end{proof}
+
+\pedro[inline]{
+   An alternative to the previous proposition is the following result, which we could just mention and give a reference (it appears in several books):
+
+   \begin{proposition}
+      Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and $\vv{v}$ a vertex of $\mathcal{P}$.
+      Then there exists $I \subseteq \{1,\ldots,m\}$ such that $\vv{v}$ is the unique solution to the system $A_I \vv{x} = \vv{b}_I$, where $A_I$ and $\vv{b}_I$ are obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
+   \end{proposition}
+
+   Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
+   By \Cref{opt set: C}, $\opt \LP$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge 0$, with equality in some specific rows, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
+   Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
+
+   \bigskip
+
+   Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
+}
 
 \subsection{Monomial matrices}  A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
 
