@@ -161,7 +161,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    \end{proposition}
 
    Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-   By \Cref{opt set: C}, $\opt \LP$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
+   By \Cref{opt set: C}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
    Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
 
    \bigskip
@@ -663,7 +663,7 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 \end{proof}
 
 
-\subsection{Special points}
+\subsection{Special points and denominators}
 
 \ \comment[inline]{Special points are how we construct canonical solutions to the integer program $\IP(A, \vv{u}, q)$;  see \Cref{canonical-feasible: T} for more details.}
 
@@ -692,7 +692,9 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
 
  The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
- We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
+ We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$
+ \pedro{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
+ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
 \end{proof}
 
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
@@ -726,6 +728,7 @@ Special denominators exist.
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.  
 \end{proof}
 
+\subsection{Collapsing}
 
 Below, we describe the relationship between collapses and the other notions introduced in this section.
 
@@ -744,7 +747,7 @@ Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the
 
 Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \] 
 %
-By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
+By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation then allows us to conclude that
 \begin{equation*}
    \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).
    \qedhere
@@ -766,7 +769,8 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \pedro[inline]{
    \begin{example}
       Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
-      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O = \mf(A,\vv{u})$, with $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ shown in dark blue (compare with \Cref{fig: newton polyhedron}), and the points $\collapse{\vv{u}}$ and $(17/4)\cdot\collapse{\vv{u}}$.
+      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O = \mf(A,\vv{u})$ (compare with \Cref{fig: newton polyhedron}).
+      The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
       
       The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
       \Cref{fig: collapse}(\textsc{b}) also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
@@ -792,6 +796,15 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \newpage
 \section{An auxiliary integer program}
 
+Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
+Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
+Recall that for each $q$ a power of $p$ we define the number
+\[\nu(\ideala,\ideald,q) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \ideald^{[q]}\big\},\]
+used in the computation of the $F$-threshold of $\ideala$ with respect to $\ideald$.
+If $A$ is the exponent matrix of $\ideala$, then $\ideala^k$ is generated by monomials $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\norm{\vv{k}} = k$.
+Because $\ideald^{[q]} = \diag(\vv{u}q)$ is generated by monomials $x^\vv{v}$ with $\vv{v} \not< \vv{u}q$, the condition $\ideala^{k} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$.
+Thus, finding the maximum defining $\nu(\ideala,\ideald,q)$ is equivalent to maximizing $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the constraint $A\vv{k} < \vv{u}q$, which suggests the following definition.
+
 \begin{definition}
    Given a monomial pair $(A,\vv{u})$ and a positive integer $q$, $\IP(A, \vv{u}, q)$ is the integer program in $\ZZ^n$ defined as follows:
 \begin{enumerate}
@@ -800,26 +813,15 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \end{enumerate}
 \end{definition}
 
-\emily[inline]{Note somewhere that the feasible set of $\IP$ is bounded:  This is used in the fractal linear program later on.}
-
 \begin{definition}
 The \emph{image} of $\IP(A, \vv{u}, q)$ is the set \[ \im \IP(A, \vv{u}, q) = A ( \opt \IP(A, \vv{u}, q) ). \] 
 \end{definition}
 
-% \comment[inline]{Our objective is to study $\IP(A, \vv{u}, q)$ whenever $q = p^e$ and $p \gg 0$.}
+In the algebraic context established above, $\nu(\ideala,\ideald,q)$, which we will often denote $\nu(A,\vv{u},q)$, is the value of the integer program $\IP(A, \vv{u}, q)$.
 
-% \daniel[inline]{We ``solve" the program $\IP(A, \vv{u}, q)$ as is done in the other paper, or as discussed at AIM.  We recall the rough outline below.
-% \begin{enumerate}
-% \item Step 1:  Construct a canonical feasible point that depends on $p$.   This step is more involved in this paper, as compared to the other one, and to what we did at AIM.  The extra complexity comes from the fact that there may be many special points, whereas in each of those other cases, there is a unique one.  In any case, we associate to each special point for $(A,\vv{u})$ a canonical feasible point for $\IP(A, \vv{u}, q)$.  This will be done in \Cref{canonical-feasible: T}.
-% \item Step 2:  Fix a special point for $(A, \vv{u})$.  Use it to construct a feasible point for $\IP(A, \vv{u}, q)$.  Consider an arbitrary feasible point $\vv{k}$ for $\IP(A, \vv{u}, q)$, and consider the difference $\vv{h} = \vv{k} - $(canonical feasible point). Translate the constraints on $\vv{k}$ into ones on $\vv{h}$.  This (and more) is done in \Cref{relating-programs: ss}.  Use the resulting inequalities to define a \emph{secondary integer program}.  The secondary program that results from this process is the one $\ip$ appearing in \Cref{aux program: D}.
-% \item Step 3:  Study the finiteness properties of $\ip$.  This is done in this section, before the connection between $\IP$ and $\ip$ is discussed, since these finiteness properties of $\ip$ are called upon to tie down the connection with $\IP$.  The downside is that this order of things makes things here seem really unmotivated.
-% \item Step 4:  Establish that all of the interesting objects that appear in this process do not depend on the choice of special point we picked in Step 2.  This is kind of technical (I bet there is a cleaner way to see this), and is done in \Cref{useful-invariants: ss}.
-% \end{enumerate}
-% }
-
-
-
-\todo[inline]{Relate $\IP$ to $\nu$'s and leftovers of $\ideala^{[\nu]}$.}
+\todo[inline]{
+   Give algebraic interpretation of the image.
+}
 
 \subsection{Canonical feasible points}  We highlight a simple construction that associates to any point in $\sp_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.  As a part of this, we call upon some basic notions from modular arithmetic.   
 

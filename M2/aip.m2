@@ -308,3 +308,10 @@ contains(split(c*A),split A)
 
 toString entries transpose vertices split A
 toString entries transpose vertices split(c*A)
+
+--------------------------------------------------------
+A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
+
+L = faces(1, newton A)
+vert = vertices newton A
+apply(L, f -> vert_(f#0))
