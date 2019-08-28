@@ -113,8 +113,8 @@ The Minkowski--Weyl Theorem gives us a couple of useful characterizations of pol
 
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
 \pedro{
-   Is there a more concrete characterization for polyhedra?
-   E.g., points not in any proper face?
+   Is there a more concrete characterization for polyhedra/polytopes?
+   E.g., points not in any proper face? Positive convex combinations of vertices?
 }
 For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
@@ -175,8 +175,6 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
 %A  monomial matrix $B$ is a \emph{successor} of $A$ if $B$ can be obtained from $A$ by omitting some (possibly empty) subset of its rows.   The most relevant example of a successor is the collapse construction considered later in \Cref{newton-polyhedra: S}.  A successor $B$ of $A$ is  \emph{proper} if $B \neq A$.
 
 \pedro[inline]{
-   The terminology introduced in the above paragraph is not being used.
-   
    Maybe we could eliminate this subsection, and move the definition of monomial matrix to the section on Newton polyhedra.
 
    And maybe we could move Newton polyhedra here to this Preliminaries section, as a subsection. 
@@ -696,7 +694,6 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
  The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
- \pedro{I'm confused by this argument. What characterization of relative interior is being used here?}
 \end{proof}
 
 
