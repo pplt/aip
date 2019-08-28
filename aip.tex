@@ -11,7 +11,6 @@
 \author{Emily E. Witt}
 \maketitle
 
-
 \newcommand{\denom}{\ell} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
@@ -696,11 +695,10 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
 \end{proof}
 
-
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 \pedro[inline]{
    Maybe we should include it.
-   Or bring back \Cref{ex: ft} again, where $\opt \LP(A,\vv{u})$ is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$, and only the second endpoint is special for $(A,\vv{u})$.
+   Or bring back \Cref{ex: ft} again, where $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$, and only the second endpoint is special for $(A,\vv{u})$.
 
 }
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
@@ -716,8 +714,9 @@ Special denominators exist.
 
 
 \begin{proof}
+   Let $A$ be a monomial matrix.
    Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so there is always a vertex in this set with denominator~$\ell_{\circ}$.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\ell_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.
    Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \ldots, \vv{e}_c \}$ for some $1 \leq c \leq d-1$, and fix \emph{positive} integers $d_1, \ldots, d_c$ that sum to $d-1$.
@@ -730,16 +729,15 @@ Special denominators exist.
 
 Below, we describe the relationship between collapses and the other notions introduced in this section.
 
-\begin{corollary}
-\label{collapse of mf and mc: C}
+\begin{proposition}
+   \label{collapse of mf and mc: P}
 Consider a monomial pair $(A, \vv{u})$.  If $\collapse{A}$ \textup(respectively, $\collapse{X}$\textup) is the collapse of $A$ \textup(respectively, a set $X$\textup) along $\O = \mf(A, \vv{u})$, then the following hold.
-
 \begin{enumerate}
 \item $\mf(\collapse{A}, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
 \item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  
 \item Each special point for $(A, \vv{u})$ is a special point for $(\collapse{A}, \collapse{\vv{u}})$.
 \end{enumerate}
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
 Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the relative interior of $\O$.  It is clear that projection preserves relative interiors, and so $(1/\lambda) \cdot \collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}.  This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $(1/\lambda) \cdot \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.  
@@ -753,25 +751,43 @@ By construction, each row of $\collapse{A}$ is a row of $A$, and so the constrai
 \end{equation*}
 \end{proof}
 
-\daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
+% \daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
+% \pedro[inline]{
+%    I like that idea.
+%    I've searched for random examples of $3 \times 3$ matrices (so we can picture not only the feasible sets, but also the Newton polyhedra) for which the optimal sets are different, and found that they are not super rare.
+%    Below are pictures of a couple of examples.
+%    In the first, $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
+%    The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the yellow region.
+%    The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the optimal set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
+% }
+% \emily[inline]{These look awesome!  Maybe we should include a simple 2D example as well? }
+% \pedro[inline]{I'll try to find a good 2D example.}
+
 \pedro[inline]{
-   I like that idea.
-   I've searched for random examples of $3 \times 3$ matrices (so we can picture not only the feasible sets, but also the Newton polyhedra) for which the optimal sets are different, and found that they are not super rare.
-   Below are pictures of a couple of examples.
-   In the first, $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
-   The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the yellow region.
-   The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the optimal set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
+   \begin{example}
+      Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
+      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O = \mf(A,\vv{u})$, with $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ shown in dark blue (compare with \Cref{fig: newton polyhedron}), and the points $\collapse{\vv{u}}$ and $(17/4)\cdot\collapse{\vv{u}}$.
+      
+      The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
+      \Cref{fig: collapse}(\textsc{b}) also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
+      Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper.
+   \end{example}
 }
-\emily[inline]{These look awesome!  Maybe we should include a simple 2D example as well? }
-\pedro[inline]{I'll try to find a good 2D example.}
-\vskip .5cm
-\includegraphics[width=.47\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
-\includegraphics[width=.52\textwidth]{Pictures/opt_for_collapse_may_change_2.pdf}
-\vskip .5cm
-\pedro[inline]{The Newton polyhedra for the first example and its collapse.}
-\vskip .5cm
-\includegraphics[width=.5\textwidth]{Pictures/newton_polyhedron.pdf}
-\includegraphics[width=.45\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}
+\begin{figure}
+   \centering
+   \begin{subfigure}{.49\textwidth}
+      \centering
+      \includegraphics[width=.8\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}
+      \caption{}
+   \end{subfigure}
+   \begin{subfigure}{.49\textwidth}
+      \centering
+      \includegraphics[width=.8\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
+      \caption{}
+   \end{subfigure}
+   \caption{}
+   \label{fig: collapse}
+\end{figure}
 
 \newpage
 \section{An auxiliary integer program}
@@ -959,7 +975,7 @@ $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv
 
 \begin{remark}
 \label{collapsed aux program: R}
-Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: C} implies that 
+Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that 
 \[ (\collapse{A}, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
 \[ \ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q). \] 
 \end{remark}
