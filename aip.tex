@@ -443,6 +443,11 @@ then we would get a matrix obtained by replacing some rows of $A$ with zero.
    real thing''; for this reason, I think I prefer mine.
    For instance, under your interpretation, $\collapse{A} \vv{k}$ (an element of $\RR^{\# \rb(\O)^\perp}$) is not the same as $\collapse{A\vv{k}}$ (an element of $\RR^d$); instead, $\collapse{A} \vv{k}$ is the coordinate vector of $\collapse{A\vv{k}}$ with respect to the basis $\rb(\O)^\perp$. 
 }
+\daniel[inline]{I'm confused.  We defined $\rs(\O)^{\perp} = \operatorname{span}_{\RR} \rb(\O)^{\perp}$  So 
+\[ \collapse{ A \vv{k} } = .
+
+}
+  
 \daniel[inline]{I should also add that there are some advantages to thinking about $\collapse{A}$ is obtained from $A$ by omitting columns, as opposed to replacing them with zero.  For instance, this interpretation is key in \Cref{aux program: D}, when defining the constraints of $\ip$.  If we instead replaced rows with zeros, then the modified definition of $\ip$ would be more involved.}
 \pedro[inline]{
    In a way, we are already getting around these issues, by saying things like ``$\vv{a}$ is positive in $\rs(\O)$'' (meaning $a_i$ is positive whenever $\canvec_i \in \rb(\O)$).
