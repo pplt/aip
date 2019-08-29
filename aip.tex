@@ -443,17 +443,26 @@ then we would get a matrix obtained by replacing some rows of $A$ with zero.
    real thing''; for this reason, I think I prefer mine.
    For instance, under your interpretation, $\collapse{A} \vv{k}$ (an element of $\RR^{\# \rb(\O)^\perp}$) is not the same as $\collapse{A\vv{k}}$ (an element of $\RR^d$); instead, $\collapse{A} \vv{k}$ is the coordinate vector of $\collapse{A\vv{k}}$ with respect to the basis $\rb(\O)^\perp$. 
 }
-\daniel[inline]{I'm confused.  We defined $\rs(\O)^{\perp} = \operatorname{span}_{\RR} \rb(\O)^{\perp}$  So 
-\[ \collapse{ A \vv{k} } = .
+\daniel[inline]{I've always thought of $\rs(\O)^{\perp}$ as $\operatorname{span}_{\RR} \rb(\O)^{\perp}$, and not an abstract $\RR^{\# \rb(\O)^{\perp}}$, and so unless I am crazy, I think that $\collapse{A \vv{k}} = \collapse{A} \vv{k}$ with the original definition.  Both sides are in $\RR \rb(\O)^{\perp}$.  Maybe it is better to keep the notation $\RR \rb(\O)$ instead of $\rs(\O)$, and similar with $\perp$ analogs.
 
-}
+\medskip
+
+Are our different viewpoints an internal/external direct sum conflict?  
+
+\medskip
+
+Keeping a row of zeros in the collapse is odd to me geometrically;  even when we are drawing collapsed Newton polyhedra, we aren't drawing them in the larger Euclidean space.  Similarly, when we collapse a monomial ideal (which basically, involves forgetting some variables), we are thinking about it as a monomial ideal in a polynomial ring in fewer variables, all of which appear as generators for the collapsed ideal.}
   
 \daniel[inline]{I should also add that there are some advantages to thinking about $\collapse{A}$ is obtained from $A$ by omitting columns, as opposed to replacing them with zero.  For instance, this interpretation is key in \Cref{aux program: D}, when defining the constraints of $\ip$.  If we instead replaced rows with zeros, then the modified definition of $\ip$ would be more involved.}
 \pedro[inline]{
    In a way, we are already getting around these issues, by saying things like ``$\vv{a}$ is positive in $\rs(\O)$'' (meaning $a_i$ is positive whenever $\canvec_i \in \rb(\O)$).
    I think from here, it's just a small step to saying things like ``$\vv{a} < \vv{b}$ in $\rs(\O)$'' (meaning $\vv{b} - \vv{a}$ is positive in $\rs(\O)$).
 }
-\daniel[inline]{If this is what we stick with, then we should definitely clarify (probably immediately after the definition) that we are omitting rows of $A$, and not replacing them with zero.  OR, we could build this into the cool new examples Pedro has written up.}
+\daniel[inline]{I think it is a valid point to note that maybe we aren't so consistent.  When I say something is positive in a coordinate subspace, I mean its projection to that space is positive (intrinsically, in that space).
+
+\medskip
+
+Let $V$ be an $n$-dimensional vector space over $\RR$.  If we fix a basis for $V$, then we can make sense of inequalities like $\vv{u} \leq \vv{v}$ for elements $\vv{u}, \vv{v} \in V$.  Just look at the representations in the basis, and ask for the inequality coefficient by coefficient.  Then positive, nonnegative, etc makes sense.  This all depends on the basis, but once we fix our starting point $\RR^d$, then every other vector space we get inherits a natural basis consisting of some subset of the standard basis for $\RR^d$.  I've always interpreted all inequalities in this way.}
 
 
 \begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
