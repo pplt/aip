@@ -110,7 +110,10 @@ The Minkowski--Weyl Theorem gives us a couple of useful characterizations of pol
    Maybe we should gather what we need about faces and vertices of polyhedra right here.
 }
 \daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
-
+\pedro[inline]{
+   Yes, maybe it's more efficient to introduce what we need ``on demand'', so the reader does not need to be coming back to this section all the time.
+   That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
+}
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
 \pedro{
    Is there a more concrete characterization for polyhedra/polytopes?
@@ -471,8 +474,9 @@ Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse
 
 
 \begin{remark}
-\label{collapse of a defining vector: R}
-If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
+   \label{collapse of a defining vector: R}
+   If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.
+   Consequently, $\iprod{\vv{a}}{\vv{u}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
 \pedro{May add that $\collapse{\vv{a}} = \vv{a}$}
 \daniel{I guess this depends on what we decide above.}
 \pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
@@ -732,11 +736,27 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
 
  The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
- We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$
- \pedro{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
- with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
-\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\vv{e}_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\vv{e}_i \in \rb(\O)$? I hope so!}
+ We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
+% Next, suppose that $\vv{e}_i \in \rb(\O)$.
+%  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.
+%  However, the special point constructed above shows that this is impossible.
+%  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
+%  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ 
+%  with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
+ Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
+  recall that the interior of a polytope can be characterized as the set of all points that can be realized as a convex combination with \emph{positive coefficients} of the vertices of that polytope.
+
+  Let $\vv{s} \in \ri \opt \LP$, and suppose $\vv{s}$ is not special for $(A,\vv{u})$.
+  Then there exists some $i$ with $\canvec_i \in \rb(\O)$ for which $A\vv{s}$ agrees with $\vv{u}$ in the $i$-th coordinate.
+  The characterization of relative interior above then implies that the same is true for every \emph{vertex} of $\opt \LP$, and consequently for every \emph{point} of $\opt \LP$.
+  But this shows that $\sp(A,\vv{u})$ is empty---a contradiction.
 \end{proof}
+
+\pedro[inline]{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
+\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\vv{e}_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\vv{e}_i \in \rb(\O)$? I hope so!}
+\pedro[inline]{
+   I tried to incorporate this characterization of relative interior in the proof.
+}
 
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 \pedro[inline]{
