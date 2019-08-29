@@ -15,7 +15,7 @@
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
 
-\emily[inline]{
+\details[inline]{
 TO DO LIST:
 \begin{enumerate}
  \item[$\CheckedBox$] Write essential statements/proofs.
@@ -71,7 +71,9 @@ TO DO LIST:
    Should we say ``associated to'' or ``associated with''?
    We're using the former, but Google Ngram shows that the latter is a lot more popular.
    \emily[inline]{Either is OK with me.}
-   \pedro[inline]{Any objections to using ``Newton polyhedron of $A$'', rather than ``Newton polyhedron associated with/to $A$'', to save some words? }
+   \pedro[inline]{Any objections to using ``Newton polyhedron of $A$'', rather than ``Newton polyhedron associated with/to $A$'', to save some words? 
+   \emily[inline]{None here.}
+   }
 }
 
 \newpage
@@ -465,7 +467,12 @@ then we would get a matrix obtained by replacing some rows of $A$ with zero.
    In a way, we are already getting around these issues, by saying things like ``$\vv{a}$ is positive in $\rs(\O)$'' (meaning $a_i$ is positive whenever $\canvec_i \in \rb(\O)$).
    I think from here, it's just a small step to saying things like ``$\vv{a} < \vv{b}$ in $\rs(\O)$'' (meaning $\vv{b} - \vv{a}$ is positive in $\rs(\O)$).
 }
-
+\emily[inline]{
+OK, I finally got a chance to think carefully about this; thanks for waiting.  Although I see the points both ways, since we are motivated by algebra, I prefer to omit the rows rather than to have zero rows, in analog with moving to a polynomial ring in fewer variables, rather than remaining in the same ring. The geometry also simplifies
+in a very obvious way.   
+I also have been thinking of $\rs(\O)^{\perp}$ as $\operatorname{span}_{\RR} \rb(\O)^{\perp}$. 
+Although we might need to be careful with our definitions, I think it will be worth it.  
+}
 
 \begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
 \end{remark}
