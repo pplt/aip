@@ -444,8 +444,18 @@ then we would get a matrix obtained by replacing some rows of $A$ with zero.
    For instance, under your interpretation, $\collapse{A} \vv{k}$ (an element of $\RR^{\# \rb(\O)^\perp}$) is not the same as $\collapse{A\vv{k}}$ (an element of $\RR^d$); instead, $\collapse{A} \vv{k}$ is the coordinate vector of $\collapse{A\vv{k}}$ with respect to the basis $\rb(\O)^\perp$. 
 }
 \daniel[inline]{I've always thought of $\rs(\O)^{\perp}$ as $\operatorname{span}_{\RR} \rb(\O)^{\perp}$, and not an abstract $\RR^{\# \rb(\O)^{\perp}}$, and given that $\collapse{A} = [ \collapse{\vv{a}_1} \cdots \collapse{\vv{a}_n} ]$, I've interpreted the right-hand side of $\collapse{A \vv{k}} = \collapse{A} \vv{k}$ as $\sum \collapse{\vv{a}_i} k_i$.  But, I see your point about the RHS being a coordinate vector.  Maybe we should think about polyhedra defined by linear transformations instead.  Regardless, keeping a row of zeros in the collapse is odd to me geometrically;  even when we are drawing collapsed Newton polyhedra, we aren't drawing them in the larger Euclidean space.  Similarly, when we collapse a monomial ideal, we are thinking about it as a monomial ideal in a polynomial ring in fewer variables, all of which appear as generators for the collapsed ideal.  So, my strong preference is to omit rows, even if it means abusing some  notation, or implicitly identifying a coordinate vector with its representation in terms of a given basis, especially since every vector space in sight has a canonical basis.}
+\pedro[inline]{
+   My preference would be to keep zeros, and avoid abuse of notation.
+   I don't really see a conflict between keeping zeros versus drawing things in a smaller space.
+   (If we have an object that lives in, say, $\RR^3$, but happens to be contained in some coordinate plane, it's natural to draw that object in the plane, instead of 3-space; we'd just say that we are only showing that subset of $\RR^3$\ldots)
+   Nor do I see a problem with thinking of a monomial ideal in $x$ and $y$ as an ideal in $\Bbbk[x,y,z]$.
 
-
+   \medskip
+   
+   If we go the other way, though, we should say right away that we will use coordinates with respect to the basis\footnote{Ordering the basis vectors, say, the natural way: by increasing indices.} $\rb(\O)^\perp$  to identify $\rs(\O)^\perp$ with $\RR^{\#\rb(\O)^\perp}$.
+   OR, perhaps better, leave $\rs(\O)^\perp$ alone, and just define collapse as the composition
+   \[\RR^d \stackrel{\text{proj}}{\longrightarrow} \rs(\O)^\perp \stackrel{\approx}{\longrightarrow} \RR^{\#\rb(\O)^\perp}.\]
+}
   
 \daniel[inline]{I should also add that there are some advantages to thinking about $\collapse{A}$ is obtained from $A$ by omitting columns, as opposed to replacing them with zero.  For instance, this interpretation is key in \Cref{aux program: D}, when defining the constraints of $\ip$.  If we instead replaced rows with zeros, then the modified definition of $\ip$ would be more involved.}
 \pedro[inline]{
@@ -466,7 +476,7 @@ Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse
 If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
 \pedro{May add that $\collapse{\vv{a}} = \vv{a}$}
 \daniel{I guess this depends on what we decide above.}
-\pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^n \to \rs(\O)^\perp$.}
+\pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
 \end{remark}
 
 \begin{remark}
