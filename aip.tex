@@ -70,7 +70,8 @@ TO DO LIST:
 \pedro[inline]{
    Should we say ``associated to'' or ``associated with''?
    We're using the former, but Google Ngram shows that the latter is a lot more popular.
-\emily[inline]{Either is OK with me.}
+   \emily[inline]{Either is OK with me.}
+   \pedro[inline]{Any objections to using ``Newton polyhedron of $A$'', rather than ``Newton polyhedron associated with/to $A$'', to save some words? }
 }
 
 \newpage
@@ -355,7 +356,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \subsection{Faces of Newton polyhedra}
 
 The \emph{Newton polyhedron} associated to a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
-\[ \N = \conv( \col(A) ) + \cone( \vv{e}_1, \ldots, \vv{e}_d), \]
+\[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
 where $\col(A)$ is the set of columns of $A$.  
 
 Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\vv{a} \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\vv{a}}{\vv{c}} \geq \alpha$ for all $\vv{c} \in \N$, with equality if and only if $\vv{c} \in \O$.
@@ -375,7 +376,7 @@ The following proposition is well known to experts, but we include the short pro
 
 \begin{proposition} 
    \label{face: P}
-   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{u} + \lambda \vv{e}_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
    In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
 \end{proposition}
 
@@ -383,10 +384,10 @@ The following proposition is well known to experts, but we include the short pro
 \pedro{That's a useful convention. I'll keep it in mind.}
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
-   In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \vv{e}_i} \geq \alpha$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\vv{a}}{\canvec_i} \ge 0$ for each $i$, so $\vv{a} \geq \vv{0}$, and that $\vv{u} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
+   In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
+   This observation implies that $a_i = \iprod{\vv{a}}{\canvec_i} \ge 0$ for each $i$, so $\vv{a} \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\canvec_i} = 0$.  
 
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\vv{a}}{\canvec_i} = 0\}$, then 
 \begin{equation}
 \label{face: e}
 \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
@@ -395,7 +396,7 @@ where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that 
 \end{proof}
 
 \begin{definition}
-   If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\vv{e}_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
+   If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
 \end{definition}
 
 As noted above, these definitions depend only on $\O$, but not on the choice of $\vv{a}$.
@@ -413,7 +414,7 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
  Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows.  
 
 \begin{enumerate}
-\item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \vv{e}_1, \ldots, \vv{e}_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
+\item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
 \item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the canonical linear projection $\RR^d \longrightarrow \rs(\O)^{\perp}$.
 \item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.  That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
 %
@@ -495,7 +496,7 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 \begin{proof}
 By definition, the Newton polyhedron $\M$ equals
 %
-\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\vv{e}_1, \ldots, \vv{e}_d)} =  \collapse{\N}.\]
+\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_d)} =  \collapse{\N}.\]
 
 Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
@@ -543,7 +544,7 @@ This (or something similar) could be a running example, to illustrate the variou
    The Newton polyhedron $\N$ of $A$ is shown in \Cref{fig: newton polyhedron}.
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2),\]
-   shown in dark blue.
+   shown in blue.
    Thus, $\ft{A}{\vv{u}} = 4/17$ and $\mf(A,\vv{u}) = \O$.
 \end{example}
 }
@@ -737,14 +738,14 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
 The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
-% Next, suppose that $\vv{e}_i \in \rb(\O)$.
+% Next, suppose that $\canvec_i \in \rb(\O)$.
 %  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.
 %  However, the special point constructed above shows that this is impossible.
-%  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
+%  Therefore, for every $\canvec_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
 %  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ 
 %  with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
  Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
-  recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of its vertices, while the polytope itself consists of all convex combinations of its vertices.
+  recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of the vertices of the polytope, while the polytope itself consists of all convex combinations of its vertices.
 
   Let $\vv{s} \in \ri \opt \LP$, and suppose $\vv{s}$ is not special for $(A,\vv{u})$.
   Then there exists some $i$ with $\canvec_i \in \rb(\O)$ for which $A\vv{s}$ agrees with $\vv{u}$ in the $i$-th coordinate.
@@ -753,7 +754,7 @@ The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in an
 \end{proof}
 
 \pedro[inline]{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
-\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\vv{e}_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\vv{e}_i \in \rb(\O)$? I hope so!}
+\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\canvec_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\canvec_i \in \rb(\O)$? I hope so!}
 \pedro[inline]{
    I tried to incorporate this characterization of relative interior in the proof.
 }
@@ -782,7 +783,7 @@ Special denominators exist.
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\ell_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $d \geq 2$ many rows.
-   Without loss of generality, suppose that $\rb(\O) = \{ \vv{e}_1, \ldots, \vv{e}_c \}$ for some $1 \leq c \leq d-1$, and fix \emph{positive} integers $d_1, \ldots, d_c$ that sum to $d-1$.
+   Without loss of generality, suppose that $\rb(\O) = \{ \canvec_1, \ldots, \canvec_c \}$ for some $1 \leq c \leq d-1$, and fix \emph{positive} integers $d_1, \ldots, d_c$ that sum to $d-1$.
    As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq c$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
    It then follows from the definition of special point that the point
    \[ \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_c \cdot  \vv{s}_c}{d-1}  \]
@@ -830,7 +831,8 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 \pedro[inline]{
    \begin{example}
       Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
-      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O = \mf(A,\vv{u})$ (compare with \Cref{fig: newton polyhedron}).
+      Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$. 
+      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
       The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
       
       The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
@@ -1197,7 +1199,7 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \end{lemma}
 
 \begin{proof} 
-Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \vv{e}_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\vv{e}_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \vv{e}_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\] 
+Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\] 
 We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
 \end{proof}
 
@@ -1389,7 +1391,7 @@ By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s}
    Thus, $\val \IP_p(A, \vv{u}, 1) = \val \IP(A, \vv{u}, 1) = 0$, and the assertion then follows from \Cref{natural bounds: C}.
 \end{proof}
 
-%\begin{proof} If $\vv{k}$ is feasible for $\IP_p(A, \vv{u}, p^e)$ and $ p^e \vv{e}_i  \leq \vv{k}$ for some standard basis vector $\vv{e}_i$ of $\ZZ^n$, then $p^e A \vv{e}_i  \leq A \vv{k} < \vv{u}p^e$, and therefore $A \vv{e}_i < \vv{u}$, which contradicts the smallness of $(A, \vv{u})$.  Thus, every coordinate of $\vv{k}$ is less than $p^e$, and so the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} p^{e-1}$.  The arithmetic constraint of the program then implies that $\norm{\vv{k}} \leq p^e-1$.
+%\begin{proof} If $\vv{k}$ is feasible for $\IP_p(A, \vv{u}, p^e)$ and $ p^e \canvec_i  \leq \vv{k}$ for some standard basis vector $\canvec_i$ of $\ZZ^n$, then $p^e A \canvec_i  \leq A \vv{k} < \vv{u}p^e$, and therefore $A \canvec_i < \vv{u}$, which contradicts the smallness of $(A, \vv{u})$.  Thus, every coordinate of $\vv{k}$ is less than $p^e$, and so the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} p^{e-1}$.  The arithmetic constraint of the program then implies that $\norm{\vv{k}} \leq p^e-1$.
 %\end{proof}
 
 % \emily[inline]{If 
@@ -1415,9 +1417,9 @@ By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s}
 \daniel[inline]{This proof seems way too long.  Might be shortened if we think about things algebraically}
 
 \begin{proof}
-   The constraints of $\IP(A, \vv{u}, 1)$ imply that $\Z$ is a finite set of lattice points with positive coordinates.   These constraints and optimality also imply that if $\vv{e}$ is a standard basis vector in the domain of $A$, then no point in the Minkowski sum $\vv{e} + \opt \IP(A, \vv{u}, 1)$ can be feasible for $\IP(A, \vv{u}, 1)$.  Applying $A$ to this shows that no point in 
-\[ A \vv{e} + \im \IP(A, \vv{u}, 1) = A \vv{e} + \vv{u} - \Z \] 
-is less than $\vv{u}$.  Thus, $A \vv{e}$ is not less than any point in $\Z$, and as $\vv{e}$ was arbitrary, it follows that $(A, \vv{z})$ is small for every $\vv{z} \in \Z$.
+   The constraints of $\IP(A, \vv{u}, 1)$ imply that $\Z$ is a finite set of lattice points with positive coordinates.   These constraints and optimality also imply that if $\canvec$ is a standard basis vector in the domain of $A$, then no point in the Minkowski sum $\canvec + \opt \IP(A, \vv{u}, 1)$ can be feasible for $\IP(A, \vv{u}, 1)$.  Applying $A$ to this shows that no point in 
+\[ A \canvec + \im \IP(A, \vv{u}, 1) = A \canvec + \vv{u} - \Z \] 
+is less than $\vv{u}$.  Thus, $A \canvec$ is not less than any point in $\Z$, and as $\canvec$ was arbitrary, it follows that $(A, \vv{z})$ is small for every $\vv{z} \in \Z$.
 
 The finiteness of $\Z$ allows us to choose $p$ large enough so that \[ \val \IP(A, \vv{v}, 1) \leq p -1 \] for every point $\vv{v} \in \Z \cup \{ \vv{u} \}$.  In this case, every feasible point for $\IP(A, \vv{v}, 1)$  automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{v}, 1)$, which allows us to conclude that $\IP(A, \vv{v}, 1) = \IP_p(A, \vv{v}, 1)$.  In particular,
 \[ \im \IP_p(A, \vv{u}, 1) =\vv{u} - \Z. \] 
@@ -1446,17 +1448,17 @@ We have just shown that to compute the value of $\IP_p(A, \vv{u}, p^e)$ for all 
 % Set  $\vv{t} = \vv{s} / \norm{\vv{s}}$ and note that $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  
 
 % Next, fix an index $i$ such that the $i$-th coordinate of $\vv{s}$ is positive.  As $\tail{\vv{t}}_p$ obtains only finitely many values as $p$ varies, our choice of $i$ guarantees that 
-% \[ 0 \leq \vv{t} - \frac{\tail{\vv{t}}_p}{p} + \frac{\norm{\tail{\vv{t}}_p}}{p} \cdot \vv{e}_i  \leq \vv{s} \]
+% \[ 0 \leq \vv{t} - \frac{\tail{\vv{t}}_p}{p} + \frac{\norm{\tail{\vv{t}}_p}}{p} \cdot \canvec_i  \leq \vv{s} \]
 % for all $p \gg 0$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  For such $p \gg 0$,  \Cref{less than u: L} tells us that 
 % %
-%  \[ A \left(  \vv{t}p - \tail{\vv{t}}_p + \norm{\tail{\vv{t}}_p} \cdot \vv{e}_i  \right) < \vv{u}p. \]
+%  \[ A \left(  \vv{t}p - \tail{\vv{t}}_p + \norm{\tail{\vv{t}}_p} \cdot \canvec_i  \right) < \vv{u}p. \]
 % %
  
 %  By construction, $\norm{\vv{t}} = 1$, and as $\vv{t}p - \tail{\vv{t}}_p$ has nonnegative integer coordinates, we have that $\norm{\tail{\vv{t}}_p}$ is also a positive integer.  In summary, 
-%   \[ \vv{k}_p  =   \vv{t}p - \tail{\vv{t}}_p+ (\norm{\vv{t}}_p - 1) \cdot \vv{e}_i   \] has nonnegative integer coordinates and satisfies $A \vv{k}_p < \vv{u}p - A \vv{e}_i$.  A direct calculation will also show that $\norm{\vv{k}_p} = p-1$. 
+%   \[ \vv{k}_p  =   \vv{t}p - \tail{\vv{t}}_p+ (\norm{\vv{t}}_p - 1) \cdot \canvec_i   \] has nonnegative integer coordinates and satisfies $A \vv{k}_p < \vv{u}p - A \canvec_i$.  A direct calculation will also show that $\norm{\vv{k}_p} = p-1$. 
   
 %  Given this, it is straightforward to verify that the point
-%  \[ \vv{k}_p \cdot p^{e-1} + (p^{e-1} - 1) \cdot \vv{e}_i \]
+%  \[ \vv{k}_p \cdot p^{e-1} + (p^{e-1} - 1) \cdot \canvec_i \]
 %  has norm $p^e-1$ and is feasible for $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$.  \Cref{trivial value bound: L} then allows us to conclude that $\val \IP_p(A, \vv{u}, p^e)  = p^e-1$ for all $e \geq 1$.
  
 % To conclude the proof, it suffices to recall that, as noted in \Cref{finitely many small but not very small: R},  there are only finitely many $(A, \vv{u})$ that are small, but not very small.
@@ -1658,15 +1660,15 @@ Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ such tha
 
 \begin{proof} The proofs of each assertion are similar; we only prove the second, which is more involved.  Let $\beta = \beta(A)$ be as in \Cref{ILL: T}.  If $p > \beta$, then \Cref{ILL: T} tells us that there exists $\vv{k}_i \in \opt \IP(A_i, \vv{u}_i, p)$ for which \[ \vv{k}^{\ast} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e-i} + \vv{k}_e \in \feas \IP(A_1, \vv{u}_1, p^e).\]
 
-  The assumption on the points in the path implies that $\norm{\vv{k}_i} \leq p-1$ for all $1 \leq i < e$, while $\norm{\vv{k}_e} \geq p$.  Thus, there exists a point $\vv{g}$ in the domain lattice of $A$ such that $\norm{\vv{g}} = p-1$ and $\vv{0} \leq \vv{g} \leq \vv{k}_e$, with the last inequality strict in at least one coordinate, say, in the first coordinate.  Thus, $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{k}_e$.
+  The assumption on the points in the path implies that $\norm{\vv{k}_i} \leq p-1$ for all $1 \leq i < e$, while $\norm{\vv{k}_e} \geq p$.  Thus, there exists a point $\vv{g}$ in the domain lattice of $A$ such that $\norm{\vv{g}} = p-1$ and $\vv{0} \leq \vv{g} \leq \vv{k}_e$, with the last inequality strict in at least one coordinate, say, in the first coordinate.  Thus, $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{k}_e$.
 
 Fix an integer $s \geq 0$, and set   
 %
-\[ \vv{h} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e+s-i} + (\vv{g} + \vv{e}_1) \cdot p^{s} - \vv{e}_1 \]
+\[ \vv{h} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e+s-i} + (\vv{g} + \canvec_1) \cdot p^{s} - \canvec_1 \]
 %
-The bound $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{k}_e$ implies that $\vv{h} \leq \vv{k}^{\ast}  p^s$, and the feasibility of $\vv{k}^{\ast}$ for $\IP(A_1, \vv{u}_1, p^e)$ then implies that  $\vv{h}$ is feasible for $\IP(A_1, \vv{u}_1, p^{e+s})$.  To see that $\vv{h}$ is also feasible for the arithmetic version of this program, simply observe that the base $p$ expansion of $\vv{h}$ is given by 
+The bound $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{k}_e$ implies that $\vv{h} \leq \vv{k}^{\ast}  p^s$, and the feasibility of $\vv{k}^{\ast}$ for $\IP(A_1, \vv{u}_1, p^e)$ then implies that  $\vv{h}$ is feasible for $\IP(A_1, \vv{u}_1, p^{e+s})$.  To see that $\vv{h}$ is also feasible for the arithmetic version of this program, simply observe that the base $p$ expansion of $\vv{h}$ is given by 
 %
-\[ \vv{h} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e+s-i} + \vv{g} \cdot p^{s} + (p-1) \vv{e}_1 \cdot p^{s-1} + \cdots + (p-1) \vv{e}_1 \]
+\[ \vv{h} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e+s-i} + \vv{g} \cdot p^{s} + (p-1) \canvec_1 \cdot p^{s-1} + \cdots + (p-1) \canvec_1 \]
 %
 and recall that $\norm{\vv{k}_i} \leq p-1$ for every $1 \leq i < e$.  Therefore, 
 %
