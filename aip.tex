@@ -47,7 +47,7 @@ TO DO LIST:
  %    I have a slight preference for starting at 0, but wouldn't mind changing it back, if you prefer. 
  % }
  \item[$\CheckedBox$] Fill in/rewrite preliminaries.
- \item[$\Box$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
+ \item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  \item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
  \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
@@ -734,7 +734,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 \begin{proof}    
 If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.  Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
 
- The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
+The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
 % Next, suppose that $\vv{e}_i \in \rb(\O)$.
@@ -744,7 +744,7 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
 %  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ 
 %  with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
  Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
-  recall that the interior of a polytope can be characterized as the set of all points that can be realized as a convex combination with \emph{positive coefficients} of the vertices of that polytope.
+  recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of its vertices, while the polytope itself consists of all convex combinations of its vertices.
 
   Let $\vv{s} \in \ri \opt \LP$, and suppose $\vv{s}$ is not special for $(A,\vv{u})$.
   Then there exists some $i$ with $\canvec_i \in \rb(\O)$ for which $A\vv{s}$ agrees with $\vv{u}$ in the $i$-th coordinate.
@@ -908,7 +908,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{remark}
 \label{tail-basics: R}
-Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\lambda = \frac{a}{b}$ with $a$ and $b$ positive integers.  Then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.  Furthermore, 
+If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
+Furthermore, 
 %
 \[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}.
 \end{remark}
@@ -919,87 +920,35 @@ Suppose that $\lambda \in \QQ$ and $q \in \ZZ$ are both positive, and write $\la
    If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
-\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \sp(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some positive point $\vv{w}$ in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ after projecting to the coordinate subspace $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
+\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \sp(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some point $\vv{w}$ that is positive in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.  
 
-Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.  In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t} < \vv{u}$ in $\rs(\O) \oplus \rs(\O)^{\perp}$.
+Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.  In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t}$ is less than  $\vv{u}$ in $\rs(\O)^{\perp}$.
 \end{proof}
-
-
-%A crucial notion in our upcoming arguments is the following basic construction from elementary number theory.
-%
-%\begin{definition}  If $\lambda \in \QQ$ is nonzero and $q$  is a positive integer, we set \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b} \] where $\lambda = a/b$ is some representation for $\lambda$ and $\lpr{c}{b}$ is the least \emph{positive} residue of the integer $c$ modulo $b$.   In the case that $\lambda = 0$, we set $\tail{\lambda}_q = 0$.  We extend this definition to points of $\QQ^n$ in a coordinate-wise manner.
-%\end{definition}
-%
-%\begin{remark} This definition is clearly independent of the representation of $\lambda \neq 0$ as a fraction.  In fact, in this case, the positive rational number $\tail{\lambda}_q$ depends only on the residue of $q$ modulo the least denominator of $\lambda$.
-%\end{remark}
-%
-%\begin{remark}  If $\vv{s} \in \QQ^n$ has nonnegative coordinates, then \[ \vv{s}q - \tail{\vv{s}}_q \] has nonnegative integer coordinates for every positive integer $q$.  We will use this fact often in the sequel, typically without explicitly mentioning it.
-%\end{remark}
-
-
-
-%One again, suppose $(A, \vv{u})$ is a monomial pair and that $q$ is a positive integer.  
-
 
 \begin{theorem}
-\label{canonical-feasible: T}
-If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then  \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
+   \label{canonical-feasible: T}
+   If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then
+   \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\] 
 \end{theorem}
 
-\begin{proof}  \Cref{tail-basics: R} tells us that if $\vv{t} = \vv{s} - (1/q) {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates.  In fact, \Cref{tail-basics: R} also allows us to apply \Cref{less  than u: L} with $\vv{t}$ as defined here to see that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
+\begin{proof}
+   \Cref{tail-basics: R} tells us that if $\vv{t} = \vv{s} - (1/q) {\tail{\vv{s}}_q}$, then $\vv{t}q = \vv{s}q -\tail{\vv{s}}_q$ has nonnegative integer coordinates, and $\vv{t}$ satisfies the hypotheses of \Cref{less  than u: L}, which shows that $A (\vv{s} q - \tail{\vv{s}}_q ) =  A\vv{t}q <  \vv{u}q$.  
 \end{proof}
-
-%To clarify the statements of the results that follow, we fix the following notation.
-
-%\begin{setup}
-%\label{collapse: S}
-%Let $(A, \vv{u})$ be a $d \times n$ monomial pair with $\O = \mf(A, \vv{u})$.  Let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along the face $\O$, and let $\collapse{A}$ be the collapse of $A$ along $\O$.  With these conventions, $\collapse{A \vv{t}} = \collapse{A} \vv{t}$ for every $\vv{t} \in \RR^n$.    
-%\end{setup}
-%
-%\begin{remark}  The main upshot to working with the collapsed matrix $\collapse{A}$ is the following observation:  If $\vv{s} \in \sp(A, \vv{u})$, then though it is not necessarily true that $A \vv{s}$ equals $\vv{u}$, it will always be the case that 
-%\[ \collapse{A} \vv{s} = \collapse{A \vv{s}} = \collapse{\vv{u}}.\] 
-%\end{remark}
-
-
-
-%\subsection{A critical secondary linear program}  We continue to adopt the notation in \Cref{collapse: S}.  Below, we define and study a secondary integer program that will play a key role in our solution of $\IP(A, \vv{u}, q)$ for $q \gg 0$.
-%
-%
-%\begin{definition} If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q>0$ is an integer, then
-%\[ \ip_q(A, \vv{u}, \vv{s}) \] 
-%is  the integer program  in $\ZZ^n$ is defined as follows:
-%\begin{enumerate}
-%\item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
-%\item The constraints are that the $i$-th coordinate of $\vv{k}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $\collapse{A} \vv{k}  < \collapse{A} \tail{\vv{s}}_q$.
-%\end{enumerate}
-%
-%The \emph{image} of $\ip_q(A, \vv{u}, \vv{s})$ is the subset of $\ZZ \rb(\O)^{\perp}$ given by \[ \im \ip_q(A, \vv{u}, \vv{s})  = \collapse{A} (\opt \ip_q(A, \vv{u}, \vv{s})). \] 
-%\end{definition}
-%
-%Before establishing the basic properties of these programs, we establish their relevance to the problem at hand.
-
-%\emily[inline]{The following could be discussion in the prose that leads to the definition of $\Theta$. }
-%\daniel[inline]{I'm giving this a shot below.}
 
 \begin{remark}[Comparisons with canonical feasible points] 
 \label{comparison: R}
 Adopt the context of \Cref{canonical-feasible: T}, and fix a point $\vv{k}$ that is feasible for $\IP = \IP(A, \vv{u}, q)$.    
-
 Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the feasible point  described in \Cref{canonical-feasible: T}.  Toward this, set 
 %
 \[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]   
 %
 and, let $\collapse{\mathcal{X}}$ denote the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.  
 
-
 Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$, where the last bound follows from the nonnegativity constraint of $\IP$.  The definition of $\vv{h}$ and constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.  Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$.
+This motivates us to study another integer program, that will be formally introduced in the next subsection.
 \end{remark}
 
-
-
-
 \subsection{Another integer program}
-
 
 \begin{definition}
 A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
@@ -1008,31 +957,30 @@ A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \item A rational special point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \item A positive integer $q$.
 \end{enumerate}
-\end{definition}
-
 We call a monomial list whose first term is the matrix $A$ an $A$-list.
+\end{definition}
 
 \begin{definition}  
 \label{aux program: D}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then
-\[ \ip(A, \vv{u}, \vv{s}, q) \] 
-is the integer program in domain lattice of $A$ defined as follows:
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\ip(A, \vv{u}, \vv{s}, q)$ is the integer program in domain lattice of $A$ defined as follows:
 \begin{enumerate}
 \item The objective function is $\vv{h} \mapsto \norm{\vv{h}}$.
-\item The constraints are that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that \[ \collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}\]
-\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.\end{enumerate}
+\item The constraints are that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and that $\collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}$,
+\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.
+\end{enumerate}
 \end{definition}
-
 
 \begin{definition}
 The \emph{image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\] 
 where $\collapse{\mathcal{X}}$ is the collapse of $\mathcal{X}$ along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
+\Cref{comparison: R} gives us the following result.
+
 \begin{proposition}  
 \label{comparison: P}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ lies in 
-\[ \vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q).\]
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
+\qed
 \end{proposition}
 
 \begin{lemma}
