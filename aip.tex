@@ -372,11 +372,12 @@ The following proposition is well known to experts, but we include the short pro
 
 \begin{proposition} 
    \label{face: P}
-   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{c} + \lambda \vv{e}_i \in \O$  for every $\vv{c} \in \O$ and $\lambda > 0$.
+   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{u} + \lambda \vv{e}_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
    In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
 \end{proposition}
 
 \daniel{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
+\pedro{That's a useful convention. I'll keep it in mind.}
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
    In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \vv{e}_i} \geq \alpha$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.
@@ -428,12 +429,25 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
    \end{itemize}
 }
 
-\daniel[inline]{I am a bit confused by this comment.  The way I see things, the matrix associated to the linear transformation \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}\] must be of size $\# \rb(\O) \times n$, as specified by the dimensions of the source and target;  as I am implicitly using the canonical bases of $\RR^n$ and $\RR \rb(\O)$ to turn this transformation into a matrix, we should definitely get the matrix obtained by \emph{omitting} some rows of $A$.  On the other hand, if we instead looked at \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}  \hookrightarrow \RR^d \]
+\daniel[inline]{I am a bit confused by this comment.  The way I see things, the matrix associated to the linear transformation \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}\] must be of size $\# \rb(\O) \times n$, as specified by the dimensions of the source and target;  as I am implicitly using the canonical bases of $\RR^n$ and $\RR \rb(\O)$ to turn this transformation into a matrix, we should definitely get the matrix obtained by \emph{omitting} some rows of $A$.  On the other hand, if we instead looked at
+   \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}  \hookrightarrow \RR^d \]
 then we would get a matrix obtained by replacing some rows of $A$ with zero.  
 } 
+\pedro[inline]{
+   Since $\rs(\O)^\perp$ is contained in $\RR^d$ and bases were not mentioned, I interpreted ``matrix of the linear transformation'' as ``matrix with respect to the canonical bases of $\RR^n$ and $\RR^d$.''
+   But now I understand your interpretation: that $\collapse{A}$ is the matrix of $\RR^n \to \rs(\O)^\perp$ \emph{with respect to the standard basis of $\RR^n$ and the basis $\rb(\O)^\perp$ of $\rs(\O)^\perp$.}
 
+   \medskip
+
+   Under your interpretation, multiplication by $\collapse{A}$ returns ``coordinate vectors''; under mine, it returns ``the
+   real thing''; for this reason, I think I prefer mine.
+   For instance, under your interpretation, $\collapse{A} \vv{k}$ (an element of $\RR^{\# \rb(\O)^\perp}$) is not the same as $\collapse{A\vv{k}}$ (an element of $\RR^d$); instead, $\collapse{A} \vv{k}$ is the coordinate vector of $\collapse{A\vv{k}}$ with respect to the basis $\rb(\O)^\perp$. 
+}
 \daniel[inline]{I should also add that there are some advantages to thinking about $\collapse{A}$ is obtained from $A$ by omitting columns, as opposed to replacing them with zero.  For instance, this interpretation is key in \Cref{aux program: D}, when defining the constraints of $\ip$.  If we instead replaced rows with zeros, then the modified definition of $\ip$ would be more involved.}
-
+\pedro[inline]{
+   In a way, we are already getting around these issues, by saying things like ``$\vv{a}$ is positive in $\rs(\O)$'' (meaning $a_i$ is positive whenever $\canvec_i \in \rb(\O)$).
+   I think from here, it's just a small step to saying things like ``$\vv{a} < \vv{b}$ in $\rs(\O)$'' (meaning $\vv{b} - \vv{a}$ is positive in $\rs(\O)$).
+}
 \daniel[inline]{If this is what we stick with, then we should definitely clarify (probably immediately after the definition) that we are omitting rows of $A$, and not replacing them with zero.  OR, we could build this into the cool new examples Pedro has written up.}
 
 
@@ -448,7 +462,8 @@ Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse
 \label{collapse of a defining vector: R}
 If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
 \pedro{May add that $\collapse{\vv{a}} = \vv{a}$}
-\daniel{I guess this depends on what we decide above.} 
+\daniel{I guess this depends on what we decide above.}
+\pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^n \to \rs(\O)^\perp$.}
 \end{remark}
 
 \begin{remark}
