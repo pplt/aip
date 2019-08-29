@@ -109,12 +109,14 @@ The Minkowski--Weyl Theorem gives us a couple of useful characterizations of pol
 \pedro[inline]{
    Maybe we should gather what we need about faces and vertices of polyhedra right here.
 }
+\daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
 
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
 \pedro{
    Is there a more concrete characterization for polyhedra/polytopes?
    E.g., points not in any proper face? Positive convex combinations of vertices?
 }
+\daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
 For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
 \begin{proposition}  
@@ -374,10 +376,11 @@ The following proposition is well known to experts, but we include the short pro
    In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
 \end{proposition}
 
+\daniel{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
 \begin{proof}
-   If $\vv{c} \in \O$, then adding to $\vv{c}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
-   In particular, if $\iprod{\vv{a}}{\vv{c}} = \alpha$, then $\iprod{\vv{a}}{\vv{c} + \lambda \vv{e}_i} \geq \alpha$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\vv{a}}{\canvec_i} \ge 0$ for each $i$, so $\vv{a} \geq \vv{0}$, and that $\vv{c} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
+   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
+   In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \vv{e}_i} \geq \alpha$ for every standard basis vector $\vv{e}_i$ in $\RR^d$ and $\lambda > 0$.
+   This observation implies that $a_i = \iprod{\vv{a}}{\canvec_i} \ge 0$ for each $i$, so $\vv{a} \geq \vv{0}$, and that $\vv{u} + \lambda \vv{e}_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\vv{e}_i} = 0$.  
 
 Similar logic will show that if $\rb(\O) \coloneqq  \{ \vv{e}_i \in \RR^d : \iprod{\vv{a}}{\vv{e}_i} = 0\}$, then 
 \begin{equation}
@@ -425,6 +428,10 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
    \end{itemize}
 }
 
+\daniel[inline]{I am a bit confused by this comment.  The way I see things, the matrix associated to the linear transformation \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}\] must be of size $\# \rb(\O) \times n$, as specified by the dimensions of the source and target;  as I am implicitly using the canonical bases of $\RR^n$ and $\RR \rb(\O)$ to turn this transformation into a matrix, we should definitely get the matrix obtained by \emph{omitting} some rows of $A$.  On the other hand, if we instead looked at \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}  \hookrightarrow \RR^d \]
+then we would get a matrix obtained by replacing some rows of $A$ with zero.  
+} 
+
 \begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
 \end{remark}
 
@@ -436,6 +443,7 @@ Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse
 \label{collapse of a defining vector: R}
 If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.  Consequently, $\iprod{\vv{a}}{\vv{c}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{c}}}$ for every $\vv{c} \in \RR^d$.
 \pedro{May add that $\collapse{\vv{a}} = \vv{a}$}
+\daniel{I guess this depends on what we decide above.} 
 \end{remark}
 
 \begin{remark}
@@ -695,6 +703,7 @@ If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.  Next,  suppose that $\vv{e}_i \in \rb(\O)$.  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.   However, the special point constructed above shows that this is impossible.  Therefore, for every $\vv{e}_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$
  \pedro{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
  with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
+\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\vv{e}_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\vv{e}_i \in \rb(\O)$? I hope so!}
 \end{proof}
 
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
