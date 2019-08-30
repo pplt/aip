@@ -67,15 +67,6 @@ TO DO LIST:
 \end{enumerate}
 }
 
-\pedro[inline]{
-   Should we say ``associated to'' or ``associated with''?
-   We're using the former, but Google Ngram shows that the latter is a lot more popular.
-   \emily[inline]{Either is OK with me.}
-   \pedro[inline]{Any objections to using ``Newton polyhedron of $A$'', rather than ``Newton polyhedron associated with/to $A$'', to save some words? 
-   \emily[inline]{None here.}
-   }
-}
-
 \newpage
 
 \section{Preliminaries}
@@ -357,7 +348,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 \subsection{Faces of Newton polyhedra}
 
-The \emph{Newton polyhedron} associated to a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
+The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by 
 \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
 where $\col(A)$ is the set of columns of $A$.  
 
@@ -413,7 +404,7 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
 
 \begin{definition}  
 \label{collapse: D}
- Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ associated to a monomial matrix $A$ with $d$ rows.  
+ Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ of a monomial matrix $A$ with $d$ rows.  
 
 \begin{enumerate}
 \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
@@ -503,7 +494,7 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 \end{remark}
 
 \begin{proposition}\label{collapse of Newton polyhedron: P}
-   If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ associated to the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.
+   If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ of the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.
    In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
 \end{proposition}
 
@@ -517,7 +508,7 @@ Given \Cref{collapse of a defining vector: R}, it is not difficult to verify tha
 
 \newpage
 
-\section{Linear programs associated to monomial pairs}
+\section{Linear programs associated with monomial pairs}
 
 \begin{definition}
 A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
@@ -573,7 +564,7 @@ This (or something similar) could be a running example, to illustrate the variou
 \begin{proposition}
    \label{FT descriptions: P}
    Let $(A,\vv{u})$ be a monomial pair, where $A$ is a matrix with $d$ rows.
-   If $\N$ is the Newton polyhedron associated to $A$, then
+   If $\N$ is the Newton polyhedron of $A$, then
    \[ \ft{A}{\vv{u}} = \min_{\vv{d}} \, \iprod{\vv{d}}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \val \LP(A, \vv{u}), \]
    where the minimum is over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$, and $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$. 
 \end{proposition}
@@ -625,7 +616,7 @@ This (or something similar) could be a running example, to illustrate the variou
 }
 
 \comment[inline]{
-The following is a consequence of the discreteness of the $F$-jumping exponents associated to an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
+The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
 
 \begin{proposition}
@@ -672,7 +663,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \end{corollary}
 
 % \begin{proof}
-%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron associated to $A$.
+%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
 
 %    First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.
 %    Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\vv{a}}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
@@ -691,7 +682,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 }
 
 \begin{proof}
-   Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron associated to $A$.
+   Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
    Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
    % If $\vv{s}$ is optimal for $\LP$, then $\vv{s}\ge \vv{0}$, $\vv{w} \coloneqq \vv{u} - A\vv{s} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$.
    By \Cref{FT descriptions: P,rmk: inner product with columns of A},
@@ -846,7 +837,7 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
    \begin{example}
       Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
       Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$. 
-      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron associated to the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
+      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
       The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
       
       The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
@@ -1059,7 +1050,7 @@ where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 
 \subsection{Some finiteness properties}  
-We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated to some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
+We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
 \begin{lemma}
 \label{bounded value: L} 
@@ -1377,7 +1368,7 @@ A monomial pair $(A, \vv{u})$ is \emph{small} $\vv{u}$ is not greater than any c
 
 \begin{remark}
 \label{finitely many small but not very small: R}
-Geometrically, $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the upper staircase associated to the columns of $A$, and very small if $\vv{u}$ does not lie in the interior of the Newton polyhedron of $A$.  
+Geometrically, $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the upper staircase associated with the columns of $A$, and very small if $\vv{u}$ does not lie in the interior of the Newton polyhedron of $A$.  
 
 It is clear from this geometric interpretation that ``very small'' implies ``small.''  Furthermore, once $A$ is fixed, there are only finitely monomial pairs $(A, \vv{u})$ that are small, but not very small. \daniel{Do we need a proof?}
 \end{remark}
@@ -1824,13 +1815,13 @@ for every nonnegative integer $s$.
 \comment[inline]{The point of this Lemma is to show positivity of the coefficients in the polynomials that define the $\mu$'s. A consequence is that if $\ideala$ is $\idealm$-primary and homogeneous, then all coefficients of every intermediate power of $p$ in this polynomials vanishes.}
 
 \begin{lemma}  If  $p>0$ is prime and $(B, \vv{v})$ is a $p$-sprout of  $(A, \vv{u})$, then \[ \delta(A, \vv{u}, p) \geq \ft{B}{\vv{v}}\]
-with equality if $A$ is the monomial matrix associated to a monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading, and primary to the ambient homogeneous maximal ideal.
+with equality if $A$ is the monomial matrix associated with a monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading, and primary to the ambient homogeneous maximal ideal.
 \end{lemma}
 
 \begin{proof}
-By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$ of the Newton polyhedron $\N$ associated to $A$.  Suppose that $A$ has $d$ rows, and let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along $\O$.  
+By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$ of the Newton polyhedron $\N$ of $A$.  Suppose that $A$ has $d$ rows, and let $\collapse{X}$ denote the collapse of a subset $X$ of $\RR^d$ along $\O$.  
 
-If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron associated to $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}}.\]
+If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron of $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}}.\]
 
 Thus, it suffices to show that $\iprod{\collapse{\vv{a}}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\vv{a}$ guarantees that the inner product of $\collapse{\vv{a}}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\vv{a}}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
 which allows us to conclude that \[ \iprod{\collapse{\vv{a}}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
