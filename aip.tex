@@ -366,14 +366,18 @@ Let $\O$ and $\vv{a} \in \RR^d$ and $\alpha \in \RR$ be as above.  If $\O$ is st
 \Cref{alpha=1: convention} leads to the following useful observation.
 
 \daniel[inline]{I like the idea to isolate this as a remark, given that we use it often.  I have elaborated a bit.  Should we make it a full-blown lemma or proposition?}
+\pedro[inline]{
+   I've elaborated it some more. Maybe it should be a proposition.
+}
+
 \begin{remark}\label{rmk: inner product with columns of A}
 If $\vv{a} \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\vv{a}}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. \daniel{I added the condition that $\vv{s}$ be nonnegative.}
 
-
-Indeed, if $\vv{c}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, so that
-\[ \iprod{\vv{a}}{A\vv{s}} = \sum_{i=1}^n \iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}}.\]
+Indeed, if $\vv{c}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{c}_i \in \O$.
+Thus,
+\[ \iprod{\vv{a}}{A\vv{s}} = \sum_{i=1}^n \iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
+and equality holds if and only if $s_i = 0$ whenever $\vv{c}_i \notin \O$.
 \end{remark}
-
 
 The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
@@ -383,9 +387,11 @@ The following proposition is well known to experts, but we include the short pro
    In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
 \end{proposition}
 
-\daniel{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
-\pedro{That's a useful convention. I'll keep it in mind.}
-\daniel{We don't always stick to it.  E.g., the columns of $A$, and the standard basis vectors.}
+\daniel[inline]{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
+\pedro[inline]{That's a useful convention. I'll keep it in mind.}
+\daniel[inline]{We don't always stick to it.  E.g., the columns of $A$, and the standard basis vectors.}
+\pedro[inline]{We could use, e.g., $\vv{v}_i$ for the columns of $A$.}
+
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
    In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
@@ -640,22 +646,30 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
    We can probably simplify this proof, as it is very believable that if $\vv{a}$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\vv{a}}{\vv{u}}$ takes on only finitely many values less than $\beta$ (when $a_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $a_i = 0$, the value of $u_i$ does not affect the inner product).
 }
 \daniel[inline]{Your proof is way better, and should be the one we give in the paper.  I sometimes get too carried away with collapsing}
+\pedro[inline]{I'm giving it a shot below; original proof is commented out.}
 
 \begin{proof}
    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-   Consider such a pair, and let $\collapse{\vv{u}}$ denote the collapse of the point $\vv{u}$ along $\O$.
+   Consider such a pair, and suppose $\vv{a}$ defines $\O$ in the Newton polyhedron of $A$.
+   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}}$, and the nonnegativity of $\vv{a}$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
+   Indeed, when $a_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $a_i = 0$, the value of $u_i$ does not affect the inner product.
+   \end{proof}
 
-   Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that
-   %
-   \begin{equation}\label{ft inner product identity: e}
-      \ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{\collapse{\vv{u}}}.
-   \end{equation}
-   %
-   The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\vv{a}}{\vv{w}} < \beta$.
-   However, the positivity of $\vv{a}$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
+% \begin{proof}
+%    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
+%    Consider such a pair, and let $\collapse{\vv{u}}$ denote the collapse of the point $\vv{u}$ along $\O$.
 
-   In summary, as $\vv{u}$ varies through all points with $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ takes on only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
-\end{proof}
+%    Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that
+%    %
+%    \begin{equation}\label{ft inner product identity: e}
+%       \ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{\collapse{\vv{u}}}.
+%    \end{equation}
+%    %
+%    The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\vv{a}}{\vv{w}} < \beta$.
+%    However, the positivity of $\vv{a}$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
+
+%    In summary, as $\vv{u}$ varies through all points with $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ takes on only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
+% \end{proof}
 }
 
 The identity \eqref{cone containment: e} above implies that 
