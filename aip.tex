@@ -505,6 +505,8 @@ Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse
 \pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
 \end{remark}
 
+
+
 \begin{remark}
 \label{collapse of monomial is monomial: R}
 The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\vv{a}}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
@@ -539,13 +541,14 @@ Given a monomial pair $(A,\vv{u})$, where $A$ is a matrix with $n$ columns, $\LP
 \end{enumerate}
 \end{definition}
 
-\comment[inline]{The objective of this section is to connect this program to $F$-thresholds, and to study the optimal set of this linear program.  }
 
-It is easy to see that the feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in $\RR^n$.
+It is easy \daniel{This is true because we only look at monomial pairs.  Should we emphasize this?} to see that the feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in $\RR^n$.
 Consequently, $\LP(A,\vv{u})$ has a well-defined value.
 
 \subsection{Relations with $F$-thresholds}
 \label{opt sets: SS}
+
+\comment[inline]{Maybe we should fix $(A, \vv{u})$ and $\N$.}
 
 \begin{definition}
    The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$, denoted $\ft{A}{\vv{u}}$, is the unique positive real number $\lambda$ with the property that $(1/\lambda)  \cdot \vv{u}$ lies in the boundary of the Newton polyhedron of $A$.  
@@ -676,7 +679,7 @@ The identity \eqref{cone containment: e} above implies that
  %
 %\[ \vv{u} \in \cone (\O) = \cone \left( (\col(A) \cap \O) \cup \rb(\O)  \right). \]
 $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.
-Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, each such expression determines an optimal point of $\LP(A, \vv{u})$.
+Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
 \begin{corollary}\label{opt set: C}
    Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $d\times n$ matrix.
@@ -760,7 +763,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 \begin{proposition}  
    \label{opt versus mc: P}
    Let $(A,\vv{u})$ be a monomial pair.
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset of $\opt \LP(A, \vv{u})$ that contains the relative interior of this optimal set. 
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset lying between $\opt \LP(A, \vv{u})$ and $\ri \opt \LP(A, \vv{u})$. 
 \end{proposition}
 
 \begin{proof}    
@@ -784,11 +787,11 @@ The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in an
   But this shows that $\sp(A,\vv{u})$ is empty---a contradiction.
 \end{proof}
 
-\pedro[inline]{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
-\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\canvec_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\canvec_i \in \rb(\O)$? I hope so!}
-\pedro[inline]{
-   I tried to incorporate this characterization of relative interior in the proof.
-}
+%\pedro[inline]{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
+%\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\canvec_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\canvec_i \in \rb(\O)$? I hope so!}
+%\pedro[inline]{
+%   I tried to incorporate this characterization of relative interior in the proof.
+%}
 
 \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 \pedro[inline]{
@@ -1036,7 +1039,7 @@ The following may be regarded as a partial converse to \Cref{comparison: R}
 
 \begin{proposition}
 \label{uniform value: P}
-Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\ell$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\ell$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point 
+Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, denominator $\ell$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\ell$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point 
 $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$. 
 \end{proposition}
 
@@ -1132,11 +1135,11 @@ These finiteness properties above facilitate the following result.
 
 \begin{theorem}[Existence of finite sets of representatives]  
 \label{fsr-exist: T}
-Given a monomial matrix $A$, there exists a finite subset $\fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every point $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists a point $\vv{h} \in \fsr(A)$ with $\vv{h} \in \opt \ip(A, \vv{s}, \vv{u}, q)$ and $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
+Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where $\collapse{\mathcal{X}}$ denotes the collapse of $\mathcal{X}$ along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
 \begin{proof}  \Cref{finite image: C} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that 
-\[ \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q))  = \ol{ A(\fsr(A, \vv{u}, \vv{s}, q)) } = \im \ip (A, \vv{u}, \vv{s}, q) \] 
+\[  \im \ip (A, \vv{u}, \vv{s}, q) = \ol{ A(\fsr(A, \vv{u}, \vv{s}, q)) } =  \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)) \] 
 and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
 
@@ -1312,7 +1315,7 @@ If $q$ is a power of $p$, then $\IP_p(A, \vv{u}, q)$ is the arithmetic integer p
 \begin{enumerate}
 \item The linear constraints are $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$.  
 \item The nonlinear (arithmetic) constraint is that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
-By \Cref{thm: dickson}, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^r\] is the unique terminating base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq r$.
+By \Cref{thm: dickson}, this is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
 \item The objective function is $\vv{k} \mapsto \norm{\vv{k}}$.
 \end{enumerate}
 
