@@ -1,0 +1,3 @@
+- Generalize Proposition 6.10 | {follow-leftovers: P} and then use this to motivate the sprouting set, and then take it from there.
+- Prove that every critical exponent is of the form crit(A,u) with u positive
+- Remove B and replace it with \ol in each definition

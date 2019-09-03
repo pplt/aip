@@ -1,0 +1,27 @@
+%%%%% Organization and additions %%%%%
+* Add remark describing how to verify inequalities Ak < v using projections/collapse
+* Add remark that points out that \collapse{Ak} = \collapse{A}k
+* A proposal:  In Section 4, we should talk about both nu's and F-thresholds. We could then introduce Pi(A,u,q), immediately relate its value to the nu's, and relate val P(A,u) to the normalized limit of Pi(A,u,q), just like we do later for the fractal programs \Sigma and the arithmetic programs Pi_p.  Most of this has already been written, and it should just be moved from Section 5.
+* Similarly, introduce \Sigma and Pi_p together, and describe their connection right away.
+* Prior to Definition 4.1, state our goal for describing F-thresholds and \nu's.  Use this to moativate definition of monomial pair
+
+
+%%%%% Notation %%%%%
+* Uniformize \collapse(A(X)) = \collapse{A}(X)
+- Use d for defining points?  Pro: opens up a for columns of A.  Con:  maybe \collapse{d} looks ugly?  Another con is "d" is used for # of variables and RR^d.
+* Uniformize the way we describe programs.
+* Uniformize way we introduce collapses in statements.  Daniel now prefers saying "\collapse{X} denotes the collapse of X along \O..." without specifying what X is (e.g., a matrix, a point, a subset of lattice points).  Pedro had the better idea to simply write "Let the superscript bar denote collapse along ..."
+* Right now, we are referring to "the" monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
+* Should we label e_1, e_2, e_3 in Figure 1, and other figures?
+* Change "image" to "optimal image" at least in definitions. optim instead of im?
+- Remove image of arithmetic program, restate things algebraically
+
+%%%%% Pictures %%%%%
+- Draw entire line of ||s||=val \Sigma_p
+
+
+%%%%% Math %%%%%
+* Should we add the analog to Corollary 2.4 for F-thresholds and test ideals?
+- Does 7.10 come from 7.3, if we replace 1 with q and \Pi with \Pi_p?
+- If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
+- Does Corollary 8.3 come from 7.10 too?
