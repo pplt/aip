@@ -1027,24 +1027,13 @@ $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv
 
 
 \begin{remark}
-\label{collapsed aux program: R}
-Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list.  If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that 
-\[ (\collapse{A}, \collapse{\vv{u}}, \vv{s}, q) \] is also a monomial list.  It is then clear from \Cref{aux program: D} that 
-\[ \ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q). \] 
+   \label{collapsed aux program: R}
+   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$.
+   Then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$. 
 \end{remark}
-
-
 
 The following may be regarded as a partial converse to \Cref{comparison: R}
 
-\emily[inline]{Restate as a lemma first.  Do this point-by-point, and appeal to the finiteness of the $\mathbb{O}$.
-We could say ``if $\vv{h}$ is optimal for $\Theta$, then $\ldots$ is optimal for $\ldots$''
-}
-
-
-\daniel[inline]{This has been changed to a ``point-by-point" statement.  This was necessary, since in its current placement, we haven't established any finiteness properties of $\ip$, and the old proof used $\mathbb{O}$}
-
-\newpage
 \begin{proposition}
 \label{uniform value: P}
 Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\ell$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\ell$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point 
