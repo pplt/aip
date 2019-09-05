@@ -418,6 +418,8 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \section{Linear programs associated with monomial pairs}
 \label{sec: LPs}
 
+\subsection{$F$-thresholds and $\nu$ invariants as values of linear programs}
+
 \pedro[inline]{
    I'm starting with the integer program, because it's easier to motivate, via $\nu$s.
    Feel free to rearrange it, if you'r rather start with the linear program.
@@ -471,7 +473,8 @@ The feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore
 Consequently, $\LP(A,\vv{u})$ has a well-defined value.
 
 \begin{proposition}
-   The value of the linear program $\LP(A,\vv{u})$ is the limit in~\eqref{eq: limit}.
+   If $p$ is a positive integer, then
+   \[\val \LP(A,\vv{u}) = \lim_{e\to\infty} \frac{\val \IP(A,\vv{u},p^e)}{p^e}.\]
 \end{proposition}
 
 \begin{proof}
