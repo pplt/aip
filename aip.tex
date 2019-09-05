@@ -415,7 +415,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \daniel[inline]{What about adding a connection between $\ideala^{[t]}$ and $\tau(\ideala^{t'})$ where $t'$ is the greatest $F$-threshold less than $t$?  Like in the diagonal section of our examples paper?  Maybe we could wait to do this until we compare Frobenius powers and test ideals.}
 
 \newpage
-\section{Linear programs associated with monomial pairs}
+\section{Linear and integer programs associated with monomial pairs}
 \label{sec: LPs}
 
 \subsection{$F$-thresholds and $\nu$ invariants as values of linear programs}
@@ -515,7 +515,7 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
 
    On the other hand, \eqref{face: e} and our choice of $\O$ imply that
    \begin{equation}\label{cone containment: e}
-      (1/\lambda) \cdot \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
+      \lambda^{-1} \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
    \end{equation}
    Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\norm{\vv{s}} = \lambda$ and $\vv{w} \geq \vv{0}$.
    Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
