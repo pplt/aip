@@ -73,16 +73,19 @@ TO DO LIST:
    \begin{itemize}
       \item[$\Box$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
       \item[$\Box$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
-      \item[$\Box$] In Section 4, we should talk about both $\nu$'s and F-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
+      \item[$\Box$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       \item[$\Box$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
-      \item[$\Box$] Prior to Definition 4.1, state our goal for describing F-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
+      \item[$\Box$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
       \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$.
-      \item[$\Box$] Use $\vv{d}$ for defining points?  Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is "$d$" is used for number of variables and $\RR^d$.  Emily suggest using $\vv{c}$.  This is probably a good idea.
+      \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
+      %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^d$.
+      Emily suggest using $\vv{c}$.  This is probably a good idea.
+      \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
       \item[$\CheckedBox$] Uniformize the way we describe programs (e.g., as in Section 9).
       \pedro[inline]{Gave it a shot. Maybe they can still be improved a bit.}
       \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
-      Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is (e.g., a matrix, a point, a subset of lattice points).  Pedro had the better idea to simply write ``Let the superscript bar denote collapse along ...''  I think we agreed Pedro's way is better.
+      Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
       \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
       \item[$\Box$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
       \item[$\Box$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
@@ -93,7 +96,7 @@ TO DO LIST:
       \item[$\Box$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
       
       %%%%% Math %%%%%
-      \item[$\Box$] Add the analog to Corollary 2.4 for F-thresholds and test ideals?
+      \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
       \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
    \end{itemize}
@@ -150,15 +153,15 @@ For later use, we observe that, when restricted to convex sets, the relative int
 
 \begin{proposition}  
    \label{bounded polytope: P}
-   Let $\vv{a}$ and $\vv{c}$ be points in $\RR^n$, and suppose that $\vv{a}$ has positive coordinates.
-   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{b} \in \RR^n$ such that  $\vv{b} \le \vv{c} \text{ and } \iprod{\vv{a}}{\vv{b}} \geq \alpha$ is bounded.
+   Let $\vv{c}$ and $\vv{u}$ be points in $\RR^n$, and suppose that $\vv{c}$ has positive coordinates.
+   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^n$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
 \end{proposition}
 
 \begin{proof}
    It suffices to show that the given set is bounded from below.
-   For each $\vv{b}$ in that set and each $i$ we have $\vv{b}\le \vv{c} + (b_i - c_i)\canvec_i$.
-   As $\vv{a}$ has positive coordinates, $\alpha\le \iprod{\vv{a}}{\vv{b}}\le \iprod{\vv{a}}{\vv{c} + (b_i -c_i)\canvec_i} = 
-  \iprod{\vv{a}}{\vv{c}} + a_i(b_i - c_i)$, so $b_i\ge (\alpha + a_ic_i - \iprod{\vv{a}}{\vv{c}})/a_i$.
+   For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
+   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = 
+  \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
 We conclude this subsection with a useful technical result.
@@ -384,15 +387,15 @@ The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyh
 \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
 where $\col(A)$ is the set of columns of $A$.  
 
-Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\vv{a} \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\vv{a}}{\vv{c}} \geq \alpha$ for all $\vv{c} \in \N$, with equality if and only if $\vv{c} \in \O$.
-We say that such a point $\vv{a}$ \emph{defines} $\O$ in $\N$.  In this article, we are laregly concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
+Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
+We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are laregly concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
 
 
 \daniel[inline]{I turned this into an ``official" convention.  I also emphasized that $\alpha$ must be positive when $\O$ is standard, which means we may rescale without changing inequalities}
 
 \begin{convention}
 \label{alpha=1: convention}
-Let $\O$ and $\vv{a} \in \RR^d$ and $\alpha \in \RR$ be as above.  If $\O$ is standard, then $\alpha$ must be positive, which allow us to rescale $\vv{a}$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
+Let $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ be as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
 \end{convention}
 
 \Cref{alpha=1: convention} leads to the following useful observation.
@@ -403,33 +406,33 @@ Let $\O$ and $\vv{a} \in \RR^d$ and $\alpha \in \RR$ be as above.  If $\O$ is st
 }
 
 \begin{remark}\label{rmk: inner product with columns of A}
-If $\vv{a} \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\vv{a}}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. \daniel{I added the condition that $\vv{s}$ be nonnegative.}
+If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. \daniel{I added the condition that $\vv{s}$ be nonnegative.}
 
-Indeed, if $\vv{c}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{c}_i \in \O$.
+Indeed, if $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
 Thus,
-\[ \iprod{\vv{a}}{A\vv{s}} = \sum_{i=1}^n \iprod{\vv{a}}{\vv{c}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
-and equality holds if and only if $s_i = 0$ whenever $\vv{c}_i \notin \O$.
+\[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
+and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{remark}
 
 The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
 \begin{proposition} 
    \label{face: P}
-   If $\vv{a} \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\vv{a}$ is nonnegative, and the $i$-th coordinate of $\vv{a}$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-   In particular, the supporting indices of $\vv{a}$ depend only on $\O$, and $\O$ is bounded if and only if $\vv{a}$ is positive. 
+   If $\defpt \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive. 
 \end{proposition}
 
-\daniel[inline]{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
-\pedro[inline]{That's a useful convention. I'll keep it in mind.}
-\daniel[inline]{We don't always stick to it.  E.g., the columns of $A$, and the standard basis vectors.}
-\pedro[inline]{We could use, e.g., $\vv{v}_i$ for the columns of $A$.}
+% \daniel[inline]{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
+% \pedro[inline]{That's a useful convention. I'll keep it in mind.}
+% \daniel[inline]{We don't always stick to it.  E.g., the columns of $A$, and the standard basis vectors.}
+% \pedro[inline]{We could use, e.g., $\vv{v}_i$ for the columns of $A$.}
 
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
-   In particular, if $\iprod{\vv{a}}{\vv{u}} = \alpha$, then $\iprod{\vv{a}}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\vv{a}}{\canvec_i} \ge 0$ for each $i$, so $\vv{a} \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\vv{a}}{\canvec_i} = 0$.  
+   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
+   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.  
 
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\vv{a}}{\canvec_i} = 0\}$, then 
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\defpt}{\canvec_i} = 0\}$, then 
 \begin{equation}
 \label{face: e}
 \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
@@ -438,10 +441,10 @@ where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that 
 \end{proof}
 
 \begin{definition}
-   If $\vv{a} \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^d$ such that the $i$-th coordinate of $\vv{a}$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
+   If $\defpt \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^d$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
 \end{definition}
 
-As noted above, these definitions depend only on $\O$, but not on the choice of $\vv{a}$.
+As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
 In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
 
 % Our choice of terminology is motivated by the following observation.
@@ -529,23 +532,23 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \begin{remark}
    \label{collapse of a defining vector: R}
-   If $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\vv{a}$.
-   Consequently, $\iprod{\vv{a}}{\vv{u}} = \iprod{\collapse{\vv{a}}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
-% \pedro{May add that $\collapse{\vv{a}} = \vv{a}$}
+   If $\defpt \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\defpt$.
+   Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
+% \pedro{May add that $\collapse{\defpt} = \defpt$}
 % \daniel{I guess this depends on what we decide above.}
-% \pedro{I think this is true regardless. Since $\vv{a} \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
+% \pedro{I think this is true regardless. Since $\defpt \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
 \end{remark}
 
 
 
 \begin{remark}
 \label{collapse of monomial is monomial: R}
-The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\vv{a} \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\vv{a}}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
+The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\defpt \in \RR^d$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\defpt}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
 \end{remark}
 
 \begin{proposition}\label{collapse of Newton polyhedron: P}
    If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ of the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.
-   In addition, if $\vv{a} \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$. 
+   In addition, if $\defpt \in \RR^d$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\M$. 
 \end{proposition}
 
 \begin{proof}
@@ -553,7 +556,7 @@ By definition, the Newton polyhedron $\M$ equals
 %
 \[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_d)} =  \collapse{\N}.\]
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\vv{a}}$ defines $\collapse{\O}$ in $\M$ whenever $\vv{a} \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
+Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\M$ whenever $\defpt \in \RR^d$ defines $\O$ in $\N$.  The positivity of $\collapse{\defpt}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.  
 \end{proof}
 
 \newpage
@@ -639,9 +642,9 @@ This (or something similar) could be a running example, to illustrate the variou
 
 \pedro[inline]{
    \begin{example}\label{ex: illustrating FT descriptions}
-      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\vv{a} = (3/17, 0, 1/17)$.
+      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\defpt = (3/17, 0, 1/17)$.
       \Cref{FT descriptions: P} then tells us that
-      \[\ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = 4/17.\]
+      \[\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = 4/17.\]
 
       From another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
       \[\opt \LP(A,\vv{u}) = \conv((1/17, 0, 3/17),(2/17, 1/17, 1/17)),\]
@@ -672,31 +675,31 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 %In particular, once $A$ is fixed, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ with $(A, \vv{u})$ very small.
 \end{proposition}
 
-\pedro[inline]{
-   We can probably simplify this proof, as it is very believable that if $\vv{a}$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\vv{a}}{\vv{u}}$ takes on only finitely many values less than $\beta$ (when $a_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $a_i = 0$, the value of $u_i$ does not affect the inner product).
-}
-\daniel[inline]{Your proof is way better, and should be the one we give in the paper.  I sometimes get too carried away with collapsing}
-\pedro[inline]{I'm giving it a shot below; original proof is commented out.}
+% \pedro[inline]{
+%    We can probably simplify this proof, as it is very believable that if $\defpt$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\defpt}{\vv{u}}$ takes on only finitely many values less than $\beta$ (when $c_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $c_i = 0$, the value of $u_i$ does not affect the inner product).
+% }
+% \daniel[inline]{Your proof is way better, and should be the one we give in the paper.  I sometimes get too carried away with collapsing}
+% \pedro[inline]{I'm giving it a shot below; original proof is commented out.}
 
 \begin{proof}
    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-   Consider such a pair, and suppose $\vv{a}$ defines $\O$ in the Newton polyhedron of $A$.
-   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}}$, and the nonnegativity of $\vv{a}$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
-   Indeed, when $a_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $a_i = 0$, the value of $u_i$ does not affect the inner product.
+   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
+   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
+   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
    \end{proof}
 
 % \begin{proof}
 %    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
 %    Consider such a pair, and let $\collapse{\vv{u}}$ denote the collapse of the point $\vv{u}$ along $\O$.
 
-%    Note that if $\vv{a}$ defines $\O$, then \Cref{FT descriptions: P} tells us that
+%    Note that if $\defpt$ defines $\O$, then \Cref{FT descriptions: P} tells us that
 %    %
 %    \begin{equation}\label{ft inner product identity: e}
-%       \ft{A}{\vv{u}} = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{\collapse{\vv{u}}}.
+%       \ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{\collapse{\vv{u}}}.
 %    \end{equation}
 %    %
-%    The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\vv{a}}{\vv{w}} < \beta$.
-%    However, the positivity of $\vv{a}$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
+%    The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\defpt}{\vv{w}} < \beta$.
+%    However, the positivity of $\defpt$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
 
 %    In summary, as $\vv{u}$ varies through all points with $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ takes on only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
 % \end{proof}
@@ -719,18 +722,18 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \end{corollary}
 
 % \begin{proof}
-%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
+%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\defpt \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
 
 %    First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.
-%    Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\vv{a}}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
-% \Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\vv{a}$ with every column of $A$ contained in $\O$ is one.
+%    Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\defpt}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
+% \Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\defpt$ with every column of $A$ contained in $\O$ is one.
 
 % Next, suppose that $\vv{s}$ is optimal for $\LP$, and let $\vv{w}$ be the unique point in $\RR^d$ with $\vv{u} = A \vv{s} + \vv{w}$.  The optimality of $\vv{s}$ implies that $\norm{\vv{s}} = \lambda$, while the constraints of $\LP$ imply that $\vv{w} \geq \vv{0}$.  A direct computation shows that
 % %
-% \[ \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}} = \lambda + \iprod{\vv{a}}{\vv{w}}, \]
+% \[ \lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A \vv{s}} + \iprod{\defpt}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\defpt}{\vv{w}} = \lambda + \iprod{\defpt}{\vv{w}}, \]
 % %
-% which allows us to conclude that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = 0$.
-% It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\vv{a}$, that the point $\vv{s}$ must satisfy the two asserted conditions.
+% which allows us to conclude that $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\defpt}{\vv{w}} = 0$.
+% It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\defpt$, that the point $\vv{s}$ must satisfy the two asserted conditions.
 % \end{proof}
 
 \pedro[inline]{
@@ -738,18 +741,18 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 }
 
 \begin{proof}
-   Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\vv{a} \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
+   Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\defpt \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
    Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
    % If $\vv{s}$ is optimal for $\LP$, then $\vv{s}\ge \vv{0}$, $\vv{w} \coloneqq \vv{u} - A\vv{s} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$.
    By \Cref{FT descriptions: P,rmk: inner product with columns of A},
    %
    \begin{equation}\label{eq 1}
-      \lambda = \iprod{\vv{a}}{\vv{u}} = \iprod{\vv{a}}{A \vv{s}} + \iprod{\vv{a}}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\vv{a}}{\vv{w}}.
+      \lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A \vv{s}} + \iprod{\defpt}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\defpt}{\vv{w}}.
    \end{equation}
    %
-   If $\vv{s}$ is optimal for $\LP$, then $\vv{s} \ge \vv{0}$, $\vv{w} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$, and \eqref{eq 1} shows that $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\vv{a}}{\vv{w}} = 0$.
+   If $\vv{s}$ is optimal for $\LP$, then $\vv{s} \ge \vv{0}$, $\vv{w} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$, and \eqref{eq 1} shows that $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\defpt}{\vv{w}} = 0$.
    The first identity and \Cref{rmk: inner product with columns of A} show that $\vv{s}$ satisfies~(1); the second identity shows that $\vv{w}\in \cone(\rb(\O))$, so $\vv{s}$ satisfies~(2).
-   Conversely, if $\vv{s}$ satisfies (1) and (2), then $\vv{s}$ is feasible for $\LP$, $\iprod{\vv{a}}{A \vv{s}} = \norm{\vv{s}}$, and $\iprod{\vv{a}}{\vv{w}} = 0$.
+   Conversely, if $\vv{s}$ satisfies (1) and (2), then $\vv{s}$ is feasible for $\LP$, $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$, and $\iprod{\defpt}{\vv{w}} = 0$.
    By \eqref{eq 1}, $\norm{\vv{s}} = \lambda$, so $\vv{s}$ is optimal for $\LP$.
 \end{proof}
 
@@ -1096,23 +1099,23 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $0 \leq  \val  \ip(A, \vv{u
 \end{lemma}
 
 \begin{proof}   
-   Fix a point $\vv{a} \in \RR^d$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
+   Fix a point $\defpt \in \RR^d$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
    Thus,
-\[ \iprod{{\vv{a}}}{A \vv{t}} = \iprod{\collapse{\vv{a}}}{\collapse{A \vv{t}}} = \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
+\[ \iprod{{\defpt}}{A \vv{t}} = \iprod{\collapse{\defpt}}{\collapse{A \vv{t}}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
 
-The product $\vv{a}^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\vv{a}$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\vv{a}^{\mathrm{T}} A$ must equal one.  In particular, 
+The product $\defpt^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\defpt$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\defpt^{\mathrm{T}} A$ must equal one.  In particular, 
 %
 \begin{equation} 
 \label{bound in inner product: e}
-\norm{\vv{k}} \leq (\vv{a}^{\mathrm{T}} A) \vv{k} =  \vv{a}^{\mathrm{T}} (A \vv{k}) = \iprod{\vv{a}}{A \vv{k}} = \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}} 
+\norm{\vv{k}} \leq (\defpt^{\mathrm{T}} A) \vv{k} =  \defpt^{\mathrm{T}} (A \vv{k}) = \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} 
 \end{equation}
 whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that 
 \begin{equation}  
 \label{norm of tail: e}
-\norm{\tail{\vv{s}}_q} =  \iprod{\vv{a}}{A \tail{\vv{s}}_q} = \iprod{\collapse{\vv{a}}}{\collapse{A} \tail{\vv{s}}_q}.
+\norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
 \end{equation}
 
-Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}} < \iprod{\collapse{\vv{a}}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\] 
+Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\] 
 which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
 \end{proof}
 
@@ -1124,8 +1127,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\im \ip(A, \vv{u}, \vv{s},
 \end{corollary}
 
 \begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
-
-If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\vv{a}}}{\collapse{A} \vv{k}}\] and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{b}$  in $\rs(\O)^{\perp}$ with $\vv{b} < \collapse{A} \tail{\vv{s}_q}$  and $\iprod{\collapse{\vv{a}}}{\vv{b}} \geq \val \ip$.  The positivity of $\collapse{\vv{a}}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: P} then tell us  that this polyhedron is bounded.  
+If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}\] and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$  in $\rs(\O)^{\perp}$ with $\vv{v} < \collapse{A} \tail{\vv{s}_q}$  and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.  The positivity of $\collapse{\defpt}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: P} then tell us  that this polyhedron is bounded.  
 \end{proof}
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property. 
@@ -1855,12 +1857,12 @@ with equality if $A$ is the monomial matrix associated with a monomial ideal tha
 \begin{proof}
 By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$ of the Newton polyhedron $\N$ of $A$.  Suppose that $A$ has $d$ rows, and let an overbar denote collapse along $\O$.  
 
-If $\vv{a} \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\vv{a}}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron of $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\vv{a}}}{\vv{v}}.\]
+If $\defpt \in \RR^d$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\defpt}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron of $B$, and \Cref{FT descriptions: P} then implies that \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\defpt}}{\vv{v}}.\]
 
-Thus, it suffices to show that $\iprod{\collapse{\vv{a}}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\vv{a}$ guarantees that the inner product of $\collapse{\vv{a}}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\vv{a}}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\vv{a}}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
-which allows us to conclude that \[ \iprod{\collapse{\vv{a}}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
+Thus, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\defpt$ guarantees that the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \] 
+which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
 
-We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^d$.  Furthermore, the positivity of the grading implies that the point $\vv{a} \in \RR^d$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^d$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\vv{a} = \collapse{\vv{a}}$ with another point must be, in fact, an equality.  The details are left to the reader.
+We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^d$.  Furthermore, the positivity of the grading implies that the point $\defpt \in \RR^d$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^d$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  The details are left to the reader.
 \end{proof}
 
 
