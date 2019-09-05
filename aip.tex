@@ -592,24 +592,20 @@ The positivity of $\vv{u}$ implies that $\ft{A}{\vv{u}}$ is well-defined, and th
 Our choice of notation and terminology is justified by the observation that if $\ideala$ is a monomial ideal with exponent matrix $A$, then the positive real number $\lambda$ described above is the $F$-threshold of $\ideala$ with respect to the diagonal ideal $\diag(\vv{u})$; see \cite[Proposition~4.12]{budur+mustata+saito.roots_bs_polys_for_mon_ideals} and the comments preceding it.
 \pedro{We can also justify this later, with our description of mus}
 
-\pedro[inline]{
-This (or something similar) could be a running example, to illustrate the various notions and results, like optimal set, collapses, etc.
 \begin{example}\label{ex: ft}
    Let $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$ and $\vv{u} = (1,1,1)$.
    The Newton polyhedron $\N$ of $A$ is shown in \Cref{fig: newton polyhedron}.
+   \begin{figure}
+      \centering
+      \includegraphics[width=.45\textwidth]{Pictures/newton_polyhedron.pdf}
+      \caption{The Newton polyhedron of the matrix $A$ described in \Cref{ex: ft}}
+   \label{fig: newton polyhedron}
+   \end{figure}
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2),\]
    shown in blue.
    Thus, $\ft{A}{\vv{u}} = 4/17$ and $\mf(A,\vv{u}) = \O$.
 \end{example}
-}
-\begin{figure}
-   \centering
-   \includegraphics[width=.45\textwidth]{Pictures/newton_polyhedron.pdf}
-   \caption{The Newton polyhedron of the matrix $A$ described in \Cref{ex: ft}}
-\label{fig: newton polyhedron}
-\end{figure}
-
 
 \begin{proposition}
    \label{FT descriptions: P}
@@ -640,25 +636,24 @@ This (or something similar) could be a running example, to illustrate the variou
    Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
 \end{proof}
 
-\pedro[inline]{
-   \begin{example}\label{ex: illustrating FT descriptions}
-      If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\defpt = (3/17, 0, 1/17)$.
-      \Cref{FT descriptions: P} then tells us that
-      \[\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = 4/17.\]
 
-      From another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
-      \[\opt \LP(A,\vv{u}) = \conv((1/17, 0, 3/17),(2/17, 1/17, 1/17)),\]
-      highlighted in green.
-      Thus, \Cref{FT descriptions: P} again tells us that
-      \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{(1/17, 0, 3/17)} = 4/17.\]
-   \end{example}
-}
-\begin{figure}
-   \centering
-   \includegraphics[width=.45\textwidth]{Pictures/splitting_polytope.pdf}
-   \caption{The feasible region of the linear program $\LP(A,\vv{u})$ in \Cref{ex: illustrating FT descriptions}}
-\label{fig: splitting polytope}
-\end{figure}
+\begin{example}\label{ex: illustrating FT descriptions}
+   If $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then the minimal face of $(A,\vv{u})$, shown in blue in \Cref{fig: newton polyhedron}, is defined by the point $\defpt = (3/17, 0, 1/17)$.
+   \Cref{FT descriptions: P} then tells us that
+   \[\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = \tfrac4{17}.\]
+   From another perspective, \Cref{fig: splitting polytope}
+   \begin{figure}
+      \centering
+      \includegraphics[width=.45\textwidth]{Pictures/splitting_polytope.pdf}
+      \caption{The feasible region of the linear program $\LP(A,\vv{u})$ in \Cref{ex: illustrating FT descriptions}}
+      \label{fig: splitting polytope}
+   \end{figure}
+   shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
+   \[\opt \LP(A,\vv{u}) = \conv\big(\big(\tfrac1{17}, 0, \tfrac3{17}\big),\big(\tfrac2{17}, \tfrac1{17}, \tfrac1{17}\big)\big),\]
+   highlighted in green.
+   Thus, \Cref{FT descriptions: P} again tells us that
+   \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{\big(\tfrac1{17}, 0, \tfrac3{17}\big)} = \tfrac4{17}.\]
+\end{example}
 
 \pedro[inline]{
    The stuff below seems out of place here.
@@ -823,12 +818,15 @@ The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in an
 %   I tried to incorporate this characterization of relative interior in the proof.
 %}
 
-\comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
-\pedro[inline]{
-   Maybe we should include it.
-   Or bring back \Cref{ex: ft} again, where $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$, and only the second endpoint is special for $(A,\vv{u})$.
+% \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 
-}
+
+\begin{example}
+   The containments described in \Cref{opt versus mc: P} may all be proper.
+   Indeed, if $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$.
+   Its interior consists of this line segment excluding the endpoints, while the set of special points for $(A,\vv{u})$ consists of this line segment excluding only the first endpoint.
+\end{example}
+
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \] 
 % where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the special points for $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
@@ -881,31 +879,11 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 \end{equation*}
 \end{proof}
 
-% \daniel[inline]{What do you guys think about including an example (picture) that describes the differences between the feasible set for $\LP(A, \vv{u})$ and $\LP(\collapse{A}, \collapse{\vv{u}})$?  In the few examples I've looked at, it seems like the optimal set of these programs is the same.  This probably isn't always true, but does someone know an example?  If so, it might be a good candidate for a picture.}
-% \pedro[inline]{
-%    I like that idea.
-%    I've searched for random examples of $3 \times 3$ matrices (so we can picture not only the feasible sets, but also the Newton polyhedra) for which the optimal sets are different, and found that they are not super rare.
-%    Below are pictures of a couple of examples.
-%    In the first, $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$; in the second, $A=\left(\begin{smallmatrix}8&4&4\\ 6&4&9\\ 7&9&4\end{smallmatrix}\right)$; $\vv{u} = (1,1,1)$ for both.
-%    The feasible set for $\LP(A, \vv{u})$ is shown in blue, and is properly contained in the feasible set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the yellow region.
-%    The optimal set for $\LP(A, \vv{u})$ is shown in green, and is properly contained in the optimal set for $\LP(\collapse{A}, \collapse{\vv{u}})$, which also includes the red line segment.
-% }
-% \emily[inline]{These look awesome!  Maybe we should include a simple 2D example as well? }
-% \pedro[inline]{I'll try to find a good 2D example.}
-
-\pedro[inline]{
-   \begin{example}
-      Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
-      Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$. 
-      \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
-      The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
-      
-      The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
-      \Cref{fig: collapse}(\textsc{b}) also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
-      Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper.
-   \end{example}
-}
-\begin{figure}
+\begin{example}
+   Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
+   Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$. 
+   \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
+   \begin{figure}
    \centering
    \begin{subfigure}{.49\textwidth}
       \centering
@@ -919,9 +897,16 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
    \end{subfigure}
    \caption{}
    \label{fig: collapse}
-\end{figure}
+   \end{figure}
+   The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
+      
+   The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
+   \Cref{fig: collapse}(\textsc{b}) also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
+   Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper.
+\end{example}
 
 \newpage
+
 \section{An auxiliary integer program}
 
 \pedro[inline]{Added some algebraic context.}
