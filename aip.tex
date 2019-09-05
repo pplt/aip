@@ -687,10 +687,11 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset lying between $\opt \LP(A, \vv{u})$ and $\ri \opt \LP(A, \vv{u})$. 
 \end{proposition}
 
-\begin{proof}    
-If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.  Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
+\begin{proof}
+   If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.
+   Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
 
-The minimality of $\O$ implies that $(1/\lambda)  \cdot \vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
+   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
 % Next, suppose that $\canvec_i \in \rb(\O)$.
@@ -910,7 +911,9 @@ Below, we describe the relationship between collapses and the other notions intr
 \end{proposition}
 
 \begin{proof}
-Set $\lambda = \ft{A}{\vv{u}}$, so that $(1 / \lambda) \cdot \vv{u}$ lies in the relative interior of $\O$.  It is clear that projection preserves relative interiors, and so $(1/\lambda) \cdot \collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}.  This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $(1/\lambda) \cdot \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.  
+   Set $\lambda = \ft{A}{\vv{u}}$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$.
+   It is clear that projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}.
+   This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $\lambda^{-1} \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.  
 
 Next, note that \Cref{FT descriptions: P} and the above tells us that \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \] 
 %
