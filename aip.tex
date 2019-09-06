@@ -62,12 +62,12 @@ TO DO LIST:
       Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
       \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
       \item[$\Box$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
-      \item[$\Box$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
+      \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
       \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
       \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
 
       %%%%% Pictures %%%%%
-      \item[$\Box$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
+      \item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
       
       %%%%% Math %%%%%
       \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
@@ -188,8 +188,6 @@ where $\col(A)$ is the set of columns of $A$.
 Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
 We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
 
-\daniel[inline]{I turned this into an ``official" convention.  I also emphasized that $\alpha$ must be positive when $\O$ is standard, which means we may rescale without changing inequalities}
-
 \begin{convention}
 \label{alpha=1: convention}
 Let $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ be as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
@@ -203,7 +201,7 @@ Let $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ be as above.  If $\O$ is stan
 }
 
 \begin{proposition}\label{prop: inner product with columns of A}
-   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. \daniel{I added the condition that $\vv{s}$ be nonnegative.}
+   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. 
 \end{proposition}
 
 \begin{proof}
@@ -477,10 +475,21 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
    Let $A=\left(\begin{smallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{smallmatrix}\right)$ and $\vv{u} = (1,1,1)$.
    The Newton polyhedron $\N$ of $A$ is shown in \Cref{fig: newton polyhedron}.
    \begin{figure}
+   \centering
+   \begin{subfigure}{.48\textwidth}
       \centering
-      \includegraphics[width=.45\textwidth]{Pictures/newton_polyhedron.pdf}
-      \caption{The Newton polyhedron of the matrix $A$ described in \Cref{ex: ft}}
-   \label{fig: newton polyhedron}
+      \includegraphics[width=.9\textwidth]{Pictures/newton_polyhedron.pdf}
+      \caption{The Newton polyhedron of $A$}
+      \label{fig: newton polyhedron}
+   \end{subfigure}
+   \begin{subfigure}{.48\textwidth}
+      \centering
+      \includegraphics[width=.8\textwidth]{Pictures/splitting_polytope.pdf} 
+      \caption{The feasible region of $\LP(A,\vv{u})$}
+      \label{fig: splitting polytope}
+   \end{subfigure}
+      \caption{Illustration for \Cref{ex: ft}}
+   \label{fig: newton polyhedron and splitting polytope}
    \end{figure}
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2),\]
@@ -489,14 +498,7 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
 
    The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\eqref{ip} tells us that
    \[\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = \tfrac4{17}.\]
-   From yet another perspective, \Cref{fig: splitting polytope}
-   \begin{figure}
-      \centering
-      \includegraphics[width=.45\textwidth]{Pictures/splitting_polytope.pdf}
-      \caption{The feasible region of the linear program $\LP(A,\vv{u})$ in \Cref{ex: ft}}
-      \label{fig: splitting polytope}
-   \end{figure}
-   shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
+   From yet another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
    \[\opt \LP(A,\vv{u}) = \conv\big(\big(\tfrac1{17}, 0, \tfrac3{17}\big),\big(\tfrac2{17}, \tfrac1{17}, \tfrac1{17}\big)\big),\]
    highlighted in green.
    Thus, \Cref{FT descriptions: P}\eqref{value} again tells us that
@@ -1657,22 +1659,25 @@ In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in blu
   \centering
 \begin{subfigure}{.49\textwidth}
 \centering
-  \includegraphics[width=.8\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
+  \includegraphics[width=.9\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
 \caption{$p=2$}  
 \end{subfigure} 
 \begin{subfigure}{.49\textwidth}
 \centering
-\includegraphics[width=.8\textwidth]{Pictures/ex4_char3.pdf}
+\includegraphics[width=.9\textwidth]{Pictures/ex4_char3.pdf}
 \caption{$p=3$}  
 \end{subfigure}
+
+\bigskip
+
 \begin{subfigure}{.49\textwidth}
 \centering
-  \includegraphics[width=.8\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
+  \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
 \caption{$p=5$}  
 \end{subfigure}  
 \begin{subfigure}{.49\textwidth}
 \centering
-  \includegraphics[width=.8\textwidth]{Pictures/ex4_char7.pdf}
+  \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
 \caption{$p=7$}  
 \end{subfigure}  
 \caption{The feasible set of $\Sigma_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
