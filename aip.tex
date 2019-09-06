@@ -20,33 +20,13 @@ TO DO LIST:
 \begin{enumerate}
  \item[$\CheckedBox$] Write essential statements/proofs.
  \item[$\CheckedBox$] Decide on name of paper.
-%  \emily[inline]{How about \emph{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}?}
-% \pedro[inline]{I like that!}
  \item[$\CheckedBox$] Decide on name for minimal coordinate.
- \comment[inline]{Going with ``special point''.}
-% \pedro[inline]{
-% %     Do we have a consensus for ``special points''? 
-% } 
-% \daniel[inline]{Emily likes it.  I thought for a while, and couldn't come up with something better.  If anyone gets inspired, we can always change it later.  So, let's make this change.  Should we say ``Let $\vv{s}$ be a special point \emph{for} $(A, \vv{u})$ and use the notation $\operatorname{sp}(A, \vv{u})$ or $\operatorname{special}(A, \vv{u})$?  The more time passes, the more I appreciate computer programming notation (where we just write out entire words, or longer abbreviations), but I don't insist that we do that here.
-% }
-% \pedro[inline]{
-%    I've made the changes.
-%    ``Special point for $(A,\vv{u})$'' sounds good to me.
-%    For the notation, $\operatorname{sp}(A,\vv{u})$ aligns better with other notation we are using ($\ri$, $\rb$, $\opt$, \ldots), so that's what I've used; however, if anyone doesn't like it, please feel free to change it.
-% }
- 
+ \comment[inline]{Going with ``special point''.} 
 \item[$\CheckedBox$] Make sprout notation.
 \comment[inline]{Going with $\sprout(A,\vv{u},p)$}
 \item[$\Box$] Put in examples.
 \pedro[inline]{Started working on it.}
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
-
- % \daniel[inline]{Can someone explain why the graphs now start at the $0$-th level? }
- % \pedro[inline]{
- %    I did that, because I think that's how we were thinking of them in our conversations in Lawrence.
- %    For example, we were saying that $\bigcup_{e\ge 1}\graph^e(A,p)$ is finite, because we were thinking of the initial level consisting of all (possibly infinitely many) small pairs as level 0.
- %    I have a slight preference for starting at 0, but wouldn't mind changing it back, if you prefer. 
- % }
  \item[$\CheckedBox$] Fill in/rewrite preliminaries.
  \item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  \item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
@@ -56,14 +36,6 @@ TO DO LIST:
  \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
  \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
  \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
- % \daniel[inline]{Any thoughts on this?  The main reason for doing so to me is that it starts to get ugly when we add subscripts to the terms in $(A, \vv{u}, q)$ like we do when dealing with paths and iterated lifting.  It is also more consistent with the notation for $\ip$.  But, I could live with the $\vv{u}q$ version if someone feels strongly about this.}
- % \emily[inline]{I like $(A, \vv{u}, q)$ best, but don't mind so much either way.}
- % \pedro[inline]{I started changing to $\IP(A,\vv{u},q)$. Are we going to abbreviate $\IP(A,\vv{u},1)$ by $\IP(A,\vv{u})$? Or insist on always having a $q$?
- %    % , so, for example, the statement of Lemma~7.3 would become ``[\ldots] the quotient when dividing any optimal point of $\IP_p(A, \vv{u}, qp^e)$ by $p^e$ must be optimal for $\IP_p(A, \vv{u}, q)$''?
- %    \emily[inline]{Nice observation.  Both Daniel and I think insisting on the ``$q$'' is preferable.}
- %    \pedro[inline]{Almost done! Do you guys feel that way too about \Cref{follow-leftovers: P}? Somehow it felt unnatural to stick a ``$q$'' in that statement\ldots}
- %    \emily[inline]{Hmm, I like it as-is.}
- %}
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
 }
@@ -145,11 +117,11 @@ The Minkowski--Weyl Theorem gives us a couple of useful characterizations of pol
    That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
 }
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
-\pedro{
-   Is there a more concrete characterization for polyhedra/polytopes?
-   E.g., points not in any proper face? Positive convex combinations of vertices?
-}
-\daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
+% \pedro{
+%    Is there a more concrete characterization for polyhedra/polytopes?
+%    E.g., points not in any proper face? Positive convex combinations of vertices?
+% }
+% \daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
 For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
 \begin{proposition}  
@@ -204,30 +176,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
 }
 
-% \subsection{Monomial matrices}  A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.   If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
-
-%A  monomial matrix $B$ is a \emph{successor} of $A$ if $B$ can be obtained from $A$ by omitting some (possibly empty) subset of its rows.   The most relevant example of a successor is the collapse construction considered later in \Cref{newton-polyhedra: S}.  A successor $B$ of $A$ is  \emph{proper} if $B \neq A$.
-
-% \pedro[inline]{
-%    Maybe we could eliminate this subsection, and move the definition of monomial matrix to the section on Newton polyhedra.
-
-%    And maybe we could move Newton polyhedra here to this Preliminaries section, as a subsection. 
-
-%    Let me know your thoughts.
-% }
-% \daniel[inline]{I removed the stuff on \emph{successors}.  I agree the monomial matrix stuff should appear immediately before the definition of Newton polyhedra.  About moving Newton stuff to the preliminaries:  This seems reasonable, but I would at least want to emphasize (in the prose) that collapsing seems to be a new idea (unlike the rest of the preliminaries, which is much more established).  Collapsing seems to first appear in my paper with Emily;  I searched for a while, and couldn't find that construction anywhere else.}
-
-% \emily[inline]{Maybe we should introduce collapsing right before it is used, to emphasize that it is a new idea?}
-% \pedro[inline]{
-%    I like this idea.
-%    We could just put monomial matrices and the basics of Newton polyhedra here, and postpone collapsing.
-%    We can gather the results on collapsing in a subsection at the end of the current Section~4 or, better, have a whole section on collapsing.
-% }
-
 \subsection{Monomial matrices and their Newton polyhedra}
-
-% \comment[inline]{This section needs to be paraphrased, to avoid overlap with other paper}
-% \daniel[inline]{One thing we can do is change the presentation so that it is more informal.  We can include some general ideas, to make it intuitive, but can refer to the other paper for technical details that are obvious, but perhaps annoying to check.}
 
 A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
 If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
@@ -330,8 +279,8 @@ More relevant to this article, though, is the description of $\ideala^{[k]}$ in 
 Frobenius powers are extended to allow nonnegative real exponents, through the use of the Frobenius ``roots'' introduced in \cite{blickle+mustata+smith.discr_rat_FPTs}.
 Explicitly, for a nonnegative rational exponent of the form $k/p^e$, we define
 \[\ideala^{[k/p^e]} \coloneqq \big(\ideala^{[k]}\big)^{[1/p^e]},\]
-and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit \, More explicitly, if $\left\{t_j\right\}_{j=1}^\infty$ is a sequence of real numbers limiting to $t$ from above, each of the form $k/p^e$ for some $k>0$ and $e \geq 0$, then $\ideala^{[t]}$ is defined the union of the ideals $\ideala^{[t_j]}$.
-\pedro{Make this more explicit?}\emily{Added explicit definition.}
+and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit\ 
+More explicitly, if $\left\{t_j\right\}_{j=1}^\infty$ is a sequence of real numbers limiting to $t$ from above, each of the form $k/p^e$ for some $k>0$ and $e \geq 0$, then $\ideala^{[t]}$ is defined the union of the ideals $\ideala^{[t_j]}$.
 
 Like test ideals and multiplier ideals, as $t$ varies, the Frobenius powers $\ideala^{[t]}$ form a nonincreasing chain, and are right-constant for positive $t$, \ie $\ideala^{[t+\epsilon]} = \ideala^{[t]}$, for $0<\epsilon \ll 1$.
 The positive exponents where $\ideala^{[t]}$ ``jumps'' (that is, $\ideala^{[t-\epsilon]}\ne \ideala^{[t]}$, for all $0<\epsilon \le t$) are called the \emph{critical exponents} of $\ideala$.
@@ -370,11 +319,9 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \begin{notation}
    We adopt standard multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal} 
    \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}} = \ideal{x^{\vv{v}} : \vv{v} \in \NN^d \text{ and } \vv{v} \not < \vv{u}}.\]
-   %\daniel{I added another easy description that I think we use often}
    When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
    For instance, $\crit(\ideala,\diag(\vv{u}))$ will be simply denoted $\crit(\ideala,\vv{u})$.   
    Likewise, we shall often replace a monomial ideal with its exponent matrix in our notation.
-%   For instance, if $\ideala$ is a monomial ideal of $R$, and $A$ is its exponent matrix, then $\crit(\ideala,\vv{u})$ will also be denoted $\crit(A,\vv{u})$.
 \end{notation}
 
 \begin{remark}\label{rmk: Frobenius powers of monomial ideals are monomial ideals}
@@ -405,10 +352,6 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \end{proof}
 
 \daniel[inline]{
-% Suppose $\ideala$ is a monomial ideal.  Then all of its Frobenius powers are also monomial ideals, and \[ x^{\vv{v}} \in \ideala^{[\lambda]} \iff \ideala^{[\lambda]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > \lambda.\]  The first $\iff$ above is Proposition 2.5 from our examples paper.  Therefore, 
-% \[ \ideala^{[\lambda]} = \langle x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > \lambda \rangle.\]
-   % This tells us that every critical value of $\ideala$ is of the form $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{0}$.
-   % Whatever we include in this section should be enough to at least justify this observation.
    When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
 }
 
@@ -422,7 +365,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 \pedro[inline]{
    I'm starting with the integer program, because it's easier to motivate, via $\nu$s.
-   Feel free to rearrange it, if you'r rather start with the linear program.
+   Feel free to rearrange it, if you'd rather start with the linear program.
 }
 
 Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
@@ -444,26 +387,26 @@ In what follows, we fix a monomial pair $(A,\vv{u})$, where $A$ is a $d\times n$
    Given a positive integer $q$, the integer program $\IP(A, \vv{u}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$. 
 \end{definition}
 
-It is easy \daniel{This is true because we only look at monomial pairs.  Should we emphasize this?} to see that the feasible set of the integer program $\IP(A,\vv{u},q)$ is bounded, and consequently $\IP(A,\vv{u},q)$ has a well-defined value.
+It is easy \daniel{This is true because we only look at monomial pairs.  Should we emphasize this?} to see that the feasible set of the integer program $\IP(A,\vv{u},q)$ is bounded, and consequently this program has a well-defined value.
+In the algebraic context established above, $\val \IP(A,\vv{u},q)$ equals $\nu(\ideala,\ideald,q)$, which we shall often denote $\nu(A,\vv{u},q)$.
 
 \begin{definition}
    The \emph{optimal image} of $\IP(A, \vv{u}, q)$ is the set \[ \im \IP(A, \vv{u}, q) = A ( \opt \IP(A, \vv{u}, q) ). \] 
 \end{definition}
 
-In the algebraic context established above, $\nu(\ideala,\ideald,q)$, which we will often denote $\nu(A,\vv{u},q)$, is the value of the integer program $\IP(A, \vv{u}, q)$.
-Moreover, if $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then 
+If $\ideala$ and $\ideald$ are as above, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the optimal image of $\IP(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
+Explicitly,
 \begin{align*}
   \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
   &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
   &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]},
+  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
 \end{align*}
-so the optimal image of $\IP(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
 The $F$-threshold of $\ideala$ with respect to $\ideald$ can be expressed as the limit
 \begin{equation}\label{eq: limit}
 \ft{\ideala}{\ideald} = \lim_{e\to\infty} \frac{\nu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP(A,\vv{u},p^e)}{p^e}.
 \end{equation}
-In this section we show that this limit can be realized as the value of a linear program in $\RR^n$, and also has very simple descriptions in terms of the Newton polyhedron of $A$.
+In this section we show that this limit can be realized as the value of a linear program in $\RR^n$, and also has simple descriptions in terms of the Newton polyhedron of $A$.
 
 \begin{definition}
    The linear program $\LP(A, \vv{u})$ in the domain of $A$ consists of maximizing the function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
@@ -477,6 +420,11 @@ In order to relate this value to the Newton polyhedron of $A$ we need the follow
    The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
 \end{definition}
 
+\pedro[inline]{
+   I thought it would make sense to postpone the official definition of the $F$-threshold of a monomial pair until we establish the equivalence of its many characterizations, so we don't need to pick one characterization as the ``official'' definition.
+   If you guys would rather go back to the previous way of defining $\ft{A}{\vv{u}}$, let me know, and I'll revert some of the changes.
+}
+
 \begin{proposition}
    \label{FT descriptions: P}
    The following numbers agree\textup:
@@ -488,9 +436,13 @@ In order to relate this value to the Newton polyhedron of $A$ we need the follow
       \item\label{min ip} The minimum of the quantities $\iprod{\vv{d}}{\vv{u}}$, over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$.
    \end{enumerate}
 \end{proposition}
+
 \pedro[inline]{
-   I thought it would make sense to postpone the official definition of the $F$-threshold of a monomial pair until we establish the equivalence of its many characterizations, so we don't need to pick one characterization as the ``official'' definition.
-   If you guys would rather go back to the previous way of defining $\ft{A}{\vv{u}}$, let me know, and I'll revert some of the changes.
+   Do we really need \eqref{ip} and  \eqref{min ip}?
+   Maybe we can get away simply with:
+   \begin{quote}
+      \emph{The inner product $\iprod{\vv{c}}{\vv{u}}$, where $\vv{c} \in \RR^d$ is a point defining the minimal face $\mf(A, \vv{u})$ in $\N$.}
+   \end{quote}   
 }
 This proposition and \eqref{eq: limit} suggest the following definition.
 
@@ -563,37 +515,14 @@ However, to keep our discussion self-contained, we include an elementary proof i
 \begin{proposition}
 \label{discreteness: L}
 Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
-%In particular, once $A$ is fixed, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ with $(A, \vv{u})$ very small.
 \end{proposition}
-
-% \pedro[inline]{
-%    We can probably simplify this proof, as it is very believable that if $\defpt$ is nonnegative, then as $\vv{u}$ ranges over positive integral points, $\iprod{\defpt}{\vv{u}}$ takes on only finitely many values less than $\beta$ (when $c_i \ne 0$, this condition allows only finitely many choices for $u_i$; when $c_i = 0$, the value of $u_i$ does not affect the inner product).
-% }
-% \daniel[inline]{Your proof is way better, and should be the one we give in the paper.  I sometimes get too carried away with collapsing}
-% \pedro[inline]{I'm giving it a shot below; original proof is commented out.}
 
 \begin{proof}
    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
    Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
    Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
    Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
-   \end{proof}
-
-% \begin{proof}
-%    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-%    Consider such a pair, and let $\collapse{\vv{u}}$ denote the collapse of the point $\vv{u}$ along $\O$.
-
-%    Note that if $\defpt$ defines $\O$, then \Cref{FT descriptions: P} tells us that
-%    %
-%    \begin{equation}\label{ft inner product identity: e}
-%       \ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{\collapse{\vv{u}}}.
-%    \end{equation}
-%    %
-%    The inequality $\ft{A}{\vv{u}} < \beta$ then implies that the collapsed point $\collapse{\vv{u}}$ must lie in the set of all $\vv{w} \in \rs(\O)^{\perp}$ with $\vv{w} \ge \vv{0}$ and $\iprod{\defpt}{\vv{w}} < \beta$.
-%    However, the positivity of $\defpt$ in $\rs(\O)^{\perp}$ implies that this set is bounded (\eg one may argue as in the proof of \Cref{bounded polytope: P}), and therefore contains only finitely many lattice points.
-
-%    In summary, as $\vv{u}$ varies through all points with $\mf(A, \vv{u}) = \O$ and $\ft{A}{\vv{u}}$ less than $\beta$, the collapsed point $\collapse{\vv{u}}$ takes on only finitely values, and so the same must be true for the right-hand side of \eqref{ft inner product identity: e} above.
-% \end{proof}
+\end{proof}
 }
 
 The identity \eqref{cone containment: e} above implies that 
@@ -612,29 +541,9 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \end{enumerate}
 \end{corollary}
 
-% \begin{proof}
-%    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP$, and fix $\defpt \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
-
-%    First, note that any point $\vv{s}$ satisfying the two conditions above must be feasible for $\LP$, and so it suffices to show that $\norm{\vv{s}} = \lambda$.
-%    Towards this, the assumption on $\vv{w}$ in the expression $\vv{u} = A \vv{s} + \vv{w}$ implies that $\iprod{\defpt}{\vv{w}} = 0$, which allows us to compute that $\lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A\vv{s}} = \norm{\vv{s}}$, where the first equality follows from 
-% \Cref{FT descriptions: P}, and the last from the assumption on the coordinates of $\vv{s}$ and the fact that the inner product of $\defpt$ with every column of $A$ contained in $\O$ is one.
-
-% Next, suppose that $\vv{s}$ is optimal for $\LP$, and let $\vv{w}$ be the unique point in $\RR^d$ with $\vv{u} = A \vv{s} + \vv{w}$.  The optimality of $\vv{s}$ implies that $\norm{\vv{s}} = \lambda$, while the constraints of $\LP$ imply that $\vv{w} \geq \vv{0}$.  A direct computation shows that
-% %
-% \[ \lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A \vv{s}} + \iprod{\defpt}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\defpt}{\vv{w}} = \lambda + \iprod{\defpt}{\vv{w}}, \]
-% %
-% which allows us to conclude that $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\defpt}{\vv{w}} = 0$.
-% It follows from these identities, and the fact that the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the positive coordinates of $\defpt$, that the point $\vv{s}$ must satisfy the two asserted conditions.
-% \end{proof}
-
-\pedro[inline]{
-   Trying to simplify the proof a bit; the original is commented out, in case someone wishes to restore it.
-}
-
 \begin{proof}
    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\defpt \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
    Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
-   % If $\vv{s}$ is optimal for $\LP$, then $\vv{s}\ge \vv{0}$, $\vv{w} \coloneqq \vv{u} - A\vv{s} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$.
    By \Cref{FT descriptions: P,prop: inner product with columns of A},
    %
    \begin{equation}\label{eq 1}
@@ -679,8 +588,6 @@ Let $(A,\vv{u})$ be a monomial pair, and $\O = \mf(A, \vv{u})$.  A point $\vv{s}
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.  
 \end{definition}
 
-%We see below that $\sp(A, \vv{u})$ and $\opt \LP(A, \vv{u})$ are equal, or close to equal.
-
 \begin{proposition}  
    \label{opt versus mc: P}
    Let $(A,\vv{u})$ be a monomial pair.
@@ -694,12 +601,6 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
    The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
-% Next, suppose that $\canvec_i \in \rb(\O)$.
-%  If every vertex $\vv{s}$ of the optimal set of $\LP = \LP(A, \vv{u})$ was such that $A \vv{s}$ agreed with $\vv{u}$ in the $i$-th coordinate, then the same would be true for every point in the optimal set.
-%  However, the special point constructed above shows that this is impossible.
-%  Therefore, for every $\canvec_i \in \rb(\O)$, there exists a vertex $\vv{s}_i$ of $\opt \LP$ such that $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
-%  Consequently, if $\vv{s}^{\ast}$ is any convex combination of these vertices of $\opt \LP$ 
-%  with positive coefficients, it follows that $A \vv{s}^{\ast}$ is less than $\vv{u}$ in the coordinate subspace $\rs(\O)$.
  Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
   recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of the vertices of the polytope, while the polytope itself consists of all convex combinations of its vertices.
 
@@ -708,14 +609,6 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
   The characterization of relative interior above then implies that the same is true for every \emph{vertex} of $\opt \LP$, and consequently for every \emph{point} of $\opt \LP$.
   But this shows that $\sp(A,\vv{u})$ is empty---a contradiction.
 \end{proof}
-
-%\pedro[inline]{\emph{These} vertices, or \emph{all} vertices? I'm a bit confused with the conclusion of this proof.}
-%\daniel[inline]{It should be \emph{all} vertices.  I think it would help to address an earlier comment of yours.  The relative interior of a polytope (in this case, I have in mind $\opt \LP$) can be characterized as the set of all points that can be realized as a linear combination with \emph{positive coefficients} of the vertices of that polytope.   So, if $\vv{s}_1, \ldots, \vv{s}_{\ell}$ are the vertices of $\opt \LP$, then any element in $\ri \opt \LP$ looks like $\vv{s} = \lambda_1 \vv{s}_1 + \cdots \lambda_{\ell} \vv{s}_{\ell}$, where the $\lambda_i$ are positive.  There may be many such representations.  The feasibility of each vertex for $\LP$ implies that $A \vv{s}_i \leq \vv{u}$ for each $i$, and we showed that for each $\canvec_i \in \rb(\O)$, there exists an index $\phi(i)$ such that $A \vv{s}_{\phi(i)}$ is less than $\vv{u}$ in the $i$-th spot.  So, doesn't this mean that $A \vv{s} \leq \vv{u}$, and this inequality is strict for every $i$ with $\canvec_i \in \rb(\O)$? I hope so!}
-%\pedro[inline]{
-%   I tried to incorporate this characterization of relative interior in the proof.
-%}
-
-% \comment[inline]{An example in which these sets (the set of special points, the optimal set, and the relative interior of the optimal set) all differ is commented out}
 
 
 \begin{example}
@@ -762,11 +655,6 @@ The following proposition is well known to experts, but we include the short pro
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive. 
 \end{proposition}
 
-% \daniel[inline]{I changed $\vv{c} \in \O$ to $\vv{u} \in \O$.  I think that the convention of these notes (at least, this is how it is in my head) is that letters lower in the alphabet (e.g., $\vv{a}, \vv{b}, \vv{c}$) represent points in the dual space to $\RR^d$ (that is, determine the linear function $\iprod{\vv{a}}{\cdot}$) and points higher in the alphabet $(e.g., \vv{u}, \vv{v}, \vv{w})$ represent points in $\RR^d$ itself}
-% \pedro[inline]{That's a useful convention. I'll keep it in mind.}
-% \daniel[inline]{We don't always stick to it.  E.g., the columns of $A$, and the standard basis vectors.}
-% \pedro[inline]{We could use, e.g., $\vv{v}_i$ for the columns of $A$.}
-
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
    In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
@@ -787,11 +675,6 @@ where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that 
 As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
 In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
 
-% Our choice of terminology is motivated by the following observation.
-
-% \begin{remark}  Recall that the \emph{recession cone} of a polyhedron $\mathcal{Q}$ in $\RR^d$ is the set of all directions $\vv{d} \in \RR^d$ in which $\mathcal{Q}$ recedes, that is, $\vv{c} + \lambda \vv{d} \in \mathcal{Q}$ for every $\vv{c} \in \mathcal{Q}$ and $\lambda > 0$.  It is a well-known fact from convex geometry that  \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$.
-% \end{remark}
-
 \begin{definition}  
 \label{collapse: D}
  Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ of a monomial matrix $A$ with $d$ rows.  
@@ -806,75 +689,15 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
 \end{enumerate}
 \end{definition}     
 
-%  \pedro[inline]{
-%     The way things are defined above, the collapse of $A$ is still a $d\times n$ matrix, where certain rows are filled with zeros (as opposed to having rows deleted).
-%     That makes perfect sense, but we'll have to do a couple of things to make the remarks and results that follow precise:
-%     \begin{itemize}
-%        \item Define ``monomial matrix in a coordinate subspace'' (rows corresponding to standard basis vectors in the coordinate subspace are nonzero; other rows are zero).
-%        The collapse of $A$ is, thus, a monomial matrix in $\rs(\O)^\perp$.
-%        \item Define ``Newton polyhedron in a coordinate subspace'' (the recession cone is not $\cone(\canvec_1,\ldots,\canvec_d)$; it's the cone generated by the canonical basis vectors in that coordinate subspace).
-%     \end{itemize}
-%  }
-
-%  \daniel[inline]{I am a bit confused by this comment.  The way I see things, the matrix associated to the linear transformation \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}\] must be of size $\# \rb(\O) \times n$, as specified by the dimensions of the source and target;  as I am implicitly using the canonical bases of $\RR^n$ and $\RR \rb(\O)$ to turn this transformation into a matrix, we should definitely get the matrix obtained by \emph{omitting} some rows of $A$.  On the other hand, if we instead looked at
-%     \[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}  \hookrightarrow \RR^d \]
-%  then we would get a matrix obtained by replacing some rows of $A$ with zero.  
-%  } 
-%  \pedro[inline]{
-%     Since $\rs(\O)^\perp$ is contained in $\RR^d$ and bases were not mentioned, I interpreted ``matrix of the linear transformation'' as ``matrix with respect to the canonical bases of $\RR^n$ and $\RR^d$.''
-%     But now I understand your interpretation: that $\collapse{A}$ is the matrix of $\RR^n \to \rs(\O)^\perp$ \emph{with respect to the standard basis of $\RR^n$ and the basis $\rb(\O)^\perp$ of $\rs(\O)^\perp$.}
-
-%     \medskip
-
-%     Under your interpretation, multiplication by $\collapse{A}$ returns ``coordinate vectors''; under mine, it returns ``the
-%     real thing''; for this reason, I think I prefer mine.
-%     For instance, under your interpretation, $\collapse{A} \vv{k}$ (an element of $\RR^{\# \rb(\O)^\perp}$) is not the same as $\collapse{A\vv{k}}$ (an element of $\RR^d$); instead, $\collapse{A} \vv{k}$ is the coordinate vector of $\collapse{A\vv{k}}$ with respect to the basis $\rb(\O)^\perp$. 
-%  }
-%  \daniel[inline]{I've always thought of $\rs(\O)^{\perp}$ as $\operatorname{span}_{\RR} \rb(\O)^{\perp}$, and not an abstract $\RR^{\# \rb(\O)^{\perp}}$, and given that $\collapse{A} = [ \collapse{\vv{a}_1} \cdots \collapse{\vv{a}_n} ]$, I've interpreted the right-hand side of $\collapse{A \vv{k}} = \collapse{A} \vv{k}$ as $\sum \collapse{\vv{a}_i} k_i$.  But, I see your point about the RHS being a coordinate vector.  Maybe we should think about polyhedra defined by linear transformations instead.  Regardless, keeping a row of zeros in the collapse is odd to me geometrically;  even when we are drawing collapsed Newton polyhedra, we aren't drawing them in the larger Euclidean space.  Similarly, when we collapse a monomial ideal, we are thinking about it as a monomial ideal in a polynomial ring in fewer variables, all of which appear as generators for the collapsed ideal.  So, my strong preference is to omit rows, even if it means abusing some  notation, or implicitly identifying a coordinate vector with its representation in terms of a given basis, especially since every vector space in sight has a canonical basis.}
-%  \pedro[inline]{
-%     My preference would be to keep zeros, and avoid abuse of notation; work always in the same $\RR^d$, and in the same polynomial ring.
-%     I don't really see a conflict between keeping zeros versus drawing things in a smaller space---if we have an object that lives in, say, $\RR^3$, but happens to be contained in some coordinate plane, it's natural to draw that object in the plane, instead of 3-space; we'd just say that we are only showing that subset of $\RR^3$.
-
-%     \medskip
-   
-%     If we go the other way, though, we should say right away that we will use coordinates with respect to the basis\footnote{Ordering the basis vectors, say, the natural way: by increasing indices.} $\rb(\O)^\perp$  to identify $\rs(\O)^\perp$ with $\RR^{\#\rb(\O)^\perp}$.
-%     OR, perhaps better, leave $\rs(\O)^\perp$ alone---don't make any identification---but define collapse as the composition of the maps
-%     \[\RR^d \stackrel{\text{proj}}{\longrightarrow} \rs(\O)^\perp \stackrel{\approx}{\longrightarrow} \RR^{\#\rb(\O)^\perp}.\]
-%     This seems to be how you're thinking of collapses.
-%  }
-  
-%  \daniel[inline]{I should also add that there are some advantages to thinking about $\collapse{A}$ is obtained from $A$ by omitting columns, as opposed to replacing them with zero.  For instance, this interpretation is key in \Cref{aux program: D}, when defining the constraints of $\ip$.  If we instead replaced rows with zeros, then the modified definition of $\ip$ would be more involved.}
-%  \pedro[inline]{
-%     In a way, we are already getting around these issues, by saying things like ``$\vv{a}$ is positive in $\rs(\O)$'' (meaning $a_i$ is positive whenever $\canvec_i \in \rb(\O)$).
-%     I think from here, it's just a small step to saying things like ``$\vv{a} < \vv{b}$ in $\rs(\O)$'' (meaning $\vv{b} - \vv{a}$ is positive in $\rs(\O)$).
-%  }
-% \emily[inline]{
-% OK, I finally got a chance to think carefully about this; thanks for waiting.  Although I see the points both ways, since we are motivated by algebra, I prefer to omit the rows rather than to have zero rows, in analog with moving to a polynomial ring in fewer variables, rather than remaining in the same ring. The geometry also simplifies
-% in a very obvious way.   
-% I also have been thinking of $\rs(\O)^{\perp}$ as $\operatorname{span}_{\RR} \rb(\O)^{\perp}$. 
-% Although we might need to be careful with our definitions, I think it will be worth it.  
-% }
-% \pedro[inline]{
-%    Thanks for your input, Emily.
-%    My suggestion, then, it that we leave the definitions of $\rs(\O)$ and $\rs(\O)^\perp$ unchanged (as subsets of $\RR^d$), and define collapse as the composition of the maps
-%    \[\RR^d \stackrel{\text{proj}}{\longrightarrow} \rs(\O)^\perp \stackrel{\approx}{\longrightarrow} \RR^{\#\rb(\O)^\perp},\]
-%    where the second map is the coordinate isomorphism with respect to the obvious basis, and the collapse of $A$ as the matrix of the composition of $\RR^n \stackrel{A}{\longrightarrow} \RR^d$ and the above.
-%    This way collapse will be given by ``deleting rows'', as opposed to replacing them with zeros.
-% }
-
 \begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
 \end{remark}
 
 Below, we adopt the notation established in \Cref{collapse: D}, and we use an overbar to denote the collapse along $\O$.
-%Furthermore,  $\collapse{A}$ (respectively, $\collapse{X}$) denotes the collapse of $A$ (respectively, a set $X$) along $\O$.
 
 \begin{remark}
    \label{collapse of a defining vector: R}
    If $\defpt \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\defpt$.
    Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
-% \pedro{May add that $\collapse{\defpt} = \defpt$}
-% \daniel{I guess this depends on what we decide above.}
-% \pedro{I think this is true regardless. Since $\defpt \in \rs(\O)^\perp$, it is fixed by the projection $\RR^d \to \rs(\O)^\perp$.}
 \end{remark}
 
 
@@ -1419,24 +1242,10 @@ By means of contradiction, suppose that $\ft{A}{\vv{u}} > \epsilon$.  If $\vv{s}
    for every $e \geq 0$.
 \end{lemma}
 
-
 \begin{proof}
    Note that $(A, \vv{u})$ is small if and only if $\vv{0}$ is the only feasible point for $\IP(A, \vv{u}, 1)$.
    Thus, $\val \IP_p(A, \vv{u}, 1) = \val \IP(A, \vv{u}, 1) = 0$, and the assertion then follows from \Cref{natural bounds: C}.
 \end{proof}
-
-%\begin{proof} If $\vv{k}$ is feasible for $\IP_p(A, \vv{u}, p^e)$ and $ p^e \canvec_i  \leq \vv{k}$ for some standard basis vector $\canvec_i$ of $\ZZ^n$, then $p^e A \canvec_i  \leq A \vv{k} < \vv{u}p^e$, and therefore $A \canvec_i < \vv{u}$, which contradicts the smallness of $(A, \vv{u})$.  Thus, every coordinate of $\vv{k}$ is less than $p^e$, and so the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_{e-1} p^{e-1}$.  The arithmetic constraint of the program then implies that $\norm{\vv{k}} \leq p^e-1$.
-%\end{proof}
-
-% \emily[inline]{If 
-% \[
-%  \ideala^{\left[ \mu_\ideala^{\vv{u}}(q) \right] } \equiv \langle x^{\vv{u}q - \vv{z}} \mid \vv{z} \in \Z \subseteq \NN_+^d \rangle \bmod \operatorname{diag}(\vv{u}q)\]
-%  then 
-%  \[
-% \operatorname{crit}(\ideala, \vv{u}) = \frac{1}{q}\left( \mu^{\vv{u}}_\ideala(q) + \max \{ \operatorname{crit}(\ideala, \vv{z}) \mid \vv{z} \in \Z \}  \} \right)
-% \]
-% }
-
 
 \begin{proposition}
    \label{follow-leftovers: P}
@@ -1466,38 +1275,6 @@ $\vv{h}^{\ast} = \vv{g}^{\ast} p^e + \vv{k}^{\ast}$ satisfies the linear constra
 
 
 We have just shown that to compute the value of $\IP_p(A, \vv{u}, p^e)$ for all $p \gg 0$ and $e \geq 1$, we may assume that $(A, \vv{u})$ is small.
-
-\pedro[inline]{Commented out a theorem about mus for medium small pairs, that is now a corollary to ILL.}
-% Below, consider an important special case of this simplified situation.
-
-% \daniel[inline]{\Cref{trivial max value: T} looks like it could follow from ILL and then just modifying the $\vv{k}'s$ immediately.  But, the following is more direct.}
-
-% \begin{theorem}
-% \label{trivial max value: T}  Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:   
-% If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}, p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
-% \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}
-% \end{theorem}
-
-% \begin{proof} Suppose that $(A, \vv{u})$ is small, but not very small, and fix $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, so that $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$.   
-% Set  $\vv{t} = \vv{s} / \norm{\vv{s}}$ and note that $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  
-
-% Next, fix an index $i$ such that the $i$-th coordinate of $\vv{s}$ is positive.  As $\tail{\vv{t}}_p$ obtains only finitely many values as $p$ varies, our choice of $i$ guarantees that 
-% \[ 0 \leq \vv{t} - \frac{\tail{\vv{t}}_p}{p} + \frac{\norm{\tail{\vv{t}}_p}}{p} \cdot \canvec_i  \leq \vv{s} \]
-% for all $p \gg 0$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  For such $p \gg 0$,  \Cref{less than u: L} tells us that 
-% %
-%  \[ A \left(  \vv{t}p - \tail{\vv{t}}_p + \norm{\tail{\vv{t}}_p} \cdot \canvec_i  \right) < \vv{u}p. \]
-% %
- 
-%  By construction, $\norm{\vv{t}} = 1$, and as $\vv{t}p - \tail{\vv{t}}_p$ has nonnegative integer coordinates, we have that $\norm{\tail{\vv{t}}_p}$ is also a positive integer.  In summary, 
-%   \[ \vv{k}_p  =   \vv{t}p - \tail{\vv{t}}_p+ (\norm{\vv{t}}_p - 1) \cdot \canvec_i   \] has nonnegative integer coordinates and satisfies $A \vv{k}_p < \vv{u}p - A \canvec_i$.  A direct calculation will also show that $\norm{\vv{k}_p} = p-1$. 
-  
-%  Given this, it is straightforward to verify that the point
-%  \[ \vv{k}_p \cdot p^{e-1} + (p^{e-1} - 1) \cdot \canvec_i \]
-%  has norm $p^e-1$ and is feasible for $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$.  \Cref{trivial value bound: L} then allows us to conclude that $\val \IP_p(A, \vv{u}, p^e)  = p^e-1$ for all $e \geq 1$.
- 
-% To conclude the proof, it suffices to recall that, as noted in \Cref{finitely many small but not very small: R},  there are only finitely many $(A, \vv{u})$ that are small, but not very small.
-% \end{proof}
-
 
 \comment[inline]{At this point, it suffices to deal with the case that $(A, \vv{u})$ is very small}
 
@@ -1590,8 +1367,6 @@ Given a monomial matrix $A$ and a prime $p$, define
 % \item Add the last point
 %\end{itemize}
 
-\newpage
-
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
    For each monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
@@ -1649,14 +1424,11 @@ We now consider the projection of \eqref{target-inequality: e} to $\rs(\O_1)$, a
 We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
 \end{proof}
 
-\newpage
-
 \begin{lemma}
    \label{positive-polynomial: L}
    Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
    If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 \cdot p^{e-1} + \cdots + \omega_{e-1} \cdot p + \omega_e$.
 \end{lemma}
-
 
 \begin{proof}
 Let $\lambda$ be any positive upper bound for $\Omega$.  Suppose that $p > (w+\lambda)/w$, which after rearranging terms, is equivalent to the condition $w(p-1) - \lambda > 0$.  Multiplying this by $p^e$ and adding the positive number $\lambda$ then shows that
@@ -1675,16 +1447,6 @@ Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ such tha
  \[ \mu(A_1, \vv{u}_1, p^{e+s}) \geq \sum_{i=1}^{e-1} \mu(A_i, \vv{u}_i, p) \, p^{e+s-i} + p^{s+1}-1. \]
 \end{enumerate}
 \end{corollary}
-
-%\begin{proposition}\label{prop: ineq for higher mus in terminal paths}  Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ satisfying the following condition\textup:  If $p > \beta$ and
-% \[
-%  (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)
-% \]
-% is a path in $\graph(A,p)$ such that  $(A_i, \vv{u}_i)$ is very small for $1 \leq i < e$, and such that the terminal vertex $(A_e, \vv{u}_e)$ is not very small, then  
-%\[
-% \mu(A_1, \vv{u}_1, p^{e+s}) \geq \mu(A_1, \vv{u}_1, p) p^{e+s-1} + \cdots + \mu(A_{e-1}, \vv{u}_{e-1}, p) p^{s+1} + p^{s+1} - 1.
-%\] for every integer $s \geq 0$.
-%\end{proposition}
 
 \begin{proof} The proofs of each assertion are similar; we only prove the second, which is more involved.  Let $\beta = \beta(A)$ be as in \Cref{ILL: T}.  If $p > \beta$, then \Cref{ILL: T} tells us that there exists $\vv{k}_i \in \opt \IP(A_i, \vv{u}_i, p)$ for which \[ \vv{k}^{\ast} = \sum_{1 \leq i < e} \vv{k}_i \cdot p^{e-i} + \vv{k}_e \in \feas \IP(A_1, \vv{u}_1, p^e).\]
 
@@ -1709,12 +1471,6 @@ and recall that $\norm{\vv{k}_i} \leq p-1$ for every $1 \leq i < e$.  Therefore,
    \qed
 \end{corollary}
 
-
-
-%\emily[inline]{This is a terminating path in $\widehat{\graph}(A)$ (Pedro's version! i.e., all pairs are small and the last is medium-small)} 
-%\daniel[inline]{I restated this so that the graph always terminates at a medium-small vertex, even when $e = 1$.  This should then imply that the critical exponent of a medium small pair equals $1$, which would allow us to remove an earlier theorem}
-
-\newpage
 \subsection{The Sprouting graph for a very small pair}
 \begin{definition}
    Suppose that $(A, \vv{u})$ is very small.
@@ -1777,31 +1533,6 @@ Consequently, the value $\mu(B, \vv{v},p)$ is maximized among all elements in $S
     On the other hand, if $(C, \vv{z})$ lies in $\widehat{\graph}(A, \vv{u},p)$, then it lies on the same level as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
-%%% OLD PROOF
-% Choose $p \gg 0$ so that the conclusions of Corollary ??\daniel{The preceding corollary?} hold for $(A, \vv{u})$.  In this case, the assumption that $(A_1, \vv{u}_1)$ and $(B, \vv{v})$ lie in the same level implies that $\ft{A_1}{\vv{u}_1} = \ft{B}{\vv{v}}$ and $\delta_p(A_1, \vv{u}_1) = \delta_p(B, \vv{u})$, and so 
-% \[ \val \IP_p(B, \vv{v}, p) = \val \IP_p (A_1, \vv{u}_1, p) = \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1). \] 
-
-% We will induce on $e \geq 1$.  The above observation settles the base case $e=1$.  Next, suppose that $e \geq 2$, and consider a path  \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] in $\graph_p(A, \vv{u})$.  If $C$ is the collapse of $B$ along the face $\O = \mf(B, \vv{u})$, then Corollary ?? \daniel{Which Corollary is this referring to?} and the above expression for $\val \IP_p(B, \vv{v}, p)$ tell us that the value of the arithmetic program $\IP_p(B, \vv{v}, p^{e+1})$ is at most
-% %
-% \[  \left( \ft{A_1}{\vv{u}_1} \cdot p - \delta_p(A_1, \vv{u}_1) \right) \cdot p^e +  \max_{\vv{z}} \val \IP_p(C, \vv{z}, p^e) \]
-% %
-% where the maximum is over all $\vv{z} \in \Delta_p(B, \vv{v})$.   Therefore, to complete our inductive step, it suffices to show that this maximum is at most
-% %
-% \begin{equation}
-% \label{target bound: e}
-% \left( \sum_{s=2}^e \frac{ \ft{A_s}{\vv{u}_s}  \cdot p - \delta_p(A_s, \vv{u}_s)}{p^s} \right) \cdot p^{e-1}.  \end{equation}
-
-% Towards this, first note that if $(C, \vv{z})$ is not among the vertices of $\graph_p$ of level equal to that of $(A_2, \vv{u}_2)$ for any $\vv{z} \in \Delta_p(B, \vv{v})$, then Corollary \!{} and our choice of $p \gg 0$ implies that $\val \IP_p(C, \vv{z}, p) < \val \IP_p(A_2, \vv{u}_2, p)$ for every $\vv{z} \in \Delta_p(B, \vv{z})$.  In light of this, Corollary \!{} then tells us that 
-% \[  \max_{\vv{z}} \val \IP_p(C, \vv{z}, p^e) < \val \IP_p(A_2, \vv{u}_2, p^e)\]  
-% and our induction hypothesis applied to the path 
-% \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] and the initial point $(A_2, \vv{u}_2)$ itself then tells us that the value of the program $\IP_p(A_2, \vv{u}_2, p^e)$ is at most the quantity in \eqref{target bound: e}.  
-
-% On the other hand, if $(C, \vv{z})$ is a vertex of $\graph_p(A, \vv{u})$ of level equal to that of $(A_2, \vv{u}_2)$ for some $\vv{z} \in \Delta_p(B, \vv{v})$, then our induction hypothesis applied to the path 
-% $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again tells us that the value of the program $\IP_p(A_2, \vv{u}_2, p^e)$ is at most the quantity in \eqref{target bound: e}.  With this, we conclude the induction step, and hence, our proof. 
-% \end{proof}
-
-
-
 \begin{theorem}\label{thm: formula for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$ and $e\ge 1$, if $(A, \vv{u})$ is a very small monomial pair and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\widehat{\graph}(A, \vv{u}, p)$,  then 
@@ -1823,7 +1554,7 @@ for every nonnegative integer $s$.
 \begin{corollary}\label{cor: constant mus}
    If $(A,\vv{u})$ is a small monomial pair and  $\beta = \beta(A)$ is as in \Cref{lem: upper bound for higher mu}, then $\crit$ and $\mu$ are constant on each level of $\widehat{\graph}(A,\vv{u},p)$ for every $p\ge \beta$. 
 \end{corollary}
-%\todo[inline]{Restate more precisely}
+
 \pedro[inline]{
    I'm not a believer anymore.
    If $(A_1,\vv{u}_1)$ and $(B,\vv{v})$ are as in \Cref{lem: upper bound for higher mu}, we only get the inequality $\mu(B,\vv{v},p^e) \le \mu(A_1,\vv{u}_1,p^e)$, and to conclude that we have equality we'd need to know that there is a path of length $e-1$ starting at $(B,\vv{v})$.
@@ -1832,8 +1563,6 @@ for every nonnegative integer $s$.
 
 \daniel[inline]{I think this can be remedied, but we will need to define the graph in a different way, to allow for paths that terminate and infinite paths at the same time.  The point is that at some fixed level $e$, a vertex should sprout if and only if that vertex is very small.  This sounds more like what you were suggesting in Lawrence.}
 }
-\newpage
-
 
 \comment[inline]{The point of this Lemma is to show positivity of the coefficients in the polynomials that define the $\mu$'s. A consequence is that if $\ideala$ is $\idealm$-primary and homogeneous, then all coefficients of every intermediate power of $p$ in this polynomials vanishes.}
 
