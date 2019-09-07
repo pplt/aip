@@ -13,6 +13,8 @@
 
 \newcommand{\denom}{\ell} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
 
+\pedro[inline]{What if we use $m$ for the number of variables/rows, to free $d$ to be the preferred notation for denominators?}
+
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
 
 \details[inline]{
@@ -24,7 +26,7 @@ TO DO LIST:
  \comment[inline]{Going with ``special point''.} 
 \item[$\CheckedBox$] Make sprout notation.
 \comment[inline]{Going with $\sprout(A,\vv{u},p)$}
-\item[$\Box$] Put in examples.
+\item[$\CheckedBox$] Put in examples.
 \pedro[inline]{Started working on it.}
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  \item[$\CheckedBox$] Fill in/rewrite preliminaries.
@@ -39,7 +41,7 @@ TO DO LIST:
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
 \end{enumerate}
 }
-\pedro[inline]{What if we use $m$ for the number of variables/rows, to free $d$ to be the preferred notation for denominators?}
+
 
 \details[inline]{
    TO-DO LIST (Continued):
@@ -47,9 +49,8 @@ TO DO LIST:
       \item[$\Box$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
       \item[$\Box$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
       \item[$\Box$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
-      \pedro[inline]{Started working on it.}
-      \item[$\Box$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
-      \pedro[inline]{Working on it\ldots}
+      \pedro[inline]{Almost done.}
+      \item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
       \item[$\Box$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
       \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$.
@@ -58,7 +59,6 @@ TO DO LIST:
       Emily suggest using $\vv{c}$.  This is probably a good idea.
       \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
       \item[$\CheckedBox$] Uniformize the way we describe programs (e.g., as in Section 9).
-      \pedro[inline]{Gave it a shot. Maybe they can still be improved a bit.}
       \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
       Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
       \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
@@ -195,11 +195,6 @@ Let $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ be as above.  If $\O$ is stan
 \end{convention}
 
 \Cref{alpha=1: convention} leads to the following useful observation.
-
-\daniel[inline]{I like the idea to isolate this as a remark, given that we use it often.  I have elaborated a bit.  Should we make it a full-blown lemma or proposition?}
-\pedro[inline]{
-   I've elaborated it some more, and made it a proposition.
-}
 
 \begin{proposition}\label{prop: inner product with columns of A}
    If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$. 
