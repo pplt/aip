@@ -481,7 +481,7 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
    \centering
    \begin{subfigure}{.48\textwidth}
       \centering
-      \includegraphics[width=.9\textwidth]{Pictures/newton_polyhedron.pdf}
+      \includegraphics[width=.9\textwidth]{Pictures/newton_polyhedron.pdf}\\[1.4mm]
       \caption{The Newton polyhedron of $A$}
       \label{fig: newton polyhedron}
    \end{subfigure}
@@ -745,28 +745,34 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 \end{proof}
 
 \begin{example}
+   \label{ex: collapse}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
    Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$. 
-   \Cref{fig: collapse}(\textsc{a}) shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
+   \Cref{fig: newton polyhedron of collapse} shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
    \begin{figure}
    \centering
    \begin{subfigure}{.49\textwidth}
       \centering
-      \includegraphics[width=.8\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}
-      \caption{}
+
+      \ \\[.1mm] \
+      
+      \includegraphics[width=.9\textwidth]{Pictures/newton_polyhedron_of_collapse.pdf}\\[2mm]
+      \caption{The Newton polyhedron of $\collapse{A}$}
+      \label{fig: newton polyhedron of collapse}
    \end{subfigure}
    \begin{subfigure}{.49\textwidth}
       \centering
       \includegraphics[width=.8\textwidth]{Pictures/opt_for_collapse_may_change.pdf}
-      \caption{}
+      \caption{The feasible region of $\LP(\collapse{A},\collapse{\vv{u}})$}
+      \label{fig: splitting polytope of collapse}
    \end{subfigure}
-   \caption{}
+   \caption{Illustration for \Cref{ex: collapse}}
    \label{fig: collapse}
    \end{figure}
    The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
       
-   The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: collapse}(\textsc{b}), which highlights the difference between those sets in yellow.
-   \Cref{fig: collapse}(\textsc{b}) also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
+   The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: splitting polytope of collapse}, which highlights the difference between those sets in yellow.
+   \Cref{fig: splitting polytope of collapse} also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
    Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper.
 \end{example}
 
