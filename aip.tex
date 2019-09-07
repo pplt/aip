@@ -1652,18 +1652,18 @@ Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compac
  \end{pmatrix} 
 \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
 \]
-In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in blue, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
+In \Cref{fig: feas fip}, the feasible set for $\fip_p = \fip_p(A,\vv{u})$ is shown in blue, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
 \begin{figure}
   \centering
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
-\caption{$p=2$}  
+\caption{$\opt \fip_2 = \conv\big(\big(\frac1{20},\frac3{40}\big),\big(\frac1{12},\frac1{24}\big)\big)$}  
 \end{subfigure} 
 \begin{subfigure}{.49\textwidth}
 \centering
 \includegraphics[width=.9\textwidth]{Pictures/ex4_char3.pdf}
-\caption{$p=3$}  
+\caption{$\opt \fip_3 = \conv\big(\big(\frac1{36},\frac1{12}\big),\big(\frac7{81},\frac2{81}\big)\big)$}  
 \end{subfigure}
 
 \bigskip
@@ -1671,14 +1671,14 @@ In \Cref{fig: feas fip}, the feasible set for $\fip_p(A,\vv{u})$ is shown in blu
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
-\caption{$p=5$}  
+\caption{$\opt \fip_5 = \opt \LP(A,\vv{u}) = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}$}  
 \end{subfigure}  
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
-\caption{$p=7$}  
+\caption{$\opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}$}  
 \end{subfigure}  
-\caption{The feasible set of $\Sigma_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
+\caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
 \label{fig: feas fip}
 \end{figure}
 \end{example}
