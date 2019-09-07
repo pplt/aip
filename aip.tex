@@ -1140,9 +1140,6 @@ For $p \gg 0$,
 
 \subsection{$\mu$ invariants as values of arithmetic integer programs}
 
-In this section, we consider a variant of an integer program in which we impose an additional and highly nonlinear constraint.
-As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
-
 Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
 Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
 Recall that for each $q$ a power of $p$ we define the number
@@ -1153,6 +1150,8 @@ Since the condition $\ideala^{[k]} \not\subseteq \ideald^{[q]}$ is equivalent to
 
 In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair and $p$ is a prime integer.
 Moreover, the letter $q$, from here on, will always denote a power of $p$.
+Motivated by the above discussion, we introduce a variant of an integer program in which we impose an additional and highly nonlinear constraint.
+%As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
 
 \begin{definition} 
 \label{aip: D}
@@ -1205,22 +1204,22 @@ The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \
 At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
 The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
 
-\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.
-In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.  
+\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RRnn^2$.
 \begin{figure}
 \begin{subfigure}{.49\textwidth}
   \centering
   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_a.pdf}
-  \caption{Sierpi\'nski 3-gasket in $[0,1]^2$}
+  \caption{Restriction to $[0,1]^2$}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
   \centering
   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_b.pdf}  
-  \caption{Sierpi\'nski 3-gasket in $[0,9]^2$}
+  \caption{Restriction to $[0,9]^2$}
 \end{subfigure}
-\caption{}
+\caption{The Sierpi\'nski 3-gasket in $\RRnn^2$}
 \label{fig: sierpinski 3-gasket}
 \end{figure}
+In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.  
 
 Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
 Toward making this relation precise, consider the following optimization problem, which essentially adds the extra ``fractal'' constraint from the definition of $\sierp_{p,n}$ to 
