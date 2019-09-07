@@ -505,28 +505,6 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
    \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{\big(\tfrac1{17}, 0, \tfrac3{17}\big)} = \tfrac4{17}.\]
 \end{example}
 
-\pedro[inline]{
-   The stuff below seems out of place here.
-   Maybe move it to the end of this section?
-}
-
-\comment[inline]{
-The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
-However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
-
-\begin{proposition}
-\label{discreteness: L}
-Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
-\end{proposition}
-
-\begin{proof}
-   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
-   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
-   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
-\end{proof}
-}
-
 The identity \eqref{cone containment: e} above implies that 
  %
 %\[ \vv{u} \in \cone (\O) = \cone \left( (\col(A) \cap \O) \cup \rb(\O)  \right). \]
@@ -628,7 +606,6 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 Special denominators exist.
 \end{theorem}
 
-
 \begin{proof}
    Let $A$ be a monomial matrix.
    Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
@@ -642,6 +619,22 @@ Special denominators exist.
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.  
 \end{proof}
 
+\subsection{Discreteness of $F$-thresholds}
+
+The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
+However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
+
+\begin{proposition}
+\label{discreteness: L}
+Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
+\end{proposition}
+
+\begin{proof}
+   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
+   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
+   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
+   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
+\end{proof}
 
 \newpage
 \section{Collapsing}
