@@ -362,7 +362,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 \subsection{$\nu$ invariants as values of integer programs}
 
-\pedro[inline]{
+\ \pedro[inline]{
    I'm starting with the integer program, because it's easier to motivate, via $\nu$s.
    Feel free to rearrange it, if you'd rather start with the linear program.
 }
@@ -1141,7 +1141,7 @@ For $p \gg 0$,
 \subsection{$\mu$ invariants as values of arithmetic integer programs}
 
 In this section, we consider a variant of an integer program in which we impose an additional and highly nonlinear constraint.
-As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}, and we will focus exclusively on one such family of optimization problems.
+As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
 
 Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
 Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
@@ -1184,16 +1184,12 @@ The critical exponent of $\ideala$ with respect to $\ideald$ is the limit
 \begin{equation*}
 \crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
 \end{equation*}
-In the next subsection we show that this limit can be realized as the value of a \emph{fractal linear program} in the domain of $A$.
+In the next subsection we show that this critical exponent, henceforth denoted $\crit(A,\vv{u})$, can be realized as the value of a \emph{fractal linear program} in the domain of $A$.
 
 \subsection{Critical exponents as values of fractal linear programs}
 
 \begin{definition}
-   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$
-   \pedro{Should we include $n$ in the notation? E.g., $\sierp_p^n$?}
-   \emily{There might be some confusion that this is a set $\sierp_{p}$ to the $n^\text{th}$ power?  What about $\sierp_{p,n}$?}
-   \pedro{I like that, and have incorporated it.}
-   consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
+   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
  \[
 \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).  
  \]
@@ -1209,7 +1205,8 @@ The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \
 At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.  
 The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously. 
 
-\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.  In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.  
+\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RR^2$.
+In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.  
 \begin{figure}
 \begin{subfigure}{.49\textwidth}
   \centering
@@ -1235,21 +1232,21 @@ Given a monomial pair $(A, \vv{u})$, the \emph{fractal linear program} $\fip_p(A
 \end{definition}
 
 \begin{remark}
-The points in $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ are precisely those in the intersection of 
-the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.  
-Since this intersection is a compact set, $\feas\fip_p(A,\vv{u})$ is also compact, and $\val \fip_p(A, \vv{u}) = \max\{ \norm{\vv{t}} : \vv{t} \in \feas \fip_p(A, \vv{u}) \}$, the value of $\fip_p(A, \vv{u})$,  exists and is finite.  
+   The set $\mathcal{S}$ consisting of the points $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ is contained in the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.
+   Since this intersection is compact, so is the closure of $\mathcal{S}$, namely $\feas\fip_p(A,\vv{u})$.
+   Thus, $\fip_p(A,\vv{u})$ has a well-defined value.
 %Moreover, there is exists an optimal point
 %$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
 \end{remark}
 
 \begin{example} \label{ex: feas fip}
- Consider the optimization problem $\fip_p(A, \vv{u})$, where 
+ Consider the fractal linear program $\fip_p(A, \vv{u})$, where 
 \[ A = \begin{pmatrix}
  3&11\\ 11&2 \\ 5&10 \\ 2&0
  \end{pmatrix} 
 \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
 \]
-In \Cref{fig: feas fip}, the feasible set for $\fip_p = \fip_p(A,\vv{u})$ is shown in blue, the feasible set for $\LP(A,\vv{u})$ is shown in gray, and the optimal set is highlighted in green, for small values of $p$.  
+\Cref{fig: feas fip} shows the feasible set for $\fip_p = \fip_p(A,\vv{u})$ in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum $\val \fip_p$ in green, for small values of $p$.  
 \begin{figure}
   \centering
 \begin{subfigure}{.49\textwidth}
@@ -1268,14 +1265,14 @@ In \Cref{fig: feas fip}, the feasible set for $\fip_p = \fip_p(A,\vv{u})$ is sho
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
-\caption{$\opt \fip_5 = \opt \LP(A,\vv{u}) = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}$}  
+\caption{$\opt \fip_5 = \opt \LP = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}$}  
 \end{subfigure}  
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
 \caption{$\opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}$}  
 \end{subfigure}  
-\caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for various $p$ values.}
+\caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
 \label{fig: feas fip}
 \end{figure}
 \end{example}
