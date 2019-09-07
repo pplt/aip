@@ -505,13 +505,32 @@ In the algebraic context established above, $\ft{A}{\vv{u}}$ is the $F$-threshol
    \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{\big(\tfrac1{17}, 0, \tfrac3{17}\big)} = \tfrac4{17}.\]
 \end{example}
 
+\subsection{Discreteness of $F$-thresholds}
+
+The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
+However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
+
+\begin{proposition}
+\label{discreteness: L}
+Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
+\end{proposition}
+
+\begin{proof}
+   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
+   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
+   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
+   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
+\end{proof}
+
+\subsection{Characterizing optimal points of $\LP(A,\vv{u})$}
+
 The identity \eqref{cone containment: e} above implies that 
  %
 %\[ \vv{u} \in \cone (\O) = \cone \left( (\col(A) \cap \O) \cup \rb(\O)  \right). \]
 $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.
 Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
-\begin{corollary}\label{opt set: C}
+\begin{proposition}\label{opt set: P}
    Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $d\times n$ matrix.
    A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}
@@ -519,7 +538,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \item  \label{mc decomposition: e} $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in  \cone(\rb(\O))$.   
 %\item  \label{mc sum: e}$\norm{\vv{s}} = \ft{A}{\vv{u}}$.
 \end{enumerate}
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\defpt \in \RR^d$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
@@ -544,7 +563,7 @@ Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)
 \begin{proof}
 Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
 
-If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: C} implies that there exists a linear bijection $\opt \LP 
+If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP 
 \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
 \pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
 
@@ -554,7 +573,7 @@ Our assertion then follows from the observation that since $A$ is fixed, as $(A,
 
 \subsection{Special points and denominators}
 
-Technicalities that arise in future sections whenever the minimal face of a monomial pair $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: C}.
+Technicalities that arise in future sections whenever the minimal face of a monomial pair $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: P}.
 
 \begin{definition}
 \label{mc: D} 
@@ -617,23 +636,6 @@ Special denominators exist.
    It then follows from the definition of special point that the point
    \[ \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_c \cdot  \vv{s}_c}{d-1}  \]
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.  
-\end{proof}
-
-\subsection{Discreteness of $F$-thresholds}
-
-The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
-However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
-
-\begin{proposition}
-\label{discreteness: L}
-Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.    
-\end{proposition}
-
-\begin{proof}
-   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
-   Then \Cref{FT descriptions: P} tells us that $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
-   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
 \end{proof}
 
 \newpage
