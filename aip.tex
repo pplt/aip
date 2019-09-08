@@ -673,11 +673,14 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
 
 \begin{enumerate}
 \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
-\item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the canonical linear projection $\RR^d \longrightarrow \rs(\O)^{\perp}$.
-\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.  That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
+\item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the projection $\RR^d \stackrel{B}{\longrightarrow} \RR^{\#\rb(\O)^\perp}$, where $B$ is the matrix whose rows are the vectors $\canvec_i$ in $\rb(\O)^\perp$.
+In other words, the collapse of each point $\vv{v}$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.  
+\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.
+That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
 %
-\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \longrightarrow \rs(\O)^{\perp}.\]  
+\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \stackrel{B}{\xrightarrow{\hspace*{6mm}}} \RR^{\#\rs(\O)^{\perp}}\]  
 %
+and is obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
 \end{enumerate}
 \end{definition}     
 
