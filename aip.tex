@@ -42,7 +42,6 @@ TO DO LIST:
 \end{enumerate}
 }
 
-
 \details[inline]{
    TO-DO LIST (Continued):
    \begin{itemize}
@@ -51,7 +50,7 @@ TO DO LIST:
       \item[$\Box$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       \pedro[inline]{Almost done.}
       \item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
-      \item[$\Box$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
+      \item[$\CheckedBox$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
       \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$.
       \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
@@ -66,11 +65,7 @@ TO DO LIST:
       \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
       \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
       \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
-
-      %%%%% Pictures %%%%%
       \item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
-      
-      %%%%% Math %%%%%
       \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
       \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
@@ -335,6 +330,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \end{proof}
 
 \begin{corollary}
+   \label{cor: every crit is crit wrt diagonal ideal}
    If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
 \end{corollary}
 
@@ -354,6 +350,9 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \newpage
 \section{Linear and integer programs associated with monomial pairs}
 \label{sec: LPs}
+
+In this section, we start approaching the study of $F$-thresholds of monomial ideals, and the related $\nu$ invariants, from the point of view of linear and integer programming.
+\pedro[inline]{If and when we include an analogue to \Cref{cor: every crit is crit wrt diagonal ideal} for $F$-thresholds, we should mention that here, to justify the fact that we're only looking at $F$-thresholds with respect to diagonal ideals.}
 
 \subsection{$\nu$ invariants as values of integer programs}
 
