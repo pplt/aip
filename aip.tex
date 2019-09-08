@@ -169,7 +169,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    \end{proposition}
 
    Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-   By \Cref{opt set: C}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
+   By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
    Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
 
    \bigskip
@@ -1297,8 +1297,7 @@ Given a monomial pair $(A, \vv{u})$, the \emph{fractal linear program} $\fip_p(A
        \opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}\\[2mm]
        \val \fip_7 = \frac{34}{245}
      \end{array}
-     $
-  }  
+     $ }
 \end{subfigure}  
 \caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
 \label{fig: feas fip}
@@ -1316,8 +1315,8 @@ For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\f
 \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
  \]
 On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_{p,n}$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and 
-$\vv{t} = q \cdot \left( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \right)$.  For $e \geq 1$, let 
- $\vv{t}^\star_{p^e} = q \cdot \left( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \right)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$. 
+$\vv{t} = q \cdot \big( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \big)$.  For $e \geq 1$, let 
+ $\vv{t}^\star_{p^e} = q \cdot \big( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \big)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$. 
  Dividing by $p^e$ and taking limits, we find that  
  \[
 \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
