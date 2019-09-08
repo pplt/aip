@@ -47,7 +47,7 @@ TO DO LIST:
    TO-DO LIST (Continued):
    \begin{itemize}
       \item[$\Box$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
-      \item[$\Box$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
+      \item[$\CheckedBox$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
       \item[$\Box$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       \pedro[inline]{Almost done.}
       \item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
@@ -672,26 +672,24 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
  Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ in $\RR^d$ of a monomial matrix $A$ with $d$ rows.  
 
 \begin{enumerate}
-\item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
+   \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_d \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^d$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^d$.
+   (The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.)
 \item The \emph{collapse} of a subset $X$ of $\RR^d$ along $\O$ is the image of $X$ under the projection $\RR^d \stackrel{B}{\longrightarrow} \RR^{\#\rb(\O)^\perp}$, where $B$ is the matrix whose rows are the vectors $\canvec_i$ in $\rb(\O)^\perp$.
-In other words, the collapse of each point $\vv{v}$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.  
-\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$.
-That is, the collapse of $A$ along $\O$ is the matrix corresponding to the linear transformation  
-%
-\[ \RR^n \stackrel{A}{\xrightarrow{\hspace*{6mm}}} \RR^d \stackrel{B}{\xrightarrow{\hspace*{6mm}}} \RR^{\#\rs(\O)^{\perp}}\]  
-%
-and is obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
+In other words, the collapse of each point $\vv{v}$ along $\O$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.  
+\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$, or in other words, the matrix $BA$, obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
 \end{enumerate}
 \end{definition}     
-
-\begin{remark}  The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.
-\end{remark}
 
 Below, we adopt the notation established in \Cref{collapse: D}, and we use an overbar to denote the collapse along $\O$.
 
 \begin{remark}
+   It is clear from the definition that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$, for each $\vv{k}$ in the domain of $A$.
+   Indeed, both are obtained by left-multiplying $\vv{k}$ by $BA$, where $B$ is as in \Cref{collapse: D}.
+\end{remark}
+
+\begin{remark}
    \label{collapse of a defining vector: R}
-   If $\defpt \in \RR^d$ defines $\O$ in $\N$, then the standard basis vectors in $\rb(\O)^{\perp}$ correspond to the nonzero coordinates of $\defpt$.
+   If $\defpt \in \RR^d$ defines $\O$ in $\N$, then the coordinates deleted in $\collapse{\defpt}$ correspond precisely to the zero coordinates of $\defpt$.
    Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
 \end{remark}
 
