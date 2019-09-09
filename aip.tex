@@ -357,7 +357,7 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 Throughout this section, consider a proper monomial ideal 
 \[ \ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle \subseteq \kk[x_1, \cdots, x_d] \]
-where $\kk$ is a field of prime characteristic $p$.  Without loss of generality, we will assume that each ambient variable is necessary to define $\ideala$, so that \[ A = \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix} \] is a $d \times n$ matrix over $\ZZ$ with nonnegative, nonzero rows and columns.  That is, in the language of \Cref{monomial newton preliminaries: ss}, $A$ is a $d \times n$ monomial matrix.  
+where $\kk$ is a field of prime characteristic $p$.  Without loss of generality, we will assume that each ambient variable is necessary to define $\ideala$, so that \[ A = \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix} \] is a $d \times n$ matrix over $\ZZ$ with nonnegative, nonzero rows and columns.  That is, in the language of \Cref{monomial newton preliminaries: ss}, $A$ is a $d \times n$ monomial matrix.   \daniel{In progress...}
 
 In what follows, we study of $F$-thresholds of $\ideala$, and the related $\nu$ invariants, from the point of view of linear and integer programming.  
 \pedro[inline]{If and when we include an analogue to \Cref{cor: every crit is crit wrt diagonal ideal} for $F$-thresholds, we should mention that here, to justify the fact that we're only looking at $F$-thresholds with respect to diagonal ideals.}
@@ -434,7 +434,7 @@ In order to relate this value to the Newton polyhedron of $A$ we need the follow
    The following numbers agree\textup:
    \begin{enumerate}
       \item\label{value} The value of the linear program $\LP(A, \vv{u})$.
-      \item\label{limit} The limit of $p^{-e}\val \IP(A,\vv{u},p^e)$, as $e$ tends to infinity, where $p$ is a positive integer.
+      \item\label{limit} The limit of $q^{-1}\val \IP(A,\vv{u},p^e)$, as $q$ tends to infinity. \daniel{I replaced this with a more general statement, since I am thinking we out to emphasize that this isn't necessarily a prime characteristic result}
       \item\label{lambda} The unique positive real number $\lambda$ with the property that $\lambda^{-1}\vv{u}$ lies in the boundary of $\N$.
       \item\label{ip} The inner product $\iprod{\vv{c}}{\vv{u}}$, where $\vv{c} \in \RR^d$ is any point that defines a face of $\N$ containing $\mf(A, \vv{u})$.
       \item\label{min ip} The minimum of the quantities $\iprod{\vv{d}}{\vv{u}}$, over all points $\vv{d} \in \RR^d$ that define a standard face of $\N$.
@@ -1148,7 +1148,7 @@ For $p \gg 0$,
 \end{corollary}
 
 \newpage
-\section{Arithmetic integer programs and fractal linear programs}
+\section{Connections with arithmetic and fractal programs}
 
 \subsection{$\mu$ invariants as values of arithmetic integer programs}
 
