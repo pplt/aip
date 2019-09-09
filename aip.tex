@@ -104,14 +104,14 @@ The cone in this decomposition is the set of all directions $\vv{d} \in \RR^n$ i
 
 The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone. 
 
-\pedro[inline]{
-   Maybe we should gather what we need about faces and vertices of polyhedra right here.
-}
-\daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
-\pedro[inline]{
-   Yes, maybe it's more efficient to introduce what we need ``on demand'', so the reader does not need to be coming back to this section all the time.
-   That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
-}
+%\pedro[inline]{
+%   Maybe we should gather what we need about faces and vertices of polyhedra right here.
+%}
+%\daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
+%\pedro[inline]{
+%   Yes, maybe it's more efficient to introduce what we need ``on demand'', so the reader does not need to be coming back to this section all the time.
+%   That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
+%}
 The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
 % \pedro{
 %    Is there a more concrete characterization for polyhedra/polytopes?
@@ -172,7 +172,10 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
    Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
 }
 
-\subsection{Monomial matrices and their Newton polyhedra}
+\subsection{Monomial ideals, monomial matrices, and Newton polyhedra}
+\label{monomial newton preliminaries: ss}
+We work in the polynomial ring $\kk[x_1, \cdots, x_d]$ over a field $\kk$, and adopt standard notation for describing monomials in this ring:  If $\vv{u} \in \NN^d$, then \[ x^{\vv{u}} = x_1^{u_1} \cdots x_d^{u_d}.\]
+ \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
 
 A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
 If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
@@ -220,6 +223,7 @@ There are clearly multiple reasonable notions of equality for integer programs.
 In this article,  we say that two integer programs are \emph{equal} if their objective functions and defining constraints are identical, and \emph{equivalent} if their objective functions are identical and their feasible sets agree. 
 
 \subsection{Multinomial coefficients}
+\daniel[inline]{I don't think we consider $\binom{k}{\vv{u}}$ unless $\norm{\vv{u}} = k$.  If so, why don't we just define $\binom{\norm{\vv{u}}}{\vv{u}}$?}
 
 If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows: 
 \[
@@ -348,10 +352,14 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 \daniel[inline]{What about adding a connection between $\ideala^{[t]}$ and $\tau(\ideala^{t'})$ where $t'$ is the greatest $F$-threshold less than $t$?  Like in the diagonal section of our examples paper?  Maybe we could wait to do this until we compare Frobenius powers and test ideals.}
 
 \newpage
-\section{Linear and integer programs associated with monomial pairs}
+\section{Connections with integer and linear programs}
 \label{sec: LPs}
 
-In this section, we start approaching the study of $F$-thresholds of monomial ideals, and the related $\nu$ invariants, from the point of view of linear and integer programming.
+Throughout this section, consider a proper monomial ideal 
+\[ \ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle \subseteq \kk[x_1, \cdots, x_d] \]
+where $\kk$ is a field of prime characteristic $p$.  Without loss of generality, we will assume that each ambient variable is necessary to define $\ideala$, so that \[ A = \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix} \] is a $d \times n$ matrix over $\ZZ$ with nonnegative, nonzero rows and columns.  That is, in the language of \Cref{monomial newton preliminaries: ss}, $A$ is a $d \times n$ monomial matrix.  
+
+In what follows, we study of $F$-thresholds of $\ideala$, and the related $\nu$ invariants, from the point of view of linear and integer programming.  
 \pedro[inline]{If and when we include an analogue to \Cref{cor: every crit is crit wrt diagonal ideal} for $F$-thresholds, we should mention that here, to justify the fact that we're only looking at $F$-thresholds with respect to diagonal ideals.}
 
 \subsection{$\nu$ invariants as values of integer programs}
@@ -359,6 +367,7 @@ In this section, we start approaching the study of $F$-thresholds of monomial id
 \ \pedro[inline]{
    I'm starting with the integer program, because it's easier to motivate, via $\nu$s.
    Feel free to rearrange it, if you'd rather start with the linear program.
+\daniel[inline]{I think this is definitely the place to start}
 }
 
 Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
@@ -418,7 +427,7 @@ In order to relate this value to the Newton polyhedron of $A$ we need the follow
 \pedro[inline]{
    I thought it would make sense to postpone the official definition of the $F$-threshold of a monomial pair until we establish the equivalence of its many characterizations, so we don't need to pick one characterization as the ``official'' definition.
    If you guys would rather go back to the previous way of defining $\ft{A}{\vv{u}}$, let me know, and I'll revert some of the changes.
-}
+\daniel[inline]{This is better}}
 
 \begin{proposition}
    \label{FT descriptions: P}
@@ -438,7 +447,9 @@ In order to relate this value to the Newton polyhedron of $A$ we need the follow
    \begin{quote}
       \emph{The inner product $\iprod{\vv{c}}{\vv{u}}$, where $\vv{c} \in \RR^d$ is a point defining the minimal face $\mf(A, \vv{u})$ in $\N$.}
    \end{quote}   
-}
+\daniel[inline]{I could have sworn that we needed the more general versions somewhere, but it looks like I am wrong.  Let's just go with the simpler statement, and revert back later if we realize we need to.}
+   
+   }
 This proposition and \eqref{eq: limit} suggest the following definition.
 
 \begin{definition}
@@ -689,7 +700,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 \begin{remark}
    \label{collapse of a defining vector: R}
    If $\defpt \in \RR^d$ defines $\O$ in $\N$, then the coordinates deleted in $\collapse{\defpt}$ correspond precisely to the zero coordinates of $\defpt$.
-   Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$.
+   Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^d$. \daniel[inline]{Restate this?}
 \end{remark}
 
 
