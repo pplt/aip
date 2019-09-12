@@ -228,6 +228,7 @@ In this article,  we say that two integer programs are \emph{equal} if their obj
    The one advantage of the current definition is that there's one less condition to state when writing out generators for $\ideala^{[k]}$ ($\binom{k}{\vv{k}} \not\equiv 0 \bmod p$, as opposed to $\norm{\vv{k}} = k$ and $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod p$.)
    I took advantage of that in a couple of places.
 }
+
 If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows: 
 \[
    \binom{k}{\vv{u}} = \binom{k}{u_1,\ldots,u_n} \coloneqq \frac{k!}{u_1!\cdots u_n!}.
@@ -452,7 +453,13 @@ This proposition and \eqref{eq: limit} suggest the following definition.
 Algebraically, $\ft{A}{\vv{u}}$ is the $F$-threshold of $\ideala$ with respect to the diagonal ideal $\ideald = \diag(\vv{u})$.
 
 \begin{proof}[Proof of \Cref{FT descriptions: P}]
-   \ \todo[inline]{Show that $(1) = (2)$\emily[inline]{I'm working on this.}}
+   %\ \todo[inline]{Show that $(1) = (2)$\emily[inline]{I'm working on this.}}
+      Given $\vv{s} \in \ZZ^n$ optimal for $\IP(A,\vv{u},q)$, $q^{-1} \vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, so $\val \LP \geq q^{-1} \val \IP(A, \vv{u}, q)$ for all $q$. After taking the limit at $q$ grows, we see that the $\val \LP$ is at least the limit appearing in $(2)$.
+   Alternately, given an optimal point $\vv{t} \in \RR^n$ for $\LP$,
+   define $\vv{t}_q \in \ZZ^n$ as the point whose $i^\text{th}$ coordinate is $0$ if $t_i=0$, and otherwise equals $\lceil q t_i \rceil - 1$, the greatest integer less than $q t_i$.  
+   By design, the $j^\text{th}$ entry of $A \vv{t}_q$ is either less than the $j^\text{th}$ entry of $A (q \vv{t}) < \vv{u} q$, or equals $0$,  in which case it is also less than $u_j q$ since $\vv{u}$ is positive. This means that $\vv{t}_q$ is feasible for $\IP(A, \vv{u}, q)$, and 
+   \[\val \IP(A, \vv{u}, q) \geq \norm{\vv{t}_q} \geq \sum_{i=1}^n \lceil q t_i \rceil - 1 \geq q \norm{\vv{t}} -n = q \cdot \val \LP - n.\]
+   Multiplying by $q^{-1}$ and taking the limit as $q$ grows, we find that the limit appearing in $(2)$ is at least $\val \LP$, and hence these two numbers coincide.
    % Let $\O$ be a face of $\N$ containing $\mf(A,\vv{u})$, and fix $\vv{c} \in \RR^d$ defining $\O$ in $\N$.
    % Then $\vv{u} \in \lambda \O$ by assumption, and in view of \Cref{alpha=1: convention} we have $\iprod{\vv{c}}{\vv{u}} = \lambda$.
    % Similarly, if $\vv{d}$ defines a standard face of $\N$, then $\vv{u} \in \lambda \N$ implies that $\iprod{\vv{d}}{\vv{u}} \geq \lambda$.
@@ -462,8 +469,8 @@ Algebraically, $\ft{A}{\vv{u}}$ is the $F$-threshold of $\ideala$ with respect t
    Then $\vv{u} \in \lambda \O$ by assumption, and in view of \Cref{alpha=1: convention} we have $\iprod{\vv{c}}{\vv{u}} = \lambda$.
    This establishes the equality of the numbers described in \eqref{lambda} and \eqref{new ip}.
 
-   It remains to show that $\val \LP(A, \vv{u}) = \lambda$.
-   Towards this, note that if $\vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
+   It remains to show that $\val \LP = \lambda$.
+   Towards this, note that if $\vv{s}$ is feasible for $\LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
    \[\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda,\]
    where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$, established in \Cref{face: P}.
    We conclude that $\val \LP \leq \lambda$.
