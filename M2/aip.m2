@@ -1,5 +1,5 @@
 loadPackage("Polyhedra", Reload => true)
-
+loadPackage("FrobeniusThresholds")
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
 -------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ toString entries transpose vertices split A
 
 vertices optP A
 
-ZZ/5[x,y,z,u]
+ZZ/7[x,y,z,u]
 fpt(x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0)
 
 ----------------
