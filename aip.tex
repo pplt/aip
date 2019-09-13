@@ -252,6 +252,7 @@ In this article,  we say that two integer programs are \emph{equal} if their obj
 \subsection{Multinomial coefficients}
 \ \daniel[inline]{I don't think we consider $\binom{k}{\vv{u}}$ unless $\norm{\vv{u}} = k$.  If so, why don't we just define $\binom{\norm{\vv{u}}}{\vv{u}}$?}
 \pedro[inline]{
+   I think we do need the more general definition in the statement of Dickson's theorem, below. 
    The one advantage of the current definition is that there's one less condition to state when writing out generators for $\ideala^{[k]}$ ($\binom{k}{\vv{k}} \not\equiv 0 \bmod p$, as opposed to $\norm{\vv{k}} = k$ and $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod p$.)
    I took advantage of that in a couple of places.
 }
@@ -631,7 +632,6 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
   But this shows that $\sp(A,\vv{u})$ is empty---a contradiction.
 \end{proof}
 
-
 \begin{example}
    The containments asserted in \Cref{opt versus mc: P} may all be proper.
    Indeed, if $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$.
@@ -666,7 +666,7 @@ Special denominators exist.
 \section{Collapsing}
 
 This section concerns an operation used to get around some technical difficulties that arise when dealing with an unbounded minimal face.
-Recall that if a standard face $\O$ of a Newton polyhedron in $\RR^d$ is defined by a point~$\defpt$, then its recession basis is the set $\rb(\O)$ consisting of all standard basis vectors $\canvec_i$ in $\RR^d$ such that $c_i = 0$, and its recession subspace is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
+Recall that if a face $\O$ of a Newton polyhedron in $\RR^d$ is defined by a point~$\defpt$, then its recession basis is the set $\rb(\O)$ consisting of all standard basis vectors $\canvec_i$ in $\RR^d$ such that $c_i = 0$, and its recession subspace is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.  
 
 \begin{definition}  
 \label{collapse: D}
