@@ -7,11 +7,6 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{HTW18}
 
-\bibitem[BMS06]{budur+mustata+saito.roots_bs_polys_for_mon_ideals}
-N.~Budur, M.~Musta{\c{t}}\u{a}, and M.~Saito, \emph{Roots of bernstein-sato
-  polynomials for monomial ideals: A positive characteristic approach},
-  Mathematical Research Letters \textbf{13} (2006), no.~1, 125--142.
-
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
   rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
