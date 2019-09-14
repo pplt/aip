@@ -74,7 +74,11 @@ TO DO LIST:
 \newpage
 
 \emily[inline]{I've been thinking about the readability of the paper (including for the referee), and since it is also going to be quite long, I propose to move (at least some of) the preliminaries to an appendix.   Then we could get to ``new math'' sooner. What do you think?}
-
+\pedro[inline]{
+   An appendix on convex geometry would make sense to me; it could include most of what we have here in 1.1, and perhaps more (\eg definition and characterizations of faces, vertices, etc.)
+   Other things, like the terminology associated to linear programs and multinomial coefficients, could be spread through the paper, ``on demand''.
+   Maybe the rest should stay here? (Notation and conventions we use all the time, Newton polyhedra, monomial matrices/ideals\ldots)
+}
 \section{Preliminaries}
 
 \subsection{Euclidean spaces, convexity, and polyhedra}
@@ -85,8 +89,6 @@ We use bold-face lower-case letters to denote points of the Euclidean space $\RR
 The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and the standard basis vectors of $\RR^n$ are denoted $\canvec_1,\ldots,\canvec_n$.
 
 Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
-\pedro{Maybe we should emphasize that this is not a norm, despite the notation?}
-\emily{I don't feel strongly that it is necessary to include this.}
 The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
 An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; for instance, $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
@@ -260,7 +262,10 @@ In this article,  we say that two integer programs are \emph{equal} if their obj
    The one advantage of the current definition is that there's one less condition to state when writing out generators for $\ideala^{[k]}$ ($\binom{k}{\vv{k}} \not\equiv 0 \bmod p$, as opposed to $\norm{\vv{k}} = k$ and $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod p$.)
    I took advantage of that in a couple of places.
 }
-\emily[inline]{I think this ``zero'' convention is standard; at least it is familiar for binomial coefficients.  Actually, do we really need to define a multinomial coefficient?  It seems sufficient to me to simply say that we use  $\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$.}
+\emily[inline]{I think this ``zero'' convention is standard; at least it is familiar for binomial coefficients.  Actually, do we really need to define a multinomial coefficient?  It seems sufficient to me to simply say that \hl{we use  $\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$}.}
+\pedro[inline]{
+   Sounds good to me. Let's just include the highlighted sentence immediately before our first use of multinomial coefficients.
+}
 
 If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows: 
 \[
@@ -270,7 +275,10 @@ If $\norm{\vv{u}} \ne k$, on the other hand, we set $\binom{k}{\vv{u}}=0$.
 	
 	
 \emily[inline]{I am under the impression that the following theorem and corollary are only used in Section 7.  What do you think about putting them together in a remark right before they are used?}	
-	
+\pedro[inline]{
+   That sounds good to me.
+   We'll just combine all of this with the sentence immediately after Definition~7.1, all in one remark. 
+}	
 \begin{theorem}[\cite{dickson.multinomial}] 
    \label{thm: dickson}
    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
