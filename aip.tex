@@ -72,6 +72,9 @@ TO DO LIST:
 }
 
 \newpage
+
+\emily[inline]{I've been thinking about the readability of the paper (including for the referee), and since it is also going to be quite long, I propose to move (at least some of) the preliminaries to an appendix.   Then we could get to ``new math'' sooner. What do you think?}
+
 \section{Preliminaries}
 
 \subsection{Euclidean spaces, convexity, and polyhedra}
@@ -83,6 +86,7 @@ The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, 
 
 Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
 \pedro{Maybe we should emphasize that this is not a norm, despite the notation?}
+\emily{I don't feel strongly that it is necessary to include this.}
 The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
 An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; for instance, $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
@@ -256,6 +260,7 @@ In this article,  we say that two integer programs are \emph{equal} if their obj
    The one advantage of the current definition is that there's one less condition to state when writing out generators for $\ideala^{[k]}$ ($\binom{k}{\vv{k}} \not\equiv 0 \bmod p$, as opposed to $\norm{\vv{k}} = k$ and $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod p$.)
    I took advantage of that in a couple of places.
 }
+\emily[inline]{I think this ``zero'' convention is standard; at least it is familiar for binomial coefficients.  Actually, do we really need to define a multinomial coefficient?  It seems sufficient to me to simply say that we use  $\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$.}
 
 If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows: 
 \[
@@ -263,7 +268,10 @@ If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a p
 \]
 If $\norm{\vv{u}} \ne k$, on the other hand, we set $\binom{k}{\vv{u}}=0$.
 	
-\begin{theorem}[\cite{dickson.multinomial}]
+	
+\emily[inline]{I am under the impression that the following theorem and corollary are only used in Section 7.  What do you think about putting them together in a remark right before they are used?}	
+	
+\begin{theorem}[\cite{dickson.multinomial}] 
    \label{thm: dickson}
    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
    Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
@@ -1167,10 +1175,10 @@ We define the terms \emph{feasible, optimal}, and \emph{value} relative to an ar
 It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
 In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
 
-\daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
-\pedro[inline]{
-   This image appears in multiple places: \Cref{follow-leftovers: P}, \Cref{arithmetic uniform value and image: T}, \Cref{cor: upper bound for higher mus}.
-}
+% \daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
+% \pedro[inline]{
+%    This image appears in multiple places: \Cref{follow-leftovers: P}, \Cref{arithmetic uniform value and image: T}, \Cref{cor: upper bound for higher mus}.
+% }
 \begin{definition}
 The \emph{optimal image} of $\IP_p(A, \vv{u}, q)$ is the set $\im \IP_p(A, \vv{u}, q)$ of all points  $A \vv{k}$ with $\vv{k} \in \opt \IP_p(A, \vv{u}, q)$. 
 \end{definition}
