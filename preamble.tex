@@ -1,10 +1,10 @@
-%%%%%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%%%%
 \usepackage{xcolor}
 \definecolor{nicered}{rgb}{0.6, 0, 0.1}
 \definecolor{niceblue}{rgb}{0.06, 0.3, 0.57}
 \definecolor{nicegreen}{rgb}{0.0, 0.51, 0.5}
 
-%%%%%%%%%%%%%%%%%% Assorted Packages %%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%% Assorted Packages %%%%%%%%%%%%%%%%%%
 \usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=nicegreen,linkcolor=niceblue,urlcolor=nicered]{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -16,11 +16,11 @@
 \usepackage{soul}
 \usepackage{microtype}
 
-%clever ref package 
+%clever ref package
 %must come before following 3 sections
 \usepackage{cleveref}  %must be consistent with names in following 3 sections
 \crefname{equation}{Eq.}{Eqs.}
-\crefname{theorem}{Theorem}{Theorems} 
+\crefname{theorem}{Theorem}{Theorems}
 \crefname{lemma}{Lemma}{Lemmas}
 \crefname{corollary}{Corollary}{Corollaries}
 \crefname{proposition}{Proposition}{Propositions}
@@ -38,6 +38,9 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{claim}{Claim}
+
+
 
 %definition style environments
 \theoremstyle{definition}
@@ -67,7 +70,7 @@
 \DeclareMathOperator{\lct}{lct}
 \DeclareMathOperator{\fpt}{fpt}
 \newcommand{\ft}[2]{\operatorname{ft}(#1, #2)}
- 
+
 %ideals
 \newcommand{\ideal}[1]{\langle #1 \rangle}
 \newcommand{\ideala}{\mathfrak{a}}
@@ -75,6 +78,9 @@
 \newcommand{\ideald}{\mathfrak{d}}
 \newcommand{\idealm}{\mathfrak{m}}
 \newcommand{\idealp}{\mathfrak{p}}
+\newcommand{\mon}{\operatorname{mon}}
+\newcommand{\idealc}{\mathfrak{c}}
+
 
 %linear & integer programs
 \newcommand{\LP}{\mathrm{P}}
@@ -99,7 +105,7 @@
 \newcommand{\canvec}{\vv{e}}
 \newcommand{\defpt}{\vv{c}}
 %representation of rational numbers
-\newcommand{\tail}[1]{\left[ #1 \right]} 
+\newcommand{\tail}[1]{\left[ #1 \right]}
 \newcommand{\lpr}[2]{ [ \hspace{.01in} #1 \, \% \, #2 \hspace{.01in} ]} %least positive residue
 \newcommand{\up}[1]{\left\lceil #1 \right\rceil} %ceiling
 \newcommand{\down}[1]{\left\lfloor #1 \right\rfloor} %floor
@@ -159,13 +165,13 @@
 %disable
 %%option disable removes the notes
 ]{todonotes}
-\newcommand{\comment}[2][]{\todo[linecolor=orange,backgroundcolor=orange!30!,caption={}, #1]{#2}} % color-name! intensity ! 
-\newcommand{\alert}[2][]{\todo[linecolor=red,backgroundcolor=red!50!,caption={}, #1]{#2}} % color-name! intensity ! 
-\newcommand{\details}[2][]{\todo[linecolor=cyan,backgroundcolor=cyan!40, caption={},#1]{#2}} 
+\newcommand{\comment}[2][]{\todo[linecolor=orange,backgroundcolor=orange!30!,caption={}, #1]{#2}} % color-name! intensity !
+\newcommand{\alert}[2][]{\todo[linecolor=red,backgroundcolor=red!50!,caption={}, #1]{#2}} % color-name! intensity !
+\newcommand{\details}[2][]{\todo[linecolor=cyan,backgroundcolor=cyan!40, caption={},#1]{#2}}
 
 \newcommand{\emily}[2][]{\todo[linecolor=green,backgroundcolor=green!30!,caption={}, #1]{#2}}
-\newcommand{\daniel}[2][]{\todo[linecolor=blue,backgroundcolor=blue!30!,caption={}, #1]{#2}}  
-\newcommand{\pedro}[2][]{\todo[linecolor=nicegreen,backgroundcolor=nicegreen!70!,caption={}, #1]{#2}} 
+\newcommand{\daniel}[2][]{\todo[linecolor=blue,backgroundcolor=blue!30!,caption={}, #1]{#2}}
+\newcommand{\pedro}[2][]{\todo[linecolor=nicegreen,backgroundcolor=nicegreen!70!,caption={}, #1]{#2}}
 
 %editing
 \renewcommand{\!}[1]{{\color{red}\text{$\star$\,}#1\,$\star$}}
