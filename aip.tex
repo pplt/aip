@@ -8,7 +8,7 @@
 \begin{document}
 
 \title[Fractal and arithmetic programs]{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}
-\author{Daniel J.~Hern\'andez TEST TEST}
+\author{Daniel J.~Hern\'andez}
 \author{Pedro Teixeira}
 \author{Emily E.~Witt}
 \maketitle
@@ -2073,11 +2073,11 @@ If $\kk$ is a field and $I$ is an ideal of $\kk[x_1, \ldots, x_d]$, then $\mon(I
 Given an ideal $I \subseteq \QQ[x_1, \cdots, x_d]$, there exists an integer $\beta = \beta(I)$ with the following property:  If $p > \beta$, then $\mon(I)_p = \mon(I_p)$.
 \end{theorem}
 
-By definition, both $\mon(I)_p$ and $\mon(I_p)$ are monomial ideals, and so they are equal if and only if they contain the some monomials.  However, if $h$ is a monomial contained in $I$, then it is clear that $h_p$ is a monomial contained in $I_p$ for all $p$.  Thus, to prove \Cref{mon-operation-modulo-p: T} it suffices to prove the folllowing statement:  If $p \gg 0$ and $h$ is a monomial with $h \notin I$, then $h_p \notin I_p$.
+By definition, both $\mon(I)_p$ and $\mon(I_p)$ are monomial ideals, and so they are equal if and only if they contain the same monomials.  However, if $h$ is a monomial contained in $I$, then it is clear that $h_p$ is a monomial contained in $I_p$ for all $p$.  Thus, to prove \Cref{mon-operation-modulo-p: T} it suffices to prove the folllowing statement:  If $p \gg 0$ and $h$ is a monomial with $h \notin I$, then $h_p \notin I_p$.
 
-Given any $h$ not contained in $I$, then setting $J = I + \langle h \rangle$ in \Cref{noncontainment mod p: L} tells us that $h_p \notin I_p$ for all primes $p$ that are large relative to $h$.  This argument establishes \Cref{noncontainment mod p: L} in the special case that $\mon(\idealb)$ is $\idealm$-primary.
+Given any $h$ not contained in $I$, then setting $J = I + \langle h \rangle$ in \Cref{noncontainment mod p: L} tells us that $h_p \notin I_p$ for all primes $p$ that are large relative to $h$.  This argument establishes \Cref{noncontainment mod p: L} in the case that $I$ contains all but finitely many monomials;  that is, in the case that $ \mon(I)$ is $\idealm$-primary.
 
-When $\mon(\idealb)$ is not $\idealm$-primary, then there are infintely many monomials not contained in $I$, and so this argument breaks down.  In this case, our strategy will be to prove that, even though there may be infinitely many monomials not in $I$, there are still only finitely many ideals of the form $(I:x^{\vv{u}})$ with $x^{\vv{u}} \notin I$.    This is accomplished in \Cref{monomial-noetherian-decomposition: L} below.  We begin our arguments by recalling a basic and useful fact about colon ideals.
+If $\mon(\idealb)$ is not $\idealm$-primary, then this argument breaks down.  In this case, our strategy will rely on the fact that, even though there may be infinitely many monomials not in $I$, there are still only finitely many ideals of the form $(I:x^{\vv{u}})$ with $x^{\vv{u}} \notin I$.    This is established in \Cref{monomial-noetherian-decomposition: L} below.  We begin our arguments by recalling a basic and useful fact about colon ideals.
 
 
 
