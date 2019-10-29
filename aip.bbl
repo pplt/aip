@@ -5,7 +5,7 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{HTW18}
+\begin{thebibliography}{MTW05}
 
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
@@ -21,5 +21,10 @@ L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
 D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers},
   preprint, \href{https://arxiv.org/abs/1802.02705}{arXiv:1802.02705
   [math.AC]}, 2018.
+
+\bibitem[MTW05]{mustata+takagi+watanabe.F-thresholds}
+M.~Musta{\c{t}}\u{a}, S.~Takagi, and {K.-i.} Watanabe, \emph{{F}-thresholds and
+  {B}ernstein--{S}ato polynomials}, European {C}ongress of {M}athematics
+  (Z{\"u}rich), Eur.\ Math.\ Soc., 2005, pp.~341--364.
 
 \end{thebibliography}
