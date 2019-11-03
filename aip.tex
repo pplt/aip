@@ -7,7 +7,7 @@
 
 \begin{document}
 
-\title[Fractal and arithmetic programs]{Fractal and arithmetic programs, and the Frobenius powers of monomial ideals}
+\title[Fractal and arithmetic programs]{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
 \author{Daniel J.~Hern\'andez}
 \author{Pedro Teixeira}
 \author{Emily E.~Witt}
@@ -106,62 +106,9 @@ More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of
 We work in the polynomial ring $\kk[x_1, \ldots, x_d]$ over a field $\kk$, and adopt standard notation for describing monomials in this ring:  If $\vv{u} \in \NN^d$, then \[ x^{\vv{u}} = x_1^{u_1} \cdots x_d^{u_d}.\]
  \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
 
-A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
-If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
 
-The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by
-\[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
-where $\col(A)$ is the set of columns of $A$.
-Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
-We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
 
-\begin{convention}
-\label{alpha=1: convention}
-Take $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
-\end{convention}
 
-This convention leads to the following useful observation.
-
-%Convention \Cref{alpha=1: convention} leads to the following useful observation.
-
-\begin{proposition}\label{prop: inner product with columns of A}
-   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
-\end{proposition}
-
-\begin{proof}
-If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
-Thus,
-\[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
-and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
-\end{proof}
-
-The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
-
-\begin{proposition}
-   \label{face: P}
-   If $\defpt \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-\end{proposition}
-
-\begin{proof}
-   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
-   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
-
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\defpt}{\canvec_i} = 0\}$, then
-\begin{equation}
-\label{face: e}
-\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-\end{equation}
-where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-\end{proof}
-
-\begin{definition}
-   If $\defpt \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^d$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.
-\end{definition}
-
-As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
-In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
 
 % \subsection{Linear programming}
 %
@@ -290,7 +237,7 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
 %  \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
 %
 % A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
-% If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{range lattice}, of $A$.
+% If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{target lattice}, of $A$.
 %
 % The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by
 % \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
@@ -417,102 +364,45 @@ In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and conve
 \newpage
 \section{Frobenius powers and critical exponents}
 
+Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and consider the polynomial ring $R = \kk[x_1, \cdots, x_d]$.  Given ideals $\ideala$ and $\idealb$ of $R$ with ${\ideala}$ contained in $\sqrt \idealb$, and a nonnegative integer $e$, we define
+%
+\[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \idealb^{[p^e]}\big\}\]
+%
+where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.  The condition that $\ideala \subseteq \sqrt \idealb$ guarantees that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer, and it turns out that the sequence $\big(\nu(\ideala,\idealb,p^e)/p^e\big)_{e=1}^{\infty}$ is nondecreasing and bounded.
 
-In this section, we recall the definition and basic properties of (generalized) Frobenius powers and critical exponents, as introduced in \cite{hernandez+etal.frobenius_powers}.
-Let $R$ be a regular domain of characteristic $p > 0$, and let $\ideala$ be an ideal of $R$.
-If $q$ is a power of $p$, then $\ideala^{[q]}$ denotes the standard $q$-th Frobenius power of $\ideala$, that is, the ideal generated by the $q$-th powers of the elements of $\ideala$.
-Given a nonnegative integer $k$, with base $p$ expansion $k = k_0 + k_1 p + \cdots + k_r p^r$, the $k$-th Frobenius power of $\ideala$ is the ideal
-\[\ideala^{[k]} \coloneqq \ideala^{k_0}\big(\ideala^{k_1}\big)^{[p]}\cdots \big(\ideala^{k_r}\big)^{[p^r]}.\]
-
-
-More relevant to this article, though, is the description of $\ideala^{[k]}$ in terms of generators of $\ideala$:
-Given $\vv{u} \in \NN^n$, we use
-$\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$.
-If $\ideala = \ideal{f_1,\ldots,f_n}$, then $\ideala^{[k]}$ is the ideal generated by the products $f_1^{u_1}\cdots f_n^{u_n}$, ranging over all $\vv{u} \in \NN^n$ for which $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
+The growth rate of these integers as a function of the nonnegative integer $e$ is of independent interest, which motivates the definition of
+\[ \ft{\ideala}{\idealb} = \lim_{e \to \infty} \frac{\nu(\ideala, \idealb, p^e)}{p^e}  = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e} \]
+which we call the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}.
+% \daniel{Motivate the $\nu$'s by tying them to roots of BS polynomials; motivate $F$-thresholds by relating them to behavior of test ideals.  Relate them to multiplier ideals}
 
 
-Frobenius powers are extended to allow nonnegative real exponents, through the use of the Frobenius roots introduced in \cite{blickle+mustata+smith.discr_rat_FPTs}.
-Explicitly, for a nonnegative rational exponent of the form $k/p^e$, we define
-\[\ideala^{[k/p^e]} \coloneqq \big(\ideala^{[k]}\big)^{[1/p^e]},\]
-and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit\
-More explicitly, if $\left\{t_j\right\}_{j=1}^\infty$ is a sequence of real numbers limiting to $t$ from above, each of the form $k/p^e$ for some $k>0$ and $e \geq 0$, then $\ideala^{[t]}$ is defined the union of the ideals $\ideala^{[t_j]}$.
+\daniel[inline]{This is essentially copied verbatim from \cite[Problem 3.8]{mustata+takagi+watanabe.F-thresholds}.  It also appeared as \cite[Problem 2.3]{budur+mustata+saito.roots_bs_polys.pdf} .  We should probably restate it more precisely, and explain its significance.}
 
-Like test ideals and multiplier ideals, as $t$ varies, the Frobenius powers $\ideala^{[t]}$ form a nonincreasing chain, and are right-constant for positive $t$, \ie $\ideala^{[t+\epsilon]} = \ideala^{[t]}$, for $0<\epsilon \ll 1$.
-The positive exponents where $\ideala^{[t]}$ ``jumps'' (that is, $\ideala^{[t-\epsilon]}\ne \ideala^{[t]}$, for all $0<\epsilon \le t$) are called the \emph{critical exponents} of $\ideala$.
-These are the analogues of the jumping numbers of multiplier ideals, and of the $F$-jumping exponents of test ideals, and like their counterparts, they form a discrete set of rational numbers \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.
+\begin{problem}
+Find conditions on the ideal $\ideala$ such that the following holds.  Given an ideal $\idealb$ with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$ $\ideala$ and $\idealb$, there exists a positive intege $N$ and polynomials $P_i(t) \in \QQ[t]$ of degree $e$ for every $i$ that is a unit modulo $N$ such that the following holds.  If $p$ is sufficiently large and $p \equiv i \bmod N$, then $\nu(\ideala_p, \idealb_p, p^e) = P_i(p)$.  When could $N$ be chosen independently of $J$ and $e$?
+\end{problem}
 
-If $\ideala$ and $\idealb$ are nonzero proper ideals of $R$, with $\ideala \subseteq \sqrt\idealb$, the \emph{critical exponent of $\ideala$ with respect to $\idealb$} is the number
-\begin{equation}\label{eq: defn of crit(a,b)}
-   \crit(\ideala,\idealb) \coloneqq \min\big\{t\in \RRnn: \ideala^{[t]} \subseteq \idealb\big\}
-      = \sup\big\{t\in \RRnn: \ideala^{[t]} \not\subseteq \idealb\big\}.
-\end{equation}
-This is indeed a critical exponent of $\ideala$, and moreover, every critical exponent $\lambda$ of $\ideala$ is of this form, for some $\idealb$ (take, for instance, $\idealb = \ideala^{[\lambda]}$).
+%
+\daniel[inline]{Emphasize that when $\ideala$ is monomial and $\idealb$ is arbitrary, then the $F$-threshold of $\ideala_p$ with respect to $\idealb_p$ is independent of $p$ for all $p \gg 0$.  This should be explicitly pointed out in the appendix, I guess.}
+%
+\begin{theorem}
+\label{general-nu-theorem: T}
+  Given a monomial ideal $\ideala$ of $\QQ[x_1, \cdots, x_d]$, and an arbitrary ideal $\idealb$ of this polynomial ring with $\ideala \subseteq \sqrt{\idealb}$, there exists positive integers $\ell = \ell(\ideala)$ and  $\beta = \beta(\ideala, \idealb)$, and for every integer $1 \leq r < \ell$ relatively prime to $\ell$ a rational number $\delta(\ideala, \idealb, r)$ satisfying the following conditions.  If $p^e > \beta(\ideala, \idealb)$ and $p^e \equiv r \bmod \ell$, then $ \nu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \delta(\ideala, \idealb, r)$.
+\end{theorem}
 
-We now describe a more explicit realization of the critical exponents of an ideal, which is central to this paper.
-With $\ideala$ and $\idealb$ as above, given a nonnegative integer $e$, we set
-\[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
-Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded sequence, and
+As above, let $\kk$ be a field of prime characteristic $p>0$ with $[\kk: \kk^p]$ finite.  If $\ideala$ is an ideal of $\kk[x_1, \cdots, x_n]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$.  When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators as follows:  If $k$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \cdots, f_n$, then $\ideala^{[k]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{k}{\vv{u}}$ is nonzero modulo $p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
+
+Now, if $\idealb$ is an ideal of $\kk[x_1, \cdots, x_n]$ with $\ideala \subseteq \sqrt{\idealb}$, then in analogy with the above definitions, given a nonnegative integer $e$, we define \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=1}^{\infty}$ is a nondecreasing bounded sequence, and
 \begin{equation}\label{eq: crit as a limit of mus}
    \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
 \end{equation}
-The $\mu(\ideala,\idealb,p^e)$ not only determine $\crit(\ideala,\idealb)$, but can also be recovered from $\crit(\ideala,\idealb)$, via truncations:
-\begin{equation}\label{eq: recovering mus from crit}
-   \mu(\ideala,\idealb,p^e) = \up{p^e\crit(\ideala,\idealb)} - 1.
-\end{equation}
+is the critical exponent of $\ideala$ with respect to $\idealb$.
 
-Before moving forward, we observe that the notions introduced in the last two paragraphs run parallel to the theory of $F$-thresholds.
-With $\ideala$ and $\idealb$ as above, the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}, denoted $\ft{\ideala}{\idealb}$, is defined as in \eqref{eq: defn of crit(a,b)}, replacing the Frobenius power $\ideala^{[t]}$ with the test ideal $\tau(\ideala^t)$.
-There is an explicit description for $\ft{\ideala}{\idealb}$ analogous to \eqref{eq: crit as a limit of mus}, where $\mu(\ideala,\idealb,p^e)$ is replaced with
-\[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \idealb^{[p^e]}\big\}.\]
-However, there is no analogue to \eqref{eq: recovering mus from crit}, unless $\ideala$ is a principal ideal.
-
-\subsection{Frobenius powers and critical exponents of monomial ideals}
-
-We now introduce some notation and gather some basic results concerning Frobenius powers and critical exponents of monomial ideals.
-We work in a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_d$.
-
-\begin{notation}
-   % We adopt standard multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.
-   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal}
-   \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}} = \ideal{x^{\vv{v}} : \vv{v} \in \NN^d \text{ and } \vv{v} \not < \vv{u}}.\]
-   When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
-   For instance, $\crit(\ideala,\diag(\vv{u}))$ will be simply denoted $\crit(\ideala,\vv{u})$.
-   Likewise, we shall often replace a monomial ideal with its exponent matrix in our notation.
-\end{notation}
-
-\begin{remark}\label{rmk: Frobenius powers of monomial ideals are monomial ideals}
-   Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals.
-\end{remark}
-
-\begin{proposition}\label{prop: description of frobenius powers in terms of crits}
-   If $\ideala$ is a monomial ideal, then
-   \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
-   Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
-\end{proposition}
-
-\begin{proof}
-   The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
-   As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
-   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
-\end{proof}
-
-\begin{corollary}
-   \label{cor: every crit is crit wrt diagonal ideal}
-   If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
-\end{corollary}
-
-\begin{proof}
-   Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$ for every $0 \le t <\lambda$.
-   Since the critical exponents of $\ideala$ form a discrete set \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}, the intersection of all such $\ideala^{[t]}$ properly contains $\ideala^{[\lambda]}$.
-   This intersection---a monomial ideal by \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}---thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
-   \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
-\end{proof}
-
-\daniel[inline]{
-   When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
-}
-
-\daniel[inline]{What about adding a connection between $\ideala^{[t]}$ and $\tau(\ideala^{t'})$ where $t'$ is the greatest $F$-threshold less than $t$?  Like in the diagonal section of our examples paper?  Maybe we could wait to do this until we compare Frobenius powers and test ideals.}
+\begin{theorem}
+\label{general-mu-theorem: T}
+Given a monomial ideal $\ideala$ of $\QQ[x_1, \cdots, x_d]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every ideal $\idealb$ with $\ideala \subseteq {\idealb}$ and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \idealb)$ and sequence $(\epsilon(\ideala, \idealb, r, e))_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following conditions.  If $p > \beta$ and $p \equiv r \bmod \ell$, then \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
+\end{theorem}
 
 \newpage
 \section{Connections with integer and linear programs}
@@ -520,24 +410,42 @@ We work in a polynomial ring over a field of characteristic $p>0$, in the variab
 
 Throughout this section, consider a proper monomial ideal
 \[ \ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle \subseteq \kk[x_1, \ldots, x_d] \]
-where $\kk$ is a field of prime characteristic $p$.  Without loss of generality, we will assume that each ambient variable is necessary to define $\ideala$, so that \[ A = \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix} \] is a $d \times n$ matrix over $\ZZ$ with nonnegative, nonzero rows and columns.  That is, in the language of \Cref{monomial newton preliminaries: ss}, $A$ is a $d \times n$ monomial matrix.   \daniel{In progress...}
+where $\kk$ is a field of prime characteristic $p>0$.  Without loss of generality, we will assume that each ambient variable is necessary to define $\ideala$, so that \[ A = \begin{bmatrix} \, \vv{a}_1 & \cdots & \vv{a}_n \, \end{bmatrix} \] is a $d \times n$ matrix over $\ZZ$ with non-negative, nonzero rows and columns.  The key role of such matrices in this article motivates the following definition.
 
-In what follows, we study of $F$-thresholds of $\ideala$, and the related $\nu$ invariants, from the point of view of linear and integer programming.
+\begin{definition}
+A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
+If, as in this section, $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^d$ the \emph{target lattice}, of $A$.
+\end{definition}
+
+\begin{remark}
+\label{generators-via-exponent-matrix: R}
+The generators of a powers of $\ideala$ can be described compactly in terms of the matrix $A$.   Indeed, this follows upon observing that the product $(x^{\vv{a}_1})^{k_1} \cdots (x^{\vv{a}_n})^{k_n}$ can be written as $x^{A \vv{k}} = x^{k_1 \vv{a}_1 + \cdots + k_n \vv{a}_n}$.  That is, $\ideala^n$ is generated by all monomials  of the form $x^{A \vv{k}}$ with $\vv{k} \in \NN^n$ satisfying $\norm{\vv{k}} = n$.
+%
+% \begin{equation}
+% \label{generators-via-exponent-matrix: e}
+% \ideala^n = \langle x^{A \vv{k}} : \vv{k} \in \NN^n \text{ and } \norm{\vv{k}}=n \rangle.
+% \end{equation}
+\end{remark}
+
+
+  Much of what remains of this article is dedicated towards studying the behavior of integers $\nu(\ideala, \ideald, p^e)$ and $\mu(\ideala, \ideald, p^e)$ and rational nmbers $\ft{\ideala}{\ideald}$ and $\crit(\ideala, \ideald)$ defined in the introduction in the special case that \[ \ideald := \diag(\vv{u}) := \langle x_1^{u_1}, \ldots, x_d^{u_d} \rangle \subseteq \kk[x_1, \cdots, x_d]\] is the diagonal ideal  associated to a point $\vv{u} \in \NN^d$ with positive coordinates.
+
+Though this context might seem restrictive, given that our ultimate goal is to understand the nature of these numerical invariants when the diagonal ideal $\ideald$ is replaced with an arbitrary ideal $\idealb$, we explain in \Cref{monomial-reduction: A} how understanding this situation allows us to obtain the \Cref{general-nu-theorem: T,general-mu-theorem: T}.
+
 \pedro[inline]{If and when we include an analogue to \Cref{cor: every crit is crit wrt diagonal ideal} for $F$-thresholds, we should mention that here, to justify the fact that we're only looking at $F$-thresholds with respect to diagonal ideals.}
 
-\subsection{$\nu$ invariants as values of integer programs}
 
-Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
-Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
+\daniel[inline]{This section is in progress...}
+
 Recall that for each $q$ a power of $p$ we define the number
 \[\nu(\ideala,\ideald,q) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \ideald^{[q]}\big\},\]
 used in the computation of the $F$-threshold of $\ideala$ with respect to $\ideald$.
 If $A \in \NN^{d\times n}$ is the exponent matrix of $\ideala$, then $\ideala^k$ is generated by monomials $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\norm{\vv{k}} = k$.
-Because $\ideald^{[q]} = \diag(\vv{u}q)$ is generated by monomials $x^\vv{v}$ with $\vv{v} \not< \vv{u}q$, the condition $\ideala^{k} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$.
+Because $\ideald^{[q]} = \diag(\vv{u}q) = \langle x_1^{u_1 q}, \ldots, x_d^{u_d q} \rangle$ is generated by monomials $x^\vv{v}$ with $\vv{v} \not< \vv{u}q$, the condition $\ideala^{k} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$.
 Thus, finding the maximum defining $\nu(\ideala,\ideald,q)$ is equivalent to maximizing $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the constraint $A\vv{k} < \vv{u}q$, which suggests the following definitions.
 
 \begin{definition}
-   A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the range lattice of $A$.
+   A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the target lattice of $A$.
 \end{definition}
 
 \emily{Removed integer programming in preliminaries, and added this.}
@@ -593,6 +501,35 @@ When describing linear programs, we use terminology directly analogous to that o
 The feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in $\RR^n$.
 Consequently, $\LP(A,\vv{u})$ has a well-defined value.
 In order to relate this value to the Newton polyhedron of $A$ we need the following definition.
+
+{\color{green}
+The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by
+\[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
+where $\col(A)$ is the set of columns of $A$.
+Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
+We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
+
+\begin{convention}
+\label{alpha=1: convention}
+Take $\O$, $\defpt \in \RR^d$, and $\alpha \in \RR$ as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
+\end{convention}
+
+This convention leads to the following useful observation.
+
+%Convention \Cref{alpha=1: convention} leads to the following useful observation.
+
+\begin{proposition}\label{prop: inner product with columns of A}
+   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
+\end{proposition}
+
+\begin{proof}
+If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
+Thus,
+\[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
+and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
+\end{proof}
+}
+
 
 \begin{definition}
    The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
@@ -811,6 +748,37 @@ Special denominators exist.
 
 \newpage
 \section{Collapsing}
+
+{\color{blue}
+The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+
+\begin{proposition}
+   \label{face: P}
+   If $\defpt \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+\end{proposition}
+
+\begin{proof}
+   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
+   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
+   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
+
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\defpt}{\canvec_i} = 0\}$, then
+\begin{equation}
+\label{face: e}
+\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+\end{equation}
+where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+\end{proof}
+
+\begin{definition}
+   If $\defpt \in \RR^d$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^d$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.
+\end{definition}
+
+As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
+In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
+}
+
 
 This section concerns an operation used to get around some technical difficulties that arise when dealing with an unbounded minimal face.
 Recall that if a face $\O$ of a Newton polyhedron in $\RR^d$ is defined by a point~$\defpt$, then its recession basis is the set $\rb(\O)$ consisting of all standard basis vectors $\canvec_i$ in $\RR^d$ such that $c_i = 0$, and its recession subspace is the subspace $\rs(\O)$ of $\RR^d$ spanned by $\rb(\O)$.
@@ -2055,6 +2023,7 @@ Next, suppose that the columns of $M$ corresponding to the nonzero coordinates o
 
 
 \section{Monomial ideals and reduction}
+\label{monomial-reduction: A}
 
 \daniel[inline]{
 \begin{itemize}
@@ -2170,6 +2139,7 @@ As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is
 \end{proof}
 
 \begin{corollary}
+\label{reduce-to-monomial-case: C}
 Suppose that $\operatorname{char} \kk = p > 0$, that $\ideala$ is a monomial ideal of $\kk[x_1, \ldots, x_d]$, and that $\idealb$ is an ideal of this same ring with $\ideala \subseteq \sqrt{\idealb}$.  If $e$ is an arbitrary nonnegative integer and $\idealc = \mon(\idealb)$, then the following hold.
 \begin{enumerate}
 \item $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e)$ and $\ft{\ideala}{\idealb} = \ft{\ideala}{\idealc}$.
@@ -2181,7 +2151,7 @@ Suppose that $\operatorname{char} \kk = p > 0$, that $\ideala$ is a monomial ide
 Suppose that $\ideala$ is a monomial ideal of $\QQ[x_1, \ldots, x_d]$, and that $\idealb$ is an ideal of this same ring with $\ideala \subseteq \sqrt{\idealb}$.  If $\idealc = \mon(\idealb)$, then there exists an integer $\beta = \beta(\ideala, \idealb)$ such that $\nu(\ideala_p, \idealb_p, p^e) = \nu(\ideala_p, \idealc_p, p^e)$ and $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ for all primes $p > \beta$ and integers $e \geq 1$. \qed
 \end{corollary}
 
-
+\daniel[inline]{We should add that if $\ideala$ is monomial, then we can always assume that we are computing thresholds and $\nu/\mu$ with respect to some point with positive coordinates. }
 
 \subsection{Reduction to prime characteristic}
 
@@ -2222,6 +2192,109 @@ If $p$ does not divide $\ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}
 \end{proof}
 
 
+\newpage
+\section{Frobenius powers of monomial ideals}
+
+
+{\color{green}
+
+In this section, we recall the definition and basic properties of (generalized) Frobenius powers and critical exponents, as introduced in \cite{hernandez+etal.frobenius_powers}.
+Let $R$ be a regular domain of characteristic $p > 0$, and let $\ideala$ be an ideal of $R$.
+If $q$ is a power of $p$, then $\ideala^{[q]}$ denotes the standard $q$-th Frobenius power of $\ideala$, that is, the ideal generated by the $q$-th powers of the elements of $\ideala$.
+Given a nonnegative integer $k$, with base $p$ expansion $k = k_0 + k_1 p + \cdots + k_r p^r$, the $k$-th Frobenius power of $\ideala$ is the ideal
+\[\ideala^{[k]} \coloneqq \ideala^{k_0}\big(\ideala^{k_1}\big)^{[p]}\cdots \big(\ideala^{k_r}\big)^{[p^r]}.\]
+
+
+More relevant to this article, though, is the description of $\ideala^{[k]}$ in terms of generators of $\ideala$:
+Given $\vv{u} \in \NN^n$, we use
+$\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$.
+If $\ideala = \ideal{f_1,\ldots,f_n}$, then $\ideala^{[k]}$ is the ideal generated by the products $f_1^{u_1}\cdots f_n^{u_n}$, ranging over all $\vv{u} \in \NN^n$ for which $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
+
+
+Frobenius powers are extended to allow nonnegative real exponents, through the use of the Frobenius roots introduced in \cite{blickle+mustata+smith.discr_rat_FPTs}.
+Explicitly, for a nonnegative rational exponent of the form $k/p^e$, we define
+\[\ideala^{[k/p^e]} \coloneqq \big(\ideala^{[k]}\big)^{[1/p^e]},\]
+and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit\
+More explicitly, if $\left\{t_j\right\}_{j=1}^\infty$ is a sequence of real numbers limiting to $t$ from above, each of the form $k/p^e$ for some $k>0$ and $e \geq 0$, then $\ideala^{[t]}$ is defined the union of the ideals $\ideala^{[t_j]}$.
+
+Like test ideals and multiplier ideals, as $t$ varies, the Frobenius powers $\ideala^{[t]}$ form a nonincreasing chain, and are right-constant for positive $t$, \ie $\ideala^{[t+\epsilon]} = \ideala^{[t]}$, for $0<\epsilon \ll 1$.
+The positive exponents where $\ideala^{[t]}$ ``jumps'' (that is, $\ideala^{[t-\epsilon]}\ne \ideala^{[t]}$, for all $0<\epsilon \le t$) are called the \emph{critical exponents} of $\ideala$.
+These are the analogues of the jumping numbers of multiplier ideals, and of the $F$-jumping exponents of test ideals, and like their counterparts, they form a discrete set of rational numbers \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.
+
+If $\ideala$ and $\idealb$ are nonzero proper ideals of $R$, with $\ideala \subseteq \sqrt\idealb$, the \emph{critical exponent of $\ideala$ with respect to $\idealb$} is the number
+\begin{equation}\label{eq: defn of crit(a,b)}
+   \crit(\ideala,\idealb) \coloneqq \min\big\{t\in \RRnn: \ideala^{[t]} \subseteq \idealb\big\}
+      = \sup\big\{t\in \RRnn: \ideala^{[t]} \not\subseteq \idealb\big\}.
+\end{equation}
+This is indeed a critical exponent of $\ideala$, and moreover, every critical exponent $\lambda$ of $\ideala$ is of this form, for some $\idealb$ (take, for instance, $\idealb = \ideala^{[\lambda]}$).
+
+We now describe a more explicit realization of the critical exponents of an ideal, which is central to this paper.
+With $\ideala$ and $\idealb$ as above, given a nonnegative integer $e$, we set
+\[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded sequence, and
+\begin{equation}\label{eq: crit as a limit of mus}
+   \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
+\end{equation}
+The $\mu(\ideala,\idealb,p^e)$ not only determine $\crit(\ideala,\idealb)$, but can also be recovered from $\crit(\ideala,\idealb)$, via truncations:
+\begin{equation}\label{eq: recovering mus from crit}
+   \mu(\ideala,\idealb,p^e) = \up{p^e\crit(\ideala,\idealb)} - 1.
+\end{equation}
+
+Before moving forward, we observe that the notions introduced in the last two paragraphs run parallel to the theory of $F$-thresholds.
+With $\ideala$ and $\idealb$ as above, the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}, denoted $\ft{\ideala}{\idealb}$, is defined as in \eqref{eq: defn of crit(a,b)}, replacing the Frobenius power $\ideala^{[t]}$ with the test ideal $\tau(\ideala^t)$.
+There is an explicit description for $\ft{\ideala}{\idealb}$ analogous to \eqref{eq: crit as a limit of mus}, where $\mu(\ideala,\idealb,p^e)$ is replaced with
+\[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \idealb^{[p^e]}\big\}.\]
+However, there is no analogue to \eqref{eq: recovering mus from crit}, unless $\ideala$ is a principal ideal.
+
+
+\subsection{Frobenius powers and critical exponents of monomial ideals}
+
+We now introduce some notation and gather some basic results concerning Frobenius powers and critical exponents of monomial ideals.
+We work in a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_d$.
+
+\begin{notation}
+   % We adopt standard multi-index notation: if $\vv{u} = (u_1,\ldots,u_d)\in \NN^d$, then $x^\vv{u} = x_1^{u_1}\cdots x_d^{u_d}$.
+   If $\vv{u}\in \NN^d$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal}
+   \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}} = \ideal{x^{\vv{v}} : \vv{v} \in \NN^d \text{ and } \vv{v} \not < \vv{u}}.\]
+   When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
+   For instance, $\crit(\ideala,\diag(\vv{u}))$ will be simply denoted $\crit(\ideala,\vv{u})$.
+   Likewise, we shall often replace a monomial ideal with its exponent matrix in our notation.
+\end{notation}
+
+\begin{remark}\label{rmk: Frobenius powers of monomial ideals are monomial ideals}
+   Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals.
+\end{remark}
+
+\begin{proposition}\label{prop: description of frobenius powers in terms of crits}
+   If $\ideala$ is a monomial ideal, then
+   \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
+   Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
+\end{proposition}
+
+\begin{proof}
+   The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
+   As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
+   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
+\end{proof}
+
+\begin{corollary}
+   \label{cor: every crit is crit wrt diagonal ideal}
+   If $\ideala$ is a monomial ideal, then every critical exponent of~$\ideala$ is of the form $\crit(\ideala,\vv{u})$, for some $\vv{u} > \vv{0}$ in $\NN^d$.
+\end{corollary}
+
+\begin{proof}
+   Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$ for every $0 \le t <\lambda$.
+   Since the critical exponents of $\ideala$ form a discrete set \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}, the intersection of all such $\ideala^{[t]}$ properly contains $\ideala^{[\lambda]}$.
+   This intersection---a monomial ideal by \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}---thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
+   \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
+\end{proof}
+
+\daniel[inline]{
+   When we look for corollaries, our ability to compute $\crit(\ideala, \vv{u})$ with $\vv{u} > \vv{1}$ will show that the ideals $\ideala^{[\lambda]}$ also vary ``uniformly'' with respect to the class of $p$ modulo some denominator $\denom$, in a way that we can make precise.
+}
+
+\daniel[inline]{What about adding a connection between $\ideala^{[t]}$ and $\tau(\ideala^{t'})$ where $t'$ is the greatest $F$-threshold less than $t$?  Like in the diagonal section of our examples paper?  Maybe we could wait to do this until we compare Frobenius powers and test ideals.}
+}
 
 
 
