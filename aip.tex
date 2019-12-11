@@ -86,26 +86,6 @@ TO DO LIST:
 
 
 
-\section{Preliminaries}
-
-\subsection{Euclidean spaces}
-\label{ss: euclidean spaces and convexity}
-%We review in this subsection some of the terminology, notation, and constructions concerning Euclidean spaces used throughout the paper.
-We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter, in regular font, to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
-The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and write the standard basis vectors of $\RR^n$ as $\canvec_1,\ldots,\canvec_n$.
-
-Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
-The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
-An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; e.g., $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
-In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
-
-We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
-More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
-
-\subsection{Monomial ideals, monomial matrices, and Newton polyhedra}
-\label{monomial newton preliminaries: ss}
-We work in the polynomial ring $\kk[x_1, \ldots, x_d]$ over a field $\kk$, and adopt standard notation for describing monomials in this ring:  If $\vv{u} \in \NN^d$, then \[ x^{\vv{u}} = x_1^{u_1} \cdots x_d^{u_d}.\]
- \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
 
 
 
@@ -363,7 +343,7 @@ We work in the polynomial ring $\kk[x_1, \ldots, x_d]$ over a field $\kk$, and a
 % \end{corollary}
 
 \newpage
-\section{Frobenius powers and critical exponents}
+\section{Introduction}
 
 \daniel[inline]{I am kind of imagining that this will go in the intro.}
 
@@ -407,9 +387,33 @@ is the critical exponent of $\ideala$ with respect to $\idealb$.
 Given a monomial ideal $\ideala$ of $\QQ[x_1, \cdots, x_d]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every ideal $\idealb$ with $\ideala \subseteq {\idealb}$ and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \idealb)$ and sequence $(\epsilon(\ideala, \idealb, r, e))_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following conditions.  If $p > \beta$ and $p \equiv r \bmod \ell$, then \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
 \end{theorem}
 
+\section{Notation and basic notions}
+
+
+\subsection{Euclidean spaces}
+\label{ss: euclidean spaces and convexity}
+%We review in this subsection some of the terminology, notation, and constructions concerning Euclidean spaces used throughout the paper.
+We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter, in regular font, to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
+The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and write the standard basis vectors of $\RR^n$ as $\canvec_1,\ldots,\canvec_n$.
+
+Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
+The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
+An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; e.g., $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
+In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
+
+We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
+More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+
+\subsection{Monomial ideals, monomial matrices, and Newton polyhedra}
+\label{monomial newton preliminaries: ss}
+We work in the polynomial ring $\kk[x_1, \ldots, x_d]$ over a field $\kk$, and adopt standard notation for describing monomials in this ring:  If $\vv{u} \in \NN^d$, then \[ x^{\vv{u}} = x_1^{u_1} \cdots x_d^{u_d}.\]
+ \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
+
+
 \newpage
 \section{Connections with optimization}
 \label{sec: LPs}
+
 
 Consider a proper monomial ideal
 \[ \ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle \subseteq \kk[x_1, \ldots, x_d] \]
@@ -481,7 +485,9 @@ Thus, the $F$-threshold of $\ideala$ with respect to $\ideald$ can be expressed 
 
 Below, we realize this limit as the value of a certain linear program.
 
-\begin{definition}  Given a monomial pair $(A, \vv{u})$, the linear program $\LP(A, \vv{u})$ in the domain of $A$ consists of maximizing the function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
+\begin{definition}
+\label{LP: D}
+Given a monomial pair $(A, \vv{u})$, the linear program $\LP(A, \vv{u})$ in the domain of $A$ consists of maximizing the function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
 \end{definition}
 
 Once again, the fact that $A$ is monomial implies that the feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in the domain of $A$.  Consequently, $\LP(A,\vv{u})$ has a well-defined value.
@@ -534,17 +540,17 @@ Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $
 Below, we examine the arithmetic constraint of the above program.
 
 \begin{remark} \label{dickson: R}
-Consider $\ell \in \NN$ and $\vv{k} \in \NN^n$.  As every natural number has a unique base $p$ expansion, we may uniquely express these quantities as
+Consider $h \in \NN$ and $\vv{h} \in \NN^n$.  As every natural number has a unique base $p$ expansion, we may uniquely express these quantities as
 \begin{equation*}
-\ell = \sum_{e=0}^r \ell_e \, p^e \quad \text{and} \quad \vv{k}=\sum_{e=0}^r \vv{k}_e \, p^e ,
+h = \sum_{e=0}^r h_e \, p^e \quad \text{and} \quad \vv{h}=\sum_{e=0}^r \vv{h}_e \, p^e ,
 \end{equation*}
-where $0\le \ell_e < p$ and $\vv{0}\le\vv{k}_e < p  \vv{1}$ for each $0 \leq e \leq r$, and where $\ell_r$ and $\vv{k}_r$ are allowed to be zero.
+where $0\le h_e < p$ and $\vv{0}\le\vv{h}_e < p  \vv{1}$ for each $0 \leq e \leq r$, and where $h_r$ and $\vv{h}_r$ are allowed to be zero.
 In any case, \cite{dickson.multinomial} then tells us that
 \[
-    \binom{\ell}{\vv{k}}\equiv \binom{\ell_0}{\vv{k}_0}\binom{\ell_1}{\vv{k}_1}\cdots \binom{\ell_r}{\vv{k}_r} \mod{p}.
+    \binom{h}{\vv{h}}\equiv \binom{h_0}{\vv{h}_0}\binom{h_1}{\vv{h}_1}\cdots \binom{h_r}{\vv{h}_r} \mod{p}.
 \]
 
-In particular, $\binom{\ell}{\vv{k}}$ is nonzero modulo $p$ if and only if $\norm{\vv{k}_e}=\ell_e$ for each $e$, a condition that is commonly described by saying that the components of the vector $\vv{k}$ add up to $\ell$ \emph{without carrying} in base $p$.
+In particular, $\binom{h}{\vv{h}}$ is nonzero modulo $p$ if and only if $\norm{\vv{h}_e}=h_e$ for each $e$, a condition that is commonly described by saying that the components of the vector $\vv{h}$ add up to $h$ \emph{without carrying} in base $p$.
 
 In light of this, the arithmetic constraint on $\vv{k}$ appearing in is equivalent to the following condition:  If
  $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_r \, p^r$ is the unique base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq r$.
@@ -579,7 +585,7 @@ This description of the Sierpi\'nski $p$-gasket in terms of expansions is not ha
 \begin{example}
 \label{sierpinski triangle: E}
 
-The set $\sierp_{2,2} \cap [0,1]^2$ is the familiar Sierpi\'nski triangle.  Indeed, the points $\vv{t} \in [0,1]^2$ that have \emph{no} expansion $\vv{t} = \sum_{e=0}^{\infty}\frac{\vv{t}_e}{2^e}$ with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  \[ T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}.\]
+The set $\sierp_{2,2} \cap [0,1]^2$ is the familiar Sierpi\'nski triangle.  Indeed, the points $\vv{t}$ in the unit square $[0,1]^2$ that have \emph{no} binary expansion $\vv{t} = \sum_{e=0}^{\infty}\frac{\vv{t}_e}{2^e}$ as above with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  $T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}$.
 At the next stage, the points $\vv{t} \in [0,1]^2$ with \emph{no} expansion $\vv{t} = \sum_{e=0}^{\infty}\frac{\vv{t}_e}{2^e}$ with both  $\norm{\vv{t}_1} < 2$ and $\norm{\vv{t}_2} < 2$ are those in the union of open triangles $T$ and $\frac{1}{2} \cdot T$.  The condition on expansions at the third place removes three additional open triangles from this set, and we can continue analogously.
 \end{example}
 
@@ -605,7 +611,7 @@ As suggested by \Cref{sierpinski triangle: E}, each $\sierp_{p,n}$  can be reali
 Remarkably, the critical exponent of a monomial pair $\crit(\ideala, \ideald)$ described in \eqref{ft as limit of normalized program values: eq} can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric interpretation for this value.  To motivate our approach, we first note that the feasible set of the linear program $\LP(A, \vv{u})$, whose value equals the $F$-threshold $\ft{\ideala}{\ideald}$ by \Cref{ft as val LP: P}, is simply the closure with respect to the Euclidean topology of the set $\{ \vv{t} \in \RR^n : \vv{t} \geq \vv{0} \text{ and } A\vv{t} < \vv{u} \}$.  In what follows, we consider a similar optimization problem,  replacing the conditions that $\vv{t} \in \RR^n$ and $\vv{t} \geq \vv{0}$ with the ``fractal constraint" that $\vv{t} \in \sierp_{p,n}$.
 
 \begin{definition}
-The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the linear function $\vv{t}\mapsto \norm{\vv{t}}$ on the Euclidean closure of the set \[ \{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}.\]  We call this closed set the feasible set of $\fip_p(A, \vv{u})$, and denote it by $\feas \fip_p(A, \vv{u})$.
+The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the linear function $\vv{t}\mapsto \norm{\vv{t}}$ on the Euclidean closure of the set \[ \{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}.\]  We call this closure the feasible set of $\fip_p(A, \vv{u})$, and denote it by $\feas \fip_p(A, \vv{u})$.
 % The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
 \end{definition}
 
@@ -737,19 +743,6 @@ $7$ & $34/245$ & $\{(19/245, 3/49) \}$ \\ \hline
 \end{example}
 
 
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-
 \begin{proposition}
 The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 \end{proposition}
@@ -783,44 +776,14 @@ We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is
 \newpage
 \section{Connections with Newton polyhedra}
 
-\daniel[inline]{With the new organization, we should think about where to talk about images.  I think it might be best to only mention them closer to when they are used.}
+Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $d \times n$ monomial.  In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^d$ with positive entries.  Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the $A$.
 
 \begin{definition}
-   The \emph{optimal image} of $\IP(A, \vv{u}, q)$ is the set \[ \im \IP(A, \vv{u}, q) = A ( \opt \IP(A, \vv{u}, q) ). \]
-\end{definition}
-
-If $\ideala$ and $\ideald$ are as above, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the optimal image of $\IP(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
-Explicitly,\emily{Can we make the following more concise?}
-\begin{align*}
-  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
-  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
-  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
-\end{align*}
-The $F$-threshold of $\ideala$ with respect to $\ideald$ can be expressed as the limit
-\begin{equation}\label{ft as limit of normalized program values: eq}
-\ft{\ideala}{\ideald} = \lim_{e\to\infty} \frac{\nu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP(A,\vv{u},p^e)}{p^e}.
-\end{equation}
-In the next subsection we show that this limit can be realized as the value of a linear program in the domain of $A$, and also has simple descriptions in terms of the Newton polyhedron of $A$.
-
-\subsection{$F$-thresholds as values of linear programs}
-\emily{Added to eliminate linear programming from preliminaries.}
-Along with a family of integer programs, we also associate a \emph{linear program} to any monomial pair.
-Like an integer program, a linear program is an optimization problem, but on some Euclidean space $\RR^m$ rather than on $\ZZ^m$.
-When describing linear programs, we use terminology directly analogous to that of integer programs.
-
-\begin{definition}
-   The linear program $\LP(A, \vv{u})$ in the domain of $A$ consists of maximizing the function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
-\end{definition}
-
-The feasible set of the linear program $\LP(A,\vv{u})$ is bounded, and therefore a polytope in $\RR^n$.
-Consequently, $\LP(A,\vv{u})$ has a well-defined value.
-In order to relate this value to the Newton polyhedron of $A$ we need the following definition.
-
-{\color{green}
-The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^d$ given by
+The \emph{Newton polyhedron} associated to the monomial matrix $A$ is the polyhedron in $\RR^d$ given by
 \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_d), \]
 where $\col(A)$ is the set of columns of $A$.
+\end{definition}
+
 Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^d$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
 We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^d$, which we call \emph{standard}.
 
@@ -834,7 +797,7 @@ This convention leads to the following useful observation.
 %Convention \Cref{alpha=1: convention} leads to the following useful observation.
 
 \begin{proposition}\label{prop: inner product with columns of A}
-   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
+   If $\defpt \in \RR^d$ defines a standard face $\O$ of $\N$, and $\vv{s}~\in~\RR^n$ has nonnegative entries, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$, ~and~equality holds if and only if $s_i = 0$ whenever~the~$i$-th~column~of~$A$~is~not~in~$\O$.
 \end{proposition}
 
 \begin{proof}
@@ -843,7 +806,28 @@ Thus,
 \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
-}
+
+The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+
+\begin{proposition}
+   \label{face: P}
+   If $\defpt \in \RR^d$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+\end{proposition}
+
+\begin{proof}
+   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
+   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
+   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
+
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\defpt}{\canvec_i} = 0\}$, then
+\begin{equation}
+\label{face: e}
+\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+\end{equation}
+where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+\end{proof}
+
 
 
 \begin{definition}
@@ -861,32 +845,25 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    \end{enumerate}
 \end{proposition}
 
-This proposition and \eqref{ft as limit of normalized program values: eq} suggest the following definition.
+As noted in \Cref{ft as val LP: P}, the quantity appearing in the first statement of \Cref{FT descriptions: P} can be described algebraically as an $F$-threshold associated to a monomial ideal, which motivates the following definition.
+
 
 \begin{definition}
-   The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$, denoted $\ft{A}{\vv{u}}$, is the number described in \Cref{FT descriptions: P}.
+   The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$ is the number described in \Cref{FT descriptions: P}.  We denote it by $\ft{A}{\vv{u}}$.
 \end{definition}
 
-Algebraically, $\ft{A}{\vv{u}}$ is the $F$-threshold of $\ideala$ with respect to the diagonal ideal $\ideald = \diag(\vv{u})$.
-
 \begin{proof}[Proof of \Cref{FT descriptions: P}]
-   Given $\vv{s} \in \ZZ^n$ optimal for $\IP(A,\vv{u},q)$, $q^{-1} \vv{s}$ is feasible for $\LP = \LP(A, \vv{u})$, so $\val \LP \geq q^{-1} \val \IP(A, \vv{u}, q)$ for all $q$.
-   Thus, $\val \LP$ is at least the limit appearing in \eqref{limit}.
-   Conversely, given an optimal point $\vv{t} \in \RR^n$ for $\LP$,
-   define $\vv{t}_q \in \ZZ^n$ as the point whose $i$-th coordinate is $0$ if $t_i=0$, and otherwise equals $\lceil q t_i \rceil - 1$, the greatest integer less than $q t_i$.
-   By design, the $j$-th entry of $A \vv{t}_q$ is either less than the $j$-th entry of $A (q \vv{t}) < \vv{u} q$, or equals $0$,  in which case it is also less than $u_j q$ since $\vv{u}$ is positive. This means that $\vv{t}_q$ is feasible for $\IP(A, \vv{u}, q)$, and
-   \[\val \IP(A, \vv{u}, q) \geq \norm{\vv{t}_q} \geq \sum_{i=1}^n \lceil q t_i \rceil - 1 \geq q \norm{\vv{t}} -n = q \cdot \val \LP - n.\]
-   Multiplying by $q^{-1}$ and taking the limit as $q$ tends to infinity, we find that the limit appearing in \eqref{limit} is at least $\val \LP$, and hence these two numbers coincide.
+ \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tells us that the quantities in \eqref{value} and \eqref{limit} above agree.  In what follows, let $\lambda$ be as in \eqref{lambda} above.
 
-   Let $\O = \mf(A,\vv{u})$, and fix $\vv{c} \in \RR^d$ defining $\O$ in $\N$.
-   Then $\vv{u} \in \lambda \O$ by assumption, and in view of \Cref{alpha=1: convention} we have $\iprod{\vv{c}}{\vv{u}} = \lambda$.
+
+    Let $\O = \mf(A,\vv{u})$, and fix a point $\vv{c} \in \RR^d$ defining $\O$ in $\N$.  Our choice of $\lambda$ allows us to write
+    $\vv{u} = \lambda \vv{w}$ for some $\vv{w} \in \O$,  and in view of \Cref{alpha=1: convention}, it follows that $\iprod{\vv{c}}{\vv{u}} = \lambda \iprod{\vv{c}}{\vv{w}} = \lambda$.
    This establishes the equality of the numbers described in \eqref{lambda} and \eqref{new ip}.
 
-   It remains to show that $\val \LP = \lambda$.
-   Towards this, note that if $\vv{s}$ is feasible for $\LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
-   \[\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda,\]
+Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.  Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
+  $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$,
    where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$, established in \Cref{face: P}.
-   We conclude that $\val \LP \leq \lambda$.
+   Thus, $\val \LP \leq \lambda$.
 
    On the other hand, \eqref{face: e} and our choice of $\O$ imply that
    \begin{equation}\label{cone containment: e}
@@ -929,23 +906,6 @@ Algebraically, $\ft{A}{\vv{u}}$ is the $F$-threshold of $\ideala$ with respect t
    Thus, \Cref{FT descriptions: P}\eqref{value} again tells us that
    \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{\big(\tfrac1{17}, 0, \tfrac3{17}\big)} = \tfrac4{17}.\]
 \end{example}
-
-\subsection{Discreteness of $F$-thresholds}
-
-The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
-However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
-
-\begin{proposition}
-\label{discreteness: L}
-Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.
-\end{proposition}
-
-\begin{proof}
-   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
-   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
-   Then $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
-   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
-\end{proof}
 
 \subsection{Characterizing optimal points of $\LP(A,\vv{u})$}
 
@@ -1019,7 +979,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
    If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.
    Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
 
-   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ cannot lie in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
+   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
  Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
@@ -1060,6 +1020,26 @@ Special denominators exist.
    \[ \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_c \cdot  \vv{s}_c}{d-1}  \]
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(d-1)\ell_{\circ}$.
 \end{proof}
+
+\daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
+
+\subsection{Discreteness of $F$-thresholds}
+
+The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
+However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
+
+\begin{proposition}
+\label{discreteness: L}
+Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.
+\end{proposition}
+
+\begin{proof}
+   It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
+   Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
+   Then $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
+   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
+\end{proof}
+
 
 \newpage
 \section{Collapsing}
@@ -1206,6 +1186,21 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 \newpage
 \section{An auxiliary integer program}
 
+
+\daniel[inline]{The definition of optimal images was moved to here, where it is first used.}
+
+\begin{definition}
+   The \emph{optimal image} of $\IP(A, \vv{u}, q)$ is the set \[ \im \IP(A, \vv{u}, q) = A ( \opt \IP(A, \vv{u}, q) ). \]
+\end{definition}
+
+If $\ideala$ and $\ideald$ are as above, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the optimal image of $\IP(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
+Explicitly,\emily{Can we make the following more concise?}
+\begin{align*}
+  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
+  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
+  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
+  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
+\end{align*}
 
 \subsection{Canonical feasible points}
 
@@ -1568,254 +1563,257 @@ For $p \gg 0$,
  $\nu(A, \vv{u}, q) = \nu(\collapse{A}, \collapse{\vv{u}}, q)$.
 \end{corollary}
 
-\newpage
-\section{Connections with arithmetic and fractal programs}
-
-\subsection{$\mu$ invariants as values of arithmetic integer programs}
-
-Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
-Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
-Recall that for each $q$ a power of $p$ we define the number
-\[\mu(\ideala,\ideald,q) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \ideald^{[q]}\big\},\]
-used in the computation of the critical exponent of $\ideala$ with respect to $\ideald$.
-If $A \in \NN^{d\times n}$ is an exponent matrix of $\ideala$, then $\ideala^{[k]}$ is generated by monomials $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\binom{k}{\vv{k}} \not\equiv 0 \bmod{p}$.
-Since the condition $\ideala^{[k]} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$, finding the maximum defining $\mu(\ideala,\ideald,q)$ is equivalent to maximizing $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$ and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.
-
-In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair and $p$ is a prime integer.
-Moreover, the letter $q$ from here on will always denote a power of $p$.
-Motivated by the above discussion, we introduce a variant of an integer program in which we impose an additional and highly nonlinear constraint.
-%As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
-
-\begin{definition}
-\label{aip: D}
-The \emph{arithmetic integer program} $\IP_p(A, \vv{u}, q)$ in the domain lattice of $A$ consists of maximizing $\vv{k} \mapsto \norm{\vv{k}}$ subject to the linear constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$, and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
-\end{definition}
-
-
-\begin{remark} \label{dickson: R}
-Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
-Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
-\begin{equation*}
-k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
-\end{equation*}
-where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$
-(so that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$).
-Then by \cite{dickson.multinomial},
-\[
-    \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
-\]
-In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
-
-Hence the condition that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$ in \Cref{aip: D} is equivalent to the condition that
- if $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l$ is the
-%  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.}
- base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
-\end{remark}
-
-% \begin{theorem}[\cite{dickson.multinomial}]
-%    \label{thm: dickson}
-%    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
-%    Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
-%    \begin{equation*}
-%       k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
-%    \end{equation*}
-%    where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$.
-%    \textup{(}Note that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$.\textup{)}
-%    Then
-%    \[
-%       \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
-%    \]
-%    In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
-% \qed
-% \end{theorem}
-
-% \begin{corollary}
-%    \label{cor: multinomial congruence}
-%    Let $k,l,e\in \NN$, with $l<p^e$, and $\vv{u},\vv{v}\in \NN^n$, with $\vv{v}<p^e\cdot \vv{1}$.
-%    Then
-%    \[
-%       \pushQED{\qed}
-%       \binom{kp^e+l}{\vv{u}p^e+\vv{v}}\equiv \binom{k}{\vv{u}}\binom{l}{\vv{v}} \mod{p}.\qedhere
-%       \popQED
-%    \]
-% \end{corollary}
+% \newpage
+% \section{Connections with arithmetic and fractal programs}
+%
+% \subsection{$\mu$ invariants as values of arithmetic integer programs}
+%
+% Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_d$ over a field of positive characteristic $p$.
+% Let $\vv{u}$ be a positive point in $\NN^d$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_d^{u_d}}$.
+% Recall that for each $q$ a power of $p$ we define the number
+% \[\mu(\ideala,\ideald,q) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \ideald^{[q]}\big\},\]
+% used in the computation of the critical exponent of $\ideala$ with respect to $\ideald$.
+% If $A \in \NN^{d\times n}$ is an exponent matrix of $\ideala$, then $\ideala^{[k]}$ is generated by monomials $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\binom{k}{\vv{k}} \not\equiv 0 \bmod{p}$.
+% Since the condition $\ideala^{[k]} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$, finding the maximum defining $\mu(\ideala,\ideald,q)$ is equivalent to maximizing $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$ and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.
+%
+% In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair and $p$ is a prime integer.
+% Moreover, the letter $q$ from here on will always denote a power of $p$.
+% Motivated by the above discussion, we introduce a variant of an integer program in which we impose an additional and highly nonlinear constraint.
+% %As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
+%
+% \begin{definition}
+% \label{aip: D}
+% The \emph{arithmetic integer program} $\IP_p(A, \vv{u}, q)$ in the domain lattice of $A$ consists of maximizing $\vv{k} \mapsto \norm{\vv{k}}$ subject to the linear constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$, and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
+% \end{definition}
 %
 %
-% By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
-
-
-We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in analogy with those for linear programs.
-%the analogous way.
-It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
-In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
-
-% By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
+% \begin{remark} \label{dickson: R}
+% Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
+% Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
+% \begin{equation*}
+% k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
+% \end{equation*}
+% where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$
+% (so that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$).
+% Then by \cite{dickson.multinomial},
+% \[
+%     \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
+% \]
+% In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
 %
-% We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in the analogous way.
+% Hence the condition that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$ in \Cref{aip: D} is equivalent to the condition that
+%  if $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l$ is the
+% %  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.}
+%  base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
+% \end{remark}
+%
+% % \begin{theorem}[\cite{dickson.multinomial}]
+% %    \label{thm: dickson}
+% %    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
+% %    Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
+% %    \begin{equation*}
+% %       k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
+% %    \end{equation*}
+% %    where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$.
+% %    \textup{(}Note that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$.\textup{)}
+% %    Then
+% %    \[
+% %       \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
+% %    \]
+% %    In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
+% % \qed
+% % \end{theorem}
+%
+% % \begin{corollary}
+% %    \label{cor: multinomial congruence}
+% %    Let $k,l,e\in \NN$, with $l<p^e$, and $\vv{u},\vv{v}\in \NN^n$, with $\vv{v}<p^e\cdot \vv{1}$.
+% %    Then
+% %    \[
+% %       \pushQED{\qed}
+% %       \binom{kp^e+l}{\vv{u}p^e+\vv{v}}\equiv \binom{k}{\vv{u}}\binom{l}{\vv{v}} \mod{p}.\qedhere
+% %       \popQED
+% %    \]
+% % \end{corollary}
+% %
+% %
+% % By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
+%
+%
+% We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in analogy with those for linear programs.
+% %the analogous way.
 % It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
 % In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
-
-% \daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
-% \pedro[inline]{
-%    This image appears in multiple places: \Cref{follow-leftovers: P}, \Cref{arithmetic uniform value and image: T}, \Cref{cor: upper bound for higher mus}.
+%
+% % By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
+% %
+% % We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in the analogous way.
+% % It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
+% % In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
+%
+% % \daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
+% % \pedro[inline]{
+% %    This image appears in multiple places: \Cref{follow-leftovers: P}, \Cref{arithmetic uniform value and image: T}, \Cref{cor: upper bound for higher mus}.
+% % }
+% \begin{definition}
+% The \emph{optimal image} of $\IP_p(A, \vv{u}, q)$ is the set $\im \IP_p(A, \vv{u}, q)$ of all points  $A \vv{k}$ with $\vv{k} \in \opt \IP_p(A, \vv{u}, q)$.
+% \end{definition}
+%
+% If $\ideala$ and $\ideald$ are as above, and $\mu = \mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)$, then the optimal image of $\IP_p(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^{[\mu]}$ modulo $\ideald^{[q]}$:
+% \begin{align*}
+%   \ideala^{[\mu]} &= \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}}\\
+%   &\equiv \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
+%   &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}\\
+%   &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
+% \end{align*}
+% The critical exponent of $\ideala$ with respect to $\ideald$ is the limit
+% \begin{equation*}
+% \crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
+% \end{equation*}
+% In the next subsection we show that this critical exponent, henceforth denoted $\crit(A,\vv{u})$, can be realized as the value of a \emph{fractal linear program} in the domain of $A$.
+%
+% \subsection{Critical exponents as values of fractal linear programs}
+%
+% \begin{definition}
+%    The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
+%  \[
+% \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).
+%  \]
+% \end{definition}
+%
+% From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_{p,n}$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
+% However, this is not a complete description of $\sierp_{p,n}$.
+% For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
+%
+% This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal.
+% For instance, the points of $\sierp_{2,2}$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:
+% The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
+% At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.
+% The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously.
+%
+% \Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RRnn^2$.
+% \begin{figure}
+% \begin{subfigure}{.49\textwidth}
+%   \centering
+%   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_a.pdf}
+%   \caption{Restriction to $[0,1]^2$}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%   \centering
+%   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_b.pdf}
+%   \caption{Restriction to $[0,9]^2$}
+% \end{subfigure}
+% \caption{The Sierpi\'nski 3-gasket in $\RRnn^2$}
+% \label{fig: sierpinski 3-gasket}
+% \end{figure}
+% In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.
+%
+% Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
+% Toward making this relation precise, consider the following optimization problem, which essentially adds the extra ``fractal'' constraint from the definition of $\sierp_{p,n}$ to
+% the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$.
+%
+% \begin{definition}
+% Given a monomial pair $(A, \vv{u})$, the \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, with $\vv{t}$ in the \emph{closure} of the set of all $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$.
+% % The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
+% \end{definition}
+%
+% \begin{remark}
+%    The set $\mathcal{S}$ consisting of the points $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ is contained in the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.
+%    Since this intersection is compact, so is the closure of $\mathcal{S}$, namely $\feas\fip_p(A,\vv{u})$.
+%    Thus, $\fip_p(A,\vv{u})$ has a well-defined value.
+% %Moreover, there is exists an optimal point
+% %$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
+% \end{remark}
+%
+% \begin{example} \label{ex: feas fip}
+%  Consider the fractal linear program $\fip_p(A, \vv{u})$, where
+% \[ A = \begin{pmatrix}
+%  3&11\\ 11&2 \\ 5&10 \\ 2&0
+%  \end{pmatrix}
+% \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
+% \]
+% \Cref{fig: feas fip} shows the feasible set for $\fip_p = \fip_p(A,\vv{u})$ in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum $\val \fip_p$ in green, for small values of $p$.
+% \begin{figure}
+%   \centering
+% \begin{subfigure}{.49\textwidth}
+% \centering
+%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
+%   \caption{
+%      $
+%      \begin{array}{l}
+%        \opt \fip_2 = \conv\big(\big(\frac1{20},\frac3{40}\big),\big(\frac1{12},\frac1{24}\big)\big)\\[2mm]
+%        \val \fip_2 = \frac18
+%      \end{array}
+%      $
+%   }
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+% \centering
+% \includegraphics[width=.9\textwidth]{Pictures/ex4_char3.pdf}
+% \caption{
+%      $
+%      \begin{array}{l}
+%        \opt \fip_3 = \conv\big(\big(\frac1{36},\frac1{12}\big),\big(\frac7{81},\frac2{81}\big)\big)\\[2mm]
+%        \val \fip_3 = \frac19
+%      \end{array}
+%      $
 % }
-\begin{definition}
-The \emph{optimal image} of $\IP_p(A, \vv{u}, q)$ is the set $\im \IP_p(A, \vv{u}, q)$ of all points  $A \vv{k}$ with $\vv{k} \in \opt \IP_p(A, \vv{u}, q)$.
-\end{definition}
+% \end{subfigure}
+%
+% \bigskip
+%
+% \begin{subfigure}{.49\textwidth}
+% \centering
+%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
+%   \caption{
+%      $
+%      \begin{array}{l}
+%        \opt \fip_5 = \opt \LP = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}\\[2mm]
+%        \val \fip_5 = \frac7{50}
+%      \end{array}
+%      $
+%   }
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+% \centering
+%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
+%   \caption{
+%      $
+%      \begin{array}{l}
+%        \opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}\\[2mm]
+%        \val \fip_7 = \frac{34}{245}
+%      \end{array}
+%      $ }
+% \end{subfigure}
+% \caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
+% \label{fig: feas fip}
+% \end{figure}
+% \end{example}
+%
+% \begin{proposition}
+% Given a monomial pair $(A, \vv{u})$, we have that
+% \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
+% \end{proposition}
+%
+% \begin{proof}
+% For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so
+% \[
+% \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
+%  \]
+% On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_{p,n}$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and
+% $\vv{t} = q \cdot \big( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \big)$.  For $e \geq 1$, let
+%  $\vv{t}^\star_{p^e} = q \cdot \big( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \big)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$.
+%  Dividing by $p^e$ and taking limits, we find that
+%  \[
+% \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
+%  \]
+% Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_{p,n}$ that limit to $\vv{s}$. Since $\vv{t} \mapsto \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
+% Now, since $\vv{s}$ is an arbitrary element of $\feas \fip_p(A, \vv{u}, p)$, we have that
+% $\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$, and equality holds.
+% \end{proof}
 
-If $\ideala$ and $\ideald$ are as above, and $\mu = \mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)$, then the optimal image of $\IP_p(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^{[\mu]}$ modulo $\ideald^{[q]}$:
-\begin{align*}
-  \ideala^{[\mu]} &= \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}}\\
-  &\equiv \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
-  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
-\end{align*}
-The critical exponent of $\ideala$ with respect to $\ideald$ is the limit
-\begin{equation*}
-\crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
-\end{equation*}
-In the next subsection we show that this critical exponent, henceforth denoted $\crit(A,\vv{u})$, can be realized as the value of a \emph{fractal linear program} in the domain of $A$.
 
-\subsection{Critical exponents as values of fractal linear programs}
-
-\begin{definition}
-   The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
- \[
-\vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).
- \]
-\end{definition}
-
-From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_{p,n}$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
-However, this is not a complete description of $\sierp_{p,n}$.
-For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
-
-This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal.
-For instance, the points of $\sierp_{2,2}$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:
-The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
-At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.
-The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously.
-
-\Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RRnn^2$.
-\begin{figure}
-\begin{subfigure}{.49\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_a.pdf}
-  \caption{Restriction to $[0,1]^2$}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-  \centering
-  \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_b.pdf}
-  \caption{Restriction to $[0,9]^2$}
-\end{subfigure}
-\caption{The Sierpi\'nski 3-gasket in $\RRnn^2$}
-\label{fig: sierpinski 3-gasket}
-\end{figure}
-In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.
-
-Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
-Toward making this relation precise, consider the following optimization problem, which essentially adds the extra ``fractal'' constraint from the definition of $\sierp_{p,n}$ to
-the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$.
-
-\begin{definition}
-Given a monomial pair $(A, \vv{u})$, the \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, with $\vv{t}$ in the \emph{closure} of the set of all $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$.
-% The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
-\end{definition}
-
-\begin{remark}
-   The set $\mathcal{S}$ consisting of the points $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ is contained in the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.
-   Since this intersection is compact, so is the closure of $\mathcal{S}$, namely $\feas\fip_p(A,\vv{u})$.
-   Thus, $\fip_p(A,\vv{u})$ has a well-defined value.
-%Moreover, there is exists an optimal point
-%$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
-\end{remark}
-
-\begin{example} \label{ex: feas fip}
- Consider the fractal linear program $\fip_p(A, \vv{u})$, where
-\[ A = \begin{pmatrix}
- 3&11\\ 11&2 \\ 5&10 \\ 2&0
- \end{pmatrix}
-\text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
-\]
-\Cref{fig: feas fip} shows the feasible set for $\fip_p = \fip_p(A,\vv{u})$ in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum $\val \fip_p$ in green, for small values of $p$.
-\begin{figure}
-  \centering
-\begin{subfigure}{.49\textwidth}
-\centering
-  \includegraphics[width=.9\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
-  \caption{
-     $
-     \begin{array}{l}
-       \opt \fip_2 = \conv\big(\big(\frac1{20},\frac3{40}\big),\big(\frac1{12},\frac1{24}\big)\big)\\[2mm]
-       \val \fip_2 = \frac18
-     \end{array}
-     $
-  }
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-\centering
-\includegraphics[width=.9\textwidth]{Pictures/ex4_char3.pdf}
-\caption{
-     $
-     \begin{array}{l}
-       \opt \fip_3 = \conv\big(\big(\frac1{36},\frac1{12}\big),\big(\frac7{81},\frac2{81}\big)\big)\\[2mm]
-       \val \fip_3 = \frac19
-     \end{array}
-     $
-}
-\end{subfigure}
-
-\bigskip
-
-\begin{subfigure}{.49\textwidth}
-\centering
-  \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
-  \caption{
-     $
-     \begin{array}{l}
-       \opt \fip_5 = \opt \LP = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}\\[2mm]
-       \val \fip_5 = \frac7{50}
-     \end{array}
-     $
-  }
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-\centering
-  \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
-  \caption{
-     $
-     \begin{array}{l}
-       \opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}\\[2mm]
-       \val \fip_7 = \frac{34}{245}
-     \end{array}
-     $ }
-\end{subfigure}
-\caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
-\label{fig: feas fip}
-\end{figure}
-\end{example}
-
-\begin{proposition}
-Given a monomial pair $(A, \vv{u})$, we have that
-\[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
-\end{proposition}
-
-\begin{proof}
-For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so
-\[
-\val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
- \]
-On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_{p,n}$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and
-$\vv{t} = q \cdot \big( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \big)$.  For $e \geq 1$, let
- $\vv{t}^\star_{p^e} = q \cdot \big( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \big)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$.
- Dividing by $p^e$ and taking limits, we find that
- \[
-\crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
- \]
-Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_{p,n}$ that limit to $\vv{s}$. Since $\vv{t} \mapsto \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
-Now, since $\vv{s}$ is an arbitrary element of $\feas \fip_p(A, \vv{u}, p)$, we have that
-$\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$, and equality holds.
-\end{proof}
-
+\newpage
+\section{Arithmetic integer programming}
 
 \subsection{Optimal sets and values of arithmetic integer programs}
 
