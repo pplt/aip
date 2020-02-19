@@ -240,6 +240,9 @@ vertices optP A
 ZZ/7[x,y,z,u]
 fpt(x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0)
 
+f = x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0
+
+    
 ----------------
 ZZ/2[x,y]
 fpt(x + y)

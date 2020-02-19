@@ -458,14 +458,14 @@ In what follows, we investigate the  behavior of the integers $\nu(\ideala, \ide
 
 This context might seem restrictive, given that our ultimate goal is to understand the nature of these numerical invariants when the diagonal ideal $\ideald$ is replaced with an arbitrary ideal $\idealb$.  However, we explain in \Cref{monomial-reduction: A} how understanding this specialized situation leads to \Cref{general-nu-theorem: T,general-mu-theorem: T}.
 
-As will soon be apparent, it is natural to describe the the integers $\nu(\ideala, \ideald, p^e)$ and $\mu(\ideala, \ideald, p^e)$ and rational numbers $\ft{\ideala}{\ideald}$ and $\crit(\ideala, \ideald)$ in terms of certain optimization problems.
+As will soon be apparent, it is natural to describe the integers $\nu(\ideala, \ideald, p^e)$ and $\mu(\ideala, \ideald, p^e)$ and rational numbers $\ft{\ideala}{\ideald}$ and $\crit(\ideala, \ideald)$ in terms of certain optimization problems.
 To describe these optimization problems, we now recall the basic framework of integer and linear programming.
 
 Suppose that $\mathcal{X}$ is either $\RR^d$ or $\ZZ^d$.  By a \emph{program $\Omega$ in the ambient space $\mathcal{X}$}, we mean an optimization problem seeking to maximize some given linear \emph{objective function} $\RR^d \to \RR$ on some subset of $\mathcal{X}$ defined by a system of linear inequalities, called the \emph{constraints} of the program $\Omega$. If $\mathcal{X} = \RR^d$, then the points in $\mathcal{X}$ satisfying these constraints defines a polyhedron in $\RR^d$, while if $\mathcal{X} = \ZZ^d$, then the points in $\mathcal{X}$ satisfying these constraints instead consists of the lattice points in some polyhedron in $\RR^d$.  In either case, we call this set of points in $\mathcal{X}$ the \emph{feasible set} of the program.  We denote it by $\feas \Omega$, and say that the points in this set are \emph{feasible} for the program $\Omega$.
 
 To distinguish between these cases, we refer to a program in $\mathcal{X} = \RR^d$ as a {real linear program}, or \emph{linear program} for short, and to a program in $\mathcal{X}=\ZZ^d$ as an {integer linear program}, or \emph{integer program} for short.
 
-Every program $\Omega$ we consider in this article has the property that the values taken on by the objective function on $\feas \Omega$ are bounded from above, and in this case, the maximum value achieved by the objective function on this feasible set is called the \emph{value} of the program $\Omega$, and is denoted $\val \Omega$.  The subset of $\feas \Omega$ where the objective function achieves this maximum value is called the \emph{optimal set} of $\Omega$, and is denoted $\opt \Omega$.   When $\Omega$ is a linear program in $\RR^d$, then $\opt \Omega$ is a face of the polyhedron $\feas \Omega$ in $\RR^d$.
+Every program $\Omega$ we consider in this article has the property that the values taken on by the objective function on $\feas \Omega$ are bounded from above, and in this case, the maximum value achieved by the objective function on this feasible set is called the \emph{value} of the program $\Omega$, and is denoted $\val \Omega$.  The subset of $\feas \Omega$ where the objective function achieves this maximum value is called the \emph{optimal set} of $\Omega$, and is denoted $\opt \Omega$.   When $\Omega$ is a linear program in $\RR^d$, its optimal set is a face of the polyhedron $\feas \Omega$ in $\RR^d$.
 
 
 \subsection{Relations with integer and linear programs}
@@ -644,7 +644,7 @@ The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the 
 \[ A = \begin{bmatrix}
  3&11\\ 11&2 \\ 5&10 \\ 2&0
  \end{bmatrix}
-\text{ and } \vv{u} = \begin{bmatrix} 1 \\ 1 \\ 1 \\ \end{bmatrix}.
+\quad \text{and} \quad \vv{u} = \begin{bmatrix} 1 \\ 1 \\ 1 \\ \end{bmatrix}.
 \]
 \Cref{fig: feas fip} illustrates the key features of the program $\fip_p$ for small values of $p$.  The feasible set for $ \fip_p$ is displayed in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum equal to $\val \fip_p$ in green.  Thus,  $\opt \fip_p$ is simply the intersection of the blue points and green points.
 
@@ -722,8 +722,8 @@ The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Cref{table: feas fip details} provides a more precise description of these quantities.
-It is worth mentioning that when $p=5$, the optimal sets, and hence values, of $\fip_p$ and $P$ agree.
-On the other hand, if $p=2,3,7$, then $\val \fip_p < \val P$.
+It is worth mentioning that when $p=5$, the optimal sets of $\fip_p$ and $\LP$ agree, and consequently so do their values.
+On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %START OF TABLE DISPLAYING FRACTAL PROGRAM DATA
@@ -751,7 +751,7 @@ On the other hand, if $p=2,3,7$, then $\val \fip_p < \val P$.
 % sebsequent ones in the document.
 \end{center}
 \medskip
-\caption{The value and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
+\caption{The values and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
 \label{table: feas fip details}
 \end{table}
 
@@ -790,12 +790,13 @@ We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is
 \end{proof}
 
 \subsection{An outline}
-\daniel[inline]{I imagine placing an outline here that points out the steps we are going to take to solve all of these optimization problems.}
+
+\ \daniel[inline]{I imagine placing an outline here that points out the steps we are going to take to solve all of these optimization problems.}
 
 \newpage
 \section{Connections with Newton polyhedra}
 
-Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $d \times n$ monomial.  In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^d$ with positive entries.  Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the $A$.
+Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $d \times n$ monomial.  In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^d$ with positive entries.  Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
 
 \begin{definition}
 The \emph{Newton polyhedron} associated to the monomial matrix $A$ is the polyhedron in $\RR^d$ given by
@@ -837,17 +838,17 @@ The following proposition is well known to experts, but we include the short pro
 \begin{proof}
    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^d$ produces a point in $\N$.
    In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^d$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
+   This observation implies that $c_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $c_i = \iprod{\defpt}{\canvec_i} = 0$.
 
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^d : \iprod{\defpt}{\canvec_i} = 0\}$, then
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i : \iprod{\defpt}{\canvec_i} = 0\}$, then
 \begin{equation}
 \label{face: e}
-\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),
 \end{equation}
 where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
 \end{proof}
 
-
+\pedro[inline]{Define recession basis here?}
 
 \begin{definition}
    The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
@@ -888,12 +889,14 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    \begin{equation}\label{cone containment: e}
       \lambda^{-1} \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
    \end{equation}
-   Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\norm{\vv{s}} = \lambda$ and $\vv{w} \geq \vv{0}$.
+   Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = \lambda$.
    Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
 \end{proof}
 
 \begin{example}\label{ex: ft}
-   Let $A=\begin{bsmallmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{bsmallmatrix}$ and $\vv{u} = (1,1,1)$.
+   We examine the different characterizations of $\ft{A}{\vv{u}}$ given in \Cref{FT descriptions: P}, for 
+   \[A=\begin{bmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{bmatrix} \quad \text{and} \quad \vv{u} =
+      \begin{bmatrix} 1 \\ 1\\ 1 \end{bmatrix}.\]
    The Newton polyhedron $\N$ of $A$ is shown in \Cref{fig: newton polyhedron}.
    \begin{figure}
    \centering
@@ -918,12 +921,13 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    Thus, $\mf(A,\vv{u}) = \O$, and the description given in \Cref{FT descriptions: P}\eqref{lambda} tells us that $\ft{A}{\vv{u}} = 4/17$.
 
    The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\eqref{new ip} tells us that
-   \[\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = \tfrac4{17}.\]
+   $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = 4/17$.
+
    From yet another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
-   \[\opt \LP(A,\vv{u}) = \conv\big(\big(\tfrac1{17}, 0, \tfrac3{17}\big),\big(\tfrac2{17}, \tfrac1{17}, \tfrac1{17}\big)\big),\]
+   \[\opt \LP(A,\vv{u}) = \conv\bigg(\bigg(\frac1{17}, 0, \frac3{17}\bigg),\bigg(\frac2{17}, \frac1{17}, \frac1{17}\bigg)\bigg),\]
    highlighted in green.
    Thus, \Cref{FT descriptions: P}\eqref{value} again tells us that
-   \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \norm{\big(\tfrac1{17}, 0, \tfrac3{17}\big)} = \tfrac4{17}.\]
+   \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \bigg\|\bigg(\frac1{17}, 0, \frac3{17}\bigg)\bigg\| = \frac4{17}.\]
 \end{example}
 
 \subsection{Characterizing optimal points of $\LP(A,\vv{u})$}
@@ -996,8 +1000,9 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 
 \begin{proof}
    If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.
+   Thus, in view of \Cref{opt set: P}, condition (2) in \Cref{mc: D} is redundant, and $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
+   
    Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
-
    The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
@@ -2299,7 +2304,7 @@ The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri 
 %    E.g., points not in any proper face? Positive convex combinations of vertices?
 % }
 % \daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
-For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
+When restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
 
 \begin{proposition}
    \label{bounded polytope: P}
