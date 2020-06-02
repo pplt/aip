@@ -7,6 +7,11 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{MTW05}
 
+\bibitem[BMS06]{budur+mustata+saito.roots_bs_polys}
+Nero Budur, Mircea Musta\c{t}\v{a}, and Morihiko Saito, \emph{Combinatorial
+  description of the roots of the {B}ernstein-{S}ato polynomials for monomial
+  ideals}, Comm. Algebra \textbf{34} (2006), no.~11, 4103--4117. \MR{2267574}
+
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
   rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
