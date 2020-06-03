@@ -421,23 +421,45 @@ An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coord
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
 
 We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
-More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+\daniel{Revisit this when deciding how to describe collapsing}More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
 
-\subsection{Monomial matrices and monomial ideals}
+\subsection{Monomial matrices, monomial ideals, and pairs}
 \label{monomial newton preliminaries: ss}
 We work in the polynomial ring $\kk[x_1, \ldots, x_\numvars]$ over a field $\kk$, and adopt standard notation for describing monomials.  That is, if $\vv{u} \in \NN^\numvars$, then $x^{\vv{u}} = x_1^{u_1} \cdots x_\numvars^{u_\numvars}$.
 
 \begin{definition}[Monomial matrices]
+\label{monomial matrix: D}
 A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
 If $A$ is a $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^\numvars$ the \emph{target lattice}, of $A$.
 \end{definition}
 
 \begin{remark}[Connections with monomial ideals]
+\label{monomial matrix ideal: R}  Consider a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$.  Given a generating set $\ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle$, not necessarily minimal, with the property that each variable of the ambient polynomial ring appears in some generator, it is not difficult to see that \[A= \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix}\] is a  $\numvars \times n$ monomial matrix.  Clearly, as this process depends on the choice of a distinguished generating set for $\ideala$, there are many monomial matrices $A$ we can assign to $\ideala$, though each such matrix will necessarily have $m$ rows.
+
 \end{remark}
 
-\begin{definition}[Diagonal ideals]
-
+\begin{definition}[Diagonal ideals]  A (full) \emph{diagonal ideal} of $\kk[x_1, \ldots, x_{\numvars}]$ is any \emph{proper} ideal of the form $\ideald = \langle x_1^{u_1}, \ldots, x_{\numvars}^{u_{\numvars}} \rangle$.  In this case,  we call $\ideald$ the diagonal ideal associated to the \emph{positive} point $\vv{u} = (u_1, \ldots, u_{\numvars}) \in \ZZ^{\numvars}$.
 \end{definition}
+
+\begin{definition}[Pairs]  
+   A \emph{monomial pair} $(A, \vv{u})$ consists of an $\numvars \times n$ monomial matrix $A$, and a positive point $\vv{u} \in \ZZ^m$, the target lattice of $A$.  
+   
+   An \emph{ideal pair} $(\ideala, \ideald)$ consists of a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$, along with a diagonal ideal $\ideald$ of the same ambient polynomial ring.
+\end{definition}
+
+\begin{remark}[Association of pairs]
+\label{associate of pairs: R}
+ As in \Cref{monomial matrix ideal: R}, we may associate to each ideal pair $(\ideala, \ideald)$ in $\kk[x_1, \ldots, x_{\numvars}]$ a monomial pair $(A, \vv{u})$.  Observe that, though there need not be a canonical choice for the $m \times n$ matrix $A$, the positive point $\vv{u} \in \ZZ^m$ is uniquely determined by the diagonal ideal $\ideald$.
+\end{remark}
+
+\subsection{Optimization problems}  Le us briefly recall the basic framework of integer and linear programming.
+
+Suppose that $\mathcal{X}$ is either $\RR^\numvars$ or $\ZZ^\numvars$.  By a \emph{program $\Omega$ in the ambient space $\mathcal{X}$}, we mean an optimization problem seeking to maximize some given linear \emph{objective function} $\RR^\numvars \to \RR$ on some subset of $\mathcal{X}$ defined by a system of linear inequalities, called the \emph{constraints} of the program $\Omega$. If $\mathcal{X} = \RR^\numvars$, then the points in $\mathcal{X}$ satisfying these constraints define a polyhedron in $\RR^\numvars$, while if $\mathcal{X} = \ZZ^\numvars$, then the points in $\mathcal{X}$ satisfying these constraints instead consist of the lattice points in some polyhedron in $\RR^\numvars$.  In either case, we call this set of points in $\mathcal{X}$ the \emph{feasible set} of the program.  We denote it by $\feas \Omega$, and say that the points in this set are \emph{feasible} for the program $\Omega$.
+
+To distinguish between these cases, we refer to a program in $\mathcal{X} = \RR^\numvars$ as a {real linear program}, or \emph{linear program} for short, and to a program in $\mathcal{X}=\ZZ^\numvars$ as an {integer linear program}, or \emph{integer program} for short.
+
+Every program $\Omega$ we consider in this article has the property that the values taken on by the objective function on $\feas \Omega$ are bounded from above, and in this case, the maximum value achieved by the objective function on this feasible set is called the \emph{value} of the program $\Omega$, and is denoted $\val \Omega$.  The subset of $\feas \Omega$ where the objective function achieves this maximum value is called the \emph{optimal set} of $\Omega$, and is denoted $\opt \Omega$.   When $\Omega$ is a linear program in $\RR^\numvars$, its optimal set is a face of the polyhedron $\feas \Omega$ in $\RR^\numvars$.
+
 
 \newpage
 \section{Connections with optimization}
@@ -468,9 +490,6 @@ If, as in this section, $A$ is a $\numvars \times n$ monomial matrix, then we ca
 % \end{equation}
 \end{remark}
 
-\begin{definition}
-   A \emph{monomial pair} $(A, \vv{u})$ consists of a monomial matrix $A$ and a positive point $\vv{u}$ in the target lattice of $A$.  If, as in this section, $A$ is a $\numvars \times n$ monomial matrix, then $\vv{u}$ is simply a point in $\NN^\numvars$ with $\vv{u} > \vv{0}$.
-\end{definition}
 
 \pedro[inline]{Maybe move the above to the previous section?}
 
