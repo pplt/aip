@@ -7,7 +7,10 @@
 \renewcommand\thesubfigure{(\sc \alph{subfigure})}
 \usepackage{bm}
 
+%shortfall and deficit
 \newcommand{\short}{\operatorname{short}}
+\newcommand{\deficit}{\operatorname{deficit}}
+
 
 \begin{document}
 
@@ -1402,10 +1405,11 @@ where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \daniel[inline]{
 
 \begin{definition}
-The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
+The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
 where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{definition}
 
+\!{\Cref{tail projection: L} and the constraints of $\ip$ imply that this is a positive set of lattice points in $\rs(\O)^{\perp}$.}
 
 }
 
@@ -1472,6 +1476,16 @@ We now explore some finiteness properties, and our results are of two types:  \C
 \label{bounded value: L}
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.
 \end{lemma}
+
+\daniel[inline]{I propose the following definition. \!{Will require \Cref{bounded value: L} to be moved up.}
+
+\begin{definition}
+\label{deficit ip: D}
+The \emph{deficit} of $\ip(A, \vv{u}, \vv{s}, q)$ is the positive rational number
+\[ \deficit \ip(A, \vv{u}, \vv{s}, q) = \norm{\tail{\vv{s}}_q} - \val \ip(A, \vv{u}, \vv{s}, q). \] 
+
+\end{definition}
+}
 
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
@@ -1552,17 +1566,25 @@ The goal in this subsection is to demonstrate that the value and optimal image o
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
 
-\ \daniel[inline]{This needs updating.  Will give it a shot soon}
-
 \begin{corollary}
 \label{uniform value and image: C}
 Given a monomial matrix $A$, there exists $\beta = \beta(A) \in \ZZ$ satisfying the following condition\textup:
 If $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then
 %
 \[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \]
+\daniel[inline]{This will become 
+\[  \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q -  \deficit \ip(A, \vv{u}, \vv{s}, q) \] 
+\!{Can we easily prove that $\val \IP(A, \vv{u}, q) < \ft{A}{\vv{u}} q$?  If so, would it make sense to describe the deficit of $\IP$  as the difference?  If we do this, then the above instead becomes $\deficit \IP = \deficit \ip$.  }
+
+}
 %
 and
 \[ \ol{\im \IP(A, \vv{u}, q)} = \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip(A, \vv{u}, \vv{s}, q), \]
+\daniel[inline]{This is more interesting, and will become 
+\[  \collapse{ \short \IP(A, \vv{u}, q)} = \short \ip (A, \vv{u}, \vv{s}, q) \] 
+}
+
+
 where the overbar denotes collapse along $\O$.
 \end{corollary}
 
@@ -1589,6 +1611,7 @@ In this subsection, we study the quantities appearing in \Cref{uniform value and
 \label{independence: C} Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
 \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
 \[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
+\daniel[inline]{the deficit and shortfall of $\ip(A, \vv{u}, \vv{s}, q)$}
 do not depend on  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{corollary}
 
@@ -1603,6 +1626,7 @@ Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we set
  \[ \delta(A, \vv{u}, q) = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
 \[\Delta(A, \vv{u}, q) = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
 where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$.
+\daniel[inline]{Stick with $\delta$ and $\Delta$? Or maybe $\mathcal{S} (A, \vv{u}, q)$ and $\mathcal{D}(A, \vv{u}, q)$}
 \end{definition}
 
 %\begin{remark} Above, we referred to \Cref{uniform value and image: C} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one.
@@ -1668,8 +1692,16 @@ We record another application of \Cref{uniform denominators for mc:  T} below.
 \label{uniform uniform value and image: T}
 Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
 If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
-\[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \delta(A, \vv{u}, q) \] and
+\[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \delta(A, \vv{u}, q) \] 
+\daniel[inline]{
+\[  \deficit \IP(A, \vv{u}, q) = \delta (A, \vv{u}, \vv{s}, q) \]}
+
+and
 \[ \ol{ \im \IP(A, \vv{u}, q)} = \collapse{\vv{u}}q - \Delta(A, \vv{u},q) \] where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+
+\daniel[inline]{\[  \collapse{ \short \IP(A, \vv{u}, q)} = \Delta (A, \vv{u}, \vv{s}, q) \] 
+}
+
 \end{theorem}
 
 \begin{proof}
@@ -1679,7 +1711,7 @@ If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
 \begin{remark}[An algebraic interpretation]
 \label{leftover p large: R}
 
-Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$. If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then this same theorem tells us that if $q > \beta$, then\daniel{If we like this description, I guess we'll have to define $F$-thresholds for ideals, which I am not sure we have done} \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} \cdot q - \delta(A, \vv{u},q). \] 
+Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$. If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then this same theorem tells us that if $q > \beta$, then\daniel{Update this, since we already motivated shortfalls.  If we like this description, I guess we'll have to define $F$-thresholds for ideals, which I am not sure we have done} \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} \cdot q - \delta(A, \vv{u},q). \] 
 
 Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.  For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
 
