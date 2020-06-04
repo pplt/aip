@@ -909,8 +909,23 @@ The \emph{Newton polyhedron} associated to the monomial matrix $A$ is the polyhe
 where $\col(A)$ is the set of columns of $A$.
 \end{definition}
 
-Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
-We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any proper coordinate subspace of $\RR^\numvars$, which we call \emph{standard}.
+\begin{definition}
+   \label{defn: face}
+   A proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
+   We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.
+   If $\O$ does not lie in any proper coordinate subspace of $\RR^\numvars$, we call it a \emph{standard} face of $\N$.
+\end{definition}
+
+\begin{remark}
+   \label{rmk: nonnegativity of defining point}
+   The requirement that the number $\alpha$ in \Cref{defn: face} be nonnegative is an arbitrary convention, which will play a role in \Cref{alpha=1: convention} below.
+   We observe that the defining point $\defpt$ is nonnegative as well.
+   Indeed, if $\vv{u} \in \O$, then $\vv{u} + \canvec_i$ lies in $\N$, for each $i$.
+   Consequently, $\alpha \le \iprod{\defpt}{\vv{u} + \canvec_i} = \alpha + c_i$, and hence $c_i \ge 0$ for each $i$.
+   \pedro{Looks like the fact that $\alpha$ is nonnegative doesn't really matter here.}
+\end{remark}
+
+In this article, we are largely concerned with standard faces, and for those we have a helpful convention.
 
 \begin{convention}
 \label{alpha=1: convention}
@@ -932,28 +947,26 @@ Thus,
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
-The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+% The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
-\begin{proposition}
-   \label{face: P}
-   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-\end{proposition}
+% \begin{proposition}
+%    \label{face: P}
+%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+%    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+% \end{proposition}
 
-\begin{proof}
-   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^\numvars$ produces a point in $\N$.
-   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^\numvars$ and $\lambda > 0$.
-   This observation implies that $c_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $c_i = \iprod{\defpt}{\canvec_i} = 0$.
+% \begin{proof}
+%    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^\numvars$ produces a point in $\N$.
+%    In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^\numvars$ and $\lambda > 0$.
+%    This observation implies that $c_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $c_i = \iprod{\defpt}{\canvec_i} = 0$.
 
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i : \iprod{\defpt}{\canvec_i} = 0\}$, then
-\begin{equation}
-\label{face: e}
-\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),
-\end{equation}
-where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-\end{proof}
-
-\pedro[inline]{Define recession basis here?}
+% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i : \iprod{\defpt}{\canvec_i} = 0\}$, then
+% \begin{equation}
+% \label{face: e}
+% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),
+% \end{equation}
+% where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+% \end{proof}
 
 \begin{definition}
    The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
@@ -987,15 +1000,17 @@ As noted in \Cref{ft as val LP: P}, the quantity appearing in \Cref{FT descripti
 
 Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.  Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
   $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$,
-   where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$,  a fact that is intuitively clear, but nevertheless established later in this article, in \Cref{face: P}.
-   In any case, the value of $\LP$ is at most. 
+   where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$, shown in \Cref{rmk: nonnegativity of defining point}.
+   This shows that the value of $\LP$ is at most $\lambda$. 
 
-   On the other hand, \eqref{face: e} and our choice of $\O$ imply that
-   \begin{equation}\label{cone containment: e}
-      \lambda^{-1} \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
-   \end{equation}
-   Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = \lambda$.
-   Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
+   % On the other hand, \eqref{face: e} and our choice of $\O$ imply that
+   % \begin{equation}\label{cone containment: e}
+   %    \lambda^{-1} \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
+   % \end{equation}
+   % Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = \lambda$.
+   % Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
+   On the other hand, since $\lambda^{-1}\vv{u} \in \N = \conv(\col(A)) + \cone(\vv{e}_1,\ldots,\vv{e}_\numvars)$, we can write $\lambda^{-1}\vv{u} = A\vv{s}+\vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = 1$.
+   Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
 
 \begin{example}\label{ex: ft}
@@ -1176,19 +1191,18 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 \newpage
 \section{Collapsing}
 
-{\color{blue}
 The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
 \begin{proposition}
    \label{face: P}
-   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
 
 \begin{proof}
-   If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^\numvars$ produces a point in $\N$.
-   In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^\numvars$ and $\lambda > 0$.
-   This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
+   Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
+   Then $\vv{u} + \lambda \canvec_i$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
+   Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
 
 Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
 \begin{equation}
@@ -1204,7 +1218,7 @@ where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that 
 
 As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
 In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
-}
+
 
 
 This section concerns an operation used to get around some technical difficulties that arise when dealing with an unbounded minimal face.
