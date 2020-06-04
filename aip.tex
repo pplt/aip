@@ -523,22 +523,32 @@ It is easy to deduce from the fact that the matrix $A$ is a monomial matrix (i.e
 \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q).
 \end{equation}
 
-\daniel[inline]{The definition of optimal images was moved to here, where it is first used.}
+\daniel[inline]{I propose to describe things in terms of shortfalls, as opposed to optimal images.}
 
 The constraints of the program $\IP(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of its feasible set,  the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.  In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
 
-\begin{definition}[Optimal shortfall]  The \emph{optimal shortfall}, or simply \emph{shortfall}, of the integer program $\IP(A, \vv{u}, q)$ is the set $\short \IP(A, \vv{u}, q)$ defined by
+\begin{definition}[Shortfalls]  The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
 %
-\[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q).\]  
+\[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]  
+Equivalently, the shortfall of $\IP(A, \vv{u},q)$ is determined by the condition
+\[ A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q).\]
+%
 
+%
 The preceding discussion illustrates the shortfall of $\IP(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$.\end{definition}
 
-\begin{remark}[Algebraic interpretation of optimal images]
-\label{optim motivation: R}
-Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$. If $q$ is a power of $p$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the optimal image of $\IP(A,\vv{u},q)$ characterizes the ``leftovers'' of the ideal $\ideala^\nu$ modulo $\ideald^{[q]}$.
+\begin{remark}[Algebraic interpretation of shortfalls]
+\label{shortfall motivation: R}
+If $q$ is a power of $p$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the shortfall of $\IP(A,\vv{u},q)$ can be interpreted in terms of the ideal pair $(\ideala, \ideald)$ as the ``leftovers'' of $\ideala^\nu$ mod $\ideald^{[q]}$.
 
-More precisely, the discussion preceding \Cref{aip: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP(A, \vv{u}, q)$.  It follows from this observation that
-\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
+More precisely, the discussion preceding \Cref{aip: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  
+
+Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP(A, \vv{u}, q)$.  Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q)$.  In other words,
+\begin{equation}
+\label{algebraic shortfall PI general: e}
+ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
+ \end{equation}
+%\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
 %\begin{align*}
 %  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
 %  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
@@ -549,13 +559,14 @@ More precisely, the discussion preceding \Cref{aip: D} tells us that the generat
 
 
 
-\!{transition}Thus, the $F$-threshold of $\ideala$ with respect to $\ideald$ can be expressed as the limit
+We now shift our attention from the integers $\nu(\ideala, \ideald, q)$ to the $F$-threshold $\ft{\ideala}{\ideald}$.  First, note that \eqref{nu as program value: eq} and the definition of $\ft{\ideala}{\ideald}$ imply that 
 %
 \begin{equation}
 \label{ft as limit of normalized program values: eq}
 \ft{\ideala}{\ideald} = \lim_{e\to\infty} \frac{\nu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP(A,\vv{u},p^e)}{p^e}.
 \end{equation}
-In \Cref{ft as val LP: P}, we realize this limit as the value of a certain linear program.
+
+Continuing with our theme, we seek to describe this number in terms of a certain optimization program, which we define below.
 
 \begin{definition}
 \label{LP: D}
@@ -572,14 +583,14 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
 \end{proposition}
 
 \begin{proof}
-   As usual, suppose that $A$ is a $\numvars \times n$ monomial matrix.
-   If $\vv{k} \in \ZZ^n$ is optimal for the integer program $\IP(A,\vv{u},q)$, then the scaled point $\vv{k}/q$ is feasible for the linear program $\LP = \LP(A, \vv{u})$, so $\val \LP \geq \val \IP(A, \vv{u}, q)/q$ for all $q$.
+  Recall that, as $A$ is a $\numvars \times n$ monomial matrix, the domain of $A$ is $\RR^n$, and the domain lattice of $A$ is $\ZZ^n$.  If $\vv{k} \in \ZZ^n$ is optimal for $\IP(A,\vv{u},q)$, then the scaled point $\vv{k}/q$ is feasible for $\LP = \LP(A, \vv{u})$, so $\val \LP \geq \val \IP(A, \vv{u}, q)/q$ for all $q$.
    Thus, $\val \LP$ is at least equal to the limits appearing in \eqref{ft as limit of normalized program values: eq}.
 
    Conversely, given an optimal point $\vv{t} \in \RR^n$ for $\LP$,
    define $\vv{t}_q \in \ZZ^n$ as the point whose $i$-th coordinate is $0$ if $t_i=0$, and otherwise equals $\lceil q t_i \rceil - 1$, the greatest integer less than $q t_i$.
    By design, and the fact that $A$ is a monomial matrix, the $i$-th entry of $A \vv{t}_q$ is either less than the $i$-th entry of $A (q \vv{t})$, which itself is less than or equal to $u_iq$, by the feasibility of $\vv{t}$ for $\LP$, or equals $0$,  in which case it is also less than $u_i q$ since $\vv{u}$ is positive. This observation demonstrates that $\vv{t}_q$ is feasible for $\IP(A, \vv{u}, q)$, and so
    \[\val \IP(A, \vv{u}, q) \geq \norm{\vv{t}_q} \geq \sum_{i=1}^n \big(\lceil q t_i \rceil - 1\big) \geq q \norm{\vv{t}} -n = q \cdot \val \LP - n.\]
+   
    Dividing by $q$ and taking the limit as $q$ tends to infinity, we find that the limits in \eqref{ft as limit of normalized program values: eq} are at least $\val \LP$, which completes the proof.
 \end{proof}
 
@@ -605,32 +616,54 @@ We define the terms \emph{feasible, optimal}, and \emph{value} relative to the a
 
 \begin{remark}[A characterization of the arithmetic constraint]
  \label{dickson: R}
-   Consider $h \in \NN$ and $\vv{h} \in \NN^n$.
-   As every natural number has a unique terminating base $p$ expansion, we may uniquely express these quantities as
-\begin{equation*}
-h = \sum_{e=0}^t h_e \, p^e \quad \text{and} \quad \vv{h}=\sum_{e=0}^t \vv{h}_e \, p^e
-\end{equation*}
-where $0\le h_e < p$ and $\vv{0}\le\vv{h}_e < p  \vv{1}$ for each $0 \leq e \leq t$, and where $h_t$ and $\vv{h}_t$ are allowed to be zero.
+   Consider $n \in \NN$ and $\vv{n} \in \NN^n$.
+   In base $p$, we may uniquely express these quantities as $n= \sum_{e=0}^s n_e \, p^e$ and $\vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e$
+%\begin{equation*}
+%n= \sum_{e=0}^s n_e \, p^e \quad \text{and} \quad \vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e
+%\end{equation*}
+where $0\le n_e < p$ and $\vv{0}\le\vv{n}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $n_s$ and $\vv{n}_s$ are allowed to be zero.
 In any case, \cite{dickson.multinomial} then tells us that
-\[
-    \binom{h}{\vv{h}}\equiv \binom{h_0}{\vv{h}_0}\binom{h_1}{\vv{h}_1}\cdots \binom{h_t}{\vv{h}_t} \mod{p}.
-\]
+$\binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_s}{\vv{n}_s} \mod{p}$.
+%\[
+%    \binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_t}{\vv{n}_t} \mod{p}.
+%\]
 
-In particular, the multinomial coefficient $\binom{h}{\vv{h}}$ is nonzero mod $p$ if and only if $\norm{\vv{h}_e}=h_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{h} \in \NN$ sum to $h$ \emph{without carrying} in base $p$.
+In particular, the multinomial coefficient $\binom{n}{\vv{n}}$ is nonzero mod $p$ if and only if $\norm{\vv{n}_e}=n_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{n} \in \NN$ sum to $n$ \emph{without carrying} in base $p$.
 
 In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the following condition:  If
- $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_t \, p^t$ is the base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq t$.
+ $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_t \, p^s$ is the base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq t$.
 \end{remark}
 
-Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $\IP(A, \vv{u},q)$, and hence, is a finite set.  
+Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $\IP(A, \vv{u},q)$, and hence, is finite.  
 In particular, this arithmetic program has a well-defined value, and the discussion preceding \Cref{aip: D} tells us that
 %
-%\begin{equation}
-%\label{mu as program value: eq}
-\[ \mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q) \]
-%\end{equation}
+\begin{equation}
+\label{mu as program value: eq}
+\mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)
+\end{equation}
 %
-and this, in turn, implies that
+
+\begin{definition}[Shortfalls]  The \emph{shortfall} of the arithmetic integer program $\IP_p(A, \vv{u}, q)$, denoted $\short \IP_p(A, \vv{u}, q)$, is the Minkowski difference
+%
+\[ \short \IP_p(A, \vv{u}, q) = \vv{u}q - A( \opt \IP_p(A, \vv{u}, q)).\]  
+Equivalently, the shortfall of $\IP_p(A, \vv{u},q)$ is determined by the condition
+\[ A(\opt \IP_p(A, \vv{u}, q)) = \vv{u}q - \short \IP_p(A, \vv{u}, q).\]
+%
+
+%
+\end{definition}
+
+The shortfall of $\IP_p(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$, and arguing as in \Cref{shortfall motivation: R}, one can show that
+%
+\begin{equation}
+\label{algebraic shortfall PI_p general: e}
+ \ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
+ \end{equation}
+
+
+
+Turning to the critical exponents $\crit(\ideala, \ideald)$, the identity \eqref{mu as program value: eq} implies that
+%
 \begin{equation}
 \label{crit as limit of normalized program values: eq}
 \crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
@@ -699,7 +732,7 @@ The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the 
    For example, if $A$ is the $2\times 2$ identity matrix, $\vv{u} = (1,1)$, and $p=2$, then the closure of the set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} < \vv{u} \}$ is simply the classical Sierpi\'nski triangle---the set of points $\vv{t}$ in $\sierp_{2,2}$ with $\norm{\vv{t}} \le 1$. The set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} \le \vv{u} \}$, on the other hand, also includes the line segments from $(1,0)$ to $(1,1)$, and from $(1,1)$ to $(0,1)$.
 \end{remark}
 
-\begin{remark}[On the values and optimal sets of fractal programs]  By the discussion preceding \Cref{fractal program: D}, the feasible set of $\fip_p(A, \vv{u})$ is contained in the feasible set of $\LP(A, \vv{u})$, and hence, is bounded.  Thus, $\feas \fip_p(A, \vv{u})$ is compact, and so $\val \fip_p(A, \vv{u})$, the value of $\fip_p(A, \vv{u})$, can be defined as 
+\begin{remark}[On the values and optimal sets of fractal programs]  The discussion preceding \Cref{fractal program: D} implies that $\feas \fip_p(A, \vv{u})$ is contained in the feasible set of $\LP(A, \vv{u})$, and hence, is bounded.  Thus, $\feas \fip_p(A, \vv{u})$ is compact, and so $\val \fip_p(A, \vv{u})$, the value of $\fip_p(A, \vv{u})$, can be defined as 
    \[ \max \{ \norm{\vv{t}}: \vv{t} \in \feas \fip_p(A, \vv{u}) \} = \sup \{ \norm{\vv{t}} : \vv{t} \in \sierp_{p,n}, A \vv{t} < \vv{u} \} \] which is a well-defined real number.
    As usual, we define the optimal set of $\fip_p(A, \vv{u})$ to be the set $\opt \fip_p(A, \vv{u})$ of feasible points where this maximum is attained.
 %Moreover, there is exists an optimal point
@@ -1366,6 +1399,16 @@ The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A,
 where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{definition}
 
+\daniel[inline]{
+
+\begin{definition}
+The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
+where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+\end{definition}
+
+
+}
+
 \Cref{comparison: R} gives us the following result.
 
 \begin{proposition}
@@ -1640,7 +1683,7 @@ Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ide
 
 Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.  For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
 
-In this case,  the collapse along $\O$ is the identity map, and so ${ \im \IP(A, \vv{u}, q)}$ equals ${\vv{u}}q - \Delta(A, \vv{u},q)$.  In light of this, it follows from \Cref{optim motivation: R} that 
+In this case,  the collapse along $\O$ is the identity map, and so ${ \im \IP(A, \vv{u}, q)}$ equals ${\vv{u}}q - \Delta(A, \vv{u},q)$.  In light of this, it follows from \Cref{shortfall motivation: R} that 
 \[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \im \Delta(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
 In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
 
