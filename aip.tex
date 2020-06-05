@@ -424,6 +424,11 @@ is the critical exponent of $\ideala$ with respect to $\idealb$.
    \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
 \end{theorem}
 
+\emily[inline]{New: Add what we can say about critical exponents.}
+\emily[inline]{New: Explain that our method replaces an arbitrary $\idealb$ with a diagonal ideal.}
+
+
+
 \newpage
 \section{Notation and basic notions}
 
@@ -2425,6 +2430,25 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 
 \emily[inline]{It seems like we prove that $\mu(A, \vv{u}, q) = \mu(\collapse{A}, \collapse{\vv{u}}, q)$.  Let's make sure to state that later\daniel[inline]{I guess this will be an analog of \Cref{leftover p large: R}}}
+
+
+\emily[inline]{New:
+
+\begin{theorem}
+   \label{diagonal-mu-theorem: T}
+   Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every positive $\vv{u} \in \NN^\numvars$ with $\ideala \subseteq \ideald = \diag(\vv{u})$, and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \vv{u})$ and a sequence $\big(\epsilon(\ideala, \vv{u}, r, e)\big)_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following conditions.
+   If $p > \beta$ and $p \equiv r \bmod \ell$, then
+   \[ \mu(\ideala_p, \ideald_p, p^e) = \ft{\ideala_p}{\ideald_p} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \vv{u}, r, s) \cdot p^{e-s}.\]
+\end{theorem}
+
+\begin{proof} \textcolor{red}{prove}
+\end{proof}
+
+Finally, as mentioned earlier, our main theorem,\Cref{general-mu-theorem: T}, can be reduced to \Cref{diagonal-mu-theorem: T}, as proven at the end of  
+\Cref{monomial-reduction: A}.
+}
+
+
 
 \newpage
 
