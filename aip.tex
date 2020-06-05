@@ -956,21 +956,23 @@ The following proposition is well known to experts, but we include the short pro
 
 \begin{proposition}
    \label{face: P}
-   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{v} + \lambda \canvec_i \in \O$  for every $\vv{v} \in \O$ and $\lambda > 0$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
 
 \begin{proof}
-   Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
-   If $\lambda > 0$, then $\vv{u} + \lambda \canvec_i \in \N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
-   Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
+   Let $\vv{v} \in \O$, and suppose $\iprod{\defpt}{\vv{v}} = \alpha$.
+   If $\lambda > 0$, then the point $\vv{v} + \lambda \canvec_i$ of $\N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{v} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
+   So $\vv{v} + \lambda \canvec_i \in \O$ for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
 
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-\begin{equation}
-\label{face: e}
-\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-\end{equation}
-where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+   The fact proven above shows that if $\O$ is bounded, then $\defpt$ must be positive.
+   Conversely, if $\defpt$ is positive, then $\O$ is bounded, as each coordinate $v_i$ of a point $\vv{v}\in \O$ is bounded below by 0 and above by $\alpha/c_i$. 
+% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
+% \begin{equation}
+% \label{face: e}
+% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+% \end{equation}
+% where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
 \end{proof}
 
 \begin{definition}
