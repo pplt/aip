@@ -11,6 +11,7 @@
 \newcommand{\short}{\operatorname{short}}
 \newcommand{\deficit}{\operatorname{deficit}}
 
+\newcommand{\denom}{d} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
 
 \begin{document}
 
@@ -20,7 +21,6 @@
 \author{Emily E.~Witt}
 \maketitle
 
-\newcommand{\denom}{\ell}
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
 \details[inline]{
@@ -904,6 +904,12 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $\numvars \times n$ monomial matrix.
 In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.  Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
 
+\pedro[inline]{
+   Mention that some terminology and results on convex geometry is gathered in Appendix A.
+}
+
+\subsection{Newton polyhedra and their faces}
+
 \begin{definition}
 The \emph{Newton polyhedron} associated to the monomial matrix $A$ is the polyhedron in $\RR^\numvars$ given by
 \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_\numvars), \]
@@ -921,12 +927,12 @@ where $\col(A)$ is the set of columns of $A$.
    \label{rmk: nonnegativity of defining point}
    The requirement that the number $\alpha$ in \Cref{defn: face} be nonnegative is an arbitrary convention, which will play a role in \Cref{alpha=1: convention} below.
    We observe that the defining point $\defpt$ is nonnegative as well.
-   Indeed, if $\vv{u} \in \O$, then $\vv{u} + \canvec_i$ lies in $\N$, for each $i$.
-   Consequently, $\alpha \le \iprod{\defpt}{\vv{u} + \canvec_i} = \alpha + c_i$, and hence $c_i \ge 0$ for each $i$.
+   Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i$ lies in $\N$  for each $i$.
+   Consequently, $\alpha \le \iprod{\defpt}{\vv{v} + \canvec_i} = \alpha + c_i$, and hence $c_i \ge 0$ for each $i$.
    \pedro{Looks like the fact that $\alpha$ is nonnegative doesn't really matter here.}
 \end{remark}
 
-In this article, we are largely concerned with standard faces, and for those we have a helpful convention.
+In this article, we are largely concerned with standard faces, and for those we shall adopt a helpful convention.
 
 \begin{convention}
 \label{alpha=1: convention}
@@ -934,8 +940,6 @@ Take $\O \subseteq \RR^\numvars$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR
 \end{convention}
 
 This convention leads to the following useful observation.
-
-%Convention \Cref{alpha=1: convention} leads to the following useful observation.
 
 \begin{proposition}\label{prop: inner product with columns of A}
    If $\defpt \in \RR^\numvars$ defines a standard face $\O$ of $\N$, and $\vv{s}~\in~\RR^n$ has nonnegative entries, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$, ~and~equality holds if and only if $s_i = 0$ whenever~the~$i$-th~column~of~$A$~is~not~in~$\O$.
@@ -948,30 +952,62 @@ Thus,
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
-% The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+
+\begin{proposition}
+   \label{face: P}
+   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+\end{proposition}
+
+\begin{proof}
+   Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
+   If $\lambda > 0$, then $\vv{u} + \lambda \canvec_i \in \N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
+   Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
+
+Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
+\begin{equation}
+\label{face: e}
+\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+\end{equation}
+where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+\end{proof}
+
+\begin{definition}
+   If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
+\end{definition}
+
+As noted in \Cref{face: P}, these definitions depend only on $\O$, but not on the choice of $\defpt$.
+In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
+
+
 
 % \begin{proposition}
 %    \label{face: P}
-%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
+%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
 %    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 % \end{proposition}
 
 % \begin{proof}
-%    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^\numvars$ produces a point in $\N$.
-%    In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^\numvars$ and $\lambda > 0$.
-%    This observation implies that $c_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $c_i = \iprod{\defpt}{\canvec_i} = 0$.
+%    Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
+%    Then $\vv{u} + \lambda \canvec_i$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
+%    Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
 
-% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i : \iprod{\defpt}{\canvec_i} = 0\}$, then
+% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
 % \begin{equation}
 % \label{face: e}
-% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),
+% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
 % \end{equation}
 % where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
 % \end{proof}
 
+
+\subsection{The $F$-threshold of a monomial pair}
+
 \begin{definition}
    The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
 \end{definition}
+
 
 \begin{proposition}
    \label{FT descriptions: P}
@@ -984,7 +1020,8 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    \end{enumerate}
 \end{proposition}
 
-As noted in \Cref{ft as val LP: P}, the quantity appearing in \Cref{FT descriptions: P}(1) can be described algebraically as an $F$-threshold associated to a monomial pair, which motivates the following definition.
+As noted in \Cref{ft as val LP: P}, if $(A,\vv{u})$ is a monomial pair associated to the ideal pair $(\ideala,\ideald)$, then the quantity appearing in \Cref{FT descriptions: P}(1) can be described algebraically as the $F$-threshold of $(\ideala,\ideald)$.
+This motivates the following definition.
 
 \begin{definition}
 \label{FT: D}
@@ -1037,11 +1074,12 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    \label{fig: newton polyhedron and splitting polytope}
    \end{figure}
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
-   \[\O = \conv(\col(A)) + \cone(\canvec_2),\]
-   shown in blue. \daniel{Is this really blue?  The 3(B) figure looks blue; this looks purple}
-   \pedro{It is blue, but looks purplish because of Mathematica's lighting.
-      Maybe best would be to avoid mentions to colors, as these things may end up being printed in B\&W.
-   }
+   \[\O = \conv(\col(A)) + \cone(\canvec_2).\]
+   % shown in blue.
+   % \daniel{Is this really blue?  The 3(B) figure looks blue; this looks purple}
+   % \pedro{It is blue, but looks purplish because of Mathematica's lighting.
+   %    Maybe best would be to avoid mentions to colors, as these things may end up being printed in B\&W.
+   % }
    Thus, $\mf(A,\vv{u}) = \O$, and the description given in \Cref{FT descriptions: P}\eqref{lambda} tells us that $\ft{A}{\vv{u}} = 4/17$.
 
    The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\eqref{new ip} tells us that
@@ -1158,20 +1196,24 @@ Special denominators exist.
 
 \begin{proof}
    Let $A$ be a monomial matrix.
-   Let $\ell_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\ell_{\circ}$.
+   Let $\denom_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\denom_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $\numvars \geq 2$ many rows.
    Without loss of generality, suppose that $\rb(\O) = \{ \canvec_1, \ldots, \canvec_t \}$ for some $1 \leq t \leq \numvars-1$, and fix \emph{positive} integers $\numvars_1, \ldots, \numvars_t$ that sum to $\numvars-1$.
    As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq t$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
    It then follows from the definition of special point that the point
-   \[ \frac{ d_1 \cdot \vv{s}_1 + \cdots + d_t \cdot  \vv{s}_t}{\numvars-1}  \]
-   lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(\numvars-1)\ell_{\circ}$.
+   \[ \frac{ \numvars_1 \cdot \vv{s}_1 + \cdots + \numvars_t \cdot  \vv{s}_t}{\numvars-1}  \]
+   lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(\numvars-1)\denom_{\circ}$.
 \end{proof}
 
-\daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
-
 \subsection{Discreteness of $F$-thresholds}
+
+\ \daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
+\pedro[inline]{
+   If we figure we don't really need it, then omitting is OK with me. 
+}
+
 
 The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
@@ -1191,34 +1233,6 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 
 \newpage
 \section{Collapsing}
-
-The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
-
-\begin{proposition}
-   \label{face: P}
-   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-\end{proposition}
-
-\begin{proof}
-   Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
-   Then $\vv{u} + \lambda \canvec_i$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
-   Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
-
-Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-\begin{equation}
-\label{face: e}
-\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-\end{equation}
-where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-\end{proof}
-
-\begin{definition}
-   If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
-\end{definition}
-
-As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
-In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
 
 
 
@@ -1456,7 +1470,7 @@ The following may be regarded as a partial converse to \Cref{comparison: R}
 
 \begin{proposition}
 \label{uniform value: P}
-Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, denominator $\ell$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\ell$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point
+Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, denominator $\denom$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point
 $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
 \end{proposition}
 
@@ -2237,7 +2251,7 @@ Next, for every $1 \leq i \leq e$,  we define
   \[
 \vv{k}_i = \vv{s}_i \cdot p - [\vv{s}_i]_p + \vv{h}_i.
 \]
-Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\ell$ is greater than every coordinate of $\vv{1}-\vv{h}_i$, and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} (or rather, its proof) that
+Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$, and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} (or rather, its proof) that
 \begin{equation}
 \label{optimality-for-each-component: e}
 \vv{k}_i \in \opt \IP(A_i, \vv{u}_i,p)
@@ -2259,7 +2273,7 @@ $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ 
 
 Given that the target of $A_1$ is $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, it suffices to verify that \eqref{target-inequality: e} holds after projection to each of these Euclidean spaces.  We first consider the projection to $\rb(\O_1)^{\perp}$.  As $A_2$ is the collapse of $A_1$ along $\O_1$, the projection of $A_1 \vv{m}$ to $\rb(\O_1)^{\perp}$ equals $A_2 \vv{m}$ for every $\vv{m}$ in the domain of $A_1$.  In particular, the projection of $A_1( - \tail{\vv{s}_1}_p + \vv{h}_1 )$ to this subspace is $A_2 ( - \tail{\vv{s}_1}_p + \vv{h}_1 )$, which equals $-\vv{u}_2$, by our choice of $\vv{h}_1$.  Thus, projecting \eqref{target-inequality: e} to $\rs(\O)^{\perp}$ yields $-\vv{u}_2 \cdot p^{e-1} + A_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.
 
-We now consider the projection of \eqref{target-inequality: e} to $\rs(\O_1)$, and given that $\tail{\vv{s}_1}_p \geq \vv{0}$, it suffices to verify that the projection of the stronger inequality \[ \sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i} = A_1 \vv{h}_1 \cdot p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \] to $\rs(\O)^{\perp}$ holds.  However, keeping in mind that $\ell$ is a denominator of $\vv{w}$, which is positive in $\rs(\O_1)$, every coordinate of the projection of $\vv{w} p^e$ to $\rs(\O_1)$ is at least $p^e / \ell$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i \cdot p^{e-i}$ for some $\omega_1, \cdots, \omega_e \in \Omega$.  Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds after projecting to $\rs(\O_1)$.
+We now consider the projection of \eqref{target-inequality: e} to $\rs(\O_1)$, and given that $\tail{\vv{s}_1}_p \geq \vv{0}$, it suffices to verify that the projection of the stronger inequality \[ \sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i} = A_1 \vv{h}_1 \cdot p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \] to $\rs(\O)^{\perp}$ holds.  However, keeping in mind that $\denom$ is a denominator of $\vv{w}$, which is positive in $\rs(\O_1)$, every coordinate of the projection of $\vv{w} p^e$ to $\rs(\O_1)$ is at least $p^e / \denom$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i \cdot p^{e-i}$ for some $\omega_1, \cdots, \omega_e \in \Omega$.  Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds after projecting to $\rs(\O_1)$.
 
 We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
 \end{proof}
