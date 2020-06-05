@@ -20,25 +20,7 @@
 \author{Emily E.~Witt}
 \maketitle
 
-\newcommand{\denom}{\ell} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
-
-\pedro[inline]{What if we use $m$ for the number of variables/rows, to free $d$ to be the preferred notation for denominators?
-\emily[inline]{I replaced instances of $d$ with the command {\tt \text{numvars}}, though please change it if you notice have missed some--I set it to $m$ in the meantime. It does look like $m$ is used in several other ways, so I think now I'll vote to keep ``$d$.''
-}}
-\pedro[inline]{
-   I like $m$, especially in ``$m\times n$ matrix'' (though we'll have to search and replace the article ``a'' with ``an'').
-   I noticed $m$ being used (in other contexts) in the following places:
-   \begin{itemize}
-      \item In the discussion after the definition of Sierpinski gasket; that could be replaced with anything else ($s$, for example).
-      \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
-      \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
-      \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
-   \end{itemize}
-   It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
-}
-\emily[inline]{I am commenting out the items on the list we've done that don't look like we need for reference.}
-
-\vspace{.3cm}
+\newcommand{\denom}{\ell}
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
 \details[inline]{
@@ -46,58 +28,72 @@ TO DO LIST:
 \begin{enumerate}
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
-\item[$\CheckedBox$] Decide on name for minimal coordinate.
- \comment[inline]{Going with ``special point''.}
-\item[$\CheckedBox$] Make sprout notation.
-\comment[inline]{Going with $\sprout(A,\vv{u},p)$}
-\item[$\Box$] Put in examples.
+%\item[$\CheckedBox$] Decide on name for minimal coordinate.
+% \comment[inline]{Going with ``special point''.}
+%\item[$\CheckedBox$] Make sprout notation.
+%\comment[inline]{Going with $\sprout(A,\vv{u},p)$}
+\item[$\Box$] Replace any remaining instances of $d$ for dimension with {\tt \text{numvars}}. 
+\item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
+\begin{itemize}
+ \item Example with $\ldots$
+ \item Example with $\ldots$
+\end{itemize}
+\item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 \pedro[inline]{Started working on it.}
+\item[$\Box$] Rewrite statements in terms of ``shortfall.''
+\item[$\Box$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns. 
+\item[$\Box$] Later, rewrite proofs with these same conventions.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  %\item[$\CheckedBox$] Fill in/rewrite preliminaries.
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
- \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
+% \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
  \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
- \item[$\Box$] Derive some easy corollaries for very general hypersurfaces.
- \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
- \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
+ \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
+% \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
+% \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
  \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
- \emily[inline]{I went carefully through the current doc (4/14/20) and found that \Cref{refined-discreteness: L} is not explicitly cited.  The lemma right after \Cref{cor: constant mus} not currently cited, but a note before it gives a consequence we should add.  \Cref{noncontainment mod p: L} appears only to be mentioned in \Cref{mon-operation-modulo-p: T}, and the proof of the latter recovers a special case of \Cref{noncontainment mod p: L}.  All other lemmas are used to prove subsequent statements.}
-\end{enumerate}
-}
-
-\details[inline]{
-   TO-DO LIST (Continued):
-   \begin{itemize}
+ \emily[inline]{The current doc (6/5/20) has \Cref{refined-discreteness: L} not explicitly cited, and the lemma right after \Cref{cor: constant mus} is not currently cited, but a note before it gives a consequence we should add.   All other lemmas are used.}
+ 
       \item[$\Box$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
       %\item[$\CheckedBox$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
       %\item[$\CheckedBox$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       %\item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
       %\item[$\CheckedBox$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
-      \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$.
+      \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
       \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
       %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
       Emily suggest using $\vv{c}$.  This is probably a good idea.
       \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
       %\item[$\CheckedBox$] Uniformize the way we describe programs (e.g., as in Section 9).
-      \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
-      Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
-      \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
-      \item[$\Box$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
+%      \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
+ %     Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
+  %    \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
+
+\end{enumerate}
+}
+
+\details[inline]{
+   TO-DO LIST (Continued):
+   \begin{itemize}
+         \item[$\Box$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
       \emily[inline]{Would ``a monomial matrix'' be OK?}
       \pedro[inline]{That sounds good to me.}
-      \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
-      \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
-      \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
+    %  \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
+%      \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
+%      \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
       %\item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
       \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
-      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
+%      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
       \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
+    \item[$\Box$] Put ``titles'' in appropriate statements. 
    \end{itemize}
 }
+
+
 
 \newpage
 
