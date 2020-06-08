@@ -12,6 +12,10 @@ M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
   rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
   43--61.
 
+\bibitem[CCZ14]{conforti+etal.integer_programming}
+M.~Conforti, G.~Cornu\'ejols, and G.~Zambelli, \emph{{I}nteger {P}rogramming},
+  Graduate Texts in Mathematics, no. 271, Springer, Berlin, 2014.
+
 \bibitem[Dic02]{dickson.multinomial}
 L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
   respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
@@ -20,6 +24,10 @@ L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
 \bibitem[HTW19]{hernandez+etal.frobenius_powers}
 D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers}, Math.\
   Z. (2019), 1--32.
+
+\bibitem[MS05]{miller+sturmfels.combinatorial_CA}
+E.~Miller and B.~Sturmfels, \emph{Combinatorial {C}ommutative {A}lgebra},
+  Graduate Texts in Mathematics, no. 227, Springer-Verlag, New York, 2005.
 
 \bibitem[MTW05]{mustata+takagi+watanabe.F-thresholds}
 M.~Musta{\c{t}}\u{a}, S.~Takagi, and {K.-i.} Watanabe, \emph{{F}-thresholds and

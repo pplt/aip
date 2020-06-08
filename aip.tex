@@ -36,18 +36,19 @@ TO DO LIST:
 \item[$\Box$] Replace any remaining instances of $d$ for dimension with {\tt \text{numvars}}, and fix any inconsistencies. 
    \begin{itemize}
       \item In the discussion after the definition of Sierpinski gasket; that could be replaced with anything else ($s$, for example).
+      \pedro[inline]{Done.}
       \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
       \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
       \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
    \end{itemize}
-   It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
+   %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
  \item Example with $\ldots$
  \item Example with $\ldots$
 \end{itemize}
-\item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
-\pedro[inline]{Started working on it.}
+% \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
+% \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
 \item[$\Box$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns. 
 \item[$\Box$] Later, rewrite proofs with these same conventions.
@@ -79,18 +80,18 @@ TO DO LIST:
       %%%%% Notation %%%%%
 
          \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
-      \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
-      %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
-      Emily suggest using $\vv{c}$.  This is probably a good idea.
-      \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
+      % \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
+      % %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
+      % Emily suggest using $\vv{c}$.  This is probably a good idea.
+      % \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
       %\item[$\CheckedBox$] Uniformize the way we describe programs (e.g., as in Section 9).
 %      \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
  %     Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
   %    \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
 
-         \item[$\Box$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
-      \emily[inline]{Would ``a monomial matrix'' be OK?}
-      \pedro[inline]{That sounds good to me.}
+      %    \item[$\CheckedBox$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
+      % \emily[inline]{Would ``a monomial matrix'' be OK?}
+      % \pedro[inline]{That sounds good to me.}
     %  \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
 %      \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
 %      \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
@@ -695,10 +696,12 @@ In what follows, in analogy with \Cref{ft as val LP: P}, we seek to relate these
 \end{definition}
 
 Note that the integer $s \in \ZZ$ in \Cref{sierpinski: D} can be negative.
-It is also immediate that $\vv{t} \in \sierp_{p,n}$ if and only if $p^m  \vv{t} \in \sierp_{p,n}$ for some (equivalently, for every) integer $m \in \ZZ$; this reflects the self-symmetry that will be observed in the pictures that follow. \daniel{Include a pointed reference?  Who knows where these images will end up!}
+It is also immediate that $\vv{t} \in \sierp_{p,n}$ if and only if $p^s  \vv{t} \in \sierp_{p,n}$ for some (equivalently, for every) integer $s \in \ZZ$; this reflects the self-symmetry observed in \Cref{fig: sierpinski 3-gasket}.
 In particular, when determining whether $\vv{t} \in \RR^n$ lies in $\sierp_{p,n}$, we may rescale by a power of $p$  and assume that $\vv{t} \in [0,1]^n$.
 
-Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, which is necessarily non-terminating, or else $p^m t \in \NN$ for some $m \in \ZZ$, in which case $t$ has both a terminating and a non-terminating expansion.  Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^m \vv{t}$ is an integer for each $m \in \NN$, then there is a unique sequence $\{ \vv{t}_e \}_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if all $\norm{\vv{t}_e}$ are less than $p$.  However, things can be more subtle when some $p^m \vv{t}$ has an integer component.
+Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, which is necessarily non-terminating, or else $p^s t \in \NN$ for some $s \in \ZZ$, in which case $t$ has both a terminating and a non-terminating expansion.
+Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^s \vv{t}$ is an integer for each $s \in \NN$, then there is a unique sequence $\{ \vv{t}_e \}_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if all $\norm{\vv{t}_e}$ are less than $p$.
+However, things can be more subtle when some $p^s \vv{t}$ has an integer component.
 
 \begin{example}
 If $p=2$, then $(1/4, 1/4) \in \sierp_{2,2}$.  Indeed, for the first component, take the non-terminating binary expansion $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$, and for the second component, simply take the expansion $\frac{1}{4} = \frac{1}{2^2}$.  Note that if one instead considered the non-terminating expansion for both components, or the terminating expansion for both components, then the resulting expansion of $(1/4, 1/4)$ would fail to satisfy the condition in \Cref{sierpinski: D}.
@@ -912,11 +915,11 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 \section{Connections with Newton polyhedra}
 
 Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $\numvars \times n$ monomial matrix.
-In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.  Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
+In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.
+Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
 
-\pedro[inline]{
-   Mention that some terminology and results on convex geometry is gathered in Appendix A.
-}
+For the reader's convenience, we gathered in \Cref{convexity appendix} some of the terminology, basic facts, and notations associated with polyhedral geometry that will be used here and throughout the paper.
+
 
 \subsection{Newton polyhedra and their faces}
 
@@ -928,31 +931,31 @@ where $\col(A)$ is the set of columns of $A$.
 
 \begin{definition}
    \label{defn: face}
-   A proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
+   A proper nonempty subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
    We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.
-   If $\O$ does not lie in any proper coordinate subspace of $\RR^\numvars$, we call it a \emph{standard} face of $\N$.
+   If $\O$ is not contained in any proper coordinate subspace of $\RR^\numvars$, we call it a \emph{standard} face of $\N$.
 \end{definition}
 
 \begin{remark}
    \label{rmk: nonnegativity of defining point}
    The requirement that the number $\alpha$ in \Cref{defn: face} be nonnegative is an arbitrary convention, which will play a role in \Cref{alpha=1: convention} below.
    We observe that the defining point $\defpt$ is nonnegative as well.
-   Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i$ lies in $\N$  for each $i$.
-   Consequently, $\alpha \le \iprod{\defpt}{\vv{v} + \canvec_i} = \alpha + c_i$, and hence $c_i \ge 0$ for each $i$.
-   \pedro{Looks like the fact that $\alpha$ is nonnegative doesn't really matter here.}
+   Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i \in \N$, and thus $c_i = \iprod{\defpt}{\vv{v} + \canvec_i} -\alpha \ge 0$, for each $i$.
 \end{remark}
 
 In this article, we are largely concerned with standard faces, and for those we shall adopt a helpful convention.
 
 \begin{convention}
 \label{alpha=1: convention}
-Take $\O \subseteq \RR^\numvars$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR$ as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
+Take $\O \subseteq \RR^\numvars$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR$ as in \Cref{defn: face}.
+If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.
+Thus, throughout this article, we always assume that defining points of standard faces have been normalized in this way.
 \end{convention}
 
 This convention leads to the following useful observation.
 
 \begin{proposition}\label{prop: inner product with columns of A}
-   If $\defpt \in \RR^\numvars$ defines a standard face $\O$ of $\N$, and $\vv{s}~\in~\RR^n$ has nonnegative entries, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$, ~and~equality holds if and only if $s_i = 0$ whenever~the~$i$-th~column~of~$A$~is~not~in~$\O$.
+   If $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and $\vv{s} \in \RR^n$ has nonnegative entries, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
 \end{proposition}
 
 \begin{proof}
@@ -962,43 +965,28 @@ Thus,
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
-The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
+%The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
 
-\begin{proposition}
-   \label{face: P}
-   If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{v} + \lambda \canvec_i \in \O$  for every $\vv{v} \in \O$ and $\lambda > 0$.
-   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-\end{proposition}
+% \begin{proposition}
+%    \label{face: P}
+%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of the Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{v} + \lambda \canvec_i \in \O$  for every $\vv{v} \in \O$ and $\lambda > 0$.
+%    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+% \end{proposition}
 
-\begin{proof}
-   Let $\vv{v} \in \O$, and suppose $\iprod{\defpt}{\vv{v}} = \alpha$.
-   If $\lambda > 0$, then the point $\vv{v} + \lambda \canvec_i$ of $\N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{v} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
-   So $\vv{v} + \lambda \canvec_i \in \O$ for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
+% \begin{proof}
+%    Let $\vv{v} \in \O$, and suppose $\iprod{\defpt}{\vv{v}} = \alpha$.
+%    If $\lambda > 0$, then the point $\vv{v} + \lambda \canvec_i$ of $\N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{v} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
+%    So $\vv{v} + \lambda \canvec_i \in \O$ for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
 
-   The fact proven above shows that if $\O$ is bounded, then $\defpt$ must be positive.
-   Conversely, if $\defpt$ is positive, then $\O$ is bounded, as each coordinate $v_i$ of a point $\vv{v}\in \O$ is bounded below by 0 and above by $\alpha/c_i$. 
-% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-% \begin{equation}
-% \label{face: e}
-% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-% \end{equation}
-% where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-\end{proof}
-
-\begin{definition}
-   If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
-\end{definition}
-
-As noted in \Cref{face: P}, these definitions depend only on $\O$, but not on the choice of $\defpt$.
-The next proposition---a refinement of \Cref{face: P}---shows that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
-
-\begin{proposition}
-   Let $\O$ be a face of the Newton polyhedron $\N$ associated to the monomial matrix $A$.
-   Then
-   \begin{equation}\label{face: e}
-      \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)).
-   \end{equation}
-\end{proposition}
+%    The fact proven above shows that if $\O$ is bounded, then $\defpt$ must be positive.
+%    Conversely, if $\defpt$ is positive, then $\O$ is bounded, as each point $\vv{v}\in \O$ is bounded below by $\vv{0}$ and above by $(\alpha/c_1,\ldots,\alpha/c_\numvars)$. 
+% % Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
+% % \begin{equation}
+% % \label{face: e}
+% % \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
+% % \end{equation}
+% % where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
+% \end{proof}
 
 % \begin{proposition}
 %    \label{face: P}
@@ -1019,13 +1007,58 @@ The next proposition---a refinement of \Cref{face: P}---shows that the cone gene
 % where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
 % \end{proof}
 
+\pedro[inline]{
+   The identity $\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))$ appeared in the proof of a proposition that is now commented out.
+   It didn't seem obvious nor necessary to that proof, and seemed to say more than the proposition itself.
+   Since the identity is used a couple of times, I decided to focus on it instead.
+   
+   From the wording in the older proof (``Similar logic shows that\ldots''), it seems that someone may know a simpler proof for it.
+   If that's the case, please replace the proof below with it.
+}
+
+\begin{proposition}
+   \label{prop: MW for faces}  
+   Let $\O$ be a face of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and suppose $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
+   Set $\rb(\O) =  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$.
+   Then
+   \[\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),\]
+   where we agree that $\cone(\emptyset) = \{\vv{0}\}$.
+   In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
+\end{proposition}
+
+\begin{proof}
+   Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
+   Then one easily sees that the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
+
+   To prove the reverse containment, let $\vv{v} \in \O$.
+   Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
+   Denoting the $i$-th column of $A$ by $\vv{a}_i$, we may assume that $\col(A) \cap \O = \{\vv{a}_1,\ldots,\vv{a}_k\}$.
+   If $s_1 + \cdots + s_k$ were  $0$, then $\iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i>k} s_i \iprod{\defpt}{\vv{a}_i}> \alpha \cdot \sum_{i>k} s_i  =\alpha$, a contradiction.
+   So $s_1+\cdots+s_k >0$, and we set
+   \[\vv{w} = \frac{s_1\vv{a}_1+\cdots+s_k\vv{a}_k}{s_1+\cdots+s_k}.\]
+   Then $\vv{w} \in \conv(\col(A)\cap \O) \subseteq \O$, and therefore $\iprod{\defpt}{\vv{w}} = \alpha$.
+   As $\iprod{\defpt}{\vv{v}-\vv{w}} = 0$, the nonnegativity of $\vv{v} - \vv{w}$ and $\defpt$ implies that $\vv{v} - \vv{w} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
+\end{proof}
+
+\begin{definition}
+   If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
+\end{definition}
+
+\Cref{prop: MW for faces} above shows that these definitions depend only on $\O$, but not on the choice of the defining point $\defpt$.
+It also shows that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
+
+
+
 
 \subsection{The $F$-threshold of a monomial pair}
 
 \begin{definition}
-   The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.\footnote{Recall that the intersection of two faces of $\N$ is also a face of $\N$. Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.}
+   The \emph{minimal face} of $(A, \vv{u})$ is the face $\mf(A, \vv{u})$ of $\N$ that is minimal, with respect to inclusion, among the faces containing the unique point where the cone generated by $\vv{u}$ intersects the boundary of $\N$.
 \end{definition}
 
+Note that the intersection of two faces of $\N$ is also a face of $\N$.
+Thus, as minimality here is with respect to inclusion, it follows that there is a unique such minimal face.
+Note also that the positivity of $\vv{u}$ implies that $\mf(A,\vv{u})$ is a standard face of $A$.
 
 \begin{proposition}
    \label{FT descriptions: P}
@@ -1047,7 +1080,7 @@ This motivates the following definition.
 \end{definition}
 
 \begin{proof}[Proof of \Cref{FT descriptions: P}]
- \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tells us that the quantities in \eqref{value} and \eqref{limit} above agree.  In what follows, let $\lambda$ be as in \eqref{lambda} above.
+ \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tells us that the quantities in \eqref{value} and \eqref{limit} agree.  In what follows, let $\lambda$ be as in \eqref{lambda}.
 
 
     Let $\O = \mf(A,\vv{u})$, and fix a point $\vv{c} \in \RR^\numvars$ defining $\O$ in $\N$.  Our choice of $\lambda$ allows us to write
@@ -1056,7 +1089,7 @@ This motivates the following definition.
 
 Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.  Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
   $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$,
-   where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$, shown in \Cref{rmk: nonnegativity of defining point}.
+   where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
    This shows that the value of $\LP$ is at most $\lambda$. 
 
    % On the other hand, \eqref{face: e} and our choice of $\O$ imply that
@@ -1065,7 +1098,7 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    % \end{equation}
    % Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = \lambda$.
    % Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
-   On the other hand, since $\lambda^{-1}\vv{u} \in \N = \conv(\col(A)) + \cone(\vv{e}_1,\ldots,\vv{e}_\numvars)$, we can write $\lambda^{-1}\vv{u} = A\vv{s}+\vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = 1$.
+   On the other hand, since $\lambda^{-1}\vv{u} \in \N$, we have $\lambda^{-1}\vv{u} \ge A\vv{s}$ for some $\vv{s} \geq \vv{0}$ with $\norm{\vv{s}} = 1$.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
 
@@ -1112,14 +1145,11 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
 
 \subsection{Characterizing optimal points of $\LP(A,\vv{u})$}
 
-The identity \eqref{face: e} above implies that
- %
-%\[ \vv{u} \in \cone (\O) = \cone \left( (\col(A) \cap \O) \cup \rb(\O)  \right). \]
-$\vv{u}$ is a conical combination of the columns of $A$ lying in $\O$ and the points in the recession basis of $\O$.
+\Cref{prop: MW for faces} above implies that $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O = \mf(A,\vv{u})$ and the points in the recession basis of $\O$.
 Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
 \begin{proposition}\label{opt set: P}
-   Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $\numvars\times n$ matrix.
+%   Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $\numvars\times n$ matrix.
    A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
@@ -1131,7 +1161,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \begin{proof}
    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\defpt \in \RR^\numvars$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
    Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
-   By \Cref{prop: inner product with columns of A},
+   By \Cref{prop: inner product with columns of A,FT descriptions: P},
    %
    \begin{equation}\label{eq 1}
       \lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A \vv{s}} + \iprod{\defpt}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\defpt}{\vv{w}}.
@@ -1143,28 +1173,39 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
    By \eqref{eq 1}, $\norm{\vv{s}} = \lambda$, so $\vv{s}$ is optimal for $\LP$.
 \end{proof}
 
+The previous proposition allows us to show the existence of a ``universal'' denominator for the vertices of $\opt\LP(A,\vv{u})$, dependent only on the monomial matrix $A$, and not on $\vv{u}$.
+
 \begin{theorem}
 \label{uniform denominators for vertices:  T}
 Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, every vertex of $\opt \LP(A, \vv{u})$ is rational with denominator $\denom$.
 \end{theorem}
 
 \begin{proof}
-Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
-
-If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP
-\leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
-\pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
-
-Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
+   Let $M$ be the matrix obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$, and let $\vv{b}$ be obtained by stacking $\vv{u}$, $-\vv{u}$, and $\vv{0}\in \RR^{2n}$.
+   By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by the inequalities $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, where equality is required in a prescribed set of coordinates.
+   Thus, $\opt \LP(A,\vv{u})$ is defined by a subsystem of $M \vv{x} \le \vv{b}$.
+   Let $\denom$ be the least common multiple of the nonzero $n\times n$ minors of $M$.
+   Then by \Cref{prop: characterization of vertices}, every vertex of $\opt \LP(A,\vv{u})$ is rational, with denominator $\denom$.
 \end{proof}
+
+% \begin{proof}
+% Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
+
+% If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP
+% \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
+% \pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
+
+% Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
+% \end{proof}
 
 \subsection{Special points and denominators}
 
-Technicalities that arise in future sections whenever the minimal face of a monomial pair $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: P}.
+Technicalities that arise in future sections whenever the minimal face of $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: P}.
 
 \begin{definition}
-\label{mc: D}
-Let $(A,\vv{u})$ be a monomial pair, and $\O = \mf(A, \vv{u})$.  A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
+   \label{mc: D}
+   Let $\O = \mf(A, \vv{u})$.
+   A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
@@ -1174,8 +1215,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 
 \begin{proposition}
    \label{opt versus mc: P}
-   Let $(A,\vv{u})$ be a monomial pair.
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex subset lying between $\opt \LP(A, \vv{u})$ and $\ri \opt \LP(A, \vv{u})$.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex set lying between $\opt \LP(A, \vv{u})$ and $\ri \opt \LP(A, \vv{u})$.
 \end{proposition}
 
 \begin{proof}
@@ -1183,7 +1223,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
    Thus, in view of \Cref{opt set: P}, condition (2) in \Cref{mc: D} is redundant, and $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
    
    Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
-   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \eqref{face: e}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
+   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \Cref{prop: MW for faces}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
  We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
  Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
@@ -1197,8 +1237,9 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 
 \begin{example}
    The containments asserted in \Cref{opt versus mc: P} may all be proper.
-   Indeed, if $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $(1/17, 0, 3/17)$ and $(2/17, 1/17, 1/17)$.
-   Its relative interior excludes both endpoints, while the set of special points for $(A,\vv{u})$ excludes only the first endpoint.
+   Indeed, if $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $\vv{s}_0 = (2/17, 1/17, 1/17)$ and $\vv{s}_1 = (1/17, 0, 3/17)$.
+   Its relative interior excludes both $\vv{s}_0$ and $\vv{s}_1$, while the set of special points for $(A,\vv{u})$ excludes only $\vv{s}_0$.
+   Indeed, setting $\vv{s}_t=(1-t)\vv{s}_0 + t \vv{s}_1$, where $0\le t\le 1$, we have $\vv{u} - A\vv{s}_t = (0,3t/17,0)$, which lies in the relative interior of $\cone(\canvec_2)$ if and only if $0<t\le 1$.
 \end{example}
 
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \]
@@ -1245,7 +1286,7 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
    It suffices to show that there are only finitely many numbers $\ft{A}{\vv{u}}$ less than $\beta$ with $\mf(A, \vv{u}) = \O$ being fixed.
    Consider such a pair, and suppose $\defpt$ defines $\O$ in the Newton polyhedron of $A$.
    Then $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}}$, and the nonnegativity of $\defpt$ implies that, as $\vv{u}$ ranges over positive integral points, this inner product takes on only finitely many values less than $\beta$.
-   Indeed, when $c_i \ne 0$, this upper bound allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
+   Indeed, when $c_i \ne 0$, the upper bound $\beta$ allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
 \end{proof}
 
 
@@ -1291,16 +1332,20 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 \end{remark}
 
 \begin{proposition}\label{collapse of Newton polyhedron: P}
-   If $\M$ is the Newton polyhedron in the coordinate subspace $\rs(\O)^{\perp}$ of the monomial matrix $\collapse{A}$, then $\collapse{\O}$ is a bounded face of $\M = \collapse{\N}$.
-   In addition, if $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\M$.
+   Let $\O$ be a face of the Newton polyhedron $\N$ of a monomial matrix $A$.
+   As above, we use an overbar to denote collapse along $\O$.
+   Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{A}$, and $\collapse{\O}$ is a bounded face of $\collapse{\N}$.
+   In addition, if $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$.
 \end{proposition}
 
 \begin{proof}
-By definition, the Newton polyhedron $\M$ equals
-%
-\[  \conv( \col(\collapse{A}) ) + \cone(\rb(\O)^{\perp}) =  \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} =  \collapse{\N}.\]
+   Taking the equation defining $\N$ and collapsing it along $\O$, we obtain
+   \[ \collapse{\N} = \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{A}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m).\]
+   The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m$ are precisely the standard basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\M$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.  The positivity of $\collapse{\defpt}$ in $\rs(\O)^{\perp}$ then implies that $\collapse{\O}$ is bounded.  Alternatively, one may project \eqref{face: e} to $\rs(\O)^{\perp}$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.
+Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
+The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
+Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.
 \end{proof}
 
 Below, we describe the relationship between collapses and the other notions introduced in \Cref{sec: LPs}.
@@ -1322,10 +1367,11 @@ Below, we describe the relationship between collapses and the other notions intr
    This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $\lambda^{-1} \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
    Consequently,
    \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \]
-%
-By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.  It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.  The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
-\begin{equation*}
-   \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).
+   By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.
+   It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.
+   The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
+   \begin{equation*}
+      \sp(A, \vv{u}) \subseteq \opt \LP(A, \vv{u}) \subseteq \opt \LP(\collapse{A}, \collapse{\vv{u}}) = \sp(\collapse{A}, \collapse{\vv{u}}).
    \qedhere
 \end{equation*}
 \end{proof}
@@ -1333,7 +1379,7 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 \begin{example}
    \label{ex: collapse}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
-   Then $\O \coloneqq \mf(A,\vv{u}) = \conv(\col A) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$.
+   Then $\O = \mf(A,\vv{u}) = \conv(\col(A)) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$.
    \Cref{fig: newton polyhedron of collapse} shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
    \begin{figure}
    \centering
@@ -1359,7 +1405,7 @@ By construction, each nonzero row of $\collapse{A}$ is a row of $A$, and so the 
 
    The feasible region of $\LP(A,\vv{u})$, shown in \Cref{fig: splitting polytope}, is properly contained in the feasible region for $\LP(\collapse{A},\collapse{\vv{u}})$, shown in \Cref{fig: splitting polytope of collapse}, which highlights the difference between those sets in yellow.
    \Cref{fig: splitting polytope of collapse} also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
-   Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper.
+   Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper---in which case so is the one in (3), since every optimal point for $\LP(\collapse{A},\collapse{\vv{u}})$ is special for $(\collapse{A},\collapse{\vv{u}})$, due to the boundedness of $\collapse{\O}$.
 \end{example}
 
 \newpage
@@ -2787,6 +2833,12 @@ Finally, as mentioned earlier, our main theorem,\Cref{general-mu-theorem: T}, ca
 \appendix
 
 \section{Convex geometry}
+\label{convexity appendix}
+
+\pedro[inline]{
+   This appendix ended up rather anemic.
+   Maybe we should consider just moving these things back to the body of the paper.
+}
 
 A (convex) \emph{polyhedron} in $\RR^n$ is a subset of $\RR^n$ obtained by intersecting finitely many closed halfspaces or, equivalently, a set consisting of all points $\vv{x}\in \RR^n$ satisfying an inequality of the form $A\vv{x}\le \vv{b}$, where $A$ is a matrix with $n$ columns.
 The (convex) \emph{cone generated by $\vv{u}_1,\ldots,\vv{u}_k \in \RR^n$}, denoted $\cone(\vv{u}_1,\ldots,\vv{u}_k)$, is the set consisting of all \emph{conical combinations} of $\vv{u}_1, \ldots, \vv{u}_k$, that is, points of the form $\sum_{i=1}^k \lambda_i \vv{u}_i$, where the $\lambda_i$ are nonnegative real numbers.
@@ -2796,8 +2848,20 @@ The convex hull of a finite set of points is called a \emph{polytope}.
 If $\mathcal{U}$ and $\mathcal{V}$ are subsets of $\RR^n$, their \emph{Minkowski sum} is the set
 \[\mathcal{U}+\mathcal{V} \coloneqq \{\vv{u}+\vv{v}: \vv{u}\in \mathcal{U}\text{ and }\vv{v}\in \mathcal{V}\}.\]
 The \emph{Minkowski--Weyl Theorem} asserts that a subset $\mathcal{P}$ of $\RR^n$ is a polyhedron if and only if $\mathcal{P}$ is the Minkowski sum of a polytope and a finitely generated cone.
-The cone in this decomposition is the set of all directions $\vv{d} \in \RR^n$ in which $\mathcal{P}$ recedes, that is, $\vv{c} + \lambda \vv{d} \in \mathcal{P}$ for every $\vv{c} \in \mathcal{P}$ and $\lambda > 0$; it is uniquely determined by $\mathcal{P}$, and called the \emph{recession cone of $\mathcal{P}$}.
+The cone in this decomposition is the set of all directions $\vv{v} \in \RR^n$ in which $\mathcal{P}$ recedes, that is, $\vv{u} + \lambda \vv{v} \in \mathcal{P}$ for every $\vv{u} \in \mathcal{P}$ and $\lambda > 0$; it is uniquely determined by $\mathcal{P}$, and called the \emph{recession cone of $\mathcal{P}$}.
 The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone.
+
+If an inequality $\iprod{\defpt}{\vv{v}}\ge \alpha$ is satisfied by all points $\vv{v}$ in a polyhedron $\mathcal{P}$, then the subset of $\mathcal{P}$ where equality is attained is called a \emph{face} of $\mathcal{P}$.
+Faces of dimension zero are the \emph{vertices} of $\mathcal{P}$, and can be characterized as follows.
+
+\begin{proposition}
+   \label{prop: characterization of vertices}
+   Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and let $\vv{v} \in \mathcal{P}$.
+   For a subset $I$ of $\{1,\ldots,m\}$, let $A_I$ and $\vv{b}_I$ be the matrix and vector obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
+   Then $\vv{v}$ is a vertex of $\mathcal{P}$ if and only if there exists $I \subseteq \{1,\ldots,m\}$ such that $A_I$ is a nonsingular square matrix and $\vv{v} = A_I^{-1}\vv{b}_I$.
+\qed
+\end{proposition}
+A proof of the above proposition can be found, for instance, in \cite[Theorem~3.34]{conforti+etal.integer_programming}.
 
 %\pedro[inline]{
 %   Maybe we should gather what we need about faces and vertices of polyhedra right here.
@@ -2814,6 +2878,14 @@ The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri 
 % }
 % \daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
 When restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
+Finally, when restricted to polyhedra, the relative interior simply consists of points not contained in any proper face.
+
+We conclude this appendix with the following simple result.
+
+\pedro[inline]{
+   This seems a bit too specialized to be here.
+   It's only used once, and maybe it should just be placed immediately before its use.
+}
 
 \begin{proposition}
    \label{bounded polytope: P}
@@ -2828,44 +2900,46 @@ When restricted to convex sets, the relative interior operator commutes with Min
   \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
-%We conclude this subsection with a useful technical result.
-Though variations of the following useful technical result are well known, we include a simple proof, for lack of an appropriate reference.
 
-\begin{proposition}
-\label{vertex: P}
-Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point contained in the cone generated by the columns of $M$.  If $\Q$ is the polyhedron in $\RR^n$  consisting of all points $\vv{t}$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{b}$, then a point $\vv{t}^{\ast} \in \Q$ is a vertex of $\Q$ if and only if the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent.  %In particular, $\Q$ contains a vertex.
-\end{proposition}
 
-\begin{proof}
-   The fact that $\vv{b}$ lies in the cone generated by the columns of $M$ implies that $\Q$ is nonempty.
-   Fix a point $\vv{t}^{\ast} \in \Q$.
-   Before proceeding, recall that $\vv{t}^{\ast}$ is a vertex of $\Q$ if and only if an expression of $\vv{t}^{\ast}$ as a convex combination of points $\vv{r}$ and $\vv{s}$ in $\Q$ is only possible when $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
+% %We conclude this subsection with a useful technical result.
+% Though variations of the following useful technical result are well known, we include a simple proof, for lack of an appropriate reference.
 
-   First, assume that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent, and suppose that $\vv{t}^{\ast} = \lambda \vv{r} + \mu \vv{s}$ is a convex combination of points $\vv{r}, \vv{s} \in \Q$.
-   Since $\vv{r},\vv{s}\ge \vv{0}$, the $i$-th coordinate of $\vv{r}$ and of $\vv{s}$ are zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.
-   On the other hand, the fact that $\vv{r}$ and $\vv{s}$ lie in $\Q$ also implies that
-   \[ M \vv{t}^{\ast} = \vv{b} = M \vv{r} = M \vv{s}, \]
-   and the assumption that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent then implies that $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
+% \begin{proposition}
+% \label{vertex: P}
+% Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point contained in the cone generated by the columns of $M$.  If $\Q$ is the polyhedron in $\RR^n$  consisting of all points $\vv{t}$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{b}$, then a point $\vv{t}^{\ast} \in \Q$ is a vertex of $\Q$ if and only if the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent.  %In particular, $\Q$ contains a vertex.
+% \end{proposition}
 
-Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}^{\ast}$ is a convex combination of these points, it will then follow that $\vv{t}^{\ast}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ is nonnegative for all $0 < \varepsilon \ll 1$.
-\end{proof}
+% \begin{proof}
+%    The fact that $\vv{b}$ lies in the cone generated by the columns of $M$ implies that $\Q$ is nonempty.
+%    Fix a point $\vv{t}^{\ast} \in \Q$.
+%    Before proceeding, recall that $\vv{t}^{\ast}$ is a vertex of $\Q$ if and only if an expression of $\vv{t}^{\ast}$ as a convex combination of points $\vv{r}$ and $\vv{s}$ in $\Q$ is only possible when $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
 
-\pedro[inline]{
-   An alternative to the previous proposition is the following result, which we could just mention and give a reference (it appears in several books):
+%    First, assume that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent, and suppose that $\vv{t}^{\ast} = \lambda \vv{r} + \mu \vv{s}$ is a convex combination of points $\vv{r}, \vv{s} \in \Q$.
+%    Since $\vv{r},\vv{s}\ge \vv{0}$, the $i$-th coordinate of $\vv{r}$ and of $\vv{s}$ are zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.
+%    On the other hand, the fact that $\vv{r}$ and $\vv{s}$ lie in $\Q$ also implies that
+%    \[ M \vv{t}^{\ast} = \vv{b} = M \vv{r} = M \vv{s}, \]
+%    and the assumption that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent then implies that $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
 
-   \begin{proposition}
-      Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and $\vv{v}$ a vertex of $\mathcal{P}$.
-      Then there exists $I \subseteq \{1,\ldots,m\}$ such that $\vv{v}$ is the unique solution to the system $A_I \vv{x} = \vv{b}_I$, where $A_I$ and $\vv{b}_I$ are obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
-   \end{proposition}
+% Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}^{\ast}$ is a convex combination of these points, it will then follow that $\vv{t}^{\ast}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ is nonnegative for all $0 < \varepsilon \ll 1$.
+% \end{proof}
 
-   Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-   By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
-   Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
+% \pedro[inline]{
+%    An alternative to the previous proposition is the following result, which we could just mention and give a reference (it appears in several books):
 
-   \bigskip
+%    \begin{proposition}
+%       Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and $\vv{v}$ a vertex of $\mathcal{P}$.
+%       Then there exists $I \subseteq \{1,\ldots,m\}$ such that $\vv{v}$ is the unique solution to the system $A_I \vv{x} = \vv{b}_I$, where $A_I$ and $\vv{b}_I$ are obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
+%    \end{proposition}
 
-   Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
-}
+%    Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
+%    By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
+%    Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
+
+%    \bigskip
+
+%    Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
+% }
 
 
 \section{Monomial ideals and reduction}
