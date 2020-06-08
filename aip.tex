@@ -27,6 +27,8 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
+\item[$\Box$] Decide on ``special'' or ``universal'' denominator and uniformize.
+\item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
 %\item[$\CheckedBox$] Decide on name for minimal coordinate.
@@ -612,7 +614,7 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
 
 \subsection{Relations with arithmetic and fractal programs}
 
- We now turn our attention to the integers $\mu(\ideala, \ideald, p^e)$ and rational numbers $\crit(\ideala,\ideald)$.  First, recall that for each $q$ a power of $p$, the integer $\mu(\ideald, \ideald, q)$ is defined as 
+ We now turn our attention to the integers $\mu(\ideala, \ideald, p^e)$ and rational numbers $\crit(\ideala,\ideald)$.  First, recall that for each $q$ a power of $p$, the integer $\mu(\ideala, \ideald, q)$ is defined as 
 \[\mu(\ideala,\ideald,q) \coloneqq \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
 where $\ideala^{[\ell]}$ is the $\ell$-th (generalized) Frobenius power of $\ideala$.
 
@@ -1426,8 +1428,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Let $q$ be a positive integer.
    If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
    \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \]
-   Clearly, this expression depends only on $\lambda$, but not on the integers $a$ and $b$.
-   Moreover, we set $[0]_q = 0$, and then for $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
+This expression is clearly independent of the choice of  integers $a$ and $b$.
+In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
 
 \begin{remark}
@@ -1435,8 +1437,10 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
 Furthermore,
 %
-\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}. \daniel[inline]{Elaborate, describe in terms of rounding up, compare with rounding down}
+\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, i.e., $\lceil \lambda q \rceil-1$. 
+%\daniel[inline]{Elaborate, describe in terms of rounding up, compare with rounding down}
 \end{remark}
+
 
 
 \begin{lemma}
@@ -1487,8 +1491,11 @@ We call a monomial list whose first term is the matrix $A$ an $A$-list.
 \begin{definition}
 \label{aux program: D}
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}$,
-\daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
+% \daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} 
+where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
+
+Recall that since each nonzero row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 
 \begin{definition}
 The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
