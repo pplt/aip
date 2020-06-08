@@ -2933,15 +2933,51 @@ Thus, by Generic Freeness (\Cref{generic-freeness}), we can assume that each ter
 \end{lemma}
 
 \begin{proof}
-Consider the exact sequence of $A$-modules
-\[ 0  \longrightarrow (I:_A f) \longrightarrow A \stackrel{f}{\longrightarrow} A/I \longrightarrow 0.  \]
+First, we prove the statement when $I = \ideal{f}$ is principal. 
+Let $Q$ denote the cokernel of the inclusion of $(J:_A f)$ into $A$.  If $\ell$ is a nonzero integer and $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ as a $\ZZ$-module at $\ell$, then by Generic Freeness (\Cref{generic-freeness}), we can choose such an $\ell$ so that each of the $\ZZ[\ell^{-1}]$-modules  $B$, $(J:_A f)B$, $QB$, and $(A/J)B$, are free over $\ZZ[\ell^{-1}]$.
 
-Given that this is also an exact sequence of $\ZZ$-modules,  we may localize at a nonzero integer $\ell$ to obtain an exact sequence of $\ZZ[\ell^{-1}]$ modules
-\[ 0  \longrightarrow (I:_A f)B \longrightarrow B \stackrel{f}{\longrightarrow} B/IB \longrightarrow 0  \] where $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ at $\ell$.  By Generic Freeness (\Cref{generic-freeness}), we further suppose that each module in this sequence is free over  $\ZZ[\ell^{-1}]$.
+The exact sequence of $A$-modules
+ \[
+  0 \longrightarrow (J:_A f) \longrightarrow A \longrightarrow Q \to 0
+ \]
+ is also exact as $\ZZ$-modules, and localizing at $\ell$ yields an exact sequence of $\ZZ[\ell^{-1}]$-modules
+ \[ 0  \longrightarrow (J:_A f)B \longrightarrow B \longrightarrow QB \longrightarrow 0 \]
+since each module above is free over $\ZZ[\ell^{-1}]$.
+Hence if $p \nmid \ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}]$, so by taking the tensor product of this exact sequence with $\ZZ/p\ZZ$ over $\ZZ[\ell^{-1}]$, we obtain an exact sequence of free $\ZZ/p\ZZ$-modules
+\begin{equation} \label{colon-injection: e} 0  \longrightarrow (J:_A f)A_p \longrightarrow A_p \to Q_p \longrightarrow 0 \end{equation} where $A_p = A \otimes_{\ZZ} \ZZ/p\ZZ$.  Clearly, this is also an exact sequence of $A_p$-modules.
 
-If $p$ does not divide $\ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}]$, and we may take the tensor product of this exact sequence with $\ZZ/p\ZZ$ over $\ZZ[\ell^{-1}]$ to obtain the exact sequence of free $\ZZ/p\ZZ$-modules
-\[ 0  \longrightarrow (I:_A f)A_p \longrightarrow A_p \stackrel{f_p}{\longrightarrow} A_p/IA_p \longrightarrow 0  \] where $A_p = A \otimes_{\ZZ} \ZZ/p\ZZ$.  Clearly, this is also an exact sequence of $A_p$-modules, from which it follows that $ (I:_A f) A_p = (IA_p :_{A_p} f_p)$.
+Observe that we also have the exact sequence of $A$-modules 
+\[ 0 \longrightarrow (J:_f A) \longrightarrow A \stackrel{f}{\longrightarrow} A/J 
+\]
+where the first map is again the natural injection.  
+By again localizing at $\ell$ and reducing modulo $p$, we obtain the sequence of $A_p$-modules 
+\begin{equation} \label{reduction-colon: e}
+0 \longrightarrow (J:_A f)A_p \longrightarrow A_p \stackrel{f_p}{\longrightarrow} \left( A/J \right)_p 
+\end{equation}
+where, by Generic Freeness, the map given by multiplication by $f_p$ is onto.  Recalling that $(J:_A f)A_p \longrightarrow A_p$ is injective by \Cref{colon-injection: e}, we know that \eqref{reduction-colon: e} is an exact sequence.  
+By again localizing and then reducing the exact sequence  
+$0 \to J \to A \to A/J\to 0$ modulo $p$, we find that $\left(A/J\right)_p \cong A_p/J_p$, so that we conclude from \eqref{reduction-colon: e} that $(J:_A: f) = (J A_p :_{A_p} \ideal{f}A_p)$. 
+
+Finally, for $I = \ideal{f_1, \ldots, f_n}$ arbitrary, consider the exact sequences  
+\begin{align*}
+ &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow A/(J:_A I) \longrightarrow 0 \\
+ &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow \bigoplus_n A/J  
+\end{align*}
+where the final map of the second sequence sends $a \in A$ to $(\overline{a f_1}, \ldots, \overline{a f_n})$. 
+An argument directly analogous to that above applied to these sequences yields the desired result, after noticing that $( \bigoplus \limits_n A/J ) A_p \cong \bigoplus \limits_{n} A_p/J A_p  $
 \end{proof}
+
+
+% \begin{proof}
+% Consider the exact sequence of $A$-modules
+% \[ 0  \longrightarrow (I:_A f) \longrightarrow A \stackrel{f}{\longrightarrow} A/I \longrightarrow 0.  \]
+% 
+% Given that this is also an exact sequence of $\ZZ$-modules,  we may localize at a nonzero integer $\ell$ to obtain an exact sequence of $\ZZ[\ell^{-1}]$ modules
+% \[ 0  \longrightarrow (I:_A f)B \longrightarrow B \stackrel{f}{\longrightarrow} B/IB \longrightarrow 0  \] where $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ at $\ell$.  By Generic Freeness (\Cref{generic-freeness}), we further suppose that each module in this sequence is free over  $\ZZ[\ell^{-1}]$.
+% 
+% If $p$ does not divide $\ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}]$, and we may take the tensor product of this exact sequence with $\ZZ/p\ZZ$ over $\ZZ[\ell^{-1}]$ to obtain the exact sequence of free $\ZZ/p\ZZ$-modules
+% \[ 0  \longrightarrow (I:_A f)A_p \longrightarrow A_p \stackrel{f_p}{\longrightarrow} A_p/IA_p \longrightarrow 0  \] where $A_p = A \otimes_{\ZZ} \ZZ/p\ZZ$.  Clearly, this is also an exact sequence of $A_p$-modules, from which it follows that $ (I:_A f) A_p = (IA_p :_{A_p} f_p)$.
+% \end{proof}
 
 \subsection{Monomial ideals}
 
