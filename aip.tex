@@ -1550,6 +1550,7 @@ where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
 Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
+Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
 \Cref{comparison: R} gives us the following result.
 
@@ -1564,21 +1565,17 @@ Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities d
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
    \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
-   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: P} below.
+   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: L} below.
    For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
    This shows that the optimal set for $\ip$ may be, and typically is, infinite.
 \end{example}
 
-Since the feasible set for $\ip(A,\vv{u},\vv{s},q)$ is infinite,
-\pedro{Is it ever finite?}
-it is not immediately clear that this integer program has a well-defined value.
-We now move towards proving that it does, and establishing some useful bounds on that value.
+We now move towards establishing some useful bounds on the value of $\ip(A, \vv{u}, \vv{s}, q)$.
 
-
-\begin{proposition}
-\label{tail projection: P}
+\begin{lemma}
+\label{tail projection: L}
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
-\end{proposition}
+\end{lemma}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity
 $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Given this, it is easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $\collapse{A} \tail{\vv{s}}_q$.
@@ -1608,7 +1605,7 @@ whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that
 \end{equation}
 
 Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\]
-which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: P} implies that $\vv{0}$ is feasible for $\ip$.
+which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
 \end{proof}
 
 
@@ -1625,7 +1622,7 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
    \[ \deficit \ip(A, \vv{u}, \vv{s}, q) = \norm{\tail{\vv{s}}_q} - \val \ip(A, \vv{u}, \vv{s}, q). \] 
 \end{definition}
 
-\Cref{tail projection: P} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip(A, \vv{u}, \vv{s}, q)$ is indeed positive.
+\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip(A, \vv{u}, \vv{s}, q)$ is indeed positive.
 
 
 \begin{remark}
@@ -1704,7 +1701,7 @@ If $A$ is fixed, then there are only finitely many integer programs of the form 
 
 \begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.
 
-Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: P} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
 \begin{corollary}
