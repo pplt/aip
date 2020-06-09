@@ -49,7 +49,7 @@ TO DO LIST:
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
    \item Example with $\opt \Theta$ infinite.
-   \pedro{Done}
+   \pedro[inline]{Done}
  \item Example with $\ldots$
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
@@ -1508,6 +1508,7 @@ This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an
    \label{canonical-feasible: T}
    If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then
    \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\]
+   We call $\vv{s}q - \tail{\vv{s}}_q$ a \emph{canonical feasible point} for $\IP(A,\vv{u},q)$.
 \end{theorem}
 
 \begin{proof}
@@ -1521,15 +1522,17 @@ Our goal is to describe some natural constraints on the difference between $\vv{
 %
 \[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]
 %
-and, let an overbar denote the collapse along the face $\O = \mf(A, \vv{u})$.
+and let an overbar denote the collapse along the face $\O = \mf(A, \vv{u})$.
 
-Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$, where the last bound follows from the nonnegativity constraint of $\IP$.  The definition of $\vv{h}$ and constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.  Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}_q}$.
+Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$ by the nonnegativity constraint of $\IP$.
+The definition of $\vv{h}$ and the constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.
+Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$.
 This motivates us to study another integer program, that will be formally introduced in the next subsection.
 \end{remark}
 
 \subsection{Another integer program}
 
-\begin{definition}
+\begin{definition}[Monomial list]
 A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
 \begin{enumerate}
 \item A monomial pair $(A, \vv{u})$.
@@ -1546,7 +1549,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{
 where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
-Recall that since each nonzero row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
+Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 
 \Cref{comparison: R} gives us the following result.
 
@@ -1561,31 +1564,68 @@ Recall that since each nonzero row of $\collapse{A}$ is a row of $A$, the inequa
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
    \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
-   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: L} below.
+   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: P} below.
    For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
    This shows that the optimal set for $\ip$ may be, and typically is, infinite.
 \end{example}
 
-\begin{lemma}
-\label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point in $\rs(\O)^{\perp}$, where the overbar denotes collapse along $\O$.
-\end{lemma}
+Since the feasible set for $\ip(A,\vv{u},\vv{s},q)$ is infinite,
+\pedro{Is it ever finite?}
+it is not immediately clear that this integer program has a well-defined value.
+We now move towards proving that it does, and establishing some useful bounds on that value.
+
+
+\begin{proposition}
+\label{tail projection: P}
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
+\end{proposition}
 
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity
 $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Given this, it is easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
+
+\begin{proposition}
+\label{bounded value: P}
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value, and
+\[0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]
+\end{proposition}
+
+\begin{proof}
+   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
+   Thus,
+\[ \iprod{{\defpt}}{A \vv{t}} = \iprod{\collapse{\defpt}}{\collapse{A \vv{t}}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
+
+The product $\defpt^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\defpt$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\defpt^{\mathrm{T}} A$ must equal one.  In particular,
+%
+\begin{equation}
+\label{bound in inner product: e}
+\norm{\vv{k}} \leq (\defpt^{\mathrm{T}} A) \vv{k} =  \defpt^{\mathrm{T}} (A \vv{k}) = \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}
+\end{equation}
+whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that
+\begin{equation}
+\label{norm of tail: e}
+\norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
+\end{equation}
+
+Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\]
+which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: P} implies that $\vv{0}$ is feasible for $\ip$.
+\end{proof}
+
 
 % \begin{definition}
 % The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
 % where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 % \end{definition}
 
-\begin{definition}
-   The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
+\begin{definition}[Shortfall and deficit]
+   \label{deficit ip: D}
+   The \emph{shortfall} of the integer program $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
    where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+   The \emph{deficit} of $\ip(A, \vv{u}, \vv{s}, q)$ is the positive rational number
+   \[ \deficit \ip(A, \vv{u}, \vv{s}, q) = \norm{\tail{\vv{s}}_q} - \val \ip(A, \vv{u}, \vv{s}, q). \] 
 \end{definition}
 
-\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points.
+\Cref{tail projection: P} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip(A, \vv{u}, \vv{s}, q)$ is indeed positive.
 
 
 \begin{remark}
@@ -1627,45 +1667,10 @@ where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in 
 
 
 \subsection{Some finiteness properties}
-We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: L} and \Cref{finite image: C} concern the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
+We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: P} and \Cref{finite image: C} concern the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
-\begin{lemma}
-\label{bounded value: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}$.
-\end{lemma}
 
-\daniel[inline]{I propose the following definition. \!{Will require \Cref{bounded value: L} to be moved up.}
-
-\begin{definition}
-\label{deficit ip: D}
-The \emph{deficit} of $\ip(A, \vv{u}, \vv{s}, q)$ is the positive rational number
-\[ \deficit \ip(A, \vv{u}, \vv{s}, q) = \norm{\tail{\vv{s}}_q} - \val \ip(A, \vv{u}, \vv{s}, q). \] 
-
-\end{definition}
-}
-
-\begin{proof}
-   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   Thus,
-\[ \iprod{{\defpt}}{A \vv{t}} = \iprod{\collapse{\defpt}}{\collapse{A \vv{t}}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
-
-The product $\defpt^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\defpt$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\defpt^{\mathrm{T}} A$ must equal one.  In particular,
-%
-\begin{equation}
-\label{bound in inner product: e}
-\norm{\vv{k}} \leq (\defpt^{\mathrm{T}} A) \vv{k} =  \defpt^{\mathrm{T}} (A \vv{k}) = \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}
-\end{equation}
-whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that
-\begin{equation}
-\label{norm of tail: e}
-\norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
-\end{equation}
-
-Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\]
-which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
-\end{proof}
-
-\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
+%\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
 
 \begin{lemma}
    \label{bounded polytope: L}
@@ -1685,12 +1690,12 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{corollary}
 
-\begin{proof}  Adopt the notation from the proof of \Cref{bounded value: L}.
+\begin{proof}  Adopt the notation from the proof of \Cref{bounded value: P}.
 If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}\] and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$  in $\rs(\O)^{\perp}$ with $\vv{v} < \collapse{A} \tail{\vv{s}_q}$  and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.  The positivity of $\collapse{\defpt}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.
 \end{proof}
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property.
-Potentially move it up before \Cref{bounded value: L}.}
+Potentially move it up before \Cref{bounded value: P}.}
 
 \begin{lemma}
 \label{finitely many secondary programs: L}
@@ -1699,7 +1704,7 @@ If $A$ is fixed, then there are only finitely many integer programs of the form 
 
 \begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.
 
-Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: P} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
 \begin{corollary}
@@ -1814,7 +1819,7 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \end{lemma}
 
 \begin{proof}
-Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: L} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\]
+Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: P} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\]
 We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
 \end{proof}
 
@@ -2874,7 +2879,7 @@ By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \m
 
 If $\defpt \in \RR^\numvars$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\defpt}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron of $B$, and since $\vv{v} \in \ft{B}{\vv{v}} \collapse{\N}$, \Cref{alpha=1: convention} implies that
 \[\ft{B}{\vv{v}} \leq \iprod{\collapse{\defpt}}{\vv{v}}.\]
-Thus, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\defpt$ guarantees that the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \]
+Thus, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\defpt$ guarantees that the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: P}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \]
 which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
 
 We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^\numvars$.  Furthermore, the positivity of the grading implies that the point $\defpt \in \RR^\numvars$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^\numvars$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  The details are left to the reader.
