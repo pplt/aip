@@ -48,14 +48,16 @@ TO DO LIST:
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
- \item Example with $\ldots$
+   \item Example with $\opt \Theta$ infinite.
+   \pedro{Done}
  \item Example with $\ldots$
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
-\item[$\Box$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns. 
-\item[$\Box$] Later, rewrite proofs with these same conventions.
+\item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
+\comment[inline]{Going with dropping rows.}
+\item[$\Box$] Rewrite proofs with above convention.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  %\item[$\CheckedBox$] Fill in/rewrite preliminaries.
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
@@ -76,7 +78,8 @@ TO DO LIST:
     \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
  \emily[inline]{The current doc (6/5/20) has \Cref{refined-discreteness: L} not explicitly cited, and the lemma right after \Cref{cor: constant mus} is not currently cited, but a note before it gives a consequence we should add.   All other lemmas are used.}
  
-      \item[$\Box$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
+ \item[$\CheckedBox$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
+ \comment[inline]{See \Cref{rmk: verifying inequalities using collapses}.}
       %\item[$\CheckedBox$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
       %\item[$\CheckedBox$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       %\item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
@@ -457,9 +460,11 @@ In the same vein, operations on numbers are extended to points in $\RR^n$ in a c
 
 We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
 \daniel{Revisit this when deciding how to describe collapsing}More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+\pedro{Explain also what we mean by ``$\vv{u}$ is less than $\vv{v}$ in $\mathcal{S}$''.}
 
 \subsection{Monomial matrices, monomial ideals, and pairs}
 \label{monomial newton preliminaries: ss}
+
 We work in the polynomial ring $\kk[x_1, \ldots, x_\numvars]$ over a field $\kk$, and adopt standard notation for describing monomials.  That is, if $\vv{u} \in \NN^\numvars$, then $x^{\vv{u}} = x_1^{u_1} \cdots x_\numvars^{u_\numvars}$.
 
 \begin{definition}[Monomial matrices]
@@ -917,7 +922,7 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 
 \newpage
 \section{Connections with Newton polyhedra}
-
+\label{s: newton}
 Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $\numvars \times n$ monomial matrix.
 In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.
 Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
@@ -1267,6 +1272,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 \end{proof}
 
 \begin{example}
+   \label{ex: ft.1}
    The containments asserted in \Cref{opt versus mc: P} may all be proper.
    Indeed, if $A$ and $\vv{u}$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $\vv{s}_0 = (2/17, 1/17, 1/17)$ and $\vv{s}_1 = (1/17, 0, 3/17)$.
    Its relative interior excludes both $\vv{s}_0$ and $\vv{s}_1$, while the set of special points for $(A,\vv{u})$ excludes only $\vv{s}_0$.
@@ -1299,11 +1305,11 @@ Special denominators exist.
 
 \subsection{Discreteness of $F$-thresholds}
 
-\ \daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
-\pedro[inline]{
-   If we figure we don't really need it, then omitting is OK with me. 
-}
-\daniel[inline]{We need it!}
+% \ \daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
+% \pedro[inline]{
+%    If we figure we don't really need it, then omitting is OK with me. 
+% }
+% \daniel[inline]{We need it!}
 
 The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
@@ -1324,8 +1330,6 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
 \newpage
 \section{Collapsing}
 
-
-
 This section concerns an operation used to get around some technical difficulties that arise when dealing with an unbounded minimal face.
 Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined by a point~$\defpt$, then its recession basis is the set $\rb(\O)$ consisting of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that $c_i = 0$, and its recession subspace is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 
@@ -1336,9 +1340,11 @@ Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined b
 \begin{enumerate}
    \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_\numvars \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^\numvars$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^\numvars$.
    (The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.)
-\item The \emph{collapse} of a subset $X$ of $\RR^\numvars$ along $\O$ is the image of $X$ under the projection $\RR^\numvars \stackrel{B}{\longrightarrow} \RR^{\#\rb(\O)^\perp}$, where $B$ is the matrix whose rows are the vectors $\canvec_i$ in $\rb(\O)^\perp$.
-In other words, the collapse of each point $\vv{v}$ along $\O$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.
-\item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$, or in other words, the matrix $BA$, obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
+% \item The \emph{collapse} of a subset $X$ of $\RR^\numvars$ along $\O$ is the image of $X$ under the projection $\RR^\numvars \stackrel{B}{\longrightarrow} \RR^{\#\rb(\O)^\perp}$, where $B$ is the matrix whose rows are the vectors $\canvec_i$ in $\rb(\O)^\perp$.
+% In other words, the collapse of each point $\vv{v}$ along $\O$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.
+   \item The \emph{collapsing along $\O$} is the projection map $\RR^\numvars \to \RR^{\#\rb(\O)^\perp}$ that deletes the $i$-th coordinate of a point whenever $\canvec_i \in \rb(\O)$, while preserving the order of the remaining coordinates.
+   The images of points or sets under this projection are called \emph{collapses} of these objects along $\O$.
+   \item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$, or in other words, the matrix obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
 \end{enumerate}
 \end{definition}
 
@@ -1346,7 +1352,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \begin{remark}
    It is clear from the definition that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$, for each $\vv{k}$ in the domain of $A$.
-   Indeed, both are obtained by left-multiplying $\vv{k}$ by $BA$, where $B$ is as in \Cref{collapse: D}.
+%   Indeed, both are obtained by left-multiplying $\vv{k}$ by $BA$, where $B$ is as in \Cref{collapse: D}.
 \end{remark}
 
 \begin{remark}
@@ -1379,7 +1385,7 @@ The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bound
 Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.
 \end{proof}
 
-Below, we describe the relationship between collapses and the other notions introduced in \Cref{sec: LPs}.
+Below, we describe the relationship between collapses and the other notions introduced in \Cref{sec: LPs,s: newton}.
 
 \begin{proposition}
    \label{collapse of mf and mc: P}
@@ -1394,11 +1400,11 @@ Below, we describe the relationship between collapses and the other notions intr
 
 \begin{proof}
    Set $\lambda = \ft{A}{\vv{u}}$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$.
-   It is clear that projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, which is a bounded face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}.
-   This observation demonstrates both that $\collapse{\O}$ is the minimal face of $\collapse{\N}$ containing $\lambda^{-1} \collapse{\vv{u}}$, and that $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
+   It is clear that a projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, a  face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}.
+   This shows that $\collapse{\O}= \mf(\collapse{A},\collapse{\vv{u}})$ and $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
    Consequently,
    \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \]
-   By construction, each row of $\collapse{A}$ is a row of $A$, and so the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.
+   Since each row of $\collapse{A}$ is a row of $A$, the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.
    It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.
    The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
    \begin{equation*}
@@ -1408,7 +1414,7 @@ Below, we describe the relationship between collapses and the other notions intr
 \end{proof}
 
 \begin{example}
-   \label{ex: collapse}
+   \label{ex: ft.2}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
    Then $\O = \mf(A,\vv{u}) = \conv(\col(A)) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$.
    \Cref{fig: newton polyhedron of collapse} shows the Newton polyhedron of the collapse $\collapse{A}$ of $A$ along $\O$ (compare with \Cref{fig: newton polyhedron}).
@@ -1429,7 +1435,7 @@ Below, we describe the relationship between collapses and the other notions intr
       \caption{The feasible region of $\LP(\collapse{A},\collapse{\vv{u}})$}
       \label{fig: splitting polytope of collapse}
    \end{subfigure}
-   \caption{Illustration for \Cref{ex: collapse}}
+   \caption{Illustration for \Cref{ex: ft.2}}
    \label{fig: collapse}
    \end{figure}
    The point $(17/4)\cdot\collapse{\vv{u}}$, shown in white, lies in the relative interior of $\collapse{\O}$, shown in blue; thus, $\collapse{\O} = \mf(\collapse{A},\collapse{\vv{u}})$ and $\ft{\collapse{A}}{\collapse{\vv{u}}} = 4/17 = \ft{A}{\vv{u}}$.
@@ -1442,14 +1448,12 @@ Below, we describe the relationship between collapses and the other notions intr
 \newpage
 \section{An auxiliary integer program}
 
-
-
 \subsection{Canonical feasible points}
 
 We highlight a simple construction that associates to any point in $\sp_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.
 As a part of this, we call upon some basic notions from modular arithmetic.
 
-\begin{definition}[Least positive residue] If $a, b \in \ZZ$ are positive, then $\lpr{a}{b}$ is the \emph{least positive residue} of $a$ modulo $b$, \ie $a \equiv \lpr{a}{b} \bmod b$ and $1 \leq \lpr{a}{b} \leq b$.
+\begin{definition}[Least positive residue] If $a, b \in \ZZ$ are positive, then $\lpr{a}{b}$ is the \emph{least positive residue} of $a$ modulo $b$, that is, $a \equiv \lpr{a}{b} \bmod b$ and $1 \leq \lpr{a}{b} \leq b$.
 \end{definition}
 
 \begin{definition}
@@ -1466,7 +1470,8 @@ In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we d
 If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
 Furthermore,
 %
-\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, i.e., $\lceil \lambda q \rceil-1$. 
+\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, that is, $\up{\lambda q} - 1$.
+This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an integer.
 %\daniel[inline]{Elaborate, describe in terms of rounding up, compare with rounding down}
 \end{remark}
 
@@ -1477,10 +1482,27 @@ Furthermore,
    If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
-\begin{proof}  Set $\O = \mf(A, \vv{u})$.  The fact that $\vv{s} \in \sp(A, \vv{u})$  implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some point $\vv{w}$ that is positive in $\rs(\O)$.     The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.  To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
+\begin{proof}
+   Set $\O = \mf(A, \vv{u})$.
+   The fact that $\vv{s} \in \sp(A, \vv{u})$ implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some point $\vv{w}$ that is positive in $\rs(\O)$.
+   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.
+   \pedro{
+      Maybe remind the reader of what we mean by that (here, or before the lemma).
+   }
+   To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
-Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.  Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.  In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t}$ is less than  $\vv{u}$ in $\rs(\O)^{\perp}$.
+   Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.
+   Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
+   Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.
+   In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t}$ is less than  $\vv{u}$ in $\rs(\O)^{\perp}$.
 \end{proof}
+
+\begin{remark}
+   \label{rmk: verifying inequalities using collapses}
+   In the above proof, we use for the first time what will turn out to be a recurring technique in the remainder of this article:
+   In order to prove an inequality between points in $\RR^\numvars$, we prove that the inequality holds in the recession subspace $\rs(\O)$ and that it holds for the collapses of the points along $\O$.
+   The latter shows that the inequality also holds in the complementary subspace $\rs(\O)^\perp$, and thus holds in $\RR^\numvars$.
+\end{remark}
 
 \begin{theorem}
    \label{canonical-feasible: T}
@@ -1519,36 +1541,30 @@ We call a monomial list whose first term is the matrix $A$ an $A$-list.
 
 \begin{definition}
 \label{aux program: D}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}$,
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$,
 % \daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} 
 where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
-Recall that since each nonzero row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A \vv{h}}  < \collapse{A \tail{\vv{s}}_q}$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
-
-\begin{definition}
-The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
-where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-\end{definition}
-
-\daniel[inline]{
-
-\begin{definition}
-The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
-where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-\end{definition}
-
-\!{\Cref{tail projection: L} and the constraints of $\ip$ imply that this is a positive set of lattice points in $\rs(\O)^{\perp}$.}
-
-}
+Recall that since each nonzero row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 
 \Cref{comparison: R} gives us the following result.
 
 \begin{proposition}
-\label{comparison: P}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
+   \label{comparison: P}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
 \qed
 \end{proposition}
+
+\begin{example}
+   \label{ex: ft.3}
+   Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
+   The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
+   \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
+   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: L} below.
+   For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
+   This shows that the optimal set for $\ip$ may be, and typically is, infinite.
+\end{example}
 
 \begin{lemma}
 \label{tail projection: L}
@@ -1558,6 +1574,18 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $
 \begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity
 $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Given this, it is easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
+
+% \begin{definition}
+% The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
+% where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+% \end{definition}
+
+\begin{definition}
+   The \emph{shortfall} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
+   where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+\end{definition}
+
+\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points.
 
 
 \begin{remark}
