@@ -1549,29 +1549,77 @@ We call a monomial list whose first term is the matrix $A$ an $A$-list.
 \label{aux program: D}
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$,
 % \daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} 
-where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
+where the overbar denotes collapse along the minimal face $\mf(A, \vv{u})$.
 \end{definition}
 
 Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
-\Cref{comparison: R} gives us the following result.
-
-\begin{proposition}
-   \label{comparison: P}
-   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
-\qed
-\end{proposition}
+\begin{remark}
+   \label{collapsed aux program: R}
+   \pedro{
+      Not sure where to place this.
+      It's only used once (in \Cref{comparing deltas: R}), so maybe it should simply be incorporated there.
+   }
+   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$.
+   Then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
+\end{remark}
 
 \begin{example}
    \label{ex: ft.3}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
    \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
-   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: L} below.
+   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive lattice points.
    For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
-   This shows that the optimal set for $\ip$ may be infinite.
+   This shows that, even though $\collapse{A}(\opt \ip)$ is always finite, as shown in \Cref{finite image: P}, the optimal set for $\ip$ may be infinite.
 \end{example}
+
+
+\Cref{comparison: R} gives us the following result.
+
+\begin{proposition}
+   \label{comparison: P}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
+   In particular,
+   \[\val \IP(A, \vv{u}, q) \le \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q} + \val \ip (A, \vv{u}, \vv{s}, q).\qed\]
+\end{proposition}
+
+The following may be regarded as a partial converse to \Cref{comparison: P}.
+
+\begin{proposition}
+   \label{uniform value: P}
+   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\denom$ for the special point $\vv{s}$.
+   If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$ and every coordinate of $A \vv{h}$, then the point $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
+\end{proposition}
+
+\begin{proof}
+   Let an overbar denote collapse along $\O = \mf(A, \vv{u})$, and set $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.
+   \Cref{tail-basics: R} tells us that $\vv{k}$ has integer coordinates, and we claim that $\vv{k} \geq \vv{0}$.
+   Indeed, if $s_i$ is zero, then so is $\tail{s_i}_q$, while the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ implies that $h_i$ is nonnegative.
+   On the other hand, if $s_i$ is positive, then it must be at least $1/\denom$, and so
+   $k_i = s_iq-\tail{s_i}_q+h_i \ge q/d - 1 + h_i$, and the last expression is nonnegative by assumption.
+
+   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.
+   Now, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
+\[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
+which we rewrite as
+\begin{equation}
+\label{equivalent ineq: e}
+A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q,
+\end{equation}
+and prove using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
+As $\vv{u}=A\vv{s}+\vv{w}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
+This and the positivity of $\vv{w}$ in $\rs(\O)$ imply that $\vv{w}q$ is greater than $q\vv{1}/d$ in $\rs(\O)$, which in turn is greater than $A\vv{h}$, by assumption.
+Thus, \eqref{equivalent ineq: e} holds in $\rs(\O)$.
+Collapsing along $\O$, on the other hand, \eqref{equivalent ineq: e} becomes $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$, and shows that \eqref{equivalent ineq: e} also holds in $\rs(\O)^\perp$.
+
+In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
+\[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip, \]
+where we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.
+Equality then follows from \Cref{comparison: P}.
+\end{proof}
+
 
 We now move towards establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
 
@@ -1587,15 +1635,16 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $
 \end{proof}
 
 \begin{proposition}
-\label{bounded value: P}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then 
-\[0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]
+   \label{bounded value: P}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then
+   \[0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]
 \end{proposition}
 
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   If $\vv{k}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then its $i$-th coordinate can only be negative if the $i$-th coordinate of $\vv{s}$ is positive, implying that the $i$-th column of $A$ must lie in $\O$.
-   \Cref{prop: inner product with columns of A} then tells us that
+   Let $\vv{k}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
+   Whenever the $i$-th column of $A$ does not lie in $\O$, $s_i$ must be zero, and consequently $k_i$ is nonnegative. 
+   Consequently, \Cref{prop: inner product with columns of A} tells us that
 \begin{equation}
 \label{bound in inner product: e}
 \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}},
@@ -1606,9 +1655,10 @@ That same proposition applied to $\tail{\vv{s}}_q$ gives us
 \label{norm of tail: e}
 \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
 \end{equation}
-These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}},\]
+These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
+\[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
 showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
-Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
+Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
 
 % \begin{definition}
@@ -1620,56 +1670,15 @@ Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail
    \label{deficit ip: D}
    The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
    \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
-   where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+   where the overbar denotes collapse along $\mf(A, \vv{u})$.
    The \emph{deficit} of $\ip$ is the positive rational number
    \[ \deficit \ip = \norm{\tail{\vv{s}}_q} - \val \ip. \] 
 \end{definition}
 
 \Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
 
-\todo[inline]{TBC\ldots}
-
-\begin{remark}
-   \label{collapsed aux program: R}
-   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$.
-   Then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
-\end{remark}
-
-The following may be regarded as a partial converse to \Cref{comparison: R}
-
-\begin{proposition}
-\label{uniform value: P}
-Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, denominator $\denom$ for the special point $\vv{s}$.  If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$, then the point
-$\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
-\end{proposition}
-
-\begin{proof} We start by describing what it means $q$ to be large.  Fix a positive denominator  $\denom \in \ZZ$ for $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and choose $q \gg 0$ so that $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$, and every coordinate of $A \vv{h}$.
-
-Let an overbar denote collapse along $\O = \mf(A, \vv{u})$, and write  \[ \vv{u} = A \vv{s} + \vv{w} \] for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.  As $\vv{u}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
-
-\Cref{tail-basics: R} tells us $\vv{k} \coloneqq \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ has integer coordinates, and we claim that $\vv{k} \geq \vv{0}$, that is, $\vv{s}q \geq \tail{\vv{s}}_q - \vv{h}$, whenever $q \gg 0$.  Indeed, if the $i$-th coordinate of $\vv{s}$ is zero, then so is the $i$-th coordinate of $\tail{\vv{s}}_q$, while the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ implies that the $i$-th coordinate of $\vv{h}$ is nonnegative.  On the other hand, if the $i$-th coordinates of $\vv{s}$ is positive, then it must be at least $q/\denom$, and so the $i$-th coordinate of $\vv{s}q$ is at least $q/\denom$, which is greater than $1 - h_i$ by our choice of $q \gg 0$.  However, \Cref{tail-basics: R} also tells us that the $i$-th coordinate of $\tail{\vv{s}}_q - \vv{h}$ is at most $1-h_i$.  In summary, we have just shown that $\vv{k}$ is a nonnegative lattice point whenever $q \gg 0$.
-
-Thus, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
-\[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q.\]
-which we rewrite as
-\begin{equation}
-\label{equivalent ineq: e}
-A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q.
-\end{equation}
-
-After projecting to $\rs(\O)^{\perp}$, the bound \eqref{equivalent ineq: e} becomes $\collapse{A \vv{h}} < \collapse{A \tail{\vv{s}}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$.  If $\O$ is unbounded, then the projection of the right-hand side of \eqref{equivalent ineq: e} to $\rs(\O)$ is at least $\vv{w}q$.  However, as $\denom$ is a denominator for $\vv{w}$, every coordinate of $\vv{w}q$ is at least $q/\denom$,  and our choice of $q \gg 0$ then guarantees that \eqref{equivalent ineq: e} holds after projecting to $\rs(\O)$.  We conclude that \eqref{equivalent ineq: e} holds throughout $\RR^\numvars = \rs(\O) \oplus \rs(\O)^{\perp}$.
-
-In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
-\[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip \]
-where above we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.  To establish the optimality of $\vv{k}$, it remains to show that the $\val \IP$ equals this lower bound.  However, this is a consequence of \Cref{comparison: P}.
-\end{proof}
-
-
-
-
 \subsection{Some finiteness properties}
-We now explore some finiteness properties, and our results are of two types:  \Cref{bounded value: P} and \Cref{finite image: C} concern the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
-
+We now explore some finiteness properties, and our results are of two types:  \Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
 %\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
 
@@ -1686,22 +1695,25 @@ We now explore some finiteness properties, and our results are of two types:  \C
   \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
-\begin{corollary}
-\label{finite image: C}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\im \ip(A, \vv{u}, \vv{s}, q)$ is finite.
-\end{corollary}
+\begin{proposition}
+   \label{finite image: P}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
+\end{proposition}
 
-\begin{proof}  Adopt the notation from the proof of \Cref{bounded value: P}.
-If $\vv{k}$ is optimal for $\ip$, then \eqref{bound in inner product: e} implies that \[ \val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}\] and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$  in $\rs(\O)^{\perp}$ with $\vv{v} < \collapse{A} \tail{\vv{s}_q}$  and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.  The positivity of $\collapse{\defpt}$ in $\rs(\O)^{\perp}$ and \Cref{bounded polytope: L} then tell us  that this polyhedron is bounded.
+\begin{proof}
+   Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
+   If $\vv{k}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}$, and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
+   The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
+   Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property.
 Potentially move it up before \Cref{bounded value: P}.}
 
-\begin{lemma}
-\label{finitely many secondary programs: L}
+\begin{theorem}
+\label{finitely many secondary programs: T}
 If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
-\end{lemma}
+\end{theorem}
 
 \begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.
 
@@ -1713,7 +1725,7 @@ Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s}
  If $A$ is fixed, then there are only finitely many rational numbers of the form $ \norm{\tail{\vv{s}}_q}$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{corollary}
 
-\begin{proof}  This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: L}.
+\begin{proof}  This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
 \end{proof}
 
 
@@ -1726,9 +1738,9 @@ These finiteness properties above facilitate the following result.
 Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
-\begin{proof}  \Cref{finite image: C} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that
+\begin{proof}  \Cref{finite image: P} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that
 \[  \im \ip (A, \vv{u}, \vv{s}, q) = \ol{ A(\fsr(A, \vv{u}, \vv{s}, q)) } =  \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)) \]
-and \Cref{finitely many secondary programs: L} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
+and \Cref{finitely many secondary programs: T} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
 
 
@@ -1820,7 +1832,7 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \end{lemma}
 
 \begin{proof}
-Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: P} implies that $\delta$ is positive, and \Cref{finite image: C} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\]
+Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: P} implies that $\delta$ is positive, and \Cref{finite image: P} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\]
 We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
 \end{proof}
 
@@ -1837,7 +1849,7 @@ We conclude with some finiteness properties.
 \end{proposition}
 
 \begin{proof}
-This follows immediately from \Cref{finitely many secondary programs: L} and \Cref{finitely many coord sums: C}.
+This follows immediately from \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C}.
 \end{proof}
 
 \begin{remark}
