@@ -1570,10 +1570,15 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
    \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
-   As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive lattice points.
-   For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
-   This shows that the optimal set for $\ip$ may be infinite.
-   In \Cref{finite image: P} we will show, however, that $\collapse{A}(\opt \ip)$ is always finite. 
+   \begin{figure}
+      \includegraphics[width=.5\textwidth]{Pictures/Theta.pdf}
+      \caption{The feasible set for the integer program $\ip(A,\vv{u},\vv{s},q)$ in \Cref{ex: ft.3}, with $\lpr{q}{17}=11$}
+      \label{fig: Theta}
+   \end{figure}
+   \Cref{fig: Theta} shows a portion of the (unbounded) polyhedron defined by the above inequalities, in the case where $\lpr{q}{17}=11$, together with the feasible points for $\ip$.
+   In this case the value of $\ip$ is $1$, and the optimal set---a subset of which is shown in red in \Cref{fig: Theta}---is infinite.
+   In fact, the points of the form $(k,k,1-2k)$, $(k+1,k,-2k)$, and $(k+2,k,-1-2k)$ are optimal for $\ip$ for all $k \in \NN$.
+   The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
 
@@ -1683,6 +1688,11 @@ We now explore some finiteness properties, and our results are of two types:  \C
 
 %\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
 
+Our first result will show that, even though the optimal set of an integer program $\ip$ may be infinite, 
+\pedro{Is it ever not infinite?}
+as shown in \Cref{ex: ft.3}, its image under $\collapse{A}$ is always finite.
+For that, we shall need the following simple boundedness result.
+
 \begin{lemma}
    \label{bounded polytope: L}
    Let $\vv{c}$ and $\vv{u}$ be points in $\RR^\numvars$, and suppose that $\vv{c}$ has positive coordinates.
@@ -1695,6 +1705,8 @@ We now explore some finiteness properties, and our results are of two types:  \C
    As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} =
   \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
+
+We can now prove our finiteness result.
 
 \begin{proposition}
    \label{finite image: P}
