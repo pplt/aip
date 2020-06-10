@@ -976,11 +976,13 @@ Thus, throughout this article, we always assume that defining points of standard
 This convention leads to the following useful observation.
 
 \begin{proposition}\label{prop: inner product with columns of A}
-   If $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and $\vv{s} \in \RR^n$ has nonnegative entries, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
+   Suppose $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and let $\vv{s} \in \RR^n$.
+   If $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$.
+   Moreover, equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
 \end{proposition}
 
 \begin{proof}
-If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i}  s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
+If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the assumption on $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i}  s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
 Thus,
 \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
@@ -1351,6 +1353,7 @@ Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined b
 Below, we adopt the notation established in \Cref{collapse: D}, and we use an overbar to denote the collapse along $\O$.
 
 \begin{remark}
+   \label{rmk: collapse of a matrix}
    It is clear from the definition that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$, for each $\vv{k}$ in the domain of $A$.
 %   Indeed, both are obtained by left-multiplying $\vv{k}$ by $BA$, where $B$ is as in \Cref{collapse: D}.
 \end{remark}
@@ -1501,7 +1504,7 @@ This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an
    \label{rmk: verifying inequalities using collapses}
    In the above proof, we use for the first time what will turn out to be a recurring technique in the remainder of this article:
    In order to prove an inequality between points in $\RR^\numvars$, we prove that the inequality holds in the recession subspace $\rs(\O)$ and that it holds for the collapses of the points along $\O$.
-   The latter shows that the inequality also holds in the complementary subspace $\rs(\O)^\perp$, and thus holds in $\RR^\numvars$.
+   The latter shows that the inequality also holds in the complementary subspace $\rs(\O)^\perp$, and thus holds in $\RR^\numvars = \rs(\O) \oplus \rs(\O)^\perp$.
 \end{remark}
 
 \begin{theorem}
@@ -1549,7 +1552,7 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{
 where the overbar denotes collapse along the face $\O = \mf(A, \vv{u})$.
 \end{definition}
 
-Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ above are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
+Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
 \Cref{comparison: R} gives us the following result.
@@ -1567,47 +1570,46 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    \[\collapse{A} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
    As $q$ ranges from $1$ to $17$, $\collapse{A}\tail{\vv{s}}_q$ ranges over seventeen different positive integral points; this positivity and integrality will be shown in general in \Cref{tail projection: L} below.
    For each of those, the value of $\ip$ is either $0$ or $1$, and the point $(k + \val\ip, k, -2k)$ is feasible, and therefore optimal for $\ip$, for each $k \in \NN$.
-   This shows that the optimal set for $\ip$ may be, and typically is, infinite.
+   This shows that the optimal set for $\ip$ may be infinite.
 \end{example}
 
-We now move towards establishing some useful bounds on the value of $\ip(A, \vv{u}, \vv{s}, q)$.
+We now move towards establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
 
 \begin{lemma}
 \label{tail projection: L}
 If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
 \end{lemma}
 
-\begin{proof}  By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity
-$\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.   To see that this vector is positive in $\rs(\O)^{\perp}$, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.  Given this, it is easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive in $\rs(\O)^{\perp}$, the same must be true for $\collapse{A} \tail{\vv{s}}_q$.
+\begin{proof}
+   By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.
+   To see that this vector is positive, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
+   It is then easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, so is $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
 
 \begin{proposition}
 \label{bounded value: P}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value, and
+If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then 
 \[0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]
 \end{proposition}
 
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   Thus,
-\[ \iprod{{\defpt}}{A \vv{t}} = \iprod{\collapse{\defpt}}{\collapse{A \vv{t}}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{t}} \] for every $\vv{t}$.  With this notation in hand, we begin the proof below.
-
-The product $\defpt^{\mathrm{T}} A $ is a row vector whose $i$-th coordinate is the inner product of $\defpt$ with the $i$-th column of $A$ (and so is at least one).   In fact, if the $i$-th coordinate of a point $\vv{k}$ feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ were negative, then the $i$-th coordinate of $\vv{s}$ must be positive;  thus, the $i$-th column of $A$ must lie in $\O$, and so the $i$-th coordinate of $\defpt^{\mathrm{T}} A$ must equal one.  In particular,
-%
+   If $\vv{k}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then its $i$-th coordinate can only be negative if the $i$-th coordinate of $\vv{s}$ is positive, implying that the $i$-th column of $A$ must lie in $\O$.
+   \Cref{prop: inner product with columns of A} then tells us that
 \begin{equation}
 \label{bound in inner product: e}
-\norm{\vv{k}} \leq (\defpt^{\mathrm{T}} A) \vv{k} =  \defpt^{\mathrm{T}} (A \vv{k}) = \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}
+\norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}},
 \end{equation}
-whenever $\vv{k}$ is feasible for $\ip$, and a similar argument will show that
+where the equality follows from \Cref{rmk: collapse of a matrix,collapse of a defining vector: R}.
+That same proposition applied to $\tail{\vv{s}}_q$ gives us
 \begin{equation}
 \label{norm of tail: e}
 \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
 \end{equation}
-
-Consequently, if $\vv{k}$ is feasible for $\ip$, then the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ and the above observations combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}}\]
-which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$.
+These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}_q}} = \norm{\tail{\vv{s}_q}},\]
+showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
+Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ described in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
-
 
 % \begin{definition}
 % The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
@@ -1616,14 +1618,16 @@ which demonstrates that $\val \ip < \norm{\tail{\vv{s}}_q}$.  Finally, the posit
 
 \begin{definition}[Shortfall and deficit]
    \label{deficit ip: D}
-   The \emph{shortfall} of the integer program $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \short \ip(A, \vv{u}, \vv{s}, q) = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip(A, \vv{u}, \vv{s}, q))\]
+   The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
+   \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
    where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-   The \emph{deficit} of $\ip(A, \vv{u}, \vv{s}, q)$ is the positive rational number
-   \[ \deficit \ip(A, \vv{u}, \vv{s}, q) = \norm{\tail{\vv{s}}_q} - \val \ip(A, \vv{u}, \vv{s}, q). \] 
+   The \emph{deficit} of $\ip$ is the positive rational number
+   \[ \deficit \ip = \norm{\tail{\vv{s}}_q} - \val \ip. \] 
 \end{definition}
 
-\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip(A, \vv{u}, \vv{s}, q)$ is indeed positive.
+\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
 
+\todo[inline]{TBC\ldots}
 
 \begin{remark}
    \label{collapsed aux program: R}
