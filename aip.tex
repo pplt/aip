@@ -14,6 +14,7 @@
 \newcommand{\udeficit}{\operatorname{udeficit}}
 
 \newcommand{\denom}{d} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
+\newcommand{\fsr}{\mathcal{R}}
 
 \begin{document}
 
@@ -1456,7 +1457,8 @@ Below, we describe the relationship between collapses and the other notions intr
 We highlight a simple construction that associates to any point in $\sp_{\QQ}(A, \vv{u})$ a feasible point for $\IP(A, \vv{u}, q)$.
 As a part of this, we call upon some basic notions from modular arithmetic.
 
-\begin{definition}[Least positive residue] If $a, b \in \ZZ$ are positive, then $\lpr{a}{b}$ is the \emph{least positive residue} of $a$ modulo $b$, that is, $a \equiv \lpr{a}{b} \bmod b$ and $1 \leq \lpr{a}{b} \leq b$.
+\begin{definition}[Least positive residue]
+   If $a, b \in \ZZ$ are positive, then $\lpr{a}{b}$ is the \emph{least positive residue} of $a$ modulo $b$, that is, $a \equiv \lpr{a}{b} \bmod b$ and $1 \leq \lpr{a}{b} \leq b$.
 \end{definition}
 
 \begin{definition}
@@ -1464,24 +1466,22 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Let $q$ be a positive integer.
    If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
    \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \]
-This expression is clearly independent of the choice of  integers $a$ and $b$.
-In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
+   This expression is clearly independent of the choice of the integers $a$ and $b$.
+   In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
 
 \begin{remark}
-\label{tail-basics: R}
-If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
-Furthermore,
-%
-\[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \] is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, that is, $\up{\lambda q} - 1$.
-This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an integer.
-%\daniel[inline]{Elaborate, describe in terms of rounding up, compare with rounding down}
+   \label{tail-basics: R}
+   If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
+   Furthermore,
+   \[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \]
+   is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, that is, $\up{\lambda q} - 1$.
+   This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an integer.
 \end{remark}
 
-
-
 \begin{lemma}
-   \label{less than u: L}  Suppose that $\vv{s}$ is a special point for a monomial pair $(A, \vv{u})$.
+   \label{less than u: L}
+   Suppose that $\vv{s}$ is a special point for a monomial pair $(A, \vv{u})$.
    If $\vv{t}$ is a point in the domain of $A$ with $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter bound strict in every coordinate in which $\vv{s}$ is positive, then $A \vv{t} < \vv{u}$.
 \end{lemma}
 
@@ -1519,37 +1519,34 @@ This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an
 \end{proof}
 
 \begin{remark}[Comparisons with canonical feasible points]
-\label{comparison: R}
-Adopt the context of \Cref{canonical-feasible: T}, and fix a point $\vv{k}$ that is feasible for $\IP = \IP(A, \vv{u}, q)$.
-Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the feasible point  described in \Cref{canonical-feasible: T}.  Toward this, set
-%
-\[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]
-%
-and let an overbar denote the collapse along the face $\O = \mf(A, \vv{u})$.
+   \label{comparison: R}
+   Adopt the context of \Cref{canonical-feasible: T}, and fix a point $\vv{k}$ that is feasible for $\IP = \IP(A, \vv{u}, q)$.
+   Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the feasible point  described in \Cref{canonical-feasible: T}.
+   Toward this, set
+   \[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]
+   and let an overbar denote the collapse along the face $\O = \mf(A, \vv{u})$.
 
-Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$ by the nonnegativity constraint of $\IP$.
-The definition of $\vv{h}$ and the constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.
-Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$.
-This motivates us to study another integer program, that will be formally introduced in the next subsection.
+   Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$ by the nonnegativity constraint of $\IP$.
+   The definition of $\vv{h}$ and the constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.
+   Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$.
+   This motivates us to study another integer program, that will be formally introduced in the next subsection.
 \end{remark}
 
 \subsection{Another integer program}
 
 \begin{definition}[Monomial list]
-A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
-\begin{enumerate}
-\item A monomial pair $(A, \vv{u})$.
-\item A rational special point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
-\item A positive integer $q$.
-\end{enumerate}
-We call a monomial list whose first term is the matrix $A$ an $A$-list.
+   A \emph{monomial list} $(A, \vv{u}, \vv{s}, q)$ consists of the following data.
+   \begin{enumerate}
+      \item A monomial pair $(A, \vv{u})$.
+      \item A rational special point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+      \item A positive integer $q$.
+   \end{enumerate}
+   We call a monomial list whose first term is the matrix $A$ an $A$-list.
 \end{definition}
 
 \begin{definition}
-\label{aux program: D}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$,
-% \daniel{We should remind the reader that the collapsed inequalities are a subset of the ones determined by $A$} 
-where the overbar denotes collapse along the minimal face $\mf(A, \vv{u})$.
+   \label{aux program: D}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$, where the overbar denotes collapse along the minimal face $\mf(A, \vv{u})$.
 \end{definition}
 
 Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
@@ -1581,7 +1578,6 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
-
 \Cref{comparison: R} gives us the following result.
 
 \begin{proposition}
@@ -1608,30 +1604,29 @@ The following may be regarded as a partial converse to \Cref{comparison: P}.
 
    To proceed, write $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.
    Now, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
-\[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
-which we rewrite as
-\begin{equation}
-\label{equivalent ineq: e}
-A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q,
-\end{equation}
-and prove using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
-As $\vv{u}=A\vv{s}+\vv{w}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
-This and the positivity of $\vv{w}$ in $\rs(\O)$ imply that $\vv{w}q$ is greater than $q\vv{1}/d$ in $\rs(\O)$, which in turn is greater than $A\vv{h}$, by assumption.
-Thus, \eqref{equivalent ineq: e} holds in $\rs(\O)$.
-Collapsing along $\O$, on the other hand, \eqref{equivalent ineq: e} becomes $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$, and shows that \eqref{equivalent ineq: e} also holds in $\rs(\O)^\perp$.
+   \[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
+   which we rewrite as
+   \begin{equation}
+      \label{equivalent ineq: e}
+      A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q,
+   \end{equation}
+   and prove using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
+   As $\vv{u}=A\vv{s}+\vv{w}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
+   This and the positivity of $\vv{w}$ in $\rs(\O)$ imply that $\vv{w}q$ is greater than $q\vv{1}/d$ in $\rs(\O)$, which in turn is greater than $A\vv{h}$, by assumption.
+   Thus, \eqref{equivalent ineq: e} holds in $\rs(\O)$.
+   Collapsing along $\O$, on the other hand, \eqref{equivalent ineq: e} becomes $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$, and shows that \eqref{equivalent ineq: e} also holds in $\rs(\O)^\perp$.
 
-In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
-\[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip, \]
-where we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.
-Equality then follows from \Cref{comparison: P}.
+   In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
+   \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip, \]
+   where we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.
+   Equality then follows from \Cref{comparison: P}.
 \end{proof}
-
 
 We now move towards establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
 
 \begin{lemma}
-\label{tail projection: L}
-If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
+   \label{tail projection: L}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
 \end{lemma}
 
 \begin{proof}
@@ -1651,26 +1646,21 @@ If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $
    Let $\vv{k}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
    Whenever the $i$-th column of $A$ does not lie in $\O$, $s_i$ must be zero, and consequently $k_i$ is nonnegative. 
    Consequently, \Cref{prop: inner product with columns of A} tells us that
-\begin{equation}
-\label{bound in inner product: e}
-\norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}},
-\end{equation}
-where the equality follows from \Cref{rmk: collapse of a matrix,collapse of a defining vector: R}.
-That same proposition applied to $\tail{\vv{s}}_q$ gives us
-\begin{equation}
-\label{norm of tail: e}
-\norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
-\end{equation}
-These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
-\[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
-showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
-Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
+   \begin{equation}
+      \label{bound in inner product: e}
+      \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}},
+   \end{equation}
+   where the equality follows from \Cref{rmk: collapse of a matrix,collapse of a defining vector: R}.
+   That same proposition applied to $\tail{\vv{s}}_q$ gives us
+   \begin{equation}
+      \label{norm of tail: e}
+      \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
+   \end{equation}
+   These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
+   \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
+   showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
+   Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
-
-% \begin{definition}
-% The \emph{optimal image} of $\ip(A, \vv{u}, \vv{s}, q)$ is the set \[ \im \ip(A, \vv{u}, \vv{s}, q)  =  \collapse{A (\opt \ip(A, \vv{u}, \vv{s}, q))}\]
-% where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-% \end{definition}
 
 \begin{definition}[Shortfall and deficit]
    \label{deficit ip: D}
@@ -1684,12 +1674,12 @@ Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{ta
 \Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
 
 \subsection{Some finiteness properties}
-We now explore some finiteness properties, and our results are of two types:  \Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list,  while \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
-%\emily[inline]{Let's try to construct an example in which the optimal set of $\ip$ is infinite.}
+We now explore some finiteness properties, and our results are of two types:
+\Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list, while \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
 
 Our first result will show that, even though the optimal set of an integer program $\ip$ may be infinite, 
-\pedro{Is it ever not infinite?}
+\pedro{Is it ever \emph{not} infinite?}
 as shown in \Cref{ex: ft.3}, its image under $\collapse{A}$ is always finite.
 For that, we shall need the following simple boundedness result.
 
@@ -1702,11 +1692,10 @@ For that, we shall need the following simple boundedness result.
 \begin{proof}
    It suffices to show that the given set is bounded from below.
    For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
-   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} =
-  \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
+   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
-We can now prove our finiteness result.
+We can now prove our first finiteness result.
 
 \begin{proposition}
    \label{finite image: P}
@@ -1724,38 +1713,40 @@ We can now prove our finiteness result.
 Potentially move it up before \Cref{bounded value: P}.}
 
 \begin{theorem}
-\label{finitely many secondary programs: T}
-If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
+   \label{finitely many secondary programs: T}
+   If $A$ is fixed, then there are only finitely many integer programs of the form $\ip(A, \vv{u}, \vv{s}, q)$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{theorem}
 
-\begin{proof}  Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.  As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.
+\begin{proof}
+   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$.
+   As $A$ is fixed, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$, and only finitely many possibilities for the set of supporting indices of any point $\vv{s} \in \sp_{\QQ}(A ,\vv{u})$.
 
-Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.  If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every integer $q > 0$, where $\vv{1}$ is the vector in the domain lattice of $A$ consisting of all ones.  Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
+   Next, let $\collapse{A}$ be the collapse of $A$ along the face $\O$.
+   If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, then $\vv{0} \leq \tail{\vv{s}}_q \leq \vv{1}$ for every positive integer $q$.
+   Consequently, $\vv{0} \leq \collapse{A} \tail{\vv{s}}_q \leq \collapse{A}\, \vv{1}$, and as \Cref{tail projection: L} tells us that $\collapse{A} \tail{\vv{s}}_q$ has integer coordinates, it follows that there are only finitely many possibilities for this point.
 \end{proof}
 
-\begin{corollary}
-\label{finitely many coord sums: C}
- If $A$ is fixed, then there are only finitely many rational numbers of the form $ \norm{\tail{\vv{s}}_q}$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
+\begin{corollary}\label{finitely many coord sums: C}
+   If $A$ is fixed, then there are only finitely many rational numbers of the form $ \norm{\tail{\vv{s}}_q}$ as we vary over all $A$-lists $(A, \vv{u}, \vv{s}, q)$.
 \end{corollary}
 
-\begin{proof}  This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
+\begin{proof}
+   This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
 \end{proof}
-
 
 These finiteness properties above facilitate the following result.
 
-\newcommand{\fsr}{\mathcal{R}}
-
 \begin{theorem}[Existence of finite sets of representatives]
-\label{fsr-exist: T}
-Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:  For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v} \in \im \ip(A, \vv{u}, \vv{s}, q)$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{ A \vv{h}} = \collapse{A} \vv{h} =  \vv{v}$, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+   \label{fsr-exist: T}
+   Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:
+   For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
 \end{theorem}
 
-\begin{proof}  \Cref{finite image: P} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt (A, \vv{u}, \vv{s}, q)$ such that
-\[  \im \ip (A, \vv{u}, \vv{s}, q) = \ol{ A(\fsr(A, \vv{u}, \vv{s}, q)) } =  \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)) \]
-and \Cref{finitely many secondary programs: T} then implies that these sets may be chosen in such a way so that $\fsr(A) = \cup \, \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
+\begin{proof}
+   \Cref{finite image: P} implies that for every monomial list $(A, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(A, \vv{u}, \vv{s}, q)$ of $\opt \ip (A, \vv{u}, \vv{s}, q)$ such that
+   \[  \collapse{A}(\opt \ip (A, \vv{u}, \vv{s}, q) ) = \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)). \]
+   \Cref{finitely many secondary programs: T} then implies that these sets may be chosen in such a way so that $\fsr(A) = \bigcup \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
-
 
 \newpage
 \section{Toward solving $\IP$}
