@@ -1656,20 +1656,20 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   Let $\vv{k}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
-   If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $k_i$ is nonnegative. 
+   Let $\vv{h}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
+   If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $h_i$ is nonnegative. 
    \Cref{prop: inner product with columns of A,rmk: collapse of a matrix,collapse of a defining vector: R} then tell us that
    \begin{equation}
       \label{bound in inner product: e}
-      \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}.
+      \norm{\vv{h}} \leq \iprod{\defpt}{A \vv{h}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}.
    \end{equation}
    Those same results applied to $\tail{\vv{s}}_q$ give us
    \begin{equation}
       \label{norm of tail: e}
       \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
    \end{equation}
-   These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
-   \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
+   These observations and the constraint $\collapse{A}\vv{h} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
+   \[ \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
    showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
    Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
@@ -1714,7 +1714,7 @@ We can now prove our first finiteness result.
 
 \begin{proof}
    Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   If $\vv{k}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}$, and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
+   If $\vv{h}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}$, and so $\collapse{A} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
    Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
