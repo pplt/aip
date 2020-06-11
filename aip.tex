@@ -710,12 +710,12 @@ In what follows, in analogy with \Cref{ft as val LP: P}, we seek to relate these
 \end{definition}
 
 Note that the integer $s \in \ZZ$ in \Cref{sierpinski: D} can be negative.
-It is also immediate that $\vv{t} \in \sierp_{p,n}$ if and only if $p^s  \vv{t} \in \sierp_{p,n}$ for some (equivalently, for every) integer $s \in \ZZ$; this reflects the self-symmetry observed in \Cref{fig: sierpinski 3-gasket}.
+It is also immediate that $\vv{t} \in \sierp_{p,n}$ if and only if $p^k  \vv{t} \in \sierp_{p,n}$ for some (equivalently, for every) integer $k \in \ZZ$; this reflects the self-symmetry observed in \Cref{fig: sierpinski 3-gasket}.
 In particular, when determining whether $\vv{t} \in \RR^n$ lies in $\sierp_{p,n}$, we may rescale by a power of $p$  and assume that $\vv{t} \in [0,1]^n$.
 
-Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, which is necessarily non-terminating, or else $p^s t \in \NN$ for some $s \in \ZZ$, in which case $t$ has both a terminating and a non-terminating expansion.
-Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^s \vv{t}$ is an integer for each $s \in \NN$, then there is a unique sequence $\{ \vv{t}_e \}_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if all $\norm{\vv{t}_e}$ are less than $p$.
-However, things can be more subtle when some $p^s \vv{t}$ has an integer component.
+Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, which is necessarily non-terminating, or else $p^k t \in \NN$ for some $k \in \ZZ$, in which case $t$ has both a terminating and a non-terminating expansion.
+Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^k \vv{t}$ is an integer for each $k \in \NN$, then there is a unique sequence $\{ \vv{t}_e \}_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if all $\norm{\vv{t}_e}$ are less than $p$.
+However, things can be more subtle when some $p^k \vv{t}$ has an integer component.
 
 \begin{example}
 If $p=2$, then $(1/4, 1/4) \in \sierp_{2,2}$.  Indeed, for the first component, take the non-terminating binary expansion $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$, and for the second component, simply take the expansion $\frac{1}{4} = \frac{1}{2^2}$.  Note that if one instead considered the non-terminating expansion for both components, or the terminating expansion for both components, then the resulting expansion of $(1/4, 1/4)$ would fail to satisfy the condition in \Cref{sierpinski: D}.
