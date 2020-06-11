@@ -5,25 +5,32 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{MTW05}
+\begin{thebibliography}{BMS06b}
+
+\bibitem[BMS06a]{budur+mustata+saito.roots_bs_polys_monomial}
+Nero Budur, Mircea Musta\c{t}\u{a}, and Morihiko Saito, \emph{Roots of
+  {B}ernstein-{S}ato polynomials for monomial ideals: a positive characteristic
+  approach}, Math. Res. Lett. \textbf{13} (2006), no.~1, 125--142. \MR{2200051}
+
+\bibitem[BMS06b]{budur+mustata+saito.roots_bs_polys}
+Nero Budur, Mircea Musta\c{t}\v{a}, and Morihiko Saito, \emph{Combinatorial
+  description of the roots of the {B}ernstein-{S}ato polynomials for monomial
+  ideals}, Comm. Algebra \textbf{34} (2006), no.~11, 4103--4117. \MR{2267574}
 
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
   rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
   43--61.
 
-\bibitem[CCZ14]{conforti+etal.integer_programming}
-M.~Conforti, G.~Cornu\'ejols, and G.~Zambelli, \emph{{I}nteger {P}rogramming},
-  Graduate Texts in Mathematics, no. 271, Springer, Berlin, 2014.
-
 \bibitem[Dic02]{dickson.multinomial}
 L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
   respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
   (1902), 378--384.
 
-\bibitem[HTW19]{hernandez+etal.frobenius_powers}
-D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers}, Math.\
-  Z. (2019), 1--32.
+\bibitem[HTW18]{hernandez+etal.frobenius_powers}
+D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers},
+  preprint, \href{https://arxiv.org/abs/1802.02705}{arXiv:1802.02705
+  [math.AC]}, 2018.
 
 \bibitem[MS05]{miller+sturmfels.combinatorial_CA}
 E.~Miller and B.~Sturmfels, \emph{Combinatorial {C}ommutative {A}lgebra},
@@ -33,9 +40,5 @@ E.~Miller and B.~Sturmfels, \emph{Combinatorial {C}ommutative {A}lgebra},
 M.~Musta{\c{t}}\u{a}, S.~Takagi, and {K.-i.} Watanabe, \emph{{F}-thresholds and
   {B}ernstein--{S}ato polynomials}, European {C}ongress of {M}athematics
   (Z{\"u}rich), Eur.\ Math.\ Soc., 2005, pp.~341--364.
-
-\bibitem[VT84]{vantiel.convex_analysis}
-J.~Van~Tiel, \emph{Convex analysis: An introductory text}, Wiley, New York,
-  1984.
 
 \end{thebibliography}
