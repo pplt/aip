@@ -1487,7 +1487,9 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{proof}
    Set $\O = \mf(A, \vv{u})$.
-   The fact that $\vv{s} \in \sp(A, \vv{u})$ implies that \[ \vv{u} = A \vv{s} + \vv{w}\] for some point $\vv{w}$ that is positive in $\rs(\O)$.
+   The fact that $\vv{s} \in \sp(A, \vv{u})$ implies that
+   \[ \vv{u} = A \vv{s} + \vv{w}\]
+   for some point $\vv{w}$ in $\rs(\O)$ that is positive in that subspace.
    The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.
    \pedro{
       Maybe remind the reader of what we mean by that (here, or before the lemma).
@@ -1502,9 +1504,9 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{remark}
    \label{rmk: verifying inequalities using collapses}
-   In the above proof, we use for the first time what will turn out to be a recurring technique in the remainder of this article:
-   In order to prove an inequality between points in $\RR^\numvars$, we prove that the inequality holds in the recession subspace $\rs(\O)$ and that it holds for the collapses of the points along $\O$.
-   The latter shows that the inequality also holds in the complementary subspace $\rs(\O)^\perp$, and thus holds in $\RR^\numvars = \rs(\O) \oplus \rs(\O)^\perp$.
+   In the above proof, we used for the first time what will turn out to be a recurring technique in the remainder of this article:
+   In order to verify an inequality between points in $\RR^\numvars$, we prove that the inequality holds in the recession subspace $\rs(\O)$ and that it holds for the collapses of the points along $\O$.
+   The latter shows that the inequality we are trying to verify also holds in the complementary subspace $\rs(\O)^\perp$, and thus holds in $\RR^\numvars = \rs(\O) \oplus \rs(\O)^\perp$.
 \end{remark}
 
 \begin{theorem}
@@ -1541,7 +1543,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
       \item A rational special point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
       \item A positive integer $q$.
    \end{enumerate}
-   We call a monomial list whose first term is the matrix $A$ an $A$-list.
+   We call a monomial list whose first term is the matrix $A$ an \emph{$A$-list}.
 \end{definition}
 
 \begin{definition}
@@ -1558,7 +1560,7 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
       Not sure where to place this.
       It's only used once (in \Cref{comparing deltas: R}), so maybe it should simply be incorporated there.
    }
-   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\O = \mf(A, \vv{u})$.
+   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\mf(A, \vv{u})$.
    Then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
 \end{remark}
 
@@ -1598,11 +1600,11 @@ The following may be regarded as a partial converse to \Cref{comparison: P}.
 \begin{proof}
    Let an overbar denote collapse along $\O = \mf(A, \vv{u})$, and set $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.
    \Cref{tail-basics: R} tells us that $\vv{k}$ has integer coordinates, and we claim that $\vv{k} \geq \vv{0}$.
-   Indeed, if $s_i$ is zero, then so is $\tail{s_i}_q$, while the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$ implies that $h_i$ is nonnegative.
+   Indeed, if $s_i$ is zero, then so is $\tail{s_i}_q$, and $k_i = h_i \ge 0$, by the feasibility of  $\vv{h}$ for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
    On the other hand, if $s_i$ is positive, then it must be at least $1/\denom$, and so
    $k_i = s_iq-\tail{s_i}_q+h_i \ge q/d - 1 + h_i$, and the last expression is nonnegative by assumption.
 
-   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ that is positive in $\rs(\O)$, as in \Cref{mc: D}.
+   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in $\rs(\O)$ that is positive in that subspace, as in \Cref{mc: D}.
    Now, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
    \[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
    which we rewrite as
@@ -1626,12 +1628,12 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 
 \begin{lemma}
    \label{tail projection: L}
-   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\O = \mf(A, \vv{u})$, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\O$.
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\collapse{A}\tail{\vv{s}}_q$ is a positive lattice point, where the overbar denotes collapse along $\mf(A,\vv{u})$.
 \end{lemma}
 
 \begin{proof}
    By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity $\collapse{\vv{u}} q =\collapse{A} \vv{s} q = \collapse{A} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{A} \tail{\vv{s}}_q$ then shows that $\collapse{A} \tail{\vv{s}}_q$ must also have integer coordinates.
-   To see that this vector is positive, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
+   To see that this point is positive, note that $\collapse{\vv{u}} = \collapse{A} \vv{s}$ and $\collapse{A} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
    It is then easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, so is $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
 
@@ -1644,14 +1646,13 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
    Let $\vv{k}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
-   Whenever the $i$-th column of $A$ does not lie in $\O$, $s_i$ must be zero, and consequently $k_i$ is nonnegative. 
-   Consequently, \Cref{prop: inner product with columns of A} tells us that
+   If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $k_i$ is nonnegative. 
+   \Cref{prop: inner product with columns of A,rmk: collapse of a matrix,collapse of a defining vector: R} then tell us that
    \begin{equation}
       \label{bound in inner product: e}
-      \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}},
+      \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}.
    \end{equation}
-   where the equality follows from \Cref{rmk: collapse of a matrix,collapse of a defining vector: R}.
-   That same proposition applied to $\tail{\vv{s}}_q$ gives us
+   Those same results applied to $\tail{\vv{s}}_q$ give us
    \begin{equation}
       \label{norm of tail: e}
       \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
@@ -1676,11 +1677,9 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 \subsection{Some finiteness properties}
 
 We now explore some finiteness properties, and our results are of two types:
-\Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list, while \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C} concern the nature of these programs as the list varies.
+\Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list, while \Cref{finitely many secondary programs: T,finitely many coord sums: C,fsr-exist: T} concern the nature of these programs as the list varies.
 
-Our first result will show that, even though the optimal set of an integer program $\ip$ may be infinite, 
-\pedro{Is it ever \emph{not} infinite?}
-as shown in \Cref{ex: ft.3}, its image under $\collapse{A}$ is always finite.
+Our first result will show that, even though the optimal set of an integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
 For that, we shall need the following simple boundedness result.
 
 \begin{lemma}
