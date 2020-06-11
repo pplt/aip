@@ -1054,6 +1054,9 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
 
+\emily[inline]{Define vertices here?}
+
+
 \begin{proof}
    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
    Then one easily sees that the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
@@ -1136,6 +1139,8 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
 
+\emily[inline]{Would having a picture for $m=2$ be overkill?}
+
 \begin{example}\label{ex: ft}
    We examine the different characterizations of $\ft{A}{\vv{u}}$ given in \Cref{FT descriptions: P}, for 
    \[A=\begin{bmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{bmatrix} \quad \text{and} \quad \vv{u} =
@@ -1157,7 +1162,7 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    \end{subfigure}
       \caption{Illustration for \Cref{ex: ft}}
    \label{fig: newton polyhedron and splitting polytope}
-   \end{figure}
+   \end{figure} 
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2).\]
    % shown in blue.
@@ -1210,7 +1215,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 The previous proposition allows us to show the existence of a ``universal'' denominator for the vertices
 \pedro{Define vertex?}
 of $\opt\LP(A,\vv{u})$, dependent only on the monomial matrix $A$, and not on $\vv{u}$.
-For that, we shall need the following well-known characterization of vertices of a polyhedron, whose proof can be found, for instance, in \cite[Theorem~3.34]{conforti+etal.integer_programming}.
+For that, we shall need the following well-known characterization of the vertices of a polyhedron, whose proof can be found, for instance, in \cite[Theorem~3.34]{conforti+etal.integer_programming}.
 
 \begin{lemma}
    \label{prop: characterization of vertices}
@@ -1741,10 +1746,11 @@ Potentially move it up before \Cref{bounded value: P}.}
 
 These finiteness properties above facilitate the following result.
 
+\emily[inline]{Restate?}
 \begin{theorem}[Existence of finite sets of representatives]
    \label{fsr-exist: T}
    Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:
-   For every monomial list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
+   For every $A$-list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
 \end{theorem}
 
 \begin{proof}
@@ -1766,7 +1772,7 @@ The goal in this subsection is to demonstrate that the value and optimal image o
 \begin{corollary}
 \label{uniform value and image: C}
 Given a monomial matrix $A$, there exists $\beta = \beta(A) \in \ZZ$ satisfying the following condition\textup:
-If $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then
+If $(A, \vv{u})$ is a monomial pair with $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then
 %
 \[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \]
 \daniel[inline]{This will become 
@@ -1782,11 +1788,11 @@ and
 }
 
 
-where the overbar denotes collapse along $\O$.
+where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{corollary}
 
 \begin{proof}
-Let $\beta$ be as in \Cref{uniform value: P}.  Fix a monomial pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
+Let $\beta$ be as in \Cref{uniform value: P}.  Fix a monomial pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$ \emily{Are we saving $\denom$ for special denominators?}, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
 
 The asserted value of $\IP(A, \vv{u}, q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}, q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}, q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}, q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $\collapse{A} \vv{h} \in \im \ip$.  Furthermore, as $\collapse{A} \vv{s} = \collapse{\vv{u}}$,
 %
