@@ -13,9 +13,8 @@
 \newcommand{\deficit}{\operatorname{deficit}}
 \newcommand{\udeficit}{\operatorname{udeficit}}
 
-\newcommand{\denom}{d} %We should stick to the same notation for the denominator of a special point.  Sometimes D is used, but I would prefer a lowercase letter.  Lowercase "d" makes sense, but we use that for the dimension of the ambient polynomial ring.
+\newcommand{\denom}{d} 
 \newcommand{\fsr}{\mathcal{R}}
-
 
 \renewcommand{\S}{\mathcal{S}}
 
@@ -117,274 +116,6 @@ TO DO LIST:
    \end{itemize}
 }
 % 
-
-
-\newpage
-
-% \emily[inline]{I've been thinking about the readability of the paper (including for the referee), and since it is also going to be quite long, I propose to move (at least some of) the preliminaries to an appendix.   Then we could get to ``new math'' sooner. What do you think?}
-% \pedro[inline]{
-%    An appendix on convex geometry would make sense to me; it could include most of what we have here in 1.1, and perhaps more (\eg definition and characterizations of faces, vertices, etc.)
-%    Other things, like the terminology associated to linear programs and multinomial coefficients, could be spread through the paper, ``on demand''.
-%    Maybe the rest should stay here? (Notation and conventions we use all the time, Newton polyhedra, monomial matrices/ideals\ldots)
-% }
-
-
-
-
-
-
-
-
-% \subsection{Linear programming}
-%
-% \ \pedro[inline]{
-%    Since we are trying to minimize these preliminaries and get to the point, I think we can ditch this section.
-%    We can just quickly introduce the terminology and notation after defining the first linear/integer program, and say something to the effect that this terminology and notation will be carried out to other optimization problems we'll consider.
-% }
-%
-% Let $\mathbb{D}$ be either $\RR$ or $\ZZ$.
-% A \emph{linear program} $\Pi$ in $\mathbb{D}^n$ is an optimization problem in which one seeks to maximize a fixed linear \emph{objective function} $\RR^n \to \RR$ on a subset of $\mathbb{D}^n$ defined by a fixed system of linear inequalities.
-% We refer to this subset as the \emph{feasible set} of $\Pi$, and denote it $\feas \Pi$, and we refer to the inequalities defining it as the \emph{constraints} of $\Pi$.
-% We say that the points of $\feas \Pi$ are \emph{feasible for $\Pi$}.
-% When $\mathbb{D} = \ZZ$, we refer to $\Pi$ as an \emph{integer linear program}, or simply \emph{integer program}, for short.
-%
-% If $\mathbb{D} = \RR$, then the feasible set is a polyhedron in $\RR^n$, and if $\mathbb{D} = \ZZ$, the feasible set is the set of lattice points in a polyhedron in $\RR^n$.
-%
-% In this article, we only consider linear programs in which the objective function restricted to the feasible set attains a maximum (\eg this occurs whenever the constraints define a polytope).
-% In this case, a feasible point is \emph{optimal} if it maximizes the objective function, and the \emph{value} of the program is the
-% value of the objective function at an optimal point.
-% We use $\opt \Pi$ to denote set of optimal points of a linear program $\Pi$, and $\val \Pi$ to denote the value of $\Pi$.
-%
-% There are several reasonable notions of equality for integer programs.
-% In this article,  we say that two integer programs are \emph{equivalent} if their objective functions are identical and their feasible sets agree,
-% and are \emph{equal} if their objective functions and defining constraints are identical.
-
-
-% \subsection{Euclidean spaces, convexity, and polyhedra}
-% \label{ss: euclidean spaces and convexity}
-%
-% We review in this subsection some of the terminology, notation, and constructions concerning Euclidean spaces and convex geometry used throughout the paper.
-% We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter, in regular font, to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
-% The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and the standard basis vectors of $\RR^n$ are denoted $\canvec_1,\ldots,\canvec_n$.
-%
-% Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
-% The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
-% An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; for instance, $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
-% In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
-%
-% We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
-% More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
-%
-% Turning to concepts and constructions of convex geometry, a (convex) \emph{polyhedron} in $\RR^n$ is a subset of $\RR^n$ obtained by intersecting finitely many closed halfspaces or, equivalently, a set consisting of all points $\vv{x}\in \RR^n$ satisfying an inequality of the form $A\vv{x}\le \vv{b}$, where $A$ is a matrix with $n$ columns.
-%
-% The (convex) \emph{cone generated by $\vv{u}_1,\ldots,\vv{u}_k \in \RR^n$}, denoted $\cone(\vv{u}_1,\ldots,\vv{u}_k)$, is the set consisting of all \emph{conical combinations} of $\vv{u}_1, \ldots, \vv{u}_k$, that is, points of the form $\sum_{i=1}^k \lambda_i \vv{u}_i$, where the $\lambda_i$ are nonnegative real numbers.
-% Likewise, the \emph{convex hull of $\vv{u}_1,\ldots,\vv{u}_k$}, denoted $\conv(\vv{u}_1,\ldots,\vv{u}_k)$, is the set of all \emph{convex combinations} of $\vv{u}_1, \ldots, \vv{u}_k$, that is, points of the form $\sum_{i=1}^k \lambda_i \vv{u}_i$, where the $\lambda_i$ are nonnegative and $\sum_{i=1}^k \lambda_i = 1$.
-% The convex hull of a finite set of points is called a \emph{polytope}.
-%
-% If $\mathcal{U}$ and $\mathcal{V}$ are subsets of $\RR^n$, their \emph{Minkowski sum} is the set
-% \[\mathcal{U}+\mathcal{V} \coloneqq \{\vv{u}+\vv{v}: \vv{u}\in \mathcal{U}\text{ and }\vv{v}\in \mathcal{V}\}.\]
-% The \emph{Minkowski--Weyl Theorem} asserts that a subset $\mathcal{P}$ of $\RR^n$ is a polyhedron if and only if $\mathcal{P}$ is the Minkowski sum of a polytope and a finitely generated cone.
-% The cone in this decomposition is the set of all directions $\vv{d} \in \RR^n$ in which $\mathcal{P}$ recedes, that is, $\vv{c} + \lambda \vv{d} \in \mathcal{P}$ for every $\vv{c} \in \mathcal{P}$ and $\lambda > 0$; it is uniquely determined by $\mathcal{P}$, and called the \emph{recession cone of $\mathcal{P}$}.
-%
-% The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone.
-%
-% %\pedro[inline]{
-% %   Maybe we should gather what we need about faces and vertices of polyhedra right here.
-% %}
-% %\daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
-% %\pedro[inline]{
-% %   Yes, maybe it's more efficient to introduce what we need ``on demand'', so the reader does not need to be coming back to this section all the time.
-% %   That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
-% %}
-% The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
-% % \pedro{
-% %    Is there a more concrete characterization for polyhedra/polytopes?
-% %    E.g., points not in any proper face? Positive convex combinations of vertices?
-% % }
-% % \daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
-% For later use, we observe that, when restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
-%
-% \begin{proposition}
-%    \label{bounded polytope: P}
-%    Let $\vv{c}$ and $\vv{u}$ be points in $\RR^n$, and suppose that $\vv{c}$ has positive coordinates.
-%    If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^n$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
-% \end{proposition}
-%
-% \begin{proof}
-%    It suffices to show that the given set is bounded from below.
-%    For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
-%    As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} =
-%   \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
-% \end{proof}
-%
-% We conclude this subsection with a useful technical result.
-% Though variations of this proposition are well known, we include a simple proof, for lack of an appropriate reference.
-%
-% \begin{proposition}
-% \label{vertex: P}
-% Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point contained in the cone generated by the columns of $M$.  If $\Q$ is the polyhedron in $\RR^n$  consisting of all points $\vv{t}$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{b}$, then a point $\vv{t}^{\ast} \in \Q$ is a vertex of $\Q$ if and only if the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent.  %In particular, $\Q$ contains a vertex.
-% \end{proposition}
-%
-% \begin{proof}
-%    The fact that $\vv{b}$ lies in the cone generated by the columns of $M$ implies that $\Q$ is nonempty.
-%    Fix a point $\vv{t}^{\ast} \in \Q$.
-%    Before proceeding, recall that $\vv{t}^{\ast}$ is a vertex of $\Q$ if and only if an expression of $\vv{t}^{\ast}$ as a convex combination of points $\vv{r}$ and $\vv{s}$ in $\Q$ is only possible when $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-%
-%    First, assume that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent, and suppose that $\vv{t}^{\ast} = \lambda \vv{r} + \mu \vv{s}$ is a convex combination of points $\vv{r}, \vv{s} \in \Q$.
-%    Since $\vv{r},\vv{s}\ge \vv{0}$, the $i$-th coordinate of $\vv{r}$ and of $\vv{s}$ are zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.
-%    On the other hand, the fact that $\vv{r}$ and $\vv{s}$ lie in $\Q$ also implies that
-%    \[ M \vv{t}^{\ast} = \vv{b} = M \vv{r} = M \vv{s}, \]
-%    and the assumption that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent then implies that $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-%
-% Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}^{\ast}$ is a convex combination of these points, it will then follow that $\vv{t}^{\ast}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ is nonnegative for all $0 < \varepsilon \ll 1$.
-% \end{proof}
-%
-% \pedro[inline]{
-%    An alternative to the previous proposition is the following result, which we could just mention and give a reference (it appears in several books):
-%
-%    \begin{proposition}
-%       Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and $\vv{v}$ a vertex of $\mathcal{P}$.
-%       Then there exists $I \subseteq \{1,\ldots,m\}$ such that $\vv{v}$ is the unique solution to the system $A_I \vv{x} = \vv{b}_I$, where $A_I$ and $\vv{b}_I$ are obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
-%    \end{proposition}
-%
-%    Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-%    By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
-%    Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
-%
-%    \bigskip
-%
-%    Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
-% }
-%
-% \subsection{Monomial ideals, monomial matrices, and Newton polyhedra}
-% \label{monomial newton preliminaries: ss}
-% We work in the polynomial ring $\kk[x_1, \ldots, x_\numvars]$ over a field $\kk$, and adopt standard notation for describing monomials in this ring:  If $\vv{u} \in \NN^\numvars$, then \[ x^{\vv{u}} = x_1^{u_1} \cdots x_\numvars^{u_\numvars}.\]
-%  \daniel{Return to this and add whatever we need to to support our discussion in \Cref{sec: LPs}.}
-%
-% A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
-% If $A$ is a $d \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice}, and $\ZZ^\numvars$ the \emph{target lattice}, of $A$.
-%
-% The \emph{Newton polyhedron} of a monomial matrix $A$ with $d$ rows is the polyhedron in $\RR^\numvars$ given by
-% \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_\numvars), \]
-% where $\col(A)$ is the set of columns of $A$.
-%
-% Recall that a proper subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and $\alpha \in \RR$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
-% We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.  In this article, we are largely concerned with faces $\O$ of $\N$ that do not lie in any coordinate subspace of $\RR^\numvars$, which we call \emph{standard}.
-%
-% \begin{convention}
-% \label{alpha=1: convention}
-% Let $\O$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR$ be as above.  If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.   Thus, throughout this article, we always assume that we have normalized in this way when considering defining points of standard faces.
-% \end{convention}
-%
-% \Cref{alpha=1: convention} leads to the following useful observation.
-%
-% \begin{proposition}\label{prop: inner product with columns of A}
-%    If $\defpt \in \RR^\numvars$ defines a standard face $\O$ of $\N$, and $\vv{s} \in \RR^n$ has nonnegative coordinates, then $\iprod{\defpt}{A\vv{s}} \geq \norm{\vv{s}}$,  and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
-% \end{proposition}
-%
-% \begin{proof}
-% If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the nonnegativity of $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i} \cdot s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
-% Thus,
-% \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} \cdot s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
-% and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
-% \end{proof}
-%
-% The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
-%
-% \begin{proposition}
-%    \label{face: P}
-%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then $\defpt$ is nonnegative, and the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-%    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-% \end{proposition}
-%
-% \begin{proof}
-%    If $\vv{u} \in \O$, then adding to $\vv{u}$ any nonnegative point in $\RR^\numvars$ produces a point in $\N$.
-%    In particular, if $\iprod{\defpt}{\vv{u}} = \alpha$, then $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} \geq \alpha$ for every standard basis vector $\canvec_i$ in $\RR^\numvars$ and $\lambda > 0$.
-%    This observation implies that $a_i = \iprod{\defpt}{\canvec_i} \ge 0$ for each $i$, so $\defpt \geq \vv{0}$, and that $\vv{u} + \lambda \canvec_i \in \O$ for every $\lambda > 0$ if and only if $\iprod{\defpt}{\canvec_i} = 0$.
-%
-% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-% \begin{equation}
-% \label{face: e}
-% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-% \end{equation}
-% where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-% \end{proof}
-%
-% \begin{definition}
-%    If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
-% \end{definition}
-%
-% As noted above, these definitions depend only on $\O$, but not on the choice of $\defpt$.
-% In view of the Minkowski--Weyl Theorem (see \Cref{ss: euclidean spaces and convexity}), equation \eqref{face: e} implies that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
-%
-% \subsection{Linear programming}
-%
-% Let $\mathbb{D}$ be either $\RR$ or $\ZZ$.
-% A \emph{linear program} $\Pi$ in $\mathbb{D}^n$ is an optimization problem in which one seeks to maximize a fixed linear \emph{objective function} $\RR^n \to \RR$ on a subset of $\mathbb{D}^n$ defined by a fixed system of linear inequalities.
-% We refer to this subset as the \emph{feasible set} of $\Pi$, and denote it $\feas \Pi$, and we refer to the inequalities defining it as the \emph{constraints} of $\Pi$.
-% We say that the points of $\feas \Pi$ are \emph{feasible for $\Pi$}.
-% When $\mathbb{D} = \ZZ$, we refer to $\Pi$ as an \emph{integer linear program}, or simply \emph{integer program}, for short.
-%
-% If $\mathbb{D} = \RR$, then the feasible set is a polyhedron in $\RR^n$, and if $\mathbb{D} = \ZZ$, the feasible set is the set of lattice points in a polyhedron in $\RR^n$.
-%
-% In this article, we will only consider linear programs in which the objective function restricted to the feasible set attains a maximum (\eg this occurs whenever the constraints define a polytope).
-% In this case, a feasible point is \emph{optimal} if it maximizes the objective function, and the optimal value obtained by this function is called the \emph{value} of the program.
-% We use $\opt \Pi$ to denote optimal set of the linear program $\Pi$, and $\val \Pi$ to denote the value of $\Pi$.
-%
-% There are clearly multiple reasonable notions of equality for integer programs.
-% In this article,  we say that two integer programs are \emph{equal} if their objective functions and defining constraints are identical, and \emph{equivalent} if their objective functions are identical and their feasible sets agree.
-%
-% \subsection{Multinomial coefficients}
-% \ \daniel[inline]{I don't think we consider $\binom{k}{\vv{u}}$ unless $\norm{\vv{u}} = k$.  If so, why don't we just define $\binom{\norm{\vv{u}}}{\vv{u}}$?}
-% \pedro[inline]{
-%    I think we do need the more general definition in the statement of Dickson's theorem, below.
-%    The one advantage of the current definition is that there's one less condition to state when writing out generators for $\ideala^{[k]}$ ($\binom{k}{\vv{k}} \not\equiv 0 \bmod p$, as opposed to $\norm{\vv{k}} = k$ and $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod p$.)
-%    I took advantage of that in a couple of places.
-% }
-% \emily[inline]{I think this ``zero'' convention is standard; at least it is familiar for binomial coefficients.  Actually, do we really need to define a multinomial coefficient?  It seems sufficient to me to simply say that \hl{we use  $\binom{k}{\vv{u}}$ to denote the binomial coefficient $\binom{k}{u_1,\ldots,u_n}$, which equals zero if $\norm{\vv{u}} \neq k$}.}
-% \pedro[inline]{
-%    Sounds good to me. Let's just include the highlighted sentence immediately before our first use of multinomial coefficients.
-% }
-%
-% If $k$ is a nonnegative integer and $\vv{u} = (u_1,\ldots,u_n) \in \NN^n$ is a point with $\norm{\vv{u}} = k$, then the \emph{multinomial coefficient} $\binom{k}{u_1,\ldots,u_n}$, or $\binom{k}{\vv{u}}$ for short, is defined as follows:
-% \[
-%    \binom{k}{\vv{u}} = \binom{k}{u_1,\ldots,u_n} \coloneqq \frac{k!}{u_1!\cdots u_n!}.
-% \]
-% If $\norm{\vv{u}} \ne k$, on the other hand, we set $\binom{k}{\vv{u}}=0$.
-%
-%
-% \emily[inline]{I am under the impression that the following theorem and corollary are only used in Section 7.  What do you think about putting them together in a remark right before they are used?}
-% \pedro[inline]{
-%    That sounds good to me.
-%    We'll just combine all of this with the sentence immediately after Definition~7.1, all in one remark.
-% }
-% \begin{theorem}[\cite{dickson.multinomial}]
-%    \label{thm: dickson}
-%    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
-%    Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
-%    \begin{equation*}
-%       k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
-%    \end{equation*}
-%    where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$.
-%    \textup{(}Note that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$.\textup{)}
-%    Then
-%    \[
-%       \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
-%    \]
-%    In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
-% \qed
-% \end{theorem}
-%
-% \begin{corollary}
-%    \label{cor: multinomial congruence}
-%    Let $k,l,e\in \NN$, with $l<p^e$, and $\vv{u},\vv{v}\in \NN^n$, with $\vv{v}<p^e\cdot \vv{1}$.
-%    Then
-%    \[
-%       \pushQED{\qed}
-%       \binom{kp^e+l}{\vv{u}p^e+\vv{v}}\equiv \binom{k}{\vv{u}}\binom{l}{\vv{v}} \mod{p}.\qedhere
-%       \popQED
-%    \]
-% \end{corollary}
 
 \newpage
 \section{Introduction}
@@ -943,48 +674,6 @@ Thus,
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
-%The following proposition is well known to experts, but we include the short proof to keep the article self-contained.
-
-% \begin{proposition}
-%    \label{face: P}
-%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of the Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{v} + \lambda \canvec_i \in \O$  for every $\vv{v} \in \O$ and $\lambda > 0$.
-%    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-% \end{proposition}
-
-% \begin{proof}
-%    Let $\vv{v} \in \O$, and suppose $\iprod{\defpt}{\vv{v}} = \alpha$.
-%    If $\lambda > 0$, then the point $\vv{v} + \lambda \canvec_i$ of $\N$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{v} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
-%    So $\vv{v} + \lambda \canvec_i \in \O$ for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
-
-%    The fact proven above shows that if $\O$ is bounded, then $\defpt$ must be positive.
-%    Conversely, if $\defpt$ is positive, then $\O$ is bounded, as each point $\vv{v}\in \O$ is bounded below by $\vv{0}$ and above by $(\alpha/c_1,\ldots,\alpha/c_\numvars)$. 
-% % Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-% % \begin{equation}
-% % \label{face: e}
-% % \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-% % \end{equation}
-% % where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-% \end{proof}
-
-% \begin{proposition}
-%    \label{face: P}
-%    If $\defpt \in \RR^\numvars$ defines a face $\O$ of a Newton polyhedron $\N$, then the $i$-th coordinate of $\defpt$ is zero if and only if $\vv{u} + \lambda \canvec_i \in \O$  for every $\vv{u} \in \O$ and $\lambda > 0$.
-%    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
-% \end{proposition}
-
-% \begin{proof}
-%    Let $\vv{u} \in \O$, and suppose $\iprod{\defpt}{\vv{u}} = \alpha$.
-%    Then $\vv{u} + \lambda \canvec_i$ lies in $\O$ if and only if $\iprod{\defpt}{\vv{u} + \lambda \canvec_i} = \alpha + \lambda c_i$ equals $\alpha$.
-%    Clearly, this will happen for every (or equivalently, some) $\lambda > 0$ if and only if $c_i = 0$. 
-
-% Similar logic will show that if $\rb(\O) \coloneqq  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$, then
-% \begin{equation}
-% \label{face: e}
-% \O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))
-% \end{equation}
-% where we agree that the $\cone(\emptyset) = \{\vv{0}\}$.  We see from this that $\O$ is bounded if and only if $\rb(\O)$ is empty, which is equivalent to the third assertion.
-% \end{proof}
-
 \pedro[inline]{
    The identity $\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))$ appeared in the proof of a proposition that is now commented out.
    It didn't seem obvious nor necessary to that proof, and seemed to say more than the proposition itself.
@@ -1079,12 +768,6 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
    This shows that the value of $\LP$ is at most $\lambda$. 
 
-   % On the other hand, \eqref{face: e} and our choice of $\O$ imply that
-   % \begin{equation}\label{cone containment: e}
-   %    \lambda^{-1} \vv{u} \in \O = \conv(\col(A) \cap \O) + \cone(\rb(\O)).
-   % \end{equation}
-   % Multiplying by $\lambda$, we obtain an expression $\vv{u} = A \vv{s} + \vv{w}$ with $\vv{s}, \vv{w} \geq \vv{0}$ and $\norm{\vv{s}} = \lambda$.
-   % Evidently, the point $\vv{s}$ is feasible for $\LP$, and so $\val \LP \geq \lambda$.
    On the other hand, since $\lambda^{-1}\vv{u} \in \N$, we have $\lambda^{-1}\vv{u} \ge A\vv{s}$ for some $\vv{s} \geq \vv{0}$ with $\norm{\vv{s}} = 1$.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
@@ -1115,11 +798,6 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    \end{figure} 
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2).\]
-   % shown in blue.
-   % \daniel{Is this really blue?  The 3(B) figure looks blue; this looks purple}
-   % \pedro{It is blue, but looks purplish because of Mathematica's lighting.
-   %    Maybe best would be to avoid mentions to colors, as these things may end up being printed in B\&W.
-   % }
    Thus, $\mf(A,\vv{u}) = \O$, and the description given in \Cref{FT descriptions: P}\eqref{lambda} tells us that $\ft{A}{\vv{u}} = 4/17$.
 
    The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\eqref{new ip} tells us that
@@ -1187,16 +865,6 @@ Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)
    Let $\denom$ be the least common multiple of the nonzero $n\times n$ minors of $M$.
    Then by \Cref{prop: characterization of vertices}, every vertex of $\opt \LP(A,\vv{u})$ is rational, with denominator $\denom$.
 \end{proof}
-
-% \begin{proof}
-% Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
-
-% If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP
-% \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
-% \pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
-
-% Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
-% \end{proof}
 
 \subsection{Special points and denominators}
 
@@ -1268,12 +936,6 @@ Special denominators exist.
 \end{proof}
 
 \subsection{Discreteness of $F$-thresholds}
-
-% \ \daniel[inline]{I cannot think of where to place this.  In fact, I am not certain that it is used anymore;  at some point, I think it came up when discussing the tree later, but I don't think it is relevant anymore.  Maybe we should omit it in that case?}
-% \pedro[inline]{
-%    If we figure we don't really need it, then omitting is OK with me. 
-% }
-% \daniel[inline]{We need it!}
 
 The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
@@ -1701,9 +1363,6 @@ Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$
 \[ \short \IP_p(A, \vv{u}, q) = \vv{u}q - A( \opt \IP_p(A, \vv{u}, q)).\]  
 Equivalently, the shortfall of $\IP_p(A, \vv{u},q)$ is determined by the condition
 \[ A(\opt \IP_p(A, \vv{u}, q)) = \vv{u}q - \short \IP_p(A, \vv{u}, q).\]
-%
-
-%
 \end{definition}
 
 The shortfall of $\IP_p(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$, and arguing as in \Cref{shortfall motivation: R}, one can show that
@@ -1942,256 +1601,6 @@ Given a monomial matrix $A$, there exists an integer $\beta$ with the following 
 Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property:  If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then $\nu(\ideala, \ideald, q) = \nu(\collapse{\ideala}, \collapse{\ideald}, q)$. \daniel{This will also require us to carefully define the collapse of an ideal pair}
 \end{corollary}
 
-% \newpage
-% \section{Connections with arithmetic and fractal programs}
-%
-% \subsection{$\mu$ invariants as values of arithmetic integer programs}
-%
-% Let $\ideala$ be a monomial ideal in a polynomial ring in the variables $x=x_1,\ldots,x_\numvars$ over a field of positive characteristic $p$.
-% Let $\vv{u}$ be a positive point in $\NN^\numvars$, and $\ideald = \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_\numvars^{u_\numvars}}$.
-% Recall that for each $q$ a power of $p$ we define the number
-% \[\mu(\ideala,\ideald,q) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \ideald^{[q]}\big\},\]
-% used in the computation of the critical exponent of $\ideala$ with respect to $\ideald$.
-% If $A \in \NN^{d\times n}$ is an exponent matrix of $\ideala$, then $\ideala^{[k]}$ is generated by monomials $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\binom{k}{\vv{k}} \not\equiv 0 \bmod{p}$.
-% Since the condition $\ideala^{[k]} \not\subseteq \ideald^{[q]}$ is equivalent to the existence of $\vv{k}$ as above satisfying $A\vv{k} < \vv{u}q$, finding the maximum defining $\mu(\ideala,\ideald,q)$ is equivalent to maximizing $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$ and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.
-%
-% In what follows, $(A, \vv{u})$ is a $d \times n$ monomial pair and $p$ is a prime integer.
-% Moreover, the letter $q$ from here on will always denote a power of $p$.
-% Motivated by the above discussion, we introduce a variant of an integer program in which we impose an additional and highly nonlinear constraint.
-% %As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
-%
-% \begin{definition}
-% \label{aip: D}
-% The \emph{arithmetic integer program} $\IP_p(A, \vv{u}, q)$ in the domain lattice of $A$ consists of maximizing $\vv{k} \mapsto \norm{\vv{k}}$ subject to the linear constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} < \vv{u}q$, and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
-% \end{definition}
-%
-%
-% \begin{remark} \label{dickson: R}
-% Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
-% Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
-% \begin{equation*}
-% k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
-% \end{equation*}
-% where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$
-% (so that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$).
-% Then by \cite{dickson.multinomial},
-% \[
-%     \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
-% \]
-% In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
-%
-% Hence the condition that $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$ in \Cref{aip: D} is equivalent to the condition that
-%  if $\vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l$ is the
-% %  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.}
-%  base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
-% \end{remark}
-%
-% % \begin{theorem}[\cite{dickson.multinomial}]
-% %    \label{thm: dickson}
-% %    Let $p$ be a prime integer, $k\in \NN$, and $\vv{u} \in \NN^n$.
-% %    Write the terminating base $p$ expansions of $k$ and $\vv{u}$ as follows\textup:
-% %    \begin{equation*}
-% %       k = k_0+k_1p+k_2p^2+\cdots+k_rp^r\quad \text{and} \quad \vv{u}=\vv{u}_0+\vv{u}_1p+\vv{u}_2p^2+\cdots+\vv{u}_rp^r,
-% %    \end{equation*}
-% %    where $0\le k_i < p$ and $\vv{0}\le\vv{u}_i < p \cdot \vv{1}$ for each $i$.
-% %    \textup{(}Note that it is possible that $k_r = 0$ or $\vv{u}_r = \vv{0}$.\textup{)}
-% %    Then
-% %    \[
-% %       \binom{k}{\vv{u}}\equiv \binom{k_0}{\vv{u}_0}\binom{k_1}{\vv{u}_1}\cdots \binom{k_r}{\vv{u}_r} \mod{p}.
-% %    \]
-% %    In particular, $\binom{k}{\vv{u}}\not\equiv 0\bmod{p}$ if and only if $\norm{\vv{u}_i}=k_i$ for each $i$, that is, the components of $\vv{u}$ add up to $k$ without carrying \textup(base $p$\textup).
-% % \qed
-% % \end{theorem}
-%
-% % \begin{corollary}
-% %    \label{cor: multinomial congruence}
-% %    Let $k,l,e\in \NN$, with $l<p^e$, and $\vv{u},\vv{v}\in \NN^n$, with $\vv{v}<p^e\cdot \vv{1}$.
-% %    Then
-% %    \[
-% %       \pushQED{\qed}
-% %       \binom{kp^e+l}{\vv{u}p^e+\vv{v}}\equiv \binom{k}{\vv{u}}\binom{l}{\vv{v}} \mod{p}.\qedhere
-% %       \popQED
-% %    \]
-% % \end{corollary}
-% %
-% %
-% % By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
-%
-%
-% We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in analogy with those for linear programs.
-% %the analogous way.
-% It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
-% In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
-%
-% % By \Cref{thm: dickson}, the latter  is equivalent to the condition that  if \[ \vv{k} = \vv{k}_0 + \cdots + \vv{k}_l \cdot  p^l\] is the  \daniel{I removed \emph{unique terminating} since $\vv{k}$ is a lattice point.  Both $r$ and $l$ appeared as the terminating index, so I just made both $l$, since I prefer it.  We can change it back to $r$, though.} base $p$ expansion of $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq l$.
-% %
-% % We define the terms \emph{feasible, optimal}, and \emph{value} relative to an arithmetic program in the analogous way.
-% % It is easy to see that the feasible set of $\IP_p(A,\vv{u},q)$ is finite, and consequently this program has a well-defined value.
-% % In the algebraic context given above, $\val \IP_p(A,\vv{u},q)$ equals $\mu(\ideala,\ideald,q)$, which we shall often denote $\mu(A,\vv{u},q)$.
-%
-% % \daniel[inline]{It is possible that we don't use the image of this program anywhere.  Maybe only the image of $\ip$.}
-% % \pedro[inline]{
-% %    This image appears in multiple places: \Cref{follow-leftovers: P}, \Cref{arithmetic uniform value and image: T}, \Cref{cor: upper bound for higher mus}.
-% % }
-% \begin{definition}
-% The \emph{optimal image} of $\IP_p(A, \vv{u}, q)$ is the set $\im \IP_p(A, \vv{u}, q)$ of all points  $A \vv{k}$ with $\vv{k} \in \opt \IP_p(A, \vv{u}, q)$.
-% \end{definition}
-%
-% If $\ideala$ and $\ideald$ are as above, and $\mu = \mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)$, then the optimal image of $\IP_p(A,\vv{u},q)$ characterizes the ``leftovers'' of $\ideala^{[\mu]}$ modulo $\ideald^{[q]}$:
-% \begin{align*}
-%   \ideala^{[\mu]} &= \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}}\\
-%   &\equiv \ideal{x^{A\vv{k}}: \textstyle\binom{\mu}{\vv{k}} \not\equiv 0 \bmod{p}\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
-%   &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-%   &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
-% \end{align*}
-% The critical exponent of $\ideala$ with respect to $\ideald$ is the limit
-% \begin{equation*}
-% \crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
-% \end{equation*}
-% In the next subsection we show that this critical exponent, henceforth denoted $\crit(A,\vv{u})$, can be realized as the value of a \emph{fractal linear program} in the domain of $A$.
-%
-% \subsection{Critical exponents as values of fractal linear programs}
-%
-% \begin{definition}
-%    The \emph{Sierpi\'nski $p$-gasket} in $\RRnn^n$ is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RRnn^n$ for which there exist a sequence of points $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$ for which all $\norm{\vv{t}_e} < p$ and $q$, a power of $p$, such that
-%  \[
-% \vv{t} = q\cdot\Big(\frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots +\frac{\vv{t}_e}{p^e} + \cdots \Big).
-%  \]
-% \end{definition}
-%
-% From the definition, we immediately see that a point in $\RRnn^n$ is in $\sierp_{p,n}$ if the unique nonterminating base $p$ expansions of its coordinates \emph{add without carrying}.
-% However, this is not a complete description of $\sierp_{p,n}$.
-% For instance, when $p=2$, the sum of $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$ with itself carries at infinitely many places, yet we see that $\left(\frac{1}{4}, \frac{1}{4}\right)$ is in the Sierpi\'nski $2$-gasket in $\RRnn^2$ after writing one summand simply as $\frac{1}{4} = \frac{1}{2^2}$, \ie in its \emph{terminating} expansion.
-%
-% This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its geometric description as a fractal.
-% For instance, the points of $\sierp_{2,2}$ in $[0,1]^2$ form the familiar Sierpi\'nski triangle:
-% The points $\vv{t}$ in the unit square that have \emph{no} expansion $\vv{t} = \frac{\vv{t}_1}{2} +\frac{\vv{t}_2}{2^2}+\cdots +\frac{\vv{t}_e}{2^e} + \cdots$ for which all $\vv{t}_e \in \NN^2$, and $\norm{\vv{t}_1} < 2$ are precisely the points $(x,y) \in [0,1]^2$ lying above the line $x+y=1$, so we remove the triangle given by $x+y>1$.
-% At the next stage, the points with no expansion satisfying $\norm{\vv{t}_1} < 2$ and  $\norm{\vv{t}_2} < 2$ are those in the triangle given by $x, y < \frac{1}{2}$ and $x+y > \frac{1}{2}$.
-% The condition on expansions at the third place removes three triangles from the remaining set, and we can continue on analogously.
-%
-% \Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the Sierpi\'nski $3$-gasket in $\RRnn^2$.
-% \begin{figure}
-% \begin{subfigure}{.49\textwidth}
-%   \centering
-%   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_a.pdf}
-%   \caption{Restriction to $[0,1]^2$}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%   \centering
-%   \includegraphics[width=.9\linewidth]{Pictures/sierpinski3_b.pdf}
-%   \caption{Restriction to $[0,9]^2$}
-% \end{subfigure}
-% \caption{The Sierpi\'nski 3-gasket in $\RRnn^2$}
-% \label{fig: sierpinski 3-gasket}
-% \end{figure}
-% In general, notice that since each can be realized by removing a union of open sets from $\RR^n$, all $\sierp_{p,n}$ are closed sets.
-%
-% Remarkably, the critical exponent of a monomial pair $(A, \vv{u})$ can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric realization of this value.
-% Toward making this relation precise, consider the following optimization problem, which essentially adds the extra ``fractal'' constraint from the definition of $\sierp_{p,n}$ to
-% the linear program $\LP(A, \vv{u})$, after replacing the condition $A \vv{t} \leq \vv{u}$ with $A \vv{t} < \vv{u}$.
-%
-% \begin{definition}
-% Given a monomial pair $(A, \vv{u})$, the \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing $\vv{t}\mapsto \norm{\vv{t}}$, with $\vv{t}$ in the \emph{closure} of the set of all $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$.
-% % The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
-% \end{definition}
-%
-% \begin{remark}
-%    The set $\mathcal{S}$ consisting of the points $\vv{t}\in \sierp_{p,n}$ satisfying $A\vv{t} < \vv{u}$ is contained in the intersection of the feasible set of the linear program $\LP(A, \vv{u})$ with the Sierpi\'nski $p$-gasket.
-%    Since this intersection is compact, so is the closure of $\mathcal{S}$, namely $\feas\fip_p(A,\vv{u})$.
-%    Thus, $\fip_p(A,\vv{u})$ has a well-defined value.
-% %Moreover, there is exists an optimal point
-% %$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
-% \end{remark}
-%
-% \begin{example} \label{ex: feas fip}
-%  Consider the fractal linear program $\fip_p(A, \vv{u})$, where
-% \[ A = \begin{pmatrix}
-%  3&11\\ 11&2 \\ 5&10 \\ 2&0
-%  \end{pmatrix}
-% \text{ and } \vv{u} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ \end{pmatrix}.
-% \]
-% \Cref{fig: feas fip} shows the feasible set for $\fip_p = \fip_p(A,\vv{u})$ in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum $\val \fip_p$ in green, for small values of $p$.
-% \begin{figure}
-%   \centering
-% \begin{subfigure}{.49\textwidth}
-% \centering
-%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char2.pdf}\hskip .04\textwidth
-%   \caption{
-%      $
-%      \begin{array}{l}
-%        \opt \fip_2 = \conv\big(\big(\frac1{20},\frac3{40}\big),\big(\frac1{12},\frac1{24}\big)\big)\\[2mm]
-%        \val \fip_2 = \frac18
-%      \end{array}
-%      $
-%   }
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-% \centering
-% \includegraphics[width=.9\textwidth]{Pictures/ex4_char3.pdf}
-% \caption{
-%      $
-%      \begin{array}{l}
-%        \opt \fip_3 = \conv\big(\big(\frac1{36},\frac1{12}\big),\big(\frac7{81},\frac2{81}\big)\big)\\[2mm]
-%        \val \fip_3 = \frac19
-%      \end{array}
-%      $
-% }
-% \end{subfigure}
-%
-% \bigskip
-%
-% \begin{subfigure}{.49\textwidth}
-% \centering
-%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char5.pdf}\hskip .04\textwidth
-%   \caption{
-%      $
-%      \begin{array}{l}
-%        \opt \fip_5 = \opt \LP = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}\\[2mm]
-%        \val \fip_5 = \frac7{50}
-%      \end{array}
-%      $
-%   }
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-% \centering
-%   \includegraphics[width=.9\textwidth]{Pictures/ex4_char7.pdf}
-%   \caption{
-%      $
-%      \begin{array}{l}
-%        \opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}\\[2mm]
-%        \val \fip_7 = \frac{34}{245}
-%      \end{array}
-%      $ }
-% \end{subfigure}
-% \caption{The feasible and optimal sets of $\fip_p = \fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
-% \label{fig: feas fip}
-% \end{figure}
-% \end{example}
-%
-% \begin{proposition}
-% Given a monomial pair $(A, \vv{u})$, we have that
-% \[\crit(A,\vv{u}) = \val\fip_p(A,\vv{u}).\]
-% \end{proposition}
-%
-% \begin{proof}
-% For each $q=p^e$,  $\frac{1}{q}\cdot\feas\IP_p(A,\vv{u}, q)$ is contained in $\feas \fip_p(A,\vv{u})$, so
-% \[
-% \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{q\to \infty}\frac{\val\IP_p(A,\vv{u}, q)}{q} = \crit(A,\vv{u}).
-%  \]
-% On the other hand, fix $\vv{t} \in \feas \LP(A, \vv{u}) \cap \sierp_{p,n}$, fix $q \geq 1$ a power of $p$, and a sequence $\{ \vv{t}_e \}_{e=1}^\infty$ in $\NN^n$, for which all $\norm{\vv{t}_e} < p$ and
-% $\vv{t} = q \cdot \big( \frac{\vv{t}_1}{p} +\frac{\vv{t}_2}{p^2}+\cdots \big)$.  For $e \geq 1$, let
-%  $\vv{t}^\star_{p^e} = q \cdot \big( \frac{\vv{t}_1}{p} + \cdots + \frac{\vv{t}_e}{p^e}  \big)$, so that $p^e \cdot \vv{t}^\star_{p^e} \in \IP_p(A, \vv{u}, p^e)$ and $\val \IP_p(A, \vv{u}, p^e) \geq p^e \norm{\vv{t}^\star_{p^e}}$.
-%  Dividing by $p^e$ and taking limits, we find that
-%  \[
-% \crit(A,\vv{u}) = \lim_{q\to \infty} \frac{\val \IP_p(A, \vv{u}, q)}{q} \geq \lim_{q \to \infty}   \norm{\vv{t}^\star_q} = \norm{\vv{t}}.
-%  \]
-% Finally, given $\vv{s} \in \feas \fip_p(A, \vv{u}, p)$, fix a sequence of points $\{ \vv{s}_e \}_{e=1}^\infty$ in $\feas \LP(A, \vv{u}) \cap \sierp_{p,n}$ that limit to $\vv{s}$. Since $\vv{t} \mapsto \norm{\vv{t}}$ defines a continuous function $\RR^n \to \RR$, we have that $\crit(A, \vv{u}) \geq \lim \limits_{e \to \infty} \norm{ \vv{s}_e } =  \norm{ \vv{s} }$.
-% Now, since $\vv{s}$ is an arbitrary element of $\feas \fip_p(A, \vv{u}, p)$, we have that
-% $\crit(A, \vv{u}) \geq \val \fip_p(A, \vv{u})$, and equality holds.
-% \end{proof}
-
-
-
 \newpage
 \section{Arithmetic integer programs revisted}
 
@@ -2344,24 +1753,6 @@ The assumption that $(A,\vv{u})$ is not very small implies that $\vv{s} = \ft{A}
 
 This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.  Without loss of generality, assume $h_1 < k_1$ , and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.  By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\vv{g}}{\vv{g}} \neq 0 \bmod p$.  Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.  It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
 \end{proof} 
-
-% \begin{proof} Suppose that $(A, \vv{u})$ is small, but not very small, and fix $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, so that $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$.  
-% Set  $\vv{t} = \vv{s} / \norm{\vv{s}}$ and note that $\vv{0} \leq \vv{t} \leq \vv{s}$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  
-%
-% Next, fix an index $i$ such that the $i$-th coordinate of $\vv{s}$ is positive.  As $\tail{\vv{t}}_p$ obtains only finitely many values as $p$ varies, our choice of $i$ guarantees that
-% \[ 0 \leq \vv{t} - \frac{\tail{\vv{t}}_p}{p} + \frac{\norm{\tail{\vv{t}}_p}}{p} \cdot \canvec_i  \leq \vv{s} \]
-% for all $p \gg 0$, with the latter inequality strict in every coordinate in which $\vv{s}$ is positive.  For such $p \gg 0$,  \Cref{less than u: L} tells us that
-% %
-%  \[ A \left(  \vv{t}p - \tail{\vv{t}}_p + \norm{\tail{\vv{t}}_p} \cdot \canvec_i  \right) < \vv{u}p. \]
-% %
-%  By construction, $\norm{\vv{t}} = 1$, and as $\vv{t}p - \tail{\vv{t}}_p$ has nonnegative integer coordinates, we have that $\norm{\tail{\vv{t}}_p}$ is also a positive integer.  In summary,
-%   \[ \vv{k}_p  =   \vv{t}p - \tail{\vv{t}}_p+ (\norm{\vv{t}}_p - 1) \cdot \canvec_i   \] has nonnegative integer coordinates and satisfies $A \vv{k}_p < \vv{u}p - A \canvec_i$.  A direct calculation will also show that $\norm{\vv{k}_p} = p-1$.
-%  
-%  Given this, it is straightforward to verify that the point
-%  \[ \vv{k}_p \cdot p^{e-1} + (p^{e-1} - 1) \cdot \canvec_i \]
-%  has norm $p^e-1$ and is feasible for $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$.  \Cref{trivial small value bound: P} then allows us to conclude that $\val \IP_p(A, \vv{u}, p^e)  = p^e-1$ for all $e \geq 1$.
-% To conclude the proof, it suffices to recall that, as noted in \Cref{geometric small and very small: R},  there are only finitely many $(A, \vv{u})$ that are small, but not very small.
-% \end{proof}
 
 With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $(A, \vv{u})$ is very small, and $e=1$,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
 
@@ -2871,99 +2262,8 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 
 \appendix
 
-\section{Convex geometry}
-
-A (convex) \emph{polyhedron} in $\RR^n$ is a subset of $\RR^n$ obtained by intersecting finitely many closed halfspaces or, equivalently, a set consisting of all points $\vv{x}\in \RR^n$ satisfying an inequality of the form $A\vv{x}\le \vv{b}$, where $A$ is a matrix with $n$ columns.
-The (convex) \emph{cone generated by $\vv{u}_1,\ldots,\vv{u}_k \in \RR^n$}, denoted $\cone(\vv{u}_1,\ldots,\vv{u}_k)$, is the set consisting of all \emph{conical combinations} of $\vv{u}_1, \ldots, \vv{u}_k$, that is, points of the form $\sum_{i=1}^k \lambda_i \vv{u}_i$, where the $\lambda_i$ are nonnegative real numbers.
-Likewise, the \emph{convex hull of $\vv{u}_1,\ldots,\vv{u}_k$}, denoted $\conv(\vv{u}_1,\ldots,\vv{u}_k)$, is the set of all \emph{convex combinations} of $\vv{u}_1, \ldots, \vv{u}_k$, that is, points of the form $\sum_{i=1}^k \lambda_i \vv{u}_i$, where the $\lambda_i$ are nonnegative and $\sum_{i=1}^k \lambda_i = 1$.
-The convex hull of a finite set of points is called a \emph{polytope}.
-
-If $\mathcal{U}$ and $\mathcal{V}$ are subsets of $\RR^n$, their \emph{Minkowski sum} is the set
-\[\mathcal{U}+\mathcal{V} \coloneqq \{\vv{u}+\vv{v}: \vv{u}\in \mathcal{U}\text{ and }\vv{v}\in \mathcal{V}\}.\]
-The \emph{Minkowski--Weyl Theorem} asserts that a subset $\mathcal{P}$ of $\RR^n$ is a polyhedron if and only if $\mathcal{P}$ is the Minkowski sum of a polytope and a finitely generated cone.
-The cone in this decomposition is the set of all directions $\vv{d} \in \RR^n$ in which $\mathcal{P}$ recedes, that is, $\vv{c} + \lambda \vv{d} \in \mathcal{P}$ for every $\vv{c} \in \mathcal{P}$ and $\lambda > 0$; it is uniquely determined by $\mathcal{P}$, and called the \emph{recession cone of $\mathcal{P}$}.
-The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone.
-
-%\pedro[inline]{
-%   Maybe we should gather what we need about faces and vertices of polyhedra right here.
-%}
-%\daniel[inline]{I'm not so sure about this.  At the moment, I feel like it is less distracting to just remind the reader of something (beyond the absolute basic definitions already covered) at the time they are used.  But, I could be convinced otherwise}
-%\pedro[inline]{
-%   Yes, maybe it's more efficient to introduce what we need ``on demand'', so the reader does not need to be coming back to this section all the time.
-%   That said, I think \emph{some} definition (perhaps the most generic definition) of face and vertex should be given here, for completeness (but maybe not every fact or every characterization we need).
-%}
-The \emph{relative interior} of a subset $\mathcal{U}$ of $\RR^n$, denoted $\ri \mathcal{U}$, is its interior relative to the smallest affine subset of $\RR^n$ containing $\mathcal{U}$.
-% \pedro{
-%    Is there a more concrete characterization for polyhedra/polytopes?
-%    E.g., points not in any proper face? Positive convex combinations of vertices?
-% }
-% \daniel{Yep!  Points not in any proper face.  If $S$ is a finite set with $\mathcal{P} = \conv(S)$, then $\ri \mathcal{P}$  consists of all points of the form $\sum_{\vv{s} \in S} \lambda_{\vv{s}} \vv{s}$ where the coefficients $\lambda_{\vv{s}}$ are positive, and sum to $1$.  So in particular, you could take $S$ to be the vertex set of $\mathcal{P}$.  Similarly, if $S$ is finite and $\mathcal{P} = \cone(S)$, then $\ri \mathcal{P}$ has a similar description, but we don't require that the coefficients sum to $1$. But, as I mentioned above, I'm not sure whether it is better to gather things here, or just mention them as we go along.}
-When restricted to convex sets, the relative interior operator commutes with Minkowski sums: if $\mathcal{U}$ and $\mathcal{V}$ are convex subsets of $\RR^n$, then $\ri(\mathcal{U}+\mathcal{V})=\ri \mathcal{U}+\ri \mathcal{V}$.
-
-\begin{proposition}
-   \label{bounded polytope: P}
-   Let $\vv{c}$ and $\vv{u}$ be points in $\RR^n$, and suppose that $\vv{c}$ has positive coordinates.
-   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^n$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
-\end{proposition}
-
-\begin{proof}
-   It suffices to show that the given set is bounded from below.
-   For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
-   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} =
-  \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
-\end{proof}
-
-%We conclude this subsection with a useful technical result.
-Though variations of the following useful technical result are well known, we include a simple proof, for lack of an appropriate reference.
-
-\begin{proposition}
-\label{vertex: P}
-Let $M$ be an $m \times n$ matrix and let $\vv{b} \in \RR^m$ be a point contained in the cone generated by the columns of $M$.  If $\Q$ is the polyhedron in $\RR^n$  consisting of all points $\vv{t}$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{b}$, then a point $\vv{t}^{\ast} \in \Q$ is a vertex of $\Q$ if and only if the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent.  %In particular, $\Q$ contains a vertex.
-\end{proposition}
-
-\begin{proof}
-   The fact that $\vv{b}$ lies in the cone generated by the columns of $M$ implies that $\Q$ is nonempty.
-   Fix a point $\vv{t}^{\ast} \in \Q$.
-   Before proceeding, recall that $\vv{t}^{\ast}$ is a vertex of $\Q$ if and only if an expression of $\vv{t}^{\ast}$ as a convex combination of points $\vv{r}$ and $\vv{s}$ in $\Q$ is only possible when $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-
-   First, assume that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent, and suppose that $\vv{t}^{\ast} = \lambda \vv{r} + \mu \vv{s}$ is a convex combination of points $\vv{r}, \vv{s} \in \Q$.
-   Since $\vv{r},\vv{s}\ge \vv{0}$, the $i$-th coordinate of $\vv{r}$ and of $\vv{s}$ are zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.
-   On the other hand, the fact that $\vv{r}$ and $\vv{s}$ lie in $\Q$ also implies that
-   \[ M \vv{t}^{\ast} = \vv{b} = M \vv{r} = M \vv{s}, \]
-   and the assumption that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly independent then implies that $\vv{r}=\vv{s}=\vv{t}^{\ast}$.
-
-Next, suppose that the columns of $M$ corresponding to the nonzero coordinates of $\vv{t}^{\ast}$ are linearly dependent.   In this case, we may fix a nonzero point $\vv{k} \in \RR^n$ with the property that $M \vv{k} = \vv{0}$, and such that the $i$-th coordinate of $\vv{k}$ is zero whenever the $i$-th coordinate of $\vv{t}^{\ast}$ is zero.  We claim that if $\varepsilon > 0$ is sufficiently small, then the points $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ must lie in $\Q$.   As $\vv{t}^{\ast}$ is a convex combination of these points, it will then follow that $\vv{t}^{\ast}$ is not a vertex of $\Q$.  Towards the claim, note that $M(\vv{t}^{\ast} \pm \varepsilon \vv{k}) = M \vv{t}^{\ast} = \vv{b}$ for every $\varepsilon > 0$.  On the other hand, the condition relating the coordinates of $\vv{t}^{\ast}$ and $\vv{k}$ guarantees that $\vv{t}^{\ast} \pm \varepsilon \vv{k}$ is nonnegative for all $0 < \varepsilon \ll 1$.
-\end{proof}
-
-\pedro[inline]{
-   An alternative to the previous proposition is the following result, which we could just mention and give a reference (it appears in several books):
-
-   \begin{proposition}
-      Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $A \vv{x} \le \vv{b}$, where $A\in \RR^{m\times n}$, and $\vv{v}$ a vertex of $\mathcal{P}$.
-      Then there exists $I \subseteq \{1,\ldots,m\}$ such that $\vv{v}$ is the unique solution to the system $A_I \vv{x} = \vv{b}_I$, where $A_I$ and $\vv{b}_I$ are obtained by selecting the $i$-th rows of $A$ and $\vv{b}$, for each $i\in I$.
-   \end{proposition}
-
-   Then \Cref{uniform denominators for vertices:  T} can be approached as follows:
-   By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, with equality in some specific coordinates, and thus defined by a system of inequalities $B \vv{x} \le \vv{b}$, where $\vv{b}$ is an integral vector and $B$ is a submatrix of the matrix $M$ obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$.
-   Let $\denom$ be the least common multiple of the nonzero minors of $M$; then by the above result, every vertex of $\opt \LP$ is rational, with denominator $\denom$.
-
-   \bigskip
-
-   Hope this makes sense; if so, then I think this argument is slightly simpler, avoiding the linear bijection business.
-}
-
-
-
-
-
-\newpage
-
-\appendix
-
 \section{Monomial ideals and reduction}
 \label{monomial-reduction: A}
-
-
 
 The purpose of this appendix is to describe the behavior of the monomials contained in some possibly non-monomial ideal under reduction to prime characteristic.  To make this precise, consider the following definition. 
 
