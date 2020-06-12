@@ -555,40 +555,6 @@ It is easy to deduce from the fact that the matrix $A$ is a monomial matrix (i.e
 \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q).
 \end{equation}
 
-\daniel[inline]{I propose to describe things in terms of shortfalls, as opposed to optimal images.}
-
-The constraints of the program $\IP(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of its feasible set,  the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.  In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
-
-\begin{definition}[Shortfalls]  The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
-%
-\[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]  
-Equivalently, the shortfall of $\IP(A, \vv{u},q)$ is determined by the condition
-\[ A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q).\]
-%
-
-%
-The preceding discussion illustrates the shortfall of $\IP(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$.\end{definition}
-
-\begin{remark}[Algebraic interpretation of shortfalls]
-\label{shortfall motivation: R}
-If $q$ is a power of $p$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the shortfall of $\IP(A,\vv{u},q)$ can be interpreted in terms of the ideal pair $(\ideala, \ideald)$ as the ``leftovers'' of $\ideala^\nu$ mod $\ideald^{[q]}$.
-
-More precisely, the discussion preceding \Cref{aip: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  
-
-Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP(A, \vv{u}, q)$.  Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q)$.  In other words,
-\begin{equation}
-\label{algebraic shortfall PI general: e}
- \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
- \end{equation}
-%\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
-%\begin{align*}
-%  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
-%  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
-%  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-%  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
-%\end{align*}
-\end{remark}
-
 
 
 We now shift our attention from the integers $\nu(\ideala, \ideald, q)$ to the $F$-threshold $\ft{\ideala}{\ideald}$.  First, note that \eqref{nu as program value: eq} and the definition of $\ft{\ideala}{\ideald}$ imply that 
@@ -674,25 +640,6 @@ In particular, this arithmetic program has a well-defined value, and the discuss
 \mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)
 \end{equation}
 %
-
-\begin{definition}[Shortfalls]  The \emph{shortfall} of the arithmetic integer program $\IP_p(A, \vv{u}, q)$, denoted $\short \IP_p(A, \vv{u}, q)$, is the Minkowski difference
-%
-\[ \short \IP_p(A, \vv{u}, q) = \vv{u}q - A( \opt \IP_p(A, \vv{u}, q)).\]  
-Equivalently, the shortfall of $\IP_p(A, \vv{u},q)$ is determined by the condition
-\[ A(\opt \IP_p(A, \vv{u}, q)) = \vv{u}q - \short \IP_p(A, \vv{u}, q).\]
-%
-
-%
-\end{definition}
-
-The shortfall of $\IP_p(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$, and arguing as in \Cref{shortfall motivation: R}, one can show that
-%
-\begin{equation}
-\label{algebraic shortfall PI_p general: e}
- \ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
- \end{equation}
-
-
 
 Turning to the critical exponents $\crit(\ideala, \ideald)$, the identity \eqref{mu as program value: eq} implies that
 %
@@ -1590,7 +1537,7 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    \end{figure}
    \Cref{fig: Theta} shows a portion of the (unbounded) polyhedron defined by the above inequalities, in the case where $\lpr{q}{17}=11$, together with the feasible points for $\ip$.
    In this case the value of $\ip$ is $1$, and the optimal set---a subset of which is shown in red in \Cref{fig: Theta}---is infinite.
-   In fact, the points of the form $(k,k,1-2k)$, $(k+1,k,-2k)$, and $(k+2,k,-1-2k)$ are optimal for $\ip$ for all $k \in \NN$.
+   In fact, all points of the form $(k,k,1-2k)$, $(k+1,k,-2k)$, and $(k+2,k,-1-2k)$, with $k\in \NN$, are optimal for $\ip$.
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
@@ -1677,50 +1624,9 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
    Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
 
-\begin{definition}[Shortfall and deficit]
-   \label{deficit ip: D}
-   The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
-   \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
-   where the overbar denotes collapse along $\mf(A, \vv{u})$.
-   The \emph{deficit} of $\ip$ is the positive rational number
-   \[ \deficit \ip = \norm{\tail{\vv{s}}_q} - \val \ip. \] 
-\end{definition}
-
-\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
-
 \subsection{Some finiteness properties}
 
-We now explore some finiteness properties, and our results are of two types:
-\Cref{finite image: P} concerns the integer program $\ip$ associated with some fixed monomial list, while \Cref{finitely many secondary programs: T,finitely many coord sums: C,fsr-exist: T} concern the nature of these programs as the list varies.
-
-Our first result will show that, even though the optimal set of an integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
-For that, we shall need the following simple boundedness result.
-
-\begin{lemma}
-   \label{bounded polytope: L}
-   Let $\vv{c}$ and $\vv{u}$ be points in $\RR^\numvars$, and suppose that $\vv{c}$ has positive coordinates.
-   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^\numvars$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
-\end{lemma}
-
-\begin{proof}
-   It suffices to show that the given set is bounded from below.
-   For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
-   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
-\end{proof}
-
-We can now prove our first finiteness result.
-
-\begin{proposition}
-   \label{finite image: P}
-   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
-\end{proposition}
-
-\begin{proof}
-   Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   If $\vv{k}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}$, and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
-   The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
-   Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
-\end{proof}
+We now explore some finiteness properties concerning the nature of these programs as, for a fixed monomial matrix $A$, we vary the $A$-list $(A, \vv{u}, \vv{s}, q)$.
 
 \emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property.
 Potentially move it up before \Cref{bounded value: P}.}
@@ -1747,6 +1653,105 @@ Potentially move it up before \Cref{bounded value: P}.}
    This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
 \end{proof}
 
+\newpage
+\section{Toward solving $\IP$}
+\label{solving: S}
+
+Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer.
+The goal in this section is to demonstrate that the value and optimal image of $\IP(A, \vv{u}, q)$ vary with $q$ in a uniform way as $q$ tends to infinity.
+
+\subsection{Shortfall and deficit}
+
+\daniel[inline]{I propose to describe things in terms of shortfalls, as opposed to optimal images.}
+
+The constraints of the program $\IP(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of its feasible set,  the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.  In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
+
+\begin{definition}[Shortfalls]  The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
+%
+\[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]  
+Equivalently, the shortfall of $\IP(A, \vv{u},q)$ is determined by the condition
+\[ A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q).\]
+%
+
+%
+The preceding discussion illustrates the shortfall of $\IP(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$.\end{definition}
+
+\begin{remark}[Algebraic interpretation of shortfalls]
+\label{shortfall motivation: R}
+If $q$ is a power of $p$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the shortfall of $\IP(A,\vv{u},q)$ can be interpreted in terms of the ideal pair $(\ideala, \ideald)$ as the ``leftovers'' of $\ideala^\nu$ mod $\ideald^{[q]}$.
+
+More precisely, the discussion preceding \Cref{aip: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  
+
+Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP(A, \vv{u}, q)$.  Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q)$.  In other words,
+\begin{equation}
+\label{algebraic shortfall PI general: e}
+ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
+ \end{equation}
+%\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
+%\begin{align*}
+%  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
+%  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
+%  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
+%  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
+%\end{align*}
+\end{remark}
+
+\begin{definition}[Shortfalls]  The \emph{shortfall} of the arithmetic integer program $\IP_p(A, \vv{u}, q)$, denoted $\short \IP_p(A, \vv{u}, q)$, is the Minkowski difference
+%
+\[ \short \IP_p(A, \vv{u}, q) = \vv{u}q - A( \opt \IP_p(A, \vv{u}, q)).\]  
+Equivalently, the shortfall of $\IP_p(A, \vv{u},q)$ is determined by the condition
+\[ A(\opt \IP_p(A, \vv{u}, q)) = \vv{u}q - \short \IP_p(A, \vv{u}, q).\]
+%
+
+%
+\end{definition}
+
+The shortfall of $\IP_p(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$, and arguing as in \Cref{shortfall motivation: R}, one can show that
+%
+\begin{equation}
+\label{algebraic shortfall PI_p general: e}
+ \ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
+ \end{equation}
+
+ 
+\begin{definition}[Shortfall and deficit]
+   \label{deficit ip: D}
+   The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
+   \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
+   where the overbar denotes collapse along $\mf(A, \vv{u})$.
+   The \emph{deficit} of $\ip$ is the positive rational number
+   \[ \deficit \ip = \norm{\tail{\vv{s}}_q} - \val \ip. \] 
+\end{definition}
+
+\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
+
+Our next proposition will show that, even though the optimal set of an integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
+For that, we shall need the following simple boundedness result.
+
+\begin{lemma}
+   \label{bounded polytope: L}
+   Let $\vv{c}$ and $\vv{u}$ be points in $\RR^\numvars$, and suppose that $\vv{c}$ has positive coordinates.
+   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^\numvars$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
+\end{lemma}
+
+\begin{proof}
+   It suffices to show that the given set is bounded from below.
+   For each $\vv{v}$ in that set and each $i$ we have $\vv{v}\le \vv{u} + (v_i - u_i)\canvec_i$.
+   As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
+\end{proof}
+
+\begin{proposition}
+   \label{finite image: P}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
+\end{proposition}
+
+\begin{proof}
+   Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
+   If $\vv{k}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}$, and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
+   The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
+   Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
+\end{proof}
+
 These finiteness properties above facilitate the following result.
 
 \emily[inline]{Restate?}
@@ -1761,13 +1766,6 @@ These finiteness properties above facilitate the following result.
    \[  \collapse{A}(\opt \ip (A, \vv{u}, \vv{s}, q) ) = \collapse{A}(\fsr(A, \vv{u}, \vv{s}, q)). \]
    \Cref{finitely many secondary programs: T} then implies that these sets may be chosen in such a way so that $\fsr(A) = \bigcup \fsr(A, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $A$-lists.
 \end{proof}
-
-\newpage
-\section{Toward solving $\IP$}
-\label{solving: S}
-
-Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer.
-The goal in this subsection is to demonstrate that the value and optimal image of $\IP(A, \vv{u}, q)$ vary with $q$ in a uniform way as $q \to \infty$.
 
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
