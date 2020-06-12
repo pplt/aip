@@ -118,6 +118,10 @@ TO DO LIST:
 % 
 
 \newpage
+
+\tableofcontents
+
+\newpage
 \section{Introduction}
 
 Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and consider the polynomial ring $R = \kk[x_1, \ldots, x_\numvars]$.  Given ideals $\ideala$ and $\idealb$ of $R$ with ${\ideala}$ contained in $\sqrt \idealb$, and a nonnegative integer $e$, we define
@@ -1324,19 +1328,16 @@ The goal in this section is to demonstrate that the value and optimal image of $
 
 \subsection{Shortfall and deficit}
 
-\daniel[inline]{I propose to describe things in terms of shortfalls, as opposed to optimal images.}
+The constraints of the programs $\IP(A,\vv{u},q)$ and $\IP_p(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of their feasible sets, the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.
+In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
 
-The constraints of the program $\IP(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of its feasible set,  the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.  In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
+\begin{definition}[Shortfall for $\IP$ and $\IP_p$]
+   The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
+   \[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]
+   The shortfall of the arithmetic integer program $\IP_p(A, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
+\end{definition}
 
-\begin{definition}[Shortfalls]  The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
-%
-\[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]  
-Equivalently, the shortfall of $\IP(A, \vv{u},q)$ is determined by the condition
-\[ A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q).\]
-%
-
-%
-The preceding discussion illustrates the shortfall of $\IP(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$.\end{definition}
+The preceding discussion shows that the shortfall of either program consists of positive lattice points in the target lattice of $A$.
 
 \begin{remark}[Algebraic interpretation of shortfalls]
 \label{shortfall motivation: R}
@@ -1349,32 +1350,29 @@ Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$
 \label{algebraic shortfall PI general: e}
  \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
  \end{equation}
-%\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
-%\begin{align*}
-%  \ideala^{\nu} &= \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu}\\
-%  &\equiv \ideal{x^{A\vv{k}}: \norm{\vv{k}}=\nu\text{ and } A\vv{k} <\vv{u}q} \bmod \ideald^{[q]}\\
-%  &\equiv \ideal{x^{A\vv{k}}: \vv{k}\in \opt\IP(A,\vv{u},q)} \bmod \ideald^{[q]}\\
-%  &\equiv \ideal{x^{\vv{v}}: \vv{v} \in \im \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
-%\end{align*}
-\end{remark}
 
-\begin{definition}[Shortfalls]  The \emph{shortfall} of the arithmetic integer program $\IP_p(A, \vv{u}, q)$, denoted $\short \IP_p(A, \vv{u}, q)$, is the Minkowski difference
-%
-\[ \short \IP_p(A, \vv{u}, q) = \vv{u}q - A( \opt \IP_p(A, \vv{u}, q)).\]  
-Equivalently, the shortfall of $\IP_p(A, \vv{u},q)$ is determined by the condition
-\[ A(\opt \IP_p(A, \vv{u}, q)) = \vv{u}q - \short \IP_p(A, \vv{u}, q).\]
-\end{definition}
-
-The shortfall of $\IP_p(A, \vv{u}, q)$ consists of positive lattice points in the target lattice of $A$, and arguing as in \Cref{shortfall motivation: R}, one can show that
-%
+Likewise, one can show that
 \begin{equation}
 \label{algebraic shortfall PI_p general: e}
  \ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
  \end{equation}
+\end{remark}
 
- 
+If $\vv{k}$ is optimal for $\IP(A,\vv{u},q)$ or $\IP_p(A,\vv{u},q)$, then $A\vv{k} < \vv{u}q$.
+For sufficiently small positive $\epsilon$, $A(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(A,\vv{u})$.
+Consequently, $\norm{\vv{k}}/q < \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$.
+This shows that the values of both $\IP(A,\vv{u},q)$ and $\IP_p(A,\vv{u},q)$ are strictly less than $\ft{A}{\vv{u}}q$, and the notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
+
+\begin{definition}[Deficit for $\IP$ and $\IP_p$]
+   The \emph{deficit} of the integer program $\IP(A, \vv{u}, q)$, denoted $\deficit \IP(A, \vv{u}, q)$, is positive rational number
+   \[ \deficit \IP(A, \vv{u}, q) = \ft{A}{\vv{u}}q - \val \IP(A, \vv{u}, q).\]
+   The deficit of the arithmetic integer program $\IP_p(A, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
+\end{definition}
+
+We now extend the definition of shortfall and deficit to the auxiliary integer program $\ip(A,\vv{u},\vv{s},q)$.
+
 \begin{definition}[Shortfall and deficit]
-   \label{deficit ip: D}
+   \label{deficit and shortfall ip: D}
    The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
    \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
    where the overbar denotes collapse along $\mf(A, \vv{u})$.
