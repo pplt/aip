@@ -218,11 +218,11 @@ We work in the polynomial ring $\kk[x_1, \ldots, x_\numvars]$ over a field $\kk$
 \begin{definition}[Monomial matrices]
 \label{monomial matrix: D}
 A \emph{monomial matrix} is a matrix over $\ZZ$ with nonnegative, nonzero rows and columns.
-If $A$ is a $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice} and $\ZZ^\numvars$ the \emph{target lattice} of $A$. 
+If $A$ is an $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{domain lattice} and $\ZZ^\numvars$ the \emph{target lattice} of $A$. 
 \end{definition}
 
 \begin{remark}[Connections with monomial ideals]
-\label{monomial matrix ideal: R}  Consider a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$.  Given a generating set $\ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle$, not necessarily minimal, with the property that each variable of the ambient polynomial ring appears in some generator, it is not difficult to see that \[A= \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix}\] is a  $\numvars \times n$ monomial matrix.  Clearly, as this process depends on the choice of a distinguished generating set for $\ideala$, there are many monomial matrices $A$ we can assign to $\ideala$, though each such matrix will necessarily have $m$ rows.
+\label{monomial matrix ideal: R}  Consider a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$.  Given a generating set $\ideala = \langle x^{\vv{a}_1}, \ldots, x^{\vv{a}_n} \rangle$, not necessarily minimal, with the property that each variable of the ambient polynomial ring appears in some generator, it is not difficult to see that \[A= \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix}\] is an  $\numvars \times n$ monomial matrix.  Clearly, as this process depends on the choice of a distinguished generating set for $\ideala$, there are many monomial matrices $A$ we can assign to $\ideala$, though each such matrix will necessarily have $m$ rows.
 \end{remark}
 
 \begin{remark}[Generators in terms of monomial matrices]
@@ -275,7 +275,7 @@ This context might seem restrictive, given that our ultimate goal is to understa
 However, as we explain in \Cref{monomial-reduction: A}, understanding the situation for all ideal pairs $(\ideala, \ideald)$ with $\ideala$ fixed, but $\ideald$ varying, leads to \Cref{general-nu-theorem: T,general-mu-theorem: T}.
 \end{remark}
 
-To facilitate the transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ associated to $(\ideala, \ideald)$, as described in \Cref{associate of pairs: R}.  In particular, $A$ is an $m \times n$ monomial matrix, $\vv{u} \in \ZZ^m$ is a positive lattice point, and 
+To facilitate the transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ associated to $(\ideala, \ideald)$, as described in \Cref{associate of pairs: R}.  In particular, $A$ is an $\numvars \times n$ monomial matrix, $\vv{u} \in \ZZ^m$ is a positive lattice point, and 
 \[ \ideald = \langle x^{u_1}, \ldots, x^{u_{\numvars}} \rangle \subseteq \kk[x_1, \ldots, x_{\numvars}] \] is the diagonal ideal associated to $\vv{u}$.
 
 \subsection{Relations with integer and linear programs}  We start by studying the integers $\nu(\ideala, \ideald, p^e)$ and rational numbers $\ft{\ideala}{\ideald}$.  First, recall that for each $q$ a power of $p$, the integer $\nu(\ideala, \ideald, q)$ is defined as 
@@ -322,7 +322,7 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
 \end{proposition}
 
 \begin{proof}
-  Recall that, as $A$ is a $\numvars \times n$ monomial matrix, the domain of $A$ is $\RR^n$, and the domain lattice of $A$ is $\ZZ^n$.  If $\vv{k} \in \ZZ^n$ is optimal for $\IP(A,\vv{u},q)$, then the scaled point $\vv{k}/q$ is feasible for $\LP = \LP(A, \vv{u})$, so $\val \LP \geq \val \IP(A, \vv{u}, q)/q$ for all $q$.
+  Recall that, as $A$ is an $\numvars \times n$ monomial matrix, the domain of $A$ is $\RR^n$, and the domain lattice of $A$ is $\ZZ^n$.  If $\vv{k} \in \ZZ^n$ is optimal for $\IP(A,\vv{u},q)$, then the scaled point $\vv{k}/q$ is feasible for $\LP = \LP(A, \vv{u})$, so $\val \LP \geq \val \IP(A, \vv{u}, q)/q$ for all $q$.
    Thus, $\val \LP$ is at least equal to the limits appearing in \eqref{ft as limit of normalized program values: eq}.
 
    Conversely, given an optimal point $\vv{t} \in \RR^n$ for $\LP$,
@@ -620,7 +620,7 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 \section{Connections with Newton polyhedra}
 \label{s: newton}
 Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $\numvars \times n$ monomial matrix.
-In fact, throughout this section, we fix a monomial pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.
+In fact, throughout this section, we fix an $A$-pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.
 Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
 
 
@@ -721,7 +721,10 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
 \emily[inline]{Is there a reason that we are defining $\rb \O$ here, instead of before \Cref{prop: MW for faces}, right above (where it is defined in the statement)?}
-
+\pedro[inline]{
+   I think the original intention was to show that the definition is independent of the choice of $\defpt$ before the definition, as opposed to justifying it afterwards.
+   We could switch things around, though.
+}
 \begin{definition}[Recession basis and subspace]
    If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 \end{definition}
@@ -826,7 +829,7 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
 Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
 \begin{proposition}\label{opt set: P}
-%   Let $(A,\vv{u})$ be a monomial pair, where $A$ is a $\numvars\times n$ matrix.
+%   Let $(A,\vv{u})$ be a monomial pair, where $A$ is an $\numvars\times n$ matrix.
    A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
@@ -865,7 +868,7 @@ For that, we shall need the following well-known characterization of the vertice
 
 \begin{theorem}
 \label{uniform denominators for vertices:  T}
-Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, every vertex of $\opt \LP(A, \vv{u})$ is rational with denominator $\denom$.
+Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)$ such that for every $A$-pair $(A, \vv{u})$, every vertex of $\opt \LP(A, \vv{u})$ is rational with denominator $\denom$.
 \end{theorem}
 
 \begin{proof}
@@ -927,7 +930,8 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 
 \begin{definition}[Universal denominator]
    \label{universal denominator: D}
-   Suppose that $A$ is a monomial matrix. A \emph{universal denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
+   Suppose that $A$ is a monomial matrix.
+   A \emph{universal denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every $A$-pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
 \end{definition}
 
 \begin{theorem}
@@ -937,7 +941,7 @@ Universal denominators exist.
 
 \begin{proof}
    Let $A$ be a monomial matrix.
-   Let $\denom_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix a monomial pair $(A, \vv{u})$.
+   Let $\denom_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix an $A$-pair $(A, \vv{u})$.
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\denom_{\circ}$.
 
    Next, suppose $\O$ is unbounded, so that $A$ has $\numvars \geq 2$ many rows.
@@ -1438,7 +1442,7 @@ For that, we shall need the following simple boundedness result.
 
 \begin{proof}
    Let $\fsr$ be as in \Cref{fsr-exist: T}, and $\beta$ be the maximum among all coordinates of all points of $\vv{1} - \fsr$ and $A(\fsr)$.
-   Fix a monomial pair $(A, \vv{u})$ and a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+   Fix an $A$-pair $(A, \vv{u})$ and a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    If $\denom$ is a denominator for $\vv{s}$, fix an integer $q > \beta \denom$, and set $\IP = \IP(A,\vv{u},q)$ and $\ip = \ip(A,\vv{u},\vv{s},q)$.
    \Cref{uniform value: P} then shows that
    \begin{equation}\label{eq: comparing values}
@@ -1504,7 +1508,7 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    \label{uniform periodicity: R}
    \label{pair periodicity: R}
    Given a monomial matrix $A$, there exists a positive integer $\denom$ such that for every $A$-pair $(A,\vv{u})$, $\udeficit(A, \vv{u}, q)$ and $\ushort(A,\vv{u},q)$ only depend on $q$ modulo $\denom$.
-   Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and all $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+   Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for every $A$-pair $(A, \vv{u})$ and every $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
    Then
    \[
       \udeficit(A, \vv{u}, p) = \udeficit(A, \vv{u}, q)
@@ -1708,7 +1712,7 @@ The algebraic characterization of a very small pair is simply that $(A, \vv{u})$
 
 \begin{remark}[Geometric description of small and very small pairs]
 \label{geometric small and very small: R}
-Suppose that $A$ is a $\numvars \times n$ monomial matrix, and let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
+Suppose that $A$ is an $\numvars \times n$ monomial matrix, and let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
 
 Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice point $\vv{u} \in \ZZ^{\numvars}$ does not lie in the interior of the Minkowski sum of the set of columns of $A$ with the ambient nonnegative orthant, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$. 
 
