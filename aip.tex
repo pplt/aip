@@ -204,7 +204,7 @@ In the same vein, operations on numbers are extended to points in $\RR^n$ in a c
 %We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
 \daniel{Revisit this when deciding how to describe collapsing}
 % More generally,
-Given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$} if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+Given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
 We extend this to all points in $\RR^n$, via projection: we say that $\vv{u} \in \RR^n$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if its projection on $\mathcal{S}$ is a positive (respectively, nonnegative) point of $\mathcal{S}$. 
 Finally, given $\vv{u},\vv{v}\in \RR^n$, we say that \emph{$\vv{u}$ is less than} (respectively, \emph{less than or equal to}) \emph{$\vv{v}$ in $\mathcal{S}$} if $\vv{v}-\vv{u}$ is positive (respectively, nonnegative) in $\mathcal{S}$.
 
@@ -1582,7 +1582,7 @@ Thus, $\collapse{\ideala}$ and $\collapse{\ideald}$ are the images of $\ideala$ 
 
    Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.
    For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
-   In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q)} = \ushort(A, \vv{u},q)$.
+   In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q) = \ushort(A, \vv{u},q)$.
 In light of this, it follows from \Cref{shortfall motivation: R} that whenever $q >\beta$,
 \[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \ushort(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
 In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
