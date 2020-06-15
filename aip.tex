@@ -201,9 +201,14 @@ The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\
 An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; e.g., $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
 
-We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
-\daniel{Revisit this when deciding how to describe collapsing}More generally, given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
-\pedro{Explain also what we mean by ``$\vv{u}$ is less than $\vv{v}$ in $\mathcal{S}$''.}
+%We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
+\daniel{Revisit this when deciding how to describe collapsing}
+% More generally,
+Given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$} if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+We extend this to all points in $\RR^n$, via projection: we say that $\vv{u} \in \RR^n$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if its projection on $\mathcal{S}$ is a positive (respectively, nonnegative) point of $\mathcal{S}$. 
+Finally, given $\vv{u},\vv{v}\in \RR^n$, we say that \emph{$\vv{u}$ is less than} (respectively, \emph{less than or equal to}) \emph{$\vv{v}$ in $\mathcal{S}$} if $\vv{v}-\vv{u}$ is positive (respectively, nonnegative) in $\mathcal{S}$.
+
+Note that with these conventions, $\vv{u} < \vv{u}$ if and only if $\vv{u}$ is less than $\vv{v}$ both in $\mathcal{S}$ and in its orthogonal complement $\mathcal{S}^\perp$.
 
 \subsection{Monomial matrices, monomial ideals, and pairs}
 \label{monomial newton preliminaries: ss}
@@ -239,6 +244,7 @@ If $A$ is a $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph{
 \begin{definition}[Pairs]  
 \label{pairs: D}
    A \emph{monomial pair} $(A, \vv{u})$ consists of an $\numvars \times n$ monomial matrix $A$, and a positive point $\vv{u} \in \ZZ^\numvars$, the target lattice of $A$.  
+   An \emph{$A$-pair} is a monomial pair whose first entry is $A$.
    
    An \emph{ideal pair} $(\ideala, \ideald)$ consists of a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$, along with a diagonal ideal $\ideald$ of the same ambient polynomial ring.
 \end{definition}
@@ -881,6 +887,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
+\pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
 \end{enumerate}
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
@@ -918,12 +925,14 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \]
 % where $a,b,c$ are positive integers with $1/a + 1/b = 1/c$ and $d$ is any integer with $d>c$.  The maximal face of the splitting polytope is the edge connecting the points \[ \left( \frac{d-c}{da}, \frac{d-c}{db}, \frac{1}{d} \right) \text{ and } \left( \frac{1}{a}, \frac{1}{b}, 0 \right).\]  On the other hand, it is easy to check that the special points for $(A, \vv{1})$ consist of the points on this edge except for the first of these two  points.
 
-\begin{definition}[Special denominator]  Suppose that $A$ is a monomial matrix. A \emph{special denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
+\begin{definition}[Universal denominator]
+   \label{universal denominator: D}
+   Suppose that $A$ is a monomial matrix. A \emph{universal denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every monomial pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \cdot \vv{s}$ has integer coordinates.
 \end{definition}
 
 \begin{theorem}
 \label{special-denominators-exist:  T}
-Special denominators exist.
+Universal denominators exist.
 \end{theorem}
 
 \begin{proof}
@@ -1114,9 +1123,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{proof}
    Set $\O = \mf(A, \vv{u})$.
-   The fact that $\vv{s} \in \sp(A, \vv{u})$ implies that
-   \[ \vv{u} = A \vv{s} + \vv{w}\]
-   for some point $\vv{w}$ in $\rs(\O)$ that is positive in that subspace.
+   As $\vv{s} \in \sp(A, \vv{u})$, we can write $\vv{u} = A \vv{s} + \vv{w}$,
+   where $\vv{w}$ in a positive point of $\rs(\O)$.
    The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.
    \pedro{
       Maybe remind the reader of what we mean by that (here, or before the lemma).
@@ -1181,16 +1189,6 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
-\begin{remark}
-   \label{collapsed aux program: R}
-   \pedro{
-      Not sure where to place this.
-      It's only used once (in \Cref{comparing deltas: R}), so maybe it should simply be incorporated there.
-   }
-   Suppose $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\mf(A, \vv{u})$.
-   Then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
-\end{remark}
-
 \begin{example}
    \label{ex: ft.3}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
@@ -1207,21 +1205,20 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
-\Cref{comparison: R} gives us the following result.
-
-\begin{proposition}
-   \label{comparison: P}
-   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then $\feas \IP(A, \vv{u}, q)$ is contained in $\vv{s}q - \tail{\vv{s}}_q + \feas \ip (A, \vv{u}, \vv{s}, q)$.
-   In particular,
-   \[\val \IP(A, \vv{u}, q) \le \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q} + \val \ip (A, \vv{u}, \vv{s}, q).\qed\]
-\end{proposition}
-
-The following may be regarded as a partial converse to \Cref{comparison: P}.
+\Cref{comparison: R} tells us that if $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $\vv{k}$ is feasible for $\IP(A, \vv{u}, q)$, then $\vv{k} - \vv{s}q + \tail{\vv{s}}_q$ is feasible for  $\ip (A, \vv{u}, \vv{s}, q)$.
+In particular,
+\begin{equation}
+   \label{ineq between deficits}
+   \val \IP(A, \vv{u}, q) \le \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q} + \val \ip (A, \vv{u}, \vv{s}, q),
+\end{equation}
+where we have used that $\vv{s} \in \opt \LP(A,\vv{u})$ and so $\norm{\vv{s}} = \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$.
+The next proposition gives conditions under which equality holds.
 
 \begin{proposition}
    \label{uniform value: P}
    Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\denom$ for the special point $\vv{s}$.
    If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$ and every coordinate of $A \vv{h}$, then the point $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
+   Consequently, equality holds in \eqref{ineq between deficits}.
 \end{proposition}
 
 \begin{proof}
@@ -1231,7 +1228,7 @@ The following may be regarded as a partial converse to \Cref{comparison: P}.
    On the other hand, if $s_i$ is positive, then it must be at least $1/\denom$, and so
    $k_i = s_iq-\tail{s_i}_q+h_i \ge q/d - 1 + h_i$, and the last expression is nonnegative by assumption.
 
-   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in $\rs(\O)$ that is positive in that subspace, as in \Cref{mc: D}.
+   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$, where $\vv{w}$ in a positive point of $\rs(\O)$, as in \Cref{mc: D}.
    Now, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
    \[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
    which we rewrite as
@@ -1247,8 +1244,7 @@ The following may be regarded as a partial converse to \Cref{comparison: P}.
 
    In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
    \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip, \]
-   where we have used that $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h} \in \opt \ip$.
-   Equality then follows from \Cref{comparison: P}.
+   and equality holds by \eqref{ineq between deficits}.
 \end{proof}
 
 We now move towards establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
@@ -1332,7 +1328,7 @@ The constraints of the programs $\IP(A,\vv{u},q)$ and $\IP_p(A,\vv{u},q)$ imply 
 In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
 
 \begin{definition}[Shortfall for $\IP$ and $\IP_p$]
-   The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$, denoted $\short \IP(A, \vv{u}, q)$, is the Minkowski difference
+   The \emph{shortfall} of the integer program $\IP(A, \vv{u}, q)$ is the Minkowski difference
    \[ \short \IP(A, \vv{u}, q) = \vv{u}q - A( \opt \IP(A, \vv{u}, q)).\]
    The shortfall of the arithmetic integer program $\IP_p(A, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
 \end{definition}
@@ -1341,35 +1337,37 @@ The preceding discussion shows that the shortfall of either program consists of 
 
 \begin{remark}[Algebraic interpretation of shortfalls]
 \label{shortfall motivation: R}
-If $q$ is a power of $p$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q)$, then the shortfall of $\IP(A,\vv{u},q)$ can be interpreted in terms of the ideal pair $(\ideala, \ideald)$ as the ``leftovers'' of $\ideala^\nu$ mod $\ideald^{[q]}$.
+Let $(A,\vv{u})$ be a monomial pair associated to an ideal pair $(\ideala,\ideald)$.
+If $q$ is a power of $p$, $\IP = \IP(A,\vv{u},q)$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP$, then the shortfall of $\IP$ can be interpreted as the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
 
-More precisely, the discussion preceding \Cref{aip: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  
-
-Keeping in mind that $\nu= \val \IP(A, \vv{u}, q)$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP(A, \vv{u}, q)$.  Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP(A, \vv{u}, q)) = \vv{u}q - \short \IP(A, \vv{u}, q)$.  In other words,
+More precisely, the discussion preceding \Cref{IP: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.  
+Keeping in mind that $\nu= \val \IP$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP$.
+Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP) = \vv{u}q - \short \IP$.
+In other words,
 \begin{equation}
 \label{algebraic shortfall PI general: e}
  \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(A,\vv{u},q)} \bmod \ideald^{[q]}.
  \end{equation}
-
 Likewise, one can show that
 \begin{equation}
 \label{algebraic shortfall PI_p general: e}
- \ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}.
- \end{equation}
+\ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]},
+\end{equation}
+giving us an algebraic interpretation for the shortfall of the arithmetic integer program $\IP_p(A,\vv{u},q)$.
 \end{remark}
 
-If $\vv{k}$ is optimal for $\IP(A,\vv{u},q)$ or $\IP_p(A,\vv{u},q)$, then $A\vv{k} < \vv{u}q$.
+If $\vv{k}$ is optimal for $\IP = \IP(A,\vv{u},q)$ or $\IP_p = \IP_p(A,\vv{u},q)$, then $A\vv{k} < \vv{u}q$.
 For sufficiently small positive $\epsilon$, $A(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(A,\vv{u})$.
-Consequently, $\norm{\vv{k}}/q < \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$.
-This shows that the values of both $\IP(A,\vv{u},q)$ and $\IP_p(A,\vv{u},q)$ are strictly less than $\ft{A}{\vv{u}}q$, and the notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
+Thus, $\norm{\vv{k}}/q < \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$, showing that the values of $\IP$ and $\IP_p$ are strictly less than $\ft{A}{\vv{u}}q$.
+The notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
 
 \begin{definition}[Deficit for $\IP$ and $\IP_p$]
-   The \emph{deficit} of the integer program $\IP(A, \vv{u}, q)$, denoted $\deficit \IP(A, \vv{u}, q)$, is positive rational number
+   The \emph{deficit} of the integer program $\IP(A, \vv{u}, q)$ is positive rational number
    \[ \deficit \IP(A, \vv{u}, q) = \ft{A}{\vv{u}}q - \val \IP(A, \vv{u}, q).\]
    The deficit of the arithmetic integer program $\IP_p(A, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
 \end{definition}
 
-We now extend the definition of shortfall and deficit to the auxiliary integer program $\ip(A,\vv{u},\vv{s},q)$.
+We now extend the definitions of shortfall and deficit to the auxiliary integer program $\ip(A,\vv{u},\vv{s},q)$.
 
 \begin{definition}[Shortfall and deficit]
    \label{deficit and shortfall ip: D}
@@ -1399,7 +1397,7 @@ For that, we shall need the following simple boundedness result.
 
 \begin{proposition}
    \label{finite image: P}
-   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
+   The shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{proposition}
 
 \begin{proof}
@@ -1409,13 +1407,14 @@ For that, we shall need the following simple boundedness result.
    Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
 
-These finiteness properties above facilitate the following result.
+\Cref{finite image: P,finitely many secondary programs: T} give us the following result.
 
-\emily[inline]{Restate?}
+%\emily[inline]{Restate?}
 \begin{theorem}[Existence of finite sets of representatives]
    \label{fsr-exist: T}
-   Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ with the following property\textup:
-   For every $A$-list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
+   Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ such that for each integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ we have
+   \[\short \ip = \collapse{A}\tail{\vv{s}}_q - \collapse{A}(\fsr \cap \opt \ip).\]
+   % For every $A$-list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
 \end{theorem}
 
 \begin{proof}
@@ -1427,180 +1426,197 @@ These finiteness properties above facilitate the following result.
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
 
-\begin{corollary}
-\label{uniform value and image: C}
-Given a monomial matrix $A$, there exists $\beta = \beta(A) \in \ZZ$ satisfying the following condition\textup:
-If $(A, \vv{u})$ is a monomial pair with $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $D$, and $q>\beta D$, then
-%
-\[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip(A, \vv{u}, \vv{s}, q) \]
-\daniel[inline]{This will become 
-\[  \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q -  \deficit \ip(A, \vv{u}, \vv{s}, q) \] 
-\!{Can we easily prove that $\val \IP(A, \vv{u}, q) < \ft{A}{\vv{u}} q$?  If so, would it make sense to describe the deficit of $\IP$  as the difference?  If we do this, then the above instead becomes $\deficit \IP = \deficit \ip$.  }
-
-}
-%
-and
-\[ \ol{\im \IP(A, \vv{u}, q)} = \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip(A, \vv{u}, \vv{s}, q), \]
-\daniel[inline]{This is more interesting, and will become 
-\[  \collapse{ \short \IP(A, \vv{u}, q)} = \short \ip (A, \vv{u}, \vv{s}, q) \] 
-}
-
-
-where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-\end{corollary}
+\begin{proposition}
+   \label{uniform value and image: P}
+   Given a monomial matrix $A$, there exists $\beta = \beta(A) \in \ZZ$ satisfying the following condition\textup:
+   If $(A, \vv{u})$ is a monomial pair, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $\denom$, and $q>\beta \denom$, then
+   \[ \deficit \IP(A, \vv{u}, q) = \deficit \ip(A, \vv{u}, \vv{s}, q) \]
+   and
+   \[ \ol{\short \IP(A, \vv{u}, q)} = \short \ip(A, \vv{u}, \vv{s}, q),\]
+   where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+\end{proposition}
 
 \begin{proof}
-Let $\beta$ be as in \Cref{uniform value: P}.  Fix a monomial pair $(A, \vv{u})$ with $\O = \mf(A, \vv{u})$, a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with denominator $D$ \emily{Are we saving $\denom$ for special denominators?}, and an integer $q > \beta D$.  Let $\collapse{A}$ and $\collapse{X}$ be as above.
-
-The asserted value of $\IP(A, \vv{u}, q)$ follows from \Cref{uniform value: P}.  Next, fix a point $\vv{k} \in \opt \IP(A, \vv{u}, q)$, and let $\vv{h}$ be the unique lattice point such that $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.  \Cref{comparison: R} implies that $\vv{h}$ is feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, while the optimality of $\vv{k}$ tells us that $\norm{\vv{k}} = \val \IP(A, \vv{u}, q)$.  Keeping in mind our formula for $\val \IP(A, \vv{u}, q)$, this equality tells us $\norm{\vv{h}} = \val \ip$.    Therefore, $\vv{h}$ must be optimal for $\ip$,  and so $\collapse{A} \vv{h} \in \im \ip$.  Furthermore, as $\collapse{A} \vv{s} = \collapse{\vv{u}}$,
-%
-\[ \collapse{A} \vv{k} = \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \collapse{A} \vv{h}\]
-which shows that $\collapse{A} ( \opt \IP(A, \vv{u}, q))$ = $\ol{\im \IP(A, \vv{u}, q)}$ is contained in
-\[ \collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip.\]
-
-We now establish the opposite containment:  \Cref{uniform value: P} tells us that \[  \vv{s}q - \tail{\vv{s}}_q + \orep(A, \vv{u}, \vv{s}, q)\] is optimal for $\IP(A, \vv{u}, q)$,  while \[ \collapse{A}( \orep(A, \vv{u}, \vv{s}, q)) = \im \ip \] by \Cref{orep: D}.   It follows that $\collapse{A}(\opt \IP(A, \vv{u}, q)) = \ol{\im \IP(A, \vv{u}, q)}$ contains the set $\collapse{\vv{u}} q - \collapse{A} \tail{\vv{s}}_q + \im \ip$.
+   Let $\fsr$ be as in \Cref{fsr-exist: T}, and $\beta$ be the maximum among all coordinates of all points of $\vv{1} - \fsr$ and $A(\fsr)$.
+   Fix a monomial pair $(A, \vv{u})$ and a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+   If $\denom$ is a denominator for $\vv{s}$, fix an integer $q > \beta \denom$, and set $\IP = \IP(A,\vv{u},q)$ and $\ip = \ip(A,\vv{u},\vv{s},q)$.
+   \Cref{uniform value: P} then shows that
+   \begin{equation}\label{eq: comparing values}
+       \val \IP = \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q}+\val\ip,
+   \end{equation}
+   so $\deficit \IP = \deficit \ip$.
+   Let $\vv{h}$ be a point in the domain lattice of $A$, and set $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.
+   Multiplying by $\collapse{A}$ and noting that $\collapse{A}\vv{s} = \collapse{\vv{u}}$, we obtain
+   \begin{equation}\label{eq: comparing differences}
+   \collapse{\vv{u}}q - \collapse{A}\vv{k} = \collapse{A}\tail{\vv{s}}_q - \collapse{A} \vv{h}.
+   \end{equation}
+   If $\vv{k}\in \opt\IP$, then $\vv{h}$ is feasible for $\ip$ by \Cref{comparison: R}, and therefore optimal for $\ip$ by \eqref{eq: comparing values}.
+   Equation~\eqref{eq: comparing differences} then shows that $\ol{\short\IP}\subseteq \short \ip$.
+   Conversely, if $\vv{h} \in \fsr \cap \opt\ip$, then \Cref{uniform value: P} shows that $\vv{k}\in \opt \IP$.
+   \Cref{fsr-exist: T} and \eqref{eq: comparing differences} then give us the reverse containment, $\short \ip \subseteq \ol{\short\IP}$.
 \end{proof}
 
-\subsection{Some useful invariants}
-\label{useful-invariants: ss}
-
-In this subsection, we study the quantities appearing in \Cref{uniform value and image: C} above.  We begin with a fundamental observation.
-
-\emily[inline]{Can we give a direct proof that $\delta$ does not depend on $\vv{s}$?}
+The above result leads to a fundamental observation.
 
 \begin{corollary}
-\label{independence: C} Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
-\[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
-\[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
-\daniel[inline]{the deficit and shortfall of $\ip(A, \vv{u}, \vv{s}, q)$}
-do not depend on  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+   \label{independence: C}
+%    Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
+% \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
+% \[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
+The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{corollary}
 
 \begin{proof}
-Fix $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(A, \vv{u})$, as well as a common denominator $\denom$ for these points.  As these quantities clearly depend only on $q \bmod \denom$, it suffices to show that $\delta(A, \vv{u}, \vv{s}, q) = \delta(A, \vv{u}, \vv{s}', q)$  and $ \Delta(A, \vv{u}, \vv{s}, q) = \Delta(A, \vv{u}, \vv{s}', q)$ whenever $q \gg 0$.  However, this is follows from \Cref{uniform value and image: C}.
+   Fix $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(A, \vv{u})$, as well as a common denominator $\denom$ for these points.
+   As the deficits and shortfalls of $\ip(A,\vv{u},\vv{s},q)$  and $\ip(A,\vv{u},\vv{s}',q)$ clearly depend only on $q$ modulo $\denom$, it suffices to show that they agree whenever $q \gg 0$, but this follows from \Cref{uniform value and image: P}.
 \end{proof}
 
 \begin{definition}
 \label{independence: D}
-
-Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we set
- \[ \delta(A, \vv{u}, q) = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
-\[\Delta(A, \vv{u}, q) = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
-where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, and $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$.
-\daniel[inline]{Stick with $\delta$ and $\Delta$? Or maybe $\mathcal{S} (A, \vv{u}, q)$ and $\mathcal{D}(A, \vv{u}, q)$}
+Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{shortfall} of $(A,\vv{u},q)$ as follows\textup:
+ \[ \udeficit(A, \vv{u}, q) = \deficit\ip( A, \vv{u}, \vv{s}, q)\] and
+\[\ushort(A, \vv{u}, q) = \short\ip( A, \vv{u}, \vv{s}, q), \]
+where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{definition}
 
-%\begin{remark} Above, we referred to \Cref{uniform value and image: C} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one.
+%\begin{remark} Above, we referred to \Cref{uniform value and image: P} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one.
 %\end{remark}
 
-\begin{lemma}
-\label{independence: L}
-If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then the following hold.
-
-\begin{enumerate}
-\item $\delta(A, \vv{u}, q)$  is a positive rational number.
-\item $\Delta(A, \vv{u}, q)$ is a finite set of positive lattice points in $\rs(\O)^{\perp}$.
-\item No column of $\collapse{A}$ is less than any point in $\Delta(A, \vv{u}, q)$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Fix a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ with which to compute $\delta = \delta(A, \vv{u}, q)$ and $\Delta = \Delta(A, \vv{u}, q)$.  \Cref{bounded value: P} implies that $\delta$ is positive, and \Cref{finite image: P} that $\Delta$ is a finite subset of $\ZZ \rb(\O)^{\perp}$.   The positivity of $\Delta$ in this lattice is a consequence of the constraints of $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  These constraints also imply that no column of $\collapse{A}$ is less than any point in $\Delta$.  Indeed, if $\vv{k}$ is optimal for $\ip$, then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, which we rewrite as  \[ \collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}.\]
-We conclude that no column of $\collapse{A}$ is less than $\collapse{A}\tail{\vv{s}}_q - \collapse{A}\vv{k}$.
-\end{proof}
-
-
-We conclude with some finiteness properties.
-
-
-\emily[inline]{Maybe we should restate \Cref{finitely many deltas for a fixed A: P} more precisely. }
-
-
-\begin{proposition}
-\label{finitely many deltas for a fixed A: P}
- Given a monomial matrix $A$, there are only finitely many objects of the form $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
-\end{proposition}
-
-\begin{proof}
-This follows immediately from \Cref{finitely many secondary programs: T} and \Cref{finitely many coord sums: C}.
-\end{proof}
-
-\begin{remark}
-\label{comparing deltas: R}
-If $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A, \vv{u})$ along $\O = \mf(A, \vv{u})$, then
-\[ \delta(A, \vv{u}, q) = \delta(\collapse{A}, \collapse{\vv{u}}, q)  \text{ and }  \Delta(A, \vv{u},q) = \Delta(\collapse{A}, \collapse{\vv{u}}, q)\] for all integers $q>0$ (e.g., this follows from \Cref{collapsed aux program: R}).   Consequently, one may replace the point in $\sp_{\QQ}(A, \vv{u})$ in \Cref{independence: D}   with one in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the value of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$.
+%\emily[inline]{Maybe we should restate \Cref{finitely many deltas for a fixed A: R} more precisely. }
+%
+\begin{remark}[A finiteness property]
+   \label{finitely many deltas for a fixed A: R}
+   Given a monomial matrix $A$, there are only finitely many universal deficits $\udeficit(A, \vv{u}, q)$ and universal shortfalls $\ushort(A, \vv{u}, q)$, as we vary over all $A$-pairs $(A,\vv{u})$ and all positive integers $q$.
+   Indeed, this follows immediately from \Cref{finitely many secondary programs: T}.
 \end{remark}
 
-\begin{remark}
-\label{pair periodicity: R}
-If $(A, \vv{u})$ is fixed, then $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ are periodic in $q$.  Indeed, if $\denom$ is the denominator of some point in $\sp_{\QQ}(A, \vv{u})$, then
-\begin{equation}
-\label{periodicity: e}
- \delta(A, \vv{u}, p) = \delta(A, \vv{u}, q)  \text{ and } \Delta(A, \vv{u}, p) = \Delta(A, \vv{u}, q)
-\end{equation} whenever $p \equiv q \bmod \denom$.    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $\denom$ is the denominator of a point in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
+\begin{remark}[Invariance of universal deficit and shortfall under collapse]
+   \label{comparing deltas: R}
+   If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\mf(A, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
+   Consequently,
+   \[ \udeficit(A, \vv{u}, q) = \udeficit(\collapse{A}, \collapse{\vv{u}}, q)\]
+   and
+   \[\ushort(A, \vv{u},q) = \ushort(\collapse{A}, \collapse{\vv{u}}, q),\]
+   and one may replace the point in $\sp_{\QQ}(A, \vv{u})$ in \Cref{independence: D} with one in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the universal deficit and shortfall.
 \end{remark}
 
-\begin{remark}
-\label{uniform periodicity: R}
- If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.
-
- Indeed,  this follows from the observation that if $\denom$ is as in \Cref{uniform denominators for mc:  T}, then we may compute  $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and integers $q>0$ in terms of a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+\begin{remark}[Uniform periodicity of universal shortfall and deficit]
+   \label{uniform periodicity: R}
+   \label{pair periodicity: R}
+   Given a monomial matrix $A$, there exists a positive integer $\denom$ such that for every $A$-pair $(A,\vv{u})$, $\udeficit(A, \vv{u}, q)$ and $\ushort(A,\vv{u},q)$ only depend on $q$ modulo $\denom$.
+   Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and all $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+   Then
+   \[
+      \udeficit(A, \vv{u}, p) = \udeficit(A, \vv{u}, q)
+   \]
+   and
+   \[
+      \ushort(A, \vv{u}, p) = \ushort(A, \vv{u}, q)
+   \]
+   whenever $p \equiv q \bmod \denom$.
 \end{remark}
 
-We record another application of \Cref{uniform denominators for mc:  T} below.
+
+% \begin{remark}
+%    \label{pair periodicity: R}
+%    If $(A, \vv{u})$ is fixed, then the universal deficit and shortfall of $(A, \vv{u}, q)$ are periodic in $q$.
+%    Indeed, if $\denom$ is the denominator of some point in $\sp_{\QQ}(A, \vv{u})$, then
+%    \begin{equation}
+%       \label{periodicity: e}
+%       \begin{split}
+%       \udeficit(A, \vv{u}, p) &= \udeficit(A, \vv{u}, q)\\
+%       &\text{and}\\
+%       \ushort(A, \vv{u}, p) &= \ushort(A, \vv{u}, q)
+%    \end{split}
+%    \end{equation}
+%    whenever $p \equiv q \bmod \denom$.
+%    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $\denom$ is the denominator of a point in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
+% \end{remark}
+
+% \begin{remark}
+%    \label{uniform periodicity: R}
+%    If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.
+%    Indeed, if $\denom$ is as a universal denominator, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and integers $q>0$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+% \end{remark}
+
+We record another application of universal denominators below.
 
 \begin{theorem}
 \label{uniform uniform value and image: T}
 Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
 If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
-\[ \val \IP(A, \vv{u}, q) = \ft{A}{\vv{u}} \cdot q - \delta(A, \vv{u}, q) \] 
-\daniel[inline]{
-\[  \deficit \IP(A, \vv{u}, q) = \delta (A, \vv{u}, \vv{s}, q) \]}
-
+\[  \deficit \IP(A, \vv{u}, q) = \udeficit(A, \vv{u}, q) \]
 and
-\[ \ol{ \im \IP(A, \vv{u}, q)} = \collapse{\vv{u}}q - \Delta(A, \vv{u},q) \] where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-
-\daniel[inline]{\[  \collapse{ \short \IP(A, \vv{u}, q)} = \Delta (A, \vv{u}, \vv{s}, q) \] 
-}
-
+\[  \collapse{ \short \IP(A, \vv{u}, q)} = \ushort (A, \vv{u}, q).\] 
 \end{theorem}
 
 \begin{proof}
-\Cref{uniform denominators for mc:  T}  tells us that once $A$ has been fixed, there exists a positive integer $D$ such that for every monomial pair $(A, \vv{u})$, there exists a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $D$.  Therefore, if $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: C}, then we may take $\beta = D \beta_{\circ}$.
+   Let $\denom$ be a universal denominator for $A$, so that for every $A$-pair $(A, \vv{u})$, there exists a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+   If $\beta_{\circ}$  is any integer satisfying the condition stated in \Cref{uniform value and image: P}, then we may take $\beta = \denom \beta_{\circ}$.
 \end{proof}
 
+To interpret this result algebraically, we need to extend the notion of collapses to monomial and diagonal ideals.
+
+\begin{definition}
+   Let $(\ideala,\ideald)$ be an ideal pair in $R = \kk[x_1,\ldots,x_\numvars]$.
+   Let $(A,\vv{u})$ be an associated monomial pair and $\O=\mf(A,\vv{u})$.
+   \begin{enumerate}
+      \item The collapse of $R$ along $\O$ is the polynomial ring $\collapse{R}$ obtained from $R$ by omitting the variable $x_i$ whenever $\canvec_i \in \rb(\O)$.
+      \item The collapse of $\ideala$ along $\O$ is the monomial ideal $\collapse{\ideala}$ of $\collapse{R}$ obtained from $\ideala$ by setting $x_i$ equal to $1$ whenever $\canvec_i \in \rb(\O)$.
+      \item The collapse of $\ideald$ along $\O$ is the proper diagonal ideal $\collapse{\ideald}$ of $\collapse{R}$ obtained from $\ideald$ by setting $x_i$ equal to $0$ whenever $\canvec_i \in \rb(\O)$.
+   \end{enumerate}
+\end{definition}
+
+
+Thus, $\collapse{\ideala}$ and $\collapse{\ideald}$ are the images of $\ideala$ and $\ideald$ under suitable (different) evaluation homomorphisms $R\to \collapse{R}$, designed so that $(\collapse{\ideala},\collapse{\ideald})$ is an ideal pair, and $(\collapse{A},\collapse{\vv{u}})$ is a monomial pair associated to it.
+
 \begin{remark}[An algebraic interpretation]
-\label{leftover p large: R}
+   \label{leftover p large: R}
+   Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$.
+   If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then the first conclusion of that theorem tells us that if $q > \beta$, then
+   \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(A, \vv{u},q). \] 
 
-Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$. If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then this same theorem tells us that if $q > \beta$, then\daniel{Update this, since we already motivated shortfalls.  If we like this description, I guess we'll have to define $F$-thresholds for ideals, which I am not sure we have done} \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} \cdot q - \delta(A, \vv{u},q). \] 
-
-Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.  For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
-
-In this case,  the collapse along $\O$ is the identity map, and so ${ \im \IP(A, \vv{u}, q)}$ equals ${\vv{u}}q - \Delta(A, \vv{u},q)$.  In light of this, it follows from \Cref{shortfall motivation: R} that 
-\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \im \Delta(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
+   Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.
+   For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
+   In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q)} = \ushort(A, \vv{u},q)$.
+In light of this, it follows from \Cref{shortfall motivation: R} that whenever $q >\beta$,
+\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \ushort(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
 In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
 
 When $\O$ is unbounded, the situation is slightly more complicated. \daniel{Return to this later;  you'll need to settle on how to describe collapses first}
-
 \end{remark}
 
+The following is a consequence of \Cref{comparing deltas: R,uniform uniform value and image: T}.
 
+% \begin{corollary}
+% Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where the overbar denotes collapse along $\O$.
+% \end{corollary}
 
-The following is a consequence of \Cref{comparing deltas: R} and \Cref{uniform uniform value and image: T}.
-
-\begin{corollary}
-Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where the overbar denotes collapse along $\O$.
-\end{corollary}
-
-\emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
+% \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
 
 \begin{corollary}
-\label{collapsed ft agree: C}
-Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property:  If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then $\nu(\ideala, \ideald, q) = \nu(\collapse{\ideala}, \collapse{\ideald}, q)$. \daniel{This will also require us to carefully define the collapse of an ideal pair}
+   Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property:
+   If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then $\nu(\ideala, \ideald, q) = \nu(\collapse{\ideala}, \collapse{\ideald}, q)$. %\daniel{This will also require us to carefully define the collapse of an ideal pair}
+   \qed
 \end{corollary}
+
+
+\pedro[inline]{
+   This lemma appeared earlier in the section, and contained things we already knew (positivity and integrality).
+   I removed those things, and what is left should go somewhere else (where it's used), maybe as a remark, maybe incorporated in another proof.
+\begin{lemma}
+\label{independence: L}
+If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then no column of $\collapse{A}$ is less than any point in $\ushort(A, \vv{u}, q)$.
+\end{lemma}
+\begin{proof}
+   Suppose $\vv{k}$ is optimal for $\ip = \ip(A,\vv{u},\vv{s},q)$, for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+   Then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, and thus  $\collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}$.
+\end{proof}
+}
+
 
 \newpage
-\section{Arithmetic integer programs revisted}
+\section{Arithmetic integer programs revisited}
 
 
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}? }   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
@@ -1798,7 +1814,7 @@ We also want $p$ to be large enough so that the problem of comparing two rationa
 More precisely, if $(A,\vv{u})$ is very small, then  \Cref{arithmetic uniform value and image: T} implies that 
 \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p) \] a linear polynomial in $p$.  By definition, the very small pair $(A,\vv{u})$ satisfies $\ft{A}{\vv{u}} \leq 1$, and \Cref{discreteness: P} then implies that there are only finitely many possible values for $\ft{A}{\vv{u}}$ as the very small pair $(A,\vv{u})$ varies.  
 
-Similarly, \Cref{finitely many deltas for a fixed A: P} tells us that there are only finitely many possible values for $\udeficit(A,\vv{u},p)$ as we vary over all pairs $(A,\vv{u})$, while \Cref{pair periodicity: R} tells us that this universal deficit, with $(A,\vv{u})$ fixed, depends on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
+Similarly, \Cref{finitely many deltas for a fixed A: R} tells us that there are only finitely many possible values for $\udeficit(A,\vv{u},p)$ as we vary over all pairs $(A,\vv{u})$, while \Cref{pair periodicity: R} tells us that this universal deficit, with $(A,\vv{u})$ fixed, depends on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
 
 It follows from these observations that we may choose $p \gg 0$, with the lower bound depending only on the ambient matrix $A$, so that to compare any two numbers of the form $\val \IP_p(A,\vv{u},p)$ with $(A,\vv{u})$ very small, it suffices to first compare their leading coefficients, and if necessary, their constant term.  Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
 \end{remark}
@@ -1903,7 +1919,7 @@ Next, we set %
 
 Like $\S_p,\S_{p^2}$ and $\S_{p^3}$, the set $\S_{p^4}$ consists of small pairs, and depends on $p$ modulo $\ell$, but not on $p$ itself. If $\S_{p^4}$ contains a pair that is not very small, then repeating this process, we can compute the value of $\IP_p(A,\vv{u},p^{e+3})$ for all $e \geq 1$.  Otherwise, we can only compute the value and shortfalls of the next program $\IP_p(A,\vv{u},p^{4})$, and then analogously repeat our arguments.
 
-We may continue iterating these steps.  Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of small pairs $(A,\vv{v})$, where $\vv{v}$ is in some universal shortfall of an $A$-pair.  It then follows from \Cref{finitely many deltas for a fixed A: P} that all defined $\S_{p^e}$ are subsets of some finite set determined by $A$.  Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
+We may continue iterating these steps.  Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of small pairs $(A,\vv{v})$, where $\vv{v}$ is in some universal shortfall of an $A$-pair.  It then follows from \Cref{finitely many deltas for a fixed A: R} that all defined $\S_{p^e}$ are subsets of some finite set determined by $A$.  Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
 
 Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
 
@@ -1956,7 +1972,7 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
 
 \item \label{elementary1 small pairs} \Cref{p-sprout: R} tells us that every vertex of $\sprout_p(A)$ is a small monomial pair.  Furthermore, if $(B,\vv{v})$ is a vertex of $\sprout_p(A)$, then $B$ must be among the finitely many descendants of $A$.
 
-\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: P} to $A$, and each of its descendent monomial matrices, we see that $\cup_{e>1} \graph_{p^e}(A)$ is a finite set, and their recursive nature then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
+\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} to $A$, and each of its descendent monomial matrices, we see that $\cup_{e>1} \graph_{p^e}(A)$ is a finite set, and their recursive nature then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
 \item \label{elementary1 periodic in p} Furthermore, \Cref{uniform periodicity: R} tells us that if $\denom$ is a universal denominator for $A$, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
 
