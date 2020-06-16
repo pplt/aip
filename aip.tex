@@ -2284,6 +2284,10 @@ We now address the last assertion:  If $A$ satisfies these additional conditions
 \section{Monomial ideals and reduction}
 \label{monomial-reduction: A}
 
+
+\emily[inline]{Note that this Appendix proves \Cref{general-mu-theorem: T} by reducing it to the monomial case.  This is cited throughout this appendix as \Cref{diagonal-mu-theorem: T} that no longer exists.} 
+
+
 The purpose of this appendix is to describe the behavior of the monomials contained in some possibly non-monomial ideal under reduction to prime characteristic.  To make this precise, consider the following definition. 
 
 \begin{definition}
@@ -2359,16 +2363,6 @@ By again localizing at $\ell$ and reducing modulo $p$, we obtain the sequence of
 where, by Generic Freeness, the map given by multiplication by $f_p$ is onto.  Recalling that $(J:_A f)A_p \longrightarrow A_p$ is injective by \Cref{colon-injection: e}, we know that \eqref{reduction-colon: e} is an exact sequence.  
 By again localizing and then reducing the exact sequence  
 $0 \to J \to A \to A/J\to 0$ modulo $p$, we find that $\left(A/J\right)_p \cong A_p/J_p$, so that we conclude from \eqref{reduction-colon: e} that $(J:_A: f) = (J A_p :_{A_p} \ideal{f}A_p)$. 
-
-
-% \daniel[inline]{By the way, it looks like we might only use this when $I$ is principal.}
-% Finally, for $I = \ideal{f_1, \ldots, f_n}$ arbitrary, consider the exact sequences  
-% \begin{align*}
-%  &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow A/(J:_A I) \longrightarrow 0 \\
-%  &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow \bigoplus_n A/J  
-% \end{align*}
-% where the final map of the second sequence sends $a \in A$ to $(\overline{a f_1}, \ldots, \overline{a f_n})$. 
-% An argument directly analogous to that above applied to these sequences yields the desired result, after noticing that $( \bigoplus \limits_n A/J ) A_p \cong \bigoplus \limits_{n} A_p/J A_p$.
 \end{proof}
 
 
@@ -2458,10 +2452,6 @@ For the remainder of the proof, suppose that $p \gg 0$ so that \eqref{canonical-
 Suppose that $\operatorname{char} \kk = p > 0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for all nonnegative integers $e$.
 \end{lemma}
 
-
-% If $x^{\vv{u}} \in R$,  $\idealb$ is an ideal of $R$, and $e$ is a natural number, then $x^{\vv{u}} \in \idealb^{[p^e]}$ if and only if $x^{\vv{u}} \in \mon(\idealb)^{[p^e]}$.
-
-
 \begin{proof}  Set $\idealc = \mon(\idealb)$ and $q=p^e$.  Given that both ideals in question are monomial, it suffices to prove that a monomial lies in $\mon(\idealb^{[q]})$ if and only if it lies in $\idealc^{[q]}$.  However, as $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that
 $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
 
@@ -2487,12 +2477,9 @@ a (Frobenius) power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sit
 $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
  \end{proof}
 
-
-
- \emily[inline]{Can we instead assume $\ideala \subseteq \sqrt{\idealb}$ below? }
  
 \begin{corollary} \label{nu-mu-reduce-monomial: C}
-Suppose that $\ideala \subseteq \idealb$ are ideals of $\QQ[x_1, \ldots, x_\numvars]$, where $\ideala$ is a monomial ideal. If $\idealc = \mon(\idealb)$, then there exists an integer $\beta = \beta(\ideala, \idealb)$ such that for all $p > \beta$ and $e \geq 1$, the following hold:
+Suppose that $\ideala \subseteq \sqrt{\idealb}$ are ideals of $\QQ[x_1, \ldots, x_\numvars]$, where $\ideala$ is a monomial ideal. If $\idealc = \mon(\idealb)$, then there exists an integer $\beta = \beta(\ideala, \idealb)$ such that for all $p > \beta$ and $e \geq 1$, the following hold:
 \begin{enumerate}
 \item $\nu(\ideala_p, \idealb_p, p^e) = \nu(\ideala_p, \idealc_p, p^e)$ and $\ft{\ideala_p}{\idealb_p} = \ft{\ideala_p}{\idealc_p}$.
 \item $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ and $\crit(\ideala_p,\idealb_p) = \crit(\ideala_p,\idealc_p)$. 
@@ -2501,17 +2488,15 @@ Suppose that $\ideala \subseteq \idealb$ are ideals of $\QQ[x_1, \ldots, x_\numv
 
 
 \begin{proof}
-Since $\ideala \subseteq \idealc$ there exists $\alpha = \alpha(\ideala, \idealb)$ such that $\ideala_p \subseteq \idealc_p \subseteq 
-\idealb_p$ for all $p > \alpha$, and 
-$\nu(\ideala_p, \idealb_p, p^e), \mu(\ideala_p, \idealb_p, p^e)$ are defined for all $e \geq 1$ in this case. 
+Observe that since $\ideala \subseteq \sqrt{\idealb}$, for every monomial $\mu \in \ideala$, there exists a positive integer $k$ for which $\mu^k \in \idealb$, which happens if and only if the monomial $\mu^k$ is in $\idealc$.  Hence $\ideala \subseteq \sqrt{\idealc}$.
+Therefore, there exists $\alpha = \alpha(\ideala, \idealb)$ such that 
+$\sqrt{\idealb_p} = (\sqrt{\idealb})_p$, $\sqrt{\idealc_p} = (\sqrt{\idealc})_p$, and 
+ $\ideala_p \subseteq \sqrt{\idealc_p} \subseteq 
+\sqrt{\idealb_p}$ whenever $p > \alpha$
+Then
+$\nu(\ideala_p, \idealb_p, p^e), \mu(\ideala_p, \idealb_p, p^e)$ are defined for all $p > \alpha$ and $e \geq 1$. 
 Now, by \Cref{mon-operation-modulo-p: T}, we can find $\gamma = \gamma(\idealb)$ for which $\idealc_p = \mon(\idealb_p)$.  Then for $p$ greater than $\beta = \max\{ \alpha, \gamma \}$, the statements hold by \Cref{reduce-to-monomial-case: C}.
-%As $\ideala_p$ is monomial,$\ideala_p^N$ ($\ideala_p^{[N]}$, respectively) is contained in $(\idealb_p)^{[p^e]}$ if any only if it is contained in $\mon((\idealb_p)^{[p^e]}) = (\mon(\idealb_p))^{[p^e]} =  \idealc_p^{[p^e]}$, where the first equality is due to \Cref{frobenius-powers+mon-commute: L}, proving the desired statement.
 \end{proof}
-
-
-%\daniel[inline]{We should add that if $\ideala$ is monomial, then we can always assume that we are computing thresholds and $\nu/\mu$ with respect to some point with positive coordinates. }
-
-\emily[inline]{Note that this Appendix proves \Cref{general-mu-theorem: T} by reducing it to the monomial case.  This is cited as \Cref{diagonal-mu-theorem: T} that no longer exists.} 
 
 Finally, we are equipped to prove \Cref{general-mu-theorem: T} from \Cref{diagonal-mu-theorem: T} by reducing to the case that $\idealb$ is a diagonal ideal. 
 
@@ -2597,7 +2582,6 @@ We now introduce some notation and gather some basic results concerning Frobeniu
 We work in a polynomial ring over a field of characteristic $p>0$, in the variables $x=x_1,\ldots,x_\numvars$.
 
 \begin{notation}
-   % We adopt standard multi-index notation: if $\vv{u} = (u_1,\ldots,u_\numvars)\in \NN^\numvars$, then $x^\vv{u} = x_1^{u_1}\cdots x_\numvars^{u_\numvars}$.
    If $\vv{u}\in \NN^\numvars$, then $\diag(\vv{u})$ denotes the \emph{diagonal ideal}
    \[ \diag(\vv{u}) = \ideal{x_1^{u_1},\ldots,x_\numvars^{u_\numvars}} = \ideal{x^{\vv{v}} : \vv{v} \in \NN^\numvars \text{ and } \vv{v} \not < \vv{u}}.\]
    When dealing with notation involving diagonal ideals, we shall typically replace $\diag(\vv{u})$ in the notation with $\vv{u}$.
