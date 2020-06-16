@@ -45,7 +45,7 @@ TO DO LIST:
       \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
       \pedro[inline]{Changed to $a$ and $b$.}
       \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
-      \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.}
+      \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.  We use, for instance, both $\ideala$ and $\vv{a}$.}
       \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
       \emily[inline]{Done.}
    \end{itemize}
@@ -54,7 +54,7 @@ TO DO LIST:
 \begin{itemize}
    \item Example with $\opt \Theta$ infinite.
    \pedro[inline]{Done}
- \item Example with $\ldots$
+ \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
@@ -67,18 +67,18 @@ TO DO LIST:
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
 % \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
- \item[$\Box$] Minimize and/or ``algebrafy'' statements.
- %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
- \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
-% \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
-% \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
-
 \end{enumerate}
 }
 
 \details[inline]{
    TO-DO LIST (Continued):
    \begin{itemize}
+    \item[$\Box$] Minimize and/or ``algebrafy'' statements.
+ %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
+ \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
+% \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
+% \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
+
     \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
  \emily[inline]{The current doc (6/5/20) has \Cref{refined-discreteness: L} not explicitly cited, and the lemma right after \Cref{cor: constant mus} is not currently cited, but a note before it gives a consequence we should add.   All other lemmas are used.}
  
@@ -184,7 +184,7 @@ is the critical exponent of $\ideala$ with respect to $\idealb$.
 \emily[inline]{Explain that our method replaces an arbitrary $\idealb$ with a diagonal ideal.}
 
 
-\todo[inline]{Add conventions for $p,q,\kk,\mathfrak{m}$, etc}
+\todo[inline]{Add conventions for $p,q, e, \kk,\mathfrak{m}$, etc}
 
 
 \newpage
@@ -1713,7 +1713,7 @@ The algebraic characterization of a very small pair is simply that $(A, \vv{u})$
 
 \begin{remark}[Geometric description of small and very small pairs]
 \label{geometric small and very small: R}
-Suppose that $A$ is an $\numvars \times n$ monomial matrix, and let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
+Given an $\numvars \times n$ monomial matrix $A$, let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
 
 Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice point $\vv{u} \in \ZZ^{\numvars}$ does not lie in the interior of the Minkowski sum of the set of columns of $A$ with the ambient nonnegative orthant, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$. 
 
