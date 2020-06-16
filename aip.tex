@@ -726,6 +726,7 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    I think the original intention was to show that the definition is independent of the choice of $\defpt$ before the definition, as opposed to justifying it afterwards.
    We could switch things around, though.
 }
+\emily[inline]{Got it.  I like it as is.}
 \begin{definition}[Recession basis and subspace]
    If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 \end{definition}
@@ -890,8 +891,10 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
    A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
-\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
+%\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
+\item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when the $\rb(\O)$ is empty.
 \pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
+\emily{It seems that we agree; I took a crack at updating it.}
 \end{enumerate}
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
@@ -1624,7 +1627,7 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \section{Arithmetic integer programs revisited}
 
 
-The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{I think so.}   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
+The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{Maybe instead describe what this theorem essentially says, in words. }   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
 
 \emily[inline]{We should write a line here to motivate \Cref{general AIP: T}.}
 
@@ -1719,7 +1722,7 @@ Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice
 
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 
-It is clear from these interpretations that a very small pair must also be small, and that a small pair may fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.} 
+It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.} 
 \end{remark}
 
 
@@ -1760,20 +1763,20 @@ The following allows us to reduce even further, to the very small case.
  \begin{theorem}
  \label{small not very small value: T}  Given a monomial matrix $A$, there exists an integer $\beta=\beta(A)$ with the following property\textup:  
  If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}, p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
- \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}
+ \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}\emily{Maybe just add ``Cf. \cite[Theorem~6.4]{hernandez+etal.frobenius_powers}'' above?}
   \end{theorem}
 \daniel[inline]{This is the "lost theorem" Pedro recovered.  I've added a new proof (the old one is commented out) that does not rely on the fact (stated in \Cref{geometric small and very small: R} without proof) that there are only finitely many small but not very small pairs}
 
 
 \begin{proof}
-If we fix a universal denominator $\ell$ for $A$,   then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta=\beta(A,\ell)$ such that $p/\ell > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.  In what follows, we will assume that $p > \beta$.
+If we fix a universal denominator \emily{Use command ``{\tt denom}''?} $\ell$ for $A$,   then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta=\beta(A,\ell)$ such that $p/\ell > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.  In what follows, we will assume that $p > \beta$.
 
 Next, suppose that $(A,\vv{u})$ is small, but not very small, and let $\vv{s}$ be a special point for this pair with denominator $\ell$.   \Cref{canonical-feasible: T} then states that 
 \[ \vv{k} \coloneqq \vv{s}p-\tail{\vv{s}}_p \in \feas \IP(A,\vv{u},p). \] 
 
-The assumption that $(A,\vv{u})$ is not very small implies that $\vv{s} = \ft{A}{\vv{u}} > 1$, and our choice of $\ell$ then implies that $\norm{\vv{s}} \geq 1 + 1/\ell$, so that \[\norm{\vv{k}} \geq p + p/\ell - \norm{\tail{\vv{s}}_p} > p\] where the strict inequality follows from our choice of $p \gg 0$.  
+Since $(A,\vv{u})$ is not very small, $\vv{s} = \ft{A}{\vv{u}} > 1$, and our choice of $\ell$ then implies that $\norm{\vv{s}} \geq 1 + 1/\ell$, so that \[\norm{\vv{k}} \geq p + p/\ell - \norm{\tail{\vv{s}}_p} > p\] where the strict inequality follows from our choice of $p \gg 0$.  
 
-This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.  Without loss of generality, assume $h_1 < k_1$ , and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.  By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\vv{g}}{\vv{g}} \neq 0 \bmod p$.  Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.  It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
+This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.  Without loss of generality, assume $h_1 < k_1$ , and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.  By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\norm{\vv{g}}}{\vv{g}} \not\equiv 0 \bmod p$.  Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.  It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
 \end{proof} 
 
 With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $(A, \vv{u})$ is very small, and $e=1$,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
@@ -1792,15 +1795,32 @@ where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \begin{proof}  If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  Given that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $\ft{A}{\vv{u}}$ is at most $1$ and $p > \beta$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
 \end{proof}
 
-\begin{example}
-\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu_\ideala^{\vv{u}}(p) = p-1$, so $\mu_\ideala^{\vv{u}}(p) \neq \nu_\ideala^{\vv{u}}(p)$.
-In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ does not depend on $p$, we \emph{can} have that the generators of $\ideala^{\mu_\ideala^{\vv{u}}(p)}
-= \ideala^{p-1}$ depend on $p$:  For instance, if $\ideala = \langle x, y, \rangle$, then $\nu_\ideala^{\vv{u}}(p) = 2p-2$  and $\mu_\ideala^{\vv{u}}(p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
+\begin{example} \
+% \emily[inline]{If $(A, \vv{u})$ is small but not very small, 
+% 
+% though 
+% \Cref{arithmetic uniform value and image: T} tells us that the shortfall of $\Pi_p(A, \vv{u},q)$ agrees with that of $\Pi(A, \vv{u},q)$
+% 
+% On the other hand, 
+% 
+% then though $\val \Pi_p(A,u,q) = p-1$ \Cref{small not very small value: T}
+% 
+% 
+% then $\mu(A,\vv{u},p) = p-1$, so it is less than $\nu(A,\vv{u},p)$.
+% In this case, although our description of $\ideala^{\nu(A,\vv{u},p)}$ does not depend on $p$, the generators of $\ideala^{\mu(A,\vv{u},p)} 
+% = \ideala^{p-1}$  \emph{can}  depend on $p$:  For instance, if $\vv{u} = (1,1)$ so $\ideala = \langle x, y \rangle$, then $\nu(A,\vv{u},p) = 2p-2$  and $\mu(A,\vv{u},p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
+% (Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
+% }
+
+
+\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu(A,\vv{u},p) = p-1$, so it is less than $\nu(A,\vv{u},p)$.
+In this case, although our description of $\ideala^{\nu(A,\vv{u},p)}$ does not depend on $p$, the generators of $\ideala^{\mu(A,\vv{u},p)} 
+= \ideala^{p-1}$  \emph{can}  depend on $p$:  For instance, if $\vv{u} = (1,1)$ so $\ideala = \langle x, y \rangle$, then $\nu(A,\vv{u},p) = 2p-2$  and $\mu(A,\vv{u},p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
 (Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
 }
 \end{example}
 
-\Cref{arithmetic uniform value and image: T} is fundamental, and together with \Cref{general AIP: T}, forms the basis for a process to compute value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
+\Cref{arithmetic uniform value and image: T} is fundamental, and together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
 
 \subsection{The $\idealm$-primary case}
 \label{m-primary: SS}
@@ -1811,11 +1831,11 @@ In this case, although our description of $\ideala^{\nu_\ideala^{\vv{u}}(p)}$ do
  If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exist $\beta=\beta(A)$ with the following property:  If $p > \beta$ and $(A,\vv{u})$ is very small, then the value of $\IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$.  Furthermore,  the non-leading coefficients in this polynomial are nonpositive and rational, and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
 \end{theorem}
 
-Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.  In this context, \Cref{arithmetic uniform value and image: T} becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to properly collapsed shortfall, whenever it applies.  We stress that the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general  accounts for much of the increased technicality present in the next section.
+Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.  In this context, \Cref{arithmetic uniform value and image: T} becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to a properly collapsed shortfall, whenever it applies.  We stress that the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general  accounts for much of the increased technicality present in the next section.
 
 \begin{remark}[On $p$ being sufficiently large]
 \label{p large m-primary: R}
-First off, throughout this discussion, we will always assume that $p$ is large enough, relative to $A$, so that the conclusions of \Cref{small not very small value: T} and \Cref{arithmetic uniform value and image: T} are valid.   
+First off, throughout this discussion, we will always assume that $p$ is large enough, relative to $A$, so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.   
 
 We also want $p$ to be large enough so that the problem of comparing two rational numbers of the form $\val \IP_p(A,\vv{u},p)$, with $(A,\vv{u})$ very small, depends only on the class of $p$ modulo some integer, and not on $p$ itself.  
 
@@ -1824,7 +1844,7 @@ More precisely, if $(A,\vv{u})$ is very small, then  \Cref{arithmetic uniform va
 
 Similarly, \Cref{finitely many deltas for a fixed A: R} tells us that there are only finitely many possible values for $\udeficit(A,\vv{u},p)$ as we vary over all pairs $(A,\vv{u})$, while \Cref{pair periodicity: R} tells us that this universal deficit, with $(A,\vv{u})$ fixed, depends on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
 
-It follows from these observations that we may choose $p \gg 0$, with the lower bound depending only on the ambient matrix $A$, so that to compare any two numbers of the form $\val \IP_p(A,\vv{u},p)$ with $(A,\vv{u})$ very small, it suffices to first compare their leading coefficients, and if necessary, their constant term.  Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
+It follows from these observations that we can choose $p \gg 0$, with the lower bound depending only on the ambient matrix $A$, so that to compare any two numbers of the form $\val \IP_p(A,\vv{u},p)$ with $(A,\vv{u})$ very small, it suffices to first compare their leading coefficients, and if necessary, their constant term.  Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
 \end{remark}
 
 \daniel[inline]{Subscripts are now indexed by powers of $p$, and the indexing was modified so that it agrees with our choice of notation for the graphs later}
@@ -1842,7 +1862,7 @@ We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, a
  & = \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
 \end{align*}  
 
-Observe that this set that depends on the class of $p$ modulo $\ell$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
+Observe that this set that depends on the class of $p$ modulo $\ell$\emily{Some {\tt ell} should be {\tt denom} below}, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
 
 This smallness, along with \Cref{trivial small value bound: P}, tells us that  \[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\] is at most $p^e-1$.  Setting $q=p$ in \Cref{general AIP: T} then tells us that
 %
@@ -2384,11 +2404,11 @@ If $\mon(\idealb)$ is not $\idealm$-primary, then this argument breaks down.  In
 \begin{lemma}
 \label{colon-product-stabilization: L}
   Suppose that $f,g_1, \cdots, g_s$ are elements of a ring $R$, and that $I$ is an ideal of $R$.
-If $c$ is a nonnegative integer such that $(I: f g_i^c) = (I: f g_i^k)$ for every index $1 \leq i \leq s$ and every integer $k \geq c$, then \[ (I: f g_1^c \cdots g_s^c) = (I: f g_1^{k_1} \cdots g_s^{k_s})\] for all integers $k_1, \cdots, k_s \geq c$.
+If $\ell$ is a nonnegative integer such that $(I: f g_i^\ell) = (I: f g_i^k)$ for every index $1 \leq i \leq s$ and every integer $k \geq \ell$, then \[ (I: f g_1^\ell \cdots g_s^\ell) = (I: f g_1^{k_1} \cdots g_s^{k_s})\] for all integers $k_1, \cdots, k_s \geq \ell$.
 \end{lemma}
 
 \begin{proof}
-We induce on $k_1 + \cdots + k_s$.  The base case is when $k_1 = \cdots = k_s = c$, which is trivial, and the induction step, which is left to the reader, involves repeatedly applying the fact that $(I:fab) = ((I:fa):b)$ for all $a,b \in R$.
+We induce on $k_1 + \cdots + k_s$.  The base case is when $k_1 = \cdots = k_s = \ell$, which is trivial, and the induction step, which is left to the reader, involves repeatedly applying the fact that $(I:fab) = ((I:fa):b)$ for all $a,b \in R$.
 \end{proof}
 
 \begin{lemma}
@@ -2404,33 +2424,33 @@ Given a proper ideal $I$ of $\kk[x_1, \ldots, x_\numvars]$, there exists a finit
 
 \vspace{.2cm}
 
-\noindent \emph{Claim.} Given positive integers  $b_1, \cdots, b_{\ell}$ with $1 \leq \ell \leq \numvars$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
+\noindent \emph{Claim.} Given positive integers  $b_1, \cdots, b_{s}$ with $1 \leq s \leq \numvars$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
 \begin{enumerate}
 \setcounter{enumi}{2}
-\item \label{stab-1: e} $x^{\vv{u}} \notin \langle x_1^{b_1}, \ldots, x_{\ell}^{b_{\ell}} \rangle $ if and only if $\vv{u} \in \vv{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
+\item \label{stab-1: e} $x^{\vv{u}} \notin \langle x_1^{b_1}, \ldots, x_{s}^{b_{s}} \rangle $ if and only if $\vv{u} \in \vv{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
 \item \label{stab-2: e} $(I:x^{\vv{v}}) = (I: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
 \end{enumerate}
 
 \vspace{.15cm}
 
 
-Toward the claim, let $\mathcal{A}$ be the finite set of all points $\vv{a} \in \NN^\numvars$ such that $0 \leq a_i < b_i$ for every $1 \leq i \leq \ell$ and $a_i = 0$ whenever $\ell < i \leq \numvars$.  If $\ell = \numvars$, then it is clear that we may take $\mathcal{V} = \mathcal{A}$ and $\mathcal{W}(\vv{v}) = \emptyset$ for every $\vv{v} \in \mathcal{V}$.
+Toward the claim, let $\mathcal{A}$ be the finite set of all points $\vv{a} \in \NN^\numvars$ such that $0 \leq a_i < b_i$ for every $1 \leq i \leq s$ and $a_i = 0$ whenever $s < i \leq \numvars$.  If $s = \numvars$, then it is clear that we may take $\mathcal{V} = \mathcal{A}$ and $\mathcal{W}(\vv{v}) = \emptyset$ for every $\vv{v} \in \mathcal{V}$.
 
-Now assume that $1 \leq \ell < \numvars$.
-For every $\vv{a} \in \mathcal{A}$ and $\ell < i \leq \numvars$, the ideals $(I: x^{\vv{a}} x_i^k)$ are increasing in $k$.  Hence there exists an integer $c \geq 0$ such that
+Now assume that $1 \leq s < \numvars$.
+For every $\vv{a} \in \mathcal{A}$ and $s < i \leq \numvars$, the ideals $(I: x^{\vv{a}} x_i^k)$ are increasing in $k$.  Hence there exists an integer $\ell \geq 0$ such that
 \begin{equation}
 \label{colon-simple: e}
-(I: x^{\vv{a}}x_i^c) = (I: x^{\vv{a}}x_i^k)
+(I: x^{\vv{a}}x_i^\ell) = (I: x^{\vv{a}}x_i^k)
 \end{equation}
-for every point $\vv{a} \in \mathcal{A}$, every index $\ell < i \leq \numvars$, and every integer $k \geq c$.
+for every point $\vv{a} \in \mathcal{A}$, every index $s < i \leq \numvars$, and every integer $k \geq \ell$.
 
 
-Let $\mathcal{V}$ be the set consisting of all points of the form $\vv{v} = \vv{a} + \sum_{\ell <i \leq \numvars} t_i \vv{e}_i$ where $\vv{a} \in \mathcal{A}$, and each integer $t_i$ satisfies $0 \leq t_i \leq c$.  For every such $\vv{v}$, set $\mathcal{W}(\vv{v}) = \emptyset$ if some $t_i$ is not $c$, and set $\mathcal{W}(\vv{v}) = \{ \vv{e}_i : \ell < i \leq \numvars \}$ otherwise.
+Let $\mathcal{V}$ be the set consisting of all points of the form $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} t_i \vv{e}_i$ where $\vv{a} \in \mathcal{A}$, and each integer $t_i$ satisfies $0 \leq t_i \leq \ell$.  For every such $\vv{v}$, set $\mathcal{W}(\vv{v}) = \emptyset$ if some $t_i$ is not $\ell$, and set $\mathcal{W}(\vv{v}) = \{ \vv{e}_i : s < i \leq \numvars \}$ otherwise.
 
-After unraveling these definitions, it is obvious that \eqref{stab-1: e} is satisfied.  Furthermore, the only case in which \eqref{stab-2: e} is nontrivial is when $\vv{v} = \vv{a} + \sum_{\ell <i \leq \numvars} c \vv{e}_i$ for some $\vv{a} \in \mathcal{A}$,  in which case we must prove that
+After unraveling these definitions, it is obvious that \eqref{stab-1: e} is satisfied.  Furthermore, the only case in which \eqref{stab-2: e} is nontrivial is when $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} \ell \vv{e}_i$ for some $\vv{a} \in \mathcal{A}$,  in which case we must prove that
 %
-\[( I : x^{\vv{a}} x_{\ell+1}^c \cdots x_\numvars^c ) =   ( I : x^{\vv{a}} x_{\ell+1}^{c+w_{\ell+1}} \cdots x_{\numvars}^{c+w_\numvars}) \]
-for all nonnegative integers $w_{\ell+1}, \ldots, w_{\numvars}$.  However, this is an immediate consequence of \eqref{colon-simple: e} and \Cref{colon-product-stabilization: L}.
+\[( I : x^{\vv{a}} x_{s+1}^\ell \cdots x_\numvars^\ell ) =   ( I : x^{\vv{a}} x_{s+1}^{\ell+w_{s+1}} \cdots x_{\numvars}^{\ell+w_\numvars}) \]
+for all nonnegative integers $w_{s+1}, \ldots, w_{\numvars}$.  However, this is an immediate consequence of \eqref{colon-simple: e} and \Cref{colon-product-stabilization: L}.
 \end{proof}
 
 With \Cref{colon-product-stabilization: L,monomial-noetherian-decomposition: L} in hand, we now prove \Cref{mon-operation-modulo-p: T}.
