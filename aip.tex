@@ -46,8 +46,9 @@ TO DO LIST:
       \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
       \pedro[inline]{Changed to $a$ and $b$.}
       \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
-      \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same notation.}
+      \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.}
       \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
+      \emily[inline]{Done.}
    \end{itemize}
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
@@ -2328,11 +2329,13 @@ Thus, by Generic Freeness (\Cref{generic-freeness}), we can assume that each ter
 
 \begin{lemma}
 \label{colon mod p: L}
- If $I$ and $J$ are ideals of a finitely generated $\ZZ$-algebra $A$, then $(J:_A I)A _p = (JA_p :_{A_p} IA_p)$ for all $p \gg 0$.
-\end{lemma}
+ If $J$ is an ideal of a finitely generated $\ZZ$-algebra $A$, and $f \in J$, then 
+ $(J:_A f)A _p = (JA_p :_{A_p} \ideal{f} A_p)$ for all $p \gg 0$.
+%$(J:_A I)A _p = (JA_p :_{A_p} IA_p)$ for all $p \gg 0$.
+ \end{lemma}
 
 \begin{proof}
-First, we prove the statement when $I = \ideal{f}$ is principal. 
+%First, we prove the statement when $I = \ideal{f}$ is principal. 
 Let $Q$ denote the cokernel of the inclusion of $(J:_A f)$ into $A$.  If $\ell$ is a nonzero integer and $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ as a $\ZZ$-module at $\ell$, then by Generic Freeness (\Cref{generic-freeness}), we can choose such an $\ell$ so that each of the $\ZZ[\ell^{-1}]$-modules  $B$, $(J:_A f)B$, $QB$, and $(A/J)B$, are free over $\ZZ[\ell^{-1}]$.
 
 The exact sequence of $A$-modules
@@ -2358,18 +2361,18 @@ By again localizing and then reducing the exact sequence
 $0 \to J \to A \to A/J\to 0$ modulo $p$, we find that $\left(A/J\right)_p \cong A_p/J_p$, so that we conclude from \eqref{reduction-colon: e} that $(J:_A: f) = (J A_p :_{A_p} \ideal{f}A_p)$. 
 
 
-\daniel[inline]{By the way, it looks like we might only use this when $I$ is principal.\emily[inline]{I think you're right.  It still needs to be cited.}}
-Finally, for $I = \ideal{f_1, \ldots, f_n}$ arbitrary, consider the exact sequences  
-\begin{align*}
- &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow A/(J:_A I) \longrightarrow 0 \\
- &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow \bigoplus_n A/J  
-\end{align*}
-where the final map of the second sequence sends $a \in A$ to $(\overline{a f_1}, \ldots, \overline{a f_n})$. 
-An argument directly analogous to that above applied to these sequences yields the desired result, after noticing that $( \bigoplus \limits_n A/J ) A_p \cong \bigoplus \limits_{n} A_p/J A_p  $
+% \daniel[inline]{By the way, it looks like we might only use this when $I$ is principal.}
+% Finally, for $I = \ideal{f_1, \ldots, f_n}$ arbitrary, consider the exact sequences  
+% \begin{align*}
+%  &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow A/(J:_A I) \longrightarrow 0 \\
+%  &0 \longrightarrow (J:_A I) \longrightarrow A \longrightarrow \bigoplus_n A/J  
+% \end{align*}
+% where the final map of the second sequence sends $a \in A$ to $(\overline{a f_1}, \ldots, \overline{a f_n})$. 
+% An argument directly analogous to that above applied to these sequences yields the desired result, after noticing that $( \bigoplus \limits_n A/J ) A_p \cong \bigoplus \limits_{n} A_p/J A_p$.
 \end{proof}
 
 
-\subsection{Monomial ideals}
+\subsection{Monomial ideals} \label{monomial-ideals: S}
 
 
 By definition, both $\mon(I)_p$ and $\mon(I_p)$ are monomial ideals, and so they are equal if and only if they contain the same monomials.  However, if $h$ is a monomial contained in $I$, then it is clear that $h_p$ is a monomial contained in $I_p$ for all $p$.  Thus, to prove \Cref{mon-operation-modulo-p: T} it suffices to prove the following statement:  If $p \gg 0$ and $h$ is a monomial with $h \notin I$, then $h_p \notin I_p$.
