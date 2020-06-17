@@ -1622,6 +1622,9 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
    Suppose $\vv{k}$ is optimal for $\ip = \ip(A,\vv{u},\vv{s},q)$, for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    Then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, and thus  $\collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}$.
 \end{proof}
+
+
+\daniel[inline]{I think it is OK to just omit this here, as it is noted (in a slightly more general context) in \Cref{sprouts as collapsed shortfall pairs: R}, which is probably a better location anyway.}
 }
 
 
@@ -2122,7 +2125,7 @@ Suppose $(A,\vv{u})$ is very small.  In this remark, we gather some basic facts\
  \epsilon_{p^e}(A,\vv{u}) & \coloneqq \ft{B}{\vv{v}} \\ 
   \delta_{p^e}(A,\vv{u}) & \coloneqq \udeficit(B,\vv{v},p)
  \end{align*}
- where $(B,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$.  Observe that, by definition of $\S^{\ast}_{p^e}(A,\vv{u})$, these numbers are independent of the choice of $(B,\vv{v}) \in \S^{\ast}_{p^e}(A,\vv{u})$.
+ where $(B,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(A,\vv{u})$.  Observe that, by definition of $\S^{\ast}_{p^e}(A,\vv{u})$, these numbers are independent of the choice of $(B,\vv{v}) \in \S^{\ast}_{p^e}(A,\vv{u})$.
 
 \end{definition}
 
@@ -2188,15 +2191,15 @@ Therefore, to complete our inductive step, it suffices to show that
     
     Let $q$ be the common level of $(B,\vv{v})$ and $(A_1, \vv{u}_1)$ in $\sprout^{\ast}_p(A,\vv{u})$.  Being a $p$-sprout of $(B,\vv{v})$, it follows that $(C,\vv{z}) \in \S_{qp}(A,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(A,\vv{u})$ is non-empty, as it contains $(A_2, \vv{u}_2)$.  Below, we establish \eqref{ineq} in cases, depending on whether $(C,\vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$.
     
-    \newpage
-
     If $(C,\vv{z}) \notin \S^{\ast}_{qp}(A,\vv{u})$, then \Cref{p large graph: P} implies that $\val \IP_p(C,\vv{z}, p)$ is less than $\val \IP_p(A_2, \vv{u}_2, p)$.  In light of this, \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applied to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
     On the other hand, if $(C, \vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(A,\vv{u})$ as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
 
 
-\begin{theorem}  Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property:   If $p > \beta$ and $(A,\vv{u})$ is very small, then $\val \IP_p(A,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.  The leading term of this polynomial is $\ft{A}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.  Furthermore, these coefficients depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.  
+\begin{theorem}
+\label{main theorem wrt diagonal: T}
+  Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property:   If $p > \beta$ and $(A,\vv{u})$ is very small, then $\val \IP_p(A,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.  The leading term of this polynomial is $\ft{A}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.  Furthermore, these coefficients depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.  
 
 More precisely, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, then 
 %
@@ -2207,7 +2210,9 @@ Furthermore, if $\Q_p(A,\vv{u})$ is finite, then
 \[ \val \IP_p(A,\vv{u}, \Q_p(A,\vv{u})  q) = \val \IP_p(A,\vv{u}, \Q_p(A,\vv{u}))  q + q-1 \] for every $q$ a power of $p$.
 \end{theorem}
 
-\begin{proof}\daniel{Describe the condition $p \gg 0$}
+\begin{proof}
+Fix a monomial matrix $A$, and let $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
+
 Set $\Q = \Q_p(A,\vv{u},p)$.  If $e$ is an integer satisfying $1 \leq e \leq \Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to s \to (A_e, \vv{u}_e)$ of length $e-1$ in this graph.
 
 This path in $\sprout_p^{\ast}(A,\vv{u})$ also defines a path in $\sprout_p(A)$, and so  \Cref{ILL: T} tells us that there exists a finite list of points $\{ \vv{k}_s \}_{s=1}^e$ in the lattice of domain with each $\vv{k}_s \in \opt \IP(A_s, \vv{u}_s, p)$ for which the point $\vv{k} \coloneqq \sum_{s=1}^e \vv{k}_s p^{e-s}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.  
@@ -2248,46 +2253,84 @@ It follows from this, and our earlier work, that
 %
 \begin{align*} 
 \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\ 
-& = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) \cdot p^e + p^e-1 \\ 
+& = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) p^e + p^e-1 \\ 
  & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1
 \end{align*}
 and \Cref{general AIP: T} further implies that equality must hold throughout.
 
-To conclude our proof, it remains to demonstrate that the non-leading terms of $\val \IP_p(A,\vv{u},p^e)$ are nonpositive.  However, this will follow\daniel{Elaborate!} from \Cref{non-leading coefficients: L} below.
+To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in  \Cref{non-leading coefficients: C}.
 \end{proof}
 
 
-\daniel[inline]{Explain how this gives a new proof of the rationality of critical exponents?}
-
-
-\daniel[inline]{\begin{remark}[A deterministic algorithm]  \!{To do}
-\end{remark}
+\details[inline]{
+TO DO LIST:
+\begin{enumerate}
+\item[$\CheckedBox$] Make local to do list
+\item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\ol{A}, \ol{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p(\ol{A}, \ol{\vv{u}})$. 
+\item[$\Box$] Should we explain how the eventual periodicity of $\sprout_p^{\ast}(A,\vv{u})$ implies that $\crit(\ideala, \ideald)$ is always rational?  I can see that it might be better to state this with $\ideald$ replaced by an arbitrary ideal $\idealb$, but this will require us to have the contents of the appendix settled.
+\item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
+\item[$\Box$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
+\end{enumerate}
 }
 
+
+
+%\daniel[inline]{\begin{remark}[A deterministic algorithm]  \!{To do}
+%\end{remark}
+%}
+
 \newpage
+
+\subsection{Concerning non-leading coefficients}
+
 
 
 \begin{lemma} 
 \label{non-leading coefficients: L}
- If  $p>0$ is prime and $(B, \vv{v})$ is a $p$-sprout of  $(A, \vv{u})$, then \[ \delta(A, \vv{u}, p) \geq \ft{B}{\vv{v}}\]
-with equality if $A$ is the monomial matrix associated with a monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading, and primary to the ambient homogeneous maximal ideal.
+If $(B, \vv{v})$ is a $p$-sprout of  $(A, \vv{u})$, then \[ \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}\]
+with equality if $A$ is the monomial matrix associated with an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
 \end{lemma}
 
-\begin{proof}
-By definition of $p$-sprout,  $B$ is the collapse of $A$ along the face $\O = \mf(A, \vv{u})$ of the Newton polyhedron $\N$ of $A$.  Suppose that $A$ has $\numvars$ rows, and let an overbar denote collapse along $\O$.
+\begin{proof}  We start by fixing some notation:  
+Let $\N$ be the Newton polyhedron of $A$, which we will suppose has $\numvars$ rows,  let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and suppose that $\defpt \in \RR^\numvars$ defines the face $\O$ in $\N$.  
 
-If $\defpt \in \RR^\numvars$ defines the face $\O$ in $\N$, then \Cref{collapse of Newton polyhedron: P}  states that $\collapse{\defpt}$ defines the standard face $\collapse{\O}$ of $\collapse{\N}$, the Newton polyhedron of $B$, and since $\vv{v} \in \ft{B}{\vv{v}} \collapse{\N}$, \Cref{alpha=1: convention} implies that
-\[\ft{B}{\vv{v}} \leq \iprod{\collapse{\defpt}}{\vv{v}}.\]
-Thus, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \delta(A, \vv{u}, p)$.  However, by definition of $p$-sprout, $\vv{v} \in \Delta(A, \vv{u}, p)$, and so fixing a point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  Our choice of $\defpt$ guarantees that the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: L}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and \[ \iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip \]
-which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \delta(A, \vv{u}, p).\]
+By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.  With this notation, \Cref{collapse of Newton polyhedron: P} tells us that $\ol{\O}$ is a face of $\ol{\N}$, the Newton polyhedron of $B=\ol{A}$, and that $\ol{\O}$ is defined in $\ol{\N}$ by the collapsed point $\ol{\vv{c}}$.
 
-We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.  The $\mathfrak{m}$-primary assumption further implies that $\O$ is a facet, and that $\mf(A, \vv{z}) = \O$ for every $\vv{z} \in \ZZ_+^\numvars$.  Furthermore, the positivity of the grading implies that the point $\defpt \in \RR^\numvars$ defining this face must have positive coordinates, and so $\O$ must be bounded.  In this case, collapsing along this face is simply the identity map on $\RR^\numvars$, and so in particular, $B=A$.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  The details are left to the reader.
+
+
+
+\Cref{FT descriptions: P}\eqref{lambda} implies that there exists a point $\vv{n} \in \ol{\N}$ such that $\vv{v} = \ft{B}{\vv{v}} \cdot \vv{n}$.  As noted earlier, the point $\ol{\vv{c}}$ defines the face $\ol{\O}$ in $\ol{\N}$, and by \Cref{alpha=1: convention}, it follows that $\iprod{\ol{\vv{c}}}{\vv{n}}$ is at least $1$.  Thus, 
+%
+\[ \ft{B}{\vv{v}} \leq  \ft{B}{\vv{v}} \cdot \iprod{\ol{\vv{c}}}{\vv{n}} = \iprod{\ol{\vv{c}}}{\vv{v}}.\]
+%
+and so to complete our proof, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \udeficit(A, \vv{u}, p)$.
+
+However, the containment $\vv{v} \in \ushort(A, \vv{u}, p)$ implies that we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  As $\ol{\vv{c}}$ defines $\ol{\O}$,  the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: P}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and also that $\iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip$,
+which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).\]
+
+We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$,  the positivity of the grading implies that the point $\defpt$ defining this face must have positive coordinates, and so $\O$ must be bounded, and the $\mathfrak{m}$-primary assumption further implies that $\mf(A, \vv{u}) = \O$ for every pair $(A,\vv{u})$.  In particular, collapsing along $\O$ is simply the identity.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  
 \end{proof}
 
 
+\begin{corollary}
+\label{non-leading coefficients: C}
+The non-leading coefficients appearing in the polynomial expressions described in \Cref{main theorem wrt diagonal: T} are rational and nonpositive.
+\end{corollary}
 
+\begin{proof}  Fix a pair $(A,\vv{u})$.  To simplify notation, set $\Q=\Q_p(A,\vv{u})$.
+The non-leading coefficients under consideration are as follows.
+\begin{itemize}
+\item $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ for some $q=p^e$ less than $\Q$.
+\item $-(\delta_{\Q}(A,\vv{u}) - 1)$ when $\Q$ is finite.
+\item $-1$ and $-\delta_q(A,\vv{u})$ for some $q=p^e$ at most $\Q$.
+\end{itemize}
 
-\emily[inline]{It seems like we prove that $\mu(A, \vv{u}, q) = \mu(\collapse{A}, \collapse{\vv{u}}, q)$.  Let's make sure to state that later\daniel[inline]{I guess this will be an analog of \Cref{leftover p large: R}}}
+Rationality is clear, and as the arguments are similar, we will only show that the coefficient $-(\delta_{\Q}(A,\vv{u})-1)$ is nonpositive whenever $\Q$ is finite.  In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there must exist a pair in $\S_{\Q p}(A,\vv{u})$ that is not very small.  Thus, there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$, where the first pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and the second is not very small. \Cref{non-leading coefficients: L} then tells us that 
+$\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p) \geq \ft{C}{\vv{z}} > 1$.
+\end{proof}
+
+\daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
+
 
 \newpage
 
