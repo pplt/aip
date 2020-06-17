@@ -1481,7 +1481,7 @@ The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\
 
 \begin{definition}
 \label{independence: D}
-Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{shortfall} of $(A,\vv{u},q)$ as follows\textup:
+Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{universal shortfall} of $(A,\vv{u},q)$ as follows\textup:
  \[ \udeficit(A, \vv{u}, q) = \deficit\ip( A, \vv{u}, \vv{s}, q)\] and
 \[\ushort(A, \vv{u}, q) = \short\ip( A, \vv{u}, \vv{s}, q), \]
 where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
@@ -1509,7 +1509,6 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{remark}
 
 \begin{remark}[Uniform periodicity of universal shortfall and deficit]
-   \label{uniform periodicity: R}
    \label{pair periodicity: R}
    Given a monomial matrix $A$, there exists a positive integer $\denom$ such that for every $A$-pair $(A,\vv{u})$, $\udeficit(A, \vv{u}, q)$ and $\ushort(A,\vv{u},q)$ only depend on $q$ modulo $\denom$.
    Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for every $A$-pair $(A, \vv{u})$ and every $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
@@ -1542,7 +1541,7 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 % \end{remark}
 
 % \begin{remark}
-%    \label{uniform periodicity: R}
+%    \label{pair periodicity: R}
 %    If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.
 %    Indeed, if $\denom$ is as a universal denominator, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and integers $q>0$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
 % \end{remark}
@@ -1555,7 +1554,7 @@ Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the
 If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
 \[  \deficit \IP(A, \vv{u}, q) = \udeficit(A, \vv{u}, q) \]
 and
-\[  \collapse{ \short \IP(A, \vv{u}, q)} = \ushort (A, \vv{u}, q).\] 
+\[  \ol{ \short \IP(A, \vv{u}, q)} = \ushort (A, \vv{u}, q).\] 
 \end{theorem}
 
 \begin{proof}
@@ -1795,30 +1794,17 @@ where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \begin{proof}  If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  Given that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $\ft{A}{\vv{u}}$ is at most $1$ and $p > \beta$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
 \end{proof}
 
-\begin{example} \
-% \emily[inline]{If $(A, \vv{u})$ is small but not very small, 
-% 
-% though 
-% \Cref{arithmetic uniform value and image: T} tells us that the shortfall of $\Pi_p(A, \vv{u},q)$ agrees with that of $\Pi(A, \vv{u},q)$
-% 
-% On the other hand, 
-% 
-% then though $\val \Pi_p(A,u,q) = p-1$ \Cref{small not very small value: T}
-% 
-% 
-% then $\mu(A,\vv{u},p) = p-1$, so it is less than $\nu(A,\vv{u},p)$.
-% In this case, although our description of $\ideala^{\nu(A,\vv{u},p)}$ does not depend on $p$, the generators of $\ideala^{\mu(A,\vv{u},p)} 
-% = \ideala^{p-1}$  \emph{can}  depend on $p$:  For instance, if $\vv{u} = (1,1)$ so $\ideala = \langle x, y \rangle$, then $\nu(A,\vv{u},p) = 2p-2$  and $\mu(A,\vv{u},p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
-% (Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
-% }
+\begin{remark} \label{program behavior small: R}
+For $(A, \vv{u})$ is very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\Pi = \Pi(A, \vv{u},p)$ and $\Pi_p = \Pi_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\Pi_p$ equals that of $\Pi$.  
+Hence, since the collapse of $\short \Pi$ along $\O = \mf(A, \vv{u})$ does not depend on $p$,  but rather on the class of $p$ modulo a universal denominator (see \Cref{pair periodicity: R} and \Cref{uniform uniform value and image: T}), the collapse of $\short \Pi_p$ is also independent of $p$.  
 
+However, if $(A, \vv{u})$ is small but not very small, $\Pi$ and $\Pi_p$ need not agree.  What's more, the collapses of their shortfalls along the minimal face can also differ.  
+For instance, let $A$ be the $2 \times 2$ identity matrix, and $\vv{u} = (1,1)$.  Then for $p \gg 0$, $\val \Pi_p = p-1$ by \Cref{small not very small value: T}, while $\val \Pi = 2p-2$. 
+In this case, $\O = \mf(A,\vv{u})$ is bounded, so we know $\short \Pi$ does not depend on depend on $p$ for $p \gg 0$.  On the other hand, $(\frac{p-1}{2}, \frac{p-1}{2}) \in \opt \Pi_p$ for all $p$, so that $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is always an element of $\short \Pi_p$.
 
-\emily[inline]{If $(A, \vv{u})$ is small but not very small, then $\mu(A,\vv{u},p) = p-1$, so it is less than $\nu(A,\vv{u},p)$.
-In this case, although our description of $\ideala^{\nu(A,\vv{u},p)}$ does not depend on $p$, the generators of $\ideala^{\mu(A,\vv{u},p)} 
-= \ideala^{p-1}$  \emph{can}  depend on $p$:  For instance, if $\vv{u} = (1,1)$ so $\ideala = \langle x, y \rangle$, then $\nu(A,\vv{u},p) = 2p-2$  and $\mu(A,\vv{u},p) = p-1$.  Moreover, $x^{p-(p+1)/2}y^{p-(p+1)/2} \in \ideala^{p-1}$.
-(Actually, all minimal generators of $\ideala^{p-1}$ depend on $p$.)
-}
-\end{example}
+This example illustrates that the nature of the programs $\Pi$ and $\Pi_p$ can differ drastically when $(A,\vv{u})$ is very small, 
+and when it is just small. This motivates our technique of reducing to the \emph{very small} setting.  
+\end{remark}
 
 \Cref{arithmetic uniform value and image: T} is fundamental, and together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
 
@@ -2002,7 +1988,7 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
 
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} to $A$, and each of its descendent monomial matrices, we see that $\cup_{e>1} \graph_{p^e}(A)$ is a finite set, and their recursive nature then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
-\item \label{elementary1 periodic in p} Furthermore, \Cref{uniform periodicity: R} tells us that if $\denom$ is a universal denominator for $A$, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
+\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
 
 \end{enumerate}
 \end{remark}
@@ -2583,7 +2569,10 @@ We now describe a more explicit realization of the critical exponents of an idea
 With $\ideala$ and $\idealb$ as above, given a nonnegative integer $e$, we set
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded sequence, and
-\begin{equation}\label{eq: crit as a limit of mus}
+
+\textcolor{red}{This is \ref{eq: crit as a limit of mus}: 
+}
+\begin{equation}
    \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
 \end{equation}
 % The $\mu(\ideala,\idealb,p^e)$ not only determine $\crit(\ideala,\idealb)$, but can also be recovered from $\crit(\ideala,\idealb)$, via truncations:
@@ -2624,7 +2613,7 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 \begin{proof}
    The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
    As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
-   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}.
+   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \textcolor{red}{missing reference}.
 \end{proof}
 
 \begin{corollary}
@@ -2635,7 +2624,7 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 \begin{proof}
    Let $\lambda$ be a critical exponent of $\ideala$, so that $\ideala^{[\lambda]}$ is properly contained in $\ideala^{[t]}$ for every $0 \le t <\lambda$.
    Since the critical exponents of $\ideala$ form a discrete set \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}, the intersection of all such $\ideala^{[t]}$ properly contains $\ideala^{[\lambda]}$.
-   This intersection---a monomial ideal by \Cref{rmk: Frobenius powers of monomial ideals are monomial ideals}---thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
+   This intersection---a monomial ideal by \textcolor{red}{missing reference}---thus contains a monomial $x^\vv{v}$ not in $\ideala^{[\lambda]}$.
    \cref{prop: description of frobenius powers in terms of crits} then shows that $\ideala^{[t]}\not\subseteq \diag(\vv{v}+\vv{1})$, whenever $0\le t < \lambda$, but $\ideala^{[\lambda]} \subseteq \diag(\vv{v}+\vv{1})$, hence $\lambda = \crit(\ideala,\vv{v}+\vv{1})$.
 \end{proof}
 
