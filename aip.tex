@@ -38,28 +38,26 @@ TO DO LIST:
 % \comment[inline]{Going with ``special point''.}
 %\item[$\CheckedBox$] Make sprout notation.
 %\comment[inline]{Going with $\sprout(A,\vv{u},p)$}
-\item[$\Box$] Replace any remaining instances of $d$ for dimension with {\tt \text{numvars}}, and fix any inconsistencies. 
-   \begin{itemize}
-      \item In the discussion after the definition of Sierpinski gasket; that could be replaced with anything else ($s$, for example).
-      \pedro[inline]{Done.}
-      \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
-      \pedro[inline]{Changed to $a$ and $b$.}
-      \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
-      \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.  We use, for instance, both $\ideala$ and $\vv{a}$.}
-      \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
-      \emily[inline]{Done.}
-   \end{itemize}
+% \item[$\CheckedBox$] Replace any remaining instances of $d$ for dimension with {\tt \text{numvars}}, and fix any inconsistencies. 
+   % \begin{itemize}
+   %    \item In the discussion after the definition of Sierpinski gasket; that could be replaced with anything else ($s$, for example).
+   %    \pedro[inline]{Done.}
+   %    \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
+   %    \pedro[inline]{Changed to $a$ and $b$.}
+   %    \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
+   %    \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.  We use, for instance, both $\ideala$ and $\vv{a}$.}
+   %    \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
+   %    \emily[inline]{Done.}
+   % \end{itemize}
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
-   \item Example with $\opt \Theta$ infinite.
-   \pedro[inline]{Done}
  \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
-\item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
+% \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
 \comment[inline]{Going with dropping rows.}
 \item[$\Box$] Rewrite proofs with above convention.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
@@ -67,12 +65,6 @@ TO DO LIST:
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
 % \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
-\end{enumerate}
-}
-
-\details[inline]{
-   TO-DO LIST (Continued):
-   \begin{itemize}
     \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
  \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
@@ -82,8 +74,8 @@ TO DO LIST:
     \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
  \emily[inline]{The current doc (6/5/20) has \Cref{refined-discreteness: L} not explicitly cited, and the lemma right after \Cref{cor: constant mus} is not currently cited, but a note before it gives a consequence we should add.   All other lemmas are used.}
  
- \item[$\CheckedBox$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
- \comment[inline]{See \Cref{rmk: verifying inequalities using collapses}.}
+ % \item[$\CheckedBox$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
+ % \comment[inline]{See \Cref{rmk: verifying inequalities using collapses}.}
       %\item[$\CheckedBox$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
       %\item[$\CheckedBox$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
       %\item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
@@ -113,12 +105,13 @@ TO DO LIST:
       \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
    \emily[inline]{This only seems to happen with $\Pi$ and $\Pi_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
     \item[$\Box$] Put ``titles'' in appropriate statements. 
-   \end{itemize}
+   \end{enumerate}
 }
 % 
 
 \newpage
 
+\setcounter{tocdepth}{1}
 \tableofcontents
 
 \newpage
