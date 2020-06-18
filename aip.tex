@@ -102,6 +102,7 @@ TO DO LIST:
       \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
 %      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
+      \emily[inline]{I think this is defunct now? }
       \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
    \emily[inline]{This only seems to happen with $\Pi$ and $\Pi_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
     \item[$\Box$] Put ``titles'' in appropriate statements. 
@@ -1293,9 +1294,7 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 \subsection{Some finiteness properties}
 
 We now explore some finiteness properties concerning the nature of these programs as, for a fixed monomial matrix $A$, we vary the $A$-list $(A, \vv{u}, \vv{s}, q)$.
-
-\emily[inline]{Maybe we should make this a Theorem, and explain that this is a very important finiteness property.
-Potentially move it up before \Cref{bounded value: P}.}
+We start with the following theorem, which underlies some useful finiteness results that we later establish. 
 
 \begin{theorem}
    \label{finitely many secondary programs: T}
@@ -1548,7 +1547,7 @@ We record another application of universal denominators below.
 \label{uniform uniform value and image: T}
 Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
 If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
-\[  \deficit \IP(A, \vv{u}, q) = \udeficit(A, \vv{u}, q) \]
+% \[  \deficit \IP(A, \vv{u}, q) = \udeficit(A, \vv{u}, q) \]
 and
 \[  \ol{ \short \IP(A, \vv{u}, q)} = \ushort (A, \vv{u}, q).\] 
 \end{theorem}
@@ -1724,16 +1723,15 @@ It is clear from these interpretations that a very small pair must also be small
 \end{remark}
 
 
-\begin{example}[Small pairs from shortfalls]  
+\begin{remark}[Small pairs from shortfalls]  
 \label{small pairs from shortfalls: E}  
-\emily{Is this an example or a remark?}
 If $\vv{v}$ is any point in the shortfall of some integer program $\IP = \IP(A, \vv{u}, q)$, then the pair $(A, \vv{v})$ is small.  Indeed, by definition of shortfalls, we may write $\vv{v} = \vv{u}q-A\vv{h}$ for some $\vv{h} \in \opt \IP$.  Subtracting $\vv{a}_i$, the $i$-column of $A$, from both sides of this identity yields 
 \[ \vv{v}-\vv{a}_i = \vv{u}q-A\vv{h}-\vv{a}_i = \vv{u}q-A(\vv{h}+\vv{e}_i). \] 
 
 The optimality of $\vv{h}$ implies that $\vv{h}+\vv{e}_i$ cannot satisfy the linear constraint of $\IP$, which shows that the right-hand side above is not positive.  In other words, $\vv{v} \not > \vv{a}_i$, and as $i$ was arbitrary, this shows that $(A, \vv{v})$ is small.
 
-Similarly\daniel{This is done in \Cref{independence: L}, but I am not sure if that will survive our edits.  Also, I am using the terminology \emph{universal shortfall} here, but we can ditch it}, if $\vv{v}$ is any point in the universal shortfall $\Delta(A, \vv{u}, q)$, then the pair $(\collapse{A}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-\end{example}
+Similarly\daniel{This is done in \Cref{independence: L}, but I am not sure if that will survive our edits.  Also, I am using the terminology \emph{universal shortfall} here, but we can ditch it}, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u}, q)$, then the pair $(\collapse{A}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+\end{remark}
 
 
 \begin{proposition}
@@ -1783,14 +1781,18 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 \label{arithmetic uniform value and image: T}   Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
 If $(A, \vv{u})$ is very small, and $p > \beta$, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.  In particular, if $p > \beta$, then 
 %
-\[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \] and \daniel{Weird observation:  If I replace the command ``ol" with ``collapse" below, the $p$ becomes bold too.  Check later to see if this introduced other typesetting errors in the paper.}
+\[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \] and 
+\daniel{Weird observation:  If I replace the command ``ol" with ``collapse" below, the $p$ becomes bold too.  Check later to see if this introduced other typesetting errors in the paper.}
+\emily{It works OK if we put curly brackets around the entire vector, including the {\tt vv}.}
 %
 \[ \ol{\short \IP_p(A,\vv{u},p)}= \ol{\short \IP(A,\vv{u},p)}= \ushort(A,\vv{u},p) \]
+%
+% \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p) \]
 %
 where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
-\begin{proof}  If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \delta(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  Given that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\delta(A, \vv{u},p)$ will then imply that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $\ft{A}{\vv{u}}$ is at most $1$ and $p > \beta$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
+\begin{proof}  If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \udeficit(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  Given that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\udeficit(A, \vv{u},p)$ then implies that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $\ft{A}{\vv{u}}$ is at most $1$ and $p > \beta$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
 \end{proof}
 
 \begin{remark} \label{program behavior small: R}
@@ -1847,7 +1849,7 @@ We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, a
  & = \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
 \end{align*}  
 
-Observe that this set that depends on the class of $p$ modulo $\denom$\emily{Some {\tt ell} should be {\tt denom} below}, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
+Observe that this set that depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
 
 This smallness, along with \Cref{trivial small value bound: P}, tells us that  \[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\] is at most $p^e-1$.  Setting $q=p$ in \Cref{general AIP: T} then tells us that
 %
