@@ -1796,7 +1796,7 @@ where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{proof}
 
 \begin{remark} \label{program behavior small: R}
-For $(A, \vv{u})$ is very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\Pi = \Pi(A, \vv{u},p)$ and $\Pi_p = \Pi_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\Pi_p$ equals that of $\Pi$.  
+For $(A, \vv{u})$ very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\Pi = \Pi(A, \vv{u},p)$ and $\Pi_p = \Pi_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\Pi_p$ equals that of $\Pi$.  
 Hence, since the collapse of $\short \Pi$ along $\O = \mf(A, \vv{u})$ does not depend on $p$,  but rather on the class of $p$ modulo a universal denominator (see \Cref{pair periodicity: R} and \Cref{uniform uniform value and image: T}), the collapse of $\short \Pi_p$ is also independent of $p$.  
 
 However, if $(A, \vv{u})$ is small but not very small, $\Pi$ and $\Pi_p$ need not agree.  What's more, the collapses of their shortfalls along the minimal face can also differ.  
@@ -1811,14 +1811,14 @@ and when it is just small. This motivates our technique of reducing to the \emph
 
 \subsection{The $\idealm$-primary case}
 \label{m-primary: SS}
-  Our goal here is to describe an algorithm for computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ in the case that $A$ is associated to an $\idealm$-primary monomial ideal,  $(A,\vv{u})$ is very small, $e$ is an arbitrary positive integer, and $p$ is large relative to the ambient matrix $A$.  As a by-product, this algorithm  establishes the following result.
+  Our goal here is to describe an algorithm for computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ in the case that $A$ is associated to an $\idealm$-primary monomial ideal,  $(A,\vv{u})$ is very small, and $p$ is large relative to $A$, and $e > 0$ is arbitrary.  As a by-product, this algorithm  establishes the following result.
 
 \begin{theorem}
 \label{m-primary AIP: T}
  If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exist $\beta=\beta(A)$ with the following property:  If $p > \beta$ and $(A,\vv{u})$ is very small, then the value of $\IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$.  Furthermore,  the non-leading coefficients in this polynomial are nonpositive and rational, and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
 \end{theorem}
 
-Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.  In this context, \Cref{arithmetic uniform value and image: T} becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to a properly collapsed shortfall, whenever it applies.  We stress that the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general  accounts for much of the increased technicality present in the next section.
+Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.  In this context, \Cref{arithmetic uniform value and image: T}, when it applies, becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to a properly collapsed one.  Indeed, the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general  accounts for much of the increased technicality present in the next section.
 
 \begin{remark}[On $p$ being sufficiently large]
 \label{p large m-primary: R}
@@ -1836,20 +1836,20 @@ It follows from these observations that we can choose $p \gg 0$, with the lower 
 
 \daniel[inline]{Subscripts are now indexed by powers of $p$, and the indexing was modified so that it agrees with our choice of notation for the graphs later}
 
-We are now prepared to describe our algorithm.   In what follows, let $p \gg 0$ be as in \Cref{p large m-primary: R}, and let $\denom$ be any universal denominator for $A$.
+We are now prepared to describe our algorithm.   In what follows, choose $p \gg 0$ as in \Cref{p large m-primary: R}, and fix any universal denominator  $\denom$ for $A$.
 
-We begin our process by initially defining $\S_p = \S_p(A,\vv{u})$ and $\S^{\ast}_p(A,\vv{u}) = \S^{\ast}_p$ to be the singleton set $\S_p=\S_p^{\ast} = \{ (A,\vv{u}) \}$,  and noting that 
+We begin our process by initially defining both $\S_p = \S_p(A,\vv{u})$ and $\S^{\ast}_p(A,\vv{u}) = \S^{\ast}_p$ as the singleton set $\S_p=\S_p^{\ast} = \{ (A,\vv{u}) \}$,  and noting that 
 \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u}).\]
 %$\mathcal{S}_1$ to be the first in the sequence of shortfalls associated to the programs $\IP_p(A,\vv{u},p^e)$.  In other words, set \daniel{Replace $\mathcal{S}_e \mapsto \S_{p^e}$? \\ Consist of pairs?}
 
 We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, and set
 %
 \begin{align*}
- \S_{p^2} \coloneqq \S_{p^2}(A,\vv{u}) & = \{ (A,\vv{v}) : \vv{v} \in \short \IP_{p}(A,\vv{u},p) \} \\
+ \S_{p^2} = \S_{p^2}(A,\vv{u}) & \coloneqq \{ (A,\vv{v}) : \vv{v} \in \short \IP_{p}(A,\vv{u},p) \} \\
  & = \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
 \end{align*}  
 
-Observe that this set that depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
+Observe that this set depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
 
 This smallness, along with \Cref{trivial small value bound: P}, tells us that  \[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\] is at most $p^e-1$.  Setting $q=p$ in \Cref{general AIP: T} then tells us that
 %
@@ -1867,16 +1867,16 @@ and also that
 %
 where the union is over all $(A,\vv{v}) \in \mathcal\S_{p^2}$ that achieve $M_e$.
 
-As $\S_{p^2}$ depends on $p$ modulo the universal denominator $\denom$, the issue of whether there exists a pair in $\S_{p^2}$ that is not very small also depends on $p$ modulo $\denom$.  When this occurs, \Cref{small not very small value: T} tells us that $M_e = p^e-1$, and \eqref{m-primary value: e} then allows us to conclude that 
+As $\S_{p^2}$ depends on $p$ modulo the universal denominator $\denom$, the issue is whether there exists a pair in $\S_{p^2}$ that is not very small also depends on $p$ modulo $\denom$.  When this occurs, \Cref{small not very small value: T} tells us that $M_e = p^e-1$, and \eqref{m-primary value: e} then allows us to conclude that 
 %
 \[ \val \IP_p(A,\vv{u},p^{e+1})  = \ft{A}{\vv{u}} p^{e+1}-(\udeficit(A,\vv{u},p)-1)p^e-1.  \]
 %
-As this formula is valid for all $e \geq 1$, we our process terminates in this case.
+As this formula is valid for all $e \geq 1$, our process terminates in this case.
 
 On the other hand, if every pair in $\S_{p^2}$ is very small, then \Cref{arithmetic uniform value and image: T} instead allows us to compute $M_1$ as 
 \[ M_1 = \max \{ \ft{A}{\vv{v}}p-\udeficit(A,\vv{v},p) : (A,\vv{v}) \in \S_{p^2}\} \] 
 
-Let $\S_{p^2}^{\ast} = \S_{p^2}^{\ast}(A,\vv{u})$ be the subset of $\S_{p^2}$ consisting of all $(A,\vv{v})$ that first maximize $\ft{A}{\vv{v}}$, and only then minimize $\udeficit(A,\vv{v},p)$.  By definition, $\S_{p^2}^{\ast}$ depends on $p$ modulo $\denom$, and our choice of $p \gg 0$ guarantees that $\S_{p^2}^{\ast}$ corresponds to the points in $\S_{p^2}$ that achieve $M_1$.  Therefore, we may write \[ M_1 = \epsilon_{p^2} p - \delta_{p^2}\]  where $\epsilon_{p^2},\delta_{p^2}$ are positive rational numbers that depend on $p$ modulo $\denom$.
+Let $\S_{p^2}^{\ast} = \S_{p^2}^{\ast}(A,\vv{u})$ be the subset of $\S_{p^2}$ consisting of all $(A,\vv{v})$ that first maximize $\ft{A}{\vv{v}}$, and amongst these, then minimize $\udeficit(A,\vv{v},p)$.  By definition, $\S_{p^2}^{\ast}$ depends on $p$ modulo $\denom$, and our choice of $p \gg 0$ guarantees that $\S_{p^2}^{\ast}$ corresponds to the points in $\S_{p^2}$ that achieve $M_1$.  Therefore, we may write \[ M_1 = \epsilon_{p^2} p - \delta_{p^2}\]  where $\epsilon_{p^2},\delta_{p^2}$ are positive rational numbers that depend on $p$ modulo $\denom$.
 
 Setting $e=1$ in \eqref{m-primary value: e} then shows that 
 %
@@ -1886,17 +1886,16 @@ while setting $e=1$ in \eqref{m-primary shortfall: e} tells us that
 %
 \[ \short \IP_p(A,\vv{u},p^2) = \cup_{\vv{v} \in \S_{p^2}^{\ast}} \short \IP_p(A,\vv{v},p) = \cup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p). \]  
 %
-
-Turning our attention to at least computing $\val \IP_p(A,\vv{u},p^3)$, we define
+Turning our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^3)$, we define
 \begin{align*}
-\S_{p^3} \coloneqq \S_{p^3}(A,\vv{u}) & = \{ (A,\vv{w}):  \vv{w} \in \short_p(A,\vv{u},p^2) \} \\
+\S_{p^3} = \S_{p^3}(A,\vv{u}) & \coloneqq \{ (A,\vv{w}):  \vv{w} \in \short_p(A,\vv{u},p^2) \} \\
  & = \{ (A,\vv{w}): \vv{w} \in \cup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p) \} 
  \end{align*}
 %
 Observe that $\S_{p^3}$ depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^3}$ is small.
 
 
-Next, we set $M'_e  \coloneqq \max \{ \val \IP_p(A, \vv{w}, p^e) :  (A,\vv{w}) \in \S_{p^3}\}$ for every $e \geq 1$.  Arguing as above, we may demonstrate that%
+Next, we set $M'_e  \coloneqq \max \{ \val \IP_p(A, \vv{w}, p^e) :  (A,\vv{w}) \in \S_{p^3}\}$ for every $e \geq 1$.  Arguing as above, one can find that%
 \begin{equation}
 \label{m-primary value 2: e}
  \val \IP_p(A,\vv{u},p^{e+2}) = \val \IP_p(A,\vv{u},p^2)p^e+ M'_e
@@ -1925,9 +1924,9 @@ In this situation, we may also set $e=1$ in \eqref{m-primary shortfall 2: e} to 
 %
 \[\short \IP_p(A,\vv{u},p^3) = \cup_{\vv{w} \in \S_{p^2}^{\ast}} \short \IP_p(A,\vv{w},p) = \cup_{\vv{w} \in \S_{p^3}^{\ast}} \ushort(A,\vv{w},p) \]  
 
-Next, we set %
+Next, in analog with our previous definitions, we set %
 \begin{align*}
-\S_{p^4} \coloneqq \S_{p^4}(A,\vv{u}) & = \{ (A,\vv{z}):  \vv{z} \in \short_p(A,\vv{u},p^3) \} \\
+\S_{p^4} = \S_{p^4}(A,\vv{u}) & \coloneqq \{ (A,\vv{z}):  \vv{z} \in \short_p(A,\vv{u},p^3) \} \\
  & = \{ (A,\vv{z}): \vv{z} \in \cup_{\vv{w} \in \S_{p^3}^{\ast}} \ushort(A,\vv{w},p) \} 
  \end{align*}
 %
