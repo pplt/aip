@@ -31,6 +31,7 @@
 TO DO LIST:
 \begin{enumerate}
 \item[$\Box$] Decide on ``special'' or ``universal'' denominator and uniformize.
+\emily[inline]{I'm starting to like ``universal.''}
 \item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
@@ -57,6 +58,7 @@ TO DO LIST:
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
+\emily[inline]{Maybe done?}
 % \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
 \comment[inline]{Going with dropping rows.}
 \item[$\Box$] Rewrite proofs with above convention.
@@ -1293,8 +1295,9 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 
 \subsection{Some finiteness properties}
 
-We now explore some finiteness properties concerning the nature of these programs as, for a fixed monomial matrix $A$, we vary the $A$-list $(A, \vv{u}, \vv{s}, q)$.
-We start with the following theorem, which underlies some useful finiteness results that we later establish. 
+We now explore finiteness properties concerning the nature of these programs as, for a fixed monomial matrix $A$, we vary the $A$-list $(A, \vv{u}, \vv{s}, q)$.
+The following theorem underlies some of our later finiteness results.
+
 
 \begin{theorem}
    \label{finitely many secondary programs: T}
@@ -1624,9 +1627,13 @@ If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ i
 \section{Arithmetic integer programs revisited}
 
 
-The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{Maybe instead describe what this theorem essentially says, in words. }   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
+The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{What about something instead like the second paragraph?}   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
 
-\emily[inline]{We should write a line here to motivate \Cref{general AIP: T}.}
+The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$, in the case that $(A, \vv{u})$ is very small and the matrix $A$ is associated to an $\idealm$-primary ideal.  
+The description of this algorithm caps off this section, and justifies the main theorem herein (outside of one detail that will be verified in \Cref{sprouting: S}), \Cref{m-primary AIP: T}, which characterizes this value. In fact, it is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$. 
+
+
+
 
 \begin{theorem}  
 \label{general AIP: T}
@@ -1724,7 +1731,7 @@ It is clear from these interpretations that a very small pair must also be small
 
 
 \begin{remark}[Small pairs from shortfalls]  
-\label{small pairs from shortfalls: E}  
+\label{small pairs from shortfalls: R}
 If $\vv{v}$ is any point in the shortfall of some integer program $\IP = \IP(A, \vv{u}, q)$, then the pair $(A, \vv{v})$ is small.  Indeed, by definition of shortfalls, we may write $\vv{v} = \vv{u}q-A\vv{h}$ for some $\vv{h} \in \opt \IP$.  Subtracting $\vv{a}_i$, the $i$-column of $A$, from both sides of this identity yields 
 \[ \vv{v}-\vv{a}_i = \vv{u}q-A\vv{h}-\vv{a}_i = \vv{u}q-A(\vv{h}+\vv{e}_i). \] 
 
@@ -1747,7 +1754,7 @@ For a change of pace, we give an algebraic proof.  If $(A,\vv{u})$ is associated
 
 For what follows, fix a pair $(A, \vv{u})$, and suppose that $p$ is larger than the value of the standard integer program $\IP(A, \vv{u},1)$.  For all such primes, this bound on the value implies that $\IP_p(A, \vv{u}, 1) = \IP(A, \vv{u}, 1).$
 
-\Cref{small pairs from shortfalls: E} tells us that $(A, \vv{v})$ is small for every $\vv{v} \in \short \IP(A,\vv{u},1)$, and for such a point, \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(A, \vv{v}, p^e)$ is at most $p^e-1$.  Setting $q=1$ in the statement of \Cref{general AIP: T}, this observation tells us that quanitity $M$ defined therein is at most $p^e-1$. 
+\Cref{small pairs from shortfalls: R} tells us that $(A, \vv{v})$ is small for every $\vv{v} \in \short \IP(A,\vv{u},1)$, and for such a point, \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(A, \vv{v}, p^e)$ is at most $p^e-1$.  Setting $q=1$ in the statement of \Cref{general AIP: T}, this observation tells us that quanitity $M$ defined therein is at most $p^e-1$. 
 
 Invoking \Cref{general AIP: T} once more, we see that if $p$ is greater than the value of the standard integer program $\IP(A, \vv{u}, 1)$, which is independent of $p$, then
 \[ \val \IP_p(A, \vv{u},p^e) = \val \IP(A, \vv{u},1)p^e + \max \{ \val \IP_p(A, \vv{v}, p^e) \} \] 
@@ -1849,7 +1856,7 @@ We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, a
  & = \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
 \end{align*}  
 
-Observe that this set depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^2}$ is small.
+Observe that this set depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: R} tells us that every pair in $\S_{p^2}$ is small.
 
 This smallness, along with \Cref{trivial small value bound: P}, tells us that  \[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\] is at most $p^e-1$.  Setting $q=p$ in \Cref{general AIP: T} then tells us that
 %
@@ -1892,7 +1899,7 @@ Turning our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^3)$, w
  & = \{ (A,\vv{w}): \vv{w} \in \cup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p) \} 
  \end{align*}
 %
-Observe that $\S_{p^3}$ depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: E} tells us that every pair in $\S_{p^3}$ is small.
+Observe that $\S_{p^3}$ depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: R} tells us that every pair in $\S_{p^3}$ is small.
 
 
 Next, we set $M'_e  \coloneqq \max \{ \val \IP_p(A, \vv{w}, p^e) :  (A,\vv{w}) \in \S_{p^3}\}$ for every $e \geq 1$.  Arguing as above, one can find that%
@@ -1933,7 +1940,7 @@ Next, in analog with our previous definitions, we set %
 
 Like $\S_p,\S_{p^2}$ and $\S_{p^3}$, the set $\S_{p^4}$ consists of small pairs, and depends on $p$ modulo $\denom$, but not on $p$ itself. If $\S_{p^4}$ contains a pair that is not very small, then repeating this process, we can compute the value of $\IP_p(A,\vv{u},p^{e+3})$ for all $e \geq 1$.  Otherwise, we can only compute the value and shortfalls of the next program $\IP_p(A,\vv{u},p^{4})$, and then analogously repeat our arguments.
 
-We may continue iterating these steps.  Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of small pairs $(A,\vv{v})$, where $\vv{v}$ is in some universal shortfall of an $A$-pair.  It then follows from \Cref{finitely many deltas for a fixed A: R} that all defined $\S_{p^e}$ are subsets of some finite set determined by $A$.  Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
+We may continue iterating these steps.  Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of small pairs $(A,\vv{v})$, where $\vv{v}$ is in some universal shortfall of an $A$-pair.  It then follows from \Cref{finitely many deltas for a fixed A: R} that all defined $\S_{p^e}$ are subsets of some \emph{finite set} determined by $A$.  Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
 
 Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
 
@@ -1941,7 +1948,7 @@ Finally, we note that it remains to establish the nonpositivity of the non-leadi
 
 
 \newpage
-\section{Sprouting graphs}
+\section{Sprouting graphs} \label{sprouting: S}
 
 \begin{definition}
 A \emph{descendent} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some of its columns.
@@ -1958,19 +1965,19 @@ We say that $(B, \vv{v})$ is a \emph{$p$-sprout} of a monomial pair $(A, \vv{u})
 
 \begin{remark}
 \label{p-sprout: R}
-As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is monomial.  It follows from this that the $p$-sprout of a monomial pair is also a monomial pair.  Furthermore,   \Cref{independence: L}\daniel{Correct pointer?} tells us that there are only finitely many $p$-sprouts of a fixed monomial pair, and that each such sprouted pair is small.
+As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is monomial.  It follows from this that the $p$-sprout of a monomial pair is also a monomial pair.  Furthermore, \Cref{small pairs from shortfalls: R,finitely many deltas for a fixed A: R} tell us that there are only finitely many $p$-sprouts of a fixed monomial pair, and that each such sprouted pair is small.
  \end{remark}
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
 \label{sprouts as collapsed shortfall pairs: R}
- Throughout this remark, suppose that $p \gg 0$ relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a $p$-shortfall pair associated to $(A,\vv{u})$ if $\vv{w} \in \short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
+ Throughout this remark, suppose that $p$ is large enough relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a \emph{$p$-shortfall pair associated to $(A,\vv{u})$} if $\vv{w} \in \short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
 
 It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(A,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(A,\vv{u})$ along the face $\O=\mf(A,\vv{u})$.  In particular, when $\O$ is bounded, then there is no difference between $p$-sprouts and $p$-shortfall pairs of $(A,\vv{u})$.  
 \end{remark}
 
 
 
-\begin{definition}[The directed sprouting graph]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs\daniel{Define $A$-pairs}, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
+\begin{definition}[The directed sprouting graph]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
 
 We define the vertices of the graph $\sprout_p(A)$ to be the disjoint union \[ \bigsqcup_{e=1}^{\infty} \graph_{p^e}(A). \]
  
@@ -2099,7 +2106,7 @@ By definition,  each $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ is a s
 
 \begin{remark}[Elementary observations]
 \label{elementary2: R}
-Suppose $(A,\vv{u})$ is very small.  In this remark, we gather some basic facts\daniel{Please verify these} concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
+Suppose $(A,\vv{u})$ is very small.  In this remark, we gather some basic facts \daniel{Please verify these} concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
 \begin{enumerate}
 
 
