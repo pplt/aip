@@ -1566,9 +1566,9 @@ To interpret this result algebraically, we need to extend the notion of collapse
    Let $(\ideala,\ideald)$ be an ideal pair in $R = \kk[x_1,\ldots,x_\numvars]$.
    Let $(A,\vv{u})$ be an associated monomial pair and $\O=\mf(A,\vv{u})$.
    \begin{enumerate}
-      \item The collapse of $R$ along $\O$ is the polynomial ring $\collapse{R}$ obtained from $R$ by omitting the variable $x_i$ whenever $\canvec_i \in \rb(\O)$.
-      \item The collapse of $\ideala$ along $\O$ is the monomial ideal $\collapse{\ideala}$ of $\collapse{R}$ obtained from $\ideala$ by setting $x_i$ equal to $1$ whenever $\canvec_i \in \rb(\O)$.
-      \item The collapse of $\ideald$ along $\O$ is the proper diagonal ideal $\collapse{\ideald}$ of $\collapse{R}$ obtained from $\ideald$ by setting $x_i$ equal to $0$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $R$} is the polynomial ring $\collapse{R}$ obtained from $R$ by omitting the variable $x_i$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $\ideala$} is the monomial ideal $\collapse{\ideala}$ of $\collapse{R}$ obtained from $\ideala$ by setting $x_i$ equal to $1$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $\ideald$} is the proper diagonal ideal $\collapse{\ideald}$ of $\collapse{R}$ obtained from $\ideald$ by setting $x_i$ equal to $0$ whenever $\canvec_i \in \rb(\O)$.
    \end{enumerate}
 \end{definition}
 
@@ -1600,7 +1600,7 @@ The following is a consequence of \Cref{comparing deltas: R,uniform uniform valu
 % \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
 
 \begin{corollary}
-   Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property:
+   Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property\textup:
    If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then $\nu(\ideala, \ideald, q) = \nu(\collapse{\ideala}, \collapse{\ideald}, q)$. %\daniel{This will also require us to carefully define the collapse of an ideal pair}
    \qed
 \end{corollary}
@@ -1643,10 +1643,10 @@ If $q$ is a power of $p$, and $e$ is a nonnegative integer, then
 is nonnegative, at most $p^e-1$, and also at most
 %
 \[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \}  \] 
-where the maximum\footnote{Recall that, as $A$ is monomial, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well-defined.} is over all points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.
+where the maximum\footnote{Recall that, as $A$ is monomial, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.} is over all points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.
 
 If, in addition\daniel{I don't know of any case where $M$ is at least $p^e$, but it might be true in low characteristic.}, $M$ is at most $p^e-1$,  then $L=M$, and 
-\[  \short \IP_p(A, \vv{u}, qp^e) = \cup \short \IP_p(A, \vv{v}^{\ast}, p^e) \] where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
+\[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e) \] where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
 \end{theorem}
 
 \begin{proof}  It is clear that multiplying a feasible point for $\IP_p(A, \vv{u}, q)$ by $p^e$ yields a feasible point for $\IP_p(A, \vv{u}, qp^e)$, from which it follows that $L\geq 0$.
@@ -1677,7 +1677,7 @@ demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, a point in the shortfall o
 %
 \begin{equation}
 \label{general comparison of shortfalls: e}
- \cup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
+ \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
  \end{equation}
 
 To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument.  As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.  Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
