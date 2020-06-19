@@ -32,6 +32,7 @@ TO DO LIST:
 \begin{enumerate}
 \item[$\Box$] Decide on ``special'' or ``universal'' denominator and uniformize.
 \emily[inline]{I'm starting to like ``universal.''}
+\pedro[inline]{Me too.}
 \item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
@@ -103,8 +104,8 @@ TO DO LIST:
       %\item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
       \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
 %      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
-      \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
-      \emily[inline]{I think this is defunct now? }
+      % \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
+      % \emily[inline]{I think this is defunct now? }
       \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
    \emily[inline]{This only seems to happen with $\Pi$ and $\Pi_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
     \item[$\Box$] Put ``titles'' in appropriate statements. 
@@ -1562,36 +1563,38 @@ and
 
 To interpret this result algebraically, we need to extend the notion of collapses to monomial and diagonal ideals.
 
-\begin{definition}
+\begin{definition}[Algebraic collapses]
    Let $(\ideala,\ideald)$ be an ideal pair in $R = \kk[x_1,\ldots,x_\numvars]$.
    Let $(A,\vv{u})$ be an associated monomial pair and $\O=\mf(A,\vv{u})$.
    \begin{enumerate}
-      \item The \emph{collapse of $R$} is the polynomial ring $\collapse{R}$ obtained from $R$ by omitting the variable $x_i$ whenever $\canvec_i \in \rb(\O)$.
-      \item The \emph{collapse of $\ideala$} is the monomial ideal $\collapse{\ideala}$ of $\collapse{R}$ obtained from $\ideala$ by setting $x_i$ equal to $1$ whenever $\canvec_i \in \rb(\O)$.
-      \item The \emph{collapse of $\ideald$} is the proper diagonal ideal $\collapse{\ideald}$ of $\collapse{R}$ obtained from $\ideald$ by setting $x_i$ equal to $0$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $R$} (along $\O$) is the polynomial ring $\collapse{R}$ obtained from $R$ by omitting the variable $x_i$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $\ideala$} (along $\O$) is the monomial ideal $\collapse{\ideala}$ of $\collapse{R}$ obtained from $\ideala$ by setting $x_i$ equal to $1$ whenever $\canvec_i \in \rb(\O)$.
+      \item The \emph{collapse of $\ideald$} (along $\O$) is the proper diagonal ideal $\collapse{\ideald}$ of $\collapse{R}$ obtained from $\ideald$ by setting $x_i$ equal to $0$ whenever $\canvec_i \in \rb(\O)$.
    \end{enumerate}
 \end{definition}
 
-
 Thus, $\collapse{\ideala}$ and $\collapse{\ideald}$ are the images of $\ideala$ and $\ideald$ under suitable (different) evaluation homomorphisms $R\to \collapse{R}$, designed so that $(\collapse{\ideala},\collapse{\ideald})$ is an ideal pair, and $(\collapse{A},\collapse{\vv{u}})$ is a monomial pair associated to it.
 
-\begin{remark}[An algebraic interpretation]
-   \label{leftover p large: R}
-   Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$.
-   If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then the first conclusion of that theorem tells us that if $q > \beta$, then
-   \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(A, \vv{u},q). \] 
+We note that the collapsed ideal pair $(\collapse{\ideala},\collapse{\ideald})$ depends on the choice of the associated monomial pair $(A,\vv{u})$ associated to $(\ideala,\ideald)$.
+If this choice is irrelevant or clear from the context, then we shall omit the reference to the minimal face $\O$ when referring to collapsed ideal pairs.
 
-   Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.
-   For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
-   In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q) = \ushort(A, \vv{u},q)$.
-In light of this, it follows from \Cref{shortfall motivation: R} that whenever $q >\beta$,
-\[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \ushort(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
-In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
+% \begin{remark}[An algebraic interpretation]
+%    \label{leftover p large: R}
+%    Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$.
+%    If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then the first conclusion of that theorem tells us that if $q > \beta$, then
+%    \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(A, \vv{u},q). \] 
 
-When $\O$ is unbounded, the situation is slightly more complicated. \daniel{Return to this later;  you'll need to settle on how to describe collapses first}
-\end{remark}
+%    Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.
+%    For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
+%    In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q) = \ushort(A, \vv{u},q)$.
+% In light of this, it follows from \Cref{shortfall motivation: R} that whenever $q >\beta$,
+% \[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \ushort(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
+% In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
 
-The following is a consequence of \Cref{comparing deltas: R,uniform uniform value and image: T}.
+% When $\O$ is unbounded, the situation is slightly more complicated. \daniel{Return to this later;  you'll need to settle on how to describe collapses first}
+% \end{remark}
+
+% The following is a consequence of \Cref{comparing deltas: R,uniform uniform value and image: T}.
 
 % \begin{corollary}
 % Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where the overbar denotes collapse along $\O$.
@@ -1601,26 +1604,28 @@ The following is a consequence of \Cref{comparing deltas: R,uniform uniform valu
 
 \begin{corollary}
    Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property\textup:
-   If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then $\nu(\ideala, \ideald, q) = \nu(\collapse{\ideala}, \collapse{\ideald}, q)$. %\daniel{This will also require us to carefully define the collapse of an ideal pair}
-   \qed
+   If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then
+   \begin{equation*}
+      \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(A, \vv{u},q) = \nu(\collapse{\ideala},\collapse{\ideald}, q). \qed
+   \end{equation*}
 \end{corollary}
 
 
-\pedro[inline]{
-   This lemma appeared earlier in the section, and contained things we already knew (positivity and integrality).
-   I removed those things, and what is left should go somewhere else (where it's used), maybe as a remark, maybe incorporated in another proof.
-\begin{lemma}
-\label{independence: L}
-If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then no column of $\collapse{A}$ is less than any point in $\ushort(A, \vv{u}, q)$.
-\end{lemma}
-\begin{proof}
-   Suppose $\vv{k}$ is optimal for $\ip = \ip(A,\vv{u},\vv{s},q)$, for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
-   Then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, and thus  $\collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}$.
-\end{proof}
+% \pedro[inline]{
+%    This lemma appeared earlier in the section, and contained things we already knew (positivity and integrality).
+%    I removed those things, and what is left should go somewhere else (where it's used), maybe as a remark, maybe incorporated in another proof.
+% \begin{lemma}
+% \label{independence: L}
+% If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then no column of $\collapse{A}$ is less than any point in $\ushort(A, \vv{u}, q)$.
+% \end{lemma}
+% \begin{proof}
+%    Suppose $\vv{k}$ is optimal for $\ip = \ip(A,\vv{u},\vv{s},q)$, for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+%    Then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, and thus  $\collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}$.
+% \end{proof}
 
 
-\daniel[inline]{I think it is OK to just omit this here, as it is noted (in a slightly more general context) in \Cref{sprouts as collapsed shortfall pairs: R}, which is probably a better location anyway.}
-}
+% \daniel[inline]{I think it is OK to just omit this here, as it is noted (in a slightly more general context) in \Cref{sprouts as collapsed shortfall pairs: R}, which is probably a better location anyway.}
+% }
 
 
 \newpage
