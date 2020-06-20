@@ -2275,7 +2275,7 @@ TO DO LIST:
 \begin{enumerate}
 \item[$\CheckedBox$] Make local to do list
 \item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\ol{A}, \ol{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\ol{A}, \ol{\vv{u}})$. 
-\item[$\Box$] Should we explain how the eventual periodicity of $\sprout_p^{\ast}(A,\vv{u})$ implies that $\crit(\ideala, \ideald)$ is always rational?  I can see that it might be better to state this with $\ideald$ replaced by an arbitrary ideal $\idealb$, but this will require us to have the contents of the appendix settled.
+\item[$\Box$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 \item[$\Box$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
@@ -2326,22 +2326,54 @@ The non-leading coefficients appearing in the polynomial expressions described i
 \end{corollary}
 
 \begin{proof}  Fix a pair $(A,\vv{u})$.  To simplify notation, set $\Q=\Q_p(A,\vv{u})$.
-The non-leading coefficients under consideration are as follows.
-\begin{itemize}
-\item $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ for some $q=p^e$ less than $\Q$.
-\item $-(\delta_{\Q}(A,\vv{u}) - 1)$ when $\Q$ is finite.
-\item $-1$ and $-\delta_q(A,\vv{u})$ for some $q=p^e$ at most $\Q$.
-\end{itemize}
+The non-leading coefficients under consideration are (1) the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q=p^e$ less than $\Q$, (2) the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, (3) the rational numbers $-\delta_q(A,\vv{u})$ whenever $q=p^e$ at most $\Q$, and (4) the rational number $-1$.
 
-Rationality is clear, and as the arguments are similar, we will only show that the coefficient $-(\delta_{\Q}(A,\vv{u})-1)$ is nonpositive whenever $\Q$ is finite.  In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there must exist a pair in $\S_{\Q p}(A,\vv{u})$ that is not very small.  Thus, there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$, where the first pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and the second is not very small. \Cref{non-leading coefficients: L} then tells us that 
-$\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p) \geq \ft{C}{\vv{z}} > 1$.
+As the arguments are similar, we will only consider the coefficient in (2) above.  Towards this, suppose that $\Q$ is finite.  In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that 
+$\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.  Thus, $-(\delta_Q(A,\vv{u})-1)$ is negative.
 \end{proof}
+
+\begin{remark}[Critical exponents versus $F$-thresholds]  
+\label{crit versus ft: R}
+Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.  
+
+Let us see what \Cref{main theorem wrt diagonal: T} tells us about the the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.  
+
+Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a monomial pair $(A,\vv{u})$, and set  $\Q = \Q_p(A,\vv{u})$.  If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
+%
+\[ \crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. \] 
+%
+In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the digits $\delta_{p^s}(A,\vv{u})-\epsilon_{p^s}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(A,\vv{u})$ is rational.
+
+On the other hand, when $\Q = \infty$, then \Cref{main theorem wrt diagonal: T} instead implies that
+\begin{align*} 
+\crit(A,\vv{u})& = \frac{\val \IP_p(A,\vv{u}, \Q) +1}{\Q} \\ 
+& = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
+\end{align*}
+and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$. 
+
+Therefore, if $p \gg 0$ and $(A,\vv{u})$ is associated to some ideal pair $(\ideala, \ideald)$, then 
+\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
+where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
+\end{remark}
+
+\begin{remark}[Denominators of certain critical exponents]
+\!{To do.  Discuss the situation when $A$ comes from an $\idealm$-primary ideal that is homogeneous under some positive grading.}
+\end{remark}
 
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
 
 
 \newpage
 
+
+\section{Applications to generic hypersurfaces}
+
+\subsection{Generic hypersurfaces in large characteristics}
+
+\subsection{Generic hypersurfaces in characteristic zero}
+
+
+\newpage
 \appendix
 
 \section{Monomial ideals and reduction}
