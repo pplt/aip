@@ -1634,8 +1634,9 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{What about something instead like the second paragraph?}   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
 
-The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$, in the case that $(A, \vv{u})$ is very small and the matrix $A$ is associated to an $\idealm$-primary ideal.  
-The description of this algorithm caps off this section, and justifies the main theorem herein (outside of one detail that will be verified in \Cref{sprouting: S}), \Cref{m-primary AIP: T}, which characterizes this value. In fact, it is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$. 
+The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$, in the case that $\ft{A}{\vv{u}} \le 1$ and the matrix $A$ is associated to an $\idealm$-primary ideal.  
+The description of this algorithm caps off this section, and justifies the main theorem herein (outside of one detail that will be verified in \Cref{sprouting: S}), \Cref{m-primary AIP: T}, which characterizes this value.
+In fact, it is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$. 
 
 
 
@@ -1647,43 +1648,59 @@ If $q$ is a power of $p$, and $e$ is a nonnegative integer, then
 \[  L \coloneqq \val \IP_p(A, \vv{u}, qp^e) -  \val \IP_p(A, \vv{u}, q)p^e  \]
 is nonnegative, at most $p^e-1$, and also at most
 %
-\[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \}  \] 
-where the maximum\footnote{Recall that, as $A$ is monomial, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.} is over all points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.
+\[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \},  \] 
+where the maximum is over all points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.\footnote{
+   Recall that, as $A$ is a monomial matrix, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.
+}
 
 If, in addition\daniel{I don't know of any case where $M$ is at least $p^e$, but it might be true in low characteristic.}, $M$ is at most $p^e-1$,  then $L=M$, and 
-\[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e) \] where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
+\[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e), \]
+where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
 \end{theorem}
 
-\begin{proof}  It is clear that multiplying a feasible point for $\IP_p(A, \vv{u}, q)$ by $p^e$ yields a feasible point for $\IP_p(A, \vv{u}, qp^e)$, from which it follows that $L\geq 0$.
+\begin{proof}
+   It is clear that multiplying a feasible point for $\IP_p(A, \vv{u}, q)$ by $p^e$ yields a feasible point for $\IP_p(A, \vv{u}, qp^e)$, from which it follows that $L\geq 0$.
 
 
-Next, consider $\vv{g} \in \opt \IP_p(A, \vv{u}, qp^e)$.  Dividing by $p^e$, we may write \[ \vv{g} = \vv{h} p^e + \vv{k} \]
-with $\vv{h}$ and $\vv{k}$ nonnegative lattice points, and every coordinate of $\vv{k}$ is less than $p^e$.  
-By \Cref{dickson: R}, the arithmetic constraint satisfied by $\vv{g}$ implies that $0 \not \equiv \binom{\norm{\vv{g}}}{\vv{g}} \equiv \binom{\norm{\vv{h}}}{\vv{h}} \binom{\norm{\vv{k}}}{\vv{k}} \bmod p$, so that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ must be nonzero modulo $p$.  In particular, $\vv{h}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u},q)$, and it is easy to see that it also satisfies its linear constraint.
+   Next, consider $\vv{g} \in \opt \IP_p(A, \vv{u}, qp^e)$.
+   Dividing by $p^e$, we write
+   \[ \vv{g} = \vv{h} p^e + \vv{k}, \]
+   where $\vv{h}$ and $\vv{k}$ are nonnegative lattice points, and every coordinate of $\vv{k}$ is less than $p^e$.
+   By \Cref{dickson: R}, the arithmetic constraint satisfied by $\vv{g}$ implies that $0 \not \equiv \binom{\norm{\vv{g}}}{\vv{g}} \equiv \binom{\norm{\vv{h}}}{\vv{h}} \binom{\norm{\vv{k}}}{\vv{k}} \bmod p$, so that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ must be nonzero modulo $p$.
+   In particular, $\vv{h}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u},q)$, and it is easy to see that it also satisfies its linear constraint.
 
-Having established its feasibility, we now demonstrate the optimality of $\vv{h}$.  Observe that, by virtue of being a remainder upon division by $p^e$, the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \sum_{0 \leq s< e} \vv{k}_s  p^s$.  As noted \Cref{dickson: R}, the nonvanishing of $\binom{\norm{\vv{k}}}{\vv{k}} \bmod p$ tells us that each $\norm{\vv{k}_s}$ is less than $p$, and so it follows that $\norm{\vv{k}} < p^e$.  If $\vv{h}$ were not optimal for $\IP_p(A, \vv{u}, q)$, then there would exist $\vv{m}$ feasible for $\IP_p(A, \vv{u}, q)$ with $\norm{\vv{m}} \geq \norm{\vv{h}} + 1$, which would lead to a point $\vv{m}p^e$ feasible for $\IP_p(A, \vv{u}, qp^e)$ whose norm is \[ \norm{\vv{m}}  p^e \geq \norm{\vv{h}}  p^e + p^e >  \norm{\vv{h}}  p^e + \norm{\vv{k}} = \norm{\vv{g}}\] which contradicts the optimality of $\vv{g}$. We conclude that $\vv{h} \in \opt \IP_p(A, \vv{u},q)$.
+   Having established the feasibility of $\vv{h}$ for $\IP_p(A,\vv{u},q)$, we now demonstrate its optimality.
+   Observe that, by virtue of being a remainder upon division by $p^e$, the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \sum_{0 \leq s< e} \vv{k}_s  p^s$.
+   As noted in \Cref{dickson: R}, the nonvanishing of $\binom{\norm{\vv{k}}}{\vv{k}} \bmod p$ tells us that each $\norm{\vv{k}_s}$ is less than $p$, and so it follows that $\norm{\vv{k}} < p^e$.
+   If $\vv{h}$ were not optimal for $\IP_p(A, \vv{u}, q)$, then there would exist $\vv{m}$ feasible for $\IP_p(A, \vv{u}, q)$ with $\norm{\vv{m}} \geq \norm{\vv{h}} + 1$, which would lead to a point $\vv{m}p^e$ feasible for $\IP_p(A, \vv{u}, qp^e)$ whose norm is
+   \[ \norm{\vv{m}}  p^e \geq \norm{\vv{h}}  p^e + p^e >  \norm{\vv{h}}  p^e + \norm{\vv{k}} = \norm{\vv{g}},\]
+   which contradicts the optimality of $\vv{g}$.
+   We conclude that $\vv{h} \in \opt \IP_p(A, \vv{u},q)$.
 
-This optimality, along with the definition of shortfalls, tells us that $\vv{v} \coloneqq \vv{u}q-A\vv{h}$ is a point in the shortfall of $\IP_p(A, \vv{u},q)$.  We may then express the linear constraint on $\vv{g}$ imposed by $\IP_p(A, \vv{u}, qp^e)$ as  
-\[ \vv{u}qp^e > A \vv{g} = A \vv{h} p^e + A \vv{k} = (\vv{u}q-\vv{v})p^e + A \vv{k} \] 
-which is equivalent to the constraint $A \vv{k} < \vv{v}p^e$.   As we have already seen above that $\binom{\norm{\vv{k}}}{\vv{k}}$ is nonzero modulo $p$, it follows that $\vv{k} \in \feas \IP_p(A, \vv{v}, p^e)$.   
+   This optimality, along with the definition of shortfalls, tells us that $\vv{v} \coloneqq \vv{u}q-A\vv{h}$ is a point in the shortfall of $\IP_p(A, \vv{u},q)$.
+   We may then express the linear constraint on $\vv{g}$ imposed by $\IP_p(A, \vv{u}, qp^e)$ as
+   \[ \vv{u}qp^e > A \vv{g} = A \vv{h} p^e + A \vv{k} = (\vv{u}q-\vv{v})p^e + A \vv{k}, \]
+   which is equivalent to the constraint $A \vv{k} < \vv{v}p^e$.
+   As we have already seen above that $\binom{\norm{\vv{k}}}{\vv{k}}$ is nonzero modulo $p$, it follows that $\vv{k} \in \feas \IP_p(A, \vv{v}, p^e)$.
+   Putting everything together, we see that
+   \[ L = \norm{\vv{g}}-\norm{\vv{h}}p^e = \norm{\vv{k}} \leq \min \{ p^e-1, \val \IP_p(A, \vv{v}, p^e) \} \leq \min \{ p^e-1, M \}.\]
 
-Putting everything together, we see that
-\[ L = \norm{\vv{g}}-\norm{\vv{h}}p^e = \norm{\vv{k}} \leq \min \{ p^e-1, \val \IP_p(A, \vv{v}, p^e) \} \leq \min \{ p^e-1, M \}.\]
+   For the remainder of this proof, suppose that $M \leq p^e-1$.
+   Consider a point  $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieves $M$, and write $\vv{v}^{\ast} = \vv{u}q - A \vv{h}^{\ast}$ for some $\vv{h}^{\ast} \in \opt \IP(A, \vv{u}, q)$.
+   If $\vv{k}^{\ast} \in \opt \IP_p(A, \vv{v}^{\ast}, p^e)$, then $\norm{\vv{k}^{\ast}} = M \leq p^e-1$, and so every entry of $\vv{k}^{\ast}$ is at most $p^e - 1$.
+   Thus, if $\vv{g}^{\ast} \coloneqq \vv{h}^{\ast} p^e + \vv{k}^{\ast}$, then \Cref{dickson: R} tells us that $\binom{\norm{\vv{g}^{\ast}}}{\vv{g}^{\ast}} \equiv  \binom{\norm{\vv{h}^{\ast}}}{\vv{h}^{\ast}} \binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$.
+   A direct computation will also show that $\vv{g}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, qp^e)$, which shows that $\vv{g}^{\ast}$ must be feasible for this program.
+   It follows that
+   \[ L \geq \norm{\vv{g}^{\ast}} - \norm{\vv{h}^{\ast}}p^e = \norm{\vv{k}^{\ast}} = M, \]
+   which allows us to conclude that $L=M$, provided that $M \leq p^e-1$.
 
-For the remainder of this proof, suppose that $M \leq p^e-1$.    Consider a point  $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieves $M$, and write $\vv{v}^{\ast} = \vv{u}q - A \vv{h}^{\ast}$ for some $\vv{h}^{\ast} \in \opt \IP(A, \vv{u}, q)$.  If $\vv{k}^{\ast} \in \opt \IP_p(A, \vv{v}^{\ast}, p^e)$, then $\norm{\vv{k}^{\ast}} = M \leq p^e-1$, and so every entry of $\vv{k}^{\ast}$ is at most $p^e$.  Thus, if $\vv{g}^{\ast} \coloneqq \vv{h}^{\ast} p^e + \vv{k}^{\ast}$, then \Cref{dickson: R} tells us that $\binom{\norm{\vv{g}^{\ast}}}{\vv{g}^{\ast}} \equiv  \binom{\norm{\vv{h}^{\ast}}}{\vv{h}^{\ast}} \binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$.  A direct computation will also show that $\vv{g}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, qp^e)$, which shows that $\vv{g}^{\ast}$ must be feasible for this program.  It follows that
-%
-\[ L \geq \norm{\vv{g}}^{\ast} - \norm{\vv{h}}^{\ast}p^e = \norm{\vv{k}^{\ast}} = M \] 
-%
-which allows us to conclude that $L=M$, provided that $M \leq p^e-1$.
-
-It follows that $\vv{g}^{\ast}$ must be optimal for $\IP_p(A, \vv{u}, qp^e)$, and so the identity
-\[  \vv{v}^{\ast} p^e-A\vv{k}^{\ast} = (\vv{u}q-A\vv{h}^{\ast})p^e-A(\vv{g}^{\ast}-\vv{h}^{\ast}) = \vv{u}qp^e-A \vv{g}^{\ast} \] 
-demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, a point in the shortfall of $\IP_p(A, \vv{v}^{\ast}, p^e)$, is also a point in the shortfall of $\IP_p(A, \vv{u}qp^e)$.  Moreover, as $\vv{v}^{\ast}$ was arbitrary with respect to achieving $M$, this shows that 
-%
-\begin{equation}
-\label{general comparison of shortfalls: e}
- \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
- \end{equation}
+   It follows that $\vv{g}^{\ast}$ must be optimal for $\IP_p(A, \vv{u}, qp^e)$, and so the identity
+   \[  \vv{v}^{\ast} p^e-A\vv{k}^{\ast} = (\vv{u}q-A\vv{h}^{\ast})p^e-A(\vv{g}^{\ast}-\vv{h}^{\ast}p^e) = \vv{u}qp^e-A \vv{g}^{\ast} \]
+   demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, an arbitrary point that achieves $M$ in the shortfall of $\IP_p(A, \vv{v}^{\ast}, p^e)$, lies in the shortfall of $\IP_p(A, \vv{u},qp^e)$, showing that
+   \begin{equation}
+      \label{general comparison of shortfalls: e}
+      \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
+   \end{equation}
 
 To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument.  As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.  Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
 \end{proof}
