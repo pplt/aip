@@ -30,9 +30,9 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
-\item[$\Box$] Decide on ``special'' or ``universal'' denominator and uniformize.
+\item[$\CheckedBox$] Decide on ``special'' or ``universal'' denominator and uniformize.
 \emily[inline]{I'm starting to like ``universal.''}
-\pedro[inline]{Me too.}
+\pedro[inline]{I replaced the last few occurrences of ``special'' with ``universal''.}
 \item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
@@ -85,7 +85,8 @@ TO DO LIST:
       %\item[$\CheckedBox$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
 
-         \item[$\Box$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
+ \item[$\CheckedBox$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
+ \pedro[inline]{I believe this is done now (using $\collapse{A}X$).}
       % \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
       % %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
       % Emily suggest using $\vv{c}$.  This is probably a good idea.
@@ -939,7 +940,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 \end{definition}
 
 \begin{theorem}
-\label{special-denominators-exist:  T}
+\label{universal-denominators-exist:  T}
 Universal denominators exist.
 \end{theorem}
 
@@ -1702,24 +1703,26 @@ where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that 
       \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
    \end{equation}
 
-To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument.  As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.  Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
+   To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument.
+   As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.
+   Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
 \end{proof}
 
 We record a consequence of the bound $L \leq p^e-1$ in \Cref{general AIP: T} below.
 
 \begin{corollary}
-   \label{cor: mu comparison}  Suppose that $(A,\vv{u})$ and $(B,\vv{v})$ are monomial pairs, not necessarily of the same dimension.  
+   \label{cor: mu comparison}
+   Suppose that $(A,\vv{u})$ and $(B,\vv{v})$ are monomial pairs, not necessarily of the same dimension.  
    If $\val \IP_p(A, \vv{u}, q)$ is greater than $\val \IP_p(B, \vv{v}, q)$ for some $q$, then $\val \IP_p(A, \vv{u}, qp^e)$ is greater than $\val \IP_p(B, \vv{v}, qp^e)$ for all $e$.
 \end{corollary}
 
 \begin{proof}
-Applying \Cref{general AIP: T} to a monomial pair $(E,\vv{w})$ tells us that
-%
-\begin{equation}
- \val \IP_p(E, \vv{w},q)p^e \leq \val \IP_p(E, \vv{w}, qp^e) < (\val \IP_p(E, \vv{w}, q)+1)p^e.
- \end{equation}
-
-Combining these bounds, with $(E, \vv{w})$ replaced by $(A, \vv{u})$ and $(B,\vv{v})$, with our assumption that $\val \IP_p(A, \vv{u}, q)$ is at least $\IP_p(B, \vv{v}, q) + 1$, we see that
+   \Cref{general AIP: T} gives us
+   \begin{equation*}
+      \val \IP_p(A, \vv{u},q)p^e \leq \val \IP_p(A, \vv{u}, qp^e) < (\val \IP_p(A, \vv{u}, q)+1)p^e,
+   \end{equation*}
+   as well as analogous inequalities for $(B,\vv{v})$.
+   Combining these bounds with our assumption that $\val \IP_p(A, \vv{u}, q) \ge \IP_p(B, \vv{v}, q) + 1$, we see that
    \begin{align*}
      \val \IP_p(A, \vv{u}, qp^e)  &\geq \val \IP_p(A, \vv{u}, q)  p^e \\
                                   &\geq (\val \IP_p(B, \vv{v}, q)+1) p^e \\
@@ -2043,7 +2046,7 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
  %
  \end{theorem}
 
-\begin{proof}\daniel{Needs modification} We start by describing what it means $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{special-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a special denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}\daniel{Needs modification} We start by describing what it means $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
 Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
 %
@@ -2077,7 +2080,7 @@ We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i \cdot p^{e-i}$ is
 tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \cdot p^{e-i} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.  To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.  However,  \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and hence, we must only show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
 
 To do so,  recall that our choice of $\vv{s}_1 \in \sp(A_1, \vv{u}_1)$ allows us to express $\vv{u}_1$ as
-$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the special denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
+$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
 %
 \begin{equation}
 \label{target-inequality: e}
