@@ -54,14 +54,15 @@ TO DO LIST:
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
- \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
+   \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
+   \pedro[inline]{I included an example with a picture.}
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
 \emily[inline]{Maybe done?}
 % \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
-\comment[inline]{Going with dropping rows.}
+%\comment[inline]{Going with dropping rows.}
 \item[$\Box$] Rewrite proofs with above convention.
  \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  %\item[$\CheckedBox$] Fill in/rewrite preliminaries.
@@ -1754,6 +1755,26 @@ On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} impl
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.} 
 \end{remark}
 
+\begin{example}
+   \label{ex: small vs very small}
+   \begin{figure}
+      \centering
+      \includegraphics[width=.5\textwidth]{pictures/small_very_small_illustration.pdf}
+      \caption{Illustration for \Cref{ex: small vs very small}}
+      \label{fig: small vs very small}
+   \end{figure}
+   \Cref{fig: small vs very small} shows the Newton polyhedron of the matrix
+   \[A=
+      \begin{bmatrix}
+         1&3&7&10\\
+         10&6&3&2
+      \end{bmatrix}
+   \]
+   as well as the upper staircase determined by the columns of $A$.
+   If $\vv{u}$ is any of the gray points, the monomial pair $(A,\vv{u})$ is very small.
+   If $\vv{u}$ is any of the black points, $(A,\vv{u})$ is small, but not very small.
+   Finally, if $\vv{u}$ is any of the white points, $(A,\vv{u})$ is neither small nor very small.
+\end{example}
 
 \begin{remark}[Small pairs from shortfalls]  
 \label{small pairs from shortfalls: R}
