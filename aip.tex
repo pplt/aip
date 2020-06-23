@@ -1634,14 +1634,14 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 \section{Arithmetic integer programs revisited}
 
 
-The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$. \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{What about something instead like the second paragraph?}   Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
+The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$.
+Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
+\daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{What about something instead like the second paragraph?}
 
+\subsection{A key theorem}
 The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$, in the case that $\ft{A}{\vv{u}} \le 1$ and the matrix $A$ is associated to an $\idealm$-primary ideal.  
 The description of this algorithm caps off this section, and justifies the main theorem herein (outside of one detail that will be verified in \Cref{sprouting: S}), \Cref{m-primary AIP: T}, which characterizes this value.
 In fact, it is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$. 
-
-
-
 
 \begin{theorem}  
 \label{general AIP: T}
@@ -1752,7 +1752,12 @@ Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice
 
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 
-It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.} 
+It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.}
+\pedro[inline]{
+   Is this true?
+   If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
+   Don't we get infinitely many ``layers'' of black points?
+}
 \end{remark}
 
 \begin{example}
@@ -1780,10 +1785,9 @@ It is clear from these interpretations that a very small pair must also be small
 \label{small pairs from shortfalls: R}
 If $\vv{v}$ is any point in the shortfall of some integer program $\IP = \IP(A, \vv{u}, q)$, then the pair $(A, \vv{v})$ is small.  Indeed, by definition of shortfalls, we may write $\vv{v} = \vv{u}q-A\vv{h}$ for some $\vv{h} \in \opt \IP$.  Subtracting $\vv{a}_i$, the $i$-column of $A$, from both sides of this identity yields 
 \[ \vv{v}-\vv{a}_i = \vv{u}q-A\vv{h}-\vv{a}_i = \vv{u}q-A(\vv{h}+\vv{e}_i). \] 
-
 The optimality of $\vv{h}$ implies that $\vv{h}+\vv{e}_i$ cannot satisfy the linear constraint of $\IP$, which shows that the right-hand side above is not positive.  In other words, $\vv{v} \not > \vv{a}_i$, and as $i$ was arbitrary, this shows that $(A, \vv{v})$ is small.
 
-Similarly\daniel{This is done in \Cref{independence: L}, but I am not sure if that will survive our edits.  Also, I am using the terminology \emph{universal shortfall} here, but we can ditch it}, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u}, q)$, then the pair $(\collapse{A}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u}, q)$, then the pair $(\collapse{A}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{remark}
 
 
@@ -1793,37 +1797,41 @@ Similarly\daniel{This is done in \Cref{independence: L}, but I am not sure if th
 \end{proposition}
 
 \begin{proof}
-For a change of pace, we give an algebraic proof.  If $(A,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$, then as noted in \Cref{algebraic small and very small: R}, the smallness of $(A, \vv{u})$ is equivalent to the containment $\ideala \subseteq \ideald$.  However, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
+   For a change of pace, we give an algebraic proof.
+   If $(A,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$, then as noted in \Cref{algebraic small and very small: R}, the smallness of $(A, \vv{u})$ is equivalent to the containment $\ideala \subseteq \ideald$.
+   However, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
 \end{proof}
 
-\begin{remark}[Reduction to the small case]  We now describe how to reduce the computation of the values of the integer programs $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$ to the small case, at least when $p$ is large relative to the pair $(A, \vv{u})$.  
+\begin{remark}[Reduction to the small case]
+   We now describe how to reduce the computation of the values of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$ to the small case, at least when $p$ is large relative to the pair $(A, \vv{u})$.  
+   For what follows, fix a pair $(A, \vv{u})$, and suppose that $p$ is larger than the value of the standard integer program $\IP(A, \vv{u},1)$.
+   The arithmetic constraint of $\IP_p(A,\vv{u},1)$ is thus automatically satisfied, and so $\IP_p(A, \vv{u}, 1) = \IP(A, \vv{u}, 1)$.
 
-For what follows, fix a pair $(A, \vv{u})$, and suppose that $p$ is larger than the value of the standard integer program $\IP(A, \vv{u},1)$.  For all such primes, this bound on the value implies that $\IP_p(A, \vv{u}, 1) = \IP(A, \vv{u}, 1).$
-
-\Cref{small pairs from shortfalls: R} tells us that $(A, \vv{v})$ is small for every $\vv{v} \in \short \IP(A,\vv{u},1)$, and for such a point, \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(A, \vv{v}, p^e)$ is at most $p^e-1$.  Setting $q=1$ in the statement of \Cref{general AIP: T}, this observation tells us that quanitity $M$ defined therein is at most $p^e-1$. 
-
-Invoking \Cref{general AIP: T} once more, we see that if $p$ is greater than the value of the standard integer program $\IP(A, \vv{u}, 1)$, which is independent of $p$, then
-\[ \val \IP_p(A, \vv{u},p^e) = \val \IP(A, \vv{u},1)p^e + \max \{ \val \IP_p(A, \vv{v}, p^e) \} \] 
-where the maximum is over all pairs $(A, \vv{v})$ with $\vv{v} \in \short \IP(A, \vv{u},1)$.  As noted earlier, each such pair is small, which completes our reduction.
+   If $\vv{v} \in \short \IP(A,\vv{u},1)$, \Cref{small pairs from shortfalls: R} tells us that $(A, \vv{v})$ is small, and \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(A, \vv{v}, p^e) \le p^e-1$.
+   Setting $q=1$ in the statement of \Cref{general AIP: T}, this observation tells us that quantity $M$ defined therein is at most $p^e-1$, and that same theorem shows that
+   \[ \val \IP_p(A, \vv{u},p^e) = \val \IP(A, \vv{u},1)p^e + \max \{ \val \IP_p(A, \vv{v}, p^e) \},\]
+   where the maximum is over all $\vv{v} \in \short \IP(A, \vv{u},1)$.
+   As noted earlier, each such pair is small, which completes our reduction.
 \end{remark}
 
 The following allows us to reduce even further, to the very small case.
 
- \begin{theorem}
- \label{small not very small value: T}  Given a monomial matrix $A$, there exists an integer $\beta=\beta(A)$ with the following property\textup:  
- If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}, p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
- \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}\emily{Maybe just add ``Cf. \cite[Theorem~6.4]{hernandez+etal.frobenius_powers}'' above?}
-  \end{theorem}
-\daniel[inline]{This is the "lost theorem" Pedro recovered.  I've added a new proof (the old one is commented out) that does not rely on the fact (stated in \Cref{geometric small and very small: R} without proof) that there are only finitely many small but not very small pairs}
-
+\begin{theorem}[{\emph{Cf}.~\cite[Theorem~6.4]{hernandez+etal.frobenius_powers}}]
+   \label{small not very small value: T}
+   Given a monomial matrix $A$, there exists an integer $\beta=\beta(A)$ with the following property\textup:
+   If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}, p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
+ % \comment{Compare Theorem~6.4 of \emph{Frobenius Powers}}\emily{Maybe just add ``Cf. \cite[Theorem~6.4]{hernandez+etal.frobenius_powers}'' above?}
+\end{theorem}
+% \daniel[inline]{This is the "lost theorem" Pedro recovered.  I've added a new proof (the old one is commented out) that does not rely on the fact (stated in \Cref{geometric small and very small: R} without proof) that there are only finitely many small but not very small pairs}
 
 \begin{proof}
-If we fix a universal denominator $\denom$ for $A$,   then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta=\beta(A,\denom)$ such that $p/\denom > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.  In what follows, we will assume that $p > \beta$.
+   If we fix a universal denominator $\denom$ for $A$, then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta=\beta(A,\denom)$ such that $p/\denom > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.
+   In what follows, we will assume that $p > \beta$.
 
-Next, suppose that $(A,\vv{u})$ is small, but not very small, and let $\vv{s}$ be a special point for this pair with denominator $\denom$.   \Cref{canonical-feasible: T} then states that 
-\[ \vv{k} \coloneqq \vv{s}p-\tail{\vv{s}}_p \in \feas \IP(A,\vv{u},p). \] 
-
-Since $(A,\vv{u})$ is not very small, $\vv{s} = \ft{A}{\vv{u}} > 1$, and our choice of $\denom$ then implies that $\norm{\vv{s}} \geq 1 + 1/\denom$, so that \[\norm{\vv{k}} \geq p + p/\denom - \norm{\tail{\vv{s}}_p} > p\] where the strict inequality follows from our choice of $p \gg 0$.  
+   Suppose that $(A,\vv{u})$ is small, but not very small, and let $\vv{s}$ be a special point for this pair with denominator $\denom$.
+   \Cref{canonical-feasible: T} then states that
+   \[ \vv{k} \coloneqq \vv{s}p-\tail{\vv{s}}_p \in \feas \IP(A,\vv{u},p). \]
+   Since $(A,\vv{u})$ is not very small, $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$, and our choice of $\denom$ then implies that $\norm{\vv{s}} \geq 1 + 1/\denom$, so that \[\norm{\vv{k}} \geq p + p/\denom - \norm{\tail{\vv{s}}_p} > p\] where the strict inequality follows from our choice of $p \gg 0$.  
 
 This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.  Without loss of generality, assume $h_1 < k_1$ , and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.  By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\norm{\vv{g}}}{\vv{g}} \not\equiv 0 \bmod p$.  Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.  It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
 \end{proof} 
