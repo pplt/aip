@@ -1825,36 +1825,69 @@ The following allows us to reduce even further, to the very small case.
 % \daniel[inline]{This is the "lost theorem" Pedro recovered.  I've added a new proof (the old one is commented out) that does not rely on the fact (stated in \Cref{geometric small and very small: R} without proof) that there are only finitely many small but not very small pairs}
 
 \begin{proof}
-   If we fix a universal denominator $\denom$ for $A$, then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta=\beta(A,\denom)$ such that $p/\denom > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.
+   If we fix a universal denominator $\denom$ for $A$, then \Cref{finitely many coord sums: C} implies that there exists an integer $\beta$ such that $p/\denom > \norm{\tail{\vv{s}}_p}$ for every $A$-list $(A,\vv{u},\vv{s}, p)$ with $p > \beta$.
    In what follows, we will assume that $p > \beta$.
 
    Suppose that $(A,\vv{u})$ is small, but not very small, and let $\vv{s}$ be a special point for this pair with denominator $\denom$.
    \Cref{canonical-feasible: T} then states that
    \[ \vv{k} \coloneqq \vv{s}p-\tail{\vv{s}}_p \in \feas \IP(A,\vv{u},p). \]
-   Since $(A,\vv{u})$ is not very small, $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$, and our choice of $\denom$ then implies that $\norm{\vv{s}} \geq 1 + 1/\denom$, so that \[\norm{\vv{k}} \geq p + p/\denom - \norm{\tail{\vv{s}}_p} > p\] where the strict inequality follows from our choice of $p \gg 0$.  
+   Since $(A,\vv{u})$ is not very small, $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$, and our choice of $\denom$ then implies that $\norm{\vv{s}} \geq 1 + 1/\denom$, so that
+   \[\norm{\vv{k}} \geq p + p/\denom - \norm{\tail{\vv{s}}_p} > p,\]
+   where the strict inequality follows from our choice of $p \gg 0$.
 
-This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.  Without loss of generality, assume $h_1 < k_1$ , and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.  By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\norm{\vv{g}}}{\vv{g}} \not\equiv 0 \bmod p$.  Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.  It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
+   This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.
+   Without loss of generality, assume $h_1 < k_1$, and define $\vv{g} = \vv{h}q + \vv{e}_1(q-1)$.
+   By construction, $\vv{g} \leq \vv{k}q, \norm{\vv{g}} = qp-1$, and $\binom{\norm{\vv{g}}}{\vv{g}} \not\equiv 0 \bmod p$.
+   Furthermore, the fact that $\vv{k} \in \feas \IP(A,\vv{u},p)$ implies that $A\vv{g} \leq A{\vv{k}}q < \vv{u}qp$, and so $\vv{g} \in \feas \IP_p(A,\vv{u},qp)$.
+   It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
 \end{proof} 
 
 With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $(A, \vv{u})$ is very small, and $e=1$,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
 
+\pedro[inline]{
+   I modified the statement and proof of the following theorem to isolate the part that depends on $p\gg 0$.
+   Original statement and proof were commented out.
+}
 \begin{theorem}
-\label{arithmetic uniform value and image: T}   Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
-If $(A, \vv{u})$ is very small, and $p > \beta$, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.  In particular, if $p > \beta$, then 
-%
-\[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \] and 
-\daniel{Weird observation:  If I replace the command ``ol" with ``collapse" below, the $p$ becomes bold too.  Check later to see if this introduced other typesetting errors in the paper.}
-\emily{It works OK if we put curly brackets around the entire vector, including the {\tt vv}.}
-%
-\[ \ol{\short \IP_p(A,\vv{u},p)}= \ol{\short \IP(A,\vv{u},p)}= \ushort(A,\vv{u},p) \]
-%
-% \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p) \]
-%
-where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+   \label{arithmetic uniform value and image: T}
+   For every small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+   Consequently, given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
+   If $(A, \vv{u})$ is very small, and $p > \beta$, then 
+   \[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \]
+   and
+   \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p), \]
+   where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{theorem}
 
-\begin{proof}  If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \udeficit(A, \vv{u}, p) \] for every monomial pair $(A, \vv{u})$ and $p > \beta$.  Given that $\ft{A}{\vv{u}} \leq 1$, the positivity of $\udeficit(A, \vv{u},p)$ then implies that this quantity is less than $p$.  Consequently, every $\vv{k}$ feasible for $\IP(A, \vv{u}, p)$ satisfies $\norm{\vv{k}} \leq p-1$, and therefore automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.  We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$ whenever $\ft{A}{\vv{u}}$ is at most $1$ and $p > \beta$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
+\begin{proof}
+   We have seen that
+   \[ \deficit \IP(A, \vv{u}, p)  = \ft{A}{\vv{u}} p -\val \IP(A, \vv{u}, p)\]
+   is positive. 
+   As $\ft{A}{\vv{u}} \leq 1$ for a very small pair $(A,\vv{u})$, this implies that $\val\IP(A,\vv{u},p)\le p-1$.
+   Thus, every feasible point for $\IP(A, \vv{u}, p)$ automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$, and so these programs coincide.
+   Our other claims then simply follow from \Cref{uniform uniform value and image: T}.
 \end{proof}
+
+% \begin{theorem}
+%    \label{arithmetic uniform value and image: T}
+%    Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
+%    If $(A, \vv{u})$ is very small, and $p > \beta$, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+%    In particular, if $p > \beta$, then 
+%    \[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \]
+%    and
+%    \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p), \]
+%    where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+% \end{theorem}
+
+% \begin{proof}
+%    If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then
+%    \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \udeficit(A, \vv{u}, p) \]
+%    for every $A$-pair $(A, \vv{u})$ and $p > \beta$.
+%    Suppose from here on that $(A,\vv{u})$ is very small and $p > \beta$.
+%    As $\ft{A}{\vv{u}} \leq 1$, the positivity of $\udeficit(A, \vv{u},p)$ implies that $\val\IP(A,\vv{u},p)\le p-1$.
+%    Consequently, every point $\vv{k}$ that is feasible for $\IP(A, \vv{u}, p)$ automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.
+%    We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
+% \end{proof}
 
 \begin{remark} \label{program behavior small: R}
 For $(A, \vv{u})$ very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\Pi = \Pi(A, \vv{u},p)$ and $\Pi_p = \Pi_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\Pi_p$ equals that of $\Pi$.  
