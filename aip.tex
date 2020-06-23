@@ -109,7 +109,7 @@ TO DO LIST:
       % \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
       % \emily[inline]{I think this is defunct now? }
       \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
-   \emily[inline]{This only seems to happen with $\Pi$ and $\Pi_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
+   \emily[inline]{This only seems to happen with $\IP$ and $\IP_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
     \item[$\Box$] Put ``titles'' in appropriate statements. 
    \end{enumerate}
 }
@@ -1842,7 +1842,7 @@ The following allows us to reduce even further, to the very small case.
    It follows that $\val \IP_p(A,\vv{u},qp) \geq \norm{\vv{g}} = qp-1$, and \Cref{trivial small value bound: P} implies that this bound must be an equality.
 \end{proof} 
 
-With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $(A, \vv{u})$ is very small, and $e=1$,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
+With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p)$ when $(A, \vv{u})$ is very small,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
 
 \pedro[inline]{
    I modified the statement and proof of the following theorem to isolate the part that depends on $p\gg 0$.
@@ -1856,7 +1856,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    \[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \]
    and
    \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p), \]
-   where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
+   where the overbar denotes collapse along $\mf(A, \vv{u})$.
 \end{theorem}
 
 \begin{proof}
@@ -1890,100 +1890,114 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 % \end{proof}
 
 \begin{remark} \label{program behavior small: R}
-For $(A, \vv{u})$ very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\Pi = \Pi(A, \vv{u},p)$ and $\Pi_p = \Pi_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\Pi_p$ equals that of $\Pi$.  
-Hence, since the collapse of $\short \Pi$ along $\O = \mf(A, \vv{u})$ does not depend on $p$,  but rather on the class of $p$ modulo a universal denominator (see \Cref{pair periodicity: R} and \Cref{uniform uniform value and image: T}), the collapse of $\short \Pi_p$ is also independent of $p$.  
-
-However, if $(A, \vv{u})$ is small but not very small, $\Pi$ and $\Pi_p$ need not agree.  What's more, the collapses of their shortfalls along the minimal face can also differ.  
-For instance, let $A$ be the $2 \times 2$ identity matrix, and $\vv{u} = (1,1)$.  Then for $p \gg 0$, $\val \Pi_p = p-1$ by \Cref{small not very small value: T}, while $\val \Pi = 2p-2$. 
-In this case, $\O = \mf(A,\vv{u})$ is bounded, so we know $\short \Pi$ does not depend on depend on $p$ for $p \gg 0$.  On the other hand, $(\frac{p-1}{2}, \frac{p-1}{2}) \in \opt \Pi_p$ for all $p$, so that $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is always an element of $\short \Pi_p$.
-
-This example illustrates that the nature of the programs $\Pi$ and $\Pi_p$ can differ drastically when $(A,\vv{u})$ is very small, 
-and when it is just small. This motivates our technique of reducing to the \emph{very small} setting.  
+   \Cref{arithmetic uniform value and image: T}, together with the periodicity of universal deficits and shortfalls shown in \Cref{pair periodicity: R}, shows that for a very small pair $(A,\vv{u})$, the deficit and the collapse of the shortfall of  $\IP_p(A,\vv{u},p)$ along $\mf(A, \vv{u})$ do not depend on $p$,  but rather on the class of $p$ modulo a universal denominator.
+% For $(A, \vv{u})$ very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\IP = \IP(A, \vv{u},p)$ and $\IP_p = \IP_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\IP_p$ equals that of $\IP$.  
+% Hence, since the collapse of $\short \IP$ along $\O = \mf(A, \vv{u})$ does not depend on $p$,  but rather on the class of $p$ modulo a universal denominator (see \Cref{pair periodicity: R} and \Cref{uniform uniform value and image: T}), the collapse of $\short \IP_p$ is also independent of $p$.  
 \end{remark}
 
-\Cref{arithmetic uniform value and image: T} is fundamental, and together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
+\begin{example}
+   If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
+   Moreover, the collapses of their shortfalls along the minimal face can also differ.
+   For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
+   For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$.
+   In contrast, for any odd prime $p$, the point $(\frac{p-1}{2}, \frac{p-1}{2})$ is feasible for $\IP_p$, and therefore optimal by \Cref{trivial small value bound: P}.
+   Thus, $\val \IP_p = p-1$ and the point $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is an element of $\short \IP_p$.
+
+   This example shows that the nature of the programs $\IP$ and $\IP_p$ for very small pairs and for small but not very small pairs can differ drastically.
+   This motivates our technique of reducing to the \emph{very small} setting.  
+\end{example}
+
+\Cref{arithmetic uniform value and image: T} is fundamental and, together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
 
 \subsection{The $\idealm$-primary case}
 \label{m-primary: SS}
-  Our goal here is to describe an algorithm for computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ in the case that $A$ is associated to an $\idealm$-primary monomial ideal,  $(A,\vv{u})$ is very small, and $p$ is large relative to $A$, and $e > 0$ is arbitrary.  As a by-product, this algorithm  establishes the following result.
+  Our goal here is to describe an algorithm for computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ in the case that $A$ is associated to an $\idealm$-primary monomial ideal, where $\idealm$ is the ideal generated by the variables, $(A,\vv{u})$ is very small, $p$ is large relative to $A$, and $e > 0$ is arbitrary.  As a by-product, this algorithm  establishes the following result.
 
 \begin{theorem}
-\label{m-primary AIP: T}
- If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exist $\beta=\beta(A)$ with the following property:  If $p > \beta$ and $(A,\vv{u})$ is very small, then the value of $\IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$.  Furthermore,  the non-leading coefficients in this polynomial are nonpositive and rational, and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
+   \label{m-primary AIP: T}
+   If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exist $\beta=\beta(A)$ with the following property\textup:
+   If $p > \beta$ and $(A,\vv{u})$ is very small, then the value of $\IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$.
+   Furthermore, the non-leading coefficients in this polynomial are nonpositive and rational, and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
 \end{theorem}
 
-Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.  In this context, \Cref{arithmetic uniform value and image: T}, when it applies, becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to a properly collapsed one.  Indeed, the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general  accounts for much of the increased technicality present in the next section.
+Our assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face $\mf(A, \vv{u})$ is bounded for every pair $(A, \vv{u})$, and so the collapse along every such face is the identity.
+In this context, \Cref{arithmetic uniform value and image: T}, when it applies, becomes a significantly stronger result, as it computes \emph{full} shortfalls, as opposed to a properly collapsed one.
+Indeed, the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general accounts for much of the increased technicality present in the next section.
 
 \begin{remark}[On $p$ being sufficiently large]
-\label{p large m-primary: R}
-First off, throughout this discussion, we will always assume that $p$ is large enough, relative to $A$, so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.   
+   \label{p large m-primary: R}
+   First off, throughout this discussion, we will always assume that $p$ is large enough, relative to $A$, so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.
+   We also want $p$ to be large enough so that the problem of comparing two rational numbers of the form $\val \IP_p(A,\vv{u},p)$, with $(A,\vv{u})$ very small, depends only on the class of $p$ modulo some integer, and not on $p$ itself.
 
-We also want $p$ to be large enough so that the problem of comparing two rational numbers of the form $\val \IP_p(A,\vv{u},p)$, with $(A,\vv{u})$ very small, depends only on the class of $p$ modulo some integer, and not on $p$ itself.  
+   More precisely, if $(A,\vv{u})$ is very small, then  \Cref{arithmetic uniform value and image: T} implies that
+   \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p), \]
+   a linear polynomial in $p$.
+   By definition, the very small pair $(A,\vv{u})$ satisfies $\ft{A}{\vv{u}} \leq 1$, and \Cref{discreteness: P} then implies that there are only finitely many possible values for $\ft{A}{\vv{u}}$ as the very small pair $(A,\vv{u})$ varies.
 
-More precisely, if $(A,\vv{u})$ is very small, then  \Cref{arithmetic uniform value and image: T} implies that 
-\[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p) \] a linear polynomial in $p$.  By definition, the very small pair $(A,\vv{u})$ satisfies $\ft{A}{\vv{u}} \leq 1$, and \Cref{discreteness: P} then implies that there are only finitely many possible values for $\ft{A}{\vv{u}}$ as the very small pair $(A,\vv{u})$ varies.  
+   Similarly, \Cref{finitely many deltas for a fixed A: R} tells us that there are only finitely many possible values for $\udeficit(A,\vv{u},p)$ as we vary over all pairs $(A,\vv{u})$, while \Cref{pair periodicity: R} tells us that this universal deficit, with $(A,\vv{u})$ fixed, depends on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
 
-Similarly, \Cref{finitely many deltas for a fixed A: R} tells us that there are only finitely many possible values for $\udeficit(A,\vv{u},p)$ as we vary over all pairs $(A,\vv{u})$, while \Cref{pair periodicity: R} tells us that this universal deficit, with $(A,\vv{u})$ fixed, depends on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
-
-It follows from these observations that we can choose $p \gg 0$, with the lower bound depending only on the ambient matrix $A$, so that to compare any two numbers of the form $\val \IP_p(A,\vv{u},p)$ with $(A,\vv{u})$ very small, it suffices to first compare their leading coefficients, and if necessary, their constant term.  Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
+   It follows from these observations that we can choose $p \gg 0$, with the lower bound depending only on the ambient matrix $A$, so that to compare any two numbers of the form $\val \IP_p(A,\vv{u},p)$ with $(A,\vv{u})$ very small, it suffices to first compare their leading coefficients, and if necessary, their constant term.
+   Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
 \end{remark}
 
-\daniel[inline]{Subscripts are now indexed by powers of $p$, and the indexing was modified so that it agrees with our choice of notation for the graphs later}
+% \daniel[inline]{Subscripts are now indexed by powers of $p$, and the indexing was modified so that it agrees with our choice of notation for the graphs later}
 
-We are now prepared to describe our algorithm.   In what follows, choose $p \gg 0$ as in \Cref{p large m-primary: R}, and fix any universal denominator  $\denom$ for $A$.
-
-We begin our process by initially defining both $\S_p = \S_p(A,\vv{u})$ and $\S^{\ast}_p(A,\vv{u}) = \S^{\ast}_p$ as the singleton set $\S_p=\S_p^{\ast} = \{ (A,\vv{u}) \}$,  and noting that 
+We are now prepared to describe our algorithm.
+In what follows, choose $p \gg 0$ as in \Cref{p large m-primary: R}, and fix a universal denominator  $\denom$ for $A$.
+We begin our process by initially defining both $\S_p = \S_p(A,\vv{u})$ and $\S^{\ast}_p = \S^{\ast}_p(A,\vv{u})$ as the singleton set $\S_p=\S_p^{\ast} = \{ (A,\vv{u}) \}$,  and noting that 
 \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u}).\]
 %$\mathcal{S}_1$ to be the first in the sequence of shortfalls associated to the programs $\IP_p(A,\vv{u},p^e)$.  In other words, set \daniel{Replace $\mathcal{S}_e \mapsto \S_{p^e}$? \\ Consist of pairs?}
 
 We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, and set
 %
 \begin{align*}
- \S_{p^2} = \S_{p^2}(A,\vv{u}) & \coloneqq \{ (A,\vv{v}) : \vv{v} \in \short \IP_{p}(A,\vv{u},p) \} \\
- & = \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
+ \S_{p^2} = \S_{p^2}(A,\vv{u}) \coloneqq& \{ (A,\vv{v}) : \vv{v} \in \short \IP_{p}(A,\vv{u},p) \} \\
+ =& \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
 \end{align*}  
-
 Observe that this set depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: R} tells us that every pair in $\S_{p^2}$ is small.
-
-This smallness, along with \Cref{trivial small value bound: P}, tells us that  \[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\] is at most $p^e-1$.  Setting $q=p$ in \Cref{general AIP: T} then tells us that
+This smallness, along with \Cref{trivial small value bound: P}, tells us that
+\[ M_e \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e) :  (A,\vv{v}) \in \S_{p^2} \}\]
+is at most $p^e-1$.
+\Cref{general AIP: T}, with $q=p$, and \Cref{arithmetic uniform value and image: T} then tell us that
 %
 \begin{equation}
 \label{m-primary value: e}
- \val \IP_p(A,\vv{u},p^{e+1}) = \ft{A}{\vv{u}}p^{e+1} - \udeficit(A,\vv{u},p)p^e + M_e
+ \val \IP_p(A,\vv{u},p^{e+1}) = \ft{A}{\vv{u}}p^{e+1} - \udeficit(A,\vv{u},p)p^e + M_e.
  \end{equation}
-%
-and also that
+% 
+\Cref{general AIP: T} also tells us that
 %
 \begin{equation}
 \label{m-primary shortfall: e}
-\short \IP_p(A,\vv{u},p^{e+1}) = \cup \short \IP_p(A,\vv{v}, p^e)
+\short \IP_p(A,\vv{u},p^{e+1}) = \bigcup \short \IP_p(A,\vv{v}, p^e),
 \end{equation}
 %
 where the union is over all $(A,\vv{v}) \in \mathcal\S_{p^2}$ that achieve $M_e$.
 
-As $\S_{p^2}$ depends on $p$ modulo the universal denominator $\denom$, the issue is whether there exists a pair in $\S_{p^2}$ that is not very small also depends on $p$ modulo $\denom$.  When this occurs, \Cref{small not very small value: T} tells us that $M_e = p^e-1$, and \eqref{m-primary value: e} then allows us to conclude that 
+As $\S_{p^2}$ depends on $p$ modulo the universal denominator $\denom$, the issue of whether there exists a pair in $\S_{p^2}$ that is not very small also depends on $p$ modulo $\denom$.  When this occurs, \Cref{small not very small value: T} tells us that $M_e = p^e-1$, and \eqref{m-primary value: e} then allows us to conclude that 
 %
 \[ \val \IP_p(A,\vv{u},p^{e+1})  = \ft{A}{\vv{u}} p^{e+1}-(\udeficit(A,\vv{u},p)-1)p^e-1.  \]
 %
 As this formula is valid for all $e \geq 1$, our process terminates in this case.
 
 On the other hand, if every pair in $\S_{p^2}$ is very small, then \Cref{arithmetic uniform value and image: T} instead allows us to compute $M_1$ as 
-\[ M_1 = \max \{ \ft{A}{\vv{v}}p-\udeficit(A,\vv{v},p) : (A,\vv{v}) \in \S_{p^2}\} \] 
-
-Let $\S_{p^2}^{\ast} = \S_{p^2}^{\ast}(A,\vv{u})$ be the subset of $\S_{p^2}$ consisting of all $(A,\vv{v})$ that first maximize $\ft{A}{\vv{v}}$, and amongst these, then minimize $\udeficit(A,\vv{v},p)$.  By definition, $\S_{p^2}^{\ast}$ depends on $p$ modulo $\denom$, and our choice of $p \gg 0$ guarantees that $\S_{p^2}^{\ast}$ corresponds to the points in $\S_{p^2}$ that achieve $M_1$.  Therefore, we may write \[ M_1 = \epsilon_{p^2} p - \delta_{p^2}\]  where $\epsilon_{p^2},\delta_{p^2}$ are positive rational numbers that depend on $p$ modulo $\denom$.
+\[ M_1 = \max \{ \ft{A}{\vv{v}}p-\udeficit(A,\vv{v},p) : (A,\vv{v}) \in \S_{p^2}\}. \] 
+Let $\S_{p^2}^{\ast} = \S_{p^2}^{\ast}(A,\vv{u})$ be the subset of $\S_{p^2}$ consisting of all $(A,\vv{v})$ that first maximize $\ft{A}{\vv{v}}$, and amongst these, then minimize $\udeficit(A,\vv{v},p)$.
+By definition, $\S_{p^2}^{\ast}$ depends on $p$ modulo $\denom$, and our choice of $p \gg 0$ guarantees that $\S_{p^2}^{\ast}$ corresponds to the points in $\S_{p^2}$ that achieve $M_1$.
+Therefore, we may write \[ M_1 = \epsilon_{p^2} p - \delta_{p^2}\]  where $\epsilon_{p^2},\delta_{p^2}$ are positive rational numbers that depend on $p$ modulo $\denom$.
 
 Setting $e=1$ in \eqref{m-primary value: e} then shows that 
 %
-\[ \val \IP_p(A,\vv{u},p^2) = \ft{A}{\vv{u}}p^2 - (\udeficit(A,\vv{u},p)-\epsilon_{p^2})p - \delta_{p^2}  \] 
+\[ \val \IP_p(A,\vv{u},p^2) = \ft{A}{\vv{u}}p^2 - (\udeficit(A,\vv{u},p)-\epsilon_{p^2})p - \delta_{p^2},  \] 
 %
 while setting $e=1$ in \eqref{m-primary shortfall: e} tells us that
 %
-\[ \short \IP_p(A,\vv{u},p^2) = \cup_{\vv{v} \in \S_{p^2}^{\ast}} \short \IP_p(A,\vv{v},p) = \cup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p). \]  
+\[ \short \IP_p(A,\vv{u},p^2) = \bigcup_{\vv{v} \in \S_{p^2}^{\ast}} \short \IP_p(A,\vv{v},p) = \bigcup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p). \]  
 %
 Turning our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^3)$, we define
 \begin{align*}
-\S_{p^3} = \S_{p^3}(A,\vv{u}) & \coloneqq \{ (A,\vv{w}):  \vv{w} \in \short_p(A,\vv{u},p^2) \} \\
- & = \{ (A,\vv{w}): \vv{w} \in \cup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p) \} 
+\S_{p^3} = \S_{p^3}(A,\vv{u}) & \coloneqq \{ (A,\vv{w}):  \vv{w} \in \short \IP_p(A,\vv{u},p^2) \} \\
+ & = \bigg\{ (A,\vv{w}): \vv{w} \in \bigcup_{\vv{v} \in \S_{p^2}^{\ast}} \ushort(A,\vv{v},p) \bigg\}. 
  \end{align*}
 %
 Observe that $\S_{p^3}$ depends on the class of $p$ modulo $\denom$, but not on $p$ itself.  Furthermore, \Cref{small pairs from shortfalls: R} tells us that every pair in $\S_{p^3}$ is small.
@@ -2701,17 +2715,17 @@ If some column of $\widetilde{A}$ were zero, then some monomial of $\ideala$ wou
 Therefore, there exists a positive integer $M$ such that, for all $1 \leq i \leq t$, we have that $\vv{r}_i \cdot \vv{h} < M$ for every $\vv{h} \in \feas\LP(\widetilde{A}, \vv{w})$. 
 
 Let $\vv{u} \in \NN^n$ be the vector whose $i$-coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq n$.
-Given $e \geq 1$, notice that the program $\Pi_p(A, \vv{u}, p^e)$ has at least as many constraints as $\Pi_p(\widetilde{A}, \vv{w},p^e)$, so
-$\feas \Pi_p(A, \vv{u}, p^e) \subseteq \Pi_p(\widetilde{A}, \vv{w}, p^e)$.
-On the other hand, if $\vv{k} \in \feas \Pi_p(\widetilde{A}, \vv{w},p^e)$, then 
+Given $e \geq 1$, notice that the program $\IP_p(A, \vv{u}, p^e)$ has at least as many constraints as $\IP_p(\widetilde{A}, \vv{w},p^e)$, so
+$\feas \IP_p(A, \vv{u}, p^e) \subseteq \IP_p(\widetilde{A}, \vv{w}, p^e)$.
+On the other hand, if $\vv{k} \in \feas \IP_p(\widetilde{A}, \vv{w},p^e)$, then 
 $\vv{k}/p^e \in \feas\LP(\widetilde{A},\vv{w})$ and so
 $\vv{r}_i \cdot (\vv{k}/p^e) \leq w_i$ for $1 \leq i \leq t$.  
 Moreover,  for all $t < i \leq n$, 
 $\vv{r}_i \cdot (\vv{k}/p^e) < M$, so that $\vv{r}_i \cdot \vv{k} < M p^e$ as well.
-Since $\vv{k} \geq \vv{0}$, and arithmetic constraint is also satisfied, we conclude that the feasible set of $\Pi_p(\widetilde{A}, \vv{w}, p^e)$ sits inside that of $\Pi_p(\widetilde{A}, \vv{w}, p^e)$, so they must coincide. 
+Since $\vv{k} \geq \vv{0}$, and arithmetic constraint is also satisfied, we conclude that the feasible set of $\IP_p(\widetilde{A}, \vv{w}, p^e)$ sits inside that of $\IP_p(\widetilde{A}, \vv{w}, p^e)$, so they must coincide. 
 Hence 
 \[
- \val\Pi_p(\widetilde{A}, \vv{w}, p^e) = \val \Pi_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
+ \val\IP_p(\widetilde{A}, \vv{w}, p^e) = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
 \]
 where $\ideald$ is the diagonal ideal associated to $\vv{u} \in \NN^\numvars$. 
 \end{proof}
