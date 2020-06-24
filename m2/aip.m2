@@ -34,6 +34,27 @@ randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(max
 colVec := u -> transpose matrix {u}
 --transforms a one-dimensional list into a column vector
 
+getFilename = () -> 
+(
+    filename := temporaryFileName();
+    while 
+    (
+        fileExists filename 
+        or 
+        fileExists( filename|".mat" ) 
+        or 
+        fileExists( filename|".zsol" ) 
+        or 
+        fileExists( filename|".cost" ) 
+        or 
+        fileExists( filename|".min" ) 
+        or 
+        fileExists( filename|".sign" ) 
+    )    
+    do filename = temporaryFileName();
+    filename
+)
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -41,23 +62,23 @@ colVec := u -> transpose matrix {u}
 -- newtonPolyhedron
 newton := A -> convexHull( A ) + posOrthant( rank target A )
 
--- splitting polytope
-split = method() 
-split ( Matrix, Matrix ) := ( A, u ) -> 
+-- feasLPting polytope
+feasLP = method() 
+feasLP ( Matrix, Matrix ) := ( A, u ) -> 
 (
     n := rank source A;
     M := A || - identityMatrix n; 
     v := u || colVec constantList( 0, n );
     polyhedronFromHData( M, v )
 )
-split ( Matrix, List ) := ( A, u ) -> split( A, colVec u ) 
-split Matrix := A -> split( A, constantList( 1, rank target A) )
+feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, colVec u ) 
+feasLP Matrix := A -> feasLP( A, constantList( 1, rank target A) )
 
 -- optimal set for linear program P(A,u)
-optP = method()
-optP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, split(A, u) )
-optP ( Matrix, List ) := ( A, u ) -> optP( A, colVec u )
-optP Matrix := A -> maxFace( colVec constantList( 1, rank source A ), split A )     
+optLP = method()
+optLP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, feasLP(A, u) )
+optLP ( Matrix, List ) := ( A, u ) -> optLP( A, colVec u )
+optLP Matrix := A -> maxFace( colVec constantList( 1, rank source A ), feasLP A )     
 
 univDenom = method()
 univDenom Matrix := A ->
@@ -102,9 +123,9 @@ collapse (Matrix, List) := (A,u) -> (
 collapse Matrix := A -> collapse( A, constantList( 1, rank target A ) )
 
 -- a minimal coordinate
-minCoord = method()
-minCoord (Matrix,List) := (A,u) -> first entries transpose interiorPoint optP(A,u)
-minCoord Matrix := A -> first entries transpose interiorPoint optP A
+specialPt = method()
+specialPt (Matrix,List) := (A,u) -> first entries transpose interiorPoint optLP(A,u)
+specialPt Matrix := A -> first entries transpose interiorPoint optLP A
 
 consTheta = (A,u,s,q) -> (
     n := rank source A;
@@ -120,13 +141,41 @@ consTheta = (A,u,s,q) -> (
     polyhedronFromHData( constraints, constraintsRHS )
 )
 
+solveIP := ( A, u, q ) ->
+(
+    m = rank target A;
+    n = rank source A;
+    path242 := prefixDirectory | currentLayout#"programs";
+    file := getFilename();
+    M := openOut(file | ".mat");
+    putMatrix( M, A | identityMatrix m );
+    close M;
+    sol = openOut(file | ".zsol");
+    putMatrix( sol, matrix { join( constantList( 0, n ), apply( first entries transpose u, x -> x*q - 1 ) ) } );
+    close sol;
+    signs = openOut(file | ".sign");
+    putMatrix( signs, matrix { constantList( 1, m + n ) } );
+    close signs;
+    cost = openOut(file | ".cost");
+    putMatrix( cost, matrix { join( constantList( -1, n ), constantList( 0, m ) ) } );
+    close cost;
+    execstr := path242 | "minimize -q " | rootPath | file;
+    ret := run(execstr);
+    if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/minimize";
+    opt := getMatrix(file | ".min");
+    value := first first entries (opt*(colVec join( constantList( 1, n ), constantList( 0, m ) ) ));
+    -- will also return an optimal point
+    value
+)    
+    
+
 --------------------------------------------
 
-PA = consTheta(A,{1,1,1},minCoord A,2)        
+PA = consTheta(A,{1,1,1},specialPt A,2)        
 
-PB = consTheta(B,{1,1},minCoord B,224)        
+PB = consTheta(B,{1,1},specialPt B,224)        
 
-toString minCoord B
+toString specialPt B
 
 
 hyperplanes PA
@@ -144,8 +193,8 @@ NB = newton B
 
 halfspaces NA
 
-SA = split A
-SB = split B
+SA = feasLP A
+SB = feasLP B
 
 halfspaces SA
 
@@ -158,46 +207,46 @@ minFace A
 
 rays tailCone minFace A
 
-optA = optP A
+optA = optLP A
 vertices optA
 
-optB = optP B
+optB = optLP B
 vertices optB
 
 rb A
 rb B
 
 vertices minFace B
-vertices optP B
+vertices optLP B
 
-minCoord A
-minCoord B
+specialPt A
+specialPt B
 
 ft A
 ft B
 
-sum minCoord A
-sum minCoord B
+sum specialPt A
+sum specialPt B
 
-minCoord A
-A*(minCoord A)
-B*(minCoord B)
+specialPt A
+A*(specialPt A)
+B*(specialPt B)
 
 rb A
 A
 collapse B
-minCoord B
+specialPt B
 
 ---------------
 -- Example 1
 
 A = matrix {{3, 1}, {9, 1}, {0, 4}, {3, 10}, {7, 8}}
 
-split A
+feasLP A
 
-toString entries transpose vertices split A
+toString entries transpose vertices feasLP A
 
-vertices optP A
+vertices optLP A
 
 ZZ/11[x,y,z,u,v]
 fpt(x^3*y^9*u^3*v^7+x*y*z^4*u^10*v^8)
@@ -207,11 +256,11 @@ fpt(x^3*y^9*u^3*v^7+x*y*z^4*u^10*v^8)
 
 A = matrix {{6, 9}, {6, 8}, {10, 4}, {4, 10}}
 
-split A
+feasLP A
 
-toString entries transpose vertices split A
+toString entries transpose vertices feasLP A
 
-vertices optP A
+vertices optLP A
 
 ZZ/7[x,y,z,u]
 fpt(x^6*y^6*z^10*u^4 + x^9*y^8*z^4*u^10)
@@ -221,11 +270,11 @@ fpt(x^6*y^6*z^10*u^4 + x^9*y^8*z^4*u^10)
 
 A = matrix {{1, 11}, {5, 10}, {9, 8}, {11, 1}}
 
-split A
+feasLP A
 
-toString entries transpose vertices split A
+toString entries transpose vertices feasLP A
 
-vertices optP A
+vertices optLP A
 
 ZZ/2[x,y,z,u]
 fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
@@ -235,11 +284,11 @@ fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
 
 A = matrix {{4, 9}, {6, 7}, {9, 3}, {1, 7}}
 
-split A
+feasLP A
 
-toString entries transpose vertices split A
+toString entries transpose vertices feasLP A
 
-vertices optP A
+vertices optLP A
 
 ZZ/2[x,y,z,u]
 fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
@@ -249,9 +298,9 @@ fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
 
 A = matrix {{3, 11}, {11, 2}, {5, 10}, {2, 0}}
 
-toString entries transpose vertices split A
+toString entries transpose vertices feasLP A
 
-vertices optP A
+vertices optLP A
 
 ZZ/7[x,y,z,u]
 fpt(x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0)
@@ -271,7 +320,7 @@ scan(100, i ->
     ( 
         A = randomMatrix(3,3,10);
         c = collapse A;
-        if #(rb A) == 1 and vertices optP A != vertices optP(c*A)
+        if #(rb A) == 1 and vertices optLP A != vertices optLP(c*A)
             then (print toString entries transpose A; print "\n")        
     )
 )
@@ -297,16 +346,16 @@ isCompact minimalFace A
 rb A
 c = collapse A
 
-toString entries transpose vertices split A
-toString entries transpose vertices optP A
+toString entries transpose vertices feasLP A
+toString entries transpose vertices optLP A
 
-toString entries transpose vertices split(c*A)
-toString entries transpose vertices optP(c*A)
+toString entries transpose vertices feasLP(c*A)
+toString entries transpose vertices optLP(c*A)
 
 ft A
 
-halfspaces optP A
-halfspaces optP(c*A)
+halfspaces optLP A
+halfspaces optLP(c*A)
 
 entries A -- {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}} -- optimal set different from optimal set of collapse
 
@@ -316,17 +365,17 @@ entries A -- {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}} -- optimal set differe
 ft(A)
 ft(c*A)
 
-halfspaces split A
-halfspaces split (c*A)
-contains(split(c*A),optP(c*A))
-halfspaces( optP(c*A) )
-toString entries transpose vertices optP(c*A)
+halfspaces feasLP A
+halfspaces feasLP (c*A)
+contains(feasLP(c*A),optLP(c*A))
+halfspaces( optLP(c*A) )
+toString entries transpose vertices optLP(c*A)
 
-contains(optP(c*A),optP A)
-contains(split(c*A),split A)
+contains(optLP(c*A),optLP A)
+contains(feasLP(c*A),feasLP A)
 
-toString entries transpose vertices split A
-toString entries transpose vertices split(c*A)
+toString entries transpose vertices feasLP A
+toString entries transpose vertices feasLP(c*A)
 
 --------------------------------------------------------
 A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
@@ -340,7 +389,43 @@ apply(L, f -> vert_(f#0))
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 d = univDenom A
 
-opt = optP(A,{random(100),random(100),random(100)});
+opt = optLP(A,{random(100),random(100),random(100)});
 v = entries transpose vertices opt;
 apply(v,denominator)
 apply(d*v,x->apply(x,t->lift(t,ZZ)))
+
+installPackage "FourTiTwo"
+
+debugLevel = 1
+A = matrix "1,1,1,1; 1,2,3,4"
+B = syz A
+hilbertBasis transpose B
+hilbertBasis(A,InputType=>"lattice")
+prefixDirectory | currentLayout#"programs"
+
+path442 = "/usr/libexec/Macaulay2/bin/"
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+M = openOut("test.mat")
+putMatrix( M, A | identityMatrix 3 )
+close M
+p = 5
+e = 3
+sol = openOut("test.zsol")
+putMatrix( sol, matrix {{0,0,0,p^e-1,p^e-1,p^e-1}} )
+close sol
+signs = openOut("test.sign")
+putMatrix( signs, matrix {{1,1,1,1,1,1}} )
+close signs
+cost = openOut("test.cost")
+putMatrix( cost, matrix {{-1,-1,-1,0,0,0}} )
+close cost
+run "/usr/libexec/Macaulay2/bin/minimize test"
+opt = getMatrix "test.min"
+first first entries (opt*(colVec {1,1,1,0,0,0}))
+
+R = ZZ/11[x,y,z]
+I = monomialIdeal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
+D = monomialIdeal(x^2,y^3,z^5)
+frobeniusNu(2,I,D)
+
+solveIP(A,colVec {2,3,5}, 5^4 )
