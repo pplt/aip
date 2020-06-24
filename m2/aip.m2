@@ -1,4 +1,4 @@
-loadPackage("Polyhedra", Reload => true)
+loadPackage("Polyhedra")
 loadPackage("FrobeniusThresholds")
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
@@ -31,6 +31,9 @@ canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
 randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
+colVec := u -> transpose matrix {u}
+--transforms a one-dimensional list into a column vector
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -40,19 +43,32 @@ newton := A -> convexHull( A ) + posOrthant( rank target A )
 
 -- splitting polytope
 split = method() 
-split ( Matrix, List ) := ( A, u ) -> 
+split ( Matrix, Matrix ) := ( A, u ) -> 
 (
     n := rank source A;
     M := A || - identityMatrix n; 
-    v := u | constantList( 0, n );
-    polyhedronFromHData( M, transpose matrix {v} )
-) 
+    v := u || colVec constantList( 0, n );
+    polyhedronFromHData( M, v )
+)
+split ( Matrix, List ) := ( A, u ) -> split( A, colVec u ) 
 split Matrix := A -> split( A, constantList( 1, rank target A) )
 
 -- optimal set for linear program P(A,u)
 optP = method()
-optP ( Matrix, List ) := ( A, u ) -> maxFace( transpose matrix {u}, split(A, u) )
-optP Matrix := A -> maxFace( transpose matrix { constantList( 1, rank source A) }, split A )     
+optP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, split(A, u) )
+optP ( Matrix, List ) := ( A, u ) -> optP( A, colVec u )
+optP Matrix := A -> maxFace( colVec constantList( 1, rank source A ), split A )     
+
+univDenom = method()
+univDenom Matrix := A ->
+(
+    n := rank source A;
+    m := rank target A;
+    I := identityMatrix n;
+    M := A || -A || I || -I;
+    allMinors := (minors(n, M))_*;
+    (m-1)*(lcm allMinors)
+)
 
 ft = method()
 ft ( Matrix, List ) := (A,u) -> (
@@ -318,3 +334,13 @@ A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
 L = faces(1, newton A)
 vert = vertices newton A
 apply(L, f -> vert_(f#0))
+
+----------------------------------
+
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+d = univDenom A
+
+opt = optP(A,{random(100),random(100),random(100)});
+v = entries transpose vertices opt;
+apply(v,denominator)
+apply(d*v,x->apply(x,t->lift(t,ZZ)))
