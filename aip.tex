@@ -706,9 +706,6 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
 
-\emily[inline]{Define vertices here?}
-
-
 \begin{proof}
    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
    Then one easily sees that the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
@@ -2757,8 +2754,9 @@ where $\ideald$ is the diagonal ideal associated to $\vv{u} \in \NN^\numvars$.
 
 \emily[inline]{This appendix will likely be dissolved.  We may need to bring some of these definitions/properties to an appropriate section where they will be used.  }
 
+\emily[inline]{I believe that none of \Cref{frobenius powers definitions: S} appears verbatim in either of our previous papers.  }
 
-\subsection{Definitions}
+\subsection{Definitions} \label{frobenius powers definitions: S}
 
 {
 
@@ -2797,7 +2795,7 @@ With $\ideala$ and $\idealb$ as above, given a nonnegative integer $e$, we set
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded sequence, and
 
-\textcolor{red}{This is \ref{eq: crit as a limit of mus}: 
+\textcolor{red}{This is already \eqref{eq: crit as a limit of mus}: 
 }
 \begin{equation}
    \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
@@ -2831,17 +2829,23 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 %    Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals.
 % \end{remark}
 
+\textcolor{red}{The first equivalent below is established in \cite[Proposition 2.5]{hernandez+etal.frobenius_examples}, and the second follows immediately from \eqref{eq: defn of crit(a,b)}.}
+
+
 \begin{proposition}\label{prop: description of frobenius powers in terms of crits}
-   If $\ideala$ is a monomial ideal, then
+   If $\ideala$ is a monomial ideal and $\vv{v} \in \NN^\numvars$ with $\vv{v}>\vv{0}$, then
    \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
    Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
 \end{proposition}
 
-\begin{proof}
-   The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
-   As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
-   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \textcolor{red}{missing reference}.
-\end{proof}
+
+% \begin{proof}
+%    The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
+%    As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
+%    The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \textcolor{red}{missing reference}.
+% \end{proof}
+
+\textcolor{red}{The following is stated for $\idealm$-primary ideals $\ideala$ as \cite[Proposition 2.6]{hernandez+etal.frobenius_examples}.}
 
 \begin{corollary}
    \label{cor: every crit is crit wrt diagonal ideal}
