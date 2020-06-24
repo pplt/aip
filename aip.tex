@@ -56,11 +56,11 @@ TO DO LIST:
 \begin{itemize}
    \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    \pedro[inline]{I included an example with a picture.}
+   \emily[inline]{Thank you!}
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
-\emily[inline]{Maybe done?}
 % \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
 %\comment[inline]{Going with dropping rows.}
 \item[$\Box$] Rewrite proofs with above convention.
@@ -204,7 +204,7 @@ In the same vein, operations on numbers are extended to points in $\RR^n$ in a c
 %We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
 \daniel{Revisit this when deciding how to describe collapsing}
 % More generally,
-Given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+We say that a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
 We extend this to all points in $\RR^n$, via projection: we say that $\vv{u} \in \RR^n$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if its projection on $\mathcal{S}$ is a positive (respectively, nonnegative) point of $\mathcal{S}$. 
 Finally, given $\vv{u},\vv{v}\in \RR^n$, we say that \emph{$\vv{u}$ is less than} (respectively, \emph{less than or equal to}) \emph{$\vv{v}$ in $\mathcal{S}$} if $\vv{v}-\vv{u}$ is positive (respectively, nonnegative) in $\mathcal{S}$.
 
@@ -706,9 +706,6 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
 
-\emily[inline]{Define vertices here?}
-
-
 \begin{proof}
    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
    Then one easily sees that the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
@@ -788,8 +785,6 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    On the other hand, since $\lambda^{-1}\vv{u} \in \N$, we have $\lambda^{-1}\vv{u} \ge A\vv{s}$ for some $\vv{s} \geq \vv{0}$ with $\norm{\vv{s}} = 1$.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
-
-\emily[inline]{Would having a picture for $m=2$ be overkill?}
 
 \begin{example}\label{ex: ft}
    We examine the different characterizations of $\ft{A}{\vv{u}}$ given in \Cref{FT descriptions: P}, for 
@@ -895,8 +890,8 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 %\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when the $\rb(\O)$ is empty.
-\pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
-\emily{It seems that we agree; I took a crack at updating it.}
+% \pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
+% \emily{It seems that we agree; I took a crack at updating it.}
 \end{enumerate}
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
@@ -2128,7 +2123,7 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
  %
  \end{theorem}
 
-\begin{proof}\daniel{Needs modification} We start by describing what it means $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
 Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
 %
@@ -2759,8 +2754,9 @@ where $\ideald$ is the diagonal ideal associated to $\vv{u} \in \NN^\numvars$.
 
 \emily[inline]{This appendix will likely be dissolved.  We may need to bring some of these definitions/properties to an appropriate section where they will be used.  }
 
+\emily[inline]{I believe that none of \Cref{frobenius powers definitions: S} appears verbatim in either of our previous papers.  }
 
-\subsection{Definitions}
+\subsection{Definitions} \label{frobenius powers definitions: S}
 
 {
 
@@ -2799,7 +2795,7 @@ With $\ideala$ and $\idealb$ as above, given a nonnegative integer $e$, we set
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{[k]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded sequence, and
 
-\textcolor{red}{This is \ref{eq: crit as a limit of mus}: 
+\textcolor{red}{This is already \eqref{eq: crit as a limit of mus}: 
 }
 \begin{equation}
    \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
@@ -2833,17 +2829,23 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 %    Since integral Frobenius powers and Frobenius roots of monomial ideals are themselves monomial ideals, the same is true for arbitrary Frobenius powers of monomial ideals.
 % \end{remark}
 
+\textcolor{red}{The first equivalent below is established in \cite[Proposition 2.5]{hernandez+etal.frobenius_examples}, and the second follows immediately from \eqref{eq: defn of crit(a,b)}.}
+
+
 \begin{proposition}\label{prop: description of frobenius powers in terms of crits}
-   If $\ideala$ is a monomial ideal, then
+   If $\ideala$ is a monomial ideal and $\vv{v} \in \NN^\numvars$ with $\vv{v}>\vv{0}$, then
    \[ x^{\vv{v}} \in \ideala^{[t]} \iff \ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1}) \iff \crit(\ideala, \vv{v}+\vv{1}) > t.\]
    Consequently, $\ideala^{[t]} = \ideal{x^{\vv{v}} : \crit(\ideala, \vv{v}+\vv{1}) > t}$.
 \end{proposition}
 
-\begin{proof}
-   The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
-   As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
-   The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \textcolor{red}{missing reference}.
-\end{proof}
+
+% \begin{proof}
+%    The second equivalence follows immediately from \eqref{eq: defn of crit(a,b)}.
+%    As for the first, the forward implication is trivial, since $x^\vv{v} \notin\diag(\vv{v}+\vv{1})$, and conversely, if $\ideala^{[t]} \not \subseteq \diag(\vv{v}+\vv{1})$, then there exists $x^\vv{u} \in \ideala^{[t]}$ with $\vv{u} \le \vv{v}$, so $x^\vv{v}\in \ideal{x^\vv{u}} \subseteq \ideala^{[t]}$.
+%    The final conclusion holds because $\ideala^{[t]}$ is a monomial ideal, as noted in \textcolor{red}{missing reference}.
+% \end{proof}
+
+\textcolor{red}{The following is stated for $\idealm$-primary ideals $\ideala$ as \cite[Proposition 2.6]{hernandez+etal.frobenius_examples}.}
 
 \begin{corollary}
    \label{cor: every crit is crit wrt diagonal ideal}
