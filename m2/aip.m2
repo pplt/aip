@@ -34,6 +34,10 @@ randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(max
 colVec := u -> transpose matrix {u}
 --transforms a one-dimensional list into a column vector
 
+constantMatrix := (c,m,n) -> matrix toList apply(m, i -> toList apply(n, x -> c) )
+
+zeroMatrix := (m,n) -> constantMatrix(0,m,n)
+    
 getFilename = () -> 
 (
     filename := temporaryFileName();
@@ -153,9 +157,6 @@ solveIP := ( A, u, q ) ->
     sol = openOut(file | ".zsol");
     putMatrix( sol, matrix { join( constantList( 0, n ), apply( first entries transpose u, x -> x*q - 1 ) ) } );
     close sol;
-    signs = openOut(file | ".sign");
-    putMatrix( signs, matrix { constantList( 1, m + n ) } );
-    close signs;
     cost = openOut(file | ".cost");
     putMatrix( cost, matrix { join( constantList( -1, n ), constantList( 0, m ) ) } );
     close cost;
@@ -165,9 +166,13 @@ solveIP := ( A, u, q ) ->
     opt := getMatrix(file | ".min");
     value := first first entries (opt*(colVec join( constantList( 1, n ), constantList( 0, m ) ) ));
     -- will also return an optimal point
-    value
+    optPt := transpose( opt*(identityMatrix(n) || zeroMatrix(m,n)) );
+    ( value, optPt )
 )    
     
+valueIP := ( A, u, q ) -> first solveIP( A, u, q)
+
+optPtIP := ( A, u, q ) -> last solveIP( A, u, q)
 
 --------------------------------------------
 
@@ -423,9 +428,11 @@ run "/usr/libexec/Macaulay2/bin/minimize test"
 opt = getMatrix "test.min"
 first first entries (opt*(colVec {1,1,1,0,0,0}))
 
-R = ZZ/11[x,y,z]
+R = ZZ/7[x,y,z]
 I = monomialIdeal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
 D = monomialIdeal(x^2,y^3,z^5)
-frobeniusNu(2,I,D)
+frobeniusNu(3,I,D)
 
-solveIP(A,colVec {2,3,5}, 5^4 )
+solveIP(A,colVec {2,3,5}, 7^3 )
+optPtIP(A,colVec {2,3,5}, 7^3 )
+valueIP(A,colVec {2,3,5}, 7^3 )
