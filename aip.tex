@@ -56,11 +56,11 @@ TO DO LIST:
 \begin{itemize}
    \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    \pedro[inline]{I included an example with a picture.}
+   \emily[inline]{Thank you!}
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
 \item[$\Box$] Rewrite statements in terms of ``shortfall.''
-\emily[inline]{Maybe done?}
 % \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
 %\comment[inline]{Going with dropping rows.}
 \item[$\Box$] Rewrite proofs with above convention.
@@ -204,7 +204,7 @@ In the same vein, operations on numbers are extended to points in $\RR^n$ in a c
 %We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
 \daniel{Revisit this when deciding how to describe collapsing}
 % More generally,
-Given a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$, we say that $\vv{u}$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
+We say that a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
 We extend this to all points in $\RR^n$, via projection: we say that $\vv{u} \in \RR^n$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if its projection on $\mathcal{S}$ is a positive (respectively, nonnegative) point of $\mathcal{S}$. 
 Finally, given $\vv{u},\vv{v}\in \RR^n$, we say that \emph{$\vv{u}$ is less than} (respectively, \emph{less than or equal to}) \emph{$\vv{v}$ in $\mathcal{S}$} if $\vv{v}-\vv{u}$ is positive (respectively, nonnegative) in $\mathcal{S}$.
 
@@ -789,8 +789,6 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
 
-\emily[inline]{Would having a picture for $m=2$ be overkill?}
-
 \begin{example}\label{ex: ft}
    We examine the different characterizations of $\ft{A}{\vv{u}}$ given in \Cref{FT descriptions: P}, for 
    \[A=\begin{bmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{bmatrix} \quad \text{and} \quad \vv{u} =
@@ -895,8 +893,8 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 %\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
 \item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when the $\rb(\O)$ is empty.
-\pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
-\emily{It seems that we agree; I took a crack at updating it.}
+% \pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
+% \emily{It seems that we agree; I took a crack at updating it.}
 \end{enumerate}
 The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
@@ -2128,7 +2126,7 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
  %
  \end{theorem}
 
-\begin{proof}\daniel{Needs modification} We start by describing what it means $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
 Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
 %
