@@ -208,7 +208,7 @@ We say that a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$ i
 We extend this to all points in $\RR^n$, via projection: we say that $\vv{u} \in \RR^n$ is \emph{positive in $\mathcal{S}$} (respectively, \emph{nonnegative in $\mathcal{S}$}) if its projection on $\mathcal{S}$ is a positive (respectively, nonnegative) point of $\mathcal{S}$. 
 Finally, given $\vv{u},\vv{v}\in \RR^n$, we say that \emph{$\vv{u}$ is less than} (respectively, \emph{less than or equal to}) \emph{$\vv{v}$ in $\mathcal{S}$} if $\vv{v}-\vv{u}$ is positive (respectively, nonnegative) in $\mathcal{S}$.
 
-Note that with these conventions, $\vv{u} < \vv{u}$ if and only if $\vv{u}$ is less than $\vv{v}$ both in $\mathcal{S}$ and in its orthogonal complement $\mathcal{S}^\perp$.
+Note that with these conventions, $\vv{u} < \vv{v}$ if and only if $\vv{u}$ is less than $\vv{v}$ both in $\mathcal{S}$ and in its orthogonal complement $\mathcal{S}^\perp$.
 
 \subsection{Monomial matrices, monomial ideals, and pairs}
 \label{monomial newton preliminaries: ss}
@@ -1726,6 +1726,30 @@ We record a consequence of the bound $L \leq p^e-1$ in \Cref{general AIP: T} bel
    \end{align*}
 \end{proof}
 
+\emily{New remark}
+\begin{remark}
+The integer programs $\IP$ do not always satisfy the ``uniform comparison'' property of the arithmetic integer programs $\Pi_p$ in  \Cref{cor: mu comparison}.
+For instance, suppose that $p \equiv 3 \bmod 4$, and let 
+\[
+ A = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \ 
+ \vv{u} = (3,3), \text{ and }
+ \vv{v} = (5,1)
+\]
+Then for $e \geq 1$, 
+\[\IP(A, \vv{u}, p^e) = \begin{cases}  
+\frac{3}{2}p^e - \frac{1}{2} & \text{if } e \text{ is odd} \\
+\frac{3}{2}p^e - \frac{3}{2} & \text{if } e \text{ is even}
+\]
+
+\noindent On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$; its value is $\frac{3}{2}p^e - \frac{3}{2}$ when $e$ is odd, and 
+equals $\frac{3}{2}p^e - \frac{3}{2}$ for even $e$. 
+\end{example}
+
+
+
+\end{remark}
+
+
 \subsection{Small and very small pairs}
 
 \begin{definition}
@@ -1747,7 +1771,15 @@ Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice
 
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 
-It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.}
+It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  %However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.
+\pedro[inline]{
+   Is this true?
+   If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
+   Don't we get infinitely many ``layers'' of black points?
+}
+\daniel[inline]{This does look like a counterexample.  Maybe I meant to say is that as we very over all small, but not very small, pairs $(A,\vv{u})$, there are only finitely many collapsed pairs $(\ol{A}, \ol{\vv{u}})$.  I think this might have been buried in an earlier version.  But, with the current proof of \Cref{small not very small value: T}, I don't think we ever called upon this ``fact".  Maybe we should even point out this example and state that there can be infinitely many pairs that are small and not very small, perhaps right before we state \Cref{small not very small value: T}. }
+\emily[inline]{Agreed, thanks for noticing this.  I've added a simple example to the remark below, and reminded the reader of this before \Cref{small not very small value: T}.  }
+% It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.}
 % \pedro[inline]{
 %    Is this true?
 %    If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
@@ -1758,7 +1790,7 @@ It is clear from these interpretations that a very small pair must also be small
 
 \begin{example}
    \label{ex: small vs very small}
-   \begin{figure}
+   \begin{figure} 
       \centering
       \includegraphics[width=.5\textwidth]{pictures/small_very_small_illustration.pdf}
       \caption{Illustration for \Cref{ex: small vs very small}}
@@ -1779,6 +1811,8 @@ It is clear from these interpretations that a very small pair must also be small
    Finally, if $\vv{u}$ is any of the white points, $(A,\vv{u})$ is neither small nor very small.
 
    It is interesting to notice that if we were to make this a three dimensional example by adding a constant row to the matrix $A$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs. 
+   Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $A$ for which $m > 2$. For a perhaps simpler (but similar) example, notice that for $t>1$, the monomial pair $(A, \vv{u})$ associated to ideal pair $(\ideala, \ideald)$ is small, but not very small
+if $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$ are ideals of $\kk[x,y,z]$. 
 \end{example}
 
 \begin{remark}[Small pairs from shortfalls]  
@@ -1814,9 +1848,13 @@ Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u
    As noted earlier, each such pair is small, which completes our reduction.
 \end{remark}
 
-The following allows us to reduce even further, to the very small case.
+The following theorem allows us to reduce even further, to the very small case; a related statement appears as \cite[Theorem~6.4]{hernandez+etal.frobenius_powers}. 
+Notice that \Cref{fig: small vs very small} may be misleading in the sense that in this case, there are only finitely many $\vv{u} \in \NN^2$ for which $(A, \vv{u})$ is small, but not very small, so that the existence of $\beta$ in \Cref{small not very small value: T} is immediate. 
+However, as mentioned in \Cref{ex: small vs very small}, given a monomial matrix $A$, there can exist infinitely many small pairs $(A, \vv{u})$ that are not very small.
 
-\begin{theorem}[{\emph{Cf}.~\cite[Theorem~6.4]{hernandez+etal.frobenius_powers}}]
+%if for all $\vv{u} = (2,1,t)$, $t>1$, if $A = \begin{bmatrix} 3 & 0 \\ 0 & 2 \\ 1 & 1 \end{bmatrix}$. 
+
+\begin{theorem}
    \label{small not very small value: T}
    Given a monomial matrix $A$, there exists an integer $\beta=\beta(A)$ with the following property\textup:
    If $(A, \vv{u})$ is small, but not very small, then  \[ \val \IP_p(A, \vv{u}, p^e) = p^e-1\] for every $p > \beta$ and $e \geq 1$.
@@ -1900,13 +1938,15 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
    Moreover, the collapses of their shortfalls along the minimal face can also differ.
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
-   For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$. \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?} \daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
+   Notice that in this case,  $\O = \mf(A,\vv{u})$ is bounded, so that collapsing is just the identity.
+   For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$. \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?} %\daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
    In contrast, for any odd prime $p$, the point $(\frac{p-1}{2}, \frac{p-1}{2})$ is feasible for $\IP_p$, and therefore optimal by \Cref{trivial small value bound: P}.
    Thus, $\val \IP_p = p-1$ and the point $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is an element of $\short \IP_p$.
 
    This example shows that the nature of the programs $\IP$ and $\IP_p$ for very small pairs and for small but not very small pairs can differ drastically.
    This motivates our technique of reducing to the \emph{very small} setting.  
 \end{example}
+
 
 \Cref{arithmetic uniform value and image: T} is fundamental and, together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
 
