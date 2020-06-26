@@ -1,10 +1,12 @@
-loadPackage("Polyhedra")
-loadPackage("FrobeniusThresholds")
+loadPackage("Polyhedra", Reload => true)
+-- loadPackage("FrobeniusThresholds")
+-- loadPackage("FourTiTwo") -- loaded with Polyhedra
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
 -------------------------------------------------------------------------------
 
 constantList := (c,n) -> apply( n, x -> c )
+
 
 identityMatrix := n -> id_(ZZ^n)
 
@@ -145,34 +147,78 @@ consTheta = (A,u,s,q) -> (
     polyhedronFromHData( constraints, constraintsRHS )
 )
 
-solveIP := ( A, u, q ) ->
+
+--------------------------------------------
+-- Integer Programs
+
+IntegerProgram = new Type of HashTable
+-- IntegerProgram is a hash table that carries the information of an integer program of the following type:
+-- Maximize w^T*x, subject to Ax <= u, x >= 0, x \in ZZ^n 
+
+-- integerProgram creates an IntegerProgram from a matrix A, a column vector u 
+-- (the RHS of the linear constraint inequality), and a column vector w 
+-- (the weights/cost defining the linear function to be maximized) 
+integerProgram = method()
+
+integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram from
+{
+    cache => new CacheTable,
+    "matrix" => A,
+    "RHS" => u,
+    "weights" => w,
+    "dim" => ( numRows A, rank source A ),
+    "augmentedMatrix" => A | identityMatrix numRows A -- adds columns corresponding to slack variables
+}
+    
+solveIP := IP ->
 (
-    m = rank target A;
-    n = rank source A;
+    -- if the result is already cached, just return it
+    if IP#cache#?"value" then return ( IP#cache#"value", IP#cache#"optimalPoint" );
+    -- if not, now let's compute things...
+    ( m, n ) := IP#"dim";
     path242 := prefixDirectory | currentLayout#"programs";
     file := getFilename();
+    -- store the augmented matrix
     M := openOut(file | ".mat");
-    putMatrix( M, A | identityMatrix m );
+    putMatrix( M, IP#"augmentedMatrix" );
     close M;
+    -- store a (all-slack) solution to Mx=u 
     sol = openOut(file | ".zsol");
-    putMatrix( sol, matrix { join( constantList( 0, n ), apply( first entries transpose u, x -> x*q - 1 ) ) } );
+    putMatrix( sol, matrix { constantList( 0, n ) } | transpose IP#"RHS" );
     close sol;
+    -- store the cost (weight) vector
     cost = openOut(file | ".cost");
-    putMatrix( cost, matrix { join( constantList( -1, n ), constantList( 0, m ) ) } );
+    putMatrix( cost, transpose( -IP#"weights" ) | matrix { constantList( 0, m ) } );
     close cost;
-    execstr := path242 | "minimize -q " | rootPath | file;
+    -- run 4ti2
+    execstr := path242 | "minimize --quiet -parb " | rootPath | file;
     ret := run(execstr);
     if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/minimize";
     opt := getMatrix(file | ".min");
-    value := first first entries (opt*(colVec join( constantList( 1, n ), constantList( 0, m ) ) ));
+    value := first first entries (opt*( IP#"weights" || zeroMatrix(m,1) ) );
     -- will also return an optimal point
     optPt := transpose( opt*(identityMatrix(n) || zeroMatrix(m,n)) );
+    IP#cache#"value" = value;
+    IP#cache#"optimalPoint" = optPt;
     ( value, optPt )
 )    
     
-valueIP := ( A, u, q ) -> first solveIP( A, u, q)
+valueIP := IP -> first solveIP IP
 
-optPtIP := ( A, u, q ) -> last solveIP( A, u, q)
+optPtIP := IP -> last solveIP IP
+
+-- This solves the specific integer programs from the paper
+solveMyIP := ( A, u, q ) ->
+(
+    rhs := q*u - colVec constantList( 1, numRows A );
+    weights := colVec constantList( 1, rank source A );
+    IP := integerProgram( A, rhs, weights );
+    solveIP IP
+)    
+    
+valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
+
+optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
 
 --------------------------------------------
 
@@ -399,7 +445,7 @@ v = entries transpose vertices opt;
 apply(v,denominator)
 apply(d*v,x->apply(x,t->lift(t,ZZ)))
 
-installPackage "FourTiTwo"
+loadPackage "FourTiTwo"
 
 debugLevel = 1
 A = matrix "1,1,1,1; 1,2,3,4"
@@ -436,3 +482,24 @@ frobeniusNu(3,I,D)
 solveIP(A,colVec {2,3,5}, 7^3 )
 optPtIP(A,colVec {2,3,5}, 7^3 )
 valueIP(A,colVec {2,3,5}, 7^3 )
+
+ht = new MutableHashTable
+
+f := t -> t#1 = 1
+
+f ht
+peek ht
+
+A = matrix {{5,3,7},{5,5,3},{3,4,5}};
+IP = integerProgram( A, colVec {2*7^7-1,3*7^7-1,5*7^7-1}, colVec {1,1,1} );
+solveIP IP
+
+valueIP IP
+
+solveMyIP( A, colVec {2,3,5}, 100001 )
+
+peek IP#cache
+
+help putMatrix
+
+IP#cache#?"value"

@@ -1748,12 +1748,12 @@ Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.}
-\pedro[inline]{
-   Is this true?
-   If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
-   Don't we get infinitely many ``layers'' of black points?
-}
-\daniel[inline]{This does look like a counterexample.  Maybe I meant to say is that as we very over all small, but not very small, pairs $(A,\vv{u})$, there are only finitely many collapsed pairs $(\ol{A}, \ol{\vv{u}})$.  I think this might have been buried in an earlier version.  But, with the current proof of \Cref{small not very small value: T}, I don't think we ever called upon this ``fact".  Maybe we should even point out this example and state that there can be infinitely many pairs that are small and not very small, perhaps right before we state \Cref{small not very small value: T}. }
+% \pedro[inline]{
+%    Is this true?
+%    If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
+%    Don't we get infinitely many ``layers'' of black points?
+% }
+% \daniel[inline]{This does look like a counterexample.  Maybe I meant to say is that as we very over all small, but not very small, pairs $(A,\vv{u})$, there are only finitely many collapsed pairs $(\ol{A}, \ol{\vv{u}})$.  I think this might have been buried in an earlier version.  But, with the current proof of \Cref{small not very small value: T}, I don't think we ever called upon this ``fact".  Maybe we should even point out this example and state that there can be infinitely many pairs that are small and not very small, perhaps right before we state \Cref{small not very small value: T}. }
 \end{remark}
 
 \begin{example}
@@ -1764,17 +1764,21 @@ It is clear from these interpretations that a very small pair must also be small
       \caption{Illustration for \Cref{ex: small vs very small}}
       \label{fig: small vs very small}
    \end{figure}
-   \Cref{fig: small vs very small} shows the Newton polyhedron of the matrix \daniel{Is it necessary to explicitly indicate the matrix $A$ here?  We could maybe say this is typical of the picture of two variables.}
-   \[A=
-      \begin{bmatrix}
-         1&3&7&10\\
-         10&6&3&2
-      \end{bmatrix}
-   \]
+   \Cref{fig: small vs very small} shows the typical situation in two dimensions.
+   It shows the Newton polyhedron of a matrix $A$ with two rows, 
+   % \daniel{Is it necessary to explicitly indicate the matrix $A$ here?  We could maybe say this is typical of the picture of two variables.}
+   % \[A=
+   %    \begin{bmatrix}
+   %       1&3&7&10\\
+   %       10&6&3&2
+   %    \end{bmatrix}
+   % \]
    as well as the upper staircase determined by the columns of $A$.
    If $\vv{u}$ is any of the gray points, the monomial pair $(A,\vv{u})$ is very small.
    If $\vv{u}$ is any of the black points, $(A,\vv{u})$ is small, but not very small.
    Finally, if $\vv{u}$ is any of the white points, $(A,\vv{u})$ is neither small nor very small.
+
+   It is interesting to notice that if we were to make this a three dimensional example by adding a constant row to the matrix $A$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs. 
 \end{example}
 
 \begin{remark}[Small pairs from shortfalls]  
