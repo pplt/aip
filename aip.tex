@@ -1764,26 +1764,16 @@ The algebraic characterization of a very small pair is simply that $(A, \vv{u})$
 \begin{remark}[Geometric description of small and very small pairs]
 \label{geometric small and very small: R}
 Given an $\numvars \times n$ monomial matrix $A$, let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
-
 Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice point $\vv{u} \in \ZZ^{\numvars}$ does not lie in the interior of the Minkowski sum of the set of columns of $A$ with the ambient nonnegative orthant, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$. 
-
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
-
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  %However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.
-\pedro[inline]{
-   Is this true?
-   If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
-   Don't we get infinitely many ``layers'' of black points?
-}
-\daniel[inline]{This does look like a counterexample.  Maybe I meant to say is that as we very over all small, but not very small, pairs $(A,\vv{u})$, there are only finitely many collapsed pairs $(\ol{A}, \ol{\vv{u}})$.  I think this might have been buried in an earlier version.  But, with the current proof of \Cref{small not very small value: T}, I don't think we ever called upon this ``fact".  Maybe we should even point out this example and state that there can be infinitely many pairs that are small and not very small, perhaps right before we state \Cref{small not very small value: T}. }
-\emily[inline]{Agreed, thanks for noticing this.  I've added a simple example to the remark below, and reminded the reader of this before \Cref{small not very small value: T}.  }
-% It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.%\daniel{This doesn't seem to come up later, so I decided not to add a proof.  It is mostly here for intuition, I guess.}
 % \pedro[inline]{
 %    Is this true?
 %    If we take, say, the example below, and add a row of ones to the matrix, wouldn't this region be unbounded?
 %    Don't we get infinitely many ``layers'' of black points?
 % }
 % \daniel[inline]{This does look like a counterexample.  Maybe I meant to say is that as we very over all small, but not very small, pairs $(A,\vv{u})$, there are only finitely many collapsed pairs $(\ol{A}, \ol{\vv{u}})$.  I think this might have been buried in an earlier version.  But, with the current proof of \Cref{small not very small value: T}, I don't think we ever called upon this ``fact".  Maybe we should even point out this example and state that there can be infinitely many pairs that are small and not very small, perhaps right before we state \Cref{small not very small value: T}. }
+% \emily[inline]{Agreed, thanks for noticing this.  I've added a simple example to the remark below, and reminded the reader of this before \Cref{small not very small value: T}.  }
 \end{remark}
 
 \begin{example}
@@ -1821,7 +1811,6 @@ The optimality of $\vv{h}$ implies that $\vv{h}+\vv{e}_i$ cannot satisfy the lin
 
 Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u}, q)$, then $(\collapse{A}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{remark}
-
 
 \begin{proposition}
    \label{trivial small value bound: P} 
@@ -1893,7 +1882,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 }
 \begin{theorem}
    \label{arithmetic uniform value and image: T}
-   For every small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+   For every very small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
    Consequently, given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
    If $(A, \vv{u})$ is very small, and $p > \beta$, then 
    \[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \]
