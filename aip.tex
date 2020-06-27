@@ -2112,7 +2112,7 @@ As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomi
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
 \label{sprouts as collapsed shortfall pairs: R}
- Throughout this remark, suppose that $p$ is large enough relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a \emph{$p$-shortfall pair associated to $(A,\vv{u})$} if $\vv{w} \in \short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
+ Throughout this remark, suppose that $p$ is large enough relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a \emph{$p$-shortfall pair associated to $(A,\vv{u})$} if $\vv{w} \in \short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$ \daniel{I don't think this is an equality unless $\mf(A,\vv{u})$ is bounded.  Am I missing something?}.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
 
 It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(A,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(A,\vv{u})$ along the face $\O=\mf(A,\vv{u})$.  In particular, when $\O$ is bounded, then there is no difference between $p$-sprouts and $p$-shortfall pairs of $(A,\vv{u})$.  
 \end{remark}
@@ -2501,18 +2501,18 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
 
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
 
-\newpage
-
-\section{Applications to generic hypersurfaces}
-
-\subsection{Generic hypersurfaces in large characteristics}
-
-
-\begin{theorem}  Given a collection of non-constant monomials $\mathcal{M}$, there exists $\beta = \beta(\mathcal{M})$ with the following property:  If $p > \beta$, then the test ideals of a generic polynomial over a field of characteristic $p$ supported at $\mathcal{M}$  
-
-\end{theorem}
-
-\subsection{Generic hypersurfaces in characteristic zero}
+%\newpage
+%
+%\section{Applications to generic hypersurfaces}
+%
+%\subsection{Generic hypersurfaces in large characteristics}
+%
+%
+%\begin{theorem}  Given a collection of non-constant monomials $\mathcal{M}$, there exists $\beta = \beta(\mathcal{M})$ with the following property:  If $p > \beta$, then the test ideals of a generic polynomial over a field of characteristic $p$ supported at $\mathcal{M}$  
+%
+%\end{theorem}
+%
+%\subsection{Generic hypersurfaces in characteristic zero}
 
 
 
@@ -2686,7 +2686,7 @@ For the remainder of the proof, suppose that $p \gg 0$ so that \eqref{canonical-
 
 
 \begin{lemma} \label{frobenius-powers+mon-commute: L}
-Suppose that $\operatorname{char} \kk = p > 0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for all nonnegative integers $e$.
+Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every natural number~$e$.
 \end{lemma}
 
 \begin{proof}  Set $\idealc = \mon(\idealb)$ and $q=p^e$.  Given that both ideals in question are monomial, it suffices to prove that a monomial lies in $\mon(\idealb^{[q]})$ if and only if it lies in $\idealc^{[q]}$.  However, as $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that
@@ -2700,15 +2700,7 @@ As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is
 
 \begin{corollary}
 \label{reduce-to-monomial-case: C}
-Suppose that $\operatorname{char} \kk = p > 0$, that $\ideala$ is a monomial ideal of $\kk[x_1, \ldots, x_\numvars]$, and that $\idealb$ is an ideal of this same ring with $\ideala \subseteq \sqrt{\idealb}$.
-If $\idealc = \mon(\idealb)$, there exists a positive point $\vv{u} \in \NN^\numvars$ such that for all $e \geq 1$,  the following hold.
-\begin{enumerate}
-\item $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e) = \nu(\ideala, \ideald, p^e)$, so that 
-\item $\ft{\ideala}{\idealb} = \ft{\ideala}{\idealc} = \ft{\ideala}{\ideald}$, and 
-\item $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$, so that
-\item $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$. 
-\end{enumerate}
-where $\ideald$ is the diagonal ideal with respect to $\vv{u}$.  
+Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ monomial and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \cdots, x_\numvars]$ associated to a positive point in $\NN^m$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
 \end{corollary}
 
 % \begin{corollary}
@@ -2730,47 +2722,39 @@ where $\ideald$ is the diagonal ideal with respect to $\vv{u}$.
 
 
 \begin{proof}
-For the first equality in (1) and (3), first notice that since $\ideala$ is a monomial ideal, the invariants relying on $\idealc$ are well-defined.  Moreover, 
-a (Frobenius) power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-$\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
+As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
+$\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$.
 
-Now, the monomial ideal $\idealc = \mon(\idealb)$ can be written as the intersection of finitely many ideals of the form $I = \langle x_i^{w_i} \mid w_i \geq 1 \rangle$, for some combinatorially-determined $\vv{w} \in \NN^\numvars$ (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).   
-Thus, a (Frobenius) power of $\ideala$ is contained in $\idealc^{[p^e]}$ if and only if it is contained in all  $I^{[p^e]}$, so $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I, p^e)$.  
-Fix $I$ achieving this maximum, and let $t$ denote the number of nonzero coordinates of $\vv{w}$.  
-After possibly reordering the variables, assume that $w_i > 0$ for $1 \leq i \leq t$, and $w_i = 0$ for $t < i \leq \numvars$.
+Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \ldots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \ldots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
+After possibly reordering the variables,  we may assume that there exists $1 \leq t \leq \numvars$ and positive integers $w_i$ for each $1 \leq i \leq t$ such that $I = \langle x_1^{w_1}, \ldots, x_t^{w_t} \rangle$.
 
-If $A$ is an $\numvars \times n$ monomial matrix associated to $\ideala$, let $\vv{r}_i$ denotes its $i$-th row, and let $B$ be the $t \times n$ matrix consisting of the first $t$ rows of $A$.
-If some column of $B$ were zero, then some monomial of $\ideala$ would have no $x_i$ in its support, for all $1 \leq i \leq t$.  However, this is not possible since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$. Hence $B$ is monomial, so that for all $e \geq 1$, $\feas P(B, \vv{w}, p^e)$ is bounded.  
-Therefore, there exists a positive integer $M$ such that for all  $\vv{h} \in \feas\LP(B, \vv{w})$ and $1 \leq i \leq t$, we have that $\vv{r}_i \cdot \vv{h} < M$. 
+Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.   
 
-Let $\vv{u} \in \NN^n$ be the vector whose $i$-coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.
-Given $e \geq 1$, notice that the program $\IP(A, \vv{u}, p^e)$  has \emph{at least as many} constraints as $\IP(B, \vv{w},p^e)$, so
-$\feas \IP(A, \vv{u}, p^e) \subseteq \feas \IP(B, \vv{w}, p^e)$.
-By the same reasoning, $\feas \IP_p(A, \vv{u}, p^e) \subseteq \feas \IP_p(B, \vv{w}, p^e)$.
+Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Towards this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so 
+$\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
 
-On the other hand, if $\vv{k} \in \feas \IP(B, \vv{w},p^e)$, then 
-$\vv{k}/p^e \in \feas\LP(B,\vv{w})$ and so
-$\vv{r}_i \cdot (\vv{k}/p^e) \leq w_i$ for $1 \leq i \leq t$.  
-Moreover,  for all $t < i \leq n$, 
-$\vv{r}_i \cdot (\vv{k}/p^e) < M$, so that $\vv{r}_i \cdot \vv{k} < M p^e$ as well.  
-Hence $\feas \IP(B, \vv{w}, p^e) \subseteq \feas \IP(A, \vv{u}, p^e)$, and equality holds.
-In addition, the arithmetic constraint of $\IP_p$ is also satisfied since  $\vv{k} \geq \vv{0}$, and we conclude that the feasible sets of $\IP_p(B, \vv{w}, p^e)$ and $\IP_p(B, \vv{w}, p^e)$ must also agree.
-Hence 
+Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim. 
+
+In summary, if $e$ is an arbitrary natural number, then
 \begin{align*}
-&\val\IP(B, \vv{w}, p^e) = \val \IP(A, \vv{u}, p^e) = \nu(\ideala, \ideald, p^e) \\
-&\val\IP_p(B, \vv{w}, p^e) = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
+ \mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e) \\ 
+ & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) 
 \end{align*}
-where $\ideald$ is the diagonal ideal associated to $\vv{u} \in \NN^\numvars$. 
-Finally, (2) and (4) follow from (1) and (3), respectively.
+where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$. 
  \end{proof}
 
+\daniel[inline]{I guess we are going to have to be more precise when talking about reduction mod $p$.  I will try to give it a shot soon}
  
 \begin{corollary} \label{nu-mu-reduce-monomial: C}
-Suppose that $\ideala \subseteq \sqrt{\idealb}$ are ideals of $\QQ[x_1, \ldots, x_\numvars]$, where $\ideala$ is a monomial ideal. If $\idealc = \mon(\idealb)$, then there exists an integer $\beta = \beta(\ideala, \idealb)$ such that for all $p > \beta$ and $e \geq 1$, the following hold:
-\begin{enumerate}
-\item $\nu(\ideala_p, \idealb_p, p^e) = \nu(\ideala_p, \idealc_p, p^e)$ and $\ft{\ideala_p}{\idealb_p} = \ft{\ideala_p}{\idealc_p}$.
-\item $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ and $\crit(\ideala_p,\idealb_p) = \crit(\ideala_p,\idealc_p)$. 
-\end{enumerate}
+Suppose that $\ideala \subseteq \sqrt{\idealb}$ are ideals of $\QQ[x_1, \ldots, x_\numvars]$, where $\ideala$ is a monomial ideal. If $\idealc = \mon(\idealb)$, then there exists $\beta = \beta(\ideala, \idealb) \in \ZZ$, and a diagonal ideal $\ideald$ associated to a positive point in $\NN^m$ with $\idealc \subseteq \ideald$, such that 
+\[ \mu(\ideala_p, \idealb_p, p^e) =  \mu(\ideala_p, \idealc_p, p^e) =  \mu(\ideala_p, \ideald_p, p^e) \] 
+for every $p > \beta$ and $e \geq 1$.  In particular, 
+\[ \crit(\ideala_p, \idealb_p) =  \crit(\ideala_p, \idealc_p) =  \crit(\ideala_p, \ideald_p)\] whenever $p > \beta$.  
+Finally, if $\idealb$ is monomial, then one may take $\beta(\ideala, \idealb) = 0$.
+%\begin{enumerate}
+%\item $\nu(\ideala_p, \idealb_p, p^e) = \nu(\ideala_p, \idealc_p, p^e)$ and $\ft{\ideala_p}{\idealb_p} = \ft{\ideala_p}{\idealc_p}$.
+%\item $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ and $\crit(\ideala_p,\idealb_p) = \crit(\ideala_p,\idealc_p)$. 
+%\end{enumerate}
 \end{corollary}
 
 
