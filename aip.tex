@@ -30,9 +30,9 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
-\item[$\CheckedBox$] Decide on ``special'' or ``universal'' denominator and uniformize.
-\emily[inline]{I'm starting to like ``universal.''}
-\pedro[inline]{I replaced the last few occurrences of ``special'' with ``universal''.}
+% \item[$\CheckedBox$] Decide on ``special'' or ``universal'' denominator and uniformize.
+% \emily[inline]{I'm starting to like ``universal.''}
+% \pedro[inline]{I replaced the last few occurrences of ``special'' with ``universal''.}
 \item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
@@ -54,9 +54,10 @@ TO DO LIST:
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
-   \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
-   \pedro[inline]{I included an example with a picture.}
-   \emily[inline]{Thank you!}
+   \item \ldots
+   % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
+   % \pedro[inline]{I included an example with a picture.}
+   % \emily[inline]{Thank you!}
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
@@ -85,8 +86,8 @@ TO DO LIST:
       %\item[$\CheckedBox$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
       %%%%% Notation %%%%%
 
- \item[$\CheckedBox$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
- \pedro[inline]{I believe this is done now (using $\collapse{A}X$).}
+ % \item[$\CheckedBox$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
+ % \pedro[inline]{I believe this is done now (using $\collapse{A}X$).}
       % \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
       % %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
       % Emily suggest using $\vv{c}$.  This is probably a good idea.
@@ -1807,9 +1808,9 @@ It is clear from these interpretations that a very small pair must also be small
    If $\vv{u}$ is any of the black points, $(A,\vv{u})$ is small, but not very small.
    Finally, if $\vv{u}$ is any of the white points, $(A,\vv{u})$ is neither small nor very small.
 
-   It is interesting to notice that if we were to make this a three dimensional example by adding a constant row to the matrix $A$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs. 
-   Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $A$ for which $m > 2$. For a perhaps simpler (but similar) example, notice that for $t>1$, the monomial pair $(A, \vv{u})$ associated to ideal pair $(\ideala, \ideald)$ is small, but not very small
-if $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$ are ideals of $\kk[x,y,z]$. 
+   It is interesting to notice that if we were to make this a three-dimensional example by adding a nonzero constant row to the matrix $A$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs. 
+   Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $A$ for which $m > 2$.
+   For a perhaps simpler (but similar) example, notice that for $t>1$, the monomial pair $(A, \vv{u})$ associated to ideal pair $(\ideala, \ideald)$ is small, but not very small if $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$ are ideals of $\kk[x,y,z]$. 
 \end{example}
 
 \begin{remark}[Small pairs from shortfalls]  
@@ -1884,6 +1885,12 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    Original statement and proof were commented out.
 }
 \daniel[inline]{This is better.  In this light, is it true that if $p \gg 0$ relative to $A$ and $(A,\vv{u})$ is small, then $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$ if and only if $(A,\vv{u})$ is very small?}
+\pedro[inline]{
+   I'm not sure about the ``relative to $A$'' part, but otherwise, this seems to be true.
+   If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$.
+   But if that is the case \emph{and} $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
+   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.  
+}
 \begin{theorem}
    \label{arithmetic uniform value and image: T}
    For every small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
@@ -1935,15 +1942,16 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
    Moreover, the collapses of their shortfalls along the minimal face can also differ.
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
-   Notice that in this case,  $\O = \mf(A,\vv{u})$ is bounded, so that collapsing is just the identity.
-   For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$. \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?} %\daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
+   Notice that in this case the minimal face $\O = \mf(A,\vv{u})$ is bounded, so that collapsing is simply the identity.
+   For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$, as guaranteed by \Cref{uniform uniform value and image: T}  (at least when $p \gg 0$).
+   % \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?}
+   % \daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
    In contrast, for any odd prime $p$, the point $(\frac{p-1}{2}, \frac{p-1}{2})$ is feasible for $\IP_p$, and therefore optimal by \Cref{trivial small value bound: P}.
    Thus, $\val \IP_p = p-1$ and the point $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is an element of $\short \IP_p$.
-
-   This example shows that the nature of the programs $\IP$ and $\IP_p$ for very small pairs and for small but not very small pairs can differ drastically.
-   This motivates our technique of reducing to the \emph{very small} setting.  
 \end{example}
 
+The above example shows that the nature of the programs $\IP$ and $\IP_p$ for very small pairs and for small but not very small pairs can differ drastically.
+This motivates our technique of reducing to the \emph{very small} setting.  
 
 \Cref{arithmetic uniform value and image: T} is fundamental and, together with \Cref{general AIP: T}, forms the basis for a process to compute the value of $\IP_p(A, \vv{u}, p^e)$ when $p$ is large.  Below, we describe this process in an important special case.  Though somewhat technical, these arguments will motivate some constructions in the general case, which is more complicated, and treated in the next section.
 
