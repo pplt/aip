@@ -1737,7 +1737,6 @@ We record a consequence of the bound $L \leq p^e-1$ in \Cref{general AIP: T} bel
    \end{align*}
 \end{proof}
 
-\emily{New remark}
 \begin{remark}
 The integer programs $\IP$ do not always satisfy the ``uniform comparison'' property of the arithmetic integer programs $\Pi_p$ in  \Cref{cor: mu comparison}.
 For instance, suppose that $p \equiv 3 \bmod 4$, and let 
@@ -2227,18 +2226,18 @@ As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomi
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
 \label{sprouts as collapsed shortfall pairs: R}
- Throughout this remark, suppose that $p$ is large enough relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a \emph{$p$-shortfall pair associated to $(A,\vv{u})$} if $\vv{w} \in \short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$ \daniel{I don't think this is an equality unless $\mf(A,\vv{u})$ is bounded.  Am I missing something?}.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
+ Throughout this remark, suppose that $p$ is large enough relative to $A$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.  Let us call an $A$-pair $(A,\vv{w})$ a \emph{$p$-shortfall pair associated to $(A,\vv{u})$} if $\vv{w} \in \short \IP_p(A,\vv{u},p)$\daniel{I don't think this is an equality unless $\mf(A,\vv{u})$ is bounded.  Am I missing something?}\emily{No, I removed the ``$= \ushort(A,\vv{u},p)$'' since our intention is to choose a point in the actual shortfall.}.  Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
 
 It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(A,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(A,\vv{u})$ along the face $\O=\mf(A,\vv{u})$.  In particular, when $\O$ is bounded, then there is no difference between $p$-sprouts and $p$-shortfall pairs of $(A,\vv{u})$.  
 \end{remark}
 
 
 
-\begin{definition}[The directed sprouting graph $\sprout_p(A)$]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
+\begin{definition}[The directed sprouting graph]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
 
 We define the vertices of the graph $\sprout_p(A)$ to be the disjoint union \[ \bigsqcup_{e=1}^{\infty} \graph_{p^e}(A). \]
  
-A vertex in the $p^e$-th component of the above disjoint union is said to be of \emph{level} $p^e$.  The directed edges in $\sprout_p(A)$ are defined only between points of consecutive levels.  More precisely, there is a directed edge from vertex of level $q$ to one of level $qp$ if the latter is a $p$-sprout of the former.
+A vertex in the $p^e$-th component of the above disjoint union is said to be of \emph{level} $p^e$.  The directed edges in $\sprout_p(A)$ are defined only between points of consecutive levels:  There is a directed edge from vertex of level $q$ to one of level $qp$ if the latter is a $p$-sprout of the former.
 \end{definition}
 
 
@@ -2274,13 +2273,13 @@ Consider a monomial matrix $A$.  In this remark, we gather some basic facts\dani
    If $p>\beta$ and \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] is a path in $\sprout_p(A)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(A_i, \vv{u}_i,p)$  such that
  %
  \[ \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e\]
- is feasible for the standard integer program $\IP(A_1, \vv{u}_1, p^e)$.
+ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.
  %
  \end{theorem}
 
-\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  \Cref{universal-denominators-exist:  T} allows us to fix a positive integer $\denom$ that is a universal denominator for each such matrix.  We may also fix a finite set of representatives $\fsr(M_i)$ for each such matrix, as described in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
+The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below\emily{Is the lemma after theorem to get to theorem statement faster?}, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
 %
 \begin{align}
 \tag{$\heartsuit$} \label{p-big-1}
@@ -2288,18 +2287,22 @@ Consider the conditions \eqref{p-big-1} and \eqref{p-big-2} below.
  \label{p-big-2}
 \tag{$\diamondsuit$}\text{$p^e / \denom > \sum_{i=1}^e \omega_i \cdot p^{e-i}$ for every $e \geq 1$ and $\omega_1, \cdots, \omega_e \in \Omega$,}
 \end{align}
+In what follows, we assume that $p$ is chosen so as to satisfy \eqref{p-big-1} and \eqref{p-big-2}. 
+% The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below\emily{Is the lemma after theorem to get to theorem statement faster?}, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which \eqref{p-big-1} and \eqref{p-big-2} hold whenever $p > \beta$.  In what follows, we assume that $p$ is chosen so that these conditions are satisfied.
 
-The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which \eqref{p-big-1} and \eqref{p-big-2} hold whenever $p > \beta$.  In what follows, we assume that $p$ is chosen so that these conditions are satisfied.
-
-Now, consider a finite path \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] in $\graph_p(A)$.  For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that $\vv{u}_{i+1} \in \Delta(A_i, \vv{u}_i, q) = A_{i+1} \tail{\vv{s}_i}_p - \im  \ip( A_i, \vv{u}_i, \vv{s}_i, p)$.  Theorem \Cref{fsr-exist: T}, and our choice of $\fsr$, then allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that
-$\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.  Finally, we take $\vv{h}_e$ to be an arbitrary point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
+Consider a finite path \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] in $\graph_p(A)$.  For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that $\vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, q)$. 
+%= A_{i+1} \tail{\vv{s}_i}_p - \im  \ip( A_i, \vv{u}_i, \vv{s}_i, p)$.  
+Then \Cref{fsr-exist: T} and our choice of $\fsr$ allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that
+$\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.  Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
 
 Next, for every $1 \leq i \leq e$,  we define
-  \[
-\vv{k}_i = \vv{s}_i \cdot p - [\vv{s}_i]_p + \vv{h}_i.
-\]
-Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\ell$ is greater than every coordinate of $\vv{1}-\vv{h}_i$, and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} (or rather, its proof)\daniel{This follows  from the \emph{statement} of \Cref{uniform value: P}.} that
+$
+\vv{k}_i := \vv{s}_i \cdot p - [\vv{s}_i]_p + \vv{h}_i.
+$
+Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$, and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} 
+%(or rather, its proof)\daniel{This follows  from the \emph{statement} of \Cref{uniform value: P}.} 
+that
 \begin{equation}
 \label{optimality-for-each-component: e}
 \vv{k}_i \in \opt \IP(A_i, \vv{u}_i,p)
@@ -2312,7 +2315,9 @@ We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i \cdot p^{e-i}$ is
 tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \cdot p^{e-i} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.  To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.  However,  \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and hence, we must only show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
 
 To do so,  recall that our choice of $\vv{s}_1 \in \sp(A_1, \vv{u}_1)$ allows us to express $\vv{u}_1$ as
-$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ that is positive in this Euclidean space.  This expression implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
+$\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some positive point in $\rs(\O_1)$.
+%that is positive in this Euclidean space. 
+This expression implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$.  It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
 %
 \begin{equation}
 \label{target-inequality: e}
@@ -2321,7 +2326,7 @@ $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is some point in $\rs(\O_1)$ 
 
 Given that the target of $A_1$ is $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, it suffices to verify that \eqref{target-inequality: e} holds after projection to each of these Euclidean spaces.  We first consider the projection to $\rb(\O_1)^{\perp}$.  As $A_2$ is the collapse of $A_1$ along $\O_1$, the projection of $A_1 \vv{m}$ to $\rb(\O_1)^{\perp}$ equals $A_2 \vv{m}$ for every $\vv{m}$ in the domain of $A_1$.  In particular, the projection of $A_1( - \tail{\vv{s}_1}_p + \vv{h}_1 )$ to this subspace is $A_2 ( - \tail{\vv{s}_1}_p + \vv{h}_1 )$, which equals $-\vv{u}_2$, by our choice of $\vv{h}_1$.  Thus, projecting \eqref{target-inequality: e} to $\rs(\O)^{\perp}$ yields $-\vv{u}_2 \cdot p^{e-1} + A_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.
 
-We now consider the projection of \eqref{target-inequality: e} to $\rs(\O_1)$, and given that $\tail{\vv{s}_1}_p \geq \vv{0}$, it suffices to verify that the projection of the stronger inequality \[ \sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i} = A_1 \vv{h}_1 \cdot p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \] to $\rs(\O)^{\perp}$ holds.  However, keeping in mind that $\ell$ is a denominator of $\vv{w}$, which is positive in $\rs(\O_1)$, every coordinate of the projection of $\vv{w} p^e$ to $\rs(\O_1)$ is at least $p^e / \ell$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i \cdot p^{e-i}$ for some $\omega_1, \cdots, \omega_e \in \Omega$.  Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds after projecting to $\rs(\O_1)$.
+We now consider the projection of \eqref{target-inequality: e} to $\rs(\O_1)$, and given that $\tail{\vv{s}_1}_p \geq \vv{0}$, it suffices to verify that the projection of the stronger inequality \[ \sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i} = A_1 \vv{h}_1 \cdot p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \] to $\rs(\O)^{\perp}$ holds.  However, keeping in mind that $\denom$ is a denominator of $\vv{w}$, which is positive in $\rs(\O_1)$, every coordinate of the projection of $\vv{w} p^e$ to $\rs(\O_1)$ is at least $p^e / \denom$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i \cdot p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i \cdot p^{e-i}$ for some $\omega_1, \cdots, \omega_e \in \Omega$.  Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds after projecting to $\rs(\O_1)$.
 
 We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
 \end{proof}
