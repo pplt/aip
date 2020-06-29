@@ -1273,23 +1273,34 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 
 \begin{proof}
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   Let $\vv{k}$ be feasible for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
-   If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $k_i$ is nonnegative. 
+   Let $\vv{h}$ be optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
+   If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $h_i$ is nonnegative. 
    \Cref{prop: inner product with columns of A,rmk: collapse of a matrix,collapse of a defining vector: R} then tell us that
    \begin{equation}
       \label{bound in inner product: e}
-      \norm{\vv{k}} \leq \iprod{\defpt}{A \vv{k}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}.
+      \val \ip = \norm{\vv{h}} \leq \iprod{\defpt}{A \vv{h}} = \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}.
    \end{equation}
    Those same results applied to $\tail{\vv{s}}_q$ give us
    \begin{equation}
       \label{norm of tail: e}
       \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{A \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q}.
    \end{equation}
-   These observations and the constraint $\collapse{A}\vv{k} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
-   \[ \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q},\]
-   showing that $\val \ip < \norm{\tail{\vv{s}}_q}$.
+   These observations and the constraint $\collapse{A}\vv{h} <\collapse{A} \tail{\vv{s}_q}$ combine to tell us that
+   \[ \val\ip \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}} < \iprod{\collapse{\defpt}}{\collapse{A} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q}.\]
    Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
+
+% \begin{remark}
+%    \label{bounded value sharpened: R}
+%    For later use, note that if we set $\vv{v} = \collapse{A} \tail{\vv{s}}_q - \collapse{A}\vv{h}$, where $\vv{h}$, as in the above proof, is any optimal point for $\ip(A,\vv{u},\vv{s},q)$, then we have
+%    \begin{equation}
+%       \label{sharpened bound: E}
+%    0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) \le \norm{\tail{\vv{s}}_q} - \ft{\collapse{A}}{\vv{v}} < \norm{\tail{\vv{s}}_q}.
+%    \end{equation}
+%    Indeed, \Cref{collapse of Newton polyhedron: P} shows that $\collapse{\defpt}$ is the defining point of the Newton polyhedron $\collapse{\N}$ of $\collapse{A}$, and since $\vv{v}/\ft{\collapse{A}}{\vv{v}}$ lies in $\collapse{\N}$, we have $\iprod{\collapse{\vv{\defpt}}}{\vv{v}} \ge \ft{\collapse{A}}{\vv{v}}$ by \Cref{alpha=1: convention}.
+%    Equations \eqref{bound in inner product: e} and \eqref{norm of tail: e}, on the other hand, tell us that $\iprod{\collapse{\vv{\defpt}}}{\vv{v}} \le \norm{\tail{\vv{s}}_q} - \val \ip$.
+%    Putting these inequalities together and rearranging gives us the central inequality in \eqref{sharpened bound: E}.
+% \end{remark}
 
 \subsection{Some finiteness properties}
 
@@ -1732,19 +1743,19 @@ The integer programs $\IP$ do not always satisfy the ``uniform comparison'' prop
 For instance, suppose that $p \equiv 3 \bmod 4$, and let 
 \[
  A = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \ 
- \vv{u} = (3,3), \text{ and }
- \vv{v} = (5,1)
+ \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
+ \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
 \]
 Then for $e \geq 1$, 
 \[
-\IP(A, \vv{u}, p^e) = \begin{cases}  
+\val\IP(A, \vv{u}, p^e) = \begin{cases}  
 \frac{3}{2}p^e - \frac{1}{2} & \text{if } e \text{ is odd} \\
 \frac{3}{2}p^e - \frac{3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
 
 \noindent On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$; its value is $\frac{3}{2}p^e - \frac{3}{2}$ when $e$ is odd, and 
-equals $\frac{3}{2}p^e - \frac{3}{2}$ for even $e$. 
+equals $\frac{3}{2}p^e - \frac{1}{2}$ for even $e$. 
 \end{remark}
 
 
@@ -1764,7 +1775,7 @@ The algebraic characterization of a very small pair is simply that $(A, \vv{u})$
 \begin{remark}[Geometric description of small and very small pairs]
 \label{geometric small and very small: R}
 Given an $\numvars \times n$ monomial matrix $A$, let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
-Geometrically, a pair $(A, \vv{u})$ is small if and only if the positive lattice point $\vv{u} \in \ZZ^{\numvars}$ does not lie in the interior of the Minkowski sum of the set of columns of $A$ with the ambient nonnegative orthant, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$. 
+Geometrically, a pair $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the Minkowski sum $\col(A) + \cone(\canvec_1,\ldots,\canvec_m)$, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$. 
 On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  %However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.
 % \pedro[inline]{
@@ -1800,7 +1811,7 @@ It is clear from these interpretations that a very small pair must also be small
 
    It is interesting to notice that if we were to make this a three-dimensional example by adding a nonzero constant row to the matrix $A$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs. 
    Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $A$ for which $m > 2$.
-   For a perhaps simpler (but similar) example, notice that for $t>1$, the monomial pair $(A, \vv{u})$ associated to ideal pair $(\ideala, \ideald)$ is small, but not very small if $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$ are ideals of $\kk[x,y,z]$. 
+   For a perhaps simpler (but similar) example, notice that the monomial pair $(A, \vv{u})$ associated to the ideal pair $(\ideala, \ideald)$, where $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$, is small but not very small for every $t > 1$. 
 \end{example}
 
 \begin{remark}[Small pairs from shortfalls]  
@@ -1857,7 +1868,7 @@ However, as mentioned in \Cref{ex: small vs very small}, given a monomial matrix
    \Cref{canonical-feasible: T} then states that
    \[ \vv{k} \coloneqq \vv{s}p-\tail{\vv{s}}_p \in \feas \IP(A,\vv{u},p). \]
    Since $(A,\vv{u})$ is not very small, $\norm{\vv{s}} = \ft{A}{\vv{u}} > 1$, and our choice of $\denom$ then implies that $\norm{\vv{s}} \geq 1 + 1/\denom$, so that
-   \[\norm{\vv{k}} \geq p + p/\denom - \norm{\tail{\vv{s}}_p} > p,\]
+   \[\norm{\vv{k}} \geq p + \frac{p}\denom - \norm{\tail{\vv{s}}_p} > p,\]
    where the strict inequality follows from our choice of $p \gg 0$.
 
    This bound implies that there exists a point $\vv{h} \leq \vv{k}$ with $\norm{\vv{h}} = p-1$.
@@ -1950,7 +1961,7 @@ This motivates our technique of reducing to the \emph{very small} setting.
 
 \begin{theorem}
    \label{m-primary AIP: T}
-   If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exist $\beta=\beta(A)$ with the following property\textup:
+   If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exists $\beta=\beta(A)$ with the following property\textup:
    If $p > \beta$ and $(A,\vv{u})$ is very small, then the value of $\IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$.
    Furthermore, the non-leading coefficients in this polynomial are nonpositive and rational, and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
 \end{theorem}
@@ -2086,7 +2097,111 @@ Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, a
 
 Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
 
+\pedro[inline]{
+   I propose the following alternate version of this subsection (mostly done, but still under construction).
+   It extracts the algorithm from the theorem, not the other way around.
+   It is one page shorter.
+}
 
+\subsection{The $\idealm$-primary case}
+\label{m-primary: SS}
+We now focus on computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ when $A$ is associated to an $\idealm$-primary monomial ideal, where $\idealm$ is the ideal generated by the variables of the ambient polynomial ring, $(A,\vv{u})$ is very small, $p$ is large relative to $A$, and $e > 0$ is arbitrary.
+The assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face of every $A$-pair is bounded, and so the collapse along such face is the identity.
+In this context, \Cref{arithmetic uniform value and image: T} becomes significantly stronger, as it computes \emph{full} shortfalls, as opposed to a properly collapsed one.
+Indeed, the failure of \Cref{arithmetic uniform value and image: T} to compute full shortfalls in general accounts for much of the increased technicality present in the next section.
+
+The main result of this subsection is the following.
+
+\begin{theorem}
+   \label{m-primary AIP: T}
+   If $A$ is a monomial matrix associated to an $\idealm$-primary monomial ideal, then there exists $\beta=\beta(A)$ with the following property\textup:
+   If $p > \beta$ and $(A,\vv{u})$ is very small, then $\val \IP_p(A,\vv{u},p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, whose non-leading coefficients are rational and depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
+\end{theorem}
+
+\begin{remark}
+   In \Cref{non-leading coefficients: C}, we will show that the non-leading coefficients of this polynomial are nonpositive.
+   The proof below, however, will only show that the constant coefficient is negative.
+\end{remark}
+
+Before presenting the proof, we clarify our requirements for $p\gg 0$.
+
+\begin{remark}[On $p$ being sufficiently large]
+   \label{p large m-primary: R}
+   First off, we assume that $p$ is large enough so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.
+   Moreover, given a collection $\S$ of very small pairs $(A,\vv{u})$, we want the subset~$\S^*$ of~$\S$ consisting of the pairs for which $\val \IP_p(A,\vv{u},p)$ is maximum to only depend on $p$ modulo some integer, and not on $p$ itself.
+   We explain below how this can be accomplished by choosing $p$ sufficiently large.
+
+   For a very small pair $(A,\vv{u})$, \Cref{arithmetic uniform value and image: T} shows that
+   \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p).\]
+   As we vary over all such pairs, $\ft{A}{\vv{u}}$ remains above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.
+   \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
+   Similarly, $\udeficit(A,\vv{u},p)$ takes on only finitely many values by \Cref{finitely many deltas for a fixed A: R}, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
+   Thus, by choosing $p\gg 0$, with lower bound dependent only on $A$, we can select the very small pairs $(A,\vv{u})$ to be included in $\S^*$ by first selecting those with maximal $\ft{A}{\vv{u}}$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(A,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
+\end{remark}
+
+We are now ready to prove the above theorem.
+
+\begin{proof}[Proof of \Cref{m-primary AIP: T}]
+   Choose $p \gg 0$ as in \Cref{p large m-primary: R}, and fix a universal denominator $\denom$ for $A$.
+   Set $\S_p = \S^*_p = \{ (A,\vv{u}) \}$ and, for each $e > 1$,
+   \begin{align*}
+   \S_{p^{e}} &= \{ (A,\vv{v}):  \vv{v} \in \short \IP_p(A,\vv{u},p^{e-1}) \},\\
+   \S^*_{p^{e}} &= \{ (A,\vv{v}) \in \S_{p^{e}}:  \val\IP_p(A,\vv{v},p)\text{ is maximum} \}.
+   \end{align*}
+   Now consider the following claims:
+   \begin{enumerate}[(a),leftmargin=*]
+      \item\label{c1} $\val \IP_p(A,\vv{u},p^e)$ has the stated properties;
+      %and its constant coefficient is either $-1$ or is of the form $ - \udeficit(A,\vv{v},p)$, for some $(A,\vv{v}) \in \S^*_{p^{e}}$;
+      \item\label{c2} $\S_{p^e}$ consists of very small pairs, and only depends on $p$ modulo $\denom$ (and consequently so does $\S^*_{p^e}$, by our choice of $p\gg 0$ as in \Cref{p large m-primary: R}).
+   \end{enumerate}
+   For $e=1$, \Cref{arithmetic uniform value and image: T} shows that
+   \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p),\]
+   and claim \ref{c1} follows from \Cref{pair periodicity: R}, while \ref{c2} holds trivially.
+   Fix $e\ge 1$ and suppose that claims \ref{c1} and \ref{c2} hold for $e$ and all preceding exponents.
+   We now proceed to investigate these claims for $e+1$.
+
+   We start with claim \ref{c2}.
+   If $e=1$, then $\short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$ only depends on $p$ modulo $\denom$ by \Cref{pair periodicity: R}, and consequently so does $\S_{p^2} = \{ (A,\vv{v}):  \vv{v} \in \short \IP_p(A,\vv{u},p) \}$.
+   Furthermore, every pair in $\S_{p^{2}}$ is small by \Cref{small pairs from shortfalls: R,arithmetic uniform value and image: T}.
+   If $e > 1$, 
+   \Cref{general AIP: T} shows that 
+   \[\short \IP_p(A,\vv{u},p^{e}) = \bigcup_{(A,\vv{v}) \in \S^*_{p^e}} \short \IP_p(A,\vv{v}, p)
+      = \bigcup_{(A,\vv{v}) \in \S^*_{p^e}} \ushort(A,\vv{v}, p).\]
+   Since $\S^*_{p^e}$ and each $\ushort(A,\vv{v}, p)$ only depend on $p$ modulo $\denom$, so do $\short \IP_p(A,\vv{u},p^{e})$ and $\S_{p^{e+1}}$.
+   Moreover, since $\S^*_{p^e}$ consists of very small pairs, the above decomposition, \Cref{small pairs from shortfalls: R}, and \Cref{arithmetic uniform value and image: T} tell us that every pair in $\S_{p^{e+1}}$ is small.
+   In either case, we have verified most of claim \ref{c2}, except that $\S_{p^{e+1}}$ might contain a small but not very small pair.
+ 
+   Suppose that is not the case.
+   \Cref{general AIP: T,trivial small value bound: P} show that
+   \begin{equation}
+      \label{recurrence: E}
+      \val \IP_p(A,\vv{u},p^{e+1}) = \val \IP_p(A,\vv{u},p^e)p + M,
+   \end{equation}
+   where $M = \val\IP_p(A,\vv{v},p)$ for any  $(A,\vv{v}) \in \S^*_{p^{e+1}}$.
+   Since $(A,\vv{v})$ is very small, \Cref{arithmetic uniform value and image: T} gives us
+   \[\val \IP_p(A,\vv{u},p^{e+1}) = (\val \IP_p(A,\vv{u},p^e) + \ft{A}{\vv{v}}) p - \udeficit(A,\vv{v},p),\]
+   which, in view of our assumption on $\val \IP_p(A,\vv{u},p^e)$, clearly satisfies \ref{c1}.
+   So, in this case claims \ref{c1} and \ref{c2} hold for $e+1$.
+
+   Suppose now that $\S_{p^{e+1}}$ contains a small but not very small pair.
+   Engaging the full firepower of \Cref{general AIP: T}, as well as \Cref{small not very small value: T}, we obtain
+   \begin{equation}
+      \label{tail: E}
+      \val \IP_p(A,\vv{u},p^{e+k}) = \val \IP_p(A,\vv{u},p^e)p^k + p^k - 1,\text{ for all }k\in \NN,
+   \end{equation}
+   which, given our assumption on $\val \IP_p(A,\vv{u},p^e)$, clearly satisfies \ref{c1}.
+   Thus, even though \ref{c2} does not hold for $e+1$, we were able to verify \ref{c1} not only for $e+1$, but for all subsequent powers.
+\end{proof}
+
+\begin{remark}[An algorithm]
+   \label{m-primary algorithm: R}
+   The above proof gives, in this $\idealm$-primary, very small case, an algorithm to compute $\val\IP_p(A,\vv{u},p^e)$ not only up to a specific $e$, but for \emph{all} $e \ge 1$.
+   Indeed, as we iterate \eqref{recurrence: E}, one of two situations will occur that will allow us to determine the \emph{entire} remainder of the sequence.
+
+   First, with a bit of luck we may come across a set $\S^*_{p^e}$ that contains a small but not very small pair, and \eqref{tail: E} gives us the remainder of the sequence.
+   In the absence of such luck, note that in this $\idealm$-primary case there are only finitely many small $A$-pairs.
+   Thus, there are only finitely many distinct sets $\S_{p^e}$, and once one of these sets repeats, the numbers $M$ that appear in the recurrence \eqref{recurrence: E} will cycle from that point onward.
+\end{remark}
 
 
 \newpage

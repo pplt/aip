@@ -7,7 +7,6 @@ loadPackage("Polyhedra", Reload => true)
 
 constantList := (c,n) -> apply( n, x -> c )
 
-
 identityMatrix := n -> id_(ZZ^n)
 
 denominator List := L -> lcm apply( L, denominator )
@@ -97,14 +96,58 @@ univDenom Matrix := A ->
     (m-1)*(lcm allMinors)
 )
 
-ft = method()
-ft ( Matrix, List ) := (A,u) -> (
-    NA := newton A;
-    intPt := first entries vertices intersection( coneFromVData transpose matrix {u}, NA );
-    u#0/intPt#0
+properFaces = method() 
+
+properFaces Polyhedron := P -> 
+(
+    d := dim P;
+    toList sum(1..d, i -> set facesAsPolyhedra( i, P ) )
 )
+
+selectColumnsInFace = method()
+
+selectColumnsInFace ( Matrix, Polyhedron ) := ( A, P ) ->
+(
+   indices := select( rank source A, i -> contains( P, A_{i} ) );
+   A_indices
+)
+
+lcmMinors := A -> 
+(
+    d := min( numRows A, rank source A );
+    lcm ( minors( d, A ) )_*
+)
+
+univDenom2 = method()
+univDenom2 Matrix := A ->
+(
+    faces := properFaces newton A;
+    matrices := apply( faces, F -> selectColumnsInFace( A, F ) | rb F );
+    ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
+) 
+
+univDenom2 A
+
+univDenom A
+
+-- % Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
+
+-- % If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP
+-- % \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
+-- % \pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
+
+-- % Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
+
+ft = method()
+ft ( Matrix, Matrix ) := (A,u) -> (
+    NA := newton A;
+    intPt := first entries vertices intersection( coneFromVData u, NA );
+    u_(0,0)/intPt#0
+)
+ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
 ft Matrix := A -> ft( A, constantList( 1, rank target A ) )
-    
+
+
 -- minimal face mf(A,u)
 minimalFace = method()
 minimalFace ( Matrix, List ) := (A,u) -> (
@@ -118,6 +161,7 @@ minimalFace Matrix := A -> minimalFace( A, constantList( 1, rank target A ) )
 rb = method()
 rb ( Matrix, List ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
 rb Matrix := A -> entries transpose rays tailCone minimalFace A
+rb Polyhedron := P -> rays tailCone P
 
 collapse = method()
 collapse (Matrix, List) := (A,u) -> (
@@ -169,7 +213,7 @@ integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram f
     "dim" => ( numRows A, rank source A ),
     "augmentedMatrix" => A | identityMatrix numRows A -- adds columns corresponding to slack variables
 }
-    
+        
 solveIP := IP ->
 (
     -- if the result is already cached, just return it
@@ -179,22 +223,22 @@ solveIP := IP ->
     path242 := prefixDirectory | currentLayout#"programs";
     file := getFilename();
     -- store the augmented matrix
-    M := openOut(file | ".mat");
+    M := openOut( file | ".mat");
     putMatrix( M, IP#"augmentedMatrix" );
     close M;
     -- store a (all-slack) solution to Mx=u 
-    sol = openOut(file | ".zsol");
+    sol := openOut( file | ".zsol");
     putMatrix( sol, matrix { constantList( 0, n ) } | transpose IP#"RHS" );
     close sol;
     -- store the cost (weight) vector
-    cost = openOut(file | ".cost");
+    cost := openOut( file | ".cost");
     putMatrix( cost, transpose( -IP#"weights" ) | matrix { constantList( 0, m ) } );
     close cost;
     -- run 4ti2
     execstr := path242 | "minimize --quiet -parb " | rootPath | file;
-    ret := run(execstr);
+    ret := run execstr;
     if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/minimize";
-    opt := getMatrix(file | ".min");
+    opt := getMatrix( file | ".min" );
     value := first first entries (opt*( IP#"weights" || zeroMatrix(m,1) ) );
     -- will also return an optimal point
     optPt := transpose( opt*(identityMatrix(n) || zeroMatrix(m,n)) );
@@ -206,6 +250,34 @@ solveIP := IP ->
 valueIP := IP -> first solveIP IP
 
 optPtIP := IP -> last solveIP IP
+
+optSetIP := IP ->
+(
+    -- if the result is already cached, just return it
+    if IP#cache#?"optimalSet" then return IP#cache#"optimalSet";
+    -- if not, now let's compute things...
+    ( m, n ) := IP#"dim";
+    value := valueIP IP;
+    M := IP#"matrix" || - identityMatrix n;
+    uu := IP#"RHS" || zeroMatrix( n, 1 );
+    N := transpose IP#"weights";
+    vv := matrix {{ value }};
+    optPts := latticePoints polyhedronFromHData( M, uu, N, vv );
+    optImage := unique apply( optPts, u -> A*u );
+    IP#cache#"optimalSet" = optPts;
+    IP#cache#"optimalImage" = optImage;
+    optPts
+)    
+
+optImageIP := IP ->
+(
+    -- if the result is already cached, just return it
+    if IP#cache#?"optimalImage" then return IP#cache#"optimalImage";
+    -- if not, now let's compute things...
+    optSetIP IP;
+    IP#cache#"optimalImage"    
+)    
+
 
 -- This solves the specific integer programs from the paper
 solveMyIP := ( A, u, q ) ->
@@ -227,7 +299,6 @@ PA = consTheta(A,{1,1,1},specialPt A,2)
 PB = consTheta(B,{1,1},specialPt B,224)        
 
 toString specialPt B
-
 
 hyperplanes PA
 hyperplanes PB
@@ -500,6 +571,19 @@ solveMyIP( A, colVec {2,3,5}, 100001 )
 
 peek IP#cache
 
-help putMatrix
+q =5043;
+uu = colVec {q-1,q-1,q-1};
+IP = integerProgram( A, uu , colVec {1,1,1} );
+optImageIP IP
+optSetIP IP
 
-IP#cache#?"value"
+apply( optImageIP IP, u -> ft(A,colVec({q,q,q})-u) )
+
+optSetIP IP
+
+IP#cache#"optimalPoint"
+IP#cache#"optimalSet"
+
+peek IP#cache
+
+
