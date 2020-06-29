@@ -878,7 +878,7 @@ Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)
    Then by \Cref{prop: characterization of vertices}, every vertex of $\opt \LP(A,\vv{u})$ is rational, with denominator $\denom$.
 \end{proof}
 
-\subsection{Special points and denominators}
+\subsection{Special points and universal denominators}
 
 Technicalities that arise in future sections whenever the minimal face of $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: P}.
 
@@ -889,7 +889,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
 \begin{enumerate}
 \item $\vv{s} \in \opt \LP(A, \vv{u})$.
 %\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
-\item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when the $\rb(\O)$ is empty.
+\item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when $\rb(\O)$ is empty.
 % \pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
 % \emily{It seems that we agree; I took a crack at updating it.}
 \end{enumerate}
@@ -1221,7 +1221,7 @@ The next proposition gives conditions under which equality holds.
 
 \begin{proposition}
    \label{uniform value: P}
-   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\denom$ for the special point $\vv{s}$.
+   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a \emily{Defined this?}denominator $\denom$ for the special point $\vv{s}$.
    If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$ and every coordinate of $A \vv{h}$, then the point $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
    Consequently, equality holds in \eqref{ineq between deficits}.
 \end{proposition}
@@ -1931,7 +1931,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
    Moreover, the collapses of their shortfalls along the minimal face can also differ.
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
-   Notice that in this case the minimal face $\O = \mf(A,\vv{u})$ is bounded, so that collapsing is simply the identity.
+   Notice that in this case the minimal face $\O = \mf(A,\vv{u})$ is bounded, so that collapsing along $\O$ is simply the identity.
    For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$, as guaranteed by \Cref{uniform uniform value and image: T}  (at least when $p \gg 0$).
    % \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?}
    % \daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
@@ -2119,7 +2119,7 @@ It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform valu
 
 
 
-\begin{definition}[The directed sprouting graph]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
+\begin{definition}[The directed sprouting graph $\sprout_p(A)$]  Let $A$ be a monomial matrix.  We define $\graph_p(A)$ to be the set consisting of all very small $A$-pairs, and once $\graph_q(A)$ has been defined for some $q$ a power of $p$,  we then define $\graph_{qp}(A)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(A)$.  
 
 We define the vertices of the graph $\sprout_p(A)$ to be the disjoint union \[ \bigsqcup_{e=1}^{\infty} \graph_{p^e}(A). \]
  
