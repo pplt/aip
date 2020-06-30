@@ -6,7 +6,10 @@
 \captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
 \renewcommand\thesubfigure{(\sc \alph{subfigure})}
 \usepackage{bm}
-\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage[
+ruled,
+%linesnumbered,
+vlined]{algorithm2e}
 \usepackage{stmaryrd}
 
 %shortfall and deficit
@@ -65,16 +68,16 @@ TO DO LIST:
 \end{itemize}
 % \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate. 
 % \pedro[inline]{Started working on it.}
-\item[$\Box$] Rewrite statements in terms of ``shortfall.''
+\item[$\CheckedBox$] Rewrite statements in terms of ``shortfall.''
 % \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
 %\comment[inline]{Going with dropping rows.}
-\item[$\Box$] Rewrite proofs with above convention.
- \item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
+%\item[$\Box$] Rewrite proofs with above convention.
+%\item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
  %\item[$\CheckedBox$] Fill in/rewrite preliminaries.
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
-% \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
-    \item[$\Box$] Minimize and/or ``algebrafy'' statements.
+ % \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
+ \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
  \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
 % \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
@@ -108,7 +111,7 @@ TO DO LIST:
 %      \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
 %      \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
       %\item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
-      \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
+%      \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
 %      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       % \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
       % \emily[inline]{I think this is defunct now? }
@@ -117,9 +120,8 @@ TO DO LIST:
     \item[$\Box$] Put ``titles'' in appropriate statements. 
    \end{enumerate}
 }
-% 
-
-\newpage
+ 
+%\newpage
 
 \setcounter{tocdepth}{1}
 \tableofcontents
@@ -1643,7 +1645,6 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 \newpage
 \section{Arithmetic integer programs revisited}
 
-
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$.
 Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.  
 \daniel{Should we state the main result of this section?  \Cref{m-primary AIP: T}?} \emily{What about something instead like the second paragraph?}
@@ -1838,7 +1839,7 @@ Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(A, \vv{u
 \end{proof}
 
 \begin{remark}[Reduction to the small case]
-   We now describe how to reduce the computation of the values of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$ to the small case, at least when $p$ is large relative to the pair $(A, \vv{u})$.  
+   We now describe how to reduce the computation of the values of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ for all $e \geq 1$ to the small case, at least when $p$ is large relative to the pair $(A, \vv{u})$. 
    For what follows, fix a pair $(A, \vv{u})$, and suppose that $p$ is larger than the value of the standard integer program $\IP(A, \vv{u},1)$.
    The arithmetic constraint of $\IP_p(A,\vv{u},1)$ is thus automatically satisfied, and so $\IP_p(A, \vv{u}, 1) = \IP(A, \vv{u}, 1)$.
 
@@ -2251,6 +2252,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
 
+\pedro[inline]{
+   Maybe having more subsections will help organize this long section.
+}
+
 \begin{definition}
    A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some of its columns.
 \end{definition}
@@ -2393,10 +2398,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
    If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 p^{e-1} + \cdots + \omega_{e-1} p + \omega_e$.
 \end{lemma}
 
-\emily{I shortened the proof}
+\emily[inline]{I shortened the proof}
 \begin{proof}
    Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
-   Then for $p>\beta$, $\omega_1 \cdot p^{e-1} + \cdots + \omega_{e-1} \cdot p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
+   Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
 \end{proof}
 
 \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
@@ -2450,7 +2455,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
    Given a monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property\textup:
    If $p > \beta$, $(A,\vv{u})$ is very small, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then
    \[
-      \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) \cdot p-\delta_{p^e}(A,\vv{u})
+      \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) p-\delta_{p^e}(A,\vv{u})
    \]
    and the subset of $\S_{p^e}(A,\vv{u})$ of pairs that achieve this maximum is $\S^{\ast}_{p^e}(A,\vv{u})$.
 \end{proposition}
@@ -2478,7 +2483,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 
 \begin{lemma}\label{lem: upper bound for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
-   For each $p>\beta$, if $(A, \vv{u})$ is very small, and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path of length $e-1$ in $\sprout^{\ast}_p(A,\vv{u})$,  then
+   For each $p>\beta$, if $(A, \vv{u})$ is very small, and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\sprout^{\ast}_p(A,\vv{u})$,  then
    \[
       \val \IP_p(B, \vv{v}, p^e) \leq \sum_{s=1}^e \val \IP_p(A_s, \vv{u}_s, p)p^{e-s}
    \]
@@ -2521,70 +2526,81 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
    On the other hand, if $(C, \vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(A,\vv{u})$ as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
-
-
 \begin{theorem}
-\label{main theorem wrt diagonal: T}
-  Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property:   If $p > \beta$ and $(A,\vv{u})$ is very small, then $\val \IP_p(A,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.  The leading term of this polynomial is $\ft{A}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.  Furthermore, these coefficients depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.  
+   \label{main theorem wrt diagonal: T}
+   Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
+   If $p > \beta$ and $(A,\vv{u})$ is very small, then $\val \IP_p(A,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.
+   The leading coefficient of this polynomial is $\ft{A}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.
+   Furthermore, these coefficients depend on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
 
-More precisely, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, then 
-%
-\[ \val \IP_p(A,\vv{u}, p^e) =  \ft{A}{\vv{u}}  p^e - \sum_{1 \leq s < e} ( \delta_{p^s}(A,\vv{u}) - \epsilon_{p^{s+1}}(A,\vv{u}))  p^{e-s} - \delta_{p^e}(A,\vv{u})  \] 
-%
-Furthermore, if $\Q_p(A,\vv{u})$ is finite, then
-%
-\[ \val \IP_p(A,\vv{u}, \Q_p(A,\vv{u})  q) = \val \IP_p(A,\vv{u}, \Q_p(A,\vv{u}))  q + q-1 \] for every $q$ a power of $p$.
+   More explicitly, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, then
+   \[
+      \val \IP_p(A,\vv{u}, p^e) =  \ft{A}{\vv{u}}  p^e - \sum_{1 \leq s < e} ( \delta_{p^s}(A,\vv{u}) - \epsilon_{p^{s+1}}(A,\vv{u}))  p^{e-s} - \delta_{p^e}(A,\vv{u}).
+   \]
+   Furthermore, if $\Q = \Q_p(A,\vv{u})$ is finite, then
+   \[
+      \val \IP_p(A,\vv{u}, \Q q) = \val \IP_p(A,\vv{u}, \Q)  q + q-1
+   \]
+   for every $q$ a power of $p$.
 \end{theorem}
 
 \begin{proof}
-Fix a monomial matrix $A$, and let $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
+   Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
+   Set $\Q = \Q_p(A,\vv{u})$.
+   If $e$ is an integer satisfying $1 \leq e \leq \Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ in this graph.
+   This path in $\sprout_p^{\ast}(A,\vv{u})$ also defines a path in $\sprout_p(A)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_1,\ldots,\vv{k}_e$ in the domain lattice of $A$ with each $\vv{k}_s \in \opt \IP(A_s, \vv{u}_s, p)$ for which the point $\vv{k} \coloneqq \sum_{s=1}^e \vv{k}_s p^{e-s}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.
 
-Set $\Q = \Q_p(A,\vv{u},p)$.  If $e$ is an integer satisfying $1 \leq e \leq \Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ of length $e-1$ in this graph.
+   However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(A_s, \vv{u}_s)$ is very small, and  \Cref{arithmetic uniform value and image: T} then implies that $\IP(A_s,\vv{u}_s,p) = \IP_p(A_s, \vv{u}_s, p)$.
+   \Cref{trivial small value bound: P} then tells us that $\norm{\vv{k}_s} \le p - 1$, and \Cref{dickson: R} shows that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(A,\vv{u},p^e)$, so that
+   \begin{align*}
+     \val \IP_p(A,\vv{u},p^e) \geq  \norm{\vv{k}} & = \sum_{s=1}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s} \\
+                                                  & = \sum_{s=1}^e (\epsilon_{p^s}(A,\vv{u})p - \delta_{p^s}(A,\vv{u})) p^{e-s}.
+   \end{align*}
+   \Cref{lem: upper bound for higher mu} then implies that we must have equality throughout.
+   Noticing that $\epsilon_p(A,\vv{u}) = \ft{A}{\vv{u}}$, this is simply a rearrangement of our first claim.
 
-This path in $\sprout_p^{\ast}(A,\vv{u})$ also defines a path in $\sprout_p(A)$, and so  \Cref{ILL: T} tells us that there exists a finite list of points $\{ \vv{k}_s \}_{s=1}^e$ in the lattice of domain with each $\vv{k}_s \in \opt \IP(A_s, \vv{u}_s, p)$ for which the point $\vv{k} \coloneqq \sum_{s=1}^e \vv{k}_s p^{e-s}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.  
+   Next, suppose that $\Q$ is finite.
+   By definition of $\Q$, we know that $\S_{\Q}^{\ast}(A,\vv{u})$ is nonempty, while $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, so that $\S_{\Q p}(A,\vv{u})$ must contain a pair that is not very small.
+   Thus, setting $l=\log_p \Q$, there exists a path
+   \[
+      (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l})
+   \]
+   in $\sprout_p^{\ast}(A,\vv{u})$, which extends to a path
+   \[
+      (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l}) \to (B_{l+1}, \vv{v}_{l+1})
+   \]
+   in $\sprout_p(A)$ whose terminal vertex is small, but not very small.
+   \Cref{ILL: T} applied to this second path tells us that there exist points $\vv{h}_1,\ldots, \vv{h}_{l+1}$ with each $\vv{h}_s \in \opt \IP(B_s, \vv{v}_s, p)$, and such that
+   \[
+      \vv{h} \coloneqq \sum_{s=1}^{l+1} \vv{h}_s p^{l+1-s} \in \feas \IP(A,\vv{u}, \Q p).
+   \]
 
-However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(A_s, \vv{u}_s)$ is very small, and  \Cref{arithmetic uniform value and image: T} then implies that $\IP(A_s,\vv{u}_s,p) = \IP_p(A_s, \vv{u}_s, p)$.  It follows from this, and \Cref{dickson: R}, that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(A,\vv{u},p^e)$, so that 
-%
-\begin{align*} 
-\val \IP_p(A,\vv{u},p^e) \geq  \norm{\vv{k}} & = \sum_{s=1}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s} \\
-& = \sum_{s=1}^e (\epsilon_{p^s}(A,\vv{u})p - \delta_{p^s}(A,\vv{u})) p^{e-s}.
-\end{align*}
-\Cref{lem: upper bound for higher mu} then implies that we must have equality throughout.  Noticing that $\epsilon_p(A,\vv{u}) = \ft{A}{\vv{u}}$, this is simply a rearrangement of our claim.
+   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that the value of the standard linear program $\IP(B_{l+1}, \vv{v}_{l+1},p)$ is greater than~$p$.
+   Therefore, $\norm{\vv{h}_{l+1}}$ is at least $p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
+   Without loss of generality, suppose that the bound $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{h}_{l+1}$.
 
-Next, suppose that $\Q$ is finite.  By definition of $\Q$, we know that $\S_{\Q}^{\ast}(A,\vv{u})$ is non-empty, which implies that $\S_{\Q p}(A,\vv{u})$ is non-empty as well.  However, as $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, $\S_{\Q p}(A,\vv{u})$ must contain a pair that is not very small.
+   Fix an integer $e \geq 1$, and consider the point
+   \[
+      \vv{m} \coloneqq \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + (\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1,
+   \]
+   which is obtained from $\vv{h}p^{e-1}$ by subtracting from it the term corresponding to $\vv{h}_{l+1}p^{e-1}$, and replacing it with  $(\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.
+   Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(A,\vv{u}, \Q p)$ then implies that $\vv{m} \in \feas \IP(A,\vv{u}, \Q p^e)$.
 
-Set $l=\log_p \Q$.   It follows from these observations that there exists a path \[ (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l}) \] 
-in $\sprout_p^{\ast}(A,\vv{u})$, which we can add to to obtain a path 
-\[ (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l}) \to (B_{l+1}, \vv{v}_{l+1}) \]
-in $\sprout_p(A)$ whose terminal vertex is small, but not very small.
- 
-Given this second path, \Cref{ILL: T} tells us that there exists a finite list of points $\{ \vv{h}_s \}_{s=1}^{l+1}$ with each $\vv{h}_s \in \opt \IP(B_s, \vv{v}_s, p)$, and such that  
-%
-\[ \vv{h} \coloneqq \sum_{s=1}^{l+1} \vv{h}_s p^{l+1-s} \in \feas \IP(A,\vv{u}, \Q p) \] 
-%
+   To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u}, \Q p^e)$, observe that the base $p$ expansion of $\vv{m}$ is given by
+   \[
+      \vv{m} = \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + \vv{g}p^{e-1} + (p-1) \vv{e}_1 \cdot p^{e-2} + \cdots + (p-1)\vv{e}_1
+   \]
+   and note that $\norm{\vv{h}_s} = \epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u}) < p$ for each $1 \leq s \leq l$, by virtue of the first path above lying entirely in $\sprout_p^{\ast}(A,\vv{u})$.
 
- 
-Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that the value of the standard linear program $\IP(B_{l+1}, \vv{v}_{l+1},p)$ is greater than~$p$.  Therefore,  $\norm{\vv{h}_{l+1}}$ is at least $p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.  Without loss of generality, suppose that the bound $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{h}_{l+1}$.
+   It follows from this, and our earlier work, that
+   \begin{align*}
+     \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\
+                                                     & = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) p^e + p^e-1 \\
+                                                     & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1
+   \end{align*}
+   and \Cref{general AIP: T} further implies that equality must hold throughout.
 
-
-Fix an integer $e \geq 1$, and consider the point 
-\[ \vv{m} \coloneqq \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + (\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1. \] 
-which is obtained from $\vv{h}p^{e-1}$ by subtracting from it the term corresponding to $\vv{h}_{l+1}p^{e-1}$, and replacing it with  $(\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.  Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(A,\vv{u}, \Q p)$ then implies that $\vv{m} \in \feas \IP(A,\vv{u}, \Q p^e)$.  
-
-To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u}, \Q p^e)$, observe that the base $p$ expansion of $\vv{m}$ is given by 
-\[ \vv{m} = \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + \vv{g}p^{e-1} + (p-1) \vv{e}_1 \cdot p^{e-2} + \cdots + (p-1)\vv{e}_1\] 
-and note that $\norm{\vv{h}_s} = \epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u}) < p$ for each $1 \leq s \leq l$, by virtue of the first path above lying entirely in $\sprout_p^{\ast}(A,\vv{u})$.  
-
-It follows from this, and our earlier work, that 
-%
-\begin{align*} 
-\val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\ 
-& = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) p^e + p^e-1 \\ 
- & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1
-\end{align*}
-and \Cref{general AIP: T} further implies that equality must hold throughout.
-
-To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in  \Cref{non-leading coefficients: C}.
+   To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: C}.
 \end{proof}
 
 
