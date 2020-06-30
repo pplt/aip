@@ -2295,16 +2295,19 @@ We are now ready to prove the above theorem.
     In what follows, we assume that $p$ is chosen so as to satisfy \eqref{p-big-1} and \eqref{p-big-2}. 
 % The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below\emily{Is the lemma after theorem to get to theorem statement faster?}, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which \eqref{p-big-1} and \eqref{p-big-2} hold whenever $p > \beta$.  In what follows, we assume that $p$ is chosen so that these conditions are satisfied.
 
-    Consider a finite path \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \] in $\graph_p(A)$.  For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that
+    Consider a finite path
+    \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \]
+    in $\sprout_p(A)$.
+    For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that
     \[\vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, q)= A_{i+1} \tail{\vv{s}_i}_p - A_{i+1}(\opt \ip( A_i, \vv{u}_i, \vv{s}_i, p)).\]  
 Then \Cref{fsr-exist: T} and our choice of $\fsr$ allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that
 $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.  Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
     Next, for every $1 \leq i \leq e$,  we define
 $
-\vv{k}_i := \vv{s}_i \cdot p - [\vv{s}_i]_p + \vv{h}_i.
+\vv{k}_i \coloneqq \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i.
 $
-Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$, and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} 
+Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} 
 %(or rather, its proof)\daniel{This follows  from the \emph{statement} of \Cref{uniform value: P}.} 
 that
     \begin{equation}
@@ -2312,7 +2315,7 @@ that
        \vv{k}_i \in \opt \IP(A_i, \vv{u}_i,p).
     \end{equation}
 
-    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.
+    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i p^{e-i} \in \feas\IP(A_1, \vv{u}_1, p^e)$.
     When $e = 1$, this follows from \eqref{optimality-for-each-component: e}.
     Next, suppose that $e \geq 2$.
     Our induction hypothesis applied to the truncated path
@@ -2328,14 +2331,14 @@ that
        \label{target-inequality: e}
        A_1( - \tail{\vv{s}_1}_p + \vv{h}_1 ) p^{e-1} + A_1\vv{k}^{\ast} < \vv{w} p^e.
     \end{equation}
-
-    To prove the above inequality, we use the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
+    
+    We prove this inequality using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
     First we verify that the inequality holds in $\rb(\O_1)^{\perp}$, by verifying that it holds after collapsing along $\O_1$.
     As $A_2$ is the collapse of $A_1$ along $\O_1$ and $\vv{w}\in \rs(\O_1)$, this means verifying that
     \[A_2( - \tail{\vv{s}_1}_p + \vv{h}_1 ) p^{e-1} + A_2\vv{k}^{\ast} < \vv{0}.\]
     But $A_2( - \tail{\vv{s}_1}_p + \vv{h}_1 ) = -\vv{u}_2$, by our choice of $\vv{h}_1$, so this inequality reduces to $-\vv{u}_2 p^{e-1} + A_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.
 
-    To prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, we verify that the stronger inequality
+    We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, by verifying that the stronger inequality
     \[ \sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i} = A_1 \vv{h}_1 p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \]
     holds in $\rs(\O_1)$.
     However, as $\vv{w}$ is positive in $\rs(\O_1)$ and has denominator $\denom$, $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
