@@ -54,7 +54,7 @@ TO DO LIST:
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
-   \item \ldots
+   \item Examples of algorithms (e.g., $\idealm$-primary case, general setting)
    % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    % \pedro[inline]{I included an example with a picture.}
    % \emily[inline]{Thank you!}
@@ -2277,15 +2277,17 @@ We are now ready to prove the above theorem.
  %
  \end{theorem}
 
-\begin{proof}
-   We start by describing what it means for $p$ to be large.
-   Toward this, let $M_1, \cdots, M_l$ be the finitely many descendants of $A$.
-   Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
-   Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
-   We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-   The finiteness of $\fsr$ and \Cref{positive-polynomial: L} below \emily{Is the lemma after theorem to get to theorem statement faster?} imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
-%
+The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
+% \begin{proof}
+%    We start by describing what it means for $p$ to be large.
+%    Toward this, let $M_1, \cdots, M_l$ be the finitely many descendants of $A$.
+%    Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
+%    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
+%    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+% 
+%    The finiteness of $\fsr$ and \Cref{positive-polynomial: L} below \emily{Is the lemma after theorem to get to theorem statement faster?} imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
     \begin{align}
       \tag{$\heartsuit$} \label{p-big-1}
       &\text{$\frac{p}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
@@ -2353,10 +2355,12 @@ We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O
    If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 p^{e-1} + \cdots + \omega_{e-1} p + \omega_e$.
 \end{lemma}
 
+\emily{I shortened the proof}
 \begin{proof}
-Let $\lambda$ be any positive upper bound for $\Omega$.  Suppose that $p > (w+\lambda)/w$, which after rearranging terms, is equivalent to the condition $w(p-1) - \lambda > 0$.  Multiplying this by $p^e$ and adding the positive number $\lambda$ then shows that
-%
-\[ wp^e ( p-1 ) - \lambda (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e - \lambda \cdot \frac{ p^e - 1}{p-1} = wp^e - \lambda p^{e-1} - \cdots - \lambda p - \lambda > 0 \] for every integer $e \geq 1$.   Moving every term but $wp^e$ to the right-hand side of this inequality, the resulting bound is enough to conclude our proof.
+Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$. Then for $p>\beta$, $\omega_1 \cdot p^{e-1} + \cdots + \omega_{e-1} \cdot p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
+% Let $\lambda$ be any positive upper bound for $\Omega$.  Suppose that $p > (w+\lambda)/w$, which after rearranging terms, is equivalent to the condition $w(p-1) - \lambda > 0$.  Multiplying this by $p^e$ and adding the positive number $\lambda$ then shows that
+% %
+% \[ wp^e ( p-1 ) - \lambda (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e - \lambda \cdot \frac{ p^e - 1}{p-1} = wp^e - \lambda p^{e-1} - \cdots - \lambda p - \lambda > 0 \] for every integer $e \geq 1$.   Moving every term but $wp^e$ to the right-hand side of this inequality, the resulting bound is enough to conclude our proof.
 \end{proof}
 
 
@@ -2389,11 +2393,11 @@ Suppose $(A,\vv{u})$ is very small.  In this remark, we gather some basic facts 
 
 
 \item  \label{elementary2 lowest level}  The only vertex of $\sprout_p^{\ast}(A,\vv{u})$ of level $p$ is $(A,\vv{u})$.
-\item \label{elementary2 small pairs}  It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when non-empty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.  Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$, or $\S_q(A,\vv{u})$ contains a pairs a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.   Furthermore, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
+\item \label{elementary2 small pairs}  It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when non-empty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.  Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$, or $\S_q(A,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.   Furthermore, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
 
 \item \label{elementary2 periodic in e} Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\cup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\cup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
 
-\item \label{elementary2 periodic in p} Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, we see that the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\ell$ for $A$.
+\item \label{elementary2 periodic in p} Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$.
 \end{enumerate}
 \end{remark}
 
