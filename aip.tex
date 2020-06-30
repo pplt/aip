@@ -2448,8 +2448,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 \begin{proposition}
    \label{p large graph: P}
    Given a monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property\textup:
-   Suppose $p > \beta$.
-   If  $(A,\vv{u})$ is very small, $e$ is a natural number, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then
+   If $p > \beta$, $(A,\vv{u})$ is very small, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then
    \[
       \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) \cdot p-\delta_{p^e}(A,\vv{u})
    \]
@@ -2458,17 +2457,21 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 
 \begin{proof}
    First, choose $p$ to be large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$, as well as for each of its finitely many descendants.
-   In particular, for such primes, $\val \IP_p(B,\vv{v}) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
+   In particular, for such primes, $\val \IP_p(B,\vv{v},p) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
-
 \begin{definition}
-If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(A,\vv{u})$.  Formally, 
-\[\mathcal{Q}_p(A,\vv{u}) \coloneqq \inf \{ q :  \S^{\ast}_{qp}(A,\vv{u}) = \emptyset \}.\]
+   If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(A,\vv{u})$.
+   Formally,
+   \[
+      \mathcal{Q}_p(A,\vv{u}) \coloneqq \inf \{ q :  \S^{\ast}_{qp}(A,\vv{u}) = \emptyset \}.
+   \]
 \end{definition}
 
 \begin{remark}
-As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u})$ is very small, then $\S^{\ast}_p(A,\vv{u}) = \{ (A,\vv{u} )\}$, which shows that $\Q_p(A,\vv{u})$ is at least $p$.  Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e}  implies the issue of whether $\Q_p(A,\vv{u}) = \infty$ can be determined by checking whether $\S_{qp}(A,\vv{u}) \neq \emptyset$ for a finite number of $q$.  Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not $p$ itself. 
+   As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u})$ is very small, then $\S^{\ast}_p(A,\vv{u}) = \{ (A,\vv{u} )\}$, which shows that $\Q_p(A,\vv{u})$ is at least $p$.
+   Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e}  implies that the issue of whether $\Q_p(A,\vv{u}) = \infty$ can be determined by checking whether $\S_{qp}(A,\vv{u}) \neq \emptyset$ for a finite number of $q$.
+   Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not $p$ itself. 
 \end{remark}
 
 \daniel[inline]{Needs a transition}
@@ -2483,32 +2486,39 @@ As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u}
 \end{lemma}
 
 \begin{proof}
-   Fix a monomial matrix $A$, and choose $p$ large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$, and for each of its finitely many descendants, and also so that \Cref{p large graph: P} holds for $A$.  
+   Choose $p$ large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$ and for each of its finitely many descendants, and also so that \Cref{p large graph: P} holds for $A$.  
+   This proposition then implies that $\val \IP_p(B,\vv{v},p)$ equals $\val \IP_p(A_1, \vv{u}_1, p)$, by virtue of both being vertices of the same level in the graph $\sprout_p^{\ast}(A, \vv{u})$.
+   This establishes the result when $e = 1$.
    
-   \Cref{p large graph: P}, and our choice of $p \gg 0$, imply that $\val \IP_p(B,\vv{v},p)$ equals $\val \IP_p(A_1, \vv{u}_1, p)$, by virtue  of both being vertices of the same level in the graph $\sprout_p^{\ast}(A, \vv{u})$.  This establishes the result when $e = 1$.
-   
-    Next, consider a path $(A_1,\vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ with $e \geq 2$, and suppose that the result holds for all shorter paths.  Invoking \Cref{general AIP: T} for the pair $(B,\vv{v})$, keeping in mind that  $\val \IP_p(B,\vv{v},p) =  \IP_p(A_1,\vv{u}_1,p)$, then shows that
+   Next, consider a path $(A_1,\vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ with $e \geq 2$, and suppose that the result holds for all shorter paths.
+   Invoking \Cref{general AIP: T} for the pair $(B,\vv{v})$, keeping in mind that  $\val \IP_p(B,\vv{v},p) =  \val \IP_p(A_1,\vv{u}_1,p)$, we see that
     \[
-      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (B,\vv{w},p^{e-1}) \} \\
+      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (B,\vv{w},p^{e-1}) \}, \\
     \]
-    where the maximum above is over all $p$-shortfall pairs derived from $(B,\vv{v})$, that is, over all pairs $(B,\vv{w})$ with $\vv{w} \in \short \IP_p(B,\vv{v},p) = \ushort(B,\vv{v},p)$.  
+    where the maximum above is over all $p$-shortfall pairs derived from $(B,\vv{v})$, that is, over all pairs $(B,\vv{w})$ with $\vv{w} \in \short \IP_p(B,\vv{v},p)$.  
     
-    Let an overbar denote collapse along $\O=\mf(B,\vv{v})$.  If the pair $(B,\vv{w})$ is as above, then the linear constraints of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$ are a subset of the linear constraints of $\IP_p(B, \vv{w}, p^{e-1})$, while their arithmetic constraints are identical.  Therefore, the value of $\IP_p(B,\vv{w},p^{e-1})$ is at most the value of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$.  On the other hand, as noted in \Cref{sprouts as collapsed shortfall pairs: R}, the collapsed pairs $(\ol{B}, \ol{\vv{w}})$ of this form are precisely the $p$-sprouts of $(B,\vv{v})$.   Thus, 
+    Let an overbar denote collapse along $\O=\mf(B,\vv{v})$.
+    If the pair $(B,\vv{w})$ is as above, then the linear constraints of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$ are a subset of the linear constraints of $\IP_p(B, \vv{w}, p^{e-1})$, while their arithmetic constraints are identical.
+    Therefore, the value of $\IP_p(B,\vv{w},p^{e-1})$ is at most the value of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$.  On the other hand, as noted in \Cref{sprouts as collapsed shortfall pairs: R}, the collapsed pairs $(\ol{B}, \ol{\vv{w}})$ of this form are precisely the $p$-sprouts of $(B,\vv{v})$.
+    Thus, 
     \[
-      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (C,\vv{z},p^{e-1}) \} \\
-    \]
-where the maximum above is over all $p$-sprouts $(C,\vv{z})$ of $(B,\vv{v})$.  
+      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (C,\vv{z},p^{e-1}) \}, \\
+   \]
+   where the maximum above is over all $p$-sprouts $(C,\vv{z})$ of $(B,\vv{v})$.
+   Therefore, to complete our inductive step, it suffices to show that
+   \begin{equation}\label{ineq}
+      \val \IP_p(C,\vv{z},p^{e-1}) \le \sum_{s=2}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s}
+   \end{equation}
+   for each $p$-sprout $(C,\vv{z})$ of $(B,\vv{v})$.
+   In what follows, we fix such a $p$-sprout.
 
-Therefore, to complete our inductive step, it suffices to show that
-    \begin{equation}\label{ineq}
-        \val \IP_p(C,\vv{z},p^{e-1}) \le \sum_{s=2}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s} 
-    \end{equation}
-    for each $p$-sprout $(C,\vv{z})$ of $(B,\vv{v})$.  In what follows, we fix such a pair.
-    
-    Let $q$ be the common level of $(B,\vv{v})$ and $(A_1, \vv{u}_1)$ in $\sprout^{\ast}_p(A,\vv{u})$.  Being a $p$-sprout of $(B,\vv{v})$, it follows that $(C,\vv{z}) \in \S_{qp}(A,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(A,\vv{u})$ is non-empty, as it contains $(A_2, \vv{u}_2)$.  Below, we establish \eqref{ineq} in cases, depending on whether $(C,\vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$.
-    
-    If $(C,\vv{z}) \notin \S^{\ast}_{qp}(A,\vv{u})$, then \Cref{p large graph: P} implies that $\val \IP_p(C,\vv{z}, p)$ is less than $\val \IP_p(A_2, \vv{u}_2, p)$.  In light of this, \Cref{cor: mu comparison} implies that $\mu(C, \vv{z},p^{e-1}) < \mu(A_2,\vv{u}_2, p^{e-1})$, and the induction hypothesis applied to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
-    On the other hand, if $(C, \vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(A,\vv{u})$ as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
+   Let $q$ be the common level of $(B,\vv{v})$ and $(A_1, \vv{u}_1)$ in $\sprout^{\ast}_p(A,\vv{u})$.
+   Being a $p$-sprout of $(B,\vv{v})$, it follows that $(C,\vv{z}) \in \S_{qp}(A,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(A,\vv{u})$ is non-empty, as it contains $(A_2, \vv{u}_2)$.
+   Below, we establish \eqref{ineq} in cases, depending on whether $(C,\vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$.
+
+   If $(C,\vv{z}) \notin \S^{\ast}_{qp}(A,\vv{u})$, then $\val \IP_p(C,\vv{z}, p)< \val \IP_p(A_2, \vv{u}_2, p)$ by \Cref{p large graph: P}, and consequently $\val \IP_p(C, \vv{z},p^{e-1}) < \val\IP_p(A_2,\vv{u}_2, p^{e-1})$ by \Cref{cor: mu comparison}.
+   The induction hypothesis applied to $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and $(A_2,\vv{u}_2)$ itself gives \eqref{ineq}.
+   On the other hand, if $(C, \vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(A,\vv{u})$ as $(A_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)$ and the point $(C, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
 
