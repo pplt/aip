@@ -6,6 +6,8 @@
 \captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
 \renewcommand\thesubfigure{(\sc \alph{subfigure})}
 \usepackage{bm}
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage{stmaryrd}
 
 %shortfall and deficit
 \newcommand{\short}{\operatorname{short}}
@@ -17,6 +19,8 @@
 \newcommand{\fsr}{\mathcal{R}}
 
 \renewcommand{\S}{\mathcal{S}}
+\newcommand{\pp}{\mathsf{p}}
+\renewcommand{\tt}{\mathsf{t}}
 
 \begin{document}
 
@@ -2160,15 +2164,15 @@ We are now ready to prove the above theorem.
    We now proceed to investigate these claims for $e+1$.
 
    We start with claim \ref{c2}.
-   If $e=1$, then $\short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$ only depends on $p$ modulo $\denom$ by \Cref{pair periodicity: R}, and consequently so does $\S_{p^2} = \{ (A,\vv{v}):  \vv{v} \in \short \IP_p(A,\vv{u},p) \}$.
-   Furthermore, every pair in $\S_{p^{2}}$ is small by \Cref{small pairs from shortfalls: R,arithmetic uniform value and image: T}.
-   If $e > 1$, 
+   % If $e=1$, then $\short \IP_p(A,\vv{u},p) = \ushort(A,\vv{u},p)$ only depends on $p$ modulo $\denom$ by \Cref{pair periodicity: R}, and consequently so does $\S_{p^2} = \{ (A,\vv{v}):  \vv{v} \in \short \IP_p(A,\vv{u},p) \}$.
+   % Furthermore, every pair in $\S_{p^{2}}$ is small by \Cref{small pairs from shortfalls: R,arithmetic uniform value and image: T}.
+   % If $e > 1$, 
    \Cref{general AIP: T} shows that 
    \[\short \IP_p(A,\vv{u},p^{e}) = \bigcup_{(A,\vv{v}) \in \S^*_{p^e}} \short \IP_p(A,\vv{v}, p)
       = \bigcup_{(A,\vv{v}) \in \S^*_{p^e}} \ushort(A,\vv{v}, p).\]
-   Since $\S^*_{p^e}$ and each $\ushort(A,\vv{v}, p)$ only depend on $p$ modulo $\denom$, so do $\short \IP_p(A,\vv{u},p^{e})$ and $\S_{p^{e+1}}$.
+   Since $\S^*_{p^e}$ and each $\ushort(A,\vv{v}, p)$ only depend on $p$ modulo $\denom$, so does $\S_{p^{e+1}} = \{(A,\vv{v}): \vv{v}\in \short \IP_p(A,\vv{u},p^{e})\}$.
    Moreover, since $\S^*_{p^e}$ consists of very small pairs, the above decomposition, \Cref{small pairs from shortfalls: R}, and \Cref{arithmetic uniform value and image: T} tell us that every pair in $\S_{p^{e+1}}$ is small.
-   In either case, we have verified most of claim \ref{c2}, except that $\S_{p^{e+1}}$ might contain a small but not very small pair.
+   We have therefore verified most of claim \ref{c2}, except that $\S_{p^{e+1}}$ might contain a small but not very small pair.
  
    Suppose that is not the case.
    \Cref{general AIP: T,trivial small value bound: P} show that
@@ -2201,6 +2205,48 @@ We are now ready to prove the above theorem.
    In the absence of such luck, note that in this $\idealm$-primary case there are only finitely many small $A$-pairs.
    Thus, there are only finitely many distinct sets $\S_{p^e}$, and once one of these sets repeats, the numbers $M$ that appear in the recurrence \eqref{recurrence: E} will cycle from that point onward.
 \end{remark}
+
+\pedro[inline]{
+   Should we get into more details?
+   E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
+}
+
+\begin{algorithm}\caption{The $\idealm$-primary case}
+   \label{alg}
+\Indp
+\SetInd{2em}{0em}
+\DontPrintSemicolon
+\medskip
+\SetKwInput{Input}{Input}\SetKwInput{Output}{Output}
+\Input{ \\
+   $\bullet$ A very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
+   $\bullet$ A universal denominator $\denom$ for $A$\\
+   $\bullet$ A representative $p_0$ for a congruence class modulo $\denom$
+}
+\medskip
+\Output{ \\ $\bullet$ A generating function $F(\mathsf{p},\mathsf{t}) \in \QQ(\mathsf{p})\llbracket \mathsf{t} \rrbracket$ for $\val\IP_\pp(A,\vv{u},\pp^e)$
+}
+\medskip
+$\S_{p},\  \S^*_{p} \leftarrow \{(A,\vv{u})\}$\;
+$e \leftarrow 1$\;
+%\texttt{done} $\leftarrow$ \texttt{false}\;
+$M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
+\While{true}{
+   $e\leftarrow e+1$\;
+   $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p_0)\big\}$\;
+   \If{$\exists k < e: \S_{p^{k}} = \S_{p^e}$}{
+      \KwRet{$\frac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\frac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
+   }
+   $\max \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
+   \If{$\max >1$}{
+      \KwRet{$\frac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \frac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
+   }
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \max\}$\;
+   $\min \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \S^*_{p^e}\}$\;
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S^*_{p^e}: \udeficit(A,\vv{v},p_0) = \min\}$\;
+   $M_e \leftarrow p \max - \min$\;
+}
+\end{algorithm}
 
 
 \newpage
@@ -2265,8 +2311,6 @@ We are now ready to prove the above theorem.
 \end{enumerate}
 \end{remark}
 
-\newpage
-
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
    For each monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
@@ -2277,17 +2321,14 @@ We are now ready to prove the above theorem.
  %
  \end{theorem}
 
-\begin{proof}\daniel{Needs modification} We start by describing what it means for $p$ to be large.  Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.  Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.  Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.  We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+\begin{proof}
+   We start by describing what it means for $p$ to be large.
+   Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.
+   Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
+   Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
+   We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
-% \begin{proof}
-%    We start by describing what it means for $p$ to be large.
-%    Toward this, let $M_1, \cdots, M_l$ be the finitely many descendants of $A$.
-%    Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
-%    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
-%    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
-% 
-%    The finiteness of $\fsr$ and \Cref{positive-polynomial: L} below \emily{Is the lemma after theorem to get to theorem statement faster?} imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
+   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
     \begin{align}
       \tag{$\heartsuit$} \label{p-big-1}
       &\text{$\frac{p}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
@@ -2295,7 +2336,6 @@ The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that t
       &\text{$\frac{p^e}{\denom} > \sum_{i=1}^e \omega_i p^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
     \end{align}
     In what follows, we assume that $p$ is chosen so as to satisfy \eqref{p-big-1} and \eqref{p-big-2}. 
-% The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below\emily{Is the lemma after theorem to get to theorem statement faster?}, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which \eqref{p-big-1} and \eqref{p-big-2} hold whenever $p > \beta$.  In what follows, we assume that $p$ is chosen so that these conditions are satisfied.
 
     Consider a finite path
     \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \]
@@ -2363,13 +2403,6 @@ Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1
 % \[ wp^e ( p-1 ) - \lambda (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e - \lambda \cdot \frac{ p^e - 1}{p-1} = wp^e - \lambda p^{e-1} - \cdots - \lambda p - \lambda > 0 \] for every integer $e \geq 1$.   Moving every term but $wp^e$ to the right-hand side of this inequality, the resulting bound is enough to conclude our proof.
 \end{proof}
 
-
-\newpage
-
-
-
-\newpage
-
 \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
 
 \begin{definition}[Subgraphs associated to very small pairs]  Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
@@ -2434,12 +2467,6 @@ If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the larges
 \begin{remark}
 As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u})$ is very small, then $\S^{\ast}_p(A,\vv{u}) = \{ (A,\vv{u} )\}$, which shows that $\Q_p(A,\vv{u})$ is at least $p$.  Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e}  implies the issue of whether $\Q_p(A,\vv{u}) = \infty$ can be determined by checking whether $\S_{qp}(A,\vv{u}) \neq \emptyset$ for a finite number of $q$.  Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not $p$ itself. 
 \end{remark}
-
-
-
-
-
-\newpage
 
 \daniel[inline]{Needs a transition}
 
@@ -2559,17 +2586,11 @@ TO DO LIST:
 \end{enumerate}
 }
 
-
-
 %\daniel[inline]{\begin{remark}[A deterministic algorithm]  \!{To do}
 %\end{remark}
 %}
 
-\newpage
-
 \subsection{Concerning non-leading coefficients}
-
-
 
 \begin{lemma} 
 \label{non-leading coefficients: L}
@@ -2653,9 +2674,6 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
 %\end{theorem}
 %
 %\subsection{Generic hypersurfaces in characteristic zero}
-
-
-
 
 \newpage
 \appendix
