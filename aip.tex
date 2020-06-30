@@ -2231,23 +2231,22 @@ $\S_{p},\  \S^*_{p} \leftarrow \{(A,\vv{u})\}$\;
 $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
 $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
-\While{true}{
+\While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
    $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p_0)\big\}$\;
    \If{$\exists k < e: \S_{p^{k}} = \S_{p^e}$}{
       \KwRet{$\frac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\frac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
-   $\max \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
-   \If{$\max >1$}{
+   $\text{\texttt{max}} \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
+   \If{$\text{\em \texttt{max}} >1$}{
       \KwRet{$\frac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \frac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \max\}$\;
-   $\min \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \S^*_{p^e}\}$\;
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S^*_{p^e}: \udeficit(A,\vv{v},p_0) = \min\}$\;
-   $M_e \leftarrow p \max - \min$\;
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \text{\texttt{max}}\}$\;
+   $\text{\texttt{min}} \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \S^*_{p^e}\}$\;
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S^*_{p^e}: \udeficit(A,\vv{v},p_0) = \text{\texttt{min}}\}$\;
+   $M_e \leftarrow p\, \text{\texttt{max}} - \text{\texttt{min}}$\;
 }
 \end{algorithm}
-
 
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
@@ -2315,10 +2314,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 \label{ILL: T}
    For each monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
    If $p>\beta$ and \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e)\] is a path in $\sprout_p(A)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(A_i, \vv{u}_i,p)$  such that
- %
- \[ \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e\]
- is feasible for $\IP(A_1, \vv{u}_1, p^e)$.
- %
+   \[
+      \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e
+   \]
+   is feasible for $\IP(A_1, \vv{u}_1, p^e)$.
  \end{theorem}
 
 \begin{proof}
@@ -2340,18 +2339,17 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
     Consider a finite path
     \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \]
     in $\sprout_p(A)$.
-    For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.  If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that
-    \[\vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, q)= A_{i+1} \tail{\vv{s}_i}_p - A_{i+1}(\opt \ip( A_i, \vv{u}_i, \vv{s}_i, p)).\]  
-Then \Cref{fsr-exist: T} and our choice of $\fsr$ allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that
-$\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.  Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
+    For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.
+    If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that
+    \[
+       \vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, q)= A_{i+1} \tail{\vv{s}_i}_p - A_{i+1}(\opt \ip( A_i, \vv{u}_i, \vv{s}_i, p)).
+    \]
+    Then \Cref{fsr-exist: T} and our choice of $\fsr$ allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.
+    Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
-    Next, for every $1 \leq i \leq e$,  we define
-$
-\vv{k}_i \coloneqq \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i.
-$
-Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $A_i \vv{h}_i$.  It then follows from \Cref{uniform value: P} 
-%(or rather, its proof)\daniel{This follows  from the \emph{statement} of \Cref{uniform value: P}.} 
-that
+    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i \coloneqq \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i$.
+    Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $A_i \vv{h}_i$.
+    It then follows from \Cref{uniform value: P} that
     \begin{equation}
        \label{optimality-for-each-component: e}
        \vv{k}_i \in \opt \IP(A_i, \vv{u}_i,p).
@@ -2386,7 +2384,7 @@ that
     However, as $\vv{w}$ is positive in $\rs(\O_1)$ and has denominator $\denom$, $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
     Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
 
-We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
+    We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
 \end{proof}
 
 \begin{lemma}
@@ -2397,65 +2395,70 @@ We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O
 
 \emily{I shortened the proof}
 \begin{proof}
-Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$. Then for $p>\beta$, $\omega_1 \cdot p^{e-1} + \cdots + \omega_{e-1} \cdot p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
-% Let $\lambda$ be any positive upper bound for $\Omega$.  Suppose that $p > (w+\lambda)/w$, which after rearranging terms, is equivalent to the condition $w(p-1) - \lambda > 0$.  Multiplying this by $p^e$ and adding the positive number $\lambda$ then shows that
-% %
-% \[ wp^e ( p-1 ) - \lambda (p^e-1) > 0 \] for every integer $e \geq 1$.   If, in addition, we also suppose that $p -1 > 0$, then we may divide the above by this quantity to conclude that \[ w p^e - \lambda \cdot \frac{ p^e - 1}{p-1} = wp^e - \lambda p^{e-1} - \cdots - \lambda p - \lambda > 0 \] for every integer $e \geq 1$.   Moving every term but $wp^e$ to the right-hand side of this inequality, the resulting bound is enough to conclude our proof.
+   Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
+   Then for $p>\beta$, $\omega_1 \cdot p^{e-1} + \cdots + \omega_{e-1} \cdot p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
 \end{proof}
 
 \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
 
-\begin{definition}[Subgraphs associated to very small pairs]  Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
-Next, suppose that $\S_q(A,\vv{u})$ has been defined for some $q=p^e$.
-\begin{enumerate} 
-\item If $\S_q(A,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(A,\vv{u})$ to be the set of all $(B,\vv{v})$ in $\S_q(A,\vv{u})$ that first maximize $\ft{B}{\vv{v}}$, and only then minimize $\udeficit(B,\vv{v},p)$.  We then~define~$\S_{qp}(A,\vv{u})$ to be the set of all $p$-sprouts of all pairs in $\S^{\ast}_q(A,\vv{u})$.
-\item Otherwise, we define $\S_q^{\ast}(A,\vv{u})=\S_{qp}(A,\vv{u}) = \emptyset$.
-\end{enumerate}
-
-By definition,  each $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ is a subset of $\graph_{p^e}(A)$, which we identify with the vertices of $\sprout_p(A)$ of level $p^e$.    We then define $\sprout_p^{\ast}(A,\vv{u})$ to be the induced subgraph of $\sprout_p(A)$ on the set of vertices
-\[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u}). \]
-%We define $\sprout_p(A,\vv{u})$ to be the induced subgraph of $\sprout_p(A)$ on the set of vertices  \[ \bigsqcup_{e=0}^{\infty} \S_{p^e}(A,\vv{u}) \]
-%and define $\sprout_p^{\ast}(A,\vv{u})$ to be the induced subgraph of $\sprout_p(A)$ on the set of vertices
-%\[ \bigsqcup_{e=0}^{\infty} \S^{\ast}_{p^e}(A,\vv{u}) \]
+\begin{definition}[Subgraphs associated to very small pairs]
+   Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
+   Next, suppose that $\S_q(A,\vv{u})$ has been defined for some $q=p^e$.
+   \begin{enumerate}
+      \item If $\S_q(A,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(A,\vv{u})$ to be the set of all $(B,\vv{v})$ in $\S_q(A,\vv{u})$ that first maximize $\ft{B}{\vv{v}}$, and only then minimize $\udeficit(B,\vv{v},p)$.  We then~define~$\S_{qp}(A,\vv{u})$ to be the set of all $p$-sprouts of all pairs in $\S^{\ast}_q(A,\vv{u})$.
+      \item Otherwise, we define $\S_q^{\ast}(A,\vv{u})=\S_{qp}(A,\vv{u}) = \emptyset$.
+   \end{enumerate}
+   By definition, each $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ is a subset of $\graph_{p^e}(A)$, which we identify with the vertices of $\sprout_p(A)$ of level $p^e$.
+   We then define $\sprout_p^{\ast}(A,\vv{u})$ to be the induced subgraph of $\sprout_p(A)$ on the set of vertices
+   \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u}). \]
 \end{definition}
 
 \begin{remark}[Elementary observations]
-\label{elementary2: R}
-Suppose $(A,\vv{u})$ is very small.  In this remark, we gather some basic facts \daniel{Please verify these} concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
-\begin{enumerate}
-
-
-\item  \label{elementary2 lowest level}  The only vertex of $\sprout_p^{\ast}(A,\vv{u})$ of level $p$ is $(A,\vv{u})$.
-\item \label{elementary2 small pairs}  It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when non-empty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.  Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$, or $\S_q(A,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.   Furthermore, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
-
-\item \label{elementary2 periodic in e} Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\cup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\cup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
-
-\item \label{elementary2 periodic in p} Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$.
-\end{enumerate}
+   \label{elementary2: R}
+   Suppose $(A,\vv{u})$ is very small.
+   In this remark, we gather some basic facts \daniel{Please verify these} concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
+   \begin{enumerate}
+      \item  \label{elementary2 lowest level}
+      The only vertex of $\sprout_p^{\ast}(A,\vv{u})$ of level $p$ is $(A,\vv{u})$.
+      \item \label{elementary2 small pairs}
+      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when non-empty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.
+      Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$ or $\S_q(A,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.
+      Moreover, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
+      \item \label{elementary2 periodic in e}
+      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
+      \item \label{elementary2 periodic in p}
+      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$.
+      \pedro{$A$ and descendants?}
+   \end{enumerate}
 \end{remark}
 
 \emily[inline]{What can we say when $p\equiv 1 \bmod d$?}
 
-
 \begin{definition}
-\label{epsilon delta: D}
-  If $(A,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$, then we define 
- \begin{align*}
- \epsilon_{p^e}(A,\vv{u}) & \coloneqq \ft{B}{\vv{v}} \\ 
-  \delta_{p^e}(A,\vv{u}) & \coloneqq \udeficit(B,\vv{v},p)
- \end{align*}
- where $(B,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(A,\vv{u})$.  Observe that, by definition of $\S^{\ast}_{p^e}(A,\vv{u})$, these numbers are independent of the choice of $(B,\vv{v}) \in \S^{\ast}_{p^e}(A,\vv{u})$.
-
+   \label{epsilon delta: D}
+   If $(A,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$, then we define
+   \begin{align*}
+     \epsilon_{p^e}(A,\vv{u}) & \coloneqq \ft{B}{\vv{v}} \\
+     \delta_{p^e}(A,\vv{u}) & \coloneqq \udeficit(B,\vv{v},p)
+   \end{align*}
+   where $(B,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(A,\vv{u})$.
+   Observe that, by definition of $\S^{\ast}_{p^e}(A,\vv{u})$, these numbers are independent of the choice of $(B,\vv{v}) \in \S^{\ast}_{p^e}(A,\vv{u})$.
 \end{definition}
 
 \begin{proposition}
-\label{p large graph: P}
-Given a monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property:  Suppose $p > \beta$.  If  $(A,\vv{u})$ is very small, $e$ is a natural number, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then 
-\[ \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) \cdot p-\delta_{p^e}(A,\vv{u})\] and  the subset of $\S_{p^e}(A,\vv{u})$ of pairs that achieve this maximum is $\S^{\ast}_{p^e}(A,\vv{u})$.
+   \label{p large graph: P}
+   Given a monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property\textup:
+   Suppose $p > \beta$.
+   If  $(A,\vv{u})$ is very small, $e$ is a natural number, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then
+   \[
+      \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) \cdot p-\delta_{p^e}(A,\vv{u})
+   \]
+   and the subset of $\S_{p^e}(A,\vv{u})$ of pairs that achieve this maximum is $\S^{\ast}_{p^e}(A,\vv{u})$.
 \end{proposition}
 
-\begin{proof}  First, choose $p$ to be large enough so that the conclusions of 
-\Cref{arithmetic uniform value and image: T} hold for $A$, as well as for each of its finitely many descendants.  In particular, for such primes, $\val \IP_p(B,\vv{v}) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
+\begin{proof}
+   First, choose $p$ to be large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$, as well as for each of its finitely many descendants.
+   In particular, for such primes, $\val \IP_p(B,\vv{v}) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
 
