@@ -2242,9 +2242,9 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
    \If{$\text{\em \texttt{max}} >1$}{
       \KwRet{$\frac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \frac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \text{\texttt{max}}\}$\;
-   $\text{\texttt{min}} \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \S^*_{p^e}\}$\;
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \S^*_{p^e}: \udeficit(A,\vv{v},p_0) = \text{\texttt{min}}\}$\;
+   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \text{\texttt{max}}\}$\;
+   $\text{\texttt{min}} \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},p_0) = \text{\texttt{min}}\}$\;
    $M_e \leftarrow p\, \text{\texttt{max}} - \text{\texttt{min}}$\;
 }
 \end{algorithm}
@@ -2570,14 +2570,13 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
       (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l}) \to (B_{l+1}, \vv{v}_{l+1})
    \]
    in $\sprout_p(A)$ whose terminal vertex is small, but not very small.
-   \Cref{ILL: T} applied to this second path tells us that there exist points $\vv{h}_1,\ldots, \vv{h}_{l+1}$ with each $\vv{h}_s \in \opt \IP(B_s, \vv{v}_s, p)$, and such that
+   \Cref{ILL: T}, applied to this second path, tells us that there exist points $\vv{h}_1,\ldots, \vv{h}_{l+1}$ with each $\vv{h}_s \in \opt \IP(B_s, \vv{v}_s, p)$, and such that
    \[
       \vv{h} \coloneqq \sum_{s=1}^{l+1} \vv{h}_s p^{l+1-s} \in \feas \IP(A,\vv{u}, \Q p).
    \]
-
    Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that the value of the standard linear program $\IP(B_{l+1}, \vv{v}_{l+1},p)$ is greater than~$p$.
-   Therefore, $\norm{\vv{h}_{l+1}}$ is at least $p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
-   Without loss of generality, suppose that the bound $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{h}_{l+1}$.
+   Therefore, $\norm{\vv{h}_{l+1}} > p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
+   Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \vv{e}_1 \leq \vv{h}_{l+1}$.
 
    Fix an integer $e \geq 1$, and consider the point
    \[
