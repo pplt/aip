@@ -2219,40 +2219,44 @@ We are now ready to prove the above theorem.
    E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
 }
 
+\setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The $\idealm$-primary case}
    \label{alg}
 \Indp
-\SetInd{2em}{0em}
+\SetInd{1.55em}{0em}
 \DontPrintSemicolon
 \medskip
-\SetKwInput{Input}{Input}\SetKwInput{Output}{Output}
+\SetKwInput{Input}{input}\SetKwInput{Output}{output}
 \Input{ \\
-   $\bullet$ A very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
-   $\bullet$ A universal denominator $\denom$ for $A$\\
-   $\bullet$ A representative $p_0$ for a congruence class modulo $\denom$
+   $\bullet$ a very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
+   $\bullet$ a representative $p_0$ for a congruence class modulo a universal denominator $\denom$
 }
 \medskip
-\Output{ \\ $\bullet$ A generating function $F(\mathsf{p},\mathsf{t}) \in \QQ(\mathsf{p})\llbracket \mathsf{t} \rrbracket$ for $\val\IP_\pp(A,\vv{u},\pp^e)$
+\Output{ \\ $\bullet$ a generating function $F(\pp,\tt) \in \QQ(\pp,\tt)$ for $\val\IP_\pp(A,\vv{u},\pp^e)$
 }
 \medskip
+\Begin{
+   \medskip
 $\S_{p},\  \S^*_{p} \leftarrow \{(A,\vv{u})\}$\;
 $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
-$M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
+$M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
+\medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
    $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p_0)\big\}$\;
    \If{$\exists k < e: \S_{p^{k}} = \S_{p^e}$}{
-      \KwRet{$\frac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\frac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
+      \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
    $\text{\texttt{max}} \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
    \If{$\text{\em \texttt{max}} >1$}{
-      \KwRet{$\frac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \frac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
+      \KwRet{$\dfrac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \dfrac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
    $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \text{\texttt{max}}\}$\;
    $\text{\texttt{min}} \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
    $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},p_0) = \text{\texttt{min}}\}$\;
    $M_e \leftarrow p\, \text{\texttt{max}} - \text{\texttt{min}}$\;
+}
 }
 \end{algorithm}
 
@@ -2554,7 +2558,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
 \begin{proof}
    Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
    Set $\Q = \Q_p(A,\vv{u})$.
-   If $e$ is an integer satisfying $1 \leq e \leq \Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ in this graph.
+   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ in this graph.
    This path in $\sprout_p^{\ast}(A,\vv{u})$ also defines a path in $\sprout_p(A)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_1,\ldots,\vv{k}_e$ in the domain lattice of $A$ with each $\vv{k}_s \in \opt \IP(A_s, \vv{u}_s, p)$ for which the point $\vv{k} \coloneqq \sum_{s=1}^e \vv{k}_s p^{e-s}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.
 
    However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(A_s, \vv{u}_s)$ is very small, and  \Cref{arithmetic uniform value and image: T} then implies that $\IP(A_s,\vv{u}_s,p) = \IP_p(A_s, \vv{u}_s, p)$.
@@ -2589,7 +2593,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
    \[
       \vv{m} \coloneqq \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + (\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1,
    \]
-   which is obtained from $\vv{h}p^{e-1}$ by subtracting from it the term corresponding to $\vv{h}_{l+1}p^{e-1}$, and replacing it with  $(\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.
+   which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{l+1}p^{e-1}$ with  $(\vv{g}+\vv{e}_1)p^{e-1} - \vv{e}_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.
    Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(A,\vv{u}, \Q p)$ then implies that $\vv{m} \in \feas \IP(A,\vv{u}, \Q p^e)$.
 
    To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u}, \Q p^e)$, observe that the base $p$ expansion of $\vv{m}$ is given by
@@ -2597,7 +2601,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\mathsf{p} - \udeficit(A,\vv{u},p_0)$\;
       \vv{m} = \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + \vv{g}p^{e-1} + (p-1) \vv{e}_1 \cdot p^{e-2} + \cdots + (p-1)\vv{e}_1
    \]
    and note that $\norm{\vv{h}_s} = \epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u}) < p$ for each $1 \leq s \leq l$, by virtue of the first path above lying entirely in $\sprout_p^{\ast}(A,\vv{u})$.
-
    It follows from this, and our earlier work, that
    \begin{align*}
      \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\
