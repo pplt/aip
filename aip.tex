@@ -1897,10 +1897,15 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 }
 \daniel[inline]{This is better.  In this light, is it true that if $p \gg 0$ relative to $A$ and $(A,\vv{u})$ is small, then $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$ if and only if $(A,\vv{u})$ is very small?}
 \pedro[inline]{
-   I'm not sure about the ``relative to $A$'' part, but otherwise, this seems to be true.
-   If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$.
+   If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$ as in the proof of the previous theorem.
    But if that is the case \emph{and} $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
-   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.  
+   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.\\[2mm]
+   Maybe this could be a lemma? Something like\ldots
+   \begin{lemma}
+      If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+      Moreover, the converse is true for $p$ sufficiently large, depending solely on $A$.
+   \end{lemma}
+   Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
 }
 \begin{theorem}
    \label{arithmetic uniform value and image: T}
@@ -1955,8 +1960,6 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
    Notice that in this case the minimal face $\O = \mf(A,\vv{u})$ is bounded, so that collapsing along $\O$ is simply the identity.
    For any prime $p$, $\val \IP = 2p - 2$, attained by a unique optimal point, namely $(p-1,p-1)$; thus, $\short \IP = \{(1,1)\}$, which is independent of $p$, as guaranteed by \Cref{uniform uniform value and image: T}  (at least when $p \gg 0$).
-   % \daniel{Should we add ``as guaranteed by \Cref{uniform uniform value and image: T}, at least when $p \gg 0$'' here, since that result does apply to the shortfalls of $\IP$?}
-   % \daniel{Should we also say that $\O = \mf(A,\vv{u})$ is bounded in this example, so that collapsing is just the identity?}
    In contrast, for any odd prime $p$, the point $(\frac{p-1}{2}, \frac{p-1}{2})$ is feasible for $\IP_p$, and therefore optimal by \Cref{trivial small value bound: P}.
    Thus, $\val \IP_p = p-1$ and the point $(\frac{p+1}{2}, \frac{p+1}{2})$, which depends strongly on $p$, is an element of $\short \IP_p$.
 \end{example}
@@ -1997,16 +2000,13 @@ Indeed, the failure of \Cref{arithmetic uniform value and image: T} to compute f
    Furthermore, the outcome of any such comparison will depend on the class of $p$ module any universal denominator for $A$, but not on $p$ itself.
 \end{remark}
 
-% \daniel[inline]{Subscripts are now indexed by powers of $p$, and the indexing was modified so that it agrees with our choice of notation for the graphs later}
 
 We are now prepared to describe our algorithm.
 In what follows, choose $p \gg 0$ as in \Cref{p large m-primary: R}, and fix a universal denominator  $\denom$ for $A$.
 We begin our process by initially defining both $\S_p = \S_p(A,\vv{u})$ and $\S^{\ast}_p = \S^{\ast}_p(A,\vv{u})$ as the singleton set $\S_p=\S_p^{\ast} = \{ (A,\vv{u}) \}$,  and noting that 
 \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p).\]
-%$\mathcal{S}_1$ to be the first in the sequence of shortfalls associated to the programs $\IP_p(A,\vv{u},p^e)$.  In other words, set \daniel{Replace $\mathcal{S}_e \mapsto \S_{p^e}$? \\ Consist of pairs?}
 
 We turn our attention to \emph{at least} computing $\val \IP_p(A,\vv{u},p^2)$, and set
-%
 \begin{align*}
  \S_{p^2} = \S_{p^2}(A,\vv{u}) \coloneqq& \{ (A,\vv{v}) : \vv{v} \in \short \IP_{p}(A,\vv{u},p) \} \\
  =& \{ (A,\vv{v}) : \vv{v} \in \ushort(A,\vv{u},p)\}.
@@ -2108,6 +2108,9 @@ Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, a
 
 Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Alternative m-primary subsection starts here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pedro[inline]{
    I propose the following alternate version of this subsection (mostly done, but still under construction).
    It extracts the algorithm from the theorem, not the other way around.
@@ -2260,6 +2263,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
 }
 \end{algorithm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Alternative m-primary subsection ends here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
 
@@ -2343,7 +2350,9 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below, imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
+   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below,
+\pedro{Maybe place the lemma before this theorem?}
+   imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
     \begin{align}
       \tag{$\heartsuit$} \label{p-big-1}
       &\text{$\frac{p}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
@@ -2514,8 +2523,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
     where the maximum above is over all $p$-shortfall pairs derived from $(B,\vv{v})$, that is, over all pairs $(B,\vv{w})$ with $\vv{w} \in \short \IP_p(B,\vv{v},p)$.  
     
     Let an overbar denote collapse along $\O=\mf(B,\vv{v})$.
-    If the pair $(B,\vv{w})$ is as above, then the linear constraints of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$ are a subset of the linear constraints of $\IP_p(B, \vv{w}, p^{e-1})$, while their arithmetic constraints are identical.
-    Therefore, the value of $\IP_p(B,\vv{w},p^{e-1})$ is at most the value of $\IP_p(\ol{B}, \ol{\vv{w}}, p^{e-1})$.  On the other hand, as noted in \Cref{sprouts as collapsed shortfall pairs: R}, the collapsed pairs $(\ol{B}, \ol{\vv{w}})$ of this form are precisely the $p$-sprouts of $(B,\vv{v})$.
+    If the pair $(B,\vv{w})$ is as above, then the linear constraints of $\IP_p(\collapse{B}, \collapse{\vv{w}}, p^{e-1})$ are a subset of the linear constraints of $\IP_p(B, \vv{w}, p^{e-1})$, while their arithmetic constraints are identical.
+    Therefore, the value of $\IP_p(B,\vv{w},p^{e-1})$ is at most the value of $\IP_p(\collapse{B}, \collapse{\vv{w}}, p^{e-1})$.  On the other hand, as noted in \Cref{sprouts as collapsed shortfall pairs: R}, the collapsed pairs $(\collapse{B}, \collapse{\vv{w}})$ of this form are precisely the $p$-sprouts of $(B,\vv{v})$.
     Thus, 
     \[
       \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (C,\vv{z},p^{e-1}) \}, \\
@@ -2572,7 +2581,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
 
    Next, suppose that $\Q$ is finite.
    By definition of $\Q$, we know that $\S_{\Q}^{\ast}(A,\vv{u})$ is nonempty, while $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, so that $\S_{\Q p}(A,\vv{u})$ must contain a pair that is not very small.
-   Thus, setting $l=\log_p \Q$, there exists a path
+   Set $l=\log_p \Q$.
+   Then there exists a path
    \[
       (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l})
    \]
@@ -2617,7 +2627,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
 TO DO LIST:
 \begin{enumerate}
 \item[$\CheckedBox$] Make local to do list
-\item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\ol{A}, \ol{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\ol{A}, \ol{\vv{u}})$. 
+\item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
 \item[$\Box$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 \item[$\Box$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
@@ -2639,18 +2649,18 @@ with equality if $A$ is the monomial matrix associated with an $\idealm$-primary
 \begin{proof}  We start by fixing some notation:  
 Let $\N$ be the Newton polyhedron of $A$, which we will suppose has $\numvars$ rows,  let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and suppose that $\defpt \in \RR^\numvars$ defines the face $\O$ in $\N$.  
 
-By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.  With this notation, \Cref{collapse of Newton polyhedron: P} tells us that $\ol{\O}$ is a face of $\ol{\N}$, the Newton polyhedron of $B=\ol{A}$, and that $\ol{\O}$ is defined in $\ol{\N}$ by the collapsed point $\ol{\vv{c}}$.
+By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.  With this notation, \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, and that $\collapse{\O}$ is defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
 
 
 
 
-\Cref{FT descriptions: P}\eqref{lambda} implies that there exists a point $\vv{n} \in \ol{\N}$ such that $\vv{v} = \ft{B}{\vv{v}} \cdot \vv{n}$.  As noted earlier, the point $\ol{\vv{c}}$ defines the face $\ol{\O}$ in $\ol{\N}$, and by \Cref{alpha=1: convention}, it follows that $\iprod{\ol{\vv{c}}}{\vv{n}}$ is at least $1$.  Thus, 
+\Cref{FT descriptions: P}\eqref{lambda} implies that there exists a point $\vv{n} \in \collapse{\N}$ such that $\vv{v} = \ft{B}{\vv{v}} \cdot \vv{n}$.  As noted earlier, the point $\collapse{\vv{c}}$ defines the face $\collapse{\O}$ in $\collapse{\N}$, and by \Cref{alpha=1: convention}, it follows that $\iprod{\collapse{\vv{c}}}{\vv{n}}$ is at least $1$.  Thus, 
 %
-\[ \ft{B}{\vv{v}} \leq  \ft{B}{\vv{v}} \cdot \iprod{\ol{\vv{c}}}{\vv{n}} = \iprod{\ol{\vv{c}}}{\vv{v}}.\]
+\[ \ft{B}{\vv{v}} \leq  \ft{B}{\vv{v}} \cdot \iprod{\collapse{\vv{c}}}{\vv{n}} = \iprod{\collapse{\vv{c}}}{\vv{v}}.\]
 %
 and so to complete our proof, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \udeficit(A, \vv{u}, p)$.
 
-However, the containment $\vv{v} \in \ushort(A, \vv{u}, p)$ implies that we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  As $\ol{\vv{c}}$ defines $\ol{\O}$,  the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: P}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and also that $\iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip$,
+However, the containment $\vv{v} \in \ushort(A, \vv{u}, p)$ implies that we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  As $\collapse{\vv{c}}$ defines $\collapse{\O}$,  the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: P}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and also that $\iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip$,
 which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).\]
 
 We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$,  the positivity of the grading implies that the point $\defpt$ defining this face must have positive coordinates, and so $\O$ must be bounded, and the $\mathfrak{m}$-primary assumption further implies that $\mf(A, \vv{u}) = \O$ for every pair $(A,\vv{u})$.  In particular, collapsing along $\O$ is simply the identity.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  
