@@ -2106,7 +2106,7 @@ Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of
 It then follows from \Cref{finitely many deltas for a fixed A: R} that all defined $\S_{p^e}$ are subsets of some \emph{finite set} determined by $A$.
 Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
 
-Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
+Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: P}, and will be covered in our treatment of the general case.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Alternative m-primary subsection starts here
@@ -2640,14 +2640,14 @@ TO DO LIST:
 
 \subsection{Concerning non-leading coefficients}
 
-\begin{lemma}
-   \label{non-leading coefficients: L}
+\begin{proposition}
+   \label{non-leading coefficients: P}
    If $(B, \vv{v})$ is a $p$-sprout of $(A, \vv{u})$, then
    \[
       \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}
    \]
-   with equality if $A$ is the monomial matrix associated with an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
-\end{lemma}
+   with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
+\end{proposition}
 
 \begin{proof}
    We start by fixing some notation:
@@ -2655,8 +2655,8 @@ TO DO LIST:
 
    By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.
    \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
-   \Cref{FT descriptions: P}\eqref{lambda} then shows that $\ft{B}{\vv{v}}^{-1}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
-   However, since $\vv{v} \in \ushort(A, \vv{u}, p)$ we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
+   \Cref{FT descriptions: P}\eqref{lambda} then shows that $\frac1{\ft{B}{\vv{v}}}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
+   But since $\vv{v} \in \ushort(A, \vv{u}, p)$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
    \[
       \ft{B}{\vv{v}} \le \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).
    \]
@@ -2675,11 +2675,14 @@ TO DO LIST:
 The non-leading coefficients appearing in the polynomial expressions described in \Cref{main theorem wrt diagonal: T} are rational and nonpositive.
 \end{corollary}
 
-\begin{proof}  Fix a pair $(A,\vv{u})$.  To simplify notation, set $\Q=\Q_p(A,\vv{u})$.
-The non-leading coefficients under consideration are (1) the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q=p^e$ less than $\Q$, (2) the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, (3) the rational numbers $-\delta_q(A,\vv{u})$ whenever $q=p^e$ at most $\Q$, and (4) the rational number $-1$.
+\begin{proof}
+   Fix a pair $(A,\vv{u})$, and set $\Q=\Q_p(A,\vv{u})$.
+   The non-leading coefficients under consideration are the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q < \Q$, the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, the rational numbers $-\delta_q(A,\vv{u})$ whenever $q\le \Q$, and $-1$.
 
-As the arguments are similar, we will only consider the coefficient in (2) above.  Towards this, suppose that $\Q$ is finite.  In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that 
-$\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.  Thus, $-(\delta_Q(A,\vv{u})-1)$ is negative.
+   The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
+   Towards this, suppose that $\Q$ is finite.
+   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: P} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
+   Thus, $-(\delta_\Q(A,\vv{u})-1)$ is negative.
 \end{proof}
 
 \begin{remark}[Critical exponents versus $F$-thresholds]  
@@ -2732,7 +2735,6 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
 \section{Monomial ideals and reduction}
 \label{monomial-reduction: A}
 
-
 The purpose of this appendix is to describe the behavior of the monomials contained in some possibly non-monomial ideal under reduction to prime characteristic.  To make this precise, consider the following definition. 
 
 \begin{definition}
@@ -2747,7 +2749,7 @@ The following theorem, a generalization of \cite[Lemma 6.1]{budur+mustata+saito.
 Given an ideal $I \subseteq \QQ[x_1, \cdots, x_\numvars]$, there exists an integer $\beta = \beta(I)$ with the following property:  If $p > \beta$, then $\mon(I)_p = \mon(I_p)$.
 \end{theorem}
 
-The subscript ``$p$'' indications reduction modulo $p$, which will be described in the first subsection. 
+The subscript ``$p$'' indicates reduction modulo $p$, which will be described in the first subsection. 
 Our methods in proving \Cref{mon-operation-modulo-p: T} are adapted from those in \emph{loc.\,cit}.
 Applications of the theorem related to critical exponents and $F$-thresholds 
 appear in the final subsection of this appendix. 
