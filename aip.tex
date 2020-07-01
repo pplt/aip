@@ -2611,11 +2611,11 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
       \vv{m} = \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + \vv{g}p^{e-1} + (p-1) \vv{e}_1 \cdot p^{e-2} + \cdots + (p-1)\vv{e}_1
    \]
    and note that $\norm{\vv{h}_s} = \epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u}) < p$ for each $1 \leq s \leq l$, by virtue of the first path above lying entirely in $\sprout_p^{\ast}(A,\vv{u})$.
-   It follows from this, and our earlier work, that
+   Thus, $\vv{m}$ is feasible for $\IP_p(A,\vv{u}, \Q p^e)$, and this and our earlier work show that
    \begin{align*}
      \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\
                                                      & = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) p^e + p^e-1 \\
-                                                     & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1
+                                                     & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1,
    \end{align*}
    and \Cref{general AIP: T} further implies that equality must hold throughout.
 
@@ -2640,30 +2640,33 @@ TO DO LIST:
 
 \subsection{Concerning non-leading coefficients}
 
-\begin{lemma} 
-\label{non-leading coefficients: L}
-If $(B, \vv{v})$ is a $p$-sprout of  $(A, \vv{u})$, then \[ \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}\]
-with equality if $A$ is the monomial matrix associated with an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
+\begin{lemma}
+   \label{non-leading coefficients: L}
+   If $(B, \vv{v})$ is a $p$-sprout of $(A, \vv{u})$, then
+   \[
+      \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}
+   \]
+   with equality if $A$ is the monomial matrix associated with an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
 \end{lemma}
 
-\begin{proof}  We start by fixing some notation:  
-Let $\N$ be the Newton polyhedron of $A$, which we will suppose has $\numvars$ rows,  let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and suppose that $\defpt \in \RR^\numvars$ defines the face $\O$ in $\N$.  
+\begin{proof}
+   We start by fixing some notation:
+   Let $\N$ be the Newton polyhedron of $A$, let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
 
-By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.  With this notation, \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, and that $\collapse{\O}$ is defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
+   By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.
+   \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
+   \Cref{FT descriptions: P}\eqref{lambda} then shows that $\ft{B}{\vv{v}}^{-1}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
+   However, since $\vv{v} \in \ushort(A, \vv{u}, p)$ we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
+   \[
+      \ft{B}{\vv{v}} \le \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).
+   \]
 
-
-
-
-\Cref{FT descriptions: P}\eqref{lambda} implies that there exists a point $\vv{n} \in \collapse{\N}$ such that $\vv{v} = \ft{B}{\vv{v}} \cdot \vv{n}$.  As noted earlier, the point $\collapse{\vv{c}}$ defines the face $\collapse{\O}$ in $\collapse{\N}$, and by \Cref{alpha=1: convention}, it follows that $\iprod{\collapse{\vv{c}}}{\vv{n}}$ is at least $1$.  Thus, 
-%
-\[ \ft{B}{\vv{v}} \leq  \ft{B}{\vv{v}} \cdot \iprod{\collapse{\vv{c}}}{\vv{n}} = \iprod{\collapse{\vv{c}}}{\vv{v}}.\]
-%
-and so to complete our proof, it suffices to show that $\iprod{\collapse{\defpt}}{\vv{v}} \leq \udeficit(A, \vv{u}, p)$.
-
-However, the containment $\vv{v} \in \ushort(A, \vv{u}, p)$ implies that we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.  As $\collapse{\vv{c}}$ defines $\collapse{\O}$,  the inner product of $\collapse{\defpt}$ with each column of $B$ is at least one, with equality whenever that column lies on $\collapse{\O}$.  Arguing as in the proof of \Cref{bounded value: P}, one may show that $\iprod{\collapse{\defpt}}{B \tail{\vv{s}}_p} = \norm{\tail{\vv{s}}_p}$ and also that $\iprod{\collapse{\defpt}}{ B \vv{h}} \geq \norm{\vv{h}} = \val \ip$,
-which allows us to conclude that \[ \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).\]
-
-We now address the last assertion:  If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$,  the positivity of the grading implies that the point $\defpt$ defining this face must have positive coordinates, and so $\O$ must be bounded, and the $\mathfrak{m}$-primary assumption further implies that $\mf(A, \vv{u}) = \O$ for every pair $(A,\vv{u})$.  In particular, collapsing along $\O$ is simply the identity.  Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  
+   We now address the last assertion:
+   If $A$ satisfies these additional conditions, then homogeneity implies that the convex hull of the columns of $A$ is a proper face $\O$ of $\N$.
+   The positivity of the grading implies that the point $\defpt$ defining this face must be positive.
+   Thus, $\O$ must be bounded, and in particular, collapsing along $\O$ is simply the identity.
+   Finally, the $\mathfrak{m}$-primary assumption further implies that $\mf(A, \vv{u}) = \O$ for every pair $(A,\vv{u})$.
+   Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  
 \end{proof}
 
 
