@@ -2107,7 +2107,7 @@ Note that, when it is necessary to define it, the set $\S_{p^e}$ will consist of
 It then follows from \Cref{finitely many deltas for a fixed A: R} that all defined $\S_{p^e}$ are subsets of some \emph{finite set} determined by $A$.
 Thus, there is an upper bound for the number of possible distinct  $\S_{p^e}$, and as soon as such a set repeats, the process must cycle from that point onward.
 
-Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: P}, and will be covered in our treatment of the general case.
+Finally, we note that it remains to establish the nonpositivity of the non-leading coefficients asserted in \Cref{m-primary AIP: T}, but this follows from  \Cref{non-leading coefficients: L}, and will be covered in our treatment of the general case.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Alternative m-primary subsection starts here
@@ -2134,7 +2134,7 @@ The main result of this subsection is the following.
 \end{theorem}
 
 \begin{remark}
-   In \Cref{non-leading coefficients: C}, we will show that the non-leading coefficients of this polynomial are nonpositive.
+   In \Cref{non-leading coefficients: P}, we will show that the non-leading coefficients of this polynomial are nonpositive.
    The proof below, however, will only show that the constant coefficient is negative.
 \end{remark}
 
@@ -2273,7 +2273,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 
 \pedro[inline]{
    Maybe having more subsections will help organize this long section.
+   I gave it a shot\ldots
 }
+
+\subsection{The sprouting graph of a monomial matrix}
 
 \begin{definition}
    A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some of its columns.
@@ -2425,7 +2428,9 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
 \end{proof}
 
-\daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
+\subsection{Subgraphs associated to pairs}
+
+\ \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
 
 \begin{definition}[Subgraphs associated to very small pairs]
    Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
@@ -2500,7 +2505,9 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not $p$ itself. 
 \end{remark}
 
-\daniel[inline]{Needs a transition}
+\subsection{The main theorem}
+
+Having the necessary concepts and definition in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices. 
 
 \begin{lemma}\label{lem: upper bound for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
@@ -2620,7 +2627,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    \end{align*}
    and \Cref{general AIP: T} further implies that equality must hold throughout.
 
-   To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: C}.
+   To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: P}.
 \end{proof}
 
 
@@ -2641,19 +2648,19 @@ TO DO LIST:
 
 \subsection{Concerning non-leading coefficients}
 
-\begin{proposition}
-   \label{non-leading coefficients: P}
+We now address the nonpositivity of the non-leading coefficients, claimed in \Cref{main theorem wrt diagonal: T}.
+
+\begin{lemma}
+   \label{non-leading coefficients: L}
    If $(B, \vv{v})$ is a $p$-sprout of $(A, \vv{u})$, then
    \[
       \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}
    \]
    with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
-   We start by fixing some notation:
    Let $\N$ be the Newton polyhedron of $A$, let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
-
    By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.
    \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
    \Cref{FT descriptions: P}\eqref{lambda} then shows that $\frac1{\ft{B}{\vv{v}}}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
@@ -2670,11 +2677,10 @@ TO DO LIST:
    Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.  
 \end{proof}
 
-
-\begin{corollary}
-\label{non-leading coefficients: C}
+\begin{proposition}
+\label{non-leading coefficients: P}
 The non-leading coefficients appearing in the polynomial expressions described in \Cref{main theorem wrt diagonal: T} are rational and nonpositive.
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
    Fix a pair $(A,\vv{u})$, and set $\Q=\Q_p(A,\vv{u})$.
@@ -2682,34 +2688,34 @@ The non-leading coefficients appearing in the polynomial expressions described i
 
    The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
    Towards this, suppose that $\Q$ is finite.
-   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is a path $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: P} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
+   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
    Thus, $-(\delta_\Q(A,\vv{u})-1)$ is negative.
 \end{proof}
 
-\begin{remark}[Critical exponents versus $F$-thresholds]  
-\label{crit versus ft: R}
+\subsection{Critical exponents versus $F$-thresholds}
+\label{crit versus ft: SS}
+
+Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.  
 Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.  
 
-Let us see what \Cref{main theorem wrt diagonal: T} tells us about the the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.  
-
-Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a monomial pair $(A,\vv{u})$, and set  $\Q = \Q_p(A,\vv{u})$.  If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
+Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a monomial pair $(A,\vv{u})$, and set  $\Q = \Q_p(A,\vv{u})$.
+If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
 %
 \[ \crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. \] 
 %
-In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^s}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(A,\vv{u})$ is rational.
+In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(A,\vv{u})$ is rational.
 
-On the other hand, when $\Q = \infty$, then \Cref{main theorem wrt diagonal: T} instead implies that
+On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
 \begin{align*} 
 \crit(A,\vv{u})& = \frac{\val \IP_p(A,\vv{u}, \Q) +1}{\Q} \\ 
 & = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
-and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$. 
+and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$.
+\pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
 
-Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to some ideal pair $(\ideala, \ideald)$, then 
+Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then 
 \[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
 where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
-\end{remark}
-
 
 \begin{remark}[Denominators of certain critical exponents]
 \!{To do.  Discuss the situation when $A$ comes from an $\idealm$-primary ideal that is homogeneous under some positive grading.}
