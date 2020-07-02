@@ -2332,8 +2332,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of their construction then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
-\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
-\pedro{Is the universal denominator inherited by the descendants? Or do we pick the lcm of universal denominators of all descendants?}\emily{I think we need to fix one for all descendants.}
+\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
+\pedro{Is the universal denominator inherited by the descendants? Or do we pick the lcm of universal denominators of all descendants?}\emily{I think we need to fix one for all descendants.}\pedro{I modified it, to say that}
 \end{enumerate}
 \end{remark}
 
@@ -2348,9 +2348,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
    Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
 \end{proof}
-
-
-
 
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
@@ -2462,8 +2459,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
       \item \label{elementary2 periodic in e}
       Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
       \item \label{elementary2 periodic in p}
-      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$.
-      \pedro{$A$ and descendants?}\emily{Yes, I think we need this.}
+      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$  and all of its finitely many descendants.
+      \pedro{$A$ and descendants?}\emily{Yes, I think we need this.}\pedro{I made the change}
    \end{enumerate}
 \end{remark}
 
@@ -2645,7 +2642,7 @@ TO DO LIST:
 \item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
 \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
-\item[$\Box$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
+\item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
 }
 
@@ -2707,9 +2704,9 @@ Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring,
 
 Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a monomial pair $(A,\vv{u})$, and set  $\Q = \Q_p(A,\vv{u})$.
 If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
-%
-\[ \crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. \] 
-%
+\begin{equation}\label{eq: crit infinite case}
+\crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. 
+\end{equation}
 In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(A,\vv{u})$ is rational.
 
 On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
@@ -2723,10 +2720,12 @@ Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \i
 \[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
 where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
 
-\begin{remark}[Denominators of certain critical exponents]
-\!{To do.  Discuss the situation when $A$ comes from an $\idealm$-primary ideal that is homogeneous under some positive grading.}
+\begin{remark}[The $\idealm$-primary homogeneous case]
+   If $A$ is associated to an $\idealm$-primary ideal that is homogeneous under some positive $\ZZ$-grading, then \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
+   Consequently, in this case $\crit(A,\vv{u})$ is either equal to $\ft{A}{\vv{u}}$, or it is a rational number with denominator a power of $p$.
+   \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?}
+   \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example then introducing minimal face, universal denominator, etc. }
 \end{remark}
-
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
 \pedro[inline]{
    Maybe we can just add this to the statement of the big theorem?
