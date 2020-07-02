@@ -1899,7 +1899,8 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 \pedro[inline]{
    If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$ as in the proof of the previous theorem.
    But if that is the case \emph{and} $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
-   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.\\[2mm]
+   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.
+   (Or maybe it's easier to just argue algebraically.)\\[2mm]
    Maybe this could be a lemma? Something like\ldots
    \begin{lemma}
       If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
@@ -2232,7 +2233,7 @@ We are now ready to prove the above theorem.
 \SetKwInput{Input}{input}\SetKwInput{Output}{output}
 \Input{ \\
    $\bullet$ a very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
-   $\bullet$ a representative $p_0$ for a congruence class modulo a universal denominator $\denom$
+   $\bullet$ a representative $p$ for a congruence class modulo a universal denominator $\denom$
 }
 \medskip
 \Output{ \\ $\bullet$ a generating function $F(\pp,\tt) \in \QQ(\pp,\tt)$ for $\val\IP_\pp(A,\vv{u},\pp^e)$
@@ -2243,22 +2244,22 @@ We are now ready to prove the above theorem.
 $\S_{p},\  \S^*_{p} \leftarrow \{(A,\vv{u})\}$\;
 $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
-$M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p_0)$\;
+$M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 \medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
-   $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p_0)\big\}$\;
+   $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p)\big\}$\;
    \If{$\exists k < e: \S_{p^{k}} = \S_{p^e}$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
-   $\text{\texttt{max}} \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
-   \If{$\text{\em \texttt{max}} >1$}{
+   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
+   \If{$\epsilon >1$}{
       \KwRet{$\dfrac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \dfrac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \text{\texttt{max}}\}$\;
-   $\text{\texttt{min}} \leftarrow \min\{\udeficit(A,\vv{v},p_0): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},p_0) = \text{\texttt{min}}\}$\;
-   $M_e \leftarrow p\, \text{\texttt{max}} - \text{\texttt{min}}$\;
+   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \epsilon\}$\;
+   $\delta \leftarrow \min\{\udeficit(A,\vv{v},p): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
+   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},p) = \delta\}$\;
+   $M_e \leftarrow \epsilon \pp - \delta$\;
 }
 }
 \end{algorithm}
@@ -2628,7 +2629,7 @@ TO DO LIST:
 \begin{enumerate}
 \item[$\CheckedBox$] Make local to do list
 \item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
-\item[$\Box$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
+\item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 \item[$\Box$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
