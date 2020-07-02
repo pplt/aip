@@ -257,7 +257,7 @@ If $A$ is an $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph
 \begin{definition}[Pairs]  
 \label{pairs: D}
    A \emph{monomial pair} $(A, \vv{u})$ consists of an $\numvars \times n$ monomial matrix $A$, and a positive point $\vv{u} \in \ZZ^\numvars$, the target lattice of $A$.  
-   An \emph{$A$-pair} is a monomial pair whose first entry is $A$.
+%    An \emph{$A$-pair} is a monomial pair whose first entry is $A$.
    
    An \emph{ideal pair} $(\ideala, \ideald)$ consists of a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$, along with a diagonal ideal $\ideald$ of the same ambient polynomial ring.
 \end{definition}
@@ -2279,7 +2279,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 \subsection{The sprouting graph of a monomial matrix}
 
 \begin{definition}
-   A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some of its columns.
+   A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some (possibly, none) of its columns.
 \end{definition}
 
 \begin{definition}
@@ -2333,9 +2333,24 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of their construction then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
 \item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
-\pedro{Is the universal denominator inherited by the descendants? Or do we pick the lcm of universal denominators of all descendants?}
+\pedro{Is the universal denominator inherited by the descendants? Or do we pick the lcm of universal denominators of all descendants?}\emily{I think we need to fix one for all descendants.}
 \end{enumerate}
 \end{remark}
+
+
+\begin{lemma}
+   \label{positive-polynomial: L}
+   Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
+   If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 p^{e-1} + \cdots + \omega_{e-1} p + \omega_e$.
+\end{lemma}
+
+\begin{proof}
+   Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
+   Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
+\end{proof}
+
+
+
 
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
@@ -2354,8 +2369,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} below,
-\pedro{Maybe place the lemma before this theorem?}
+   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} 
+   %below, \pedro{Maybe place the lemma before this theorem?}
    imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
     \begin{align}
       \tag{$\heartsuit$} \label{p-big-1}
@@ -2416,17 +2431,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
     We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
 \end{proof}
 
-\begin{lemma}
-   \label{positive-polynomial: L}
-   Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
-   If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 p^{e-1} + \cdots + \omega_{e-1} p + \omega_e$.
-\end{lemma}
-
-\emily[inline]{I shortened the proof}
-\begin{proof}
-   Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
-   Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
-\end{proof}
 
 \subsection{Subgraphs associated to pairs}
 
@@ -2459,7 +2463,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
       Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
       \item \label{elementary2 periodic in p}
       Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$.
-      \pedro{$A$ and descendants?}
+      \pedro{$A$ and descendants?}\emily{Yes, I think we need this.}
    \end{enumerate}
 \end{remark}
 
@@ -2631,6 +2635,9 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
 \end{proof}
 
 
+
+
+
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
@@ -2664,7 +2671,7 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.
    \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
    \Cref{FT descriptions: P}\eqref{lambda} then shows that $\frac1{\ft{B}{\vv{v}}}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
-   But since $\vv{v} \in \ushort(A, \vv{u}, p)$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
+   But since $\vv{v} \in \ushort(A, \vv{u}, p)$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, p)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
    \[
       \ft{B}{\vv{v}} \le \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).
    \]
@@ -2684,7 +2691,7 @@ The non-leading coefficients appearing in the polynomial expressions described i
 
 \begin{proof}
    Fix a pair $(A,\vv{u})$, and set $\Q=\Q_p(A,\vv{u})$.
-   The non-leading coefficients under consideration are the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q < \Q$, the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, the rational numbers $-\delta_q(A,\vv{u})$ whenever $q\le \Q$, and $-1$.
+   By \Cref{main theorem wrt diagonal: T}, the non-leading coefficients under consideration are the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q < \Q$, the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, the rational numbers $-\delta_q(A,\vv{u})$ whenever $q\le \Q$, and $-1$.
 
    The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
    Towards this, suppose that $\Q$ is finite.
@@ -2739,6 +2746,40 @@ where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative
 %\subsection{Generic hypersurfaces in characteristic zero}
 
 \newpage
+
+\begin{corollary}
+Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ (e.g., take the product of universal denominators of each of its finitely many descendants).  Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$, 
+\[
+ \mu(A,\vv{u},p^e) = (p^e-1) \cdot \ft{A}{\vv{u}}
+\]
+for every very small $A$-pair $(A, \vv{u})$, and all $e \geq 1$. 
+\end{corollary}
+
+\emily[inline]{In process of writing the proof.}
+
+\begin{proof}
+Let $\vv{s}$ be a special point for a very small $A$-pair $(A,\vv{u})$ with denominator $\denom$, so that $\norm{\vv{s}} = \lambda \leq 1$. 
+Then $\vv{s} = \vv{t}/d$ for some $\vv{0} \leq \vv{t} \leq \vv{1} d$.
+Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise.  Hence 
+$\tail{\vv{s}}_p = \vv{s}$.
+
+Let $\Theta = \Theta(A, \vv{u}, \vv{s}, q)$.  Then by \Cref{bounded value: P}, $0 \leq \val \Theta < \norm{\vv{s}} = \lambda \leq 1$, and the value of the integer program $\Theta$ must equal $0$.  Hence $\udeficit(A, \vv{u}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \lambda$.
+
+Let an overbar denote collapse along $\O = \mf(A, \vv{u})$.  
+As pointed out in the proof of \Cref{bounded value: P}, $\vv{0}$ is feasible for $\Theta$, and so $\overline{\vv{u}} = \overline{A}\vv{s} = \overline{A}\tail{\vv{s}}_p - \overline{A} \vv{0} \in \ushort(A, \vv{u}, p)$.
+Hence $(\overline{A}, \overline{\vv{u}})$ is a $p$-sprout of $(A, \vv{u})$.
+Noticing \Cref{comparing deltas: R}, observe that $\udeficit(\overline{A}, \overline{\vv{u}}, p) = \udeficit(A, \vv{u}, p) = \norm{\vv{s}} = \lambda$.
+
+
+
+Now take any $p$-sprout $(\overline{A}, \vv{v})$ of $(A, \vv{u})$. 
+
+
+
+\end{proof}
+
+\newpage
+
 \appendix
 
 \section{Monomial ideals and reduction}
