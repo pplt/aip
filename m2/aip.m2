@@ -125,7 +125,7 @@ univDenom2 Matrix := A ->
     matrices := apply( faces, F -> selectColumnsInFace( A, F ) | rb F );
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
-
+ 
 univDenom2 A
 
 univDenom A
@@ -586,4 +586,18 @@ IP#cache#"optimalSet"
 
 peek IP#cache
 
+A = matrix{{3,0,0},{0,4,0},{0,0,5}}
+u = colVec{1,2,3}
 
+ft(A,u)
+vertices optLP(A,u)
+vertices feasLP(A,u)
+vertices newton A
+
+A = transpose matrix {{15, 0, 0}, {0, 20, 0}, {0, 0, 25},{3, 16, 0}, {6, 0, 15}, {6, 4, 10}, {6, 8, 5}}
+u = colVec{1,2,3}
+
+ft(A,u)
+vertices optLP(A,u)
+vertices feasLP(A,u)
+univDenom A

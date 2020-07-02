@@ -2688,7 +2688,7 @@ The non-leading coefficients appearing in the polynomial expressions described i
 
    The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
    Towards this, suppose that $\Q$ is finite.
-   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
+   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{w})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{w}}$, which is greater than $1$ as $(C,\vv{w})$ is not very small.
    Thus, $-(\delta_\Q(A,\vv{u})-1)$ is negative.
 \end{proof}
 
@@ -2711,18 +2711,20 @@ On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} inst
 & = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
 and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$.
-\pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
 
 Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then 
 \[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
-where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
+where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
 
 \begin{remark}[Denominators of certain critical exponents]
 \!{To do.  Discuss the situation when $A$ comes from an $\idealm$-primary ideal that is homogeneous under some positive grading.}
 \end{remark}
 
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
-
+\pedro[inline]{
+   Maybe we can just add this to the statement of the big theorem?
+   Or as a remark immediately after the statement, where we can say that that comes up when studying Bernstein--Sato roots?
+}
 %\newpage
 %
 %\section{Applications to generic hypersurfaces}
@@ -2768,7 +2770,8 @@ appear in the final subsection of this appendix.
 
 \newcommand{\maxi}{\mathfrak{m}}
 
-We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We refer those unfamiliar with these statements to \cite[Chapter 3]{} for more details\daniel{Is it OK to just cite my thesis?}.
+We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We refer those unfamiliar
+with these statements to \cite[Chapter 3]{hernandez.thesis} for more details\daniel{Is it OK to just cite my thesis?}.
 
 \begin{remark}[Generic freeness] \label{generic-freeness} Suppose that $A$ is a Noetherian domain,  and that $S$ is a finitely generated $A$-algebra.  Generic freeness states that if $M$ is a finitely-generated $S$-module, then there exists  $0 \neq \ell \in A$ such that $A[\ell^{-1}] \otimes_A M$, the localization of $M$ at $\ell$, is free as a module over $A[\ell^{-1}]$.
 \end{remark}
