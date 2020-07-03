@@ -69,6 +69,7 @@ TO DO LIST:
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
    \item Examples of algorithms (e.g., $\idealm$-primary case, general setting)
+   \item Maybe introduce the $\idealm$-primary and/or homogeneous case earlier, for instance, when we talk about minimal face, universal denominator, etc.
    % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    % \pedro[inline]{I included an example with a picture.}
    % \emily[inline]{Thank you!}
@@ -122,8 +123,8 @@ TO DO LIST:
 %      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
       % \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
       % \emily[inline]{I think this is defunct now? }
-      \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
-   \emily[inline]{This only seems to happen with $\IP$ and $\IP_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
+   %    \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
+   % \emily[inline]{This only seems to happen with $\IP$ and $\IP_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
     \item[$\Box$] Put ``titles'' in appropriate statements. 
    \end{enumerate}
 }
@@ -700,14 +701,14 @@ Thus,
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
 
-\pedro[inline]{
-   The identity $\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))$ appeared in the proof of a proposition that is now commented out.
-   It didn't seem obvious nor necessary to that proof, and seemed to say more than the proposition itself.
-   Since the identity is used a couple of times, I decided to focus on it instead.
+% \pedro[inline]{
+%    The identity $\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))$ appeared in the proof of a proposition that is now commented out.
+%    It didn't seem obvious nor necessary to that proof, and seemed to say more than the proposition itself.
+%    Since the identity is used a couple of times, I decided to focus on it instead.
    
-   From the wording in the older proof (``Similar logic shows that\ldots''), it seems that someone may know a simpler proof for it.
-   If that's the case, please replace the proof below with it.
-}
+%    From the wording in the older proof (``Similar logic shows that\ldots''), it seems that someone may know a simpler proof for it.
+%    If that's the case, please replace the proof below with it.
+% }
 
 \begin{proposition}
    \label{prop: MW for faces}  
@@ -865,9 +866,7 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
    By \eqref{eq 1}, $\norm{\vv{s}} = \lambda$, so $\vv{s}$ is optimal for $\LP$.
 \end{proof}
 
-The previous proposition allows us to show the existence of a ``universal'' denominator for the vertices
-\pedro{Define vertex?}
-of $\opt\LP(A,\vv{u})$, dependent only on the monomial matrix $A$, and not on $\vv{u}$.
+The previous proposition allows us to show the existence of a ``universal'' denominator for the vertices---that is, faces of dimension zero---of $\opt\LP(A,\vv{u})$, dependent only on the monomial matrix $A$, and not on $\vv{u}$.
 For that, we shall need the following well-known characterization of the vertices of a polyhedron, whose proof can be found, for instance, in \cite[Theorem~3.34]{conforti+etal.integer_programming}.
 
 \begin{lemma}
@@ -1144,9 +1143,10 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    As $\vv{s} \in \sp(A, \vv{u})$, we can write $\vv{u} = A \vv{s} + \vv{w}$,
    where $\vv{w}$ in a positive point of $\rs(\O)$.
    The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.
-   \pedro{
-      Maybe remind the reader of what we mean by that (here, or before the lemma).
-   }
+   % \pedro{
+   %    Maybe remind the reader of what we mean by that (here, or before the lemma).
+   % }
+   (Recall that by this we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$.)
    To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
    Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.
