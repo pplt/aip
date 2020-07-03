@@ -2715,9 +2715,9 @@ On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} inst
 & = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
 and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$.
-\pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
-\emily{The numerators on the second line are rational, but not necessarily integers.  The first line shows that crit has denominator $\Q$, a power of $p$.}
-\pedro{Ooops\ldots I was only looking at the last line. Thanks!}
+% \pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
+% \emily{The numerators on the second line are rational, but not necessarily integers.  The first line shows that crit has denominator $\Q$, a power of $p$.}
+% \pedro{Ooops\ldots I was only looking at the last line. Thanks!}
 
 Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then 
 \[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
@@ -2763,7 +2763,7 @@ First, consider the following claim:
 
 \vspace{.2cm}
 
-Toward the claim, let $\vv{s}$ be a special point for $(C, \vv{z})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$. 
+Toward the claim, let $\vv{s}$ be a special point for $(C, \vv{z})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
 Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; i.e.,
 $\tail{\vv{s}}_p = \vv{s}$.
 If  $\Theta = \Theta(C, \vv{z}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.  Hence $\udeficit(C, \vv{z}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{C}{\vv{z}}$.
@@ -2808,6 +2808,17 @@ Finally, after replacing each $\epsilon_{p^s}(A,\vv{u})$ and $\delta_{p^s}(A,\vv
 % 
 % Finally, \Cref{main theorem wrt diagonal: T} now confirms that $\val_p(A, \vv{u}, p^e) = p^e \lambda - \lambda = (p^e-1)\lambda$.
 \end{proof}
+
+\pedro[inline]{
+   We can probably shorten the proof a bit:
+   First notice that the claim and \Cref{non-leading coefficients: L} imply that $p$-sprouts of very small pairs are themselves very small; in particular, $\S^*_q(A,\vv{u})$ is nonempty, for each $q$, and $\Q(A,\vv{u})$ is infinite.
+   Let $(B,\vv{v}) \in \S^*_q(A,\vv{u})$.
+   The proof of the claim shows that $(\collapse{B},\collapse{\vv{v}})$ is a $p$-sprout of $(B,\vv{v})$, and therefore an element of $\S_{pq}(A,\vv{u})$.
+   Now notice that the claim implies that a pair in $\S_{pq}(A,\vv{u})$ lies in $\S^*_{pq}(A,\vv{u})$ if and only if it has maximal $F$-threshold.
+   This observation, combined with \Cref{non-leading coefficients: L} and the claim, tells us that $(\collapse{B},\collapse{\vv{v}}) \in \S^*_{pq}(A,\vv{u})$.
+
+   This shows that for each $e\ge 1$ there exists a path $(A,\vv{u}) = (A_1,\vv{u}_1) \to \cdots \to (A_e,\vv{u}_e)$ in $\sprout^*(A,\vv{u})$ where each pair is the collapse of the previous one along its minimal face, and consequently $\udeficit(A_i,\vv{u}_i,p) = \ft{A_i}{\vv{u}_i} = \ft{A}{\vv{u}}$, for each $1\le i \le e$.
+}
 
 \newpage
 
