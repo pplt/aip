@@ -2276,6 +2276,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    I gave it a shot\ldots
 }
 
+\emily[inline]{Maybe give an a brief description of how each graph will be used, and explain why we looked at $\mathfrak{m}$-primary case first.}
+
 \subsection{The sprouting graph of a monomial matrix}
 
 \begin{definition}
@@ -2463,8 +2465,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
       \pedro{$A$ and descendants?}\emily{Yes, I think we need this.}\pedro{I made the change}
    \end{enumerate}
 \end{remark}
-
-\emily[inline]{What can we say when $p\equiv 1 \bmod d$?}
 
 \begin{definition}
    \label{epsilon delta: D}
@@ -2692,7 +2692,7 @@ The non-leading coefficients appearing in the polynomial expressions described i
 
    The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
    Towards this, suppose that $\Q$ is finite.
-   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{w})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{w}}$, which is greater than $1$ as $(C,\vv{w})$ is not very small.
+   In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
    Thus, $-(\delta_\Q(A,\vv{u})-1)$ is negative.
 \end{proof}
 
@@ -2715,10 +2715,12 @@ On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} inst
 & = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
 and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$.
+\pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
+\emily{The numerators on the second line are rational, but not necessarily integers.  The first line shows that crit has denominator $\Q$, a power of $p$.}
 
 Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then 
 \[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
-where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
+where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
 
 \begin{remark}[The $\idealm$-primary homogeneous case]
    If $A$ is associated to an $\idealm$-primary ideal that is homogeneous under some positive $\ZZ$-grading, then \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
@@ -2727,10 +2729,7 @@ where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative
    \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example then introducing minimal face, universal denominator, etc. }
 \end{remark}
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
-\pedro[inline]{
-   Maybe we can just add this to the statement of the big theorem?
-   Or as a remark immediately after the statement, where we can say that that comes up when studying Bernstein--Sato roots?
-}
+
 %\newpage
 %
 %\section{Applications to generic hypersurfaces}
@@ -2747,34 +2746,66 @@ where $\{ \sigma_{p^s}(A,\vv{u}) \}_{s=1}^{\infty}$ is a sequence of nonnegative
 \newpage
 
 \begin{corollary}
-Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ (e.g., take the product of universal denominators of each of its finitely many descendants).  Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$, 
+Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ (e.g., take the least common multiple of universal denominators of each of its finitely many descendants).  Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$, 
 \[
  \mu(A,\vv{u},p^e) = (p^e-1) \cdot \ft{A}{\vv{u}}
 \]
 for every very small $A$-pair $(A, \vv{u})$, and all $e \geq 1$. 
 \end{corollary}
 
-\emily[inline]{In process of writing the proof.}
-
 \begin{proof}
-Let $\vv{s}$ be a special point for a very small $A$-pair $(A,\vv{u})$ with denominator $\denom$, so that $\norm{\vv{s}} = \lambda \leq 1$. 
-Then $\vv{s} = \vv{t}/d$ for some $\vv{0} \leq \vv{t} \leq \vv{1} d$.
-Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise.  Hence 
+First, consider the following claim:
+
+\vspace{.2cm}
+
+\noindent \emph{Claim.} If $C$ is a descendant of $A$ and $(C, \vv{z})$ is a very small pair, then $\udeficit(C, \vv{z}, p) = \ft{C}{\vv{z}}$.
+
+\vspace{.2cm}
+
+Toward the claim, let $\vv{s}$ be a special point for $(C, \vv{z})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$. 
+Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; i.e.,
 $\tail{\vv{s}}_p = \vv{s}$.
+If  $\Theta = \Theta(C, \vv{z}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.  Hence $\udeficit(C, \vv{z}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{C}{\vv{z}}$.
 
-Let $\Theta = \Theta(A, \vv{u}, \vv{s}, q)$.  Then by \Cref{bounded value: P}, $0 \leq \val \Theta < \norm{\vv{s}} = \lambda \leq 1$, and the value of the integer program $\Theta$ must equal $0$.  Hence $\udeficit(A, \vv{u}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \lambda$.
+Let $\lambda = \ft{A}{\vv{u}}$. We now proceed by induction to show that $\epsilon_{p^s}(A,\vv{u})  =  \delta_{p^s}(A,\vv{u}) = \lambda$ for all $s \geq 1$ (so that in particular, $\mathcal{Q}_p(A,\vv{u})$ is infinite).
+For $s=1$, notice that $\S_p^\ast = \{ (A, \vv{u} ) \}$, so that 
+$\lambda = \epsilon_{p^s}(A,\vv{u}) = \delta_{p^s}(A,\vv{u})$ by the above claim. 
 
-Let an overbar denote collapse along $\O = \mf(A, \vv{u})$.  
-As pointed out in the proof of \Cref{bounded value: P}, $\vv{0}$ is feasible for $\Theta$, and so $\overline{\vv{u}} = \overline{A}\vv{s} = \overline{A}\tail{\vv{s}}_p - \overline{A} \vv{0} \in \ushort(A, \vv{u}, p)$.
-Hence $(\overline{A}, \overline{\vv{u}})$ is a $p$-sprout of $(A, \vv{u})$.
-Noticing \Cref{comparing deltas: R}, observe that $\udeficit(\overline{A}, \overline{\vv{u}}, p) = \udeficit(A, \vv{u}, p) = \norm{\vv{s}} = \lambda$.
+Suppose now that $\epsilon_{p^s}(A,\vv{u})  =  \delta_{p^s}(A,\vv{u}) = \lambda$ for some $s \geq 1$.  Take any $(B, \vv{v}) \in \S_{p^s}^\ast$, and let an overbar denote collapse along $\O = \mf(B, \vv{v})$.
+By \Cref{collapse of mf and mc: P}, 
+$\ft{\overline{B}}{\overline{\vv{v}}} = \ft{B}{\vv{v}}  = \lambda$, and 
+noting \Cref{comparing deltas: R}, $\udeficit(\overline{B}, \overline{\vv{v}}, p) = \udeficit(B, \vv{v}, p) = \lambda$ as well.
+
+If $\vv{r}$ is a special point for $(\overline{B}, \overline{\vv{v}} )$, then $\vv{0}$ is feasible for $\Theta(B,\vv{v},\vv{r},p)$, as pointed out in the proof of \Cref{bounded value: P}.
+This means that $\overline{\vv{v}} = \overline{B}\vv{r} = \overline{B}\tail{\vv{r}}_p - \overline{B} \, \vv{0}$ is in $\ushort(B, \vv{v}, p)$, and so $(\overline{B}, \overline{\vv{v}}) \in \S_{p^{s+1}}(A, \vv{u})$.
+
+Given an arbitrary $p$-sprout $(\overline{B}, \vv{w})$ of $(B, \vv{v})$, we have that  
+$\ft{\overline{B}}{\vv{w}} \leq 
+\udeficit(B, \vv{v}, p) = \lambda$ by \Cref{non-leading coefficients: L},  and in particular, $(\overline{B}, \vv{w})$ is very small.   
+Moreover, if $\ft{\overline{B}}{\vv{w}}$ achieves the maximum value among all such $p$-sprouts, namely $\lambda = \ft{\overline{B}}{\overline{\vv{v}}}$, then by our claim above,  $\udeficit(\overline{B},\vv{w},p) = \lambda = \udeficit(\overline{B}, \overline{\vv{v}}, p)$. 
+Hence $(\overline{B}, \overline{\vv{v}}) \in \S_{p^{s+1}}^\ast(A, \vv{u})$,
+and since we have already found that $\ft{\overline{B}}{\overline{\vv{v}}} = \udeficit(\overline{B}, \overline{\vv{v}}, p)= \lambda$, 
+ we conclude that
+ $\epsilon_{p^{s+1}}(A,\vv{u})  =  \delta_{p^{s+1}}(A,\vv{u}) = \lambda$, completing our inductive proof. 
 
 
-
-Now take any $p$-sprout $(\overline{A}, \vv{v})$ of $(A, \vv{u})$. 
-
-
-
+Finally, after replacing each $\epsilon_{p^s}(A,\vv{u})$ and $\delta_{p^s}(A,\vv{u})$, for  $1 \leq s \leq e$, with $\lambda$ in the statement of 
+\Cref{main theorem wrt diagonal: T}, we confirm that $\val \Pi_p(A, \vv{u}, p^e) = p^e \lambda - \lambda = (p^e-1)\lambda$, for all $p$ greater than some integer $\beta = \beta(A)$.
+% for
+% Now let $\lambda = \ft{A}{\vv{u}}$, and let an overbar denote collapse along $\O = \mf(A, \vv{u})$, so that $\ft{\overline{A}}{\overline{\vv{u}}} = \lambda$ by \Cref{collapse of mf and mc: P}.
+% Moreover, as pointed out in the proof of \Cref{bounded value: P}, $\vv{0}$ is feasible for $\Theta$, so $\overline{\vv{u}} = \overline{A}\vv{s} = \overline{A}\tail{\vv{s}}_p - \overline{A} \, \vv{0} \in \ushort(A, \vv{u}, p)$.
+% Hence $(\overline{A}, \overline{\vv{u}})$ is a $p$-sprout of $(A, \vv{u})$.
+% Moreover, noting \Cref{comparing deltas: R}, we see that $\udeficit(\overline{A}, \overline{\vv{u}}, p) = \udeficit(A, \vv{u}, p) = \norm{\vv{s}} = \lambda$.
+% 
+% Given an arbitrary $p$-sprout $(\overline{A}, \vv{v})$ of $(A, \vv{u})$, we have that  
+% $\ft{\overline{A}}{\vv{v}} \leq 
+% \udeficit(A, \vv{u}, p) = \lambda$ by \Cref{non-leading coefficients: L}.
+% %,  and in particular, $(\overline{A}, \overline{\vv{u}})$ is very small.   
+% Moreover, if $\ft{\overline{A}}{\vv{v}}$ achieves the maximum value among all such $p$-sprouts, namely $\lambda = \ft{\overline{A}}{\overline{\vv{u}}}$, then by our claim \eqref{very small udef: e} above, we have that $\udeficit(\overline{A},\vv{v},p) = \lambda = \udeficit(\overline{A}, \overline{\vv{u}}, p)$. 
+% Hence $(\overline{A}, \overline{\vv{u}}) \in \S_{p^2}^\ast(A, \vv{u})$. 
+% 
+% 
+% Finally, \Cref{main theorem wrt diagonal: T} now confirms that $\val_p(A, \vv{u}, p^e) = p^e \lambda - \lambda = (p^e-1)\lambda$.
 \end{proof}
 
 \newpage
@@ -2810,8 +2841,7 @@ appear in the final subsection of this appendix.
 
 \newcommand{\maxi}{\mathfrak{m}}
 
-We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We refer those unfamiliar
-with these statements to \cite[Chapter 3]{hernandez.thesis} for more details\daniel{Is it OK to just cite my thesis?}.
+We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We refer those unfamiliar with these statements to \cite[Chapter 3]{} for more details\daniel{Is it OK to just cite my thesis?}.
 
 \begin{remark}[Generic freeness] \label{generic-freeness} Suppose that $A$ is a Noetherian domain,  and that $S$ is a finitely generated $A$-algebra.  Generic freeness states that if $M$ is a finitely-generated $S$-module, then there exists  $0 \neq \ell \in A$ such that $A[\ell^{-1}] \otimes_A M$, the localization of $M$ at $\ell$, is free as a module over $A[\ell^{-1}]$.
 \end{remark}
