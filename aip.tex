@@ -144,8 +144,10 @@ TO DO LIST:
 
 
 
-Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and consider the polynomial ring $R = \kk[x_1, \ldots, x_\numvars]$.  
-Given ideals $\ideala$ and $\idealb$ of $R$ with ${\ideala}$ contained in $\sqrt \idealb$, and a nonnegative integer $e$, we define
+Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, 
+%, and consider the polynomial ring $R = \kk[x_1, \ldots, x_\numvars]$.  
+%Given ideals $\ideala$ and $\idealb$ of $R$ with ${\ideala}$ contained in $\sqrt \idealb$, and a nonnegative integer $e$, we define
+take  $\ideala$ and $\idealb$ in a polynomial ring over $\kk$ for which ${\ideala}$ is contained in $\sqrt \idealb$.  For a nonnegative integer $e$, we define
 %
 \[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{k\in \NN : \ideala^{k} \not\subseteq \idealb^{[p^e]}\big\}\]
 %
@@ -1143,11 +1145,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Set $\O = \mf(A, \vv{u})$.
    As $\vv{s} \in \sp(A, \vv{u})$, we can write $\vv{u} = A \vv{s} + \vv{w}$,
    where $\vv{w}$ in a positive point of $\rs(\O)$.
-   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$.
-   % \pedro{
-   %    Maybe remind the reader of what we mean by that (here, or before the lemma).
-   % }
-   (Recall that by this we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$.)
+   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$--
+   recall that by this, we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$. 
    To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
    Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.
@@ -1235,7 +1234,7 @@ The next proposition gives conditions under which equality holds.
 
 \begin{proposition}
    \label{uniform value: P}
-   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a \emily{Defined this?}denominator $\denom$ for the special point $\vv{s}$.
+   Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\denom$ for the special point $\vv{s}$.
    If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$ and every coordinate of $A \vv{h}$, then the point $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
    Consequently, equality holds in \eqref{ineq between deficits}.
 \end{proposition}
@@ -2736,9 +2735,16 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
    If $A$ is associated to an $\idealm$-primary ideal that is homogeneous under some positive $\ZZ$-grading, then \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
    Consequently, in this case $\crit(A,\vv{u})$ is either equal to $\ft{A}{\vv{u}}$, or it is a rational number with denominator a power of $p$.
    \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?}
-   \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. }
+   \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
 \end{remark}
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
+\emily[inline]{See below.}
+
+\begin{remark}
+\Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for 
+  $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
+\end{remark}
+
 
 %\newpage
 %
@@ -2836,17 +2842,17 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 % \Cref{main theorem wrt diagonal: T}, we confirm that $\val \Pi_p(A, \vv{u}, p^e) = p^e \lambda - \lambda = (p^e-1)\lambda$, for all $p$ greater than some integer $\beta = \beta(A)$.
 \end{proof}
 
-\pedro[inline]{
-   We can probably shorten the proof a bit:
-   First notice that the claim and \Cref{non-leading coefficients: L} imply that $p$-sprouts of very small pairs are themselves very small; in particular, $\S^*_q(A,\vv{u})$ is nonempty, for each $q$, and $\Q(A,\vv{u})$ is infinite.
-   Let $(B,\vv{v}) \in \S^*_q(A,\vv{u})$.
-   The proof of the claim shows that $(\collapse{B},\collapse{\vv{v}})$ is a $p$-sprout of $(B,\vv{v})$, and therefore an element of $\S_{pq}(A,\vv{u})$.
-   Now notice that the claim implies that a pair in $\S_{pq}(A,\vv{u})$ lies in $\S^*_{pq}(A,\vv{u})$ if and only if it has maximal $F$-threshold.
-   This observation, combined with \Cref{non-leading coefficients: L} and the claim, tells us that $(\collapse{B},\collapse{\vv{v}}) \in \S^*_{pq}(A,\vv{u})$.
-
-   This shows that for each $e\ge 1$ there exists a path $(A,\vv{u}) = (A_1,\vv{u}_1) \to \cdots \to (A_e,\vv{u}_e)$ in $\sprout^*(A,\vv{u})$ where each pair is the collapse of the previous one along its minimal face, and consequently $\udeficit(A_i,\vv{u}_i,p) = \ft{A_i}{\vv{u}_i} = \ft{A}{\vv{u}}$, for each $1\le i \le e$.
-}
-\emily[inline]{OK, I removed the explicit induction and pruned it down. Feel free to edit further if you see fit.}
+% \pedro[inline]{
+%    We can probably shorten the proof a bit:
+%    First notice that the claim and \Cref{non-leading coefficients: L} imply that $p$-sprouts of very small pairs are themselves very small; in particular, $\S^*_q(A,\vv{u})$ is nonempty, for each $q$, and $\Q(A,\vv{u})$ is infinite.
+%    Let $(B,\vv{v}) \in \S^*_q(A,\vv{u})$.
+%    The proof of the claim shows that $(\collapse{B},\collapse{\vv{v}})$ is a $p$-sprout of $(B,\vv{v})$, and therefore an element of $\S_{pq}(A,\vv{u})$.
+%    Now notice that the claim implies that a pair in $\S_{pq}(A,\vv{u})$ lies in $\S^*_{pq}(A,\vv{u})$ if and only if it has maximal $F$-threshold.
+%    This observation, combined with \Cref{non-leading coefficients: L} and the claim, tells us that $(\collapse{B},\collapse{\vv{v}}) \in \S^*_{pq}(A,\vv{u})$.
+% 
+%    This shows that for each $e\ge 1$ there exists a path $(A,\vv{u}) = (A_1,\vv{u}_1) \to \cdots \to (A_e,\vv{u}_e)$ in $\sprout^*(A,\vv{u})$ where each pair is the collapse of the previous one along its minimal face, and consequently $\udeficit(A_i,\vv{u}_i,p) = \ft{A_i}{\vv{u}_i} = \ft{A}{\vv{u}}$, for each $1\le i \le e$.
+% }
+% \emily[inline]{OK, I removed the explicit induction and pruned it down. Feel free to edit further if you see fit.}
 \pedro[inline]{Maybe add a quick corollary about crits?}
 \newpage
 
