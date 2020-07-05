@@ -96,3 +96,4 @@ apply(1..10, e-> pp^e*adicTruncation(pp,e,3/4-1/(4*pp)))
 --Beauty!
 
 frobeniusNu(3,I,Verbose=>true,ContainmentTest=>FrobeniusPower) 
+
