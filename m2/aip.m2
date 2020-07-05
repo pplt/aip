@@ -270,6 +270,7 @@ valueIP := IP -> first solveIP IP
 
 optPtIP := IP -> last solveIP IP
 
+-- TO DO: Check for compactness to see if this is finite
 optSetIP := IP ->
 (
     -- if the result is already cached, just return it
@@ -294,7 +295,9 @@ optImageIP := IP ->
     if IP#cache#?"optimalImage" then return IP#cache#"optimalImage";
     -- if not, now let's compute things...
     optSetIP IP;
-    IP#cache#"optimalImage"    
+    IP#cache#"optimalImage"
+    -- TBC
+    -- Use process used in uData    
 )    
 
 -- this just sets up the integer program Theta
@@ -307,6 +310,8 @@ theta := (A,u,s,q) -> (
     weights := constantVector(1,n);
     integerProgram(Abar,rhs,weights,signs)
 )
+
+-- Transform the thing below into a general optimal image command
 
 -- returns the universal deficit and shortfall
 uData := (A,u,q) -> 
@@ -321,7 +326,7 @@ uData := (A,u,q) ->
     eqsMat := Abar | -identityMatrix m;
     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
     eqsRHS := colVec append( constantList( 0, m ), val );
-    nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> -canVec(m+n,i));
+    nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> - canVec(m+n,i));
     nonnegConstraintsRHS := apply(select(n, i -> s_0_i == 0), i -> 0);
     otherConstraints := Abar | zeroMatrix(m,m);
     otherConstraintsRHS := Asq - constantVector(1,m);
@@ -332,8 +337,6 @@ uData := (A,u,q) ->
     im := latticePoints affineImage(proj,polyh);
     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
 )
-
-uData = memoize uData
 
 uDeficit := (A,u,q) -> first uData(A,u,q)
 

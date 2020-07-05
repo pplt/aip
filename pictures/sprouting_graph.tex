@@ -1,0 +1,60 @@
+\documentclass[border=10pt]{standalone}
+\input{../preamble.tex}
+\newcommand{\club}{\vcenter{\hbox{\scalebox{1.5}{$\clubsuit$}}}}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\tikzset{
+   node/.style = {
+      shape=rectangle, %rounded corners,
+      align=center,
+      minimum width = .7cm,
+      minimum height = .7cm,
+      fill = cyan!40
+%      fill = blue!50!white!80
+   },
+   Snode/.style = {
+      shape=rectangle, %rounded corners,
+      align=center,
+      minimum width = .7cm,
+      minimum height = .7cm,
+      fill = green!30
+   },
+   bad/.style = {
+      shape=rectangle, %rounded corners,
+      align=center,
+      minimum width = .7cm,
+      minimum height = .7cm,
+      fill = red!70!black!80
+   }
+}
+\tikzstyle{level 1}=[level distance=3cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=3cm, sibling distance=5cm]
+\tikzstyle{level 3}=[level distance=3cm, sibling distance=1.7cm]
+               
+\begin{document}
+\begin{tikzpicture}
+  [
+    grow                    = down,
+    edge from parent/.style = {draw, thick, -latex, shorten >= 2pt},
+    every node/.style       = {font=\footnotesize}
+%    sloped
+  ]
+  \node [Snode] {$(A,\vv{u})$} 
+  child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 7 \end{smallmatrix}\big])$}
+  }
+  child { node [Snode] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 4 \end{smallmatrix}\big])$}
+     child { node [Snode] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 2 \end{smallmatrix}\big])$}
+        child { node [bad] {$(\collapse{A},\big[\begin{smallmatrix} 5 \\ 5 \end{smallmatrix}\big])$}}
+        child { node [bad] {$(\collapse{A},\big[\begin{smallmatrix} 4 \\ 8 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 17 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 6 \\ 2 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 3 \\ 11 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 14 \end{smallmatrix}\big])$}}
+     }
+     child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 5 \end{smallmatrix}\big])$}
+     }
+  }
+  child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big])$}
+  };
+\end{tikzpicture}
+\end{document}
