@@ -6,9 +6,7 @@
 
 %%%%%%%%%%%%%%%%%% Assorted Packages %%%%%%%%%%%%%%%%%%
 \usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=nicegreen,linkcolor=niceblue,urlcolor=nicered]{hyperref}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
 \usepackage{color}
 \usepackage{mathrsfs}
 \usepackage[mathcal]{euscript}
@@ -39,9 +37,6 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem*{claim}{Claim}
-
-
 
 %definition style environments
 \theoremstyle{definition}
@@ -55,6 +50,7 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{convention}[theorem]{Convention}
 \newtheorem{problem}[theorem]{Problem}
+\newtheorem*{claim}{Claim}
 
 %numbering
 \numberwithin{equation}{subsection} %Can replace {subsection} with {theorem} if you want

@@ -21,12 +21,14 @@ posRes (List,ZZ) := (L,d) -> apply(L, x -> posRes(x,d) )
 
 bracket = method()
 bracket (QQ,ZZ) := (t,q) -> (
+    if t == 0 then return 0;
     a := numerator t;
     b := denominator t;
     posRes( a*q, b )/b
 )
 bracket (ZZ,ZZ) := (t,q) -> bracket(t/1,q)
 bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
+bracket (Matrix,ZZ) := (M,q) -> matrix apply(entries M, t -> bracket(t,q))
 
 canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
@@ -36,6 +38,8 @@ colVec := u -> transpose matrix {u}
 --transforms a one-dimensional list into a column vector
 
 constantMatrix := (c,m,n) -> matrix toList apply(m, i -> toList apply(n, x -> c) )
+
+constantVector := (c,m) -> constantMatrix(c,m,1)
 
 zeroMatrix := (m,n) -> constantMatrix(0,m,n)
     
@@ -77,13 +81,13 @@ feasLP ( Matrix, Matrix ) := ( A, u ) ->
     polyhedronFromHData( M, v )
 )
 feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, colVec u ) 
-feasLP Matrix := A -> feasLP( A, constantList( 1, rank target A) )
+feasLP Matrix := A -> feasLP( A, constantVector( 1, rank target A) )
 
 -- optimal set for linear program P(A,u)
 optLP = method()
 optLP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, feasLP(A, u) )
 optLP ( Matrix, List ) := ( A, u ) -> optLP( A, colVec u )
-optLP Matrix := A -> maxFace( colVec constantList( 1, rank source A ), feasLP A )     
+optLP Matrix := A -> maxFace( constantVector( 1, rank source A ), feasLP A )     
 
 univDenom = method()
 univDenom Matrix := A ->
@@ -126,18 +130,6 @@ univDenom2 Matrix := A ->
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
  
-univDenom2 A
-
-univDenom A
-
--- % Fix a monomial pair $(A, \vv{u})$. Set $\LP = \LP(A, \vv{u})$ and $\O = \mf(A, \vv{u})$.  Let $M$ be the matrix obtained from $A$ by omitting any columns not in $\O$, and inserting as a column each standard basis vector in $\rb(\O)$.  Finally, let $\denom = \denom(\O)$ be the least common multiple of all the nonzero minors of $M$.
-
--- % If $\Q$ is the polyhedron consisting of all $\vv{t}$ in the domain of $M$ with $\vv{t} \geq \vv{0}$ and $M \vv{t} = \vv{u}$, then \Cref{opt set: P} implies that there exists a linear bijection $\opt \LP
--- % \leftrightarrow \Q$.  Furthermore, if $\vv{t}^{\ast}$ is a vertex of $\Q$, then \Cref{vertex: P} allows us to solve for the nonzero coordinates of $\vv{t}^{\ast}$ in the equation $M \vv{t}^{\ast} = \vv{u}$.  In particular, the fact that $\vv{u}$ has integer coordinates implies that the nonzero coordinates of $\vv{t}^{\ast}$ are rational with denominator $\denom = \denom(\O)$.  The linear bijection $\opt \LP \leftrightarrow \Q$ implies the same must be true for every vertex of $\opt \LP$.
--- % \pedro{I think here we need to emphasize that this bijection is given by matrices with integral coordinates}
-
--- % Our assertion then follows from the observation that since $A$ is fixed, as $(A, \vv{u})$ varies, there are only finitely many possibilities for $\O = \mf(A, \vv{u})$.
-
 ft = method()
 ft ( Matrix, Matrix ) := (A,u) -> (
     NA := newton A;
@@ -145,37 +137,45 @@ ft ( Matrix, Matrix ) := (A,u) -> (
     u_(0,0)/intPt#0
 )
 ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
-ft Matrix := A -> ft( A, constantList( 1, rank target A ) )
+ft Matrix := A -> ft( A, constantVector( 1, rank target A ) )
 
 
 -- minimal face mf(A,u)
 minimalFace = method()
-minimalFace ( Matrix, List ) := (A,u) -> (
+minimalFace ( Matrix, Matrix ) := (A,u) -> (
     NA := newton A;
-    int := intersection( coneFromVData transpose matrix {u}, NA );
+    int := intersection( coneFromVData u, NA );
     smallestFace( vertices int, NA )
 )
-minimalFace Matrix := A -> minimalFace( A, constantList( 1, rank target A ) )
+minimalFace ( Matrix, List ) := (A,u) -> minimalFace(A, colVec u)
+minimalFace Matrix := A -> minimalFace( A, constantVector( 1, rank target A ) )
      
 -- recession basis for minimal face     
 rb = method()
-rb ( Matrix, List ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
+rb ( Matrix, Matrix ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
+rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
 rb Matrix := A -> entries transpose rays tailCone minimalFace A
 rb Polyhedron := P -> rays tailCone P
 
-collapse = method()
-collapse (Matrix, List) := (A,u) -> (
+collapseMap = method()
+collapseMap (Matrix, Matrix) := (A,u) -> (
     rbasis := rb(A,u);
     d := rank target A;
     idMat := entries identityMatrix d;
     proj := matrix select( idMat, v -> not member( v, rbasis ) )
 )
-collapse Matrix := A -> collapse( A, constantList( 1, rank target A ) )
+collapseMap (Matrix,List) := (A,u) -> collapseMap(A,colVec u)
+collapseMap Matrix := A -> collapseMasp( A, constantVector( 1, rank target A ) )
 
--- a minimal coordinate
+collapse = method()
+collapse (Matrix,Matrix) := (A,u) -> collapseMap(A,u)*A
+collapse (Matrix,List) := (A,u) -> collase(A, colVec u)
+    
+-- a special point
 specialPt = method()
-specialPt (Matrix,List) := (A,u) -> first entries transpose interiorPoint optLP(A,u)
-specialPt Matrix := A -> first entries transpose interiorPoint optLP A
+specialPt (Matrix,Matrix) := (A,u) -> interiorPoint optLP(A,u)
+specialPt (Matrix,List) := (A,u) -> interiorPoint optLP(A,u)
+specialPt Matrix := A -> interiorPoint optLP A
 
 consTheta = (A,u,s,q) -> (
     n := rank source A;
@@ -190,7 +190,6 @@ consTheta = (A,u,s,q) -> (
     print( constraints | constraintsRHS );
     polyhedronFromHData( constraints, constraintsRHS )
 )
-
 
 --------------------------------------------
 -- Integer Programs
@@ -213,6 +212,17 @@ integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram f
     "dim" => ( numRows A, rank source A ),
     "augmentedMatrix" => A | identityMatrix numRows A -- adds columns corresponding to slack variables
 }
+
+integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new IntegerProgram from
+{
+    cache => new CacheTable,
+    "matrix" => A,
+    "RHS" => u,
+    "weights" => w,
+    "dim" => ( numRows A, rank source A ),
+    "augmentedMatrix" => A | identityMatrix numRows A, -- adds columns corresponding to slack variables
+    "signs" => s
+}
         
 solveIP := IP ->
 (
@@ -234,6 +244,13 @@ solveIP := IP ->
     cost := openOut( file | ".cost");
     putMatrix( cost, transpose( -IP#"weights" ) | matrix { constantList( 0, m ) } );
     close cost;
+    -- store signs (if available)
+    if IP#?"signs" then
+    (
+        signs := openOut( file | ".sign");
+        putMatrix( signs, transpose( IP#"signs" ) | matrix { constantList( 1, m ) } );
+        close signs
+    );
     -- run 4ti2
     execstr := path242 | "minimize --quiet -parb " | rootPath | file;
     ret := run execstr;
@@ -246,7 +263,9 @@ solveIP := IP ->
     IP#cache#"optimalPoint" = optPt;
     ( value, optPt )
 )    
-    
+
+solveIP = memoize solveIP
+
 valueIP := IP -> first solveIP IP
 
 optPtIP := IP -> last solveIP IP
@@ -278,8 +297,49 @@ optImageIP := IP ->
     IP#cache#"optimalImage"    
 )    
 
+-- this just sets up the integer program Theta
+theta := (A,u,s,q) -> (
+    Abar := collapse(A,u);
+    m := numRows Abar;
+    n := rank source Abar;
+    rhs := Abar*bracket(s,q) - constantVector(1,m);
+    signs := colVec apply(n, i -> if s_0_i == 0 then 1 else 0 );
+    weights := constantVector(1,n);
+    integerProgram(Abar,rhs,weights,signs)
+)
 
--- This solves the specific integer programs from the paper
+-- returns the universal deficit and shortfall
+uData := (A,u,q) -> 
+(
+    s := specialPt(A,u);
+    sq := bracket(s,q);
+    Abar := collapse(A,u);
+    Asq := Abar*sq;
+    m := numRows Abar;
+    n := rank source Abar;
+    val := first solveIP theta(A,u,s,q);
+    eqsMat := Abar | -identityMatrix m;
+    eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
+    eqsRHS := colVec append( constantList( 0, m ), val );
+    nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> -canVec(m+n,i));
+    nonnegConstraintsRHS := apply(select(n, i -> s_0_i == 0), i -> 0);
+    otherConstraints := Abar | zeroMatrix(m,m);
+    otherConstraintsRHS := Asq - constantVector(1,m);
+    ineqsMat := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints || otherConstraints;
+    ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else matrix { nonnegConstraintsRHS } || otherConstraintsRHS;
+    polyh := polyhedronFromHData( ineqsMat, ineqsRHS, eqsMat, eqsRHS );
+    proj := zeroMatrix(m,n) | identityMatrix(m);
+    im := latticePoints affineImage(proj,polyh);
+    ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
+)
+
+uData = memoize uData
+
+uDeficit := (A,u,q) -> first uData(A,u,q)
+
+uShort := (A,u,q) -> last uData(A,u,q)
+    
+-- This solves the integer program Pi from the paper
 solveMyIP := ( A, u, q ) ->
 (
     rhs := q*u - colVec constantList( 1, numRows A );
@@ -292,312 +352,35 @@ valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
 
 optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
 
---------------------------------------------
-
-PA = consTheta(A,{1,1,1},specialPt A,2)        
-
-PB = consTheta(B,{1,1},specialPt B,224)        
-
-toString specialPt B
-
-hyperplanes PA
-hyperplanes PB
-
-hyperplanes maxFace(matrix {{1},{1}},PA)
-hyperplanes maxFace(matrix {{1},{1},{1},{1},{1},{1}},PB)
-
---------------------------------------------------------------------------------------------------     
-A = matrix { {2, 7}, {7, 2}, {5, 5} }    
-B = matrix { {5, 4, 3, 2, 1, 0}, {0, 1, 2, 3, 4, 5} }
-
-NA = newton A
-NB = newton B
-
-halfspaces NA
-
-SA = feasLP A
-SB = feasLP B
-
-halfspaces SA
-
-dim SB
-ambDim NA
-
-int = intersection( coneFromVData matrix {{1},{1},{1}}, NA )
-vertices int
-minFace A
-
-rays tailCone minFace A
-
-optA = optLP A
-vertices optA
-
-optB = optLP B
-vertices optB
-
-rb A
-rb B
-
-vertices minFace B
-vertices optLP B
-
-specialPt A
-specialPt B
-
-ft A
-ft B
-
-sum specialPt A
-sum specialPt B
-
-specialPt A
-A*(specialPt A)
-B*(specialPt B)
-
-rb A
-A
-collapse B
-specialPt B
-
----------------
--- Example 1
-
-A = matrix {{3, 1}, {9, 1}, {0, 4}, {3, 10}, {7, 8}}
-
-feasLP A
-
-toString entries transpose vertices feasLP A
-
-vertices optLP A
-
-ZZ/11[x,y,z,u,v]
-fpt(x^3*y^9*u^3*v^7+x*y*z^4*u^10*v^8)
-
----------------
--- Example 2
-
-A = matrix {{6, 9}, {6, 8}, {10, 4}, {4, 10}}
-
-feasLP A
-
-toString entries transpose vertices feasLP A
-
-vertices optLP A
-
-ZZ/7[x,y,z,u]
-fpt(x^6*y^6*z^10*u^4 + x^9*y^8*z^4*u^10)
-
----------------
--- Example 3
-
-A = matrix {{1, 11}, {5, 10}, {9, 8}, {11, 1}}
-
-feasLP A
-
-toString entries transpose vertices feasLP A
-
-vertices optLP A
-
-ZZ/2[x,y,z,u]
-fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
-
----------------
--- Example 3
-
-A = matrix {{4, 9}, {6, 7}, {9, 3}, {1, 7}}
-
-feasLP A
-
-toString entries transpose vertices feasLP A
-
-vertices optLP A
-
-ZZ/2[x,y,z,u]
-fpt(x^1*y^5*z^9*u^11 + x^11*y^10*z^8*u^1)
-
----------------
--- Example 4
-
-A = matrix {{3, 11}, {11, 2}, {5, 10}, {2, 0}}
-
-toString entries transpose vertices feasLP A
-
-vertices optLP A
-
-ZZ/7[x,y,z,u]
-fpt(x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0)
-
-f = x^3*y^11*z^5*u^2 + x^11*y^2*z^10*u^0
-
-    
-----------------
-ZZ/2[x,y]
-fpt(x + y)
-
-apply(1..7, i -> nu(i,ideal(x,y))/2^i)
-
----------------------
-
-scan(100, i ->
-    ( 
-        A = randomMatrix(3,3,10);
-        c = collapse A;
-        if #(rb A) == 1 and vertices optLP A != vertices optLP(c*A)
-            then (print toString entries transpose A; print "\n")        
+mPrimaryMu := ( A, u, p0, p, t ) ->
+(
+    localUShort := memoize uShort;
+    localUDeficit := memoize uDeficit;
+    localFt := memoize ft;
+    S := Sstar := { set{}, set{u} };
+    e := 1;
+    M := { 0, localFt(A,u)*p - localUDeficit(A,u,p0) };
+    local newS;
+    local newSstar;
+    local k;
+    local epsilon;
+    local delta;
+    while true do 
+    (
+        e = e + 1;
+        newS = sum apply( toList Sstar#(e-1), v -> localUShort(A,v,p0) );
+        if ( k = position( S, x -> x === set newS ) ) =!= null then 
+            return sum(1..(k-1),i -> M_i*t^i)/(1-p*t) + sum(k..(e-1), i -> M_i*t^i )/((1-p^t)*(1-t^(e-k)));
+        -- this process of maximization and minimization can be improved.    
+        epsilon = max apply( newS, v -> localFt(A,v) );
+        if epsilon > 1 then 
+           return sum(1..(e-1),i -> M_i*t^i)/(1-p*t) + (p-1)*t^e/((1-p*t)*(1-t));
+        newSStar = select( newS, v -> localFt(A,v) == epsilon );
+        delta = min apply( newSstar, v -> localUDeficit(A,v,p0) );
+        newSStar = select( newSstat, v -> localUDeficit(A,v,p0) == delta );   
+        S = append( S, set newS);
+        Sstar = append( Sstar, set newSstar );
+        M = append( M, epsilon*p - delta )
     )
 )
 
-entries A
-
-ZZ/5[x,y,z]
-I := L -> ideal apply( L, u -> x^(u#0)*y^(u#1)*z^(u#2) )
-trim( I {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}} )
-
-A = transpose matrix {{9, 0, 7}, {4, 5, 3}, {2, 0, 7}}
-ft A
-
-A = transpose matrix {{8, 6, 7}, {4, 4, 9}, {4, 9, 4}}
-ft A
-
---- tHiS!
-A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
---- ThIs!
-
-vertices minimalFace A
-isCompact minimalFace A
-rb A
-c = collapse A
-
-toString entries transpose vertices feasLP A
-toString entries transpose vertices optLP A
-
-toString entries transpose vertices feasLP(c*A)
-toString entries transpose vertices optLP(c*A)
-
-ft A
-
-halfspaces optLP A
-halfspaces optLP(c*A)
-
-entries A -- {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}} -- optimal set different from optimal set of collapse
-
-
--- matrix {{2, 0, 4}, {4, 0, 4}, {2, 2, 1}, {1, 1, 4}}
-
-ft(A)
-ft(c*A)
-
-halfspaces feasLP A
-halfspaces feasLP (c*A)
-contains(feasLP(c*A),optLP(c*A))
-halfspaces( optLP(c*A) )
-toString entries transpose vertices optLP(c*A)
-
-contains(optLP(c*A),optLP A)
-contains(feasLP(c*A),feasLP A)
-
-toString entries transpose vertices feasLP A
-toString entries transpose vertices feasLP(c*A)
-
---------------------------------------------------------
-A = transpose matrix {{5, 5, 2}, {3, 4, 8}, {4, 3, 5}}
-
-L = faces(1, newton A)
-vert = vertices newton A
-apply(L, f -> vert_(f#0))
-
-----------------------------------
-
-A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-d = univDenom A
-
-opt = optLP(A,{random(100),random(100),random(100)});
-v = entries transpose vertices opt;
-apply(v,denominator)
-apply(d*v,x->apply(x,t->lift(t,ZZ)))
-
-loadPackage "FourTiTwo"
-
-debugLevel = 1
-A = matrix "1,1,1,1; 1,2,3,4"
-B = syz A
-hilbertBasis transpose B
-hilbertBasis(A,InputType=>"lattice")
-prefixDirectory | currentLayout#"programs"
-
-path442 = "/usr/libexec/Macaulay2/bin/"
-A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-M = openOut("test.mat")
-putMatrix( M, A | identityMatrix 3 )
-close M
-p = 5
-e = 3
-sol = openOut("test.zsol")
-putMatrix( sol, matrix {{0,0,0,p^e-1,p^e-1,p^e-1}} )
-close sol
-signs = openOut("test.sign")
-putMatrix( signs, matrix {{1,1,1,1,1,1}} )
-close signs
-cost = openOut("test.cost")
-putMatrix( cost, matrix {{-1,-1,-1,0,0,0}} )
-close cost
-run "/usr/libexec/Macaulay2/bin/minimize test"
-opt = getMatrix "test.min"
-first first entries (opt*(colVec {1,1,1,0,0,0}))
-
-R = ZZ/7[x,y,z]
-I = monomialIdeal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
-D = monomialIdeal(x^2,y^3,z^5)
-frobeniusNu(3,I,D)
-
-solveIP(A,colVec {2,3,5}, 7^3 )
-optPtIP(A,colVec {2,3,5}, 7^3 )
-valueIP(A,colVec {2,3,5}, 7^3 )
-
-ht = new MutableHashTable
-
-f := t -> t#1 = 1
-
-f ht
-peek ht
-
-A = matrix {{5,3,7},{5,5,3},{3,4,5}};
-IP = integerProgram( A, colVec {2*7^7-1,3*7^7-1,5*7^7-1}, colVec {1,1,1} );
-solveIP IP
-
-valueIP IP
-
-solveMyIP( A, colVec {2,3,5}, 100001 )
-
-peek IP#cache
-
-q =5043;
-uu = colVec {q-1,q-1,q-1};
-IP = integerProgram( A, uu , colVec {1,1,1} );
-optImageIP IP
-optSetIP IP
-
-apply( optImageIP IP, u -> ft(A,colVec({q,q,q})-u) )
-
-optSetIP IP
-
-IP#cache#"optimalPoint"
-IP#cache#"optimalSet"
-
-peek IP#cache
-
-A = matrix{{3,0,0},{0,4,0},{0,0,5}}
-u = colVec{1,2,3}
-
-ft(A,u)
-vertices optLP(A,u)
-vertices feasLP(A,u)
-vertices newton A
-
-A = transpose matrix {{15, 0, 0}, {0, 20, 0}, {0, 0, 25},{3, 16, 0}, {6, 0, 15}, {6, 4, 10}, {6, 8, 5}}
-u = colVec{1,2,3}
-
-ft(A,u)
-vertices optLP(A,u)
-vertices feasLP(A,u)
-univDenom A
