@@ -1145,8 +1145,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Set $\O = \mf(A, \vv{u})$.
    As $\vv{s} \in \sp(A, \vv{u})$, we can write $\vv{u} = A \vv{s} + \vv{w}$,
    where $\vv{w}$ in a positive point of $\rs(\O)$.
-   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$--
-   recall that by this, we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$. 
+   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$---recall that by this, we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$. 
    To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
    Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.
@@ -2363,7 +2362,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of their construction then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
 \item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
-%\pedro{Is the universal denominator inherited by the descendants? Or do we pick the lcm of universal denominators of all descendants?}\emily{I think we need to fix one for all descendants.}\pedro{I modified it, to say that}
 \end{enumerate}
 \end{remark}
 
@@ -2396,8 +2394,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
-   The finiteness of $\fsr$,  and \Cref{positive-polynomial: L} 
-   %below, \pedro{Maybe place the lemma before this theorem?}
+   The finiteness of $\fsr$  and \Cref{positive-polynomial: L} 
    imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$. 
     \begin{align}
       \tag{$\heartsuit$} \label{p-big-1}
@@ -2490,7 +2487,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
       Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
       \item \label{elementary2 periodic in p}
       Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$  and all of its finitely many descendants.
-%      \pedro{$A$ and descendants?}\emily{Yes, I think we need this.}\pedro{I made the change}
    \end{enumerate}
 \end{remark}
 
@@ -2498,7 +2494,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    \label{ex: ft.4}
    \begin{figure}
       \centering
-      \includegraphics[width=\textwidth]{pictures/sprouting_graph.pdf}
+      \includegraphics[width=.85\textwidth]{pictures/sprouting_graph.pdf}
       \caption{The sprouting subgraph for \Cref{ex: ft.4}}
       \label{fig: sprouting graph}
    \end{figure}
@@ -2510,12 +2506,14 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
 
    \begin{figure}
       \centering
-      \includegraphics[width=.5\textwidth]{pictures/graph_on_newton.pdf}
-      \caption{A geometric representation of the sprouting subgraph}
+      \includegraphics[width=.45\textwidth]{pictures/graph_on_newton.pdf}
+      \caption{A geometric representation of the sprouting subgraph $\sprout^*_p(\ol{A},\ol{\vv{u}})$ in \Cref{ex: ft.4}}
       \label{fig: graph on newton}
    \end{figure}
-   Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, which is pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron for~$\collapse{A}$.
-   \pedro{Maybe totally unnecessary, but the picture was fun to produce.}
+   Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron of~$\collapse{A}$.
+   \pedro{Maybe totally unnecessary, but the picture was fun to produce.
+      Please feel free to remove or modify as you see fit.
+   }
 \end{example}
 
 \begin{definition}
