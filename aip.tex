@@ -216,7 +216,7 @@ The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\
 An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; e.g., $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
 
-%We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
+% We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
 \daniel{Revisit this when deciding how to describe collapsing}
 % More generally,
 We say that a point $\vv{u}$ in a coordinate subspace $\mathcal{S}$ of $\RR^n$ is a \emph{positive} (respectively, \emph{nonnegative}) point of $\mathcal{S}$ if $\vv{u}$ is a positive (respectively, nonnegative) linear combination of the standard basis vectors that span $\mathcal{S}$.
@@ -2506,8 +2506,17 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(A,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
    As in \Cref{ex: ft.3}, we consider the case where $p$ is congruent to $11$ modulo a universal denominator for $A$.
    The overbar represents collapse along $\mf(A,\vv{u})$.   
-   The figure shows $\S_{p^e}(A,\vv{u})$ for $e=1,\ldots,4$, with $\sprout^*_p(A,\vv{u})$ highlighted in green.
+   The figure shows $\S_{p^e}(A,\vv{u})$ for $e=1,\ldots,4$, with $\sprout^*_p(A,\vv{u})$ shown in green.
    The nodes shown in red are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate.
+
+   \begin{figure}
+      \centering
+      \includegraphics[width=.5\textwidth]{pictures/graph_on_newton.pdf}
+      \caption{A geometric representation of the sprouting subgraph}
+      \label{fig: graph on newton}
+   \end{figure}
+   Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, which is pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron for~$\collapse{A}$.
+   \pedro{Maybe totally unnecessary, but the picture was fun to produce.}
 \end{example}
 
 \begin{definition}
