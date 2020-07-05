@@ -2242,6 +2242,17 @@ We are now ready to prove the above theorem.
    First, with a bit of luck we may come across a set $\S^*_{p^e}$ that contains a small but not very small pair, and \eqref{tail: E} gives us the remainder of the sequence.
    In the absence of such luck, note that in this $\idealm$-primary case there are only finitely many small $A$-pairs.
    Thus, there are only finitely many distinct sets $\S_{p^e}$, and once one of these sets repeats, the numbers $M$ that appear in the recurrence \eqref{recurrence: E} will cycle from that point onward.
+
+   All of this is formalized in Algorithm~\ref{alg}, which takes a very small pair $(A,\vv{u})$ and a positive representative $r$ for a congruence class modulo a universal denominator $\denom$ for $A$, and returns a generating function $G(\pp,\tt) \in \QQ(\pp,\tt)$ for the values of $\IP_p(A,\vv{u},p^e)$ with $p$ in the given congruence class---a convenient way to pack the entire sequence of values we are after.
+   More explicitly, the rational function $G(\pp,\tt)$ returned can be written as a power series
+   \[G(\pp,\tt) = \sum_{e=1}^\infty G_e(\pp)\tt^e,\]
+   where each $G_e(\pp)$ is a polynomial in $\pp$ such that
+   \[ \val \IP_p(A,\vv{u},p^e) = G_e(p)\]
+   for any sufficiently large prime $p\equiv r\bmod \denom$.
+
+   Note that this algorithm relies on the solution of several linear programs---each time an $F$-threshold is evaluated---and several integer programs---each time a universal deficit or shortfall is computed.
+   Given the computational complexity of solving such programs, our algorithm is bound to be highly inefficient or impractical for large matrices or large $r$.
+   Surprisingly, though, a preliminary implementation in \emph{Macaulay2} by the authors fares well on examples of moderate size.
 \end{remark}
 
 \pedro[inline]{
@@ -2249,7 +2260,12 @@ We are now ready to prove the above theorem.
    E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
 }
 \emily[inline]{The pseudocode looks good.  If we can find a succinct way to touch on computability, I'm for it.}
-
+\pedro[inline]{
+   I gave it a shot.
+   I changed the notation in the pseudo-code a bit: I'm using $r$ to denote the representative of the congruence class mod $\denom$, to emphasize that it need not be prime.
+   I'm now using $\S_e$ (and likewise for $\S^*$), as $\S_{p^e}$ does not make sense anymore, and $\S_{r^e}$ causes confusion then $r=1$, as it does not tell us the level we are in.
+   I guess $\S_{\pp^e}$ would be another option.
+}
 \setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The $\idealm$-primary case}
    \label{alg}
@@ -2260,32 +2276,32 @@ We are now ready to prove the above theorem.
 \SetKwInput{Input}{input}\SetKwInput{Output}{output}
 \Input{ \\
    $\bullet$ a very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
-   $\bullet$ a representative $p$ for a congruence class modulo a universal denominator $\denom$
+   $\bullet$ a positive representative $r$ for a congruence class modulo a universal denominator $\denom$
 }
 \medskip
-\Output{ \\ $\bullet$ a generating function $F(\pp,\tt) \in \QQ(\pp,\tt)$ for $\val\IP_\pp(A,\vv{u},\pp^e)$
+\Output{ \\ $\bullet$ a generating function $G(\pp,\tt) \in \QQ(\pp,\tt)$ for $\val\IP_p(A,\vv{u},p^e)$, with $p\equiv r \bmod \denom$
 }
 \medskip
 \Begin{
    \medskip
-$\S_{p},\  \S^*_{p} \leftarrow \{(A,\vv{u})\}$\;
+$\S_{1},\  \S^*_{1} \leftarrow \{(A,\vv{u})\}$\;
 $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
-$M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},p)$\;
+$M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
-   $S_{p^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{p^{e-1}}} \ushort(A,\vv{v}^*, p)\big\}$\;
-   \If{$\exists k < e: \S_{p^{k}} = \S_{p^e}$}{
+   $S_{e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{e-1}} \ushort(A,\vv{v}^*,r)\big\}$\;
+   \If{$\exists k < e: \S_{k} = \S_{e}$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
-   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{p^e}\}$\;
+   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{e}\}$\;
    \If{$\epsilon >1$}{
       \KwRet{$\dfrac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \dfrac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{p^e}: \ft{A}{\vv{v}} = \epsilon\}$\;
-   $\delta \leftarrow \min\{\udeficit(A,\vv{v},p): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
-   $\S^*_{p^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},p) = \delta\}$\;
+   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{e}: \ft{A}{\vv{v}} = \epsilon\}$\;
+   $\delta \leftarrow \min\{\udeficit(A,\vv{v},r): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
+   $\S^*_{e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},r) = \delta\}$\;
    $M_e \leftarrow \epsilon \pp - \delta$\;
 }
 }
