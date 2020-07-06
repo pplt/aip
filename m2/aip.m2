@@ -314,6 +314,7 @@ theta := (A,u,s,q) -> (
 -- Transform the thing below into a general optimal image command
 
 -- returns the universal deficit and shortfall
+-- TO DO: need to check that points in the shortfall really come from integral optimal points.
 uData := (A,u,q) -> 
 (
     s := specialPt(A,u);

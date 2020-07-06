@@ -97,3 +97,11 @@ apply(1..10, e-> pp^e*adicTruncation(pp,e,3/4-1/(4*pp)))
 
 frobeniusNu(3,I,Verbose=>true,ContainmentTest=>FrobeniusPower) 
 
+QQ[x,y,z];
+I = (monomialIdeal(x,y,z))^5
+A = transpose matrix apply(I_*,v-> first exponents v)
+u = colVec{1,1,1}
+
+QQ[p,t]
+time toString mPrimaryMu(A,u,2,p,t)
+-- takes a little while, but finishes it (~13-14 min)

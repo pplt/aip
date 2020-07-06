@@ -1218,7 +1218,7 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
    \end{figure}
    \Cref{fig: Theta} shows a portion of the (unbounded) polyhedron defined by the above inequalities, in the case where $\lpr{q}{17}=11$, together with the feasible points for $\ip$.
    In this case the value of $\ip$ is $1$, and the optimal set---a subset of which is shown in red in \Cref{fig: Theta}---is infinite.
-   In fact, all points of the form $(k,k,1-2k)$, $(k+1,k,-2k)$, and $(k+2,k,-1-2k)$, with $k\in \NN$, are optimal for $\ip$.
+   In fact, the optimal set consists precisely of all points of the form $(k,k,1-2k)$, $(k+1,k,-2k)$, and $(k+2,k,-1-2k)$, with $k\in \NN$.
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
@@ -2239,7 +2239,7 @@ We are now ready to prove the above theorem.
    The above proof gives, in this $\idealm$-primary, very small case, an algorithm to compute $\val\IP_p(A,\vv{u},p^e)$ not only up to a specific $e$, but for \emph{all} $e \ge 1$.
    Indeed, as we iterate \eqref{recurrence: E}, one of two situations will occur that will allow us to determine the \emph{entire} remainder of the sequence.
 
-   First, with a bit of luck we may come across a set $\S^*_{p^e}$ that contains a small but not very small pair, and \eqref{tail: E} gives us the remainder of the sequence.
+   First, with a bit of luck we may come across a set $\S_{p^e}$ that contains a small but not very small pair, and \eqref{tail: E} gives us the remainder of the sequence.
    In the absence of such luck, note that in this $\idealm$-primary case there are only finitely many small $A$-pairs.
    Thus, there are only finitely many distinct sets $\S_{p^e}$, and once one of these sets repeats, the numbers $M$ that appear in the recurrence \eqref{recurrence: E} will cycle from that point onward.
 
@@ -2250,9 +2250,9 @@ We are now ready to prove the above theorem.
    \[ \val \IP_p(A,\vv{u},p^e) = G_e(p)\]
    for any sufficiently large prime $p\equiv r\bmod \denom$.
 
-   Note that this algorithm relies on the solution of several linear programs---each time an $F$-threshold is evaluated---and several integer programs---each time a universal deficit or shortfall is computed.
+  This algorithm relies on the ability to solve several linear programs---each time an $F$-threshold is evaluated---and several integer programs---each time a universal deficit or shortfall is computed.
    Given the computational complexity of solving such programs, our algorithm is bound to be highly inefficient or impractical for large matrices or large $r$.
-   Somewhat surprisingly, a preliminary implementation in \emph{Macaulay2} by the authors fares well on small examples.
+   Somewhat surprisingly, a preliminary implementation in \emph{Macaulay2} \cite{M2} by the authors fares well on small examples.
 \end{remark}
 
 \pedro[inline]{
@@ -2291,7 +2291,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
-   $S_{e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{e-1}} \ushort(A,\vv{v}^*,r)\big\}$\;
+   $\S_{e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{e-1}} \ushort(A,\vv{v}^*,r)\big\}$\;
    \If{$\exists k < e: \S_{k} = \S_{e}$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
@@ -2840,7 +2840,7 @@ In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
 
 \pedro[inline]{
    I modified the statement, replacing $\mu$ with $\val\IP_p$, to be consistent with previous theorems.
-   However, we should think if we want jito state these big theorems in terms of $\mu(\ideala,\ideald,p^e)$ instead.
+   However, we should think if we want to state these big theorems in terms of $\mu(\ideala,\ideald,p^e)$ instead.
 }
 \begin{proof}
 We first prove the following claim: 
