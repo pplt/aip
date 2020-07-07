@@ -1643,6 +1643,7 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 % \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
 
 \begin{corollary}
+\label{computing nu for large q: C}
    Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property\textup:
    If $q> \beta$, and $(\ideala, \ideald)$ is an ideal pair, then
    \begin{equation*}
@@ -1929,6 +1930,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
 }
 \emily[inline]{Sounds good to me.}
+\daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ towards the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
 \begin{theorem}
    \label{arithmetic uniform value and image: T}
    For every very small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
@@ -2176,6 +2178,7 @@ Before presenting the proof, we clarify our requirements for $p\gg 0$.
    \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p).\]
    As we vary over all such pairs, $\ft{A}{\vv{u}}$ remains bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.
    \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
+   \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
    Similarly, $\udeficit(A,\vv{u},p)$ takes on only finitely many values by \Cref{finitely many deltas for a fixed A: R}, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
    Thus, by choosing $p\gg 0$, with lower bound dependent only on $A$, we can select the very small pairs $(A,\vv{u})$ to be included in $\S^*$ by first selecting those with maximal $\ft{A}{\vv{u}}$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(A,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
 \end{remark}
@@ -2266,6 +2269,7 @@ We are now ready to prove the above theorem.
    I'm now using $\S_e$ (and likewise for $\S^*$), as $\S_{p^e}$ does not make sense anymore, and $\S_{r^e}$ causes confusion then $r=1$, as it does not tell us the level we are in.
    I guess $\S_{\pp^e}$ would be another option.
 }
+\daniel[inline]{I prefer the second option, to keep things consistent with upcoming notation.}
 \setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The $\idealm$-primary case}
    \label{alg}
@@ -2369,7 +2373,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
    \label{elementary1: R}
    Consider a monomial matrix $A$.
    In this remark, we gather some basic facts concerning the graph $\sprout_p(A)$.
-   \daniel{Please verify these} 
 \begin{enumerate} 
 \item The set $\graph_p(A)$ of very small $A$-pairs is independent of $p$, and can be infinite, depending on the geometry of the Newton polyhedron of $A$.  
 
@@ -2377,7 +2380,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of their construction then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.  
 
-\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$ (meaning, all of its vertices \emph{and} arrows) depends on the class of $p$ modulo $\denom$.
+\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$ | meaning, all of its vertices \emph{and} arrows | depends on the class of $p$ modulo $\denom$.
 \end{enumerate}
 \end{remark}
 
@@ -2491,7 +2494,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \begin{remark}[Elementary observations]
    \label{elementary2: R}
    Suppose $(A,\vv{u})$ is very small.
-   In this remark, we gather some basic facts \daniel{Please verify these} concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
+   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_p(A,\vv{u})$.
    \begin{enumerate}
       \item  \label{elementary2 lowest level}
       The only vertex of $\sprout_p^{\ast}(A,\vv{u})$ of level $p$ is $(A,\vv{u})$.
@@ -2531,8 +2534,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
       Please feel free to remove or modify as you see fit.
    }
    \daniel{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
-   \pedro{Actually, from second to third level, the points get further.      
-   }
+   \pedro{Actually, from second to third level, the points get further.}
+   \daniel{OK.  What's up with the bars everywhere?}
 \end{example}
 
 \begin{definition}
@@ -2707,9 +2710,8 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
-\item[$\CheckedBox$] Make local to do list
-\item[$\Box$]  Describe an analog of \Cref{leftover p large: R}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
-\item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds? \daniel[inline]{We can only say something when $p \gg 0$.  I gave it a shot in \Cref{crit versus ft: R}.}
+\item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
+\item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
@@ -2729,12 +2731,12 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    \[
       \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}
    \]
-   with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is homogeneous with respect to some positive $\ZZ$-grading.
+   with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is generated by homogeneous polynomials all of the same degree, with respect to some positive $\ZZ$-grading.
 \end{lemma}
 
 \pedro[inline]{
    Here, we don't really just mean homogeneous, but actually generated by monomials of the same degree.
-\daniel[inline]{I guess so.  I am thinking about }
+\daniel[inline]{You are right. I updated the statement.}
 }
 
 \begin{proof}
@@ -2781,7 +2783,7 @@ If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
 \pedro[inline]{
    I don't think we defined $\crit(A,\vv{u})$.
    Should we?
-   Or should we simply use $\crit(\ideala,\ideald)$?
+   Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
 }
 \begin{equation}\label{eq: crit infinite case}
 \crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. 
@@ -2805,12 +2807,14 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
 \begin{remark}[The $\idealm$-primary homogeneous case]
    If $A$ is associated to an $\idealm$-primary ideal that is homogeneous under some positive $\ZZ$-grading, then \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
    Consequently, in this case $\crit(A,\vv{u})$ is either equal to $\ft{A}{\vv{u}}$, or it is a rational number with denominator a power of $p$.
-   \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?}
+   \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
+   \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?} 
+   }
    \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
 \end{remark}
 \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
 \emily[inline]{See below.}
-
+\daniel[inline]{Thanks.}
 \begin{remark}
 \Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for 
   $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
@@ -2850,7 +2854,7 @@ In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
 We first prove the following claim: 
 
 \begin{claim}
-   If $B$ is a descendant of $A$ and $(B, \vv{v})$ is a very small pair, then $\udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$.
+   If $B$ is a descendant of $A$, $(B, \vv{v})$ is a very small pair, and\daniel{Added that $p \equiv 1$} $p \equiv 1 \bmod d$, then $\udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$.
 \end{claim}
 
 Let $\vv{s}$ be a special point for $(B, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{B}{\vv{v}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
@@ -3134,6 +3138,7 @@ which implies that $I_A(\maxi)^t \subseteq J_A(\maxi)$, and hence, $I_A(\maxi) \
 Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_m]$.  If $A$ is any finitely-generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\maxi)$ is a monomial ideal for every $\maxi \in \mathcal{U}$.
 \end{corollary}
 
+\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\maxi$ agree for most $\maxi$}
 \begin{proof}  Let $G$ be a collection of monomials such that $I=G\kk[x]$, and set $L = I_A + G R_A$, an ideal of $R_A=A[x_1, \ldots, x_m] = A[x]$.   Suppose that $0 \neq \ell \in A$ is such that the conclusions of \Cref{comparing expansions:  L} holds for the containment of ideals $I_A \subseteq L$ and $GR_A \subseteq L$.  By definition,  $I_A \kk[x] = I_A R = I$ and $(GR_A)\kk[x] = G \kk[x] = I$, and so $L\kk[x] = I$ as well.  In this case, 
 \Cref{comparing expansions:  L} implies that if $B$ is an arbitrary $A[\ell^{-1}]$-algebra, then  
 \[ I_A B[x] = L_A B[x] = G B[x] \] Thus, if $\mathcal{U} = \{ \maxi \in \mspec(A) : \operatorname{char}(A/\maxi) \nmid \ell \}$,  then for each $\maxi \in \mathcal{U}$, we may set $B=A/\maxi$ above to see that $I_A(\maxi) = G R_A(\maxi)$. 
@@ -3262,7 +3267,7 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
 
 \begin{lemma}
 \label{monomial-noetherian-decomposition: L} Given a Noetherian ring $A$, and an ideal $I$ of $A[x_1, \ldots, x_m]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  such that \daniel{Can we easily modify the proof to get $\sqcup$ instead of $\cup$?  We don't need it for our argument, and neither did BMS, but they did claim it was a disjoint union.}
-\[ \NN^m = \bigcup{\vv{v} \in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \] 
+\[ \NN^m = \bigcup (\vv{v} + \NN \mathcal{W}(\vv{v})) \] 
 and such that $(I:x^{\vv{v}}) = (I: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
 \end{lemma}
 
