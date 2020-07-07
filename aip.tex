@@ -2739,6 +2739,9 @@ TO DO LIST:
 \item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
 \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
 \item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
+\pedro[inline]{
+   I'll work on it.
+}
 \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
 }
@@ -3010,9 +3013,19 @@ $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
 
 Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Towards this, consider a monomial $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$ where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
 
-As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{v}} \in \langle x^{\vv{w}q} \rangle \subseteq \idealc^{[q]}$.
+As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
+\pedro[inline]{
+   We can also make the argument more explicit (but longer) and avoid $[1/q]$-th powers:
+   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we can write
+   \[x^{\vv{v}q} x^{\vv{w}} = \sum_i f_i g_i^q\]
+   for some $f_i \in R$ and $g_i \in \idealb$.
+   Observing that the monomials $x^{\vv{k}}$ with  $\vv{k} <\vv{1}q$ form a basis for $R$ over $R^q$, for each $i$ let $a_i^q$ be the $x^\vv{w}$-coordinate of $f_i$.
+   Comparing $x^\vv{w}$-coordinates in the above equation we see that
+   \[x^{\vv{v}q} = \sum_i a_i^q g_i^q\]
+   and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
+}
 
 \begin{corollary}
 \label{reduce-to-monomial-case: C}
