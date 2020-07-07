@@ -2193,10 +2193,11 @@ Before presenting the proof, we clarify our requirements for $p\gg 0$.
 
    For a very small pair $(A,\vv{u})$, \Cref{arithmetic uniform value and image: T} shows that
    \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p).\]
-   As we vary over all such pairs, $\ft{A}{\vv{u}}$ remains bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.
    \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
    \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
-   Similarly, $\udeficit(A,\vv{u},p)$ takes on only finitely many values by \Cref{finitely many deltas for a fixed A: R}, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
+   \pedro{Done. Had to rearrange things a bit.}
+   \Cref{finitely many deltas for a fixed A: R} tells us that, as we vary over all such pairs, $\udeficit(A,\vv{u},p)$ takes on only finitely many values, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
+   Moreover, as in this $\idealm$-primary case there are only finitely many very small pairs, $\ft{A}{\vv{u}}$ also takes on only finitely many values.\footnote{For later use, note that this conclusion remains true without the $\idealm$-primary assumption: when restricted to very small pairs, $\ft{A}{\vv{u}}$ is bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.}
    Thus, by choosing $p\gg 0$, with lower bound dependent only on $A$, we can select the very small pairs $(A,\vv{u})$ to be included in $\S^*$ by first selecting those with maximal $\ft{A}{\vv{u}}$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(A,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
 \end{remark}
 
