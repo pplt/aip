@@ -1562,6 +1562,10 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    whenever $p \equiv q \bmod \denom$.
 \end{remark}
 
+\pedro[inline]{
+   Maybe add somewhere that if $\denom$ is a universal denominator for $A$, then it is also a denominator for the universal deficit. 
+}
+
 
 % \begin{remark}
 %    \label{pair periodicity: R}
@@ -2197,7 +2201,7 @@ Before presenting the proof, we clarify our requirements for $p\gg 0$.
    \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
    \pedro{Done. Had to rearrange things a bit.}
    \Cref{finitely many deltas for a fixed A: R} tells us that, as we vary over all such pairs, $\udeficit(A,\vv{u},p)$ takes on only finitely many values, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
-   Moreover, as in this $\idealm$-primary case there are only finitely many very small pairs, $\ft{A}{\vv{u}}$ also takes on only finitely many values.\footnote{For later use, note that this conclusion remains true without the $\idealm$-primary assumption: when restricted to very small pairs, $\ft{A}{\vv{u}}$ is bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.}
+   Moreover, as in this $\idealm$-primary case there are only finitely many very small pairs, $\ft{A}{\vv{u}}$ also takes on only finitely many values.\footnote{For later use, note that this conclusion remains valid without the $\idealm$-primary assumption: when restricted to very small pairs, $\ft{A}{\vv{u}}$ is bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.}
    Thus, by choosing $p\gg 0$, with lower bound dependent only on $A$, we can select the very small pairs $(A,\vv{u})$ to be included in $\S^*$ by first selecting those with maximal $\ft{A}{\vv{u}}$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(A,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
 \end{remark}
 
@@ -2288,6 +2292,8 @@ We are now ready to prove the above theorem.
    I guess $\S_{\pp^e}$ would be another option.
 }
 \daniel[inline]{I prefer the second option, to keep things consistent with upcoming notation.}
+\pedro[inline]{Went with second one.}
+
 \setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The $\idealm$-primary case}
    \label{alg}
@@ -2306,24 +2312,24 @@ We are now ready to prove the above theorem.
 \medskip
 \Begin{
    \medskip
-$\S_{1},\  \S^*_{1} \leftarrow \{(A,\vv{u})\}$\;
+$\S_{\pp},\  \S^*_{\pp} \leftarrow \{(A,\vv{u})\}$\;
 $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
 $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
-   $\S_{e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{e-1}} \ushort(A,\vv{v}^*,r)\big\}$\;
-   \If{$\exists k < e: \S_{k} = \S_{e}$}{
+   $\S_{\pp^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{\pp^{e-1}}} \ushort(A,\vv{v}^*,r)\big\}$\;
+   \If{$\exists k < e: \S_{\pp^k} = \S_{\pp^e}$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
-   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{e}\}$\;
+   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{\pp^e}\}$\;
    \If{$\epsilon >1$}{
       \KwRet{$\dfrac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \dfrac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{e}: \ft{A}{\vv{v}} = \epsilon\}$\;
+   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{\pp^e}: \ft{A}{\vv{v}} = \epsilon\}$\;
    $\delta \leftarrow \min\{\udeficit(A,\vv{v},r): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
-   $\S^*_{e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},r) = \delta\}$\;
+   $\S^*_{\pp^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},r) = \delta\}$\;
    $M_e \leftarrow \epsilon \pp - \delta$\;
 }
 }
@@ -2548,13 +2554,15 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
       \label{fig: graph on newton}
    \end{figure}
    Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron of~$\collapse{A}$.
-   \pedro{Maybe totally unnecessary, but the picture was fun to produce.
+\end{example}
+
+   \pedro[inline]{Maybe totally unnecessary, but the picture was fun to produce.
       Please feel free to remove or modify as you see fit.
    }
-   \daniel{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
-   \pedro{Actually, from second to third level, the points get further.}
-   \daniel{OK.  What's up with the bars everywhere?}
-\end{example}
+   \daniel[inline]{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
+   \pedro[inline]{Actually, from second to third level, the points get further.}
+   \daniel[inline]{OK.  What's up with the bars everywhere?}
+   \pedro[inline]{Where?}
 
 \begin{definition}
    \label{epsilon delta: D}
@@ -2749,7 +2757,7 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    \[
       \udeficit(A, \vv{u}, p) \geq \ft{B}{\vv{v}}
    \]
-   with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is generated by homogeneous polynomials all of the same degree, with respect to some positive $\ZZ$-grading.
+   with equality if $A$ is the monomial matrix associated to an $\idealm$-primary monomial ideal that is generated by monomials of the same degree, with respect to some positive $\ZZ$-grading.
 \end{lemma}
 
 \pedro[inline]{
@@ -2796,43 +2804,58 @@ The non-leading coefficients appearing in the polynomial expressions described i
 Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.  
 Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.  
 
-Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a monomial pair $(A,\vv{u})$, and set  $\Q = \Q_p(A,\vv{u})$.
+Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a very small monomial pair $(A,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(A,\vv{u})$.
 If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
 \pedro[inline]{
    I don't think we defined $\crit(A,\vv{u})$.
    Should we?
    Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
+   \pedro[inline]{
+      I modified things, going with algebraic notation wherever possible.
+      Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}
+   }
 }
 \begin{equation}\label{eq: crit infinite case}
-\crit(A,\vv{u})=\ft{A}{\vv{u}} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. 
+\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}. 
 \end{equation}
-In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(A,\vv{u})$ is rational.
+In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
 
 On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
 \begin{align*} 
-\crit(A,\vv{u})& = \frac{\val \IP_p(A,\vv{u}, \Q) +1}{\Q} \\ 
-& = \ft{A}{\vv{u}} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
+\crit(\ideala,\ideald)& = \frac{\mu(\ideala,\ideald, \Q) +1}{\Q} \\ 
+& = \ft{\ideala}{\ideald} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
-and so $\crit(A,\vv{u})$ is again rational, with denominator a power of $p$.
-% \pedro{The \emph{difference} $\text{ft} - \crit$ has denominator a power of $p$, right?}
-% \emily{The numerators on the second line are rational, but not necessarily integers.  The first line shows that crit has denominator $\Q$, a power of $p$.}
-% \pedro{Ooops\ldots I was only looking at the last line. Thanks!}
+and so $\crit(\ideala,\ideald)$ is again rational, with denominator a power of $p$.
 
 Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then 
-\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \ft{A}{\vv{u}}-\crit(A,\vv{u}) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(A,\vv{u})}{p^s} \] 
-where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
+\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(\ideala,\ideald)}{p^s} \] 
+where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
 
-\begin{remark}[The $\idealm$-primary homogeneous case]
-   If $A$ is associated to an $\idealm$-primary ideal that is homogeneous under some positive $\ZZ$-grading, then \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
-   Consequently, in this case $\crit(A,\vv{u})$ is either equal to $\ft{A}{\vv{u}}$, or it is a rational number with denominator a power of $p$.
+\begin{remark}
+   Consider a very small pair $(A,\vv{u})$ associated to an ideal pair $(\ideala,\ideald)$, where $\ideala$ is an $\idealm$-primary ideal generated by monomials of the same degree $\denom$ under some positive $\ZZ$-grading.
+   \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
+   Thus, for sufficiently large $p$, $\crit(\ideala,\ideald)$ is either equal to $\ft{\ideala}{\ideald}$, or it is a rational number with denominator a power of $p$.
+   More explicitly, in the second case we have
+   \[\crit(\ideala,\ideald) = \ft{\ideala}{\ideald} - \frac{r}{\denom\Q},\]
+   where $\Q =\Q(A,\vv{u})$ and $r$ is a positive integer.
+   This explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
    \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
-   \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?} 
+      \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?}
+      \pedro[inline]{
+         I think so, and gave it a shot above.
+         My plan is to explain some things in examples throughout the text: that $\denom$ is a universal denominator for $A$, and therefore a denominator for universal deficits associated to $A$. Maybe also that $\ft{A}{\vv{u}} = \deg(\vv{u})/\denom$ (and use that here to make things more explicit).  
+      }
    }
    \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
 \end{remark}
-\daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
-\emily[inline]{See below.}
-\daniel[inline]{Thanks.}
+% \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
+% \emily[inline]{See below.}
+% \daniel[inline]{Thanks.}
+
+
+\todo[inline]{
+   Find appropriate places for the next two things.
+}
 \begin{remark}
 \Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for 
   $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
@@ -2852,8 +2875,6 @@ where $\{ \sigma_{p^e}(A,\vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative
 %
 %\subsection{Generic hypersurfaces in characteristic zero}
 
-\newpage
-
 \begin{corollary}
    Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ \textup(e.g., take the least common multiple of universal denominators of each of its finitely many descendants\textup).
    Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$, 
@@ -2872,7 +2893,7 @@ In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
 We first prove the following claim: 
 
 \begin{claim}
-   If $B$ is a descendant of $A$, $(B, \vv{v})$ is a very small pair, and\daniel{Added that $p \equiv 1$} $p \equiv 1 \bmod d$, then $\udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$.
+   If $B$ is a descendant of $A$, $(B, \vv{v})$ is a very small pair, and \daniel{Added that $p \equiv 1$} $p \equiv 1 \bmod d$, then $\udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$.
 \end{claim}
 
 Let $\vv{s}$ be a special point for $(B, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{B}{\vv{v}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
