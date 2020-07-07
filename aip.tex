@@ -1931,6 +1931,31 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 }
 \emily[inline]{Sounds good to me.}
 \daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ towards the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
+\pedro[inline]{
+   I added the lemma below.
+   I did not modify the proof of \Cref{main theorem wrt diagonal: T}, though, since the fact that $\val \IP > p$ still does not appear in any statement.
+}
+\begin{lemma}
+   \label{ip = aip: L}
+   If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+   Moreover, the converse is true for $p$ sufficiently large, depending solely on $A$.
+\end{lemma}
+
+\begin{proof}
+   Suppose $(A,\vv{u})$ is very small.
+   We have seen that
+   \[ \deficit \IP(A, \vv{u}, p)  = \ft{A}{\vv{u}} p -\val \IP(A, \vv{u}, p)\]
+   is positive, and since $\ft{A}{\vv{u}} \leq 1$, this implies that $\val\IP(A,\vv{u},p)\le p-1$.
+   Thus, every feasible point for $\IP(A, \vv{u}, p)$ automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$, and so these programs coincide.
+   
+   Conversely, suppose $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, for $p \gg 0$ chosen as in \Cref{small not very small value: T}.
+   Aiming at a contradiction, suppose $(A,\vv{u})$ is not very small, so that $\ft{A}{\vv{u}} > 1$.
+   Arguing as in the proof of \emph{loc.\,cit.}\ we conclude that $\val \IP_p(A,\vv{u},p) = \val \IP(A,\vv{u},p) >  p$.
+   From here on, we argue algebraically: If the pair $(A,\vv{u})$ is associated to the ideal pair $(\ideala,\ideald)$, our last findings tell us that $\ideala^{[p]} \not\subseteq \ideald^{[p]}$, and hence $\ideala \not\subseteq \ideald$, so the pair $(A,\vv{u})$ is not even small---a contradiction.
+\end{proof}
+
+In view of the above lemma, \Cref{uniform uniform value and image: T} immediately gives us the following result.
+
 \begin{theorem}
    \label{arithmetic uniform value and image: T}
    For every very small pair $(A,\vv{u})$, the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
@@ -1940,16 +1965,8 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    and
    \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p), \]
    where the overbar denotes collapse along $\mf(A, \vv{u})$.
+   \qed
 \end{theorem}
-
-\begin{proof}
-   We have seen that
-   \[ \deficit \IP(A, \vv{u}, p)  = \ft{A}{\vv{u}} p -\val \IP(A, \vv{u}, p)\]
-   is positive. 
-   As $\ft{A}{\vv{u}} \leq 1$ for a very small pair $(A,\vv{u})$, this implies that $\val\IP(A,\vv{u},p)\le p-1$.
-   Thus, every feasible point for $\IP(A, \vv{u}, p)$ automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$, and so these programs coincide.
-   Our other claims then simply follow from \Cref{uniform uniform value and image: T}.
-\end{proof}
 
 % \begin{theorem}
 %    \label{arithmetic uniform value and image: T}
