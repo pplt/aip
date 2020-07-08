@@ -1038,7 +1038,7 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 \begin{proof}
    Taking the equation defining $\N$ and collapsing it along $\O$, we obtain
    \[ \collapse{\N} = \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{A}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m).\]
-   The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m$ are precisely the standard basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
+   The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
 
 Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
 The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
@@ -1104,6 +1104,22 @@ Below, we describe the relationship between collapses and the other notions intr
    \Cref{fig: splitting polytope of collapse} also shows that the optimal set of $\LP(A,\vv{u})$ is properly contained in the optimal set of $\LP(\collapse{A},\collapse{\vv{u}})$, highlighting the difference between these sets in red.
    Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper---in which case so is the one in (3), since every optimal point for $\LP(\collapse{A},\collapse{\vv{u}})$ is special for $(\collapse{A},\collapse{\vv{u}})$, due to the boundedness of $\collapse{\O}$.
 \end{example}
+
+\daniel[inline]{I think we'll need this for the section on applications to generic hypersurfaces}
+\begin{proposition}
+\label{collapse of a collapse is a collapse: P} Every composition of collapsings is a collapsing.  
+\end{proposition}
+
+\begin{proof}
+Consider a face $\O$ of a polyhedron $\N$ lying in $\RR^m$.   Set $\ell = \# \rb(\O)^{\perp}$ and let $\pi: \RR^m \to \RR^{\ell}$ be the collapsing projection along $\O$.  In addition, fix a face $\mathcal{F}$ of $\pi(\N)$,  which \Cref{collapse of Newton polyhedron: P} tells us is a Newton polyhedron in $\RR^{\ell}$.  Set $s=\# \rb(\mathcal{F})^{\perp}$ and let $\rho: \RR^{\ell} \to \RR^s$ be the collapsing projection along $\mathcal{F}$.  
+
+We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^m \to \RR^s$ is the collapsing projection along some face of $\N$.  Let $\vv{e}_1, \ldots, \vv{e}_m \in \RR^m$ and $\vv{f}_1, \ldots, \vv{f}_s \in \RR^s$ be the standard basis vectors for each Euclidean space.  After reordering these, we may assume that $\sigma: \RR^m \to \RR^s$ maps $\vv{e}_i$ to $\vv{f}_i$ for each $1 \leq i \leq s$, and to zero otherwise.   Next, let  $\iota:  \RR^s \hookrightarrow \RR^m$ be the $\RR$-linear map defined by $\vv{f}_i \mapsto \vv{e}_i$.
+
+Once again, \Cref{collapse of Newton polyhedron: P} implies that $\sigma(\N) = \rho(\pi(\N))$ is a Newton polyhedron.  Consider a standard compact face of $\mathcal{L}$ of $\sigma(\N)$, for instance, the collapsed face $\pi(\mathcal{F})$.    If $\mathcal{L}$ is defined by a point $\vv{b} \in \RR^s$, then \Cref{prop: MW for faces}  tells us that $\vv{b}$ is positive, and the fact that
+\[ \iprod{\vv{b}}{\sigma(\vv{u})} = \iprod{\iota(\vv{b})}{\vv{u}} \] for every $\vv{u} \in \RR^m$ implies that $\sigma^{-1}(\mathcal{F})$ is a standard face of $\N$ defined by $\iota(\vv{b})$.  By construction, the $i$-th entry of $\iota(\vv{b})$ is not zero if and only if $1 \leq i \leq s$, so that $\rb(\sigma^{-1}(\mathcal{L}))^{\perp} = \{ \vv{e}_1, \ldots, \vv{e}_s \}$, from which it follows that $\sigma$ is the collapsing projection along the face $\sigma^{-1}(\mathcal{F})$ of $\N$.
+
+\end{proof}
+
 
 \newpage
 \section{An auxiliary integer program}
@@ -2539,6 +2555,7 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
       \centering
       \includegraphics[width=.85\textwidth]{pictures/sprouting_graph.pdf}
       \caption{The sprouting subgraph for \Cref{ex: ft.4}}
+      \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
       \label{fig: sprouting graph}
    \end{figure}
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(A,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
