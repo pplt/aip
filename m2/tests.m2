@@ -105,3 +105,248 @@ u = colVec{1,1,1}
 QQ[p,t]
 time toString mPrimaryMu(A,u,2,p,t)
 -- takes a little while, but finishes it (~13-14 min)
+
+-----------------------------
+-- Theta example from paper (another class)
+-----------------------------
+
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+u = colVec {1,1,1}
+Abar = collapse(A,u)
+
+QQ[p,t]
+
+S1 = {u}
+M1 = ft(A,u)*p - uDeficit(A,u,12)
+
+B = collapse(A,u)
+
+S2 = uShort(A,u,12)
+numeric apply(S2,v->ft(B,v)) -- second and 4th
+S2 = {S2_1,S2_3}
+numeric apply(S2,v->uDeficit(B,v,12)) -- tie
+
+M2 = ft(B,S2_0)*p-uDeficit(B,S2_0,12)
+
+uShort(B,S2_0,12)
+uShort(B,S2_1,12)
+S3 = uShort(B,S2_0,12)
+numeric apply(S3,v->ft(B,v)) -- second and third
+S3 = {S3_1,S3_2}
+numeric apply(S3,v->uDeficit(B,v,12)) -- tie
+
+M3 = ft(B,S3_1)*p-uDeficit(B,S3_1,12)
+
+uShort(B,S3_0,12)
+uShort(B,S3_1,12)
+S4 = uShort(B,S3_0,12)
+numeric apply(S4,v->ft(B,v)) -- second and third
+S4 = {S4_1}
+-- numeric apply(S3,v->uDeficit(B,v,12)) -- tie
+
+M4 = ft(B,S4_0)*p-uDeficit(B,S4_0,12)
+
+S5 = uShort(B,S4_0,12)
+numeric apply(S5,v->ft(B,v)) -- second and third
+ 
+-- has one more level, no intermediary terms
+
+--- RANDOM 
+
+search := () -> (
+count = 1;
+found = false;
+r = 3; 
+while not found and count <= 100 do (
+    print count;
+notCool = true;
+u = colVec toList apply(3,i-> 1+ random(10));
+while notCool do (
+   A = matrix toList apply(3, i -> toList apply(3, j -> 1 + random(10)));
+   B = collapse(A,u);
+   notCool = ( rank target B ) < 2 or ft(A,u) >= 1
+);
+try (S2 = uShort(A,u,r); found = uDeficit(A,u,r) != max apply(S2, v -> ft(B,v)) ) else found = false;
+count = count + 1;
+);
+(A,u)
+)
+
+S2
+uDeficit(A,u,r)
+ft(B,colVec {1,2})
+found
+
+---------------------------------------------------
+-- This example has a "second coefficient" and cycles
+
+A = matrix {{9, 7, 8}, {2, 8, 5}, {0, 1, 3}}
+u = colVec {6,3,1}
+r = 3
+S1 = {u}
+M1 = ft(A,u)*p - uDeficit(A,u,r)
+
+solveIP theta(A,u,specialPt(A,u),3)
+solveIP theta(collapse(A,u),collapseMap(A,u)*u,specialPt(A,u),3)
+
+A2 = collapse(A,u)
+S2 = uShort(A,u,r)
+
+M2 = ft(A2,S2_0)*p-uDeficit(A2,S2_0,r)
+
+S3 = uShort(A2,S2_0,r)
+A3 = collapse(A2,S2_0)
+numeric apply(S3,v->ft(A3,v)) -- first
+S3={S3_0}
+M3 = ft(A3,S3_0)*p-uDeficit(A3,S3_0,r)
+
+S4 = uShort(A3,S3_0,r)
+A4 = collapse(A3,S3_0)
+numeric apply(S4,v->ft(A4,v)) -- first
+S4={S4_0}
+M4 = ft(A4,S4_0)*p-uDeficit(A4,S4_0,r)
+
+S5 = uShort(A4,S4_0,r)
+A5 = collapse(A4,S4_0)
+numeric apply(S5,v->ft(A5,v)) -- first
+S5={S5_0}
+M5 = ft(A5,S5_0)*p-uDeficit(A5,S5_0,r)
+
+S6 = uShort(A5,S5_0,r)
+A6 = collapse(A5,S5_0)
+numeric apply(S6,v->ft(A6,v)) -- first
+S6={S6_0}
+M6 = ft(A6,S6_0)*p-uDeficit(A6,S6_0,r)
+
+S7 = uShort(A6,S6_0,r)
+A7 = collapse(A6,S6_0)
+numeric apply(S7,v->ft(A7,v)) -- first
+S7={S7_0}
+M7 = ft(A7,S7_0)*p-uDeficit(A7,S7_0,r)
+
+S8 = uShort(A7,S7_0,r)
+A8 = collapse(A7,S7_0)
+numeric apply(S8,v->ft(A8,v)) -- first
+S8={S8_0}
+M8 = ft(A8,S8_0)*p-uDeficit(A8,S8_0,r)
+
+S9 = uShort(A8,S8_0,r)
+A9 = collapse(A8,S8_0)
+numeric apply(S9,v->ft(A9,v)) -- first
+S9={S9_0}
+M9 = ft(A9,S9_0)*p-uDeficit(A9,S9_0,r)
+
+(M1,M2,M3,M4,M5,M6,M7,M8,M9)
+
+gf = (M1*t+M2*t^2)/(1-p*t) + (M3*t^3+M4*t^4+M5*t^5+M6*t^6+M7*t^7+M8*t^8)/((1-p*t)*(1-t^6))
+
+toString gf
+
+---------------------------------------------------
+-- A very simple example with intermediate coeff and a 1-cycle and bifurcation
+
+r = 3
+A = matrix {{3, 4, 6}, {3, 7, 3}, {8, 2, 6}}
+u = colVec {2,4,3}
+graph = {{(A,u)}}
+num = {(ft(A,u),uDeficit(A,u,r))}
+
+S = last graph
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+eps = max apply(S,pair->ft pair) 
+S= select(S, pair -> ft pair == eps )
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S)
+num = append(num,(eps,delta))
+
+QQ[p,t]
+M = apply(num, v -> v_0*p-v_1)
+
+gf = (M_0*t + M_1*t^2)/(1-p*t) + M_2*t^3/((1-p*t)*(1-t))
+toString gf
+
+      (A,u)
+     /     \
+(B,(2,6))  (B,(2,7))
+    \        / 
+     \      /
+      (C,3) cycle to itself
+      
+B = collapse(A,u)
+uShort(B,colVec{2,6},r)      
+uShort(B,colVec{2,7},r)      
+
+---------------------------------------------------
+-- 2-cycle, 2 intermediate coeffs, linear
+
+r = 3
+A = matrix {{4, 3, 2}, {10, 3, 4}, {4, 6, 10}},matrix {{7}, {7}, {4}})
+u = colVec {7,7,4}
+graph = {{(A,u)}}
+num = {(ft(A,u),uDeficit(A,u,r))}
+
+S = last graph
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+eps = max apply(S,pair->ft pair) 
+S= select(S, pair -> ft pair == eps )
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S)
+num = append(num,(eps,delta))
+
+---------------------------------------------------
+-- 6-cycle, 1 intermediate coeff, 1 - 4 - 1 - 1 ...
+
+r = 3
+A = matrix {{7, 7, 5}, {10, 9, 4}, {7, 10, 8}}
+u = colVec {9,3,3}
+graph = {{(A,u)}}
+num = {(ft(A,u),uDeficit(A,u,r))}
+
+S = last graph
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+eps = max apply(S,pair->ft pair) 
+S= select(S, pair -> ft pair == eps )
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S)
+num = append(num,(eps,delta))
+
+---------------------------------------------------
+-- linear with 6-cycl way deep, 4 intermediate coeffs 
+
+r = 3
+A = matrix {{10, 9, 5}, {3, 5, 9}, {4, 4, 7}}
+u = colVec {6,6,10}
+graph = {{(A,u)}}
+num = {(ft(A,u),uDeficit(A,u,r))}
+
+S = last graph
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+eps = max apply(S,pair->ft pair) 
+S= select(S, pair -> ft pair == eps )
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S)
+num = append(num,(eps,delta))
+
+---------------------------------------------------
+-- 
+
+r = 3
+(A,u) = search()
+graph = {{(A,u)}}
+num = {(ft(A,u),uDeficit(A,u,r))}
+
+S = last graph
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+eps = max apply(S,pair->ft pair) 
+S= select(S, pair -> ft pair == eps )
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S)
+num = append(num,(eps,delta))
+
+
+            

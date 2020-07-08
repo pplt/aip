@@ -2555,7 +2555,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
       \centering
       \includegraphics[width=.85\textwidth]{pictures/sprouting_graph.pdf}
       \caption{The sprouting subgraph for \Cref{ex: ft.4}}
-      \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
       \label{fig: sprouting graph}
    \end{figure}
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(A,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
@@ -2563,6 +2562,27 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
    The overbar represents collapse along $\mf(A,\vv{u})$.   
    The figure shows $\S_{p^e}(A,\vv{u})$ for $e=1,\ldots,4$, with $\sprout^*_p(A,\vv{u})$ shown in green.
    The nodes shown in red are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate.
+
+     
+   \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
+   \pedro[inline]{
+      No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
+      I was thinking of including this as an example after the big theorem.
+      I was also planning to include an example that has all of the features missing in this one:
+      \begin{itemize}
+         \item intermediate powers
+         \item levels with more than one pair
+         \item it cycles, as opposed to reaching a small but not very small pair
+   \end{itemize}
+      I have a simple example with all of these features, but I'm looking for a better one.
+   }
+   \pedro[inline]{
+      BTW, two things I have yet to see in examples:
+      \begin{itemize}
+         \item Pairs on the same level of $\sprout^*_p(A,\vv{u})$ that have different universal shortfalls.
+         \item $\udeficit$ deciding anything when computing $\S^*_{p^e}$; it has always been the case that if $F$-thresholds are equal, then so are the $\udeficit$s.
+      \end{itemize}
+   }
 
    \begin{figure}
       \centering

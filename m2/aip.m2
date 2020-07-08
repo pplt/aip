@@ -332,7 +332,12 @@ uData := (A,u,q) ->
     otherConstraints := Abar | zeroMatrix(m,m);
     otherConstraintsRHS := Asq - constantVector(1,m);
     ineqsMat := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints || otherConstraints;
-    ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else matrix { nonnegConstraintsRHS } || otherConstraintsRHS;
+--    print(nonnegConstraints);
+--    print(nonnegConstraintsRHS);
+--    print(otherConstraints);
+--    print(otherConstraintsRHS);
+--    print(matrix { nonnegConstraintsRHS });
+    ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else (colVec nonnegConstraintsRHS) || otherConstraintsRHS;
     polyh := polyhedronFromHData( ineqsMat, ineqsRHS, eqsMat, eqsRHS );
     proj := zeroMatrix(m,n) | identityMatrix(m);
     im := latticePoints affineImage(proj,polyh);
