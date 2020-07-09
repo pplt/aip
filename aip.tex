@@ -1932,29 +1932,29 @@ However, as mentioned in \Cref{ex: small vs very small}, given a monomial matrix
 
 With these reductions in hand, we now describe how to compute the value of $\IP_p(A, \vv{u}, p)$ when $(A, \vv{u})$ is very small,  by appealing to our earlier work on the standard integer programs $\IP(A, \vv{u}, p^e)$. 
 
-\pedro[inline]{
-   I modified the statement and proof of the following theorem to isolate the part that depends on $p\gg 0$.
-   Original statement and proof were commented out.
-}
-\daniel[inline]{This is better.  In this light, is it true that if $p \gg 0$ relative to $A$ and $(A,\vv{u})$ is small, then $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$ if and only if $(A,\vv{u})$ is very small?}
-\pedro[inline]{
-   If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$ as in the proof of the previous theorem.
-   But if that is the case \emph{and} $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
-   This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.
-   (Or maybe it's easier to just argue algebraically.)\\[2mm]
-   Maybe this could be a lemma? Something like\ldots
-   \begin{lemma}
-      If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
-      Moreover, the converse is true for $p$ sufficiently large, depending solely on $A$.
-   \end{lemma}
-   Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
-}
-\emily[inline]{Sounds good to me.}
-\daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ towards the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
-\pedro[inline]{
-   I added the lemma below.
-   I did not modify the proof of \Cref{main theorem wrt diagonal: T}, though, since the fact that $\val \IP > p$ still does not appear in any statement.
-}
+% \pedro[inline]{
+%    I modified the statement and proof of the following theorem to isolate the part that depends on $p\gg 0$.
+%    Original statement and proof were commented out.
+% }
+% \daniel[inline]{This is better.  In this light, is it true that if $p \gg 0$ relative to $A$ and $(A,\vv{u})$ is small, then $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$ if and only if $(A,\vv{u})$ is very small?}
+% \pedro[inline]{
+%    If $\ft{A}{\vv{u}} > 1$, then $\val \IP(A,\vv{u},p) >  p$, for $p \gg 0$ as in the proof of the previous theorem.
+%    But if that is the case \emph{and} $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
+%    This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.
+%    (Or maybe it's easier to just argue algebraically.)\\[2mm]
+%    Maybe this could be a lemma? Something like\ldots
+%    \begin{lemma}
+%       If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
+%       Moreover, the converse is true for $p$ sufficiently large, depending solely on $A$.
+%    \end{lemma}
+%    Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
+% }
+% \emily[inline]{Sounds good to me.}
+% \daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ towards the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
+% \pedro[inline]{
+%    I added the lemma below.
+%    I did not modify the proof of \Cref{main theorem wrt diagonal: T}, though, since the fact that $\val \IP > p$ still does not appear in any statement.
+% }
 \begin{lemma}
    \label{ip = aip: L}
    If $(A,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
@@ -2176,15 +2176,15 @@ This motivates our technique of reducing to the \emph{very small} setting.
 \label{m-primary: SS}
 
 
-\ \pedro[inline]{
-   I propose the following alternate version of this subsection.
-   It extracts the algorithm from the theorem, not the other way around.
-   It is one page shorter.
-}
-\emily[inline]{The updated organization looks really readable; I like it.}
-\pedro[inline]{
-   Cool. I commented out the original version, but we can restore it or merge it with this if you guys want.
-}
+% \ \pedro[inline]{
+%    I propose the following alternate version of this subsection.
+%    It extracts the algorithm from the theorem, not the other way around.
+%    It is one page shorter.
+% }
+% \emily[inline]{The updated organization looks really readable; I like it.}
+% \pedro[inline]{
+%    Cool. I commented out the original version, but we can restore it or merge it with this if you guys want.
+% }
 We now focus on computing the value of the arithmetic integer program $\IP_p(A,\vv{u}, p^e)$ when $A$ is associated to an $\idealm$-primary monomial ideal, where $\idealm$ is the ideal generated by the variables of the ambient polynomial ring, $(A,\vv{u})$ is very small, $p$ is large relative to $A$, and $e > 0$ is arbitrary.
 The assumption that $A$ comes from an $\idealm$-primary ideal implies that the minimal face of every $A$-pair is bounded, and so the collapse along such face is the identity.
 In this context, \Cref{arithmetic uniform value and image: T} becomes significantly stronger, as it computes \emph{full} shortfalls, as opposed to a properly collapsed one.
@@ -2213,9 +2213,9 @@ Before presenting the proof, we clarify our requirements for $p\gg 0$.
 
    For a very small pair $(A,\vv{u})$, \Cref{arithmetic uniform value and image: T} shows that
    \[ \val \IP_p(A,\vv{u},p) = \ft{A}{\vv{u}}p-\udeficit(A,\vv{u},p).\]
-   \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
-   \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
-   \pedro{Done. Had to rearrange things a bit.}
+   % \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
+   % \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
+   % \pedro{Done. Had to rearrange things a bit.}
    \Cref{finitely many deltas for a fixed A: R} tells us that, as we vary over all such pairs, $\udeficit(A,\vv{u},p)$ takes on only finitely many values, while \Cref{pair periodicity: R} tells us that its value, once $(A,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $A$.
    Moreover, as in this $\idealm$-primary case there are only finitely many very small pairs, $\ft{A}{\vv{u}}$ also takes on only finitely many values.\footnote{For later use, note that this conclusion remains valid without the $\idealm$-primary assumption: when restricted to very small pairs, $\ft{A}{\vv{u}}$ is bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.}
    Thus, by choosing $p\gg 0$, with lower bound dependent only on $A$, we can select the very small pairs $(A,\vv{u})$ to be included in $\S^*$ by first selecting those with maximal $\ft{A}{\vv{u}}$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(A,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
@@ -2290,25 +2290,26 @@ We are now ready to prove the above theorem.
    where each $G_e(\pp)$ is a polynomial in $\pp$ such that
    \[ \val \IP_p(A,\vv{u},p^e) = G_e(p)\]
    for any sufficiently large prime $p\equiv r\bmod \denom$.
+   Moreover, if $(A,\vv{u})$ is associated to the ideal pair $(\ideala,\ideald)$, then for all such primes the critical exponent $\crit(\ideala,\ideald)$ can be obtained by evaluating $G(\pp,\tt)(1-\pp\tt)$ at $\big(p,\frac1p\big)$.
 
   This algorithm relies on the ability to solve several linear programs---each time an $F$-threshold is evaluated---and several integer programs---each time a universal deficit or shortfall is computed.
    Given the computational complexity of solving such programs, our algorithm is bound to be highly inefficient or impractical for large matrices or large $r$.
    Somewhat surprisingly, a preliminary implementation in \emph{Macaulay2} \cite{M2} by the authors fares well on small examples.
 \end{remark}
 
-\pedro[inline]{
-   Should we get into more details?
-   E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
-}
-\emily[inline]{The pseudocode looks good.  If we can find a succinct way to touch on computability, I'm for it.}
-\pedro[inline]{
-   I gave it a shot.
-   I changed the notation in the pseudo-code a bit: I'm using $r$ to denote the representative of the congruence class mod $\denom$, to emphasize that it need not be prime.
-   I'm now using $\S_e$ (and likewise for $\S^*$), as $\S_{p^e}$ does not make sense anymore, and $\S_{r^e}$ causes confusion then $r=1$, as it does not tell us the level we are in.
-   I guess $\S_{\pp^e}$ would be another option.
-}
-\daniel[inline]{I prefer the second option, to keep things consistent with upcoming notation.}
-\pedro[inline]{Went with second one.}
+% \pedro[inline]{
+%    Should we get into more details?
+%    E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
+% }
+% \emily[inline]{The pseudocode looks good.  If we can find a succinct way to touch on computability, I'm for it.}
+% \pedro[inline]{
+%    I gave it a shot.
+%    I changed the notation in the pseudo-code a bit: I'm using $r$ to denote the representative of the congruence class mod $\denom$, to emphasize that it need not be prime.
+%    I'm now using $\S_e$ (and likewise for $\S^*$), as $\S_{p^e}$ does not make sense anymore, and $\S_{r^e}$ causes confusion then $r=1$, as it does not tell us the level we are in.
+%    I guess $\S_{\pp^e}$ would be another option.
+% }
+% \daniel[inline]{I prefer the second option, to keep things consistent with upcoming notation.}
+% \pedro[inline]{Went with second one.}
 
 \setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The $\idealm$-primary case}
@@ -2358,10 +2359,10 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
 
-\pedro[inline]{
-   Maybe having more subsections will help organize this long section.
-   I gave it a shot\ldots
-}
+% \pedro[inline]{
+%    Maybe having more subsections will help organize this long section.
+%    I gave it a shot\ldots
+% }
 
 \emily[inline]{Maybe give an a brief description of how each graph will be used, and explain why we looked at $\mathfrak{m}$-primary case first.}
 
@@ -2576,30 +2577,49 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
    \end{itemize}
       I have a simple example with all of these features, but I'm looking for a better one.
    }
-   \pedro[inline]{
-      BTW, two things I have yet to see in examples:
-      \begin{itemize}
-         \item Pairs on the same level of $\sprout^*_p(A,\vv{u})$ that have different universal shortfalls.
-         \item $\udeficit$ deciding anything when computing $\S^*_{p^e}$; it has always been the case that if $F$-thresholds are equal, then so are the $\udeficit$s.
-      \end{itemize}
-   }
+   % \pedro[inline]{
+   %    BTW, two things I have yet to see in examples:
+   %    \begin{itemize}
+   %       \item Pairs on the same level of $\sprout^*_p(A,\vv{u})$ that have different universal shortfalls.
+   %       \item $\udeficit$ deciding anything when computing $\S^*_{p^e}$; it has always been the case that if $F$-thresholds are equal, then so are the $\udeficit$s.
+   %    \end{itemize}
+   % }
 
-   \begin{figure}
-      \centering
-      \includegraphics[width=.45\textwidth]{pictures/graph_on_newton.pdf}
-      \caption{A geometric representation of the sprouting subgraph $\sprout^*_p(\ol{A},\ol{\vv{u}})$ in \Cref{ex: ft.4}}
-      \label{fig: graph on newton}
-   \end{figure}
-   Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron of~$\collapse{A}$.
+   % \begin{figure}
+   %    \centering
+   %    \includegraphics[width=.45\textwidth]{pictures/graph_on_newton.pdf}
+   %    \caption{A geometric representation of the sprouting subgraph $\sprout^*_p(\ol{A},\ol{\vv{u}})$ in \Cref{ex: ft.4}}
+   %    \label{fig: graph on newton}
+   % \end{figure}
+   % Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron of~$\collapse{A}$.
 \end{example}
 
-   \pedro[inline]{Maybe totally unnecessary, but the picture was fun to produce.
-      Please feel free to remove or modify as you see fit.
-   }
-   \daniel[inline]{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
-   \pedro[inline]{Actually, from second to third level, the points get further.}
-   \daniel[inline]{OK.  What's up with the bars everywhere?}
-   \pedro[inline]{Where?}
+   % \pedro[inline]{Maybe totally unnecessary, but the picture was fun to produce.
+   %    Please feel free to remove or modify as you see fit.
+   % }
+   % \daniel[inline]{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
+   % \pedro[inline]{Actually, from second to third level, the points get further.}
+   % \daniel[inline]{OK.  What's up with the bars everywhere?}
+   % \pedro[inline]{Where?}
+
+\begin{example}
+   \label{ex: new example}
+   \begin{figure}
+      \centering
+      \includegraphics[width=.4\textwidth]{pictures/sprouting_graph_2.pdf}
+      \caption{The sprouting subgraph for \Cref{ex: new example}}
+      \label{fig: sprouting graph 2}
+   \end{figure}
+   \Cref{fig: sprouting graph 2} shows the sprouting subgraph associated to the pair $(A,\vv{u})$, where
+   \[
+      A = \begin{bmatrix} 10&3&5 \\ 3&9&8 \\ 3&8&5 \end{bmatrix}
+      \quad\text{and} \quad
+      \vv{u} =\begin{bmatrix} 6 \\ 6 \\ 5 \end{bmatrix}
+   \]
+   when $p$ is congruent to $5$ modulo a universal denominator for $A$.
+   The matrices $B$ and $C$ in the figure are the first and second rows of $A$, respectively.
+   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---levels $3$ and $4$ alternate \emph{ad infinitum}.
+\end{example}
 
 \begin{definition}
    \label{epsilon delta: D}
@@ -2766,9 +2786,85 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
    To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: P}.
 \end{proof}
 
+\todo[inline]{Algorithm}
 
+\begin{example}
+   \label{ex: ft.5}
+   \Cref{table: running example data} shows the data associated to the pair $(A,\vv{u})$ in our running example, whose sprouting subgraph is shown in \Cref{fig: sprouting graph}.
+   \begin{table}
+      \begin{center}
+         \begingroup
+         \setlength{\tabcolsep}{8pt} % Default value: 6pt
+         \renewcommand{\arraystretch}{1.4} % Default value: 1
+         \begin{tabular}{cccc}
+           \toprule
+           $e$ & $\epsilon_{p^e}(A,\vv{u})$ & $\delta_{p^e}(A,\vv{u})$ & $\val\IP_p(A,\vv{u},p^e)$ \\
+           \midrule
+           1 & $\frac{4}{17}$ & $\frac{10}{17}$ & $\frac{4}{17}p - \frac{10}{17}$\\
+           2 & $\frac{10}{17}$ & $\frac{8}{17}$ & $\frac{4}{17}p^2 - \frac{8}{17}$ \\
+           3 & $\frac{8}{17}$ & $\frac{20}{17}$ & $\frac{4}{17}p^3 - \frac{20}{17}$\\ 
+           \bottomrule
+         \end{tabular}
+         \endgroup
+         % The \begingroup ... \endgroup pair ensures the separation
+         % parameters only affect this particular table, and not any
+         % sebsequent ones in the document.
+      \end{center}
+      \caption{The data obtained for \Cref{ex: ft.5}}
+      \label{table: running example data}
+   \end{table}
+   For any $e \ge 3$ we have
+   \[
+      \val\IP_p(A,\vv{u},p^e) = \frac{4}{17}p^e - \frac{20}{17}p^{e-3} + p^{e-3} - 1
+       = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1.
+    \]
+    Finally, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
+    \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}\]
+    for sufficiently large $p$ congruent to $11$ modulo a universal denominator for~$A$.
+    \pedro[inline]{This needs to be checked more carefully; same for next example.}
+\end{example}
 
-
+\begin{example}
+   \label{ex: new example.2}
+   \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, whose sprouting subgraph is shown in \Cref{fig: sprouting graph 2}.
+   \begin{table}
+      \begin{center}
+         \begingroup
+         \setlength{\tabcolsep}{8pt} % Default value: 6pt
+         \renewcommand{\arraystretch}{1.4} % Default value: 1
+         \begin{tabular}{cccc}
+           \toprule
+           $e$ & $\epsilon_{p^e}(A,\vv{u})$ & $\delta_{p^e}(A,\vv{u})$ & $\val\IP_p(A,\vv{u},p^e)$ \\
+           \midrule
+           1 & $\frac{169}{178}$ & $\frac{133}{178}$ & $\frac{169}{178}p - \frac{133}{178}$\\
+           2 & $\frac{2}{3}$ & $\frac{1}{3}$ & $\frac{169}{178}p^2 - \frac{43}{534}p -\frac13$ \\
+           3 & $\frac{1}{3}$ & $\frac{2}{3}$ & $\frac{169}{178}p^3 - \frac{43}{534}p^2 - \frac23$ \\
+           4 & $\frac{2}{3}$ & $\frac{1}{3}$ & $\frac{169}{178}p^4 - \frac{43}{534}p^3 - \frac13$ \\
+           \bottomrule
+         \end{tabular}
+         \endgroup
+         % The \begingroup ... \endgroup pair ensures the separation
+         % parameters only affect this particular table, and not any
+         % sebsequent ones in the document.
+      \end{center}
+      \caption{The data obtained for \Cref{ex: new example.2}}
+      \label{table: new example data}
+   \end{table}
+   For any $e\ge 2$ we have
+   \[
+      \val\IP_p(A,\vv{u},p^e) = 
+      \begin{cases}
+         \frac{169}{178}p^e - \frac{43}{534}p^{e-1} - \frac13 & \text{if $e$ is even}\\
+         \frac{169}{178}p^e - \frac{43}{534}p^{e-1} - \frac23 & \text{if $e$ is odd}\\
+      \end{cases}
+   \]
+   and, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
+   \[\crit(\ideala,\ideald) = \frac{169}{178} - \frac{43}{534p}\]
+   for any sufficiently large prime $p$ congruent to $5$ modulo a universal denominator for $A$.
+   \pedro[inline]{
+      I'm looking for an example to replace this one, where $\crit$ has three terms.
+   }
+\end{example}
 
 \details[inline]{
 TO DO LIST:

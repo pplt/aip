@@ -43,6 +43,8 @@ ft(B,colVec{4,8})
 ft(B,colVec{1,17})
 ft(B,colVec{2,14})
 
+(M1,M2,M3)
+
 -- why don't these work?
 us := v -> uShort(collapse(B,v),v,11) 
 collapse(B,colVec{1,7})
@@ -153,20 +155,34 @@ numeric apply(S5,v->ft(B,v)) -- second and third
 
 --- RANDOM 
 
-search := () -> (
-count = 1;
-found = false;
-r = 3; 
+comp := (u,v) -> all(u,v,(i,j) -> i<=j ) or all(u,v,(i,j) -> i>=j )
+
+    
+search := (r) -> (
+count := 1;
+found := false;
+local notCool;
+local A;
+local B;
+local u;
+local eps;
+local S2;
+local L;
+local a;
 while not found and count <= 100 do (
     print count;
 notCool = true;
 u = colVec toList apply(3,i-> 1+ random(10));
 while notCool do (
-   A = matrix toList apply(3, i -> toList apply(3, j -> 1 + random(10)));
+   a = toList apply(3, i -> toList apply(3, j -> 1 + random(15)));
+   A = transpose matrix a;
    B = collapse(A,u);
-   notCool = ( rank target B ) < 2 or ft(A,u) >= 1
+   notCool = ( rank target B ) < 2 or ft(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2)
 );
-try (S2 = uShort(A,u,r); found = uDeficit(A,u,r) != max apply(S2, v -> ft(B,v)) ) else found = false;
+S2 = uShort(A,u,r); 
+L = apply(S2, v -> ft(B,v));
+eps = max L;
+found = (uDeficit(A,u,r) != eps) and #(select(L,x->x==eps)) > 1;
 count = count + 1;
 );
 (A,u)
@@ -277,23 +293,6 @@ B = collapse(A,u)
 uShort(B,colVec{2,6},r)      
 uShort(B,colVec{2,7},r)      
 
----------------------------------------------------
--- 2-cycle, 2 intermediate coeffs, linear
-
-r = 3
-A = matrix {{4, 3, 2}, {10, 3, 4}, {4, 6, 10}},matrix {{7}, {7}, {4}})
-u = colVec {7,7,4}
-graph = {{(A,u)}}
-num = {(ft(A,u),uDeficit(A,u,r))}
-
-S = last graph
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
-eps = max apply(S,pair->ft pair) 
-S= select(S, pair -> ft pair == eps )
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
-graph = append(graph, S)
-num = append(num,(eps,delta))
 
 ---------------------------------------------------
 -- 6-cycle, 1 intermediate coeff, 1 - 4 - 1 - 1 ...
@@ -332,10 +331,46 @@ graph = append(graph, S)
 num = append(num,(eps,delta))
 
 ---------------------------------------------------
--- 
+-- Example from paper; other classes
 
-r = 3
-(A,u) = search()
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+u = colVec {1,1,1}
+
+r = 1 -- u -> ubar (cycle)
+
+r = 2 -- 1122x (meet not very small pair)
+
+r = 3 -- 11x
+
+r = 4 -- 121x
+
+r = 5 -- 1x
+
+r = 6 -- 11122221111x
+
+r = 7 -- 121121x
+
+r = 8 -- 12x
+
+r = 9 -- 1x
+
+r = 10 -- 111c
+
+r = 11 -- 111x
+
+r = 12 -- 1221x
+
+r = 13 -- 1x
+
+r = 14 -- 11x
+
+r = 15 -- 112x
+
+r = 16 -- 11111c
+
+r = 17 -- 13c
+
+r = 18
 graph = {{(A,u)}}
 num = {(ft(A,u),uDeficit(A,u,r))}
 
@@ -348,5 +383,41 @@ S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
 num = append(num,(eps,delta))
 
+---------------------------------------------------
+r = 7
+(A,u) = search(r)
+num = {(ft(A,u),uDeficit(A,u,r))};
+graph = {{(A,u)}}
 
-            
+S = last graph;
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+eps = max apply(S,pair->ft pair); 
+S= select(S, pair -> ft pair == eps );
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S);
+num = append(num,(eps,delta))
+
+graph
+
+num
+
+-- Good examples
+toString(A,u)
+
+r = 5
+(A,u) = (matrix {{10, 3, 5}, {3, 9, 8}, {3, 8, 5}}, matrix {{6}, {6}, {5}})
+-- 122c, one interm power, different collapses on same level, 2-cycle            
+(A,u) = (matrix {{5, 6, 5}, {7, 10, 3}, {10, 4, 5}},matrix {{6}, {6}, {3}})
+-- 132c, one iterm power, collapses of different sizes on same level, 1-cycle
+-- But this is a binomial!    
+r = 7
+(A,u) = (matrix {{9, 8, 9}, {1, 5, 5}, {1, 8, 2}},matrix {{4}, {3}, {1}})
+-- 1422c, 2-cycle, collapses of different size on same level, one interm power
+-- but this is actually a binomial!
+
+-- running example
+r = 11
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+u = colVec {1,1,1}
+
