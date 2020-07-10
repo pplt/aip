@@ -172,9 +172,9 @@ local a;
 while not found and count <= 100 do (
     print count;
 notCool = true;
-u = colVec toList apply(3,i-> 1+ random(10));
+u = colVec toList apply(2,i-> 1+ random(10));
 while notCool do (
-   a = toList apply(3, i -> toList apply(3, j -> 1 + random(15)));
+   a = toList apply(4, i -> toList apply(2, j -> 1 + random(20)));
    A = transpose matrix a;
    B = collapse(A,u);
    notCool = ( rank target B ) < 2 or ft(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2)
@@ -182,16 +182,12 @@ while notCool do (
 S2 = uShort(A,u,r); 
 L = apply(S2, v -> ft(B,v));
 eps = max L;
+print(uDeficit(A,u,r), eps, #(select(L,x->x==eps)) );
 found = (uDeficit(A,u,r) != eps) and #(select(L,x->x==eps)) > 1;
 count = count + 1;
 );
 (A,u)
 )
-
-S2
-uDeficit(A,u,r)
-ft(B,colVec {1,2})
-found
 
 ---------------------------------------------------
 -- This example has a "second coefficient" and cycles
@@ -384,7 +380,7 @@ graph = append(graph, S)
 num = append(num,(eps,delta))
 
 ---------------------------------------------------
-r = 7
+r = 5
 (A,u) = search(r)
 num = {(ft(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
@@ -402,6 +398,9 @@ graph
 
 num
 
+apply(graph, x -> #x)
+
+apply(graph, S -> apply(S, x -> first entries transpose last x))    
 -- Good examples
 toString(A,u)
 
@@ -410,7 +409,17 @@ r = 5
 -- 122c, one interm power, different collapses on same level, 2-cycle            
 (A,u) = (matrix {{5, 6, 5}, {7, 10, 3}, {10, 4, 5}},matrix {{6}, {6}, {3}})
 -- 132c, one iterm power, collapses of different sizes on same level, 1-cycle
--- But this is a binomial!    
+-- But this is a binomial!  
+
+(A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {9}, {6}, {3}})  
+-- BEST YET! Could even start in 3rd level:
+(A,u) = (matrix {{14, 3, 11}, {2, 14, 5}},matrix {{6}, {1}})
+
+-- or start with a collase
+(A,u) = (matrix {{14, 3, 11}, {2, 14, 5}},matrix {{3}, {6} })  
+
+A
+ 
 r = 7
 (A,u) = (matrix {{9, 8, 9}, {1, 5, 5}, {1, 8, 2}},matrix {{4}, {3}, {1}})
 -- 1422c, 2-cycle, collapses of different size on same level, one interm power

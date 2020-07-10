@@ -2336,17 +2336,17 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \medskip
 \While{\texttt{\em true}}{
    $e\leftarrow e+1$\;
-   $\S_{\pp^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{\pp^{e-1}}} \ushort(A,\vv{v}^*,r)\big\}$\;
+   \nl$\S_{\pp^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{\pp^{e-1}}} \ushort(A,\vv{v}^*,r)\big\}$\;\label{line1}
    \If{$\exists k < e: \S_{\pp^k} = \S_{\pp^e}$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
-   $\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{\pp^e}\}$\;
+   \nl$\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{\pp^e}\}$\;\label{line2}
    \If{$\epsilon >1$}{
       \KwRet{$\dfrac{\sum_{1\le i<e}M_i\tt^i}{1-\pp\tt} + \dfrac{(\pp - 1)\tt^e}{(1-\pp \tt)(1-\tt)}$}
    }
-   $\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{\pp^e}: \ft{A}{\vv{v}} = \epsilon\}$\;
-   $\delta \leftarrow \min\{\udeficit(A,\vv{v},r): (A,\vv{v})\in \text{\texttt{aux}}\}$\;
-   $\S^*_{\pp^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},r) = \delta\}$\;
+   \nl$\text{\texttt{aux}} \leftarrow \{(A,\vv{v})\in \S_{\pp^e}: \ft{A}{\vv{v}} = \epsilon\}$\;\label{line3}
+   \nl$\delta \leftarrow \min\{\udeficit(A,\vv{v},r): (A,\vv{v})\in \text{\texttt{aux}}\}$\;\label{line4}
+   \nl$\S^*_{\pp^e} \leftarrow \{(A,\vv{v})\in \text{\texttt{aux}}: \udeficit(A,\vv{v},r) = \delta\}$\;\label{line5}
    $M_e \leftarrow \epsilon \pp - \delta$\;
 }
 }
@@ -2786,7 +2786,15 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
    To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: P}.
 \end{proof}
 
-\todo[inline]{Algorithm}
+\begin{remark}[An algorithm]
+   \label{algorithm: R}
+   Like in the $\idealm$-primary case, we have an algorithm that, at least in theory, returns the formulas given in \Cref{main theorem wrt diagonal: T} for \emph{all} $e \ge 1$.
+   This algorithm is based on determining the entire structure of $\sprout^*_p(A,\vv{u})$, which is possible because either this graph is finite or levels eventually repeat cyclically, as pointed out in \Cref{elementary2: R}\eqref{elementary2 periodic in e}.
+
+   All of the considerations made in \Cref{m-primary algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply in the general case.
+   Moreover, the pseudocode presented in Algorithm~\ref{alg} applies to the general case with minimal modifications:
+   $\S_{\pp^e}$ should be defined as the set consisting of all $p$-sprout of all elements in $\S^*_{\pp^{e-1}}$ in line \ref{line1}, and $A$ should be replaced with a descendant $B$ in lines \ref{line2}--\ref{line5}.
+\end{remark}
 
 \begin{example}
    \label{ex: ft.5}
@@ -2871,10 +2879,7 @@ TO DO LIST:
 \begin{enumerate}
 \item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
 \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
-\item[$\Box$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
-\pedro[inline]{
-   I'll work on it.
-}
+\item[$\CheckedBox$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
 \end{enumerate}
 }
