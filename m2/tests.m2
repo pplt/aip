@@ -430,3 +430,27 @@ r = 11
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 u = colVec {1,1,1}
 
+
+------------------------------
+(A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {9}, {6}, {3}})  
+
+r = 5
+(A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {6}, {3}, {5}})  
+num = {(ft(A,u),uDeficit(A,u,r))};
+graph = {{(A,u)}}
+
+S = last graph;
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+eps = max apply(S,pair->ft pair); 
+S= select(S, pair -> ft pair == eps );
+delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
+S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+graph = append(graph, S);
+num = append(num,(eps,delta))
+
+graph
+
+num
+
+apply(graph, x -> #x)
+
