@@ -1,5 +1,152 @@
 load "~/Repository/aip_Hg/m2/aip.m2"
 
+--- RANDOM 
+
+comp := (u,v) -> all(u,v,(i,j) -> i<=j ) or all(u,v,(i,j) -> i>=j )
+    
+search := (r) -> (
+count := 1;
+found := false;
+local notCool;
+local A;
+local B;
+local u;
+local eps;
+local S2;
+local L;
+local a;
+local deficit;
+local ramif;
+while not found and count <= 100 do (
+    print count;
+notCool = true;
+u = colVec toList apply(4,i-> 1+ random(10)); -- 4-vec
+while notCool do (
+   a = toList apply(3, i -> toList apply(4, j -> 1 + random(15))); -- 3x4
+   A = transpose matrix a;
+   B = collapse(A,u);
+   notCool = ( rank target B ) < 2 or ft(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2) --or comp(a_0,a_3) or comp(a_1,a_3) or comp(a_2,a_3)
+);
+S2 = uShort(A,u,r); 
+L = apply(S2, v -> ft(B,v));
+eps = max L;
+print(deficit = uDeficit(A,u,r), eps, ramif = #(select(L,x->x==eps)) );
+found = (deficit != eps)  and ramif > 1;
+count = count + 1;
+);
+(A,u)
+)
+
+randomVec := (n,M) -> colVec toList apply(n,i-> 1+ random(M))
+
+randomMat := (m,n,M) -> 
+(
+    found := false;
+    local mat;
+    while not found do 
+    (
+        mat = toList apply(n, i -> toList apply(m, j -> random(M)));
+        found = all(n-1, i -> all((i+1)..(n-1), j-> not comp(mat_i,mat_j) ) )
+    );
+    transpose matrix mat
+)
+
+maximalBy := (L,f) ->
+(
+    vals := apply(L,f);
+    maximum := max vals;
+    ( maximum, L_(positions(vals, x -> x == maximum )) )
+)
+
+minimalBy := (L,f) ->
+(
+    vals := apply(L,f);
+    minimum := min vals;
+    (minimum, L_(positions(vals, x -> x == minimum )) )
+)
+
+search2 := (r,m,n,M,maxTries) -> 
+(
+    count := 1;
+    found := false;
+    local i;
+    local A;
+    local u;
+    local cool;
+    local num;
+    local graph;
+    local S;
+    local eps;
+    local delta;
+    local diffs;
+    local ramif;
+    while count <= maxTries and not found do
+    (
+        print count;
+        (A,u) = ( randomMat(m,n,M), randomVec(m,M) );  
+        num = {(ft(A,u),uDeficit(A,u,r))};
+        graph = {{(A,u)}};
+        i = 0;
+        cool = num_0_0 <= 1;
+        while cool and i <= 8 do
+        (
+            S = last graph;
+            S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+            ( eps, S ) = maximalBy( S, pair -> ft pair); 
+            if eps > 1 then cool = false
+            else
+            ( 
+                ( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
+                graph = append(graph, S);
+                num = append(num,(eps,delta));
+                i = i + 1
+            )
+        );
+        if cool then 
+        (
+            diffs = #select(0..7, i -> num_i_1 != num_(i+1)_0);
+            ramif = max apply(graph, x -> #x);
+            found = diffs > 1 and ramif > 1
+        );
+        count = count + 1
+     );
+     if found then 
+     (
+         print graph;
+         print num;
+         print (diffs,ramif);
+         (A,u)
+     )
+) 
+
+search2(5,4,3,10,10000)
+
+toString oo
+
+--1
+(r,A,u) = (5, matrix {{8, 7, 4}, {1, 7, 5}, {2, 4, 8}},matrix {{6}, {10}, {2}})
+--2
+(r,A,u) = (5, matrix {{6, 5, 7}, {3, 5, 2}, {8, 10, 1}},matrix {{6}, {5}, {2}})
+--3
+(r,A,u) = (5, matrix {{2, 7, 0}, {1, 7, 8}, {9, 7, 9}},matrix {{2}, {4}, {6}})
+--4
+(r,A,u) = (5, matrix {{1, 3, 7}, {5, 1, 6}, {7, 8, 3}},matrix {{1}, {10}, {5}})
+--5
+(r,S,u) = (5, matrix {{1, 1, 1}, {8, 4, 4}, {9, 5, 8}, {6, 8, 7}},matrix {{1}, {7}, {8}, {6}})
+
+------------------------------------------------------------------------------
+num = {(ft(A,u),uDeficit(A,u,r))};
+graph = {{(A,u)}}
+
+S = last graph;
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+( eps, S ) = maximalBy( S, pair -> ft pair); 
+( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
+graph = append(graph, S);
+num = append(num,(eps,delta))
+
+
+
 -----------------------------
 -- Theta example from paper
 -----------------------------
@@ -153,41 +300,6 @@ numeric apply(S5,v->ft(B,v)) -- second and third
  
 -- has one more level, no intermediary terms
 
---- RANDOM 
-
-comp := (u,v) -> all(u,v,(i,j) -> i<=j ) or all(u,v,(i,j) -> i>=j )
-
-    
-search := (r) -> (
-count := 1;
-found := false;
-local notCool;
-local A;
-local B;
-local u;
-local eps;
-local S2;
-local L;
-local a;
-while not found and count <= 100 do (
-    print count;
-notCool = true;
-u = colVec toList apply(2,i-> 1+ random(10));
-while notCool do (
-   a = toList apply(4, i -> toList apply(2, j -> 1 + random(20)));
-   A = transpose matrix a;
-   B = collapse(A,u);
-   notCool = ( rank target B ) < 2 or ft(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2)
-);
-S2 = uShort(A,u,r); 
-L = apply(S2, v -> ft(B,v));
-eps = max L;
-print(uDeficit(A,u,r), eps, #(select(L,x->x==eps)) );
-found = (uDeficit(A,u,r) != eps) and #(select(L,x->x==eps)) > 1;
-count = count + 1;
-);
-(A,u)
-)
 
 ---------------------------------------------------
 -- This example has a "second coefficient" and cycles
@@ -435,7 +547,7 @@ u = colVec {1,1,1}
 (A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {9}, {6}, {3}})  
 
 r = 5
-(A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {6}, {3}, {5}})  
+(A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {5}, {6}, {5}})  
 num = {(ft(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
 

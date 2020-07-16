@@ -230,7 +230,8 @@ solveIP := IP ->
     if IP#cache#?"value" then return ( IP#cache#"value", IP#cache#"optimalPoint" );
     -- if not, now let's compute things...
     ( m, n ) := IP#"dim";
-    path242 := prefixDirectory | currentLayout#"programs";
+--    path242 := prefixDirectory | currentLayout#"programs";
+    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store the augmented matrix
     M := openOut( file | ".mat");
@@ -252,7 +253,7 @@ solveIP := IP ->
         close signs
     );
     -- run 4ti2
-    execstr := path242 | "minimize --quiet -parb " | rootPath | file;
+    execstr := path242 | "minimize --quiet --precision=64 " | rootPath | file;
     ret := run execstr;
     if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/minimize";
     opt := getMatrix( file | ".min" );

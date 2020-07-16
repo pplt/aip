@@ -22,6 +22,10 @@ M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
   rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
   43--61.
 
+\bibitem[Bou98]{bourbaki.commalg}
+N.~Bourbaki, \emph{Commutative {A}lgebra. {C}hapters 1--7}, Elements of
+  Mathematics, Springer-Verlag, Berlin, 1998.
+
 \bibitem[CCZ14]{conforti+etal.integer_programming}
 M.~Conforti, G.~Cornu\'ejols, and G.~Zambelli, \emph{{I}nteger {P}rogramming},
   Graduate Texts in Mathematics, no. 271, Springer, Berlin, 2014.
@@ -48,6 +52,10 @@ D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers}, Math.\
 \bibitem[HTW20]{hernandez+etal.frobenius_examples}
 \bysame, \emph{Frobenius powers of some monomial ideals}, J.\ Pure Appl.\
   Algebra \textbf{224} (2020), no.~1, 66--85.
+
+\bibitem[Mat89]{matsumura}
+H.~Matsumura, \emph{Commutative {R}ing {T}heory}, second ed., Cambridge Studies
+  in Advanced Mathematics, vol.~8, Cambridge University Press, Cambridge, 1989.
 
 \bibitem[MS05]{miller+sturmfels.combinatorial_CA}
 E.~Miller and B.~Sturmfels, \emph{Combinatorial {C}ommutative {A}lgebra},
