@@ -3529,10 +3529,20 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
 
 \begin{lemma}
    \label{monomial-noetherian-decomposition: L}
-   Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that \daniel{Can we easily modify the proof to get $\sqcup$ instead of $\cup$?  We don't need it for our argument, and neither did BMS, but they did claim it was a disjoint union.}
+   Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that 
    \[ \NN^m = \bigcup (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
    and such that $(J:x^{\vv{v}}) = (J: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN \mathcal{W}(\vv{v})$.
 \end{lemma}
+
+   \daniel[inline]{Can we easily modify the proof to get $\sqcup$ instead of $\cup$?  We don't need it for our argument, and neither did BMS, but they did claim it was a disjoint union.}
+   \pedro[inline]{
+      It's not bad (but probably not worth the trouble, since we don't need it):\\[2mm]
+      Suppose $\vv{t} = \vv{v} +\vv{w}$, with $\vv{v}\in\mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.
+      If $t_i > u_i$, then $w_i \ne 0$, and therefore $v_i = u_i$.
+      If $t_i < u_i$, then $v_i < u_i$, so $w_i = 0$ and $v_i = t_i$.
+      If $t_i = u_i$, then again $w_i = 0$ (since $w_i>0$ and $v_i<u_i$ cannot happen) and $v_i = t_i$.
+      IOW, $\vv{v}$ is uniquely determined by $\vv{t}$, and therefore so is $\vv{w}$.
+   }
 
 \begin{proof} \daniel{Thanks for the proof, Emily!}
    Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
