@@ -1,5 +1,3 @@
-load "~/Repository/aip_Hg/m2/aip.m2"
-
 --- RANDOM 
 
 comp := (u,v) -> all(u,v,(i,j) -> i<=j ) or all(u,v,(i,j) -> i>=j )
@@ -122,7 +120,6 @@ search2 := (r,m,n,M,maxTries) ->
 search2(5,4,3,10,10000)
 
 toString oo
-
 --1
 (r,A,u) = (5, matrix {{8, 7, 4}, {1, 7, 5}, {2, 4, 8}},matrix {{6}, {10}, {2}})
 --2
@@ -132,19 +129,54 @@ toString oo
 --4
 (r,A,u) = (5, matrix {{1, 3, 7}, {5, 1, 6}, {7, 8, 3}},matrix {{1}, {10}, {5}})
 --5
-(r,S,u) = (5, matrix {{1, 1, 1}, {8, 4, 4}, {9, 5, 8}, {6, 8, 7}},matrix {{1}, {7}, {8}, {6}})
+(r,A,u) = (5, matrix {{1, 1, 1}, {8, 4, 4}, {9, 5, 8}, {6, 8, 7}},matrix {{1}, {7}, {8}, {6}})
+--6
+(r,A,u) = (5, matrix {{0, 4, 2}, {4, 1, 0}, {9, 2, 4}, {3, 8, 6}},matrix {{8}, {7}, {5}, {3}})
+--7
+(r,A,u) = (5, matrix {{8, 5, 7}, {3, 3, 7}, {6, 5, 8}, {0, 9, 2}},matrix {{5}, {3}, {7}, {2}})
+--8
+(r,A,u) = (5, matrix {{9, 8, 9}, {0, 5, 3}, {6, 0, 0}, {8, 3, 2}},matrix {{6}, {2}, {4}, {3}})
+
+--9
+(r,A,u) = (3, matrix {{4, 3, 5}, {2, 2, 1}, {1, 2, 9}, {9, 5, 0}},matrix {{2}, {7}, {3}, {3}})
+--10
+(r,A,u) = (3, matrix {{3, 4, 8}, {9, 3, 8}, {4, 1, 4}, {5, 7, 4}},matrix {{3}, {9}, {2}, {5}})
+
+--11
+(r,A,u) = (7, matrix {{2, 0, 5}, {6, 8, 5}, {9, 4, 3}, {2, 4, 9}},matrix {{2}, {5}, {9}, {8}})
+--12
+(r,A,u) = (7, matrix {{6, 5, 8}, {9, 3, 3}, {2, 5, 3}, {2, 0, 8}},matrix {{4}, {4}, {2}, {7}})
+--13
+(r,A,u) = (7, matrix {{4, 7, 3}, {9, 0, 7}, {4, 5, 5}, {7, 6, 0}},matrix {{5}, {4}, {4}, {4}})
+
+--14
+(r,A,u) = (5, matrix {{7, 8, 1}, {9, 7, 9}, {5, 9, 8}, {4, 0, 2}},matrix {{2}, {6}, {8}, {6}})
+
+init()
+
+iterate() 
 
 ------------------------------------------------------------------------------
+init := () ->
+(
 num = {(ft(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
+)
 
+iterate := () -> (
 S = last graph;
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
 ( eps, S ) = maximalBy( S, pair -> ft pair); 
 ( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
 graph = append(graph, S);
+print S;
 num = append(num,(eps,delta))
+)
 
+(r,A,u) = (5,matrix {{1, 3, 7}, {7, 8, 3}},matrix {{1}, {3}})
+init()
+
+iterate()
 
 
 -----------------------------
@@ -153,10 +185,8 @@ num = append(num,(eps,delta))
 
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 u = colVec {1,1,1}
+r = 11
 Abar = collapse(A,u)
-
-s = colVec {1/17,0,3/17}
-solveIP theta(A, u, s, 11)
 
 QQ[p,t]
 
@@ -166,9 +196,9 @@ M1 = ft(A,u)*p - uDeficit(A,u,11)
 B = collapse(A,u)
 
 S2 = uShort(A,u,11)
-numeric apply(S2,v->ft(B,v)) -- second one wins
+numeric apply(S2,v->ft(B,v)) -- last one wins
 
-u2 = S2_1
+u2 = S2_2
 M2 = ft(B,u2)*p-uDeficit(B,u2,11)
 S2 = {(B,u2)}
 
@@ -180,24 +210,10 @@ M3 = ft(B,u3)*p-uDeficit(B,u3,11)
 S3 = {(B,u3)}
 
 S4 = uShort(B,u3,11)
-numeric apply(S4,v->ft(B,v)) -- first and second are not very small; S5 is empty
+numeric apply(S4,v->ft(B,v)) -- last two are not very small; S5 is empty
  
 gf = (M1*t + M2*t^2 + M3*t^3)/(1-p*t) + (p-1)*t^4/((1-p*t)*(1-t)) 
 toString gf
-
-ft(B,colVec{5,5})
-ft(B,colVec{4,8})
-ft(B,colVec{1,17})
-ft(B,colVec{2,14})
-
-(M1,M2,M3)
-
--- why don't these work?
-us := v -> uShort(collapse(B,v),v,11) 
-collapse(B,colVec{1,7})
-us colVec{1,7}
--- something is getting messed up when the matrix has a single row
-
 
 -- {-(10/17) + (4*p)/17, -(8/17) + (4*p^2)/17, -(20/17) + (4*p^3)/17, -1 - (3*p)/17 + (4*p^4)/17, -1 - (3*p^2)/17 + (4*p^5)/17, -1 - (3*p^3)/17 + (4*p^6)/17, -1 - (3*p^4)/17 + (4*p^7)/17, -1 - (3*p^5)/17 + (4*p^8)/17, -1 - (3*p^6)/17 + (4*p^9)/17, -1 - (3*p^7)/17 + (4*p^10)/17}
 

@@ -315,7 +315,6 @@ theta := (A,u,s,q) -> (
 -- Transform the thing below into a general optimal image command
 
 -- returns the universal deficit and shortfall
--- TO DO: need to check that points in the shortfall really come from integral optimal points.
 uData := (A,u,q) -> 
 (
     s := specialPt(A,u);
@@ -325,25 +324,81 @@ uData := (A,u,q) ->
     m := numRows Abar;
     n := rank source Abar;
     val := first solveIP theta(A,u,s,q);
-    eqsMat := Abar | -identityMatrix m;
+    eqsMat := (Abar | -identityMatrix m) || (zeroMatrix(m,n) | identityMatrix m);    
     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
-    eqsRHS := colVec append( constantList( 0, m ), val );
-    nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> - canVec(m+n,i));
-    nonnegConstraintsRHS := apply(select(n, i -> s_0_i == 0), i -> 0);
-    otherConstraints := Abar | zeroMatrix(m,m);
-    otherConstraintsRHS := Asq - constantVector(1,m);
-    ineqsMat := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints || otherConstraints;
---    print(nonnegConstraints);
---    print(nonnegConstraintsRHS);
---    print(otherConstraints);
---    print(otherConstraintsRHS);
---    print(matrix { nonnegConstraintsRHS });
-    ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else (colVec nonnegConstraintsRHS) || otherConstraintsRHS;
-    polyh := polyhedronFromHData( ineqsMat, ineqsRHS, eqsMat, eqsRHS );
+    eqsRHS := constantVector( 0, m ) || Asq - constantVector(1,m) || colVec {val};
+    rel := "1 " | toString(2*m+1) | "\n";
+    scan(m,i->rel=rel|"= ");
+    scan(m,i->rel=rel|"< ");
+    rel = rel | "=";
+    sign := "1 " | toString(m+n) | "\n";
+    scan(n, i-> sign = sign | toString( if s_0_i == 0 then 1 else 0 ) | " ");
+    scan(m, i-> sign = sign | "0 ");
+    --    path242 := prefixDirectory | currentLayout#"programs";
+    path242 := "/usr/local/bin/";
+    file := getFilename();
+    -- store the augmented matrix
+    M := openOut( file | ".mat");
+    putMatrix( M, eqsMat );
+    close M;
+    RHS := openOut( file | ".rhs" );
+    putMatrix( RHS, transpose eqsRHS );
+    close RHS; 
+    Signs := openOut( file | ".sign" );
+    Signs << sign;
+    close Signs;
+    Rels := openOut( file | ".rel" );
+    Rels << rel;
+    close Rels;
+    -- run 4ti2
+    execstr := path242 | "zsolve --quiet --precision=64 " | rootPath | file;
+    ret := run execstr;
+    if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/zsolve";
+    -- process image
+    im := getMatrix( file | ".zinhom" );
+    im = apply( entries im, x -> colVec x ); 
     proj := zeroMatrix(m,n) | identityMatrix(m);
-    im := latticePoints affineImage(proj,polyh);
+    im  = apply( im, v -> proj*v );
     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
 )
+
+(A,u) = (matrix{{5,3,4},{2,8,5}},colVec{1,1})
+uData(A,u,11)
+
+(A,u) = (matrix{{1,3,7},{7,8,3}},colVec{1,3})
+uData(A,u,5)
+
+-- -- returns the universal deficit and shortfall
+-- -- TO DO: need to check that points in the shortfall really come from integral optimal points.
+-- uData := (A,u,q) -> 
+-- (
+--     s := specialPt(A,u);
+--     sq := bracket(s,q);
+--     Abar := collapse(A,u);
+--     Asq := Abar*sq;
+--     m := numRows Abar;
+--     n := rank source Abar;
+--     val := first solveIP theta(A,u,s,q);
+--     eqsMat := Abar | -identityMatrix m;
+--     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
+--     eqsRHS := colVec append( constantList( 0, m ), val );
+--     nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> - canVec(m+n,i));
+--     nonnegConstraintsRHS := apply(select(n, i -> s_0_i == 0), i -> 0);
+--     otherConstraints := Abar | zeroMatrix(m,m);
+--     otherConstraintsRHS := Asq - constantVector(1,m);
+--     ineqsMat := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints || otherConstraints;
+-- --    print(nonnegConstraints);
+-- --    print(nonnegConstraintsRHS);
+-- --    print(otherConstraints);
+-- --    print(otherConstraintsRHS);
+-- --    print(matrix { nonnegConstraintsRHS });
+--     ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else (colVec nonnegConstraintsRHS) || otherConstraintsRHS;
+--     polyh := polyhedronFromHData( ineqsMat, ineqsRHS, eqsMat, eqsRHS );
+--     proj := zeroMatrix(m,n) | identityMatrix(m);
+--     im := if isCompact polyh then apply(latticePoints polyh, v -> proj*v ) else latticePoints affineImage(proj,polyh);
+--     -- the else above is wrong; that set may properly contain the image.
+--     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
+-- )
 
 uDeficit := (A,u,q) -> first uData(A,u,q)
 

@@ -3530,7 +3530,7 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
 \begin{lemma}
    \label{monomial-noetherian-decomposition: L}
    Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that 
-   \[ \NN^m = \bigcup (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
+   \[ \NN^m = \bigcup_{\vv{v}\in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
    and such that $(J:x^{\vv{v}}) = (J: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN \mathcal{W}(\vv{v})$.
 \end{lemma}
 
@@ -3591,13 +3591,16 @@ Suppose that $A$ is a Noetherian domain.  Given an ideal $J$ of the polynomial r
 \[ \mon(J) B[x] = \mon(JB[x]).\]
  \end{lemma}
 
-\begin{proof}  
-Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^m$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^m = \bigsqcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and 
-\[ (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\vv{w}}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in  \NN  \mathcal{W}(\vv{v}).\]
-In particular, 
-\[ (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\canvec_i}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in  \mathcal{W}(\vv{v}).\]
-
-Suppose that $0 \neq \ell \in A$ is that the conclusion of \Cref{comparing expansions:  L} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+ \begin{proof}
+    Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^m$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^m = \bigcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and
+    \[
+       (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\vv{w}}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in  \NN  \mathcal{W}(\vv{v}).
+    \]
+    In particular,
+    \[
+       (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\canvec_i}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in  \mathcal{W}(\vv{v}).
+    \]
+    Suppose that $0 \neq \ell \in A$ is such that the conclusion of \Cref{comparing expansions:  L} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
 
 
 Similarly, after further localizing (that is, replacing $\ell$ with a nonzero $A$-multiple), we may also assume that the conclusions of \Cref{colon mod p: L}   hold for each of the colon ideals $(J:_{A[x]} x^{\vv{v}})$ and $(J:_{A[x]} x^{\vv{v}+\canvec_i})$ for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in \mathcal{W}(\vv{v})$.  In particular, if $B$ is an $A[\ell^{-1}]$-algebra, then 
