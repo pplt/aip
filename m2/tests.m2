@@ -63,6 +63,22 @@ minimalBy := (L,f) ->
     (minimum, L_(positions(vals, x -> x == minimum )) )
 )
 
+init := () ->
+(
+num = {(ft(A,u),uDeficit(A,u,r))};
+graph = {{(A,u)}}
+)
+
+iterate := () -> (
+S = last graph;
+S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+( eps, S ) = maximalBy( S, pair -> ft pair); 
+( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
+graph = append(graph, S);
+print S;
+num = append(num,(eps,delta))
+)
+
 search2 := (r,m,n,M,maxTries) -> 
 (
     count := 1;
@@ -104,7 +120,7 @@ search2 := (r,m,n,M,maxTries) ->
         (
             diffs = #select(0..7, i -> num_i_1 != num_(i+1)_0);
             ramif = max apply(graph, x -> #x);
-            found = diffs > 1 and ramif > 1
+            found = diffs > 2 and ramif > 1
         );
         count = count + 1
      );
@@ -117,61 +133,19 @@ search2 := (r,m,n,M,maxTries) ->
      )
 ) 
 
-search2(5,4,3,10,10000)
+search2(5,4,3,15,10000)
 
 toString oo
---1
-(r,A,u) = (5, matrix {{8, 7, 4}, {1, 7, 5}, {2, 4, 8}},matrix {{6}, {10}, {2}})
---2
-(r,A,u) = (5, matrix {{6, 5, 7}, {3, 5, 2}, {8, 10, 1}},matrix {{6}, {5}, {2}})
---3
-(r,A,u) = (5, matrix {{2, 7, 0}, {1, 7, 8}, {9, 7, 9}},matrix {{2}, {4}, {6}})
---4
-(r,A,u) = (5, matrix {{1, 3, 7}, {5, 1, 6}, {7, 8, 3}},matrix {{1}, {10}, {5}})
---5
-(r,A,u) = (5, matrix {{1, 1, 1}, {8, 4, 4}, {9, 5, 8}, {6, 8, 7}},matrix {{1}, {7}, {8}, {6}})
---6
-(r,A,u) = (5, matrix {{0, 4, 2}, {4, 1, 0}, {9, 2, 4}, {3, 8, 6}},matrix {{8}, {7}, {5}, {3}})
---7
-(r,A,u) = (5, matrix {{8, 5, 7}, {3, 3, 7}, {6, 5, 8}, {0, 9, 2}},matrix {{5}, {3}, {7}, {2}})
---8
-(r,A,u) = (5, matrix {{9, 8, 9}, {0, 5, 3}, {6, 0, 0}, {8, 3, 2}},matrix {{6}, {2}, {4}, {3}})
 
---9
-(r,A,u) = (3, matrix {{4, 3, 5}, {2, 2, 1}, {1, 2, 9}, {9, 5, 0}},matrix {{2}, {7}, {3}, {3}})
---10
-(r,A,u) = (3, matrix {{3, 4, 8}, {9, 3, 8}, {4, 1, 4}, {5, 7, 4}},matrix {{3}, {9}, {2}, {5}})
+(r,A,u) = (5, matrix {{6, 12, 9}, {14, 5, 11}, {14, 6, 9}, {4, 6, 1}},matrix {{5}, {6}, {6}, {10}})
+-- my favorite so far
 
---11
-(r,A,u) = (7, matrix {{2, 0, 5}, {6, 8, 5}, {9, 4, 3}, {2, 4, 9}},matrix {{2}, {5}, {9}, {8}})
---12
-(r,A,u) = (7, matrix {{6, 5, 8}, {9, 3, 3}, {2, 5, 3}, {2, 0, 8}},matrix {{4}, {4}, {2}, {7}})
---13
-(r,A,u) = (7, matrix {{4, 7, 3}, {9, 0, 7}, {4, 5, 5}, {7, 6, 0}},matrix {{5}, {4}, {4}, {4}})
+(r,A,u) = (5, matrix {{9, 6, 12}, {6, 9, 0}, {0, 6, 2}, {8, 11, 3}},matrix {{10}, {2}, {14}, {4}})
 
---14
-(r,A,u) = (5, matrix {{7, 8, 1}, {9, 7, 9}, {5, 9, 8}, {4, 0, 2}},matrix {{2}, {6}, {8}, {6}})
-
-init()
-
-iterate() 
+QQ[p,t]
+toString mu(A,u,r,p,t)
 
 ------------------------------------------------------------------------------
-init := () ->
-(
-num = {(ft(A,u),uDeficit(A,u,r))};
-graph = {{(A,u)}}
-)
-
-iterate := () -> (
-S = last graph;
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
-( eps, S ) = maximalBy( S, pair -> ft pair); 
-( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
-graph = append(graph, S);
-print S;
-num = append(num,(eps,delta))
-)
 
 (r,A,u) = (5,matrix {{1, 3, 7}, {7, 8, 3}},matrix {{1}, {3}})
 init()
@@ -186,9 +160,9 @@ iterate()
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 u = colVec {1,1,1}
 r = 11
-Abar = collapse(A,u)
 
 QQ[p,t]
+mu(A,u,11,p,t)
 
 S1 = {(A,u)}
 M1 = ft(A,u)*p - uDeficit(A,u,11)

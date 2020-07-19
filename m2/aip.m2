@@ -362,12 +362,6 @@ uData := (A,u,q) ->
     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
 )
 
-(A,u) = (matrix{{5,3,4},{2,8,5}},colVec{1,1})
-uData(A,u,11)
-
-(A,u) = (matrix{{1,3,7},{7,8,3}},colVec{1,3})
-uData(A,u,5)
-
 -- -- returns the universal deficit and shortfall
 -- -- TO DO: need to check that points in the shortfall really come from integral optimal points.
 -- uData := (A,u,q) -> 
@@ -417,35 +411,51 @@ valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
 
 optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
 
-mPrimaryMu := ( A, u, p0, p, t ) ->
+maximize := (L,f) ->
+(
+    vals := apply(L,f);
+    maximum := max vals;
+    ( maximum, L_(positions(vals, x -> x == maximum )) )
+)
+
+minimize := (L,f) ->
+(
+    vals := apply(L,f);
+    minimum := min vals;
+    (minimum, L_(positions(vals, x -> x == minimum )) )
+)
+
+mu := ( A, u, p0, p, t ) ->
 (
     localUShort := memoize uShort;
     localUDeficit := memoize uDeficit;
     localFt := memoize ft;
-    S := Sstar := { set{}, set{u} };
+    localCollapse := memoize collapse;
+    S := { set{}, set{(A,u)} };
+    SStar := S;
     e := 1;
     M := { 0, localFt(A,u)*p - localUDeficit(A,u,p0) };
     local newS;
-    local newSstar;
+    local newSStar;
     local k;
     local epsilon;
     local delta;
     while true do 
     (
         e = e + 1;
-        newS = sum apply( toList Sstar#(e-1), v -> localUShort(A,v,p0) );
+        newS = apply( toList SStar#(e-1), pair -> apply( localUShort(pair_0,pair_1,p0), v -> ( localCollapse pair, v ) ) );
+        newS = unique flatten newS;
         if ( k = position( S, x -> x === set newS ) ) =!= null then 
-            return sum(1..(k-1),i -> M_i*t^i)/(1-p*t) + sum(k..(e-1), i -> M_i*t^i )/((1-p^t)*(1-t^(e-k)));
+            return sum(1..(k-1),i -> M_i*t^i)/(1-p*t) + sum(k..(e-1), i -> M_i*t^i )/((1-p*t)*(1-t^(e-k)));
         -- this process of maximization and minimization can be improved.    
-        epsilon = max apply( newS, v -> localFt(A,v) );
+        ( epsilon, newSStar ) = maximize( newS, v -> localFt v );
         if epsilon > 1 then 
            return sum(1..(e-1),i -> M_i*t^i)/(1-p*t) + (p-1)*t^e/((1-p*t)*(1-t));
-        newSStar = select( newS, v -> localFt(A,v) == epsilon );
-        delta = min apply( newSstar, v -> localUDeficit(A,v,p0) );
-        newSStar = select( newSstat, v -> localUDeficit(A,v,p0) == delta );   
+        ( delta, newSStar ) = minimize( newSStar, pair -> localUDeficit(pair_0,pair_1,p0) );
         S = append( S, set newS);
-        Sstar = append( Sstar, set newSstar );
+        SStar = append( SStar, set newSStar );
         M = append( M, epsilon*p - delta )
     )
 )
+
 
