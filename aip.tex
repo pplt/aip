@@ -2603,57 +2603,26 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
    \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
    \pedro[inline]{
       No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
-      I was thinking of including this as an example after the big theorem.
-      I was also planning to include an example that has all of the features missing in this one:
-      \begin{itemize}
-         \item intermediate powers
-         \item levels with more than one pair
-         \item it cycles, as opposed to reaching a small but not very small pair
-   \end{itemize}
-      I have a simple example with all of these features, but I'm looking for a better one.
    }
-   % \pedro[inline]{
-   %    BTW, two things I have yet to see in examples:
-   %    \begin{itemize}
-   %       \item Pairs on the same level of $\sprout^*_p(A,\vv{u})$ that have different universal shortfalls.
-   %       \item $\udeficit$ deciding anything when computing $\S^*_{p^e}$; it has always been the case that if $F$-thresholds are equal, then so are the $\udeficit$s.
-   %    \end{itemize}
-   % }
-
-   % \begin{figure}
-   %    \centering
-   %    \includegraphics[width=.45\textwidth]{pictures/graph_on_newton.pdf}
-   %    \caption{A geometric representation of the sprouting subgraph $\sprout^*_p(\ol{A},\ol{\vv{u}})$ in \Cref{ex: ft.4}}
-   %    \label{fig: graph on newton}
-   % \end{figure}
-   % Note that $\sprout^*_p(A,\vv{u})$ is essentially the same as $\sprout^*_p(\collapse{A},\collapse{\vv{u}})$, pictured geometrically in \Cref{fig: graph on newton}, together with the Newton polyhedron of~$\collapse{A}$.
 \end{example}
-
-   % \pedro[inline]{Maybe totally unnecessary, but the picture was fun to produce.
-   %    Please feel free to remove or modify as you see fit.
-   % }
-   % \daniel[inline]{This picture suggests that the points get closer to the Newton polyhedron as the level in the graph increases.  Is this always the case?}
-   % \pedro[inline]{Actually, from second to third level, the points get further.}
-   % \daniel[inline]{OK.  What's up with the bars everywhere?}
-   % \pedro[inline]{Where?}
 
 \begin{example}
    \label{ex: new example}
    \begin{figure}
       \centering
-      \includegraphics[width=.4\textwidth]{pictures/sprouting_graph_2.pdf}
+      \includegraphics[width=.5\textwidth]{pictures/sprouting_graph_3.pdf}
       \caption{The sprouting subgraph for \Cref{ex: new example}}
       \label{fig: sprouting graph 2}
    \end{figure}
-   \Cref{fig: sprouting graph 2} shows the sprouting subgraph associated to the pair $(A,\vv{u})$, where
+   \Cref{fig: sprouting graph 2} shows the first seven levels of the sprouting subgraph associated to the pair $(A,\vv{u})$, where
    \[
-      A = \begin{bmatrix} 10&3&5 \\ 3&9&8 \\ 3&8&5 \end{bmatrix}
+      A = \begin{bmatrix} 6&12&9 \\ 14&5&11 \\ 14&6&9 \\4&6&1 \end{bmatrix}
       \quad\text{and} \quad
-      \vv{u} =\begin{bmatrix} 6 \\ 6 \\ 5 \end{bmatrix}
+      \vv{u} =\begin{bmatrix} 5 \\ 6 \\ 6 \\ 10 \end{bmatrix}
    \]
    when $p$ is congruent to $5$ modulo a universal denominator for $A$.
-   The matrices $B$ and $C$ in the figure are the first and second rows of $A$, respectively.
-   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---levels $3$ and $4$ alternate \emph{ad infinitum}.
+   The matrix $B$ is obtained from $A$ by deleting the last row;  $C$ is obtained from $B$ by deleting the middle row; finally, $D$ and $E$ are the first and second rows of $C$, respectively.
+   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels repeat indefinitely.
 \end{example}
 
 \begin{definition}
@@ -2868,7 +2837,7 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
 
 \begin{example}
    \label{ex: new example.2}
-   \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, whose sprouting subgraph is shown in \Cref{fig: sprouting graph 2}.
+   \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, corresponding to the seven levels of the sprouting subgraph shown in \Cref{fig: sprouting graph 2}.
    \begin{table}
       \begin{center}
          \begingroup
@@ -2878,10 +2847,13 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
            \toprule
            $e$ & $\epsilon_{p^e}(A,\vv{u})$ & $\delta_{p^e}(A,\vv{u})$ & $\val\IP_p(A,\vv{u},p^e)$ \\
            \midrule
-           1 & $\frac{169}{178}$ & $\frac{133}{178}$ & $\frac{169}{178}p - \frac{133}{178}$\\
-           2 & $\frac{2}{3}$ & $\frac{1}{3}$ & $\frac{169}{178}p^2 - \frac{43}{534}p -\frac13$ \\
-           3 & $\frac{1}{3}$ & $\frac{2}{3}$ & $\frac{169}{178}p^3 - \frac{43}{534}p^2 - \frac23$ \\
-           4 & $\frac{2}{3}$ & $\frac{1}{3}$ & $\frac{169}{178}p^4 - \frac{43}{534}p^3 - \frac13$ \\
+           1 & $\frac{65}{112}$ & $\frac{101}{112}$ & $\frac{65}{112}p - \frac{101}{112}$\\
+           2 & $\frac{101}{112}$ & $\frac{57}{112}$ & $\frac{65}{112}p^2 -\frac{57}{112}$ \\
+           3 & $\frac{1}{2}$ & $\frac{1}{2}$ & $\frac{65}{112}p^3 - \frac{1}{112}p - \frac12$ \\
+           4 & $\frac{35}{72}$ & $\frac{31}{72}$ & $\frac{65}{112}p^4 - \frac{1}{112}p^2 - \frac{1}{72}p - \frac{31}{72}$ \\
+           5 & $\frac13$ & $\frac23$ & $\frac{65}{112}p^5 - \frac{1}{112}p^3 - \frac{1}{72}p^2 - \frac{7}{72}p -\frac23$ \\
+           6 & $\frac23$ & $\frac13$ & $\frac{65}{112}p^6 - \frac{1}{112}p^4 - \frac{1}{72}p^3 - \frac{7}{72}p^2 -\frac13$ \\
+           7 & $\frac13$ & $\frac23$ & $\frac{65}{112}p^7 - \frac{1}{112}p^5 - \frac{1}{72}p^4 - \frac{7}{72}p^3 -\frac23$ \\
            \bottomrule
          \end{tabular}
          \endgroup
@@ -2892,20 +2864,17 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
       \caption{The data obtained for \Cref{ex: new example.2}}
       \label{table: new example data}
    \end{table}
-   For any $e\ge 2$ we have
-   \[
+   For any $e\ge 5$ we have
+     \[
       \val\IP_p(A,\vv{u},p^e) = 
       \begin{cases}
-         \frac{169}{178}p^e - \frac{43}{534}p^{e-1} - \frac13 & \text{if $e$ is even}\\
-         \frac{169}{178}p^e - \frac{43}{534}p^{e-1} - \frac23 & \text{if $e$ is odd}\\
+         \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac23 & \text{if $e$ is odd}\\
+         \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac13 & \text{if $e$ is even}
       \end{cases}
    \]
-   and, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
-   \[\crit(\ideala,\ideald) = \frac{169}{178} - \frac{43}{534p}\]
+   Moreover, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
+   \[\crit(\ideala,\ideald) = \frac{65}{112} - \frac1{112 p^2} - \frac1{72 p^3} - \frac7{72 p^4} \]
    for any sufficiently large prime $p$ congruent to $5$ modulo a universal denominator for $A$.
-   \pedro[inline]{
-      I'm looking for an example to replace this one, where $\crit$ has three terms.
-   }
 \end{example}
 
 \details[inline]{

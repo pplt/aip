@@ -1,0 +1,61 @@
+\documentclass{standalone}
+\input{../preamble.tex}
+\usepackage{tikz}
+\tikzset{
+    node/.style = {
+       shape=rectangle, %rounded corners,
+       align=center,
+       minimum width = .4cm,
+       minimum height = .4cm,
+ %      fill = gray!30
+ %      fill = cyan!40
+ %      fill = blue!50!white!80
+    },
+    Snode/.style = {
+       shape=rectangle, %rounded corners,
+       align=center,
+       minimum width = .4cm,
+       minimum height = .4cm,
+       fill = green!60!blue!70
+    }
+%    bad/.style = {
+%       shape=rectangle, %rounded corners,
+%       align=center,
+%       minimum width = .4cm,
+%       minimum height = .4cm,
+%       fill = red!70
+%    }
+}
+\begin{document}
+
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=1cm,semithick]
+   \node[Snode] (A) {$(A,\vv{u})$};
+   \node[Snode] (B) [below = of A]{$\Big(B,\Big[\begin{smallmatrix} 7 \\ 11 \\ 10 \end{smallmatrix}\Big]\Big)$};
+   \node[Snode] (C) [below =of B] {$\Big(B,\Big[\begin{smallmatrix} 5 \\ 5 \\ 4 \end{smallmatrix}\Big]\Big)$};
+   \node[Snode] (D) [below =of C] {$\big(C,\big[\begin{smallmatrix} 4 \\ 5 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (E2) [below =of D] {$\big(C,\big[\begin{smallmatrix} 2 \\ 7 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (E1) [left= 1.3cm of E2] {$\big(C,\big[\begin{smallmatrix} 2 \\ 5 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (E3) [right = 1.3cm of E2] {$\big(C,\big[\begin{smallmatrix} 5 \\ 2 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (F2) [below = of E3] {$(E,4)$};
+   \node[Snode] (F1) [left = 3 cm of F2] {$(D,4)$};
+   \node[Snode] (G1) [below = of F1] {$(D,2)$};
+   \node[Snode] (G2) [below = of F2] {$(E,2)$};
+   \node[node] (H1) [below = of G1] {$\vdots$};
+   \node[node] (H2) [below = of G2] {$\vdots$};
+\path
+(A) edge (B)
+(B) edge (C)
+(C) edge (D)
+(D) edge (E1)
+(D) edge (E2)
+(D) edge (E3)
+(E1) edge (F1)
+(E2) edge (F1)
+(E3) edge (F2)
+(F1) edge (G1)
+(F2) edge (G2)
+(G1) edge (H1)
+(G2) edge (H2);
+\end{tikzpicture}
+
+\end{document}

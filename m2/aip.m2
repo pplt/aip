@@ -447,7 +447,6 @@ mu := ( A, u, p0, p, t ) ->
         newS = unique flatten newS;
         if ( k = position( S, x -> x === set newS ) ) =!= null then 
             return sum(1..(k-1),i -> M_i*t^i)/(1-p*t) + sum(k..(e-1), i -> M_i*t^i )/((1-p*t)*(1-t^(e-k)));
-        -- this process of maximization and minimization can be improved.    
         ( epsilon, newSStar ) = maximize( newS, v -> localFt v );
         if epsilon > 1 then 
            return sum(1..(e-1),i -> M_i*t^i)/(1-p*t) + (p-1)*t^e/((1-p*t)*(1-t));
