@@ -3143,6 +3143,7 @@ If all of this is legit, then we could replace $B$ with the fraction field, and 
 \pedro[inline]{
    Below is a possible replacement for the last two lemmas.
    It's somewhat shorter (but still understandable, I think).
+   I chose to relieve the second lemma of some of the burden, and not to worry much about the formalism of the decomposition in \Cref{monomial-noetherian-decomposition: L}.
 }
 
 \begin{lemma}
@@ -3154,7 +3155,7 @@ If all of this is legit, then we could replace $B$ with the fraction field, and 
 
 \begin{proof}
    We will show the existence of $0 \ne \ell \in A$ with the following properties:
-   \begin{enumerate}[$(1)$,wide=0pt]
+   \begin{enumerate}[$(1)$,leftmargin=*]
       \item If $(J :_{A[x]} x^\vv{u})B_\circ[x] = B_\circ[x]$ for some monomial $x^\vv{u}$ and some $A[\ell^{-1}]$-algebra $B_\circ$, then $(J :_{A[x]} x^\vv{u})B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
       \item $(J :_{A[x]} x^\vv{u})B[x] = (JB[x]:_{B[x]} x^\vv{u})$, for every monomial $x^\vv{u}$ and every $A[\ell^{-1}]$-algebra $B$.
    \end{enumerate}
@@ -3176,7 +3177,7 @@ If all of this is legit, then we could replace $B$ with the fraction field, and 
                                =(JB[x]:_{B[x]} x_i^{N}).     
    \end{equation*}
    Repeated uses of \eqref{iterated colon: e} then show that all chains $\{(JB[x]:_{B[x]}x_i^n)\}_{n\in \NN}$ are stable for $n\ge N$.
-   Now, for each monomial $x^\vv{u}$ we have $(JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})$ for $\vv{v}\le N\vv{1}$ constructed as above, and
+   Now, for each monomial $x^\vv{u}$ we have $(JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})$ for $\vv{v}\le N\vv{1}$ constructed exactly as above, and
    \begin{equation*}
      (JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})
      = (J:_{A[x]} x^{\vv{v}})B[x]
