@@ -3054,62 +3054,32 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
       If $t_i = u_i$, then again $w_i = 0$ (since $w_i>0$ and $v_i<u_i$ cannot happen) and $v_i = t_i$.
       IOW, $\vv{v}$ is uniquely determined by $\vv{t}$, and therefore so is $\vv{w}$.
    }
-
-\begin{proof} \daniel{Thanks for the proof, Emily!}
-Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$. 
-For each $1 \leq i \leq \numvars$, let $w_i$ be the smallest nonnegative integer for which $(J : x^{w_i \vv{e}_i}) = (J : x^{(w_i+1) \vv{e}_i})$, which is well defined since the polynomial ring is Noetherian. 
-Then for all integers $\ell \geq 0$, $((J : x^{w_i \vv{e}_i}) : x^{\ell \vv{e}_i} ) = ((J : x^{(w_i+1) \vv{e}_i}) : x^{\vv{e}_i} )$, i.e., 
-\begin{equation*} 
-(J : x^{(w_i+\ell) \vv{e}_i}) = (J : x^{(w_i+\ell+1) \vv{e}_i})
-\end{equation*}
-so all $(J : x^{(w_i+\ell) \vv{e}_i})$ coincide with $(J : x^{w_i \vv{e}_i})$.  
-Let $V$ denote the set of all $\vv{v} \in \NN^\numvars$ for which $\vv{0} \leq \vv{v} \leq \vv{w}$.  If $\vv{v} < \vv{w}$, let $W(\vv{v}) = \emptyset$, and otherwise, let $W(\vv{v}) = \{\vv{e}_i \, : \, \vv{v}_i = \vv{w}_i \}$.  
-Given $\vv{t} \in \NN^\numvars$, if $\vv{t} \leq \vv{w}$, then $\vv{t} \in V$, so is in the above union.  Otherwise, $t_i > w_i$ for some $1 \leq i \leq \numvars$.  In this case, $\vv{t} = \vv{m} + \vv{w}$, where $m_i =  \min\{ t_i, w_i \}$ and $\vv{w}$ is the sum of all $(t_i-w_i)\vv{e}_i$ for which $t_i>w_i$. 
-Notice that $\vv{m} \in V$, and if $t_i > w_i$, then $m_i = \min\{t_i, w_i\} = w_i$, so that $\vv{e}_i \in W(\vv{m})$, and $\vv{t}$ is also in the union. 
-Finally, take $\vv{v} \in V$ for which $\NN \, W(\vv{v})$ is not empty, 
-and renumber the variables so that $W(\vv{v}) = \{ \vv{e}_1, \ldots, \vv{e}_s \}$ for some $1 \leq s \leq \numvars$, so that $v_i = w_i$ for $1 \leq i \leq s$.
-Given $\vv{u} \in \NN \, W(\vv{v})$, $\vv{u} = u_1 \vv{e}_1 + \cdots + u_s \vv{e}_s$.  
-Then 
-\begin{align*}
-(J : x^{\vv{v} + \vv{u}}) &= ((J : x^{(w_1 + u_1)\vv{e}_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
-&= ((J : x^{w_1 \vv{e}_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
-&= (J : x^{\vv{v} + \vv{u} - u_1 \vv{e}_1  } )
-\end{align*}
-and the first coordinate of $\vv{v} + \vv{u} - u_1 \vv{e}_1$ is $v_1$.  
-We can continue by writing $(J : x^{\vv{v} + \vv{u} - u_1 \vv{e}_1  } )$ as 
-\[
-((J : x^{(w_2 + u_2)\vv{e_2}}) : x^{\vv{v} + \vv{u} - u_1 \vv{e}_1 - (w_2+u_2) \vv{e}_2  } ) = (J : x^{\vv{v} + \vv{u} - u_1 \vv{e}_1 - u_2 \vv{e}_2 } )
-\] 
-where the first and second coordinates of $\vv{v} + \vv{u} - u_1 \vv{e}_1 - u_2 \vv{e}_2$ are $v_1$ and $v_2$, respectively. 
-Continuing in this manner, we can inductively conclude that $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$.
-\end{proof}
    
-% Alternate proof   
-% \begin{proof} \daniel{Thanks for the proof, Emily!}
-%    Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
-%    For each $1 \leq i \leq \numvars$, \hl{let $u_i$ be the smallest nonnegative integer for which $(J : x_i^{u_i}) = (J : x_i^{u_i+1})$},
-% \pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
-%    which is well defined since the polynomial ring is Noetherian.
-%    Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, i.e., 
-%    \begin{equation*}
-%       (J : x_i^{u_i+\ell}) = (J : x_i^{u_i+\ell+1})
-%    \end{equation*}
-%    so all $(J : x_i^{u_i+\ell})$ coincide with $(J : x_i^{u_i})$.
-%    Repeated uses of \eqref{iterated colon: e} then show that
-%    \begin{equation}
-%       \label{colon stabilization: e}
-%       (J:x^{\vv{v} + \vv{w}}) = (J:x^\vv{v}) \text{ provided $v_i \ge u_i$ whenever $w_i \ne 0$.}
-%    \end{equation}
-%    Let $\mathcal{V}$ denote the set of all $\vv{v} \in \NN^\numvars$ for which $\vv{0} \leq \vv{v} \leq \vv{u} = (u_1,\ldots,u_\numvars)$.
-%    If $\vv{v} < \vv{u}$, let $\mathcal{W}(\vv{v}) = \emptyset$, and otherwise, let $\mathcal{W}(\vv{v}) = \{\canvec_i \, : \, v_i = u_i \}$.
+\begin{proof} \daniel{Thanks for the proof, Emily!}
+   Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
+   For each $1 \leq i \leq \numvars$, \hl{let $u_i$ be the smallest nonnegative integer for which $(J : x_i^{u_i}) = (J : x_i^{u_i+1})$},
+\pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
+   which is well defined since the polynomial ring is Noetherian.
+   Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, i.e., 
+   \begin{equation*}
+      (J : x_i^{u_i+\ell}) = (J : x_i^{u_i+\ell+1})
+   \end{equation*}
+   so all $(J : x_i^{u_i+\ell})$ coincide with $(J : x_i^{u_i})$.
+   Repeated uses of \eqref{iterated colon: e} then show that
+   \begin{equation}
+      \label{colon stabilization: e}
+      (J:x^{\vv{v} + \vv{w}}) = (J:x^\vv{v}) \text{ provided $v_i \ge u_i$ whenever $w_i \ne 0$.}
+   \end{equation}
+   Let $\mathcal{V}$ denote the set of all $\vv{v} \in \NN^\numvars$ for which $\vv{0} \leq \vv{v} \leq \vv{u} = (u_1,\ldots,u_\numvars)$.
+   If $\vv{v} < \vv{u}$, let $\mathcal{W}(\vv{v}) = \emptyset$, and otherwise, let $\mathcal{W}(\vv{v}) = \{\canvec_i \, : \, v_i = u_i \}$.
 
-%    Given $\vv{t} \in \NN^\numvars$, if $\vv{t} \leq \vv{u}$, then $\vv{t} \in \mathcal{V}$, so $\vv{t}$ is in the union in the statement.
-%    Otherwise, $t_i > u_i$ for some $1 \leq i \leq \numvars$.
-%    In this case, $\vv{t} = \vv{v} + \vv{w}$, where $v_i =  \min\{ t_i, u_i \}$ and $\vv{w}$ is the sum of all $(t_i-u_i)\canvec_i$ for which $t_i>u_i$.
-%    Notice that $\vv{v} \in \mathcal{V}$, and if $t_i > u_i$, then $v_i = \min\{t_i, u_i\} = u_i$, so that $\canvec_i \in \mathcal{W}(\vv{v})$, and $\vv{t}$ is also in the union.
+   Given $\vv{t} \in \NN^\numvars$, if $\vv{t} \leq \vv{u}$, then $\vv{t} \in \mathcal{V}$, so $\vv{t}$ is in the union in the statement.
+   Otherwise, $t_i > u_i$ for some $1 \leq i \leq \numvars$.
+   In this case, $\vv{t} = \vv{v} + \vv{w}$, where $v_i =  \min\{ t_i, u_i \}$ and $\vv{w}$ is the sum of all $(t_i-u_i)\canvec_i$ for which $t_i>u_i$.
+   Notice that $\vv{v} \in \mathcal{V}$, and if $t_i > u_i$, then $v_i = \min\{t_i, u_i\} = u_i$, so that $\canvec_i \in \mathcal{W}(\vv{v})$, and $\vv{t}$ is also in the union.
 
-%    Finally, if $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN\mathcal{W}(\vv{v})$, then $v_i = u_i$ whenever $w_i >0$, and thus $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$ by \eqref{colon stabilization: e}.
-% \end{proof}
+   Finally, if $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN\mathcal{W}(\vv{v})$, then $v_i = u_i$ whenever $w_i >0$, and thus $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$ by \eqref{colon stabilization: e}.
+\end{proof}
 
 \begin{lemma}
 \label{mon-operation-modulo-p: L}  
