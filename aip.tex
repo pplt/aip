@@ -2393,7 +2393,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
-
 \emily{New transition.}
 Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A, \vv{u}, p^e)$ when the matrix $A$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case that $A$ is an arbitrary monomial matrix.  In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.  
 
@@ -2548,8 +2547,9 @@ Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A
 
 
 \subsection{Subgraphs associated to pairs}
-
-\ \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
+%\ \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
+\emily{New transition.}
+Consider the following subgraphs of the directed sprouting graph.  Their definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from. 
 
 \begin{definition}[Subgraphs associated to very small pairs]
    Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
@@ -3137,10 +3137,11 @@ If $T$ is a domain, and $I$ is an ideal of $T[x_1, \ldots, x_\numvars]=T[x]$, th
 Adopt the context of \Cref{monomialization: D}.  Clearly, if $T$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $x^{\vv{u}} \in I$.  On the other hand, if $T$ is domain, and not necessarily a field, then at least there exists a single fixed multiplier $0 \neq \tau \in T$ with the property that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in T[x]$.  Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ are a generating set for the monomial ideal $\mon(I)$, and $\tau_1, \ldots, \tau_n \in T$ are nonzero elements such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$, then $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick. 
 \end{remark}
 
-
-\newpage
-\daniel[inline]{Add transition}
+%\daniel[inline]{Add transition}
 \subsection{Results in a fixed prime characteristic}
+\emily{New transition.}
+The goal of this subsection is \Cref{reduce-to-monomial-case: C}, which allows us to apply our results on arithmetic integer programs to compute the value $\mu(\ideala,\idealb,p^e)$, or the critical exponent $\crit(\ideala, \idealb)$, where $\ideala, \idealb$ are ideals of a polynomial ring over a field of characteristic $p>0$.  Indeed, one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal. 
+
 
 
 \begin{lemma} \label{frobenius-powers+mon-commute: L}
@@ -3507,11 +3508,13 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
       If $t_i = u_i$, then again $w_i = 0$ (since $w_i>0$ and $v_i<u_i$ cannot happen) and $v_i = t_i$.
       IOW, $\vv{v}$ is uniquely determined by $\vv{t}$, and therefore so is $\vv{w}$.
    }
+   \emily[inline]{I don't think we need to include it. }
 
-\begin{proof} \daniel{Thanks for the proof, Emily!}
+\begin{proof} %\daniel{Thanks for the proof, Emily!}
    Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
    For each $1 \leq i \leq \numvars$, \hl{let $u_i$ be the smallest nonnegative integer for which $(J : x_i^{u_i}) = (J : x_i^{u_i+1})$},
 \pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
+\emily{Yes, that's OK.}
    which is well defined since the polynomial ring is Noetherian.
    Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, i.e., 
    \begin{equation*}
