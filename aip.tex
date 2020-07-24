@@ -3596,6 +3596,81 @@ The assumption that $B$ is a field now comes into play, as the above containment
 If all of this is legit, then we could replace $B$ with the fraction field, and as above, conclude that a nonzero multiple of $a$ lies in $(J:_{A[x]} x^{\vv{v}})$, and then conclude as above.  What do you guys think?  If this is correct, should we just add it?  Note that, for our application, it really makes no difference.} 
 \end{proof}
 
+\pedro[inline]{
+   Below is a possible replacement for the last two lemmas.
+   It's somewhat shorter (but still understandable, I think).
+   I chose to relieve the second lemma of some of the burden, and not to worry much about the formalism of the decomposition in \Cref{monomial-noetherian-decomposition: L}.
+}
+
+\begin{lemma}
+   \label{uniform monomial containment: L}
+   Suppose that $A$ is a Noetherian domain.
+   Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
+   If a monomial $x^\vv{u}$ lies in $JB_{\circ}[x]$ for some particular $A[\ell^{-1}]$-algebra $B_{\circ}$, then $x^\vv{u}$ lies in  $JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+\end{lemma}
+
+\begin{proof}
+   We will show the existence of $\ell \in A\setminus\{0\}$ with the following properties:
+   \begin{enumerate}[$(1)$,leftmargin=*]
+      \item If $(J :_{A[x]} x^\vv{u})B_\circ[x] = B_\circ[x]$ for some monomial $x^\vv{u}$ and some $A[\ell^{-1}]$-algebra $B_\circ$, then $(J :_{A[x]} x^\vv{u})B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+      \item $(J :_{A[x]} x^\vv{u})B[x] = (JB[x]:_{B[x]} x^\vv{u})$, for every monomial $x^\vv{u}$ and every $A[\ell^{-1}]$-algebra $B$.
+   \end{enumerate}
+   The result will then follow easily:
+   If $x^\vv{u} \in JB_{\circ}[x]$, then $(J :_{A[x]} x^\vv{u})B_\circ[x] = (JB_\circ[x]:_{B_\circ[x]} x^\vv{u}) = B_\circ[x]$, and thus for every $A[\ell^{-1}]$-algebra $B$ we have $(JB[x]:_{B[x]} x^\vv{u}) = (J :_{A[x]} x^\vv{u})B[x] = B[x]$, whence $x^\vv{u}\in JB[x]$.
+   \pedro{Maybe we can just say that the result follows easily from the claim, and leave it at that?}
+
+   The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  L} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
+   As $A[x]$ is Noetherian, we may choose $N\in \NN$ such that all the ascending chains $\{(J:_{A[x]}x_i^n)\}_{n\in \NN}$, with $i=1,\ldots,\numvars$, are stable for $n\ge N$.
+   We claim that each colon ideal $(J:_{A[x]}x^\vv{u})$ is equal to $(J:_{A[x]}x^\vv{v})$ for some $\vv{v} \le N\vv{1}$, which establishes the desired finiteness.
+   Indeed, if $\vv{v} = (v_1,\ldots,v_m)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
+
+   Suppose $\ell$ satisfies (1).
+   By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: L} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
+   If $B$ is an $A[\ell^{-1}]$-algebra, then our choice of $\ell$ and $N$ show that, for each $i=1,\ldots,\numvars$,
+   \begin{equation*}
+     (JB[x]:_{B[x]} x_i^{N+1}) = (J:_{A[x]}x_i^{N+1})B[x]
+                               = (J:_{A[x]}x_i^N)B[x]
+                               =(JB[x]:_{B[x]} x_i^{N}).     
+   \end{equation*}
+   Repeated uses of \eqref{iterated colon: e} then show that all chains $\{(JB[x]:_{B[x]}x_i^n)\}_{n\in \NN}$ are stable for $n\ge N$.
+   Now, for each monomial $x^\vv{u}$ we have $(JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})$ for $\vv{v}\le N\vv{1}$ constructed exactly as above, and
+   \begin{equation*}
+     (JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})
+     = (J:_{A[x]} x^{\vv{v}})B[x]
+     = (J:_{A[x]} x^{\vv{u}})B[x].
+   \end{equation*}
+   Thus, $\ell$ satisfies both (1) and (2), and the lemma follows.
+\end{proof}
+
+\begin{lemma}
+   \label{mon operation vs extensions: L}
+   Suppose that $A$ is a Noetherian domain.
+   Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
+   If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
+   \[ \mon(J) B[x] = \mon(JB[x]).\]
+\end{lemma}
+
+\begin{proof}
+   Choose $\ell \in A\setminus\{0\}$ such that the conclusion of \Cref{uniform monomial containment: L} holds.
+   By \Cref{single multiplier: R}, there exists $a \in A\setminus\{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
+   After replacing $\ell$ with $a \ell$, we may assume that $a$ is a unit in $A[\ell^{-1}]$.
+
+   Let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field, and suppose that $x^{\vv{u}} \in \mon(J)$.
+   Then $a x^{\vv{u}} \in J$, and so $a x^{\vv{u}} \in JB[x]$.
+   As $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which implies that $x^{\vv{u}} \in \mon(JB[x])$.
+   This shows that $\mon(J) B[x] \subseteq \mon(J B[x])$.
+
+   Next, suppose $x^{\vv{u}} \in \mon(JB[x])$.
+   As $B$ is a field, this just means that $x^{\vv{u}} \in JB[x]$.
+   By \Cref{uniform monomial containment: L}, this containment remains valid after replacing $B$ with $A[\ell^{-1}]$.
+   Writing $x^{\vv{u}}$ as an $A[\ell^{-1},x]$-linear combination of elements of $J$ and clearing denominators we see that $\ell^n x^\vv{u} \in J$ for some~$n$, so $x^{\vv{u}} \in \mon(J)B[x]$.
+   Thus, $\mon(JB[x]) \subseteq \mon(J)B[x]$, concluding the proof.
+\end{proof}
+
+\pedro[inline]{
+   Proposed substitution ends here.
+}
+
 \daniel[inline]{At this point, it feels pretty clear to me that \Cref{mon-operation-modulo-p: L} implies \Cref{mon-operation-modulo-p: T}  in exactly the same way that \Cref{colon mod p: L} implied \Cref{colon mod p: C}, so I think we don't need to include a proof.  What do you guys think?}  
 
 \begin{theorem}[The $\mon$ operation commutes with almost every reduction to prime characteristic]

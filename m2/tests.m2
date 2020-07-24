@@ -119,8 +119,9 @@ search2 := (r,m,n,M,maxTries) ->
         if cool then 
         (
             diffs = #select(0..7, i -> num_i_1 != num_(i+1)_0);
-            ramif = max apply(graph, x -> #x);
-            found = diffs > 2 and ramif > 1
+            ramif = #(unique apply(graph, x -> #x) );
+--          ramif = max apply(graph, x -> #x);
+            found = diffs > 2 and ramif > 2
         );
         count = count + 1
      );
@@ -133,7 +134,7 @@ search2 := (r,m,n,M,maxTries) ->
      )
 ) 
 
-search2(5,4,3,15,10000)
+search2(3,4,3,20,10000)
 
 toString oo
 
