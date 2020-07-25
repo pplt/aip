@@ -16,7 +16,7 @@ TO DO LIST:
 % \item[$\CheckedBox$] Decide on ``special'' or ``universal'' denominator and uniformize.
 % \emily[inline]{I'm starting to like ``universal.''}
 % \pedro[inline]{I replaced the last few occurrences of ``special'' with ``universal''.}
-\item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
+%\item[$\Box$]  Look at wording in proof of \Cref{less than u: L}. 
 %\item[$\CheckedBox$] Write essential statements/proofs.
 %\item[$\CheckedBox$] Decide on name of paper.
 %\item[$\CheckedBox$] Decide on name for minimal coordinate.
@@ -38,7 +38,9 @@ TO DO LIST:
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
    \item Examples of algorithms (\eg $\idealm$-primary case, general setting)
+   \pedro[inline]{Done}
    \item Maybe introduce the $\idealm$-primary and/or homogeneous case earlier, for instance, when we talk about minimal face, universal denominator, etc.
+   \pedro[inline]{Done}
    % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    % \pedro[inline]{I included an example with a picture.}
    % \emily[inline]{Thank you!}
@@ -54,9 +56,9 @@ TO DO LIST:
  %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
  %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
  % \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
- \item[$\Box$] Minimize and/or ``algebrafy'' statements.
+% \item[$\Box$] Minimize and/or ``algebrafy'' statements.
  %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
- \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
+% \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction. 
 % \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
 % \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
 
@@ -94,14 +96,28 @@ TO DO LIST:
       % \emily[inline]{I think this is defunct now? }
    %    \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
    % \emily[inline]{This only seems to happen with $\IP$ and $\IP_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}  
-    \item[$\Box$] Put ``titles'' in appropriate statements. 
+ \item[$\Box$] Put ``titles'' in appropriate statements.
+ \pedro[inline]{Done with definitions. We might want to remove some of them later, though (\eg the one for $\epsilon_{p^e}$ and $\delta_{p^e}$).}
+ \item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$.
+ \item[$\Box$] Outline at the end of \Cref{sec: LPs}
+ \item[$\Box$] Section on generic hypersurfaces
+ \item[$\Box$] Introduction
+ \item[$\Box$] Dissolve appendix B
+ \item[$\Box$] Abstract
+% \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
+% \item[$\CheckedBox$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
+% \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
    \end{enumerate}
+}
+\pedro[inline]{
+   A suggestion: reserve $p$ and $q$ for prime and power of prime.
+   This will require us to change several uses of these guys with something else (I suggest $r$ and $s$) when they represent just arbitrary positive integers (that is, when they are used in the context of integer programs).
+   It will be a bit of a pain, and maybe not practical, but I'm willing to give it a try.
 }
 
 \setcounter{tocdepth}{1}
 \tableofcontents
 
-\newpage
 \section{Introduction}
 
 \begin{itemize}
@@ -172,9 +188,7 @@ is the critical exponent of $\ideala$ with respect to $\idealb$.
    \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
 \end{theorem}
 
-\newpage
 \section{Notation and basic notions}
-
 
 \subsection{Euclidean spaces}
 \label{ss: euclidean spaces and convexity}
@@ -248,8 +262,6 @@ To distinguish between these cases, we refer to a program in $\mathcal{X} = \RR^
 
 Every program $\Omega$ we consider in this article has the property that the values taken on by the objective function on $\feas \Omega$ are bounded from above, and in this case, the maximum value achieved by the objective function on this feasible set is called the \emph{value} of the program $\Omega$, and is denoted $\val \Omega$.  The subset of $\feas \Omega$ where the objective function achieves this maximum value is called the \emph{optimal set} of $\Omega$, and is denoted $\opt \Omega$.   When $\Omega$ is a linear program in $\RR^n$, its optimal set is a face of the polyhedron $\feas \Omega$ in $\RR^n$.
 
-
-\newpage
 \section{Connections with optimization}
 \label{sec: LPs}
   
@@ -271,7 +283,7 @@ First, recall that for each $q$ a power of $p$, the integer $\nu(\ideala, \ideal
 As noted in \Cref{generators-via-exponent-matrix: R},  the ideal $\ideala^{\ell}$ is generated by all monomials of the form $x^{A\vv{k}}$, with $\vv{k}\in \NN^n$ and $\norm{\vv{k}} = \ell$.  Furthermore, as $\ideald^{[q]}$ is the diagonal ideal associated to $\vv{u}q$, we have that $\ideala^{\ell} \not\subseteq \ideald^{[q]}$ if and only if there is some generator $x^{A \vv{k}}$ of $\ideala^{\ell}$ with $A\vv{k} < \vv{u}q$.  Thus, computing $\nu(\ideala,\ideald,q)$ is equivalent to maximizing the value of $\norm{\vv{k}}$, with $\vv{k} \in \ZZ^n$, and subject to the constraints $\vv{k} \geq \vv{0}$ and $A\vv{k} < \vv{u}q$.
 This observation motivates the following definition.
 
-\begin{definition}
+\begin{definition}[The integer program $\IP$]
 \label{IP: D}
    If $q$ is a positive integer, then $\IP(A, \vv{u}, q)$ is the integer program in the domain lattice of $A$ which consists of maximizing the objective function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}q - \vv{1}$.
 \end{definition}
@@ -294,7 +306,7 @@ We now shift our attention from the integers $\nu(\ideala, \ideald, q)$ to the $
 
 Continuing with our theme, we seek to describe this number in terms of a certain optimization program, which we define below.
 
-\begin{definition}
+\begin{definition}[The linear program $\LP$]
 \label{LP: D}
  $\LP(A, \vv{u})$ is the linear program in the domain of $A$ which consists of maximizing $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}$.
 \end{definition}
@@ -334,7 +346,7 @@ As noted in the introduction, if $\idealb$ is an ideal of a ring of characterist
 In light of this, \Cref{generators-via-exponent-matrix: R} tells us that $\ideala^{[\ell]}$ is generated by the monomials of the form $x^{A \vv{k}}$ with $\vv{k} \in \NN^n$ satisfying $\norm{\vv{k}}=\ell$ and $\binom{\ell}{\vv{k}} \not\equiv 0 \bmod p$.  As in the previous subsection, we may conclude that $\mu(\ideala,\ideald,q)$ is the maximum value of $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$, but also subject to the highly nonlinear constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.  Motivated by this, we introduce a variant of an integer program that we call an \emph{arithmetic integer program}.
 %As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
 
-\begin{definition}
+\begin{definition}[The arithmetic integer program $\IP_p$]
 \label{aip: D}
 If $q$ is a power of $p$, then $\IP_p(A, \vv{u}, q)$ is the \emph{arithmetic integer program} in the domain lattice of $A$ which consists of maximizing the objective function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the linear constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}q - \vv{1}$, and the arithmetic constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not \equiv 0 \bmod p$.
 \end{definition}
@@ -381,7 +393,7 @@ Turning to the critical exponents $\crit(\ideala, \ideald)$, the identity \eqref
 
 In what follows, in analogy with \Cref{ft as val LP: P}, we seek to relate these quantities to the value of a variant of a linear program that we call a \emph{fractal linear program}.  To do so, we require the following concept.
 
-\begin{definition}
+\begin{definition}[Sierpi\'nski gasket]
 \label{sierpinski: D}
    The \emph{Sierpi\'nski $p$-gasket of dimension $n$} is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RR^n$ for which there exist $s \in \ZZ$ and a sequence of points $( \vv{t}_e )_{e=s}^\infty$ in $\NN^n$ such that $\norm{\vv{t}_e} < p$ for all $e \geq s$, and
  \[
@@ -432,7 +444,7 @@ As suggested by \Cref{sierpinski triangle: E}, each $\sierp_{p,n}$  can be reali
 
 Remarkably, the critical exponent of a monomial pair $\crit(\ideala, \ideald)$ described in \eqref{crit as limit of normalized program values: eq} can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric interpretation for this value.  To motivate our approach, we first note that the feasible set of the linear program $\LP(A, \vv{u})$, whose value equals the $F$-threshold $\ft{\ideala}{\ideald}$ by \Cref{ft as val LP: P}, is simply the closure with respect to the Euclidean topology of the set $\{ \vv{t} \in \RR^n : \vv{t} \geq \vv{0} \text{ and } A\vv{t} < \vv{u} \}$.  In what follows, we consider a similar optimization problem,  replacing the conditions that $\vv{t} \in \RR^n$ and $\vv{t} \geq \vv{0}$ with the ``fractal constraint" that $\vv{t} \in \sierp_{p,n}$.
 
-\begin{definition}
+\begin{definition}[The fractal linear program $\fip_p$]
 \label{fractal program: D}
 The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the objective function $\vv{t}\mapsto \norm{\vv{t}}$ on the Euclidean closure of the set \[ \{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}.\]  We call this closure the feasible set of $\fip_p(A, \vv{u})$, and denote it by $\feas \fip_p(A, \vv{u})$.
 % The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
@@ -605,14 +617,11 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 
 \ \daniel[inline]{I imagine placing an outline here that points out the steps we are going to take to solve all of these optimization problems.}
 
-\newpage
 \section{Connections with Newton polyhedra}
 \label{s: newton}
 Here, as in \Cref{sec: LPs},  we use $A$ to denote a fixed $\numvars \times n$ monomial matrix.
 In fact, throughout this section, we fix an $A$-pair $(A, \vv{u})$, so that $\vv{u}$ is a point in $\NN^\numvars$ with positive entries.
 Our goal is to study the linear program $\LP(A, \vv{u})$ in terms of the \emph{Newton polyhedron} associated to the matrix $A$.
-
-
 
 \subsection{Newton polyhedra and their faces}
 
@@ -991,14 +1000,12 @@ Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finit
    Indeed, when $c_i \ne 0$, the upper bound $\beta$ allows only finitely many choices for $u_i$, while when $c_i = 0$, the value of $u_i$ does not affect the inner product.
 \end{proof}
 
-
-\newpage
 \section{Collapsing}
 
 This section concerns an operation used to get around some technical difficulties that arise when dealing with an unbounded minimal face.
 Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined by a point~$\defpt$, then its recession basis is the set $\rb(\O)$ consisting of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that $c_i = 0$, and its recession subspace is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 
-\begin{definition}
+\begin{definition}[Collapsing]
 \label{collapse: D}
  Suppose that $\O$ is a proper face of the Newton polyhedron $\N$ of a monomial matrix $A$ with $\numvars$ rows.
 
@@ -1123,11 +1130,8 @@ We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^m \to \RR^s$ is the 
 
 Once again, \Cref{collapse of Newton polyhedron: P} implies that $\sigma(\N) = \rho(\pi(\N))$ is a Newton polyhedron.  Consider a standard compact face of $\mathcal{L}$ of $\sigma(\N)$, for instance, the collapsed face $\pi(\mathcal{F})$.    If $\mathcal{L}$ is defined by a point $\vv{b} \in \RR^s$, then \Cref{prop: MW for faces}  tells us that $\vv{b}$ is positive, and the fact that
 \[ \iprod{\vv{b}}{\sigma(\vv{u})} = \iprod{\iota(\vv{b})}{\vv{u}} \] for every $\vv{u} \in \RR^m$ implies that $\sigma^{-1}(\mathcal{F})$ is a standard face of $\N$ defined by $\iota(\vv{b})$.  By construction, the $i$-th entry of $\iota(\vv{b})$ is not zero if and only if $1 \leq i \leq s$, so that $\rb(\sigma^{-1}(\mathcal{L}))^{\perp} = \{ \canvec_1, \ldots, \canvec_s \}$, from which it follows that $\sigma$ is the collapsing projection along the face $\sigma^{-1}(\mathcal{F})$ of $\N$.
-
 \end{proof}
 
-
-\newpage
 \section{An auxiliary integer program}
 
 \subsection{Canonical feasible points}
@@ -1139,7 +1143,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    If $a, b \in \ZZ$ are positive, then $\lpr{a}{b}$ is the \emph{least positive residue} of $a$ modulo $b$, that is, $a \equiv \lpr{a}{b} \bmod b$ and $1 \leq \lpr{a}{b} \leq b$.
 \end{definition}
 
-\begin{definition}
+\begin{definition}[The bracket operation]
    \label{tail: D}
    Let $q$ be a positive integer.
    If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
@@ -1220,7 +1224,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    We call a monomial list whose first term is the matrix $A$ an \emph{$A$-list}.
 \end{definition}
 
-\begin{definition}
+\begin{definition}[The auxiliary integer program $\ip$]
    \label{aux program: D}
    If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(A, \vv{u}, \vv{s}, q)$ in the domain lattice of $A$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$, where the overbar denotes collapse along the minimal face $\mf(A, \vv{u})$.
 \end{definition}
@@ -1364,7 +1368,6 @@ The following theorem underlies some of our later finiteness results.
    This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
 \end{proof}
 
-\newpage
 \section{Toward solving $\IP$}
 \label{solving: S}
 
@@ -1418,7 +1421,7 @@ The notion of \emph{deficit} is introduced to measure how far those values are f
 
 We now extend the definitions of shortfall and deficit to the auxiliary integer program $\ip(A,\vv{u},\vv{s},q)$.
 
-\begin{definition}[Shortfall and deficit]
+\begin{definition}[Shortfall and deficit for $\ip$]
    \label{deficit and shortfall ip: D}
    The \emph{shortfall} of the integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ is the set
    \[ \short \ip = \collapse{A} \tail{\vv{s}}_q - \collapse{A} (\opt \ip)\]
@@ -1540,7 +1543,7 @@ The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\
    As the deficits and shortfalls of $\ip(A,\vv{u},\vv{s},q)$  and $\ip(A,\vv{u},\vv{s}',q)$ clearly depend only on $q$ modulo $\denom$, it suffices to show that they agree whenever $q \gg 0$, but this follows from \Cref{uniform value and image: P}.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Universal deficit and shortfall]
 \label{independence: D}
 Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{universal shortfall} of $(A,\vv{u},q)$ as follows\textup:
  \[ \udeficit(A, \vv{u}, q) = \deficit\ip( A, \vv{u}, \vv{s}, q)\] and
@@ -1694,8 +1697,6 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 % \daniel[inline]{I think it is OK to just omit this here, as it is noted (in a slightly more general context) in \Cref{sprouts as collapsed shortfall pairs: R}, which is probably a better location anyway.}
 % }
 
-
-\newpage
 \section{Arithmetic integer programs revisited}
 
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$.
@@ -1817,7 +1818,7 @@ equals $\frac{3}{2}p^e - \frac{1}{2}$ for even $e$.
 
 \subsection{Small and very small pairs}
 
-\begin{definition}
+\begin{definition}[Small and very small pairs]
 A monomial pair $(A, \vv{u})$ is \emph{small} if $\vv{u}$ is not greater than any column of $A$, and is \emph{very small} if $\ft{A}{\vv{u}}$ is at most one. 
 \end{definition}
 
@@ -2204,11 +2205,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 }
 \end{algorithm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Alternative m-primary subsection ends here
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
 \section{Sprouting graphs} \label{sprouting: S}
 \emily{New transition.}
 Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A, \vv{u}, p^e)$ when the matrix $A$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
@@ -2216,11 +2212,11 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 \subsection{The sprouting graph of a monomial matrix}
 
-\begin{definition}
+\begin{definition}[Descendant]
    A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some (possibly, none) of its columns.
 \end{definition}
 
-\begin{definition}
+\begin{definition}[$p$-Sprout]
    \label{p-sprout: D}
    Consider a monomial pair $(A,\vv{u})$, and let an overbar denote collapse along $\mf(A,\vv{u})$.
    We say that $(B, \vv{v})$ is a \emph{$p$-sprout} of $(A, \vv{u})$ whenever the following conditions are satisfied.
@@ -2439,7 +2435,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels shown in the picture repeat indefinitely.
 \end{example}
 
-\begin{definition}
+\begin{definition}[Numbers associated to the levels of $\sprout^*_p(A,\vv{u})$]
    \label{epsilon delta: D}
    If $(A,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$, then we define
    \begin{align*}
@@ -2465,7 +2461,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    In particular, for such primes, $\val \IP_p(B,\vv{v},p) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Depth of $\sprout_p^{\ast}(A,\vv{u})$]
    If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(A,\vv{u})$.
    Formally,
    \[
@@ -2690,20 +2686,6 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
    for any sufficiently large prime $p$ congruent to $5$ modulo a universal denominator for $A$.
 \end{example}
 
-\details[inline]{
-TO DO LIST:
-\begin{enumerate}
-\item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$. 
-\item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
-\item[$\CheckedBox$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
-\item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
-\end{enumerate}
-}
-
-%\daniel[inline]{\begin{remark}[A deterministic algorithm]  \!{To do}
-%\end{remark}
-%}
-
 \subsection{Concerning non-leading coefficients}
 
 We now address the nonpositivity of the non-leading coefficients, claimed in \Cref{main theorem wrt diagonal: T}.
@@ -2926,8 +2908,6 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 % \emily[inline]{OK, I removed the explicit induction and pruned it down. Feel free to edit further if you see fit.}
 % \pedro[inline]{Maybe add a quick corollary about crits?}
 
-\newpage
-
 \appendix
 
 \section{Monomial ideals and reduction}
@@ -2943,7 +2923,7 @@ However, we should also make clear that  \Cref{mon-operation-modulo-p: T} is not
 \end{enumerate}
 }
 
-\begin{definition}
+\begin{definition}[The $\mon$ operator on ideals]
 \label{monomialization: D}
 If $T$ is a domain, and $I$ is an ideal of $T[x_1, \ldots, x_\numvars]=T[x]$, then $\mon(I)$ is the ideal of $T[x]$ generated by all monomials $x^{\vv{u}} \in T[x]$ such that there exists $0 \neq \tau \in T$ with the property that $\tau x^{\vv{u}} \in I$.% That is, \[ \mon(I) = \langle x^{\vv{u}}: x^{\vv{u}} \in I \rangle \subseteq \kk[x_1, \ldots, x_\numvars].\]
 \end{definition}
@@ -3033,9 +3013,7 @@ In summary, if $e$ is an arbitrary natural number, then
 where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$. 
  \end{proof}
 
-\newpage
 \subsection{Reduction to prime characteristic}
-
 
 We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide references for their proofs, and also refer those unfamiliar with these statements to \cite[Chapter 3]{hernandez.thesis} for more details.
 % \daniel[inline]{This is my thesis.  Should we cite something more official?   I don't have any books here in El Paso, but I think that at least generic freeness appears in Matsumura, but maybe in an unrecognizable form.}
@@ -3527,8 +3505,6 @@ Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the po
 \Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\idealm)$ is a monomial ideal contained in the radical of $J_A(\idealm)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\idealm) = \mon(J_A(\idealm))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
 \end{proof}
 
-
-\newpage
 \section{Frobenius powers of monomial ideals}
 
 \emily[inline]{This appendix will likely be dissolved.  We may need to bring some of these definitions/properties to an appropriate section where they will be used.  }
@@ -3643,10 +3619,6 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 
 \daniel[inline]{What about adding a connection between $\ideala^{[t]}$ and $\tau(\ideala^{t'})$ where $t'$ is the greatest $F$-threshold less than $t$?  Like in the diagonal section of our examples paper?  Maybe we could wait to do this until we compare Frobenius powers and test ideals.}
 }
-
-
-
-\newpage
 
 \emily[inline]{
 
