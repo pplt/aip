@@ -1,36 +1,5 @@
 \documentclass[11pt]{amsart}
 \input{preamble.tex}
-\usepackage{caption}
-\usepackage{booktabs}
-\usepackage{subcaption}
-\captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
-\renewcommand\thesubfigure{(\sc \alph{subfigure})}
-\usepackage{bm}
-\usepackage[
-ruled,
-%linesnumbered,
-vlined]{algorithm2e}
-\usepackage{stmaryrd}
-
-%shortfall and deficit
-\newcommand{\short}{\operatorname{short}}
-\newcommand{\ushort}{\operatorname{ushort}}
-\newcommand{\deficit}{\operatorname{deficit}}
-\newcommand{\udeficit}{\operatorname{udeficit}}
-
-\newcommand{\denom}{d} 
-\newcommand{\fsr}{\mathcal{R}}
-
-\renewcommand{\S}{\mathcal{S}}
-\newcommand{\pp}{\mathsf{p}}
-\renewcommand{\tt}{\mathsf{t}}
-
-
-\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
-
-\newcommand{\mspec}{\operatorname{mSpec}}
-\newcommand{\spec}{\operatorname{Spec}}
-
 
 \begin{document}
 
@@ -68,7 +37,7 @@ TO DO LIST:
    %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.   
 \item[$\Box$]  Brainstorm list of the desired properties we want from examples, and what section to put them in: 
 \begin{itemize}
-   \item Examples of algorithms (e.g., $\idealm$-primary case, general setting)
+   \item Examples of algorithms (\eg $\idealm$-primary case, general setting)
    \item Maybe introduce the $\idealm$-primary and/or homogeneous case earlier, for instance, when we talk about minimal face, universal denominator, etc.
    % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
    % \pedro[inline]{I included an example with a picture.}
@@ -107,7 +76,7 @@ TO DO LIST:
       % %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
       % Emily suggest using $\vv{c}$.  This is probably a good idea.
       % \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
-      %\item[$\CheckedBox$] Uniformize the way we describe programs (e.g., as in Section 9).
+      %\item[$\CheckedBox$] Uniformize the way we describe programs (\eg as in Section 9).
 %      \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
  %     Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
   %    \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
@@ -215,7 +184,7 @@ The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, 
 
 Given a point $\vv{u}\in \RR^n$, $\norm{\vv{u}}$ denotes its coordinate sum, $u_1+\cdots+u_n$.
 The standard inner product in $\RR^n$ is denoted by the usual angle brackets: $\iprod{\vv{u}}{\vv{v}} = u_1v_1 + \cdots + u_nv_n$.
-An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; e.g., $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
+An inequality between points of $\RR^n$ is a shorthand for a system of $n$ coordinatewise inequalities; \eg $\vv{u}\le \vv{v}$ means that $u_i \le v_i$ for each $i=1,\ldots,n$.
 In the same vein, operations on numbers are extended to points in $\RR^n$ in a coordinatewise fashion; for instance, $\up{\vv{u}}=(\up{u_1},\ldots,\up{u_n})$.
 
 % We say that a point $\vv{u}\in \RR^n$ is positive (respectively, nonnegative) if $\vv{u} > \vv{0}$ (respectively, $\vv{u}\ge \vv{0}$).
@@ -307,7 +276,7 @@ This observation motivates the following definition.
    If $q$ is a positive integer, then $\IP(A, \vv{u}, q)$ is the integer program in the domain lattice of $A$ which consists of maximizing the objective function $\vv{k} \mapsto \norm{\vv{k}}$ subject to the constraints $\vv{k} \geq \vv{0}$ and $A \vv{k} \leq \vv{u}q - \vv{1}$.
 \end{definition}
 
-It is easy to deduce from the fact that the matrix $A$ is a monomial matrix (i.e., has nonnegative, nonzero rows and columns) that the feasible set of $\IP(A,\vv{u},q)$ is finite, and hence, this integer program has a well-defined value.  In fact, the discussion preceding \Cref{IP: D} demonstrates that 
+It is easy to deduce from the fact that the matrix $A$ is a monomial matrix (\ie has nonnegative, nonzero rows and columns) that the feasible set of $\IP(A,\vv{u},q)$ is finite, and hence, this integer program has a well-defined value.  In fact, the discussion preceding \Cref{IP: D} demonstrates that 
 %
 \begin{equation}
 \label{nu as program value: eq}
@@ -2005,7 +1974,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    
    Conversely, suppose $\IP_p(A,\vv{u},p) = \IP(A,\vv{u},p)$, for $p \gg 0$ chosen as in \Cref{small not very small value: T}.
    Aiming at a contradiction, suppose $(A,\vv{u})$ is not very small, so that $\ft{A}{\vv{u}} > 1$.
-   Arguing as in the proof of \emph{loc.\,cit.}\ we conclude that $\val \IP_p(A,\vv{u},p) = \val \IP(A,\vv{u},p) >  p$.
+   Arguing as in the proof of \loccit we conclude that $\val \IP_p(A,\vv{u},p) = \val \IP(A,\vv{u},p) >  p$.
    From here on, we argue algebraically: If the pair $(A,\vv{u})$ is associated to the ideal pair $(\ideala,\ideald)$, our last findings tell us that $\ideala^{[p]} \not\subseteq \ideald^{[p]}$, and hence $\ideala \not\subseteq \ideald$, so the pair $(A,\vv{u})$ is not even small---a contradiction.
 \end{proof}
 
@@ -2394,7 +2363,8 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \newpage
 \section{Sprouting graphs} \label{sprouting: S}
 \emily{New transition.}
-Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A, \vv{u}, p^e)$ when the matrix $A$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case that $A$ is an arbitrary monomial matrix.  In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.  
+Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A, \vv{u}, p^e)$ when the matrix $A$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
+In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.  
 
 \subsection{The sprouting graph of a monomial matrix}
 
@@ -2549,7 +2519,7 @@ Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A
 \subsection{Subgraphs associated to pairs}
 %\ \daniel[inline]{Use algorithm in $\idealm$-primary case to motivate these definitions}
 \emily{New transition.}
-Consider the following subgraphs of the directed sprouting graph.  Their definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from. 
+We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from. 
 
 \begin{definition}[Subgraphs associated to very small pairs]
    Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
@@ -2987,7 +2957,7 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
          I think so, and gave it a shot above.
       }
    }
-   % \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
+   % \pedro[inline]{Maybe we could bring up this case more often throughout the paper; \eg as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
 \end{remark}
 % \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
 % \emily[inline]{See below.}
@@ -3017,7 +2987,7 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
 %\subsection{Generic hypersurfaces in characteristic zero}
 
 \begin{corollary}
-   Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ \textup(e.g., take the least common multiple of universal denominators of each of its finitely many descendants\textup).
+   Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ \textup(\eg take the least common multiple of universal denominators of each of its finitely many descendants\textup).
    Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$, 
 \[
  \val\IP_p(A,\vv{u},p^e) = (p^e-1) \cdot \ft{A}{\vv{u}}
@@ -3038,7 +3008,7 @@ We first prove the following claim:
 \end{claim}
 
 Let $\vv{s}$ be a special point for $(B, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{B}{\vv{v}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
-Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; i.e., $\tail{\vv{s}}_p = \vv{s}$.
+Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie $\tail{\vv{s}}_p = \vv{s}$.
 If $\Theta = \Theta(B, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{B}{\vv{v}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.
 Hence $\udeficit(B, \vv{v}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{B}{\vv{v}}$, proving the claim.\\[2mm] 
 Observe that if $(C, \vv{w})$ is a $p$-sprout of a pair $(B, \vv{v})$ as above, then $\ft{C}{\vv{w}} \leq \udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$ by \Cref{non-leading coefficients: L} and the above claim, so that $(C, \vv{w})$ is also very small.  
@@ -3066,7 +3036,7 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 % \vspace{.2cm}
 % 
 % Toward the claim, let $\vv{s}$ be a special point for $(C, \vv{z})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
-% Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; i.e.,
+% Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie
 % $\tail{\vv{s}}_p = \vv{s}$.
 % If  $\Theta = \Theta(C, \vv{z}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.  Hence $\udeficit(C, \vv{z}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{C}{\vv{z}}$.
 % 
@@ -3119,7 +3089,7 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 \begin{enumerate}
 \item  I changed the order of things here.  Can we talk about this more once everyone is able to take a look at the new organization?
 \item I think that we should start the appendix with an overview, but I think we should discuss what we think the main points are first.  For me, the main point is \Cref{mon-operation-modulo-p: T}, which states that $\mon$ commutes with reduction modulo $p \gg 0$.  But, we should also maybe highlight \Cref{reduce-to-monomial-case: C,invariants associated to a monomial ideal in large characteristic: C}, since these are what we cite in the main part of the article.
-\item We may want to carefully contrast \Cref{mon-operation-modulo-p: T} with \cite[Lemma 6.1]{budur+mustata+saito.roots_bs_polys_monomial}.  The BMS result is very closely related, and our proof follows the roadmap established by them, but fills in a lot of details (e.g., BMS simply asserts \Cref{monomial-noetherian-decomposition: L} but doesn't give a proof), and also works in the full framework of reduction to prime characteristic.  
+\item We may want to carefully contrast \Cref{mon-operation-modulo-p: T} with \cite[Lemma 6.1]{budur+mustata+saito.roots_bs_polys_monomial}.  The BMS result is very closely related, and our proof follows the roadmap established by them, but fills in a lot of details (\eg BMS simply asserts \Cref{monomial-noetherian-decomposition: L} but doesn't give a proof), and also works in the full framework of reduction to prime characteristic.  
 
 However, we should also make clear that  \Cref{mon-operation-modulo-p: T} is not just a translation of BMS to this general framework.  The main mathematical merit of our generalization is that it concerns the $\mon$ operation in polynomial rings, while the BMS result concerns the $\mon$ operation (which they don't actually define) in a kind of odd way, and only in localizations of polynomial rings at the origin.
 \end{enumerate}
@@ -3192,7 +3162,7 @@ Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\
 As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
 $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
 
-Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
+Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (\eg see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
 \pedro{
    Here we are using a result about $\mu$'s with respect to diagonal ideals (associated to positive points).
    It seems that we need to do the reduction to diagonal ideals that is done below beforehand.
@@ -3218,7 +3188,6 @@ where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \
 \newpage
 \subsection{Reduction to prime characteristic}
 
-\newcommand{\maxi}{\mathfrak{m}}
 
 We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide references for their proofs, and also refer those unfamiliar with these statements to \cite[Chapter 3]{hernandez.thesis} for more details.
 % \daniel[inline]{This is my thesis.  Should we cite something more official?   I don't have any books here in El Paso, but I think that at least generic freeness appears in Matsumura, but maybe in an unrecognizable form.}
@@ -3248,15 +3217,15 @@ We now briefly recall the process of reduction to prime characteristic, at least
    Observe that once an ideal $I$ of $R$ is specified, then an $A$-model of $I$ exists, at least whenever $A$ is the subalgebra of $\kk$ generated over $\ZZ$ by the finitely many coefficients in $\kk$ appearing in some finite ideal-generating set for $I$.
 
    Suppose that $I$ and $A$ are as above, and that $I_A$ exists.
-   If $\maxi \in \mspec(A)$, then $I_A(\maxi)$ is the extension of $I_A$ to $R_{A}(\idealm) \coloneqq A/\maxi[x_1, \ldots, x_\numvars]$ under the quotient map $R_A \longrightarrow R_A(\idealm)$.
-   As noted in \Cref{maximal ideals: R}, the finite generation of $A$ over $\ZZ$ implies that $R_A(\maxi)$ is a polynomial ring over the finite field $A/\maxi$, and for this reason, we may regard $I_A(\idealm)$ as a prime characteristic model of~$I$.
-   Furthermore, as the point $\maxi \in \mspec(A)$ varies, we obtain models $I_A(\idealm)$ of $I$ over a finite field of characteristic $p>0$ for all but finitely many~$p$.
+   If $\idealm \in \mspec(A)$, then $I_A(\idealm)$ is the extension of $I_A$ to $R_{A}(\idealm) \coloneqq A/\idealm[x_1, \ldots, x_\numvars]$ under the quotient map $R_A \longrightarrow R_A(\idealm)$.
+   As noted in \Cref{maximal ideals: R}, the finite generation of $A$ over $\ZZ$ implies that $R_A(\idealm)$ is a polynomial ring over the finite field $A/\idealm$, and for this reason, we may regard $I_A(\idealm)$ as a prime characteristic model of~$I$.
+   Furthermore, as the point $\idealm \in \mspec(A)$ varies, we obtain models $I_A(\idealm)$ of $I$ over a finite field of characteristic $p>0$ for all but finitely many~$p$.
 \end{remark}
 
-This process greatly simplifies in the special case that $\kk=\QQ$.  Indeed, every ideal $I$ of $R=\QQ[x_1, \ldots, x_\numvars]$ is generated by a set $G$ of polynomials with integer coefficients.  Given such a generating set, we may then take $A=\ZZ$, and let $I_A$ be the ideal generated by $G$ in $R_A=\ZZ[x_1, \ldots, x_\numvars]$.  If  $\maxi$ is the maximal ideal of $A=\ZZ$ generated by a prime integer $p$, then $I_A(\maxi)$ is the ideal of $R_A(\maxi) = \FF_p[x_1, \ldots, x_\numvars]$  generated by the image of $G$.
+This process greatly simplifies in the special case that $\kk=\QQ$.  Indeed, every ideal $I$ of $R=\QQ[x_1, \ldots, x_\numvars]$ is generated by a set $G$ of polynomials with integer coefficients.  Given such a generating set, we may then take $A=\ZZ$, and let $I_A$ be the ideal generated by $G$ in $R_A=\ZZ[x_1, \ldots, x_\numvars]$.  If  $\idealm$ is the maximal ideal of $A=\ZZ$ generated by a prime integer $p$, then $I_A(\idealm)$ is the ideal of $R_A(\idealm) = \FF_p[x_1, \ldots, x_\numvars]$  generated by the image of $G$.
 
 It is also easy to talk about reduction to prime characteristic for monomial ideals:
-If $\kk$ is a field of characteristic zero, and $I$ is a monomial ideal in $R=\kk[x_1, \ldots, x_\numvars]$ generated by a collection of monomials $G$, then $I_A = GR_A = GA[x_1, \ldots, x_\numvars]$ is a canonical $A$-model for every finitely generated $\ZZ$-algebra $A \subseteq \kk$, and $I_A(\maxi) = GR_A(\maxi)$ for every $\maxi \in \mspec(A)$.  
+If $\kk$ is a field of characteristic zero, and $I$ is a monomial ideal in $R=\kk[x_1, \ldots, x_\numvars]$ generated by a collection of monomials $G$, then $I_A = GR_A = GA[x_1, \ldots, x_\numvars]$ is a canonical $A$-model for every finitely generated $\ZZ$-algebra $A \subseteq \kk$, and $I_A(\idealm) = GR_A(\idealm)$ for every $\idealm \in \mspec(A)$.  
 
 In this appendix, we will need to work with arbitrary $A$-models for an ideal $I \subseteq R$, even in the case when $I$ is monomial, and as described above, a canonical $A$-model exists.  As we see below, non-canonical models may have certain undesirable qualities, after reduction to low characteristic.
 
@@ -3301,21 +3270,21 @@ is exact over $B$, and terminates on a free $B$-module of rank $\rho$.  However,
 
 \daniel[inline]{FYI:  Another corollary (that we no longer use) is commented out here.}
 %\begin{corollary}
-%\label{noncontainment mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ such that $I_A$ is defined, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $(A/\maxi) \otimes_A I_A \cong I_A(\maxi)$ for every $\maxi \in \mathcal{U}$.  Furthermore, $I$ is a proper ideal of $R$ if and only if $I_A(\maxi)$ is a proper of $R_A(\maxi)$ for every $\maxi \in \mathcal{U}$.
+%\label{noncontainment mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ such that $I_A$ is defined, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $(A/\idealm) \otimes_A I_A \cong I_A(\idealm)$ for every $\idealm \in \mathcal{U}$.  Furthermore, $I$ is a proper ideal of $R$ if and only if $I_A(\idealm)$ is a proper of $R_A(\idealm)$ for every $\idealm \in \mathcal{U}$.
 %\end{corollary}
 %
 %
 %\begin{proof}   Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{noncontainment mod p: C} relative to the ideal $J = I_A$ of $R_A = A[x_1, \ldots, x_\numvars]=A[x]$. %
 %
-%Next, let $\mathcal{U}$ denote the set of all points $\maxi \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  Note that $\mathcal{U}$ is an open dense (i.e., open and non-empty) subset of $\mspec(A)$.  If $\maxi \in \mathcal{U}$, then $A/\maxi$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\maxi$ in \Cref{comparing expansions:  L} tells us that
-%\[ (A/\maxi) \otimes_A  I_A \cong I_A \cdot (A/\maxi)[x] = I_A R_A(\maxi) = I_A(\maxi). \] 
+%Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and non-empty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \Cref{comparing expansions:  L} tells us that
+%\[ (A/\idealm) \otimes_A  I_A \cong I_A \cdot (A/\idealm)[x] = I_A R_A(\idealm) = I_A(\idealm). \] 
 %
-%For the last statement, if $I=R$, then we may rewrite this in terms of $I_A$ as $I_A \kk[x] = \kk[x]$, which allows us to invoke \Cref{comparing expansions:  L} with $B_{\circ}=\kk$ to see that the expansion of $I_A$ to $R_A(\maxi) = (A/\maxi)[x]$ equals $R_A(\maxi)$ for every $\maxi \in \mathcal{U}$.  Similarly, if $I_A(\maxi) = R_A(\maxi)$ for some $\maxi \in \mathcal{U}$, then we may once again invoke \Cref{comparing expansions:  L}, this time with $B_{\circ} = A/\maxi$,  to see that $I=R$.
+%For the last statement, if $I=R$, then we may rewrite this in terms of $I_A$ as $I_A \kk[x] = \kk[x]$, which allows us to invoke \Cref{comparing expansions:  L} with $B_{\circ}=\kk$ to see that the expansion of $I_A$ to $R_A(\idealm) = (A/\idealm)[x]$ equals $R_A(\idealm)$ for every $\idealm \in \mathcal{U}$.  Similarly, if $I_A(\idealm) = R_A(\idealm)$ for some $\idealm \in \mathcal{U}$, then we may once again invoke \Cref{comparing expansions:  L}, this time with $B_{\circ} = A/\idealm$,  to see that $I=R$.
 %\end{proof}
 
 \begin{corollary}
 \label{containment in radical mod p: C}  
-Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R=\kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\maxi) \subseteq \sqrt{J_A(\maxi)}$ for every $\maxi \in \mathcal{U}$.
+Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R=\kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$ for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
 \begin{proof}
@@ -3334,19 +3303,19 @@ which is equivalent to $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk
 %
 for every $A[\ell^{-1}]$-algebra $B$.  
 
-Next, let $\mathcal{U}$ denote the set of all points $\maxi \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  Note that $\mathcal{U}$ is an open dense (i.e., open and nonempty) subset of $\mspec(A)$.  If $\maxi \in \mathcal{U}$, then $A/\maxi$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\maxi$ in \eqref{step in radical containment: e} tells us that
+Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and nonempty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \eqref{step in radical containment: e} tells us that
 %
-\[ J_A (\maxi) = I_A(\maxi)^t + J_A(\maxi)  \] 
+\[ J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)  \] 
 %
-which implies that $I_A(\maxi)^t \subseteq J_A(\maxi)$, and hence $I_A(\maxi) \subseteq \sqrt{J_A(\maxi)}$.
+which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$, and hence $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$.
 \end{proof}
 
 \begin{corollary}
 \label{expansion of monomial mod most p is monomial: C}  
-Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\maxi)$ is a monomial ideal for every $\maxi \in \mathcal{U}$.
+Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm)$ is a monomial ideal for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
-\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\maxi$ agree for most $\maxi$}
+\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\idealm$ agree for most $\idealm$}
 \begin{proof}
    Let $G$ be a collection of monomials such that $I=G\kk[x]$, and set $L = I_A + G R_A$, an ideal of $R_A=A[x_1, \ldots, x_\numvars] = A[x]$.
    Suppose that $0 \neq \ell \in A$ is such that the conclusions of \Cref{comparing expansions:  L} hold for the containment of ideals $I_A \subseteq L$ and $GR_A \subseteq L$.  By definition,  $I_A \kk[x] = I_A R = I$ and $(GR_A)\kk[x] = G \kk[x] = I$, and so $L\kk[x] = I$ as well.
@@ -3354,7 +3323,7 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial 
    \[
       I_A B[x] = L_A B[x] = G B[x].
    \]
-   Thus, if $\mathcal{U} = \{ \maxi \in \mspec(A) : \operatorname{char}(A/\maxi) \nmid \ell \}$,  then for each $\maxi \in \mathcal{U}$, we may set $B=A/\maxi$ above to see that $I_A(\maxi) = G R_A(\maxi)$. 
+   Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = G R_A(\idealm)$. 
 \end{proof}
 
 \begin{lemma}
@@ -3392,14 +3361,14 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial 
 
 \begin{corollary}[The formation of colon ideals commutes with almost every reduction to prime characteristic]
 \label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$, and an element $f \in R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that 
-\[ ((I :_R f))_A(\maxi) \coloneqq (I_A :_{R_A} f) R_A(\maxi) = (I_A(\maxi) :_{R_A(\maxi)} f_A(\maxi)) \]
-for every $\maxi \in \mathcal{U}$, where $f_A(\maxi)$ denotes the reduction of $f \in R_A$ modulo $\maxi$, i.e., the image of $f$ under the quotient map $R_A \to R_A(\maxi)$.
+\[ ((I :_R f))_A(\idealm) \coloneqq (I_A :_{R_A} f) R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
+for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the reduction of $f \in R_A$ modulo $\idealm$, \ie the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
  \end{corollary}
 
 \begin{proof}
-Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: L} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: L} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\maxi \in \mspec(A)$ such that the characteristic of $A/\maxi$ does not divide $\ell$.  If $\maxi \in \mathcal{U}$, then we may instead take $B=A/\maxi$ in \Cref{colon mod p: L} to see that 
-\[  (I_A:_{R_A} f)R_A(\maxi) = (I_A(\maxi) :_{R_A(\maxi)} f_A(\maxi)) \]
-which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$.
+Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: L} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: L} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: L} to see that 
+\[  (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
+which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
 \end{proof}
 
 %\begin{proof}
@@ -3515,7 +3484,7 @@ which concludes our proof, as the left-most term above is $((I :_R f))_A(\maxi)$
 \pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
 \emily{Yes, that's OK.}
    which is well defined since the polynomial ring is Noetherian.
-   Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, i.e., 
+   Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, \ie 
    \begin{equation*}
       (J : x_i^{u_i+\ell}) = (J : x_i^{u_i+\ell+1})
    \end{equation*}
@@ -3679,7 +3648,7 @@ If all of this is legit, then we could replace $B$ with the fraction field, and 
 \begin{theorem}[The $\mon$ operation commutes with almost every reduction to prime characteristic]
 \label{mon-operation-modulo-p: T}  
 Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that 
-\[ (\mon(I))_A(\maxi) \coloneqq \mon(I_A) R_A(\maxi) = \mon(I_A(\maxi)) \] for every point $\maxi \in \mathcal{U}$. \qed \daniel{Remove QED if we include a proof.}
+\[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed \daniel{Remove QED if we include a proof.}
 \end{theorem}
 
 
@@ -3687,27 +3656,27 @@ Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the po
    \label{invariants associated to a monomial ideal in large characteristic: C}
    Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of  $R=\kk[x_1, \ldots, x_\numvars]$, with $I$ monomial and $I \subseteq \sqrt{J}$.
    If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ of $I$ and $J_A$ of $J$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property\textup:
-   If $\maxi \in \mathcal{U}$ and $p = \operatorname{char}(A/\maxi)$, then there exists a diagonal ideal $\ideald$
+   If $\idealm \in \mathcal{U}$ and $p = \operatorname{char}(A/\idealm)$, then there exists a diagonal ideal $\ideald$
    \daniel{
       I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: C}.
       The point is that it shouldn't really involve $p$, say, in any of its generators.
       This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: C}, as opposed to simply citing it.
       What do you guys think about this?
    }
-   in $R_A(\maxi)$ associated to a positive point in $\NN^m$ such that
+   in $R_A(\idealm)$ associated to a positive point in $\NN^m$ such that
    \[
-      \mu(I_A(\maxi), J_A(\maxi), p^e) = \mu(I_A(\maxi), L_A(\maxi), p^e)  = \mu(I_A(\maxi), \ideald, p^e)
+      \mu(I_A(\idealm), J_A(\idealm), p^e) = \mu(I_A(\idealm), L_A(\idealm), p^e)  = \mu(I_A(\idealm), \ideald, p^e)
    \]
    for every $e \geq 1$.
    In particular,
    \[
-      \crit(I_A(\maxi), J_A(\maxi)) = \crit(I_A(\maxi), L_A(\maxi))= \crit(I_A(\maxi), \ideald).
+      \crit(I_A(\idealm), J_A(\idealm)) = \crit(I_A(\idealm), L_A(\idealm))= \crit(I_A(\idealm), \ideald).
    \]
 \end{corollary}
 
-\begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusions of \Cref{containment in radical mod p: C} holds for $I$ and $J$, and such that the conclusions of \Cref{expansion of monomial mod most p is monomial: C,mon-operation-modulo-p: T} hold for $I$.  Fix a point $\maxi \in \mathcal{U}$.
+\begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusions of \Cref{containment in radical mod p: C} holds for $I$ and $J$, and such that the conclusions of \Cref{expansion of monomial mod most p is monomial: C,mon-operation-modulo-p: T} hold for $I$.  Fix a point $\idealm \in \mathcal{U}$.
 
-\Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\maxi)$ is a monomial ideal contained in the radical of $J_A(\maxi)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\maxi) = \mon(J_A(\maxi))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
+\Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\idealm)$ is a monomial ideal contained in the radical of $J_A(\idealm)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\idealm) = \mon(J_A(\idealm))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
 \end{proof}
 
 
@@ -3737,7 +3706,7 @@ Given a nonnegative integer $k$, with base $p$ expansion $k = k_0 + k_1 p + \cdo
 Frobenius powers are extended to allow nonnegative real exponents, through the use of the Frobenius roots introduced in \cite{blickle+mustata+smith.discr_rat_FPTs}.
 Explicitly, for a nonnegative rational exponent of the form $k/p^e$, we define
 \[\ideala^{[k/p^e]} \coloneqq \big(\ideala^{[k]}\big)^{[1/p^e]},\]
-and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit\
+and for an arbitrary positive real number $t$, we define $\ideala^{[t]}$ by taking approximations of $t$ from above by such rational numbers, in a way analogous to the definition of test ideals in \loccit
 More explicitly, if $\left\{t_j\right\}_{j=1}^\infty$ is a sequence of real numbers limiting to $t$ from above, each of the form $k/p^e$ for some $k>0$ and $e \geq 0$, then $\ideala^{[t]}$ is defined the union of the ideals $\ideala^{[t_j]}$.
 
 Like test ideals and multiplier ideals, as $t$ varies, the Frobenius powers $\ideala^{[t]}$ form a nonincreasing chain, and are right-constant for positive $t$, \ie $\ideala^{[t+\epsilon]} = \ideala^{[t]}$, for $0<\epsilon \ll 1$.
@@ -3829,410 +3798,6 @@ Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_e$ is a nondecreasing bounded seque
 
 
 
-% The purpose of this appendix is to describe the behavior of the monomials contained in some possibly non-monomial ideal under reduction to prime characteristic.  To make this precise, consider the following definition. 
-% 
-% \begin{definition}
-% If $\kk$ is a field and $I$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(I)$ is the ideal generated by the monomials in $I$. % That is, \[ \mon(I) = \langle x^{\vv{u}}: x^{\vv{u}} \in I \rangle \subseteq \kk[x_1, \ldots, x_\numvars].\]
-% \end{definition}
-% 
-% The following theorem, a generalization of \cite[Lemma 6.1]{budur+mustata+saito.roots_bs_polys_monomial}, is the main result of \Cref{monomial-reduction: A}. This appendix concludes with \Cref{reduce me to diagonal: L} that can be applied to reduce \Cref{general-mu-theorem: T} to the case where $\idealb$ is a monomial ideal of the form $\ideald = \ideal{x_1^{u_1}, \ldots, x_\numvars^{u_\numvars}}$ for $\vv{u} = (u_1,\ldots,u_\numvars) > \vv{0}$.
-% 
-% \begin{theorem}
-%    \label{mon-operation-modulo-p: T}
-%    Given an ideal $I \subseteq \QQ[x_1, \ldots, x_\numvars]$, there exists an integer $\beta = \beta(I)$ with the following property\textup:
-%    If $p > \beta$, then $\mon(I)_p = \mon(I_p)$.
-% \end{theorem}
-% 
-% The subscript ``$p$'' indicates reduction modulo $p$, which will be described in the first subsection. 
-% Our methods in proving \Cref{mon-operation-modulo-p: T} are adapted from those in \emph{loc.\,cit}.
-% Applications of the theorem related to critical exponents and $F$-thresholds 
-% appear in the final subsection of this appendix. 
-% 
-% \newpage
-% 
-% \subsection{Reduction to prime characteristic}
-% 
-% \newcommand{\maxi}{\mathfrak{m}}
-% 
-% We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We refer those unfamiliar with these statements to \cite[Chapter 3]{hernandez.thesis} for more details\daniel{Is it OK to just cite my thesis?}.
-% 
-% \begin{remark}[Generic freeness] \label{generic-freeness} Suppose that $A$ is a Noetherian domain,  and that $S$ is a finitely generated $A$-algebra.  Generic freeness states that if $M$ is a finitely generated $S$-module, then there exists  $0 \neq \ell \in A$ such that $A[\ell^{-1}] \otimes_A M$, the localization of $M$ at $\ell$, is free as a module over $A[\ell^{-1}]$.
-% \end{remark}
-% 
-% \begin{remark}[On maximal ideals]
-%    \label{maximal ideals: R}
-%    Suppose that $A$ is a domain of characteristic zero that is finitely generated as an algebra over $\ZZ$.  Then every maximal ideal of $A$ contains a positive prime integer, and all but finitely many such prime integers are contained in some maximal ideal of $A$.  Furthermore, the quotient of $A$ by any maximal ideal is a finite field. 
-% \end{remark}
-% 
-% \begin{remark}[Reduction to prime characteristic]
-%    \label{reduction: R}
-%    Let $R = \kk[x_1, \ldots, x_\numvars]$ be a polynomial ring over a field $\kk$ of characteristic zero.
-%    If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then we define $R_A$ to be the polynomial ring $R_A=A[x_1, \ldots, x_\numvars]$, and if $I$ is an ideal of $R$, then $I_A$ denotes any ideal of $R_A$ that extends to $I$ under the inclusion $R_A \hooklongrightarrow R$, provided such an ideal exists.  In this case, we call $I_A$ an $A$-model of $I$.
-%    Observe that once an ideal $I$ of $R$ is specified, then an $A$-model of $I$ exists at least whenever $A$ is the subalgebra of $\kk$ generated over $\ZZ$ by the finitely many coefficients in $\kk$ appearing in some finite ideal-generating set for $I$.
-% 
-%    Suppose that $I$ and $A$ are as above, and that $I_A$ exists.
-%    If $\maxi \in \mspec(A)$, then $I_A(\maxi)$ is the extension of $I_A$ to $R_{A}(\idealm)= (A/\maxi)[x_1, \ldots, x_\numvars]$ under the quotient map $R_A \longrightarrow R_A(\idealm)$.
-%    As noted in \Cref{maximal ideals: R}, the finite generation of $A$ over $\ZZ$ implies that $A/\maxi$ is a finite field, and for this reason, we may regard $I_A(\idealm)$ as a prime characteristic model of $I$.   Furthermore, as the point $\maxi \in \mspec(A)$ varies, we obtain models $I_A(\idealm)$ of $I$ over a finite field of characteristic $p>0$ for all but finitely many $p$.
-% \end{remark}
-% 
-% This process greatly simplifies in the important case that $\kk=\QQ$.
-% Indeed, every ideal $I$ of $R=\QQ[x_1, \ldots, x_\numvars]$ is generated by a set $G$ of polynomials with integer coefficients.
-% Given such a generating set, we may then take $A=\ZZ$, and let $I_A$ be the ideal generated by $G$ in $R_A=\ZZ[x_1, \ldots, x_\numvars]$.
-% If  $\maxi$ is the maximal ideal of $A=\ZZ$ generated by a prime integer $p$, then $I_A(\maxi)$ is the ideal of $R_A(\maxi) = \FF_p[x_1, \ldots, x_\numvars]$  generated by the image of $G$.
-% 
-% \daniel[inline]{Also explain why reducing a monomial ideal is also easy}
-% \pedro[inline]{Introduce subscript-$p$ notation}
-% 
-% In \Cref{noncontainment mod p: L,colon mod p: L} below, we adopt the notation from \Cref{reduction: R}
-% 
-% %\daniel[inline]{This may need to be generalized, depending on what we want to say about Bernstein-Sato polynomials}
-% %Though defined more generally, we describe the reduction $I_p$ modulo $p$ in a special case: 
-% %Given an ideal $I = \ideal{f_1, \ldots, f_n}$ of $\QQ[x_1, \ldots, x_\numvars]$, for $p$ greater than the denominator of each coefficient of $f_1, \ldots, f_n$, reduce the coefficients of the $f_i$ to obtain polynomials over $\ZZ/p\ZZ$; $I_p$ is the ideal of $(\ZZ/p\ZZ)[x_1, \ldots, x_\numvars]$ generated by these polynomials.
-% 
-% \begin{lemma}
-% \label{noncontainment mod p: L}
-% Consider a proper ideal $I$ of $R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ such that $I_A$ is defined, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $(A/\maxi) \otimes_A I_A \cong I_A(\maxi) \subsetneq R_A(\maxi)$ for every $\maxi \in \mathcal{U}$.
-% \end{lemma}
-% 
-% 
-% \begin{proof}
-%    Consider the exact sequence $0 \to I_A \to R_A \to R_A/I_A \to 0$ of finitely generated $R_A$-modules.
-%    This sequence remains exact when regarding its terms as $A$-modules, and as the localization $A[\ell^{-1}]$, where $0 \ne \ell \in A$, is flat over $A$, we have that
-%    \[
-%       0 \to A[\ell^{-1}] \otimes_A I_A \to A[\ell^{-1}] \otimes_A R_A \to A[\ell^{-1}] \otimes_A (R_A/I_A) \to 0
-%    \]
-%    is an exact sequence of $A[\ell^{-1}]$-modules.
-%    By generic freeness with $S=R_A$, we may assume that the last term is free over $A[\ell^{-1}]$ of rank $0 \leq r \leq \infty$.
-% 
-%    Therefore,  if $B$ is any $A[\ell^{-1}]$ algebra, then this freeness implies that tensoring this exact sequence with $B$ over $A[\ell^{-1}]$ yields a split exact sequence
-%    \[
-%       0 \to B \otimes_A I_A \to B \otimes_A R_A \to B \otimes_A (R_A/I_A) \to 0
-%    \]
-%    of $B$-modules whose last term is free rank $r$.
-%    As $R_A = A[x_1, \ldots, x_\numvars]=A[x]$, the middle term is isomorphic to $B[x_1, \ldots, x_\numvars]=B[x]$,  and the first non-trivial map identifies $B \otimes_A I_A$ with the extension of $I_A \subseteq R_A$ to $B[x]$.
-%    In other words, this split exact sequence is isomorphic to the exact sequence
-%    \[
-%       0 \to I_A  B[x] \to B[x] \to  B[x] / I_A B[x]  \to 0
-%    \]
-%    of $B$-modules whose last term is free of rank $r$.
-%    In particular, taking $B=\kk$ yields the exact sequence $0 \to I \to R \to R/I \to 0$, which tells us that $r \neq 0$.
-% 
-%    Next, let $\mathcal{U}$ denote the set of all points $\maxi \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.
-%    Note that $\mathcal{U}$ is an open dense (i.e., open and nonempty) subset of $\mspec(A)$.  Furthermore, if $\maxi \in \mathcal{U}$, then $A/\maxi$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\maxi$ above yields the exact sequence
-%    \[
-%       0 \to I_A(\maxi) = I_A R_A(\maxi) \to R_A(\maxi) \to R_A(\maxi)/ I_A(\maxi) \to 0
-%    \]
-%    which demonstrates that $I_A(\maxi) = I_A R_A(\maxi)  \cong (A/\maxi) \otimes_A I_A$, and also that $I_A(\maxi) \neq R_A(\maxi)$, as the third term above is free over $A/\maxi$ of rank $r \neq 0$.
-% \end{proof}
-% 
-% \begin{lemma}
-%    \label{colon mod p: L}
-%    Consider an ideal $I \subseteq R$ and an element $f \in R$.
-%    If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ such that $I_A$ is defined, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.
-%    Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
-%    \[
-%       (I :_R f)_A(\maxi) = (I_A(\maxi) :_{R_A(\maxi)} f_A(\maxi))
-%    \]
-%    for every $\maxi \in \mathcal{U}$, where $f_A(\maxi)$ denotes the reduction of $f \in R_A$ modulo $\maxi$, i.e., the image of $f$ under the quotient map $R_A \to R_A(\maxi)$.
-%  \end{lemma}
-% 
-%  \begin{proof}
-%     Consider the exact sequence
-%     \[
-%        0 \to (I_A :_{R_A} f) \to R_A \stackrel{f}{\longrightarrow} (f R_A + I_A)/I_A \to 0
-%     \]
-%     of finitely generated $R_A$-modules.
-%     We may then tensor this exact sequence of $A$-modules with the flat $A$-module $A[\ell^{-1}]$ over $A$ to obtain an exact sequence of $A[\ell^{-1}]$-modules, where $0 \neq \ell \in A$.  By generic freeness, we may assume that the last term in such a sequence is free over $A[\ell^{-1}]$, and so if we further tensor this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$, we obtain
-%     \[
-%        0 \to B \otimes_A (I_A :_{R_A} f) \to B \otimes_A R_A \stackrel{f}{\longrightarrow} B \otimes_A ((f R_A + I_A)/I_A) \to 0
-%     \]
-%     which is a split exact sequence of $B$-modules.
-% 
-%     As in the proof of \Cref{noncontainment mod p: L}, $B \otimes_A R_A \cong B[x_1, \ldots, x_\numvars]=B[x]$, and the above sequence is isomorphic to the exact sequence
-%     \[
-%        0 \to (I_A :_{R_A} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f R_A + I_A)B[x]/I_AB[x] \to 0.
-%     \]
-%     However, the last term above equals $(fB[x] + I_AB[x])/I_AB[x]$, which shows that $(I_A:_{R_A} f)B[x]= \ker ( B[x] \stackrel{f}{\longrightarrow} (fB[x] + I_AB[x])/I_AB[x])$.
-%     That is,
-%     \[ 
-%        (I_A:_{R_A} f)B[x] = (I_AB[x] :_{B[x]} f).
-%     \]
-% 
-%     When $B=\kk$, this tells us that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.
-%     Next, let $\mathcal{U}$ denote the set of all points $\maxi \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.
-%     If $\maxi \in \mathcal{U}$, then we may instead take $B=A/\maxi$ to see that
-%     \[
-%        (I_A:_{R_A} f)R_A(\maxi) = (I_A(\maxi) :_{R_A(\maxi)} f_A(\maxi)).
-%     \]
-%     This concludes our proof, as the left-most term above is just $(I :_R f)_A(\maxi)$.
-% \end{proof}
-% 
-% %\begin{proof}
-% %%First, we prove the statement when $I = \ideal{f}$ is principal. 
-% %Let $Q$ denote the cokernel of the inclusion of $(J:_A f)$ into $A$.  If $\ell$ is a nonzero integer and $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ as a $\ZZ$-module at $\ell$, then by Generic Freeness (\Cref{generic-freeness}), we can choose such an $\ell$ so that each of the $\ZZ[\ell^{-1}]$-modules  $B$, $(J:_A f)B$, $QB$, and $(A/J)B$, are free over $\ZZ[\ell^{-1}]$.
-% %
-% %The exact sequence of $A$-modules
-% % \[
-% %  0 \longrightarrow (J:_A f) \longrightarrow A \longrightarrow Q \to 0
-% % \]
-% % is also exact as $\ZZ$-modules, and localizing at $\ell$ yields an exact sequence of $\ZZ[\ell^{-1}]$-modules
-% % \[ 0  \longrightarrow (J:_A f)B \longrightarrow B \longrightarrow QB \longrightarrow 0 \]
-% %since each module above is free over $\ZZ[\ell^{-1}]$.
-% %Hence if $p \nmid \ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}]$, so by taking the tensor product of this exact sequence with $\ZZ/p\ZZ$ over $\ZZ[\ell^{-1}]$, we obtain an exact sequence of free $\ZZ/p\ZZ$-modules
-% %\begin{equation} \label{colon-injection: e} 0  \longrightarrow (J:_A f)A_p \longrightarrow A_p \to Q_p \longrightarrow 0 \end{equation} where $A_p = A \otimes_{\ZZ} \ZZ/p\ZZ$.  Clearly, this is also an exact sequence of $A_p$-modules.
-% %
-% %Observe that we also have the exact sequence of $A$-modules 
-% %\[ 0 \longrightarrow (J:_f A) \longrightarrow A \stackrel{f}{\longrightarrow} A/J 
-% %\]
-% %where the first map is again the natural injection.  
-% %By again localizing at $\ell$ and reducing modulo $p$, we obtain the sequence of $A_p$-modules 
-% %\begin{equation} \label{reduction-colon: e}
-% %0 \longrightarrow (J:_A f)A_p \longrightarrow A_p \stackrel{f_p}{\longrightarrow} \left( A/J \right)_p 
-% %\end{equation}
-% %where, by Generic Freeness, the map given by multiplication by $f_p$ is onto.  Recalling that $(J:_A f)A_p \longrightarrow A_p$ is injective by \Cref{colon-injection: e}, we know that \eqref{reduction-colon: e} is an exact sequence.  
-% %By again localizing and then reducing the exact sequence  
-% %$0 \to J \to A \to A/J\to 0$ modulo $p$, we find that $\left(A/J\right)_p \cong A_p/J_p$, so that we conclude from \eqref{reduction-colon: e} that $(J:_A: f) = (J A_p :_{A_p} \ideal{f}A_p)$. 
-% %\end{proof}
-% 
-% \subsection{Monomial ideals} \label{monomial-ideals: S}
-% 
-% By definition, both $\mon(I)_p$ and $\mon(I_p)$ are monomial ideals, and so they are equal if and only if they contain the same monomials.
-% However, if $h$ is a monomial contained in $I$, then it is clear that $h_p$ is a monomial contained in $I_p$ for all $p$.
-% Thus, to prove \Cref{mon-operation-modulo-p: T} it suffices to prove the following statement:
-% If $p \gg 0$ and $h$ is a monomial with $h \notin I$, then $h_p \notin I_p$.
-% 
-% Given any $h$ not contained in $I$, then \Cref{noncontainment mod p: L,colon mod p: L} tell us that $(I_p:h_p) = (I:h)_p \ne \FF_p[x_1,\ldots,x_\numvars]$, and hence $h_p \notin I_p$, for all sufficiently large primes $p$.
-% This argument establishes \Cref{{mon-operation-modulo-p: T}} in the case that $I$ contains all but finitely many monomials;  that is, in the case that $ \mon(I)$ is $\idealm$-primary.
-% 
-% %%%% Commented out paragraph seemed to refer to an older version of preliminary results.
-% % Given any $h$ not contained in $I$, then setting $J = I + \langle h \rangle$ in \Cref{noncontainment mod p: L} tells us that $h_p \notin I_p$ for all primes $p$ that are large relative to $h$.  This argument establishes \Cref{noncontainment mod p: L} in the case that $I$ contains all but finitely many monomials;  that is, in the case that $ \mon(I)$ is $\idealm$-primary.
-% 
-% If $\mon(I)$ is not $\idealm$-primary, then this argument breaks down.
-% In this case, our strategy will rely on the fact that, even though there may be infinitely many monomials not in $I$, there are still only finitely many ideals of the form $(I:x^{\vv{u}})$ with $x^{\vv{u}} \notin I$.
-% This is established in \Cref{monomial-noetherian-decomposition: L} below.
-% We begin our arguments by recalling a basic and useful fact about colon ideals.
-% 
-% \begin{lemma}
-%    \label{colon-product-stabilization: L}
-%    Suppose that $f,g_1, \ldots, g_s$ are elements of a ring $R$, and that $I$ is an ideal of $R$.
-%    If $\ell$ is a nonnegative integer such that $(I: f g_i^\ell) = (I: f g_i^k)$ for every index $1 \leq i \leq s$ and every integer $k \geq \ell$, then
-%    \[
-%       (I: f g_1^\ell \cdots g_s^\ell) = (I: f g_1^{k_1} \cdots g_s^{k_s})
-%    \]
-%    for all integers $k_1, \ldots, k_s \geq \ell$.
-% \end{lemma}
-% 
-% \begin{proof}
-% We induce on $k_1 + \cdots + k_s$.  The base case is when $k_1 = \cdots = k_s = \ell$, which is trivial, and the induction step, which is left to the reader, involves repeatedly applying the fact that $(I:fab) = ((I:fa):b)$ for all $a,b \in R$.
-% \end{proof}
-% 
-% \begin{lemma}
-% \label{monomial-noetherian-decomposition: L}
-% Given a proper ideal $I$ of $\kk[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
-% \begin{enumerate}
-% \item $x^{\vv{u}} \notin I$ if and only if $\vv{u} \in \mathbf{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
-% \item $(I:x^{\vv{v}}) = (I: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
-% \end{enumerate}
-% \end{lemma}
-% 
-% \begin{proof}  By definition, a monomial lies in $I$ if and only if it lies in $\mon(I)$.  However, $\mon(I)$ is the intersection of ideals of the form $\langle x_i^{b_i} : i \in \Omega \rangle$, where $\Omega$ is some nonempty subset of $\{ 1, \ldots, \numvars \}$, and each exponent $b_i$ is positive.   It follows that a monomial is not in $I$ if and only if it is not in one of these components of $\mon(I)$.  Given this, it suffices to establish the following.
-% 
-% \vspace{.2cm}
-% 
-% \noindent \emph{Claim.} Given positive integers  $b_1, \ldots, b_{s}$ with $1 \leq s \leq \numvars$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
-% \begin{enumerate}
-% \setcounter{enumi}{2}
-% \item \label{stab-1: e} $x^{\vv{u}} \notin \langle x_1^{b_1}, \ldots, x_{s}^{b_{s}} \rangle $ if and only if $\vv{u} \in \vv{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
-% \item \label{stab-2: e} $(I:x^{\vv{v}}) = (I: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
-% \end{enumerate}
-% 
-% \vspace{.15cm}
-% 
-% 
-% Toward the claim, let $\mathcal{A}$ be the finite set of all points $\vv{a} \in \NN^\numvars$ such that $0 \leq a_i < b_i$ for every $1 \leq i \leq s$ and $a_i = 0$ whenever $s < i \leq \numvars$.  If $s = \numvars$, then it is clear that we may take $\mathcal{V} = \mathcal{A}$ and $\mathcal{W}(\vv{v}) = \emptyset$ for every $\vv{v} \in \mathcal{V}$.
-% 
-% Now assume that $1 \leq s < \numvars$.
-% For every $\vv{a} \in \mathcal{A}$ and $s < i \leq \numvars$, the ideals $(I: x^{\vv{a}} x_i^k)$ are increasing in $k$.  Hence there exists an integer $\ell \geq 0$ such that
-% \begin{equation}
-% \label{colon-simple: e}
-% (I: x^{\vv{a}}x_i^\ell) = (I: x^{\vv{a}}x_i^k)
-% \end{equation}
-% for every point $\vv{a} \in \mathcal{A}$, every index $s < i \leq \numvars$, and every integer $k \geq \ell$.
-% 
-% 
-% Let $\mathcal{V}$ be the set consisting of all points of the form $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} t_i \canvec_i$ where $\vv{a} \in \mathcal{A}$, and each integer $t_i$ satisfies $0 \leq t_i \leq \ell$.  For every such $\vv{v}$, set $\mathcal{W}(\vv{v}) = \emptyset$ if some $t_i$ is not $\ell$, and set $\mathcal{W}(\vv{v}) = \{ \canvec_i : s < i \leq \numvars \}$ otherwise.
-% 
-% After unraveling these definitions, it is obvious that \eqref{stab-1: e} is satisfied.  Furthermore, the only case in which \eqref{stab-2: e} is nontrivial is when $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} \ell \canvec_i$ for some $\vv{a} \in \mathcal{A}$,  in which case we must prove that
-% %
-% \[( I : x^{\vv{a}} x_{s+1}^\ell \cdots x_\numvars^\ell ) =   ( I : x^{\vv{a}} x_{s+1}^{\ell+w_{s+1}} \cdots x_{\numvars}^{\ell+w_\numvars}) \]
-% for all nonnegative integers $w_{s+1}, \ldots, w_{\numvars}$.  However, this is an immediate consequence of \eqref{colon-simple: e} and \Cref{colon-product-stabilization: L}.
-% \end{proof}
-% 
-% With \Cref{colon-product-stabilization: L,monomial-noetherian-decomposition: L} in hand, we now prove \Cref{mon-operation-modulo-p: T}.
-% 
-% \begin{proof}[Proof of \Cref{mon-operation-modulo-p: T}] Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be as in \Cref{monomial-noetherian-decomposition: L}, so that \[ \langle 1 \rangle \neq (I : x^{\vv{v}}) = (I : x^{\vv{v}+\canvec_i}) \text{ for all } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in \NN \mathcal{W}(\vv{v}).\]
-% The finiteness of $\mathcal{V}$ and \Cref{noncontainment mod p: L,colon mod p: L} then imply that if $p \gg 0$, then
-% \[ \langle 1 \rangle \neq (I_p : x^{\vv{v}}) = (I_p : x^{\vv{v}+\canvec_i}) \text{ for all } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in \NN \mathcal{W}(\vv{v}).\]
-% Given this, \Cref{colon-product-stabilization: L} then implies that if $p \gg 0$, then
-% \begin{equation}
-% \label{canonical-set-reduces: e}
-% \langle 1 \rangle \neq (I_p : x^{\vv{v}}) = (I_p : x^{\vv{v}+\vv{w}}) \text{ for all } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in \NN \mathcal{W}(\vv{v}).
-% \end{equation}
-% 
-% For the remainder of the proof, suppose that $p \gg 0$ so that \eqref{canonical-set-reduces: e} holds.  Finally, consider a monomial $x^{\vv{u}} \notin I$.  As discussed immediately after the statement of \Cref{mon-operation-modulo-p: T}, it suffices to prove that $x^{\vv{u}} \notin I_p$.  However,  \Cref{monomial-noetherian-decomposition: L} the fact that $x^{\vv{u}} \notin I$ imply that $\vv{u} = \vv{v} + \vv{w}$ for some $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \mathcal{W}(\vv{v})$, and \eqref{canonical-set-reduces: e} then tells us that $(I_p:x^{\vv{u}}) \neq \langle 1 \rangle$, so that $x^{\vv{u}} \notin I_p$.
-% \end{proof}
-% 
-% 
-% \subsection{Some applications}
-% 
-% 
-% \begin{lemma} \label{frobenius-powers+mon-commute: L}
-% Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \geq 1$.
-% \end{lemma}
-% 
-% \begin{proof}  Set $\idealc = \mon(\idealb)$ and $q=p^e$.  Given that both ideals in question are monomial, it suffices to prove that a monomial lies in $\mon(\idealb^{[q]})$ if and only if it lies in $\idealc^{[q]}$.  However, as $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that
-% $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
-% 
-% Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Towards this, consider a monomial $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$ where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
-% 
-% As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{v}} \in \langle x^{\vv{w}q} \rangle \subseteq \idealc^{[q]}$.
-% \end{proof}
-% 
-% 
-% \begin{corollary}
-% \label{reduce-to-monomial-case: C}
-% Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ monomial and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^m$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
-% \end{corollary}
-% 
-% % \begin{corollary}
-% % \label{reduce-to-monomial-case: C}
-% % Suppose that $\operatorname{char} \kk = p > 0$, that $\ideala$ is a monomial ideal of $\kk[x_1, \ldots, x_\numvars]$, and that $\idealb$ is an ideal of this same ring with $\ideala \subseteq \sqrt{\idealb}$.  If $e$ is an arbitrary nonnegative integer and $\idealc = \mon(\idealb)$, then the following hold.
-% % \begin{enumerate}
-% % \item $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e)$ and $\ft{\ideala}{\idealb} = \ft{\ideala}{\idealc}$.
-% % \item $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ and $\crit(\ideala,\idealb) = \crit(\ideala,\idealc)$. 
-% % \end{enumerate}
-% % \end{corollary}
-% 
-% 
-% 
-% % \begin{proof}
-% %  Since $\ideala$ is a monomial ideal, the invariants relying on $\idealc$ are well-defined.  Moreover, 
-% % a (Frobenius) power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-% % $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
-% % \end{proof}
-% 
-% 
-% \begin{proof}
-% As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-% $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
-% 
-% Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
-% After possibly reordering the variables,  we may assume that there exists $1 \leq t \leq \numvars$ and positive integers $w_i$ for each $1 \leq i \leq t$ such that $I = \langle x_1^{w_1}, \ldots, x_t^{w_t} \rangle$.
-% 
-% Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.   
-% 
-% Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Towards this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so 
-% $\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
-% 
-% Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim. 
-% 
-% In summary, if $e$ is an arbitrary natural number, then
-% \begin{align*}
-%  \mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e) \\ 
-%  & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) 
-% \end{align*}
-% where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$. 
-%  \end{proof}
-% 
-% \daniel[inline]{I guess we are going to have to be more precise when talking about reduction mod $p$.  I will try to give it a shot soon}
-%  
-% \begin{corollary} \label{nu-mu-reduce-monomial: C}
-% Suppose that $\ideala \subseteq \sqrt{\idealb}$ are ideals of $\QQ[x_1, \ldots, x_\numvars]$, where $\ideala$ is a monomial ideal. If $\idealc = \mon(\idealb)$, then there exists $\beta = \beta(\ideala, \idealb) \in \ZZ$, and a diagonal ideal $\ideald$ associated to a positive point in $\NN^m$ with $\idealc \subseteq \ideald$, such that 
-% \[ \mu(\ideala_p, \idealb_p, p^e) =  \mu(\ideala_p, \idealc_p, p^e) =  \mu(\ideala_p, \ideald_p, p^e) \] 
-% for every $p > \beta$ and $e \geq 1$.  In particular, 
-% \[ \crit(\ideala_p, \idealb_p) =  \crit(\ideala_p, \idealc_p) =  \crit(\ideala_p, \ideald_p)\] whenever $p > \beta$.  
-% Finally, if $\idealb$ is monomial, then one may take $\beta(\ideala, \idealb) = 0$.
-% %\begin{enumerate}
-% %\item $\nu(\ideala_p, \idealb_p, p^e) = \nu(\ideala_p, \idealc_p, p^e)$ and $\ft{\ideala_p}{\idealb_p} = \ft{\ideala_p}{\idealc_p}$.
-% %\item $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ and $\crit(\ideala_p,\idealb_p) = \crit(\ideala_p,\idealc_p)$. 
-% %\end{enumerate}
-% \end{corollary}
-% 
-% 
-% \begin{proof}
-% Observe that since $\ideala \subseteq \sqrt{\idealb}$, for every monomial $\mu \in \ideala$, there exists a positive integer $k$ for which $\mu^k \in \idealb$, which happens if and only if the monomial $\mu^k$ is in $\idealc$.  Hence $\ideala \subseteq \sqrt{\idealc}$.
-% Therefore, there exists $\alpha = \alpha(\ideala, \idealb)$ such that 
-% $\sqrt{\idealb_p} = (\sqrt{\idealb})_p$, $\sqrt{\idealc_p} = (\sqrt{\idealc})_p$, and 
-%  $\ideala_p \subseteq \sqrt{\idealc_p} \subseteq 
-% \sqrt{\idealb_p}$ whenever $p > \alpha$
-% Then
-% $\nu(\ideala_p, \idealb_p, p^e), \mu(\ideala_p, \idealb_p, p^e)$ are defined for all $p > \alpha$ and $e \geq 1$. 
-% Now, by \Cref{mon-operation-modulo-p: T}, we can find $\gamma = \gamma(\idealb)$ for which $\idealc_p = \mon(\idealb_p)$.  Then for $p$ greater than $\beta = \max\{ \alpha, \gamma \}$, the statements hold by \Cref{reduce-to-monomial-case: C}.
-% \end{proof}
-% 
-% 
-% Finally, we are equipped to prove the following result, which is applied to reduce \Cref{general-mu-theorem: T} to the case that $\idealb$ is a diagonal ideal. We follow a very similar line of reasoning to that in \cite{budur+mustata+saito.roots_bs_polys_monomial}, where they first reduce to the case that $\idealb$ is monomial in their Appendix, and then reduce further to the case that it is diagonal in the prose after Remark 4.2.  
-% Our proof explicitly spells out all steps in each reduction, 
-% and also makes it clear that for the first reduction, we can simply replace $\idealb$ with $\mon(\idealb)$.
-% 
-% % \begin{lemma} \label{reduce me to diagonal: L}
-% %  Given a monomial ideal $\ideala$ of $\QQ[x_1,\ldots, x_\numvars]$, 
-% % then for every ideal $\idealb$ containing $\ideala$, there exists a 
-% % positive vector $\vv{u} \in \NN^\numvars$ and a positive integer $\ell = \beta(\ideala, \idealb)$ such that for all $p \geq \beta$ and $e \geq 1$, 
-% % \[
-% %  \mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \ideald_p, p^e)
-% % \]
-% % where $\ideald$ is the diagonal ideal with respect to $\vv{u}$.  
-% % \end{lemma}
-% % 
-% % \begin{proof}
-% % The monomial ideal $\idealc = \mon(\idealb)$ can be written as the intersection of finitely many ideals of the form $I = \langle x_i^{w_i} \mid w_i \geq 1 \rangle$, for some combinatorially-determined $\vv{w} \in \NN^\numvars$ (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).   
-% % As a consequence, $\idealc_p$ is the intersection of the reductions of these ideals modulo $p$. 
-% % Thus, $\ideala_p^{[N]}$ is contained in $\idealc_p^{[p^e]}$ if and only if it is contained in all  $(I_p)^{[p^e]}$, so $\mu(\ideala_p, \idealc_p, p^e)$ is the maximum among the  $\mu(\ideala_p, I_p, p^e)$.
-% % Then by \Cref{nu-mu-reduce-monomial: C}, there exists $\beta= \beta(\ideala, \idealb)$ for which $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, I_p, p^e)$ for all $p > \beta$ and $e \geq 1$.
-% % 
-% % 
-% % 
-% % If $A$ is an $\numvars \times n$ monomial matrix associated to $\ideala$, let $\vv{r}_i$ denotes its $i$-th row, let $\widetilde{A}$ be the $t \times n$ matrix with $i$-th row $\vv{r}_i$.
-% % If some column of $\widetilde{A}$ were zero, then some monomial of $\ideala$ would have no $x_i$ in its support, for $1 \leq i \leq t$.  However, this is not possible since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$. Hence $\widetilde{A}$ is monomial, so that for all $e \geq 1$, $\feas P(\widetilde{A}, \vv{w}, p^e)$ is bounded.  
-% % Therefore, there exists a positive integer $M$ such that, for all $1 \leq i \leq t$, we have that $\vv{r}_i \cdot \vv{h} < M$ for every $\vv{h} \in \feas\LP(\widetilde{A}, \vv{w})$. 
-% % 
-% % Let $\vv{u} \in \NN^n$ be the vector whose $i$-coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq n$.
-% % Given $e \geq 1$, notice that the program $\IP_p(A, \vv{u}, p^e)$ has at least as many constraints as $\IP_p(\widetilde{A}, \vv{w},p^e)$, so
-% % $\feas \IP_p(A, \vv{u}, p^e) \subseteq \IP_p(\widetilde{A}, \vv{w}, p^e)$.
-% % On the other hand, if $\vv{k} \in \feas \IP_p(\widetilde{A}, \vv{w},p^e)$, then 
-% % $\vv{k}/p^e \in \feas\LP(\widetilde{A},\vv{w})$ and so
-% % $\vv{r}_i \cdot (\vv{k}/p^e) \leq w_i$ for $1 \leq i \leq t$.  
-% % Moreover,  for all $t < i \leq n$, 
-% % $\vv{r}_i \cdot (\vv{k}/p^e) < M$, so that $\vv{r}_i \cdot \vv{k} < M p^e$ as well.
-% % Since $\vv{k} \geq \vv{0}$, and arithmetic constraint is also satisfied, we conclude that the feasible set of $\IP_p(\widetilde{A}, \vv{w}, p^e)$ sits inside that of $\IP_p(\widetilde{A}, \vv{w}, p^e)$, so they must coincide. 
-% % Hence 
-% % \[
-% %  \val\IP_p(\widetilde{A}, \vv{w}, p^e) = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
-% % \]
-% % where $\ideald$ is the diagonal ideal associated to $\vv{u} \in \NN^\numvars$. 
-% % \end{proof}
-% 
-% % 
-% % 
-% % \begin{proof}[Proof of \Cref{general-mu-theorem: T}]
-% % It suffices to show that there exist $\beta = \beta(\ideala,\idealb)$ and $t \geq 1$  for which the following holds: 
-% % If $p > \beta$, then for all $e\geq1$, 
-% % \[ \mu(\ideala_p, \idealb_p, p^e)= \mu(\widetilde{\ideala}_p, \ideald_p, p^e) \]  where $\widetilde{\ideala}$ and $\ideald = \ideal{x_1^{u_1}, \ldots, x_t^{u_t}}$, for some positive $\vv{u} \in \NN^t$,  are ideals of $\QQ[x_1, \ldots, x_t]$.
-% % Indeed, after possibly enlarging $\beta$,  \Cref{diagonal-mu-theorem: T}
-% % gives the desired conclusion.
-% % 
-% % Let $\idealc = \mon(\idealb)$. Then by \Cref{nu-mu-reduce-monomial: C}, there exists $\beta= \beta(\ideala, \idealb)$ for which $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ for every $e \geq 1$. 
-% % The monomial ideal $\idealc$ can be written as the intersection of finitely many ideals of the form $I_\vv{w} = \langle x_i^{w_i} | w_i \geq 1 \rangle$, for some combinatorially-determined $\vv{w} \in \NN^\numvars$ (e.g., see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  As a consequence, $\idealc_p$ is the intersection of the reductions of these ideals. 
-% % Thus, $\ideala_p^{[N]}$ is contained in $\idealc_p^{[p^e]}$ if and only if it is contained in all  $(I_{\vv{w}})_p^{[p^e]}$, so $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, \idealc_p, p^e)$ is the maximum among the  $\mu(\ideala_p, (I_\vv{w})_p, p^e)$.
-% % Hence, after possibly reordering the variables, we conclude that $\mu(\ideala_p, \idealb_p, p^e) = \mu(\ideala_p, I_p, p^e )$, where $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ for some $1 \leq t \leq \numvars$, and $w_1, \ldots, w_t \geq 1$.
-% % 
-% % Let $\widetilde{\ideala}$ be the ideal of $\QQ[x_1, \ldots, x_t]$ of elements of $\ideala$, after setting $x_i$ to $1$, for $t < i \leq \numvars$, and let $\ideald = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ in this ring.
-% % It is straightforward to check that $\ideala_p^{[N]} \subseteq I_p^{[p^e]}$ if and only if  $(\widetilde{\ideala})_p^{[N]} \subseteq \ideald_p^{[p^e]}$, so that $\mu(\ideala_p, \idealb_p, p^e) = \mu(\widetilde{\ideala}_p, \ideald_p, p^e)$.
-% % \end{proof}
-
-
-
 \newpage
 
 \emily[inline]{
@@ -4255,9 +3820,6 @@ using the bounds in this paper, and from this, we can find that the only element
 \item The answer to the last question is FALSE:  In our Frobenius examples paper, there is a critical point $1-(1/p^2) = p-1 : p-2 : \overline{p-1}$.
 \end{enumerate}
 }
-
-
-
 
 {\small
 \bibliographystyle{amsalpha}

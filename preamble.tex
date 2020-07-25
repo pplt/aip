@@ -7,13 +7,42 @@
 %%%%%%%%%%%%%%%%%% Assorted Packages %%%%%%%%%%%%%%%%%%
 \usepackage[colorlinks=true,pagebackref,hyperindex,citecolor=nicegreen,linkcolor=niceblue,urlcolor=nicered]{hyperref}
 \usepackage{amsmath,amsthm,amsfonts,amssymb}
-\usepackage{color}
-\usepackage{mathrsfs}
+%\usepackage{color}
+\usepackage{mathrsfs,stmaryrd,bm}
 \usepackage[mathcal]{euscript}
-\usepackage{mathtools}
-\usepackage{soul}
+\usepackage{mathtools,soul}
 \usepackage{microtype}
 \usepackage[shortlabels]{enumitem}
+\usepackage{booktabs}
+\usepackage{caption,subcaption}
+\captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
+\renewcommand\thesubfigure{(\sc \alph{subfigure})}
+\usepackage[
+ruled,
+%linesnumbered,
+vlined]{algorithm2e}
+
+%shortfall and deficit
+\newcommand{\short}{\operatorname{short}}
+\newcommand{\ushort}{\operatorname{ushort}}
+\newcommand{\deficit}{\operatorname{deficit}}
+\newcommand{\udeficit}{\operatorname{udeficit}}
+
+\newcommand{\denom}{d} 
+\newcommand{\fsr}{\mathcal{R}}
+
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\pp}{\mathsf{p}}
+\renewcommand{\tt}{\mathsf{t}}
+
+
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+
+\newcommand{\mspec}{\operatorname{mSpec}}
+\newcommand{\spec}{\operatorname{Spec}}
+
+
+
 %clever ref package
 %must come before following 3 sections
 \usepackage{cleveref}  %must be consistent with names in following 3 sections
@@ -156,10 +185,10 @@
 \renewcommand{\le}{\leqslant}
 
 %abbreviations
-\newcommand{\cf}{\emph{cf}.}
+\newcommand{\cf}{\emph{cf}.\ }
 \newcommand{\eg}{e.g., }
 \newcommand{\ie}{i.e., }
-\newcommand{\loccit}{\emph{loc.~cit.}}
+\newcommand{\loccit}{\emph{loc.~cit.\ }}
 
 %notes
 \usepackage[textwidth=3.3 cm,textsize=small,shadow

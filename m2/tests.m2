@@ -134,7 +134,7 @@ search2 := (r,m,n,M,maxTries) ->
      )
 ) 
 
-search2(3,4,3,20,10000)
+search2(5,4,3,15,10000)
 
 toString oo
 
