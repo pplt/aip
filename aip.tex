@@ -2618,7 +2618,7 @@ Consider the following subgraphs of the directed sprouting graph.  Their definit
    \]
    when $p$ is congruent to $5$ modulo a universal denominator for $A$.
    The matrix $B$ is obtained from $A$ by deleting the last row;  $C$ is obtained from $B$ by deleting the middle row; finally, $D$ and $E$ are the first and second rows of $C$, respectively.
-   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels repeat indefinitely.
+   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels shown in the picture repeat indefinitely.
 \end{example}
 
 \begin{definition}
@@ -2825,10 +2825,9 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
       \val\IP_p(A,\vv{u},p^e) = \frac{4}{17}p^e - \frac{20}{17}p^{e-3} + p^{e-3} - 1
        = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1.
     \]
-    Finally, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
+    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
     \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}\]
     for sufficiently large $p$ congruent to $11$ modulo a universal denominator for~$A$.
-    \pedro[inline]{This needs to be checked more carefully; same for next example.}
 \end{example}
 
 \begin{example}
@@ -2868,7 +2867,7 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
          \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac13 & \text{if $e$ is even}
       \end{cases}
    \]
-   Moreover, if $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
+   If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
    \[\crit(\ideala,\ideald) = \frac{65}{112} - \frac1{112 p^2} - \frac1{72 p^3} - \frac7{72 p^4} \]
    for any sufficiently large prime $p$ congruent to $5$ modulo a universal denominator for $A$.
 \end{example}
@@ -2953,7 +2952,8 @@ If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
    Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
    \pedro[inline]{
       I modified things, going with algebraic notation wherever possible.
-      Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}
+      Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}.
+      Maybe we should just define $\crit(A,\vv{u})$.
    }
 }
 \begin{equation}\label{eq: crit infinite case}
@@ -2979,13 +2979,12 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
    To make this more explicit, note that $d$ is a universal denominator for $A$, as shown in \Cref{ex: m-primary homogeneous case 2}, and hence a denominator for $\delta_\Q(A,\vv{u})$.
    Thus, we have
    \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q},\]
-   where $r$ is a positive integer.
+   where $r$ is a positive integer congruent to $\Q\deg\vv{u}$ modulo $d$.
    This explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
    \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
       \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?}
       \pedro[inline]{
          I think so, and gave it a shot above.
-         My plan is to explain some things in examples throughout the text: that $\denom$ is a universal denominator for $A$, and therefore a denominator for universal deficits associated to $A$. Maybe also that $\ft{A}{\vv{u}} = \deg(\vv{u})/\denom$ (and use that here to make things more explicit).  
       }
    }
    % \pedro[inline]{Maybe we could bring up this case more often throughout the paper; e.g., as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
@@ -3161,7 +3160,7 @@ As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is
    As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we can write
    \[x^{\vv{v}q} x^{\vv{w}} = \sum_i f_i g_i^q\]
    for some $f_i \in R$ and $g_i \in \idealb$.
-   Observing that the monomials $x^{\vv{k}}$ with  $\vv{k} <\vv{1}q$ form a basis for $R$ over $R^q$, for each $i$ let $a_i^q\in R^q$ be the $x^\vv{w}$-coordinate of $f_i$.
+   Observing that $x^{\vv{w}}$ is part of a basis for $R$ over $R^q$, for each $i$ let $a_i^q\in R^q$ be the $x^\vv{w}$-coordinate of $f_i$ in that basis.
    Comparing $x^\vv{w}$-coordinates in the above equation we see that
    \[x^{\vv{v}q} = \sum_i a_i^q g_i^q\]
    and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
@@ -3257,7 +3256,7 @@ We now briefly recall the process of reduction to prime characteristic, at least
 This process greatly simplifies in the special case that $\kk=\QQ$.  Indeed, every ideal $I$ of $R=\QQ[x_1, \ldots, x_\numvars]$ is generated by a set $G$ of polynomials with integer coefficients.  Given such a generating set, we may then take $A=\ZZ$, and let $I_A$ be the ideal generated by $G$ in $R_A=\ZZ[x_1, \ldots, x_\numvars]$.  If  $\maxi$ is the maximal ideal of $A=\ZZ$ generated by a prime integer $p$, then $I_A(\maxi)$ is the ideal of $R_A(\maxi) = \FF_p[x_1, \ldots, x_\numvars]$  generated by the image of $G$.
 
 It is also easy to talk about reduction to prime characteristic for monomial ideals:
-If $\kk$ is a field of characteristic zero, and $I$ is a monomial ideal in $R=\kk[x_1, \ldots, x_\numvars]$ generated by a collection of monomials $G$, then $I_A = GR_A = GA[x_1, \ldots, x_\numvars]$ is a \hl{canonical $A$-model} \pedro{Is this a definition?} for every finitely generated $\ZZ$-algebra $A \subseteq \kk$, and $I_A(\maxi) = GR_A(\maxi)$ for every $\maxi \in \mspec(A)$.  
+If $\kk$ is a field of characteristic zero, and $I$ is a monomial ideal in $R=\kk[x_1, \ldots, x_\numvars]$ generated by a collection of monomials $G$, then $I_A = GR_A = GA[x_1, \ldots, x_\numvars]$ is a canonical $A$-model for every finitely generated $\ZZ$-algebra $A \subseteq \kk$, and $I_A(\maxi) = GR_A(\maxi)$ for every $\maxi \in \mspec(A)$.  
 
 In this appendix, we will need to work with arbitrary $A$-models for an ideal $I \subseteq R$, even in the case when $I$ is monomial, and as described above, a canonical $A$-model exists.  As we see below, non-canonical models may have certain undesirable qualities, after reduction to low characteristic.
 
@@ -3672,6 +3671,10 @@ If all of this is legit, then we could replace $B$ with the fraction field, and 
 }
 
 \daniel[inline]{At this point, it feels pretty clear to me that \Cref{mon-operation-modulo-p: L} implies \Cref{mon-operation-modulo-p: T}  in exactly the same way that \Cref{colon mod p: L} implied \Cref{colon mod p: C}, so I think we don't need to include a proof.  What do you guys think?}  
+\pedro[inline]{
+   I agree.
+   We should just include a note like ``In the same way that \Cref{colon mod p: L} implies \Cref{colon mod p: C}, \Cref{mon-operation-modulo-p: L} implies the following result.''
+}
 
 \begin{theorem}[The $\mon$ operation commutes with almost every reduction to prime characteristic]
 \label{mon-operation-modulo-p: T}  
@@ -3681,14 +3684,30 @@ Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the po
 
 
 \begin{corollary}
-\label{invariants associated to a monomial ideal in large characteristic: C}
-Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of  $R=\kk[x_1, \ldots, x_\numvars]$, with $I$ monomial and $I \subseteq \sqrt{J}$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ of $I$ and $J_A$ of $J$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property:  If $\maxi \in \mathcal{U}$ and $p = \operatorname{char}(A/\maxi)$, then there exists a diagonal ideal $\ideald$\daniel{I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: C}.  The point is that it shouldn't really involve $p$, say, in any of its generators.  This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: C}, as opposed to simply citing it.  What do you guys think about this?} in $R_A(\maxi)$ associated to a positive point in $\NN^m$ such that \[\mu(I_A(\maxi), J_A(\maxi), p^e) = \mu(I_A(\maxi), L_A(\maxi), p^e)  = \mu(I_A(\maxi), \ideald, p^e)\] for every $e \geq 1$.  In particular, 
-\[ \crit(I_A(\maxi), J_A(\maxi)) = \crit(I_A(\maxi), L_A(\maxi))= \crit(I_A(\maxi), \ideald).\]
- \end{corollary}
+   \label{invariants associated to a monomial ideal in large characteristic: C}
+   Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of  $R=\kk[x_1, \ldots, x_\numvars]$, with $I$ monomial and $I \subseteq \sqrt{J}$.
+   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ of $I$ and $J_A$ of $J$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property\textup:
+   If $\maxi \in \mathcal{U}$ and $p = \operatorname{char}(A/\maxi)$, then there exists a diagonal ideal $\ideald$
+   \daniel{
+      I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: C}.
+      The point is that it shouldn't really involve $p$, say, in any of its generators.
+      This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: C}, as opposed to simply citing it.
+      What do you guys think about this?
+   }
+   in $R_A(\maxi)$ associated to a positive point in $\NN^m$ such that
+   \[
+      \mu(I_A(\maxi), J_A(\maxi), p^e) = \mu(I_A(\maxi), L_A(\maxi), p^e)  = \mu(I_A(\maxi), \ideald, p^e)
+   \]
+   for every $e \geq 1$.
+   In particular,
+   \[
+      \crit(I_A(\maxi), J_A(\maxi)) = \crit(I_A(\maxi), L_A(\maxi))= \crit(I_A(\maxi), \ideald).
+   \]
+\end{corollary}
 
 \begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusions of \Cref{containment in radical mod p: C} holds for $I$ and $J$, and such that the conclusions of \Cref{expansion of monomial mod most p is monomial: C,mon-operation-modulo-p: T} hold for $I$.  Fix a point $\maxi \in \mathcal{U}$.
 
- \Cref{containment in radical mod p: C,mon-operation-modulo-p: T} tell us that $I_A(\maxi)$ is a monomial ideal contained in the radical of $J_A(\maxi)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\maxi) = \mon(J_A(\maxi)$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
+\Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\maxi)$ is a monomial ideal contained in the radical of $J_A(\maxi)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\maxi) = \mon(J_A(\maxi))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
 \end{proof}
 
 
