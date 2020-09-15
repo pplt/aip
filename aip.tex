@@ -3066,7 +3066,6 @@ We start with a useful technical lemma.
 \[ 0 \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A A[x] \to A[\ell^{-1}] \otimes_A (A[x]/J) \to 0 \] 
 is an exact sequence of $A[\ell^{-1}]$-modules.
 By generic freeness over $A$, we may assume that the last term is free over $A[\ell^{-1}]$. 
-
 Thus, as it terminates on a free module, this sequence is a split exact sequence of $A[\ell^{-1}]$-modules, and as split exactness is preserved by base change, taking the tensor product of this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$ yields a split exact sequence  of $B$-modules
 %
 \[ 0 \to B \otimes_A J \to B \otimes_A A[x] \to B \otimes_A (A[x]/J) \to 0. \]  
@@ -3076,7 +3075,7 @@ The middle term above is isomorphic to $B[x_1, \ldots, x_\numvars]=B[x]$,  and t
 Next, consider the exact sequence $0 \to I \to J \to J/I \to 0$.  Once again, by generic freeness, after replacing $\ell$ with a nonzero $A$-multiple, we may also assume that 
 %
 $0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0$
-is a split exact sequence of $A[\ell^{-1}]$-modules that terminates on a free $A[\ell^{-1}]$ module of free rank $0 \leq \rho \leq \infty$.  Thus, if $B$ is an $A[\ell^{-1}]$-algebra, then
+is a split exact sequence of $A[\ell^{-1}]$-modules that terminates on a free $A[\ell^{-1}]$-module of free rank $0 \leq \rho \leq \infty$.  Thus, if $B$ is an $A[\ell^{-1}]$-algebra, then
 %
 \[ 0 \to B \otimes_A I \to B \otimes_A J \to B \otimes_A (J/I) \to 0\]
 %
@@ -3085,33 +3084,17 @@ is exact over $B$, and terminates on a free $B$-module of rank $\rho$.  However,
  of $B$-modules whose last term is free of rank $\rho$. 
 \end{proof}
 
-\daniel[inline]{FYI:  Another corollary (that we no longer use) is commented out here.}
-%\begin{corollary}
-%\label{noncontainment mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ such that $I_A$ is defined, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $(A/\idealm) \otimes_A I_A \cong I_A(\idealm)$ for every $\idealm \in \mathcal{U}$.  Furthermore, $I$ is a proper ideal of $R$ if and only if $I_A(\idealm)$ is a proper of $R_A(\idealm)$ for every $\idealm \in \mathcal{U}$.
-%\end{corollary}
-%
-%
-%\begin{proof}   Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{noncontainment mod p: C} relative to the ideal $J = I_A$ of $R_A = A[x_1, \ldots, x_\numvars]=A[x]$. %
-%
-%Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and non-empty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \Cref{comparing expansions:  L} tells us that
-%\[ (A/\idealm) \otimes_A  I_A \cong I_A \cdot (A/\idealm)[x] = I_A R_A(\idealm) = I_A(\idealm). \] 
-%
-%For the last statement, if $I=R$, then we may rewrite this in terms of $I_A$ as $I_A \kk[x] = \kk[x]$, which allows us to invoke \Cref{comparing expansions:  L} with $B_{\circ}=\kk$ to see that the expansion of $I_A$ to $R_A(\idealm) = (A/\idealm)[x]$ equals $R_A(\idealm)$ for every $\idealm \in \mathcal{U}$.  Similarly, if $I_A(\idealm) = R_A(\idealm)$ for some $\idealm \in \mathcal{U}$, then we may once again invoke \Cref{comparing expansions:  L}, this time with $B_{\circ} = A/\idealm$,  to see that $I=R$.
-%\end{proof}
-
 \begin{corollary}
 \label{containment in radical mod p: C}  
 Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R=\kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$ for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
 \begin{proof}
-   The assumption that $I \subseteq \sqrt{J}$ implies that $I^t \subseteq J$ for some natural number $t$.  Fix such a $t$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  L} relative to the ideals $J_A \subseteq I_A^t + J_A$ of $R_A$.    
+   Fix $t \in \NN$ such that $I^t \subseteq J$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  L} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
 
-As $R=\kk[x_1, \ldots, x_n] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, it follows that
+As $R=\kk[x_1, \ldots, x_n] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
 %
-\[ I_A^t \kk[x] = (I_A \kk[x])^t = I^t \subseteq J = J_A \kk[x] \] 
-%
-which is equivalent to $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  L} to see that
+which is equivalent to the equality of ideals $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  L} to see that
 %
 \begin{equation}
 \label{step in radical containment: e}
@@ -3124,7 +3107,7 @@ Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ suc
 %
 \[ J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)  \] 
 %
-which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$, and hence $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$.
+which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$, and hence, that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$.
 \end{proof}
 
 \begin{corollary}
@@ -3132,15 +3115,15 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$, and hence $I_A(\idea
 Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm)$ is a monomial ideal for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
-\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\idealm$ agree for most $\idealm$}
+%\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\idealm$ agree for most $\idealm$}
 \begin{proof}
    Let $G$ be a collection of monomials such that $I=G\kk[x]$, and set $L = I_A + G R_A$, an ideal of $R_A=A[x_1, \ldots, x_\numvars] = A[x]$.
    Suppose that $0 \neq \ell \in A$ is such that the conclusions of \Cref{comparing expansions:  L} hold for the containment of ideals $I_A \subseteq L$ and $GR_A \subseteq L$.  By definition,  $I_A \kk[x] = I_A R = I$ and $(GR_A)\kk[x] = G \kk[x] = I$, and so $L\kk[x] = I$ as well.
-   In this case, \Cref{comparing expansions:  L} implies that if $B$ is an arbitrary $A[\ell^{-1}]$-algebra, then
-   \[
-      I_A B[x] = L_A B[x] = G B[x].
+   In this case, \Cref{comparing expansions:  L} implies that
+      \[
+      I_A B[x] = L_A B[x] = G B[x]
    \]
-   Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = G R_A(\idealm)$. 
+ for every $A[\ell^{-1}]$-algebra $B$.    Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = G R_A(\idealm)$.
 \end{proof}
 
 \begin{lemma}
@@ -3176,8 +3159,8 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial 
     \end{align*}
 \end{proof}
 
-\begin{corollary}[The formation of colon ideals commutes with almost every reduction to prime characteristic]
-\label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$, and an element $f \in R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that 
+\begin{corollary}[The formation of colon ideals commutes with most reductions to prime characteristic]
+\label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$, and an element $f \in R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
 \[ ((I :_R f))_A(\idealm) \coloneqq (I_A :_{R_A} f) R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
 for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the reduction of $f \in R_A$ modulo $\idealm$, \ie the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
  \end{corollary}
@@ -3188,285 +3171,237 @@ Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: 
 which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
 \end{proof}
 
-%\begin{proof}
-%%First, we prove the statement when $I = \ideal{f}$ is principal. 
-%Let $Q$ denote the cokernel of the inclusion of $(J:_A f)$ into $A$.  If $\ell$ is a nonzero integer and $B = \ZZ[\ell^{-1}] \otimes_{\ZZ} A$ is the localization of $A$ as a $\ZZ$-module at $\ell$, then by Generic Freeness (\Cref{generic-freeness}), we can choose such an $\ell$ so that each of the $\ZZ[\ell^{-1}]$-modules  $B$, $(J:_A f)B$, $QB$, and $(A/J)B$, are free over $\ZZ[\ell^{-1}]$.
-%
-%The exact sequence of $A$-modules
-% \[
-%  0 \longrightarrow (J:_A f) \longrightarrow A \longrightarrow Q \to 0
-% \]
-% is also exact as $\ZZ$-modules, and localizing at $\ell$ yields an exact sequence of $\ZZ[\ell^{-1}]$-modules
-% \[ 0  \longrightarrow (J:_A f)B \longrightarrow B \longrightarrow QB \longrightarrow 0 \]
-%since each module above is free over $\ZZ[\ell^{-1}]$.
-%Hence if $p \nmid \ell$, then $\ZZ/p\ZZ$ is an algebra over $\ZZ[\ell^{-1}]$, so by taking the tensor product of this exact sequence with $\ZZ/p\ZZ$ over $\ZZ[\ell^{-1}]$, we obtain an exact sequence of free $\ZZ/p\ZZ$-modules
-%\begin{equation} \label{colon-injection: e} 0  \longrightarrow (J:_A f)A_p \longrightarrow A_p \to Q_p \longrightarrow 0 \end{equation} where $A_p = A \otimes_{\ZZ} \ZZ/p\ZZ$.  Clearly, this is also an exact sequence of $A_p$-modules.
-%
-%Observe that we also have the exact sequence of $A$-modules 
-%\[ 0 \longrightarrow (J:_f A) \longrightarrow A \stackrel{f}{\longrightarrow} A/J 
-%\]
-%where the first map is again the natural injection.  
-%By again localizing at $\ell$ and reducing modulo $p$, we obtain the sequence of $A_p$-modules 
-%\begin{equation} \label{reduction-colon: e}
-%0 \longrightarrow (J:_A f)A_p \longrightarrow A_p \stackrel{f_p}{\longrightarrow} \left( A/J \right)_p 
-%\end{equation}
-%where, by Generic Freeness, the map given by multiplication by $f_p$ is onto.  Recalling that $(J:_A f)A_p \longrightarrow A_p$ is injective by \Cref{colon-injection: e}, we know that \eqref{reduction-colon: e} is an exact sequence.  
-%By again localizing and then reducing the exact sequence  
-%$0 \to J \to A \to A/J\to 0$ modulo $p$, we find that $\left(A/J\right)_p \cong A_p/J_p$, so that we conclude from \eqref{reduction-colon: e} that $(J:_A: f) = (J A_p :_{A_p} \ideal{f}A_p)$. 
-%\end{proof}
-
-
-%\begin{lemma}
-%\label{colon-product-stabilization: L}
-%  Suppose that $f,g_1, \ldots, g_s$ are elements of a ring $T$, and that $I$ is an ideal of $R$.
-%If $\ell$ is a nonnegative integer such that $(I: f g_i^\ell) = (I: f g_i^k)$ for every index $1 \leq i \leq s$ and every integer $k \geq \ell$, then \[ (I: f g_1^\ell \cdots g_s^\ell) = (I: f g_1^{k_1} \cdots g_s^{k_s})\] for all integers $k_1, \cdots, k_s \geq \ell$.
-%\end{lemma}
-%
-%\begin{proof}
-%We induce on $k_1 + \cdots + k_s$.  The base case is when $k_1 = \cdots = k_s = \ell$, which is trivial, and the induction step, which is left to the reader, involves repeatedly applying the fact that $(I:fab) = ((I:fa):b)$ for all $a,b \in R$.
-%\end{proof}
-%
-%\begin{lemma}
-%\label{monomial-noetherian-decomposition: L}
-%Given an ideal $L$ of $T[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
-%\begin{enumerate}
-%\item $x^{\vv{u}} \notin L$ if and only if $\vv{u} \in \mathbf{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
-%\item $(L:x^{\vv{v}}) = (L: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
-%\end{enumerate}
-%\end{lemma}
-%
-%\begin{proof}  Let $M$ denote the ideal of $T[x_1, \ldots, x_\numvars]$ generated by all monomials that lie in $L$, so that a monomial lies in $L$ if and only if it lies in $M$.\footnote{Though it isn't so relevant to this proof, observe that the absence of $T$-multiples in its definition implies that $M$ need not agree with $\mon(L)$ if $T$ is not a field.}  However, as with any monomial ideal, $M$ is the intersection of ideals of the form $\langle x_i^{b_i} : i \in \Omega \rangle$, where $\Omega$ is some nonempty subset of $\{ 1, \ldots, \numvars \}$, and each exponent $b_i$ is positive.   Thus, a monomial is not in $L$ if and only if it is not in one of these components of $M$, and so it suffices to establish the following.
-%
-%\vspace{.2cm}
-%
-%\noindent \emph{Claim.} Given positive integers  $b_1, \ldots, b_{s}$ with $1 \leq s \leq \numvars$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$,  satisfying the following conditions.
-%\begin{enumerate}
-%\setcounter{enumi}{2}
-%\item \label{stab-1: e} $x^{\vv{u}} \notin \langle x_1^{b_1}, \ldots, x_{s}^{b_{s}} \rangle $ if and only if $\vv{u} \in \vv{v} + \NN \mathcal{W}(\vv{v})$ for some $\vv{v} \in \mathcal{V}$.
-%\item \label{stab-2: e} $(L:x^{\vv{v}}) = (L: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN  \mathcal{W}(\vv{v})$.
-%\end{enumerate}
-%
-%\vspace{.15cm}
-%
-%
-%Toward the claim, let $\mathcal{A}$ be the finite set of all points $\vv{a} \in \NN^\numvars$ such that $0 \leq a_i < b_i$ for every $1 \leq i \leq s$ and $a_i = 0$ whenever $s < i \leq \numvars$.  Lf $s = \numvars$, then it is clear that we may take $\mathcal{V} = \mathcal{A}$ and $\mathcal{W}(\vv{v}) = \emptyset$ for every $\vv{v} \in \mathcal{V}$.
-%
-%Now assume that $1 \leq s < \numvars$.
-%For every $\vv{a} \in \mathcal{A}$ and $s < i \leq \numvars$, the ideals $(L: x^{\vv{a}} x_i^k)$ are increasing in $k$.  Hence there exists an integer $\ell \geq 0$ such that
-%\begin{equation}
-%\label{colon-simple: e}
-%(L: x^{\vv{a}}x_i^\ell) = (L: x^{\vv{a}}x_i^k)
-%\end{equation}
-%for every point $\vv{a} \in \mathcal{A}$, every index $s < i \leq \numvars$, and every integer $k \geq \ell$.
-%
-%
-%Let $\mathcal{V}$ be the set consisting of all points of the form $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} t_i \canvec_i$ where $\vv{a} \in \mathcal{A}$, and each integer $t_i$ satisfies $0 \leq t_i \leq \ell$.  For every such $\vv{v}$, set $\mathcal{W}(\vv{v}) = \emptyset$ if some $t_i$ is not $\ell$, and set $\mathcal{W}(\vv{v}) = \{ \canvec_i : s < i \leq \numvars \}$ otherwise.
-%
-%After unraveling these definitions, it is obvious that \eqref{stab-1: e} is satisfied.  Furthermore, the only case in which \eqref{stab-2: e} is nontrivial is when $\vv{v} = \vv{a} + \sum_{s <i \leq \numvars} \ell \canvec_i$ for some $\vv{a} \in \mathcal{A}$,  in which case we must prove that
-%%
-%\[( L : x^{\vv{a}} x_{s+1}^\ell \cdots x_\numvars^\ell ) =   ( L : x^{\vv{a}} x_{s+1}^{\ell+w_{s+1}} \cdots x_{\numvars}^{\ell+w_\numvars}) \]
-%for all nonnegative integers $w_{s+1}, \ldots, w_{\numvars}$.  However, this is an immediate consequence of \eqref{colon-simple: e} and \Cref{colon-product-stabilization: L}.
-%\end{proof}
-%
-%With \Cref{colon-product-stabilization: L,monomial-noetherian-decomposition: L} in hand, we now prove \Cref{mon-operation-modulo-p: T}.
-
-
-\Cref{monomial-noetherian-decomposition: L} below is an important technical tool in our proof of \Cref{mon-operation-modulo-p: L,mon-operation-modulo-p: T}. Before stating \Cref{monomial-noetherian-decomposition: L}, we recall a basic property of colon ideals that we invoke repeatedly throughout the rest of this section:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
+In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \ell \in A$ in the statement of \Cref{colon mod p: L} can be chosen independently of $f$, as long as we require $f$ to be a monomial.   In the proof of this extension, we will invoke a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
 \begin{equation}
 \label{iterated colon: e}
  (I: ab) = ((I: a): b) \text{ for every } a,b \in R.
 \end{equation}
 
-\begin{lemma}
-   \label{monomial-noetherian-decomposition: L}
-   Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that 
-   \[ \NN^m = \bigcup_{\vv{v}\in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
-   and such that $(J:x^{\vv{v}}) = (J: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN \mathcal{W}(\vv{v})$.
-\end{lemma}
+%%% ORIGINAL VERSION
+% \begin{lemma}
+%    \label{monomial-noetherian-decomposition: L}
+%    Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that 
+%    \[ \NN^m = \bigcup_{\vv{v}\in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
+%    and such that $(J:x^{\vv{v}}) = (J: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN \mathcal{W}(\vv{v})$.
+% \end{lemma}
 
-   \daniel[inline]{Can we easily modify the proof to get $\sqcup$ instead of $\cup$?  We don't need it for our argument, and neither did BMS, but they did claim it was a disjoint union.}
-   \pedro[inline]{
-      It's not bad (but probably not worth the trouble, since we don't need it):\\[2mm]
-      Suppose $\vv{t} = \vv{v} +\vv{w}$, with $\vv{v}\in\mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.
-      If $t_i > u_i$, then $w_i \ne 0$, and therefore $v_i = u_i$.
-      If $t_i < u_i$, then $v_i < u_i$, so $w_i = 0$ and $v_i = t_i$.
-      If $t_i = u_i$, then again $w_i = 0$ (since $w_i>0$ and $v_i<u_i$ cannot happen) and $v_i = t_i$.
-      IOW, $\vv{v}$ is uniquely determined by $\vv{t}$, and therefore so is $\vv{w}$.
-   }
-   \emily[inline]{I don't think we need to include it. }
+%    \daniel[inline]{Can we easily modify the proof to get $\sqcup$ instead of $\cup$?  We don't need it for our argument, and neither did BMS, but they did claim it was a disjoint union.}
+%    \pedro[inline]{
+%       It's not bad (but probably not worth the trouble, since we don't need it):\\[2mm]
+%       Suppose $\vv{t} = \vv{v} +\vv{w}$, with $\vv{v}\in\mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.
+%       If $t_i > u_i$, then $w_i \ne 0$, and therefore $v_i = u_i$.
+%       If $t_i < u_i$, then $v_i < u_i$, so $w_i = 0$ and $v_i = t_i$.
+%       If $t_i = u_i$, then again $w_i = 0$ (since $w_i>0$ and $v_i<u_i$ cannot happen) and $v_i = t_i$.
+%       IOW, $\vv{v}$ is uniquely determined by $\vv{t}$, and therefore so is $\vv{w}$.
+%    }
+%    \emily[inline]{I don't think we need to include it. }
 
-\begin{proof} %\daniel{Thanks for the proof, Emily!}
-   Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
-   For each $1 \leq i \leq \numvars$, \hl{let $u_i$ be the smallest nonnegative integer for which $(J : x_i^{u_i}) = (J : x_i^{u_i+1})$},
-\pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
-\emily{Yes, that's OK.}
-   which is well defined since the polynomial ring is Noetherian.
-   Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, \ie 
-   \begin{equation*}
-      (J : x_i^{u_i+\ell}) = (J : x_i^{u_i+\ell+1})
-   \end{equation*}
-   so all $(J : x_i^{u_i+\ell})$ coincide with $(J : x_i^{u_i})$.
-   Repeated uses of \eqref{iterated colon: e} then show that
-   \begin{equation}
-      \label{colon stabilization: e}
-      (J:x^{\vv{v} + \vv{w}}) = (J:x^\vv{v}) \text{ provided $v_i \ge u_i$ whenever $w_i \ne 0$.}
-   \end{equation}
-   Let $\mathcal{V}$ denote the set of all $\vv{v} \in \NN^\numvars$ for which $\vv{0} \leq \vv{v} \leq \vv{u} = (u_1,\ldots,u_\numvars)$.
-   If $\vv{v} < \vv{u}$, let $\mathcal{W}(\vv{v}) = \emptyset$, and otherwise, let $\mathcal{W}(\vv{v}) = \{\canvec_i \, : \, v_i = u_i \}$.
+% \begin{proof} %\daniel{Thanks for the proof, Emily!}
+%    Observe that if $\vv{u}, \vv{w} \in \NN^\numvars$, then $(J : x^{\vv{u}}) \subseteq (J : x^{\vv{u}+\vv{w}})$.
+%    For each $1 \leq i \leq \numvars$, \hl{let $u_i$ be the smallest nonnegative integer for which $(J : x_i^{u_i}) = (J : x_i^{u_i+1})$},
+% \pedro{Do we need to be this precise? Can't we just take a single $N\gg 0$ so that all chains $\{(J:x_i^n)\}_n$ are stable for $n\ge N$?}
+% \emily{Yes, that's OK.}
+%    which is well defined since the polynomial ring is Noetherian.
+%    Then for all integers $\ell \geq 0$, $((J : x_i^{u_i}) : x_i^{\ell} ) = ((J : x_i^{u_i+1}) : x_i^{\ell} )$, \ie 
+%    \begin{equation*}
+%       (J : x_i^{u_i+\ell}) = (J : x_i^{u_i+\ell+1})
+%    \end{equation*}
+%    so all $(J : x_i^{u_i+\ell})$ coincide with $(J : x_i^{u_i})$.
+%    Repeated uses of \eqref{iterated colon: e} then show that
+%    \begin{equation}
+%       \label{colon stabilization: e}
+%       (J:x^{\vv{v} + \vv{w}}) = (J:x^\vv{v}) \text{ provided $v_i \ge u_i$ whenever $w_i \ne 0$.}
+%    \end{equation}
+%    Let $\mathcal{V}$ denote the set of all $\vv{v} \in \NN^\numvars$ for which $\vv{0} \leq \vv{v} \leq \vv{u} = (u_1,\ldots,u_\numvars)$.
+%    If $\vv{v} < \vv{u}$, let $\mathcal{W}(\vv{v}) = \emptyset$, and otherwise, let $\mathcal{W}(\vv{v}) = \{\canvec_i \, : \, v_i = u_i \}$.
 
-   Given $\vv{t} \in \NN^\numvars$, if $\vv{t} \leq \vv{u}$, then $\vv{t} \in \mathcal{V}$, so $\vv{t}$ is in the union in the statement.
-   Otherwise, $t_i > u_i$ for some $1 \leq i \leq \numvars$.
-   In this case, $\vv{t} = \vv{v} + \vv{w}$, where $v_i =  \min\{ t_i, u_i \}$ and $\vv{w}$ is the sum of all $(t_i-u_i)\canvec_i$ for which $t_i>u_i$.
-   Notice that $\vv{v} \in \mathcal{V}$, and if $t_i > u_i$, then $v_i = \min\{t_i, u_i\} = u_i$, so that $\canvec_i \in \mathcal{W}(\vv{v})$, and $\vv{t}$ is also in the union.
+%    Given $\vv{t} \in \NN^\numvars$, if $\vv{t} \leq \vv{u}$, then $\vv{t} \in \mathcal{V}$, so $\vv{t}$ is in the union in the statement.
+%    Otherwise, $t_i > u_i$ for some $1 \leq i \leq \numvars$.
+%    In this case, $\vv{t} = \vv{v} + \vv{w}$, where $v_i =  \min\{ t_i, u_i \}$ and $\vv{w}$ is the sum of all $(t_i-u_i)\canvec_i$ for which $t_i>u_i$.
+%    Notice that $\vv{v} \in \mathcal{V}$, and if $t_i > u_i$, then $v_i = \min\{t_i, u_i\} = u_i$, so that $\canvec_i \in \mathcal{W}(\vv{v})$, and $\vv{t}$ is also in the union.
 
-   Finally, if $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN\mathcal{W}(\vv{v})$, then $v_i = u_i$ whenever $w_i >0$, and thus $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$ by \eqref{colon stabilization: e}.
-   % Finally, take $\vv{v} \in \mathcal{V}$ for which $\NN\mathcal{W}(\vv{v})$ is not empty, and renumber the variables so that $\mathcal{W}(\vv{v}) = \{ \canvec_1, \ldots, \canvec_s \}$ for some $1 \leq s \leq \numvars$, so that $v_i = w_i$ for $1 \leq i \leq s$.
-   % Given $\vv{u} \in \NN \mathcal{W}(\vv{v})$, $\vv{u} = u_1 \canvec_1 + \cdots + u_s \canvec_s$.
-   % Then
-   % \begin{align*}
-   %   (J : x^{\vv{v} + \vv{u}}) &= ((J : x^{(w_1 + u_1)\canvec_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
-   %                             &= ((J : x^{w_1 \canvec_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
-   %                             &= (J : x^{\vv{v} + \vv{u} - u_1 \canvec_1  } )
-   % \end{align*}
-   % and the first coordinate of $\vv{v} + \vv{u} - u_1 \canvec_1$ is $v_1$.
-   % We can continue by writing $(J : x^{\vv{v} + \vv{u} - u_1 \canvec_1  } )$ as
-   % \[
-   %    ((J : x^{(w_2 + u_2)\canvec_2}) : x^{\vv{v} + \vv{u} - u_1 \canvec_1 - (w_2+u_2) \canvec_2  } ) = (J : x^{\vv{v} + \vv{u} - u_1 \canvec_1 - u_2 \canvec_2 } )
-   % \]
-   % where the first and second coordinates of $\vv{v} + \vv{u} - u_1 \canvec_1 - u_2 \canvec_2$ are $v_1$ and $v_2$, respectively.
-   % Continuing in this manner, we can inductively conclude that $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$.
+%    Finally, if $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN\mathcal{W}(\vv{v})$, then $v_i = u_i$ whenever $w_i >0$, and thus $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$ by \eqref{colon stabilization: e}.
+%    % Finally, take $\vv{v} \in \mathcal{V}$ for which $\NN\mathcal{W}(\vv{v})$ is not empty, and renumber the variables so that $\mathcal{W}(\vv{v}) = \{ \canvec_1, \ldots, \canvec_s \}$ for some $1 \leq s \leq \numvars$, so that $v_i = w_i$ for $1 \leq i \leq s$.
+%    % Given $\vv{u} \in \NN \mathcal{W}(\vv{v})$, $\vv{u} = u_1 \canvec_1 + \cdots + u_s \canvec_s$.
+%    % Then
+%    % \begin{align*}
+%    %   (J : x^{\vv{v} + \vv{u}}) &= ((J : x^{(w_1 + u_1)\canvec_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
+%    %                             &= ((J : x^{w_1 \canvec_1}) : x^{\vv{v} + \vv{u} - (w_1 + u_1) \vv{e_1}} ) \\
+%    %                             &= (J : x^{\vv{v} + \vv{u} - u_1 \canvec_1  } )
+%    % \end{align*}
+%    % and the first coordinate of $\vv{v} + \vv{u} - u_1 \canvec_1$ is $v_1$.
+%    % We can continue by writing $(J : x^{\vv{v} + \vv{u} - u_1 \canvec_1  } )$ as
+%    % \[
+%    %    ((J : x^{(w_2 + u_2)\canvec_2}) : x^{\vv{v} + \vv{u} - u_1 \canvec_1 - (w_2+u_2) \canvec_2  } ) = (J : x^{\vv{v} + \vv{u} - u_1 \canvec_1 - u_2 \canvec_2 } )
+%    % \]
+%    % where the first and second coordinates of $\vv{v} + \vv{u} - u_1 \canvec_1 - u_2 \canvec_2$ are $v_1$ and $v_2$, respectively.
+%    % Continuing in this manner, we can inductively conclude that $(J : x^{\vv{v} + \vv{u}}) = (J : x^{\vv{v}})$.
+% \end{proof}
+
+% \begin{lemma}
+% \label{mon-operation-modulo-p: L}  
+% Suppose that $A$ is a Noetherian domain.  Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ with the following property:  If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
+% \[ \mon(J) B[x] = \mon(JB[x]).\]
+%  \end{lemma}
+
+%  \begin{proof}
+%     Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^m$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^m = \bigcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and
+%     \[
+%        (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\vv{w}}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in  \NN  \mathcal{W}(\vv{v}).
+%     \]
+%     In particular,
+%     \[
+%        (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\canvec_i}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in  \mathcal{W}(\vv{v}).
+%     \]
+%     Suppose that $0 \neq \ell \in A$ is such that the conclusion of \Cref{comparing expansions:  L} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+
+
+% Similarly, after further localizing (that is, replacing $\ell$ with a nonzero $A$-multiple), we may also assume that the conclusions of \Cref{colon mod p: L}   hold for each of the colon ideals $(J:_{A[x]} x^{\vv{v}})$ and $(J:_{A[x]} x^{\vv{v}+\canvec_i})$ for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in \mathcal{W}(\vv{v})$.  In particular, if $B$ is an $A[\ell^{-1}]$-algebra, then 
+% \begin{align*}  (J B[x] :_{B[x]} x^{\vv{v}}) & = (J :_{A[x]} x^{\vv{v}}) B[x] \\ & = (J :_{A[x]} x^{\vv{v}+\canvec_i}) B[x] =(J B[x]:_{B[x]} x^{\vv{v}+\canvec_i})
+% \end{align*}
+% for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in  \mathcal{W}(\vv{v})$.  Keeping in mind the basic properties of colon ideals recalled in \eqref{iterated colon: e}, the equality of the outermost colon ideals above implies the stronger equality $(J B[x] :_{B[x]} x^{\vv{v}}) = (J B[x]:_{B[x]} x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.  Putting everything together, we have that
+% \begin{equation}
+% \label{interesting expansion of colon ideals: e}
+% (J :_{A[x]} x^{\vv{v}}) B[x] = (J B[x] :_{B[x]} x^{\vv{v}}) =(J B[x]:_{B[x]} x^{\vv{v}+\vv{w}})
+% \end{equation}
+% for every $A[\ell^{-1}]$-algebra $B$, and for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.
+
+% We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.  With this, we are now finally prepared to prove that $\mon(J)B[x]=\mon(JB[x])$ for every $A[\ell^{-1]}$-algebra $B$ that also happens to be a field.  
+
+% Let $B$ be as above, and suppose that $x^{\vv{u}} \in \mon(J)$.  Then $a x^{\vv{u}} \in J$, and so $a x^{\vv{u}} \in JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which implies that $x^{\vv{u}} \in \mon(JB[x])$.   Notice that, as $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
+
+% Next, suppose $x^{\vv{u}} \in \mon(JB[x])$, so that there exists $0 \neq b \in B$ such that $bx^{\vv{u}} \in JB[x]$.  However, if we write $\vv{u}=\vv{v}+\vv{w}$ for some $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \mathcal{W}(\vv{v})$, then we may rewrite this containment as 
+% $bx^{\vv{v}+\vv{w}} = bx^{\vv{u}} \in JB[x]$, and so
+% \[ b \in ( J B[x] :_{B[x]} x^{\vv{v}+\vv{w}} ) = ( J B[x] :_{B[x]} x^{\vv{v}}) = ( J  :_{A[x]} x^{\vv{v}})B[x] \]
+% where the equality of colon ideals comes from \eqref{interesting expansion of colon ideals: e}.  
+
+% \daniel[inline]{This next part seems too good to be true.  Is it correct?}
+% The assumption that $B$ is a field now comes into play, as the above containment implies that $(J:_{A[x]} x^{\vv{v}}) B[x] = B[x]$.  However, our choice of $\ell$ then guarantees that this same equality must also hold after replacing $B$ with the fraction field $\mathbb{L}$ of $A$.  In this case, the equality $(J:_{A[x]} x^{\vv{v}}) \mathbb{L}[x] = \mathbb{L}[x]$ implies that $1$ may be written as an $\LL[x]$-linear combination of polynomials in $(J :_{A[x]} x^{\vv{v}})$, and after simultaneously clearing the denominators of every $\LL[x]$-coefficient in such an expression, it follows that there exists $0 \neq \alpha \in A$ with $\alpha \in (J:_{A[x]} x^{\vv{v}})$.    Thus, $\alpha x^{\vv{v}} \in J$, which implies that $x^{\vv{v}} \in \mon(J)$.   Therefore, in $B[x]$, we have that $x^{\vv{u}} = x^{\vv{v}+\vv{w}} \in x^{\vv{v}} B[x] \subseteq \mon(J) B[x]$.  We conclude that $\mon(JB[x]) \subseteq \mon(J)B[x]$, and so $\mon(JB[x]) = \mon(J)B[x]$.
+% \daniel[inline]{If this seems correct, maybe we could push things to rid of the hypothesis that $B$ is a field.  Does the multiplier $a$ that works to test membership in $\mon(J)$ also work to test membership in $\mon(JB)$ for any $A[\ell^{-1}]$-algebra $B$?  If so, then we can replace $b$ above with $a$.  Then, we have that $a \in (J :_{A[x]} x^{\vv{v}}) B[x]$, and after maybe augmenting $\ell$ earlier in the proof, maybe this says that
+% \[ ((J :_{A[x]} x^{\vv{v}}):_{A[x]} a)B[x] = B[x] \]
+% If all of this is legit, then we could replace $B$ with the fraction field, and as above, conclude that a nonzero multiple of $a$ lies in $(J:_{A[x]} x^{\vv{v}})$, and then conclude as above.  What do you guys think?  If this is correct, should we just add it?  Note that, for our application, it really makes no difference.} 
+% \end{proof}
+
+%% REPLACEMENT PROPOSED BY PEDRO
+% \pedro[inline]{
+%    Below is a possible replacement for the last two lemmas.
+%    It's somewhat shorter (but still understandable, I think).
+%    I chose to relieve the second lemma of some of the burden, and not to worry much about the formalism of the decomposition in \Cref{monomial-noetherian-decomposition: L}.
+% }
+
+% \begin{lemma}
+%    \label{uniform monomial containment: L}
+%    Suppose that $A$ is a Noetherian domain.
+%    Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
+%    If a monomial $x^\vv{u}$ lies in $JB_{\circ}[x]$ for some particular $A[\ell^{-1}]$-algebra $B_{\circ}$, then $x^\vv{u}$ lies in  $JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+% \end{lemma}
+
+% \begin{proof}
+%    We will show the existence of $\ell \in A\setminus\{0\}$ with the following properties:
+%    \begin{enumerate}[$(1)$,leftmargin=*]
+%       \item If $(J :_{A[x]} x^\vv{u})B_\circ[x] = B_\circ[x]$ for some monomial $x^\vv{u}$ and some $A[\ell^{-1}]$-algebra $B_\circ$, then $(J :_{A[x]} x^\vv{u})B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+%       \item $(J :_{A[x]} x^\vv{u})B[x] = (JB[x]:_{B[x]} x^\vv{u})$, for every monomial $x^\vv{u}$ and every $A[\ell^{-1}]$-algebra $B$.
+%    \end{enumerate}
+%    The result will then follow easily:
+%    If $x^\vv{u} \in JB_{\circ}[x]$, then $(J :_{A[x]} x^\vv{u})B_\circ[x] = (JB_\circ[x]:_{B_\circ[x]} x^\vv{u}) = B_\circ[x]$, and thus for every $A[\ell^{-1}]$-algebra $B$ we have $(JB[x]:_{B[x]} x^\vv{u}) = (J :_{A[x]} x^\vv{u})B[x] = B[x]$, whence $x^\vv{u}\in JB[x]$.
+%    \pedro{Maybe we can just say that the result follows easily from the claim, and leave it at that?}
+
+%    The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  L} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
+%    As $A[x]$ is Noetherian, we may choose $N\in \NN$ such that all the ascending chains $\{(J:_{A[x]}x_i^n)\}_{n\in \NN}$, with $i=1,\ldots,\numvars$, are stable for $n\ge N$.
+%    We claim that each colon ideal $(J:_{A[x]}x^\vv{u})$ is equal to $(J:_{A[x]}x^\vv{v})$ for some $\vv{v} \le N\vv{1}$, which establishes the desired finiteness.
+%    Indeed, if $\vv{v} = (v_1,\ldots,v_m)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
+
+%    Suppose $\ell$ satisfies (1).
+%    By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: L} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
+%    If $B$ is an $A[\ell^{-1}]$-algebra, then our choice of $\ell$ and $N$ show that, for each $i=1,\ldots,\numvars$,
+%    \begin{equation*}
+%      (JB[x]:_{B[x]} x_i^{N+1}) = (J:_{A[x]}x_i^{N+1})B[x]
+%                                = (J:_{A[x]}x_i^N)B[x]
+%                                =(JB[x]:_{B[x]} x_i^{N}).     
+%    \end{equation*}
+%    Repeated uses of \eqref{iterated colon: e} then show that all chains $\{(JB[x]:_{B[x]}x_i^n)\}_{n\in \NN}$ are stable for $n\ge N$.
+%    Now, for each monomial $x^\vv{u}$ we have $(JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})$ for $\vv{v}\le N\vv{1}$ constructed exactly as above, and
+%    \begin{equation*}
+%      (JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})
+%      = (J:_{A[x]} x^{\vv{v}})B[x]
+%      = (J:_{A[x]} x^{\vv{u}})B[x].
+%    \end{equation*}
+%    Thus, $\ell$ satisfies both (1) and (2), and the lemma follows.
+% \end{proof}
+
+% \begin{lemma}
+%    \label{mon operation vs extensions: L}
+%    Suppose that $A$ is a Noetherian domain.
+%    Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
+%    If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
+%    \[ \mon(J) B[x] = \mon(JB[x]).\]
+% \end{lemma}
+
+% \begin{proof}
+%    Choose $\ell \in A\setminus\{0\}$ such that the conclusion of \Cref{uniform monomial containment: L} holds.
+%    By \Cref{single multiplier: R}, there exists $a \in A\setminus\{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
+%    After replacing $\ell$ with $a \ell$, we may assume that $a$ is a unit in $A[\ell^{-1}]$.
+
+%    Let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field, and suppose that $x^{\vv{u}} \in \mon(J)$.
+%    Then $a x^{\vv{u}} \in J$, and so $a x^{\vv{u}} \in JB[x]$.
+%    As $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which implies that $x^{\vv{u}} \in \mon(JB[x])$.
+%    This shows that $\mon(J) B[x] \subseteq \mon(J B[x])$.
+
+%    Next, suppose $x^{\vv{u}} \in \mon(JB[x])$.
+%    As $B$ is a field, this just means that $x^{\vv{u}} \in JB[x]$.
+%    By \Cref{uniform monomial containment: L}, this containment remains valid after replacing $B$ with $A[\ell^{-1}]$.
+%    Writing $x^{\vv{u}}$ as an $A[\ell^{-1},x]$-linear combination of elements of $J$ and clearing denominators we see that $\ell^n x^\vv{u} \in J$ for some~$n$, so $x^{\vv{u}} \in \mon(J)B[x]$.
+%    Thus, $\mon(JB[x]) \subseteq \mon(J)B[x]$, concluding the proof.
+% \end{proof}
+
+% \pedro[inline]{
+%    Proposed substitution ends here.
+% }
+
+%% NEW VERSION BY DANIEL
+\begin{corollary}
+   \label{all monomial colons: C}
+   Suppose that $A$ is a Noetherian domain. Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ with the following property\textup:
+   If $B$ is any $A[\ell^{-1}]$-algebra, and $x^{\vv{u}} \in A[x]$ is an arbitrary monomial, then \[ (J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x]:_{B[x]} x^{\vv{u}}).\]
+\end{corollary}
+
+\begin{proof}
+   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^m \to \NN^m$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_m,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: L} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
+   \[ (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
+                               = (J:_{A[x]}x_i^{t+1})B[x]
+                               =(JB[x]:_{B[x]} x_i^{t+1}) \]
+   and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
+
+After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusions of \Cref{colon mod p: L} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
+%
+\[ (J:_{A[x]} x^{\vv{u}})B[x] = (J:_{A[x]} x^{\phi(\vv{u})})B[x] = (JB[x]:_{B[x]} x^{\phi(\vv{u})}) = (JB[x]:_{B[x]} x^{\vv{u}}). \qedhere\]
 \end{proof}
 
-\begin{lemma}
-\label{mon-operation-modulo-p: L}  
+\begin{theorem}
+\label{mon-operation-general-expansion: T}
 Suppose that $A$ is a Noetherian domain.  Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ with the following property:  If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
 \[ \mon(J) B[x] = \mon(JB[x]).\]
- \end{lemma}
+ \end{theorem}
 
- \begin{proof}
-    Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^m$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^m = \bigcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and
-    \[
-       (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\vv{w}}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in  \NN  \mathcal{W}(\vv{v}).
-    \]
-    In particular,
-    \[
-       (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\canvec_i}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in  \mathcal{W}(\vv{v}).
-    \]
-    Suppose that $0 \neq \ell \in A$ is such that the conclusion of \Cref{comparing expansions:  L} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
-
-
-Similarly, after further localizing (that is, replacing $\ell$ with a nonzero $A$-multiple), we may also assume that the conclusions of \Cref{colon mod p: L}   hold for each of the colon ideals $(J:_{A[x]} x^{\vv{v}})$ and $(J:_{A[x]} x^{\vv{v}+\canvec_i})$ for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in \mathcal{W}(\vv{v})$.  In particular, if $B$ is an $A[\ell^{-1}]$-algebra, then 
-\begin{align*}  (J B[x] :_{B[x]} x^{\vv{v}}) & = (J :_{A[x]} x^{\vv{v}}) B[x] \\ & = (J :_{A[x]} x^{\vv{v}+\canvec_i}) B[x] =(J B[x]:_{B[x]} x^{\vv{v}+\canvec_i})
-\end{align*}
-for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in  \mathcal{W}(\vv{v})$.  Keeping in mind the basic properties of colon ideals recalled in \eqref{iterated colon: e}, the equality of the outermost colon ideals above implies the stronger equality $(J B[x] :_{B[x]} x^{\vv{v}}) = (J B[x]:_{B[x]} x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.  Putting everything together, we have that
-\begin{equation}
-\label{interesting expansion of colon ideals: e}
-(J :_{A[x]} x^{\vv{v}}) B[x] = (J B[x] :_{B[x]} x^{\vv{v}}) =(J B[x]:_{B[x]} x^{\vv{v}+\vv{w}})
-\end{equation}
-for every $A[\ell^{-1}]$-algebra $B$, and for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.
-
-We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.  With this, we are now finally prepared to prove that $\mon(J)B[x]=\mon(JB[x])$ for every $A[\ell^{-1]}$-algebra $B$ that also happens to be a field.  
-
-Let $B$ be as above, and suppose that $x^{\vv{u}} \in \mon(J)$.  Then $a x^{\vv{u}} \in J$, and so $a x^{\vv{u}} \in JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which implies that $x^{\vv{u}} \in \mon(JB[x])$.   Notice that, as $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
-
-Next, suppose $x^{\vv{u}} \in \mon(JB[x])$, so that there exists $0 \neq b \in B$ such that $bx^{\vv{u}} \in JB[x]$.  However, if we write $\vv{u}=\vv{v}+\vv{w}$ for some $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \mathcal{W}(\vv{v})$, then we may rewrite this containment as 
-$bx^{\vv{v}+\vv{w}} = bx^{\vv{u}} \in JB[x]$, and so
-\[ b \in ( J B[x] :_{B[x]} x^{\vv{v}+\vv{w}} ) = ( J B[x] :_{B[x]} x^{\vv{v}}) = ( J  :_{A[x]} x^{\vv{v}})B[x] \]
-where the equality of colon ideals comes from \eqref{interesting expansion of colon ideals: e}.  
-
-\daniel[inline]{This next part seems too good to be true.  Is it correct?}
-The assumption that $B$ is a field now comes into play, as the above containment implies that $(J:_{A[x]} x^{\vv{v}}) B[x] = B[x]$.  However, our choice of $\ell$ then guarantees that this same equality must also hold after replacing $B$ with the fraction field $\mathbb{L}$ of $A$.  In this case, the equality $(J:_{A[x]} x^{\vv{v}}) \mathbb{L}[x] = \mathbb{L}[x]$ implies that $1$ may be written as an $\LL[x]$-linear combination of polynomials in $(J :_{A[x]} x^{\vv{v}})$, and after simultaneously clearing the denominators of every $\LL[x]$-coefficient in such an expression, it follows that there exists $0 \neq \alpha \in A$ with $\alpha \in (J:_{A[x]} x^{\vv{v}})$.    Thus, $\alpha x^{\vv{v}} \in J$, which implies that $x^{\vv{v}} \in \mon(J)$.   Therefore, in $B[x]$, we have that $x^{\vv{u}} = x^{\vv{v}+\vv{w}} \in x^{\vv{v}} B[x] \subseteq \mon(J) B[x]$.  We conclude that $\mon(JB[x]) \subseteq \mon(J)B[x]$, and so $\mon(JB[x]) = \mon(J)B[x]$.
-\daniel[inline]{If this seems correct, maybe we could push things to rid of the hypothesis that $B$ is a field.  Does the multiplier $a$ that works to test membership in $\mon(J)$ also work to test membership in $\mon(JB)$ for any $A[\ell^{-1}]$-algebra $B$?  If so, then we can replace $b$ above with $a$.  Then, we have that $a \in (J :_{A[x]} x^{\vv{v}}) B[x]$, and after maybe augmenting $\ell$ earlier in the proof, maybe this says that
-\[ ((J :_{A[x]} x^{\vv{v}}):_{A[x]} a)B[x] = B[x] \]
-If all of this is legit, then we could replace $B$ with the fraction field, and as above, conclude that a nonzero multiple of $a$ lies in $(J:_{A[x]} x^{\vv{v}})$, and then conclude as above.  What do you guys think?  If this is correct, should we just add it?  Note that, for our application, it really makes no difference.} 
-\end{proof}
-
-\pedro[inline]{
-   Below is a possible replacement for the last two lemmas.
-   It's somewhat shorter (but still understandable, I think).
-   I chose to relieve the second lemma of some of the burden, and not to worry much about the formalism of the decomposition in \Cref{monomial-noetherian-decomposition: L}.
-}
-
-\begin{lemma}
-   \label{uniform monomial containment: L}
-   Suppose that $A$ is a Noetherian domain.
-   Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
-   If a monomial $x^\vv{u}$ lies in $JB_{\circ}[x]$ for some particular $A[\ell^{-1}]$-algebra $B_{\circ}$, then $x^\vv{u}$ lies in  $JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
-\end{lemma}
 
 \begin{proof}
-   We will show the existence of $\ell \in A\setminus\{0\}$ with the following properties:
-   \begin{enumerate}[$(1)$,leftmargin=*]
-      \item If $(J :_{A[x]} x^\vv{u})B_\circ[x] = B_\circ[x]$ for some monomial $x^\vv{u}$ and some $A[\ell^{-1}]$-algebra $B_\circ$, then $(J :_{A[x]} x^\vv{u})B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
-      \item $(J :_{A[x]} x^\vv{u})B[x] = (JB[x]:_{B[x]} x^\vv{u})$, for every monomial $x^\vv{u}$ and every $A[\ell^{-1}]$-algebra $B$.
-   \end{enumerate}
-   The result will then follow easily:
-   If $x^\vv{u} \in JB_{\circ}[x]$, then $(J :_{A[x]} x^\vv{u})B_\circ[x] = (JB_\circ[x]:_{B_\circ[x]} x^\vv{u}) = B_\circ[x]$, and thus for every $A[\ell^{-1}]$-algebra $B$ we have $(JB[x]:_{B[x]} x^\vv{u}) = (J :_{A[x]} x^\vv{u})B[x] = B[x]$, whence $x^\vv{u}\in JB[x]$.
-   \pedro{Maybe we can just say that the result follows easily from the claim, and leave it at that?}
+Suppose that $0 \neq \ell \in A$ satisfies the conclusions of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  L} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.  
 
-   The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  L} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
-   As $A[x]$ is Noetherian, we may choose $N\in \NN$ such that all the ascending chains $\{(J:_{A[x]}x_i^n)\}_{n\in \NN}$, with $i=1,\ldots,\numvars$, are stable for $n\ge N$.
-   We claim that each colon ideal $(J:_{A[x]}x^\vv{u})$ is equal to $(J:_{A[x]}x^\vv{v})$ for some $\vv{v} \le N\vv{1}$, which establishes the desired finiteness.
-   Indeed, if $\vv{v} = (v_1,\ldots,v_m)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
 
-   Suppose $\ell$ satisfies (1).
-   By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: L} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
-   If $B$ is an $A[\ell^{-1}]$-algebra, then our choice of $\ell$ and $N$ show that, for each $i=1,\ldots,\numvars$,
-   \begin{equation*}
-     (JB[x]:_{B[x]} x_i^{N+1}) = (J:_{A[x]}x_i^{N+1})B[x]
-                               = (J:_{A[x]}x_i^N)B[x]
-                               =(JB[x]:_{B[x]} x_i^{N}).     
-   \end{equation*}
-   Repeated uses of \eqref{iterated colon: e} then show that all chains $\{(JB[x]:_{B[x]}x_i^n)\}_{n\in \NN}$ are stable for $n\ge N$.
-   Now, for each monomial $x^\vv{u}$ we have $(JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})$ for $\vv{v}\le N\vv{1}$ constructed exactly as above, and
-   \begin{equation*}
-     (JB[x]:_{B[x]}x^{\vv{u}})=(JB[x]:_{B[x]}x^{\vv{v}})
-     = (J:_{A[x]} x^{\vv{v}})B[x]
-     = (J:_{A[x]} x^{\vv{u}})B[x].
-   \end{equation*}
-   Thus, $\ell$ satisfies both (1) and (2), and the lemma follows.
+We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$. 
+
+For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.  If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
+
+Next, instead suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
+\Cref{comparing expansions:  L}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$. 
 \end{proof}
 
-\begin{lemma}
-   \label{mon operation vs extensions: L}
-   Suppose that $A$ is a Noetherian domain.
-   Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ with the following property\textup:
-   If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
-   \[ \mon(J) B[x] = \mon(JB[x]).\]
-\end{lemma}
+In the same way that \Cref{colon mod p: L} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
 
-\begin{proof}
-   Choose $\ell \in A\setminus\{0\}$ such that the conclusion of \Cref{uniform monomial containment: L} holds.
-   By \Cref{single multiplier: R}, there exists $a \in A\setminus\{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
-   After replacing $\ell$ with $a \ell$, we may assume that $a$ is a unit in $A[\ell^{-1}]$.
-
-   Let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field, and suppose that $x^{\vv{u}} \in \mon(J)$.
-   Then $a x^{\vv{u}} \in J$, and so $a x^{\vv{u}} \in JB[x]$.
-   As $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which implies that $x^{\vv{u}} \in \mon(JB[x])$.
-   This shows that $\mon(J) B[x] \subseteq \mon(J B[x])$.
-
-   Next, suppose $x^{\vv{u}} \in \mon(JB[x])$.
-   As $B$ is a field, this just means that $x^{\vv{u}} \in JB[x]$.
-   By \Cref{uniform monomial containment: L}, this containment remains valid after replacing $B$ with $A[\ell^{-1}]$.
-   Writing $x^{\vv{u}}$ as an $A[\ell^{-1},x]$-linear combination of elements of $J$ and clearing denominators we see that $\ell^n x^\vv{u} \in J$ for some~$n$, so $x^{\vv{u}} \in \mon(J)B[x]$.
-   Thus, $\mon(JB[x]) \subseteq \mon(J)B[x]$, concluding the proof.
-\end{proof}
-
-\pedro[inline]{
-   Proposed substitution ends here.
-}
-
-\daniel[inline]{At this point, it feels pretty clear to me that \Cref{mon-operation-modulo-p: L} implies \Cref{mon-operation-modulo-p: T}  in exactly the same way that \Cref{colon mod p: L} implied \Cref{colon mod p: C}, so I think we don't need to include a proof.  What do you guys think?}  
-\pedro[inline]{
-   I agree.
-   We should just include a note like ``In the same way that \Cref{colon mod p: L} implies \Cref{colon mod p: C}, \Cref{mon-operation-modulo-p: L} implies the following result.''
-}
-\emily[inline]{Agree as well.}
-
-\begin{theorem}[The $\mon$ operation commutes with almost every reduction to prime characteristic]
-\label{mon-operation-modulo-p: T}  
-Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that 
-\[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed \daniel{Remove QED if we include a proof.}
+\begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
+\label{mon-operation-modulo-p: T}
+Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
+\[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed 
 \end{theorem}
 
 
