@@ -274,7 +274,7 @@ To transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ as
 \[ \ideald = \langle x^{u_1}, \ldots, x^{u_{\numvars}} \rangle \subseteq \kk[x_1, \ldots, x_{\numvars}] \] is the diagonal ideal associated to $\vv{u}$.
 
 \subsection{Relations with integer and linear programs}
-We start by studying the integers $\nu(\ideala, \ideald, p^e)$ and rational numbers $\ft{\ideala}{\ideald}$; as touched on in \Cref{reduction to diagonal :R}, we will later be able to use our results in this restrictive context to obtain more general ones.
+We start by studying the integers $\nu(\ideala, \ideald, p^e)$ and rational numbers $\ft{\ideala}{\ideald}$; as touched on in \Cref{reduction to diagonal :R}, we will later be able to use the results established in this restrictive setting to obtain more general ones.
 First, recall that for each $q$ a power of $p$, the integer $\nu(\ideala, \ideald, q)$ is defined as
 \[\nu(\ideala,\ideald,q) = \max\big\{\ell \in \NN : \ideala^{\ell} \not\subseteq \ideald^{[q]}\big\}.\]
 
@@ -345,44 +345,51 @@ If $q$ is a power of $p$, then $\IP_p(A, \vv{u}, q)$ is the \emph{arithmetic int
 
 We define the terms \emph{feasible, optimal}, and \emph{value} relative to the arithmetic program $\IP_p(A, \vv{u}, q)$ in analogy with those for the integer program $\IP(A, \vv{u}, q)$.
 
-
 \begin{remark}[A characterization of the arithmetic constraint]
- \label{dickson: R}
-   Consider $n \in \NN$ and $\vv{n} \in \NN^n$.
-   In base $p$, we may uniquely express these quantities as $n= \sum_{e=0}^s n_e \, p^e$ and $\vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e$
-%\begin{equation*}
-%n= \sum_{e=0}^s n_e \, p^e \quad \text{and} \quad \vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e
-%\end{equation*}
-where $0\le n_e < p$ and $\vv{0}\le\vv{n}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $n_s$ and $\vv{n}_s$ are allowed to be zero.
-In any case, \cite{dickson.multinomial} then tells us that
-$\binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_s}{\vv{n}_s} \mod{p}$.
-%\[
-%    \binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_t}{\vv{n}_t} \mod{p}.
-%\]
+   \label{dickson: R}
+   \pedro{
+      I changed the notation here, as $n$ appeared with multiple meanings.
+   }
+   Consider $\ell \in \NN$ and $\vv{k} \in \NN^n$.
+   In base $p$, we express these quantities as $\ell = \sum_{e=0}^s \ell_e p^e$ and $\vv{k}=\sum_{e=0}^s \vv{k}_e p^e$ where $0\le \ell_e < p$ and $\vv{0}\le\vv{k}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $\ell_s$ and $\vv{k}_s$ are allowed to be zero.
+   In any case, \cite{dickson.multinomial} then tells us that $\binom{\ell}{\vv{k}}\equiv \binom{\ell_0}{\vv{k}_0}\binom{\ell_1}{\vv{k}_1}\cdots \binom{\ell_s}{\vv{k}_s} \mod{p}$.
 
-In particular, the multinomial coefficient $\binom{n}{\vv{n}}$ is nonzero mod $p$ if and only if $\norm{\vv{n}_e}=n_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{n} \in \NN$ sum to $n$ \emph{without carrying} in base $p$.
-
-In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the following condition:  If
- $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_s \, p^s$ is the base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq s$.
+   In particular, the multinomial coefficient $\binom{\ell}{\vv{k}}$ is nonzero modulo $p$ if and only if $\norm{\vv{k}_e}=\ell_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{k}$ sum to $\ell$ \emph{without carrying} in base $p$.
+   In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the condition that all terms $\vv{k}_e$ of the base $p$ expansion of the lattice point $\vv{k}$ have coordinate sum less than $p$.
 \end{remark}
 
-Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $\IP(A, \vv{u},q)$, and hence, is finite.
+% \begin{remark}[A characterization of the arithmetic constraint]
+%  \label{dickson: R}
+%    Consider $n \in \NN$ and $\vv{n} \in \NN^n$.
+%    In base $p$, we may uniquely express these quantities as $n= \sum_{e=0}^s n_e \, p^e$ and $\vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e$
+% %\begin{equation*}
+% %n= \sum_{e=0}^s n_e \, p^e \quad \text{and} \quad \vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e
+% %\end{equation*}
+% where $0\le n_e < p$ and $\vv{0}\le\vv{n}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $n_s$ and $\vv{n}_s$ are allowed to be zero.
+% In any case, \cite{dickson.multinomial} then tells us that
+% $\binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_s}{\vv{n}_s} \mod{p}$.
+% %\[
+% %    \binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_t}{\vv{n}_t} \mod{p}.
+% %\]
+
+% In particular, the multinomial coefficient $\binom{n}{\vv{n}}$ is nonzero mod $p$ if and only if $\norm{\vv{n}_e}=n_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{n} \in \NN$ sum to $n$ \emph{without carrying} in base $p$.
+
+% In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the following condition:  If
+%  $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_s \, p^s$ is the base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq s$.
+% \end{remark}
+
+Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $\IP(A, \vv{u},q)$, and is therefore finite.
 In particular, this arithmetic program has a well-defined value, and the discussion preceding \Cref{aip: D} tells us that
-%
 \begin{equation}
 \label{mu as program value: eq}
-\mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q)
+\mu(\ideala,\ideald,q) = \val \IP_p(A,\vv{u},q).
 \end{equation}
-%
 
 Turning to the critical exponents $\crit(\ideala, \ideald)$, the identity \eqref{mu as program value: eq} implies that
-%
 \begin{equation}
 \label{crit as limit of normalized program values: eq}
 \crit(\ideala,\ideald) = \lim_{e\to\infty} \frac{\mu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP_p(A,\vv{u},p^e)}{p^e}.
 \end{equation}
-%
-
 In what follows, in analogy with \Cref{ft as val LP: P}, we seek to relate these quantities to the value of a variant of a linear program that we call a \emph{fractal linear program}.  To do so, we require the following concept.
 
 \begin{definition}[Sierpi\'nski gasket]
@@ -398,7 +405,7 @@ It is also immediate that $\vv{t} \in \sierp_{p,n}$ if and only if $p^k  \vv{t} 
 In particular, when determining whether $\vv{t} \in \RR^n$ lies in $\sierp_{p,n}$, we may rescale by a power of $p$  and assume that $\vv{t} \in [0,1]^n$.
 
 Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, which is necessarily non-terminating, or else $p^k t \in \NN$ for some $k \in \ZZ$, in which case $t$ has both a terminating and a non-terminating expansion.
-Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^k \vv{t}$ is an integer for each $k \in \NN$, then there is a unique sequence $\{ \vv{t}_e \}_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if all $\norm{\vv{t}_e}$ are less than $p$.
+Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^k \vv{t}$ is an integer for each $k \in \NN$, then there is a unique sequence $( \vv{t}_e )_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if $\norm{\vv{t}_e} < p$ for every  $e$.
 However, things can be more subtle when some $p^k \vv{t}$ has an integer component.
 
 \begin{example}
@@ -410,10 +417,9 @@ This description of the Sierpi\'nski $p$-gasket in terms of expansions is not ha
 \begin{example}
 \label{sierpinski triangle: E}
 The set $\sierp_{2,2} \cap [0,1]^2$ is the familiar Sierpi\'nski triangle, together with the line segments connecting $(1,0)$ to $(1,1)$, and $(1,1)$ to $(0,1)$.
-Indeed, the points $\vv{t}$ in the unit square $[0,1]^2$ that have \emph{no} binary expansion $\vv{t} = \sum_{e=0}^{\infty}\frac{\vv{t}_e}{2^e}$ as above with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  $T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}$.
-At the next stage, the points $\vv{t} \in [0,1]^2$ with \emph{no} expansion $\vv{t} = \sum_{e=0}^{\infty}\frac{\vv{t}_e}{2^e}$ with both  $\norm{\vv{t}_1} < 2$ and $\norm{\vv{t}_2} < 2$ are those in the union of open triangles $T$ and $\frac{1}{2} \cdot T$.  The condition on expansions at the third place removes three additional open triangles from this set, and we can continue analogously.
+Indeed, the points $\vv{t}$ in the unit square $[0,1]^2$ that have \emph{no} binary expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ as above with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  $T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}$.
+At the next stage, the points $\vv{t} \in [0,1]^2$ with \emph{no} expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ with both  $\norm{\vv{t}_1} < 2$ and $\norm{\vv{t}_2} < 2$ are those in the union of open triangles $T$ and $\frac{1}{2} T$.  The condition on expansions at the third place removes three additional open triangles from this set, namely $\frac14 T$, $\frac14 T + (\frac12,0)$, and $\frac14 T + (0,\frac12)$, and we continue analogously.
 \end{example}
-
 
 As suggested by \Cref{sierpinski triangle: E}, each $\sierp_{p,n}$  can be realized by removing a union of open simplices from $\RRnn^n$, and hence, is a closed set.
 \Cref{fig: sierpinski 3-gasket} illustrates the self-similarity of the $2$-dimensional Sierpi\'nski $3$-gasket.
@@ -433,35 +439,39 @@ As suggested by \Cref{sierpinski triangle: E}, each $\sierp_{p,n}$  can be reali
 \label{fig: sierpinski 3-gasket}
 \end{figure}
 
-
-Remarkably, the critical exponent of a monomial pair $\crit(\ideala, \ideald)$ described in \eqref{crit as limit of normalized program values: eq} can be computed in terms of the Sierpi\'nski $p$-gasket, providing a geometric interpretation for this value.  To motivate our approach, we first note that the feasible set of the linear program $\LP(A, \vv{u})$, whose value equals the $F$-threshold $\ft{\ideala}{\ideald}$ by \Cref{ft as val LP: P}, is simply the closure with respect to the Euclidean topology of the set $\{ \vv{t} \in \RR^n : \vv{t} \geq \vv{0} \text{ and } A\vv{t} < \vv{u} \}$.  In what follows, we consider a similar optimization problem,  replacing the conditions that $\vv{t} \in \RR^n$ and $\vv{t} \geq \vv{0}$ with the ``fractal constraint" that $\vv{t} \in \sierp_{p,n}$.
+Remarkably, the critical exponent of the ideal pair $(\ideala, \ideald)$ described in \eqref{crit as limit of normalized program values: eq} can be described in terms of the Sierpi\'nski $p$-gasket, providing a geometric interpretation for this value.
+To motivate our approach, we first note that the feasible set of the linear program $\LP(A, \vv{u})$, whose value equals the $F$-threshold $\ft{\ideala}{\ideald}$ by \Cref{ft as val LP: P}, is simply the closure with respect to the Euclidean topology of the set $\{ \vv{t} \in \RR^n : \vv{t} \geq \vv{0} \text{ and } A\vv{t} < \vv{u} \}$.
+In what follows, we consider a similar optimization problem,  replacing the conditions that $\vv{t} \in \RR^n$ and $\vv{t} \geq \vv{0}$ with the ``fractal constraint" that $\vv{t} \in \sierp_{p,n}$.
 
 \begin{definition}[The fractal linear program $\fip_p$]
 \label{fractal program: D}
 The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the objective function $\vv{t}\mapsto \norm{\vv{t}}$ on the Euclidean closure of the set \[ \{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}.\]  We call this closure the feasible set of $\fip_p(A, \vv{u})$, and denote it by $\feas \fip_p(A, \vv{u})$.
-% The value of the problem, $\val \fip_p(A,\vv{u})$, is defined as the supremum of $\norm{\vv{t}}$ among all $\vv{t} \in \feas \fip_p(A, \vv{u})$.
 \end{definition}
 
 \begin{remark}
-   Note that the closure in the above definition need not agree with the closed set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} \le \vv{u} \}$.
-   For example, if $A$ is the $2\times 2$ identity matrix, $\vv{u} = (1,1)$, and $p=2$, then the closure of the set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} < \vv{u} \}$ is simply the classical Sierpi\'nski triangle---the set of points $\vv{t}$ in $\sierp_{2,2}$ with $\norm{\vv{t}} \le 1$. The set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} \le \vv{u} \}$, on the other hand, also includes the line segments from $(1,0)$ to $(1,1)$, and from $(1,1)$ to $(0,1)$.
+Note that the closure in the above definition need not agree with the closed set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} \le \vv{u} \}$.
+For example, if $A$ is the $2\times 2$ identity matrix, $\vv{u} = (1,1)$, and $p=2$, then the closure of the set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} < \vv{u} \}$ is simply the classical Sierpi\'nski triangle---the set of points $\vv{t}$ in $\sierp_{2,2}$ with $\norm{\vv{t}} \le 1$.
+The set $\{ \vv{t} \in \sierp_{2,2} : A \vv{t} \le \vv{u} \}$, on the other hand, also includes the line segments from $(1,0)$ to $(1,1)$, and from $(1,1)$ to $(0,1)$.
 \end{remark}
 
-\begin{remark}[On the values and optimal sets of fractal programs]  The discussion preceding \Cref{fractal program: D} implies that $\feas \fip_p(A, \vv{u})$ is contained in the feasible set of $\LP(A, \vv{u})$, and hence, is bounded.  Thus, $\feas \fip_p(A, \vv{u})$ is compact, and so $\val \fip_p(A, \vv{u})$, the value of $\fip_p(A, \vv{u})$, can be defined as
-   \[ \max \{ \norm{\vv{t}}: \vv{t} \in \feas \fip_p(A, \vv{u}) \} = \sup \{ \norm{\vv{t}} : \vv{t} \in \sierp_{p,n}, A \vv{t} < \vv{u} \} \] which is a well-defined real number.
-   As usual, we define the optimal set of $\fip_p(A, \vv{u})$ to be the set $\opt \fip_p(A, \vv{u})$ of feasible points where this maximum is attained.
-%Moreover, there is exists an optimal point
-%$\vv{t} \in \feas \fip_p(A, \vv{u})$ such that $\norm{\vv{t}} = \val \fip_p(A, \vv{u})$.
-\end{remark}
+The discussion preceding \Cref{fractal program: D} implies that $\feas \fip_p(A, \vv{u})$ is contained in the feasible set of $\LP(A, \vv{u})$, and hence, is bounded.
+Thus, $\feas \fip_p(A, \vv{u})$ is compact, and so the value of $\fip_p(A, \vv{u})$ can be defined as
+\[
+   \max \{ \norm{\vv{t}}: \vv{t} \in \feas \fip_p(A, \vv{u}) \} = \sup \{ \norm{\vv{t}} : \vv{t} \in \sierp_{p,n}, A \vv{t} < \vv{u} \}
+\]
+which is a well-defined real number.
+As usual, we define the optimal set of $\fip_p(A, \vv{u})$ to be the set $\opt \fip_p(A, \vv{u})$ of feasible points where this maximum is attained.
 
 \begin{example} \label{ex: feas fip}
- Consider the fractal linear program $\fip_p = \fip_p(A, \vv{u})$, where
+   Consider the fractal linear program $\fip_p = \fip_p(A, \vv{u})$, where
 \[ A = \begin{bmatrix}
  3&11\\ 11&2 \\ 5&10 \\ 2&0
  \end{bmatrix}
 \quad \text{and} \quad \vv{u} = \begin{bmatrix} 1 \\ 1 \\ 1 \\ \end{bmatrix}.
 \]
-\Cref{fig: feas fip} illustrates the key features of the program $\fip_p$ for small values of $p$.  The feasible set for $ \fip_p$ is displayed in blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum equal to $\val \fip_p$ in green.  Thus,  $\opt \fip_p$ is simply the intersection of the blue points and green points.
+\Cref{fig: feas fip} illustrates the key features of the program $\fip_p$ for small values of $p$.
+The feasible set for $ \fip_p$ is displayed in dark blue, the feasible set for $\LP = \LP(A,\vv{u})$ in gray, and the line of points with coordinate sum equal to $\val \fip_p$ in green.
+Thus,  $\opt \fip_p$ is simply the intersection of the blue points and green points.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %START OF FIGURE DISPLAYING FRACTAL PROGRAM
@@ -474,28 +484,12 @@ The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the 
   \includegraphics[width=.9\textwidth]{pictures/ex4_char2.pdf}\hskip .04\textwidth
    \captionsetup{labelformat=empty}
    \caption{$p=2$}
-  % \caption{
-  %    $
-  %    \begin{array}{l}
-  %      \opt \fip_2 = \conv\big(\big(\frac1{20},\frac3{40}\big),\big(\frac1{12},\frac1{24}\big)\big)\\[2mm]
-  %      \val \fip_2 = \frac18
-  %    \end{array}
-  %    $
-  % }
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
 \centering
 \includegraphics[width=.9\textwidth]{pictures/ex4_char3.pdf}
   \captionsetup{labelformat=empty}
   \caption{$p=3$}
-% \caption{
-%      $
-%      \begin{array}{l}
-%        \opt \fip_3 = \conv\big(\big(\frac1{36},\frac1{12}\big),\big(\frac7{81},\frac2{81}\big)\big)\\[2mm]
-%        \val \fip_3 = \frac19
-%      \end{array}
-%      $
-% }
 \end{subfigure}
 
 \bigskip
@@ -505,27 +499,12 @@ The \emph{fractal linear program} $\fip_p(A,\vv{u})$ consists of maximizing the 
   \includegraphics[width=.9\textwidth]{pictures/ex4_char5.pdf}\hskip .04\textwidth
   \captionsetup{labelformat=empty}
   \caption{$p=5$}
-  % \caption{
-  %    $
-  %    \begin{array}{l}
-  %      \opt \fip_5 = \opt \LP = \big\{\big(\frac2{25}, \frac3{50}\big)\big\}\\[2mm]
-  %      \val \fip_5 = \frac7{50}
-  %    \end{array}
-  %    $
-  % }
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{pictures/ex4_char7.pdf}
   \captionsetup{labelformat=empty}
   \caption{$p=7$}
-  % \caption{
-  %    $
-  %    \begin{array}{l}
-  %      \opt \fip_7 = \big\{\big(\frac{19}{245}, \frac3{49}\big)\big\}\\[2mm]
-  %      \val \fip_7 = \frac{34}{245}
-  %    \end{array}
-  %    $ }
 \end{subfigure}
 \caption{The feasible and optimal sets of $\fip_p(A, \vv{u})$ for $A$ and $\vv{u}$ described in \Cref{ex: feas fip}, for small values of $p$}
 \label{fig: feas fip}
@@ -543,7 +522,6 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %START OF TABLE DISPLAYING FRACTAL PROGRAM DATA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{table}
 \begin{center}
@@ -576,9 +554,8 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 
 \end{example}
 
-
 \begin{proposition}
-The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
+   The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 \end{proposition}
 
 \begin{proof}
@@ -590,7 +567,7 @@ The value of $\fip_p(A,\vv{u})$ equals $\crit(\ideala, \ideald)$.
    \]
 
    Next, fix a point $\vv{t} \in \sierp_{p,n}$ with $A \vv{t} < \vv{u}$.
-   By definition of $\sierp_{p,n}$, we may fix an integer $s$, and a sequence $\{ \vv{t}_l \}_{l=s}^\infty$ in $\NN^n$ with $\norm{\vv{t}_l} < p$ for all $l \geq s$, such that $\vv{t} = \sum_{l=s}^{\infty} \frac{\vv{t}_l}{p^l}$.
+   By definition of $\sierp_{p,n}$, we may fix an integer $s$, and a sequence $( \vv{t}_l )_{l=s}^\infty$ in $\NN^n$ with $\norm{\vv{t}_l} < p$ for all $l \geq s$, such that $\vv{t} = \sum_{l=s}^{\infty} \frac{\vv{t}_l}{p^l}$.
    For each integer $e \geq 1$, set $\vv{t}^\star_{p^e} = \sum_{l=s}^{e} \frac{\vv{t}_l}{p^l}$.
 
    We claim that $p^e  \vv{t}^\star_{p^e}$ is feasible for $\IP_p(A, \vv{u}, p^e)$.
