@@ -110,11 +110,6 @@ TO DO LIST:
 % \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
    \end{enumerate}
 }
-\pedro[inline]{
-   A suggestion: reserve $p$ and $q$ for prime and power of prime.
-   This will require us to change several uses of these guys with something else (I suggest $r$ and $s$) when they represent just arbitrary positive integers (that is, when they are used in the context of integer programs).
-   It will be a bit of a pain, and maybe not practical, but I'm willing to give it a try.
-}
 
 \setcounter{tocdepth}{1}
 \tableofcontents
@@ -247,7 +242,7 @@ If $A$ is an $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \emph
 
 \begin{remark}[Association of pairs]
 \label{associate of pairs: R}
- As in \Cref{monomial matrix ideal: R}, we may associate to each ideal pair $(\ideala, \ideald)$ in $\kk[x_1, \ldots, x_{\numvars}]$ a monomial pair $(A, \vv{u})$.  Observe that, though there need not be a canonical choice for the $m \times n$ matrix $A$, the positive point $\vv{u} \in \ZZ^m$ is uniquely determined by the diagonal ideal $\ideald$.
+ As in \Cref{monomial matrix ideal: R}, we may associate to each ideal pair $(\ideala, \ideald)$ in $\kk[x_1, \ldots, x_{\numvars}]$ a monomial pair $(A, \vv{u})$.  Observe that, though there need not be a canonical choice for the $\numvars \times n$ matrix $A$, the positive point $\vv{u} \in \ZZ^\numvars$ is uniquely determined by the diagonal ideal $\ideald$.
 \end{remark}
 
 \subsection{Optimization} \label{optimization: S}  Optimization problems play a central role in this paper.  Here, we briefly recall the basic framework of standard \emph{programming}.
@@ -270,7 +265,7 @@ As will soon be apparent, it is natural to do so in terms of various optimizatio
    However, as we explain in \Cref{monomial-reduction: A}, understanding the situation for all ideal pairs $(\ideala, \ideald)$ with $\ideala$ fixed, but $\ideald$ varying, leads to \Cref{general-nu-theorem: T,general-mu-theorem: T}.
 \end{remark}
 
-To transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ associated to $(\ideala, \ideald)$, as described in \Cref{associate of pairs: R}.  In particular, $A$ is an $\numvars \times n$ monomial matrix, $\vv{u} \in \ZZ^m$ is a positive lattice point, and
+To transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ associated to $(\ideala, \ideald)$, as described in \Cref{associate of pairs: R}.  In particular, $A$ is an $\numvars \times n$ monomial matrix, $\vv{u} \in \ZZ^\numvars$ is a positive lattice point, and
 \[ \ideald = \langle x^{u_1}, \ldots, x^{u_{\numvars}} \rangle \subseteq \kk[x_1, \ldots, x_{\numvars}] \] is the diagonal ideal associated to $\vv{u}$.
 
 \subsection{Relations with integer and linear programs}
@@ -567,8 +562,8 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
    \]
 
    Next, fix a point $\vv{t} \in \sierp_{p,n}$ with $A \vv{t} < \vv{u}$.
-   By definition of $\sierp_{p,n}$, we may fix an integer $s$, and a sequence $( \vv{t}_l )_{l=s}^\infty$ in $\NN^n$ with $\norm{\vv{t}_l} < p$ for all $l \geq s$, such that $\vv{t} = \sum_{l=s}^{\infty} \frac{\vv{t}_l}{p^l}$.
-   For each integer $e \geq 1$, set $\vv{t}^\star_{p^e} = \sum_{l=s}^{e} \frac{\vv{t}_l}{p^l}$.
+   By definition of $\sierp_{p,n}$, we may fix an integer $s$, and a sequence $( \vv{t}_i )_{i=s}^\infty$ in $\NN^n$ with $\norm{\vv{t}_i} < p$ for all $i \geq s$, such that $\vv{t} = \sum_{i=s}^{\infty} \frac{\vv{t}_i}{p^i}$.
+   For each nonnegative integer $e \geq s$, set $\vv{t}^\star_{p^e} = \sum_{i=s}^{e} \frac{\vv{t}_i}{p^i}$.
 
    We claim that $p^e  \vv{t}^\star_{p^e}$ is feasible for $\IP_p(A, \vv{u}, p^e)$.
    To see why, first note that \Cref{dickson: R} tells us that this point satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p^e)$.
@@ -578,7 +573,7 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
       \crit(\ideala, \ideald) = \lim_{e \to \infty} \frac{\val \IP_p(A, \vv{u}, p^e)}{p^e} \geq \lim_{e \to \infty}   \norm{\vv{t}^\star_{p^e}} = \norm{\vv{t}}.
    \]
 
-   We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is at most $\crit(\ideala, \ideald)$ on the set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}$, and so the same must be true on the closure of this set, which agrees with the feasible set of $\fip_p(A, \vv{u})$, by definition.
+   We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is at most $\crit(\ideala, \ideald)$ on the set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}$, and so the same must be true on the closure of this set, which is the feasible set of $\fip_p(A, \vv{u})$.
    Restated,  $ \val \fip_p(A, \vv{u})$ is at most $\crit(\ideala,  \ideald)$, and so equality holds.
 \end{proof}
 
@@ -605,25 +600,25 @@ If $\mathcal{U}$ and $\mathcal{V}$ are subsets of $\RR^n$, their \emph{Minkowski
 \[\mathcal{U}+\mathcal{V} \coloneqq \{\vv{u}+\vv{v}: \vv{u}\in \mathcal{U}\text{ and }\vv{v}\in \mathcal{V}\}.\]
 The \emph{Minkowski--Weyl Theorem} asserts that a subset $\mathcal{P}$ of $\RR^n$ is a polyhedron if and only if $\mathcal{P}$ is the Minkowski sum of a polytope and a finitely generated cone.
 The cone in this decomposition is the set of all directions $\vv{v} \in \RR^n$ in which $\mathcal{P}$ recedes, that is, $\vv{u} + \lambda \vv{v} \in \mathcal{P}$ for every $\vv{u} \in \mathcal{P}$ and $\lambda > 0$; it is uniquely determined by $\mathcal{P}$, and called the \emph{recession cone of $\mathcal{P}$}.
-The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is a bounded polyhedron or, equivalently, a polyhedron with a trivial recession cone.
+The Minkowski--Weyl Theorem gives us a couple of useful characterizations of polytopes: a polyhedron $\mathcal{P}$ is a polytope if and only if it is bounded or, equivalently, has a trivial recession cone.
 
 \begin{definition}[Newton polyhedron]
 The \emph{Newton polyhedron} associated to the monomial matrix $A$ is the polyhedron in $\RR^\numvars$ given by
 \[ \N = \conv( \col(A) ) + \cone( \canvec_1, \ldots, \canvec_\numvars), \]
-where $\col(A)$ is the set of columns of $A$.
+where $\col(A)$ is the set of columns of $A$ and $\canvec_1, \ldots, \canvec_\numvars$ are the standard basis vectors of $\RR^\numvars$.
 \end{definition}
 
 \begin{definition}[Faces]
    \label{defn: face}
-   A proper nonempty subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that $\iprod{\defpt}{\vv{v}} \geq \alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
-   We say that such a point $\defpt$ \emph{defines} $\O$ in $\N$.
+   A proper nonempty subset $\O$ of $\N$ is a \emph{face} of $\N$ if there exists $\defpt \in \RR^\numvars$ and a nonnegative real number $\alpha$ are such that the inner product $\iprod{\defpt}{\vv{v}}$ is at least $\alpha$ for all $\vv{v} \in \N$, with equality if and only if $\vv{v} \in \O$.
+   We say that $\defpt$ \emph{defines} $\O$ in $\N$.
    If $\O$ is not contained in any proper coordinate subspace of $\RR^\numvars$, we call it a \emph{standard} face of $\N$.
 \end{definition}
 
 \begin{remark}
    \label{rmk: nonnegativity of defining point}
    The requirement that the number $\alpha$ in \Cref{defn: face} be nonnegative is an arbitrary convention, which will play a role in \Cref{alpha=1: convention} below.
-   We observe that the defining point $\defpt$ is nonnegative as well.
+   We observe that the defining point $\defpt$ must be nonnegative as well.
    Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i \in \N$, and thus $c_i = \iprod{\defpt}{\vv{v} + \canvec_i} -\alpha \ge 0$, for each $i$.
 \end{remark}
 
@@ -640,7 +635,7 @@ This convention leads to the following useful observation.
 
 \begin{proposition}\label{prop: inner product with columns of A}
    Suppose $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and let $\vv{s} \in \RR^n$.
-   If $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$, then the inner product $\iprod{\defpt}{A\vv{s}}$ is at least $\norm{\vv{s}}$.
+   If $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$, then $\iprod{\defpt}{A\vv{s}} \ge \norm{\vv{s}}$.
    Moreover, equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
 \end{proposition}
 
@@ -650,15 +645,6 @@ Thus,
 \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
 and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proof}
-
-% \pedro[inline]{
-%    The identity $\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))$ appeared in the proof of a proposition that is now commented out.
-%    It didn't seem obvious nor necessary to that proof, and seemed to say more than the proposition itself.
-%    Since the identity is used a couple of times, I decided to focus on it instead.
-
-%    From the wording in the older proof (``Similar logic shows that\ldots''), it seems that someone may know a simpler proof for it.
-%    If that's the case, please replace the proof below with it.
-% }
 
 \begin{proposition}
    \label{prop: MW for faces}
@@ -672,33 +658,24 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 
 \begin{proof}
    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
-   Then one easily sees that the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
+   Then the same holds for all $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
 
    To prove the reverse containment, let $\vv{v} \in \O$.
    Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
    Denoting the $i$-th column of $A$ by $\vv{a}_i$, we may assume that $\col(A) \cap \O = \{\vv{a}_1,\ldots,\vv{a}_k\}$.
-   If $s_1 + \cdots + s_k$ were  $0$, then $\iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i>k} s_i \iprod{\defpt}{\vv{a}_i}> \alpha \cdot \sum_{i>k} s_i  =\alpha$, a contradiction.
+   If $s_1, \ldots, s_k$ were  $0$, then $\iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i>k} s_i \iprod{\defpt}{\vv{a}_i}> \alpha \cdot \sum_{i>k} s_i  =\alpha$, a contradiction.
    So $s_1+\cdots+s_k >0$, and we set
    \[\vv{w} = \frac{s_1\vv{a}_1+\cdots+s_k\vv{a}_k}{s_1+\cdots+s_k}.\]
    Then $\vv{w} \in \conv(\col(A)\cap \O) \subseteq \O$, and therefore $\iprod{\defpt}{\vv{w}} = \alpha$.
    As $\iprod{\defpt}{\vv{v}-\vv{w}} = 0$, the nonnegativity of $\vv{v} - \vv{w}$ and $\defpt$ implies that $\vv{v} - \vv{w} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
 \end{proof}
 
-% \emily[inline]{Is there a reason that we are defining $\rb \O$ here, instead of before \Cref{prop: MW for faces}, right above (where it is defined in the statement)?}
-% \pedro[inline]{
-%    I think the original intention was to show that the definition is independent of the choice of $\defpt$ before the definition, as opposed to justifying it afterwards.
-%    We could switch things around, though.
-% }
-% \emily[inline]{Got it.  I like it as is.}
 \begin{definition}[Recession basis and subspace]
    If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 \end{definition}
 
 \Cref{prop: MW for faces} above shows that these definitions depend only on $\O$, but not on the choice of the defining point $\defpt$.
 It also shows that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
-
-
-
 
 \subsection{The $F$-threshold of a monomial pair}
 
@@ -734,12 +711,12 @@ This motivates the following definition.
 \end{definition}
 
 \begin{proof}[Proof of \Cref{FT descriptions: P}]
- \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tells us that the quantities in \eqref{value} and \eqref{limit} agree.  In what follows, let $\lambda$ be as in \eqref{lambda}.
+ \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tells us that the quantities in \ref{value} and \ref{limit} agree.  In what follows, let $\lambda$ be as in \ref{lambda}.
 
 
     Let $\O = \mf(A,\vv{u})$, and fix a point $\vv{c} \in \RR^\numvars$ defining $\O$ in $\N$.  Our choice of $\lambda$ allows us to write
     $\vv{u} = \lambda \vv{w}$ for some $\vv{w} \in \O$,  and in view of \Cref{alpha=1: convention}, it follows that $\iprod{\vv{c}}{\vv{u}} = \lambda \iprod{\vv{c}}{\vv{w}} = \lambda$.
-   This establishes the equality of the numbers described in \eqref{lambda} and \eqref{new ip}.
+   This establishes the equality of the numbers described in \ref{lambda} and \ref{new ip}.
 
 Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.  Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
   $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$,
@@ -774,15 +751,15 @@ Therefore, to conclude our proof,  it remains to show that $\val \LP = \lambda$,
    \end{figure}
    The point $(17/4)\cdot \vv{u}$, shown in white, lies in the relative interior of the face
    \[\O = \conv(\col(A)) + \cone(\canvec_2).\]
-   Thus, $\mf(A,\vv{u}) = \O$, and the description given in \Cref{FT descriptions: P}\eqref{lambda} tells us that $\ft{A}{\vv{u}} = 4/17$.
+   Thus, $\mf(A,\vv{u}) = \O$, and the description given in \Cref{FT descriptions: P}\ref{lambda} tells us that $\ft{A}{\vv{u}} = 4/17$.
 
-   The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\eqref{new ip} tells us that
+   The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\ref{new ip} tells us that
    $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = 4/17$.
 
    From yet another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
    \[\opt \LP(A,\vv{u}) = \conv\bigg(\bigg(\frac1{17}, 0, \frac3{17}\bigg),\bigg(\frac2{17}, \frac1{17}, \frac1{17}\bigg)\bigg),\]
    highlighted in green.
-   Thus, \Cref{FT descriptions: P}\eqref{value} again tells us that
+   Thus, \Cref{FT descriptions: P}\ref{value} again tells us that
    \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \bigg\|\bigg(\frac1{17}, 0, \frac3{17}\bigg)\bigg\| = \frac4{17}.\]
 \end{example}
 
@@ -1019,8 +996,8 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
 
 \begin{proof}
    Taking the equation defining $\N$ and collapsing it along $\O$, we obtain
-   \[ \collapse{\N} = \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{A}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m).\]
-   The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_m$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
+   \[ \collapse{\N} = \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{A}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars).\]
+   The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
 
 Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
 The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
@@ -1093,12 +1070,12 @@ Below, we describe the relationship between collapses and the other notions intr
 \end{proposition}
 
 \begin{proof}
-Consider a face $\O$ of a polyhedron $\N$ lying in $\RR^m$.   Set $\ell = \# \rb(\O)^{\perp}$ and let $\pi: \RR^m \to \RR^{\ell}$ be the collapsing projection along $\O$.  In addition, fix a face $\mathcal{F}$ of $\pi(\N)$,  which \Cref{collapse of Newton polyhedron: P} tells us is a Newton polyhedron in $\RR^{\ell}$.  Set $s=\# \rb(\mathcal{F})^{\perp}$ and let $\rho: \RR^{\ell} \to \RR^s$ be the collapsing projection along $\mathcal{F}$.
+Consider a face $\O$ of a polyhedron $\N$ lying in $\RR^\numvars$.   Set $\ell = \# \rb(\O)^{\perp}$ and let $\pi: \RR^\numvars \to \RR^{\ell}$ be the collapsing projection along $\O$.  In addition, fix a face $\mathcal{F}$ of $\pi(\N)$,  which \Cref{collapse of Newton polyhedron: P} tells us is a Newton polyhedron in $\RR^{\ell}$.  Set $s=\# \rb(\mathcal{F})^{\perp}$ and let $\rho: \RR^{\ell} \to \RR^s$ be the collapsing projection along $\mathcal{F}$.
 
-We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^m \to \RR^s$ is the collapsing projection along some face of $\N$.  Let $\canvec_1, \ldots, \canvec_m \in \RR^m$ and $\vv{f}_1, \ldots, \vv{f}_s \in \RR^s$ be the standard basis vectors for each Euclidean space.  After reordering these, we may assume that $\sigma: \RR^m \to \RR^s$ maps $\canvec_i$ to $\vv{f}_i$ for each $1 \leq i \leq s$, and to zero otherwise.   Next, let  $\iota:  \RR^s \hookrightarrow \RR^m$ be the $\RR$-linear map defined by $\vv{f}_i \mapsto \canvec_i$.
+We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^\numvars \to \RR^s$ is the collapsing projection along some face of $\N$.  Let $\canvec_1, \ldots, \canvec_\numvars \in \RR^\numvars$ and $\vv{f}_1, \ldots, \vv{f}_s \in \RR^s$ be the standard basis vectors for each Euclidean space.  After reordering these, we may assume that $\sigma: \RR^\numvars \to \RR^s$ maps $\canvec_i$ to $\vv{f}_i$ for each $1 \leq i \leq s$, and to zero otherwise.   Next, let  $\iota:  \RR^s \hookrightarrow \RR^\numvars$ be the $\RR$-linear map defined by $\vv{f}_i \mapsto \canvec_i$.
 
 Once again, \Cref{collapse of Newton polyhedron: P} implies that $\sigma(\N) = \rho(\pi(\N))$ is a Newton polyhedron.  Consider a standard compact face of $\mathcal{L}$ of $\sigma(\N)$, for instance, the collapsed face $\pi(\mathcal{F})$.    If $\mathcal{L}$ is defined by a point $\vv{b} \in \RR^s$, then \Cref{prop: MW for faces}  tells us that $\vv{b}$ is positive, and the fact that
-\[ \iprod{\vv{b}}{\sigma(\vv{u})} = \iprod{\iota(\vv{b})}{\vv{u}} \] for every $\vv{u} \in \RR^m$ implies that $\sigma^{-1}(\mathcal{F})$ is a standard face of $\N$ defined by $\iota(\vv{b})$.  By construction, the $i$-th entry of $\iota(\vv{b})$ is not zero if and only if $1 \leq i \leq s$, so that $\rb(\sigma^{-1}(\mathcal{L}))^{\perp} = \{ \canvec_1, \ldots, \canvec_s \}$, from which it follows that $\sigma$ is the collapsing projection along the face $\sigma^{-1}(\mathcal{F})$ of $\N$.
+\[ \iprod{\vv{b}}{\sigma(\vv{u})} = \iprod{\iota(\vv{b})}{\vv{u}} \] for every $\vv{u} \in \RR^\numvars$ implies that $\sigma^{-1}(\mathcal{F})$ is a standard face of $\N$ defined by $\iota(\vv{b})$.  By construction, the $i$-th entry of $\iota(\vv{b})$ is not zero if and only if $1 \leq i \leq s$, so that $\rb(\sigma^{-1}(\mathcal{L}))^{\perp} = \{ \canvec_1, \ldots, \canvec_s \}$, from which it follows that $\sigma$ is the collapsing projection along the face $\sigma^{-1}(\mathcal{F})$ of $\N$.
 \end{proof}
 
 \section{An auxiliary integer program}
@@ -1801,8 +1778,8 @@ The algebraic characterization of a very small pair is simply that $(A, \vv{u})$
 \begin{remark}[Geometric description of small and very small pairs]
 \label{geometric small and very small: R}
 Given an $\numvars \times n$ monomial matrix $A$, let $\N \subseteq \RR^{\numvars}$ be its Newton polyhedron.
-Geometrically, a pair $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the Minkowski sum $\col(A) + \cone(\canvec_1,\ldots,\canvec_m)$, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$.
-On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\eqref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
+Geometrically, a pair $(A, \vv{u})$ is small if and only if $\vv{u}$ does not lie in the interior of the Minkowski sum $\col(A) + \cone(\canvec_1,\ldots,\canvec_\numvars)$, a subset of $\RR^{\numvars}$ sometimes called the \emph{upper staircase} determined by the columns of $A$.
+On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\ref{lambda} imply that a pair $(A, \vv{u})$ is very small if and only if $\vv{u}$ does not lie in the interior of $\N$.
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.  %However, once the monomial matrix $A$ is fixed, there are only finitely pairs $(A, \vv{u})$ that are small, but not very small, as the region lying outside of the interior of the staircase determined by $A$, but within the Newton polyhedron $\N$, is bounded.
 % \pedro[inline]{
 %    Is this true?
@@ -2676,7 +2653,7 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    Let $\N$ be the Newton polyhedron of $A$, let an overbar denote collapse along $\O=\mf(A,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
    By definition, $B$ is the collapse of $A$ along $\O$, and $\vv{v} \in \ushort(A,\vv{u},p)$.
    \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $B=\collapse{A}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.
-   \Cref{FT descriptions: P}\eqref{lambda} then shows that $\frac1{\ft{B}{\vv{v}}}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
+   \Cref{FT descriptions: P}\ref{lambda} then shows that $\frac1{\ft{B}{\vv{v}}}\cdot \vv{v} \in \collapse{\N}$, so by \Cref{alpha=1: convention} we have $\iprod{\collapse{\vv{c}}}{\vv{v}} \ge \ft{B}{\vv{v}}$.
    But since $\vv{v} \in \ushort(A, \vv{u}, p)$, we may write $ \vv{v} = B \tail{\vv{s}}_p - B \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(A, \vv{u}, \vv{s}, p)$, and \eqref{bound in inner product: e} and \eqref{norm of tail: e} allow us to conclude that
    \[
       \ft{B}{\vv{v}} \le \iprod{\collapse{\defpt}}{\vv{v}} \leq \norm{\tail{\vv{s}}_p} - \val \ip= \udeficit(A, \vv{u}, p).
@@ -2934,7 +2911,7 @@ As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is
 
 \begin{theorem}
 \label{reduce-to-monomial-case: C}
-Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ monomial and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^m$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
+Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ monomial and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
 \end{theorem}
 
 % \begin{corollary}
@@ -3158,7 +3135,7 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 % \begin{lemma}
 %    \label{monomial-noetherian-decomposition: L}
 %    Given a Noetherian ring $A$, and an ideal $J$ of $A[x_1, \ldots, x_\numvars]$, there exists a finite subset $\mathcal{V}$ of $\NN^\numvars$, and for every $\vv{v} \in \mathcal{V}$ a finite subset $\mathcal{W}(\vv{v})$ of the set of standard basis vectors of $\ZZ^\numvars$, such that
-%    \[ \NN^m = \bigcup_{\vv{v}\in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
+%    \[ \NN^\numvars = \bigcup_{\vv{v}\in \mathcal{V}} (\vv{v} + \NN \mathcal{W}(\vv{v})) \]
 %    and such that $(J:x^{\vv{v}}) = (J: x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in  \NN \mathcal{W}(\vv{v})$.
 % \end{lemma}
 
@@ -3222,7 +3199,7 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 %  \end{lemma}
 
 %  \begin{proof}
-%     Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^m$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^m = \bigcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and
+%     Let $\mathcal{V}$ and $\mathcal{W}(\vv{v})$ be the finite subsets of $\NN^\numvars$ described in \Cref{monomial-noetherian-decomposition: L}, relative to the ideal $J$ of $A[x]$, so that $\NN^\numvars = \bigcup_{\vv{v} \in \mathcal{V}} (\vv{v}+\NN \mathcal{W}(\vv{v}))$, and
 %     \[
 %        (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\vv{w}}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \vv{w} \in  \NN  \mathcal{W}(\vv{v}).
 %     \]
@@ -3286,7 +3263,7 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 %    The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  L} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
 %    As $A[x]$ is Noetherian, we may choose $N\in \NN$ such that all the ascending chains $\{(J:_{A[x]}x_i^n)\}_{n\in \NN}$, with $i=1,\ldots,\numvars$, are stable for $n\ge N$.
 %    We claim that each colon ideal $(J:_{A[x]}x^\vv{u})$ is equal to $(J:_{A[x]}x^\vv{v})$ for some $\vv{v} \le N\vv{1}$, which establishes the desired finiteness.
-%    Indeed, if $\vv{v} = (v_1,\ldots,v_m)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
+%    Indeed, if $\vv{v} = (v_1,\ldots,v_\numvars)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
 
 %    Suppose $\ell$ satisfies (1).
 %    By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: L} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
@@ -3343,7 +3320,7 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 \end{corollary}
 
 \begin{proof}
-   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^m \to \NN^m$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_m,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: L} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
+   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: L} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
    \[ (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
                                = (J:_{A[x]}x_i^{t+1})B[x]
                                =(JB[x]:_{B[x]} x_i^{t+1}) \]
@@ -3393,7 +3370,7 @@ Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the po
       This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: C}, as opposed to simply citing it.
       What do you guys think about this?
    }
-   in $R_A(\idealm)$ associated to a positive point in $\NN^m$ such that
+   in $R_A(\idealm)$ associated to a positive point in $\NN^\numvars$ such that
    \[
       \mu(I_A(\idealm), J_A(\idealm), p^e) = \mu(I_A(\idealm), L_A(\idealm), p^e)  = \mu(I_A(\idealm), \ideald, p^e)
    \]
