@@ -651,7 +651,7 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    Let $\O$ be a face of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and suppose $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
    Set $\rb(\O) =  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$.
    Then
-   \[\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O)),\]
+   \[\O =  \conv( \col(A) \cap \O ) + \cone(\rb(\O))\]
    where we agree that $\cone(\emptyset) = \{\vv{0}\}$.
    In particular, the supporting indices of $\defpt$ depend only on $\O$, and $\O$ is bounded if and only if $\defpt$ is positive.
 \end{proposition}
@@ -662,12 +662,12 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
    Then the same holds for every $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
    To prove the reverse containment, let $\vv{v} \in \O$.
    Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
-   Denoting the $i$-th column of $A$ by $\vv{a}_i$, we have
+   Denoting the $i$-th column of $A$ by $\vv{a}_i$, the nonnegativity of $\defpt$ implies that
    \[
       \alpha = \iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i
    \]
-   where $\iprod{\defpt}{\vv{a}_i} = \alpha$, if $\vv{a}_i \in \O$, or $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
-   The above inequality, together with the facts that $\vv{s}\ge \vv{0}$ and $\norm{\vv{s}} = 1$, tells us that $s_i = 0$ whenever $\vv{a}_i \notin \O$, and therefore $A\vv{s} \in \conv(\col(A)\cap \O) \subseteq \O$.
+   where $\iprod{\defpt}{\vv{a}_i} = \alpha$ if $\vv{a}_i \in \O$, or $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
+   The displayed inequality, together with the facts that $\vv{s}\ge \vv{0}$ and $\norm{\vv{s}} = 1$, tells us that $s_i = 0$ whenever $\vv{a}_i \notin \O$, and therefore $A\vv{s} \in \conv(\col(A)\cap \O) \subseteq \O$.
    As $\iprod{\defpt}{\vv{v}-A\vv{s}} = 0$, the nonnegativity of $\vv{v} - A\vv{s}$ and $\defpt$ implies that $\vv{v} - A\vv{s} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
 \end{proof}
 
@@ -721,20 +721,17 @@ This motivates the following definition.
 
 \begin{definition}[$F$-threshold of a monomial pair]
 \label{FT: D}
-   The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$ is the number described in \Cref{FT descriptions: P}.  We denote it by $\ft{A}{\vv{u}}$.
+   The \emph{$F$-threshold} of a monomial pair $(A, \vv{u})$, denoted $\ft{A}{\vv{u}}$, is the number described in \Cref{FT descriptions: P}.
 \end{definition}
 
 \begin{proof}[Proof of \Cref{FT descriptions: P}]
- \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tell us that the quantities in \ref{value} and \ref{limit} agree.  In what follows, let $\lambda$ be as in \ref{lambda}.
+   \Cref{ft as val LP: P} and \eqref{ft as limit of normalized program values: eq} tell us that the quantities in \ref{value} and \ref{limit} agree.  In what follows, let $\lambda$ be as in \ref{lambda}.
+   Let $\O = \mf(A,\vv{u})$, and fix a point $\vv{c} \in \RR^\numvars$ defining $\O$ in $\N$.
+   Our choice of $\lambda$ allows us to write $\vv{u} = \lambda \vv{w}$ for some $\vv{w} \in \O$, and in view of \Cref{alpha=1: convention}, it follows that $\iprod{\vv{c}}{\vv{u}} = \lambda \iprod{\vv{c}}{\vv{w}} = \lambda$.
+   This establishes the equality of the numbers described in \ref{lambda} and \ref{new ip}.
 
-
-    Let $\O = \mf(A,\vv{u})$, and fix a point $\vv{c} \in \RR^\numvars$ defining $\O$ in $\N$.  Our choice of $\lambda$ allows us to write
-    $\vv{u} = \lambda \vv{w}$ for some $\vv{w} \in \O$,  and in view of \Cref{alpha=1: convention}, it follows that $\iprod{\vv{c}}{\vv{u}} = \lambda \iprod{\vv{c}}{\vv{w}} = \lambda$.
-    This establishes the equality of the numbers described in \ref{lambda} and \ref{new ip}.
-
-    To conclude our proof,  it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.  Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently
-  $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$,
-   where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
+   To conclude our proof, it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.
+   Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$, where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
    This shows that the value of $\LP$ is at most $\lambda$.
    On the other hand, since $\lambda^{-1}\vv{u} \in \N$, we have $\lambda^{-1}\vv{u} \ge A\vv{s}$ for some $\vv{s} \geq \vv{0}$ with $\norm{\vv{s}} = 1$.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
@@ -769,18 +766,18 @@ This motivates the following definition.
    The minimal face $\O$ is defined by the point $\defpt = (3/17, 0, 1/17)$, so \Cref{FT descriptions: P}\ref{new ip} tells us that
    $\ft{A}{\vv{u}} = \iprod{\defpt}{\vv{u}} = 4/17$.
 
-   From yet another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP(A,\vv{u})$, with its optimal set,
-   \[\opt \LP(A,\vv{u}) = \conv\bigg(\bigg(\frac1{17}, 0, \frac3{17}\bigg),\bigg(\frac2{17}, \frac1{17}, \frac1{17}\bigg)\bigg),\]
+   From yet another perspective, \Cref{fig: splitting polytope} shows the feasible region of the linear program $\LP = \LP(A,\vv{u})$, with its optimal set
+   \[\opt \LP = \conv\bigg(\bigg(\frac1{17}, 0, \frac3{17}\bigg),\bigg(\frac2{17}, \frac1{17}, \frac1{17}\bigg)\bigg)\]
    highlighted in green.
-   Thus, \Cref{FT descriptions: P}\ref{value} again tells us that
-   \[\ft{A}{\vv{u}} = \val \LP(A,\vv{u}) = \bigg\|\bigg(\frac1{17}, 0, \frac3{17}\bigg)\bigg\| = \frac4{17}.\]
+   Thus, \Cref{FT descriptions: P}\ref{value} tells us that
+   \[\ft{A}{\vv{u}} = \val \LP = \bigg\|\bigg(\frac1{17}, 0, \frac3{17}\bigg)\bigg\| = \frac4{17}.\]
 \end{example}
 
 \begin{example}
    \label{ex: m-primary homogeneous case}
    Let $\idealm$ be the maximal ideal of  $\kk[x_1,\ldots,x_\numvars]$ generated by the variables, and let $\ideala$ be an $\idealm$-primary ideal generated by monomials of the same degree $d$ under a positive $\ZZ$-grading.
    Let $\vv{w} = (\deg x_1,\ldots,\deg x_\numvars)$.
-   For convenience, set $\deg \vv{t} \coloneqq \iprod{\vv{w}}{\vv{t}}$ for $\vv{t} \in \RR^\numvars$, so that for a positive lattice point $\vv{u}$ we have $\deg \vv{u} = \deg x^\vv{u}$.
+   For convenience, set $\deg \vv{t} \coloneqq \iprod{\vv{w}}{\vv{t}}$ for each $\vv{t} \in \RR^\numvars$, so that for every nonegative lattice point $\vv{u}$ we have $\deg \vv{u} = \deg x^\vv{u}$.
 
    Let $A$ be a monomial matrix associated to $\ideala$.
    Then the convex hull $\O$ \hl{of the degree $d$ columns of $A$}
@@ -801,11 +798,10 @@ This motivates the following definition.
 
 \subsection{Characterizing optimal points of $\LP(A,\vv{u})$}
 
-\Cref{prop: MW for faces} above implies that $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O = \mf(A,\vv{u})$ and the points in the recession basis of $\O$.
+\Cref{prop: MW for faces} above implies that $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O = \mf(A,\vv{u})$ and the standard basis vectors in the recession basis of $\O$.
 Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
 \begin{proposition}\label{opt set: P}
-%   Let $(A,\vv{u})$ be a monomial pair, where $A$ is an $\numvars\times n$ matrix.
    A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}[$(1)$]
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
@@ -836,7 +832,7 @@ For that, we shall need the following well-known characterization of the vertice
    \label{prop: characterization of vertices}
    Let $\mathcal{P}$ be the polyhedron defined by a system of inequalities $M \vv{x} \le \vv{b}$, where $M\in \RR^{s\times t}$, and let $\vv{v} \in \mathcal{P}$.
    For a subset $I$ of $\{1,\ldots,s\}$, let $M_I$ and $\vv{b}_I$ be the matrix and vector obtained by selecting the $i$-th rows of $M$ and $\vv{b}$, for each $i\in I$.
-   Then $\vv{v}$ is a vertex of $\mathcal{P}$ if and only if there exists $I \subseteq \{1,\ldots,s\}$ such that $A_I$ is a nonsingular square matrix and $\vv{v} = M_I^{-1}\vv{b}_I$.
+   Then $\vv{v}$ is a vertex of $\mathcal{P}$ if and only if there exists $I \subseteq \{1,\ldots,s\}$ such that $M_I$ is a nonsingular square matrix and $\vv{v} = M_I^{-1}\vv{b}_I$.
 \qed
 \end{lemma}
 
@@ -846,46 +842,44 @@ Given a monomial matrix $A$, there exists a positive integer $\denom = \denom(A)
 \end{theorem}
 
 \begin{proof}
-   Let $M$ be the matrix obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$, and let $\vv{b}$ be obtained by stacking $\vv{u}$, $-\vv{u}$, and $\vv{0}\in \RR^{2n}$.
    By \Cref{opt set: P}, $\opt \LP(A,\vv{u})$ is defined by the inequalities $A\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, where equality is required in a prescribed set of coordinates.
-   Thus, $\opt \LP(A,\vv{u})$ is defined by a subsystem of $M \vv{x} \le \vv{b}$.
+   Thus, if $M$ is the matrix obtained by stacking $A$, $-A$, the identity matrix $I_n$, and $-I_n$, and $\vv{b}$ is the column vector obtained by stacking $\vv{u}$, $-\vv{u}$, and $\vv{0}\in \RR^{2n}$, then $\opt \LP(A,\vv{u})$ is defined by a subsystem of $M \vv{x} \le \vv{b}$.
    Let $\denom$ be the least common multiple of the nonzero $n\times n$ minors of $M$.
    Then by \Cref{prop: characterization of vertices}, every vertex of $\opt \LP(A,\vv{u})$ is rational, with denominator $\denom$.
 \end{proof}
 
 \subsection{Special points and universal denominators}
 
-Technicalities that arise in future sections whenever the minimal face of $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \eqref{mc decomposition: e} in \Cref{opt set: P}.
+Technicalities that arise in future sections whenever the minimal face of $(A, \vv{u})$ is unbounded force us to consider a certain distinguished subset of optimal points, in which we require a strengthening of condition \ref{mc decomposition: e} in \Cref{opt set: P}.
 
 \begin{definition}[Special point]
    \label{mc: D}
    Let $\O = \mf(A, \vv{u})$.
    A point $\vv{s}$ is a \emph{special point} for $(A, \vv{u})$ if it satisfies the following conditions.
-\begin{enumerate}
-\item $\vv{s} \in \opt \LP(A, \vv{u})$.
-%\item $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w}$ in the relative interior of $\cone ( \rb(\O))$.
-\item $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when $\rb(\O)$ is empty.
-% \pedro{We could just say that $\vv{w}$ is a positive point of $\rs(\O)$, which is how we are phrasing things later.}
-% \emily{It seems that we agree; I took a crack at updating it.}
-\end{enumerate}
-The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
+   \begin{enumerate}
+      \item $\vv{s} \in \opt \LP(A, \vv{u})$.
+      \item \label{item: special condition of special points}
+      $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when $\rb(\O)$ is empty.
+   \end{enumerate}
+   The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
 
 \begin{proposition}
    \label{opt versus mc: P}
-   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.  Otherwise,  $\sp(A, \vv{u})$ is a nonempty convex set lying between $\opt \LP(A, \vv{u})$ and $\ri \opt \LP(A, \vv{u})$.
+   If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
+   Otherwise, $\sp(A, \vv{u})$ is a nonempty convex set lying between $\opt \LP(A, \vv{u})$ and its relative interior, $\ri \opt \LP(A, \vv{u})$.
 \end{proposition}
 
 \begin{proof}
-   If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$ is equal to its relative interior.
-   Thus, in view of \Cref{opt set: P}, condition (2) in \Cref{mc: D} is redundant, and $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
+   If $\O$ is bounded, then $\rb(\O) = \emptyset$, and so $\cone( \rb(\O)) = \{\vv{0} \}$.
+   Thus, in view of \Cref{opt set: P}, condition \eqref{item: special condition of special points} in \Cref{mc: D} is automatically fulfilled, and $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
 
    Next, set $\lambda = \ft{A}{\vv{u}}$ and assume that $\O$ is unbounded.
-   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.  Further, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \Cref{prop: MW for faces}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
+   The minimality of $\O$ implies that $\lambda^{-1}\vv{u}$ is not in any proper face of $\O$, and therefore, must lie in its relative interior.
+   Furthermore, as the relative interior operation on convex sets commutes with Minkowski sums---see, \eg \cite[Theorem 4.10(b)]{vantiel.convex_analysis}---the decomposition in \Cref{prop: MW for faces}  implies that $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \lambda \conv(\col(A) \cap \O)$ and $\vv{w} \in \ri \cone(\rb(\O))$.  Any realization of $\vv{v}$ as $\lambda$ times a convex combination of the points in $\col(A) \cap \O$ then determines a special point.
 
- We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
- Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$,
-  recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of the vertices of the polytope, while the polytope itself consists of all convex combinations of its vertices.
+   We have just shown that $\sp(A, \vv{u})$ is nonempty, and it is clear that this set is convex.
+   Before proceeding to show that $\sp(A, \vv{u})$ contains the relative interior of the optimal set of $\LP = \LP(A,\vv{u})$, recall that the relative interior of a polytope consists of all convex combinations with \emph{positive coefficients} of the vertices of the polytope, while the polytope itself consists of all convex combinations of its vertices.
 
   Let $\vv{s} \in \ri \opt \LP$, and suppose $\vv{s}$ is not special for $(A,\vv{u})$.
   Then there exists some $i$ with $\canvec_i \in \rb(\O)$ for which $A\vv{s}$ agrees with $\vv{u}$ in the $i$-th coordinate.
@@ -898,7 +892,7 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
    The containments asserted in \Cref{opt versus mc: P} may all be proper.
    Indeed, if $A$, $\vv{u}$, and $\O$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $\vv{s}_0 = (2/17, 1/17, 1/17)$ and $\vv{s}_1 = (1/17, 0, 3/17)$.
    Its relative interior excludes both $\vv{s}_0$ and $\vv{s}_1$, while the set of special points for $(A,\vv{u})$ excludes only $\vv{s}_0$.
-   Indeed, setting $\vv{s}_t=(1-t)\vv{s}_0 + t \vv{s}_1$, where $0\le t\le 1$, $\vv{u} - A\vv{s}_t = \frac{3t}{17}\canvec_2$ is a positive point of $\rs(\O)$ if and only if $0<t\le 1$.
+   Indeed, setting $\vv{s}_t=(1-t)\vv{s}_0 + t \vv{s}_1$, where $0\le t\le 1$, $\vv{u} - A\vv{s}_t = \frac{3}{17}\,t \canvec_2$ is a positive point of $\rs(\O)$ if and only if $0<t\le 1$.
 \end{example}
 
 % Consider the monomial matrix \[ A = \begin{bmatrix} a & 0 & c \\ 0 & b & c \\ 0 & 0 & d \end{bmatrix} \]
@@ -906,13 +900,13 @@ The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such 
 
 \begin{definition}[Universal denominator]
    \label{universal denominator: D}
-   Suppose that $A$ is a monomial matrix.
+   Let $A$ be a monomial matrix.
    A \emph{universal denominator} for $A$ is a positive integer $\denom = \denom(A)$ such that for every $A$-pair $(A, \vv{u})$, there exists a point $\vv{s} \in \sp(A, \vv{u})$ so that $\denom \vv{s}$ has integer coordinates.
 \end{definition}
 
 \begin{theorem}
-\label{universal-denominators-exist:  T}
-Universal denominators exist.
+   \label{universal-denominators-exist:  T}
+   Universal denominators exist.
 \end{theorem}
 
 \begin{proof}
@@ -920,10 +914,10 @@ Universal denominators exist.
    Let $\denom_{\circ}$ be an integer satisfying the property described in \Cref{uniform denominators for vertices:  T} relative to $A$, and fix an $A$-pair $(A, \vv{u})$.
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$ by \Cref{opt versus mc: P}, and so every vertex in this set has denominator~$\denom_{\circ}$.
 
-   Next, suppose $\O$ is unbounded, so that $A$ has $\numvars \geq 2$ many rows.
-   Without loss of generality, suppose that $\rb(\O) = \{ \canvec_1, \ldots, \canvec_t \}$ for some $1 \leq t \leq \numvars-1$, and fix \emph{positive} integers $\numvars_1, \ldots, \numvars_t$ that sum to $\numvars-1$.
+   Next, suppose $\O$ is unbounded, so that $A$ has at least two rows.
+   Let $m$ be the number of rows of $A$ and, without loss of generality, suppose that $\rb(\O) = \{ \canvec_1, \ldots, \canvec_t \}$ for some $1 \leq t \leq \numvars-1$.
    As demonstrated in the  proof of \Cref{opt versus mc: P}, for every index  $1 \leq i \leq t$, there exists a vertex $\vv{s}_i$ of $\opt \LP(A, \vv{u})$ for which $A \vv{s}_i$ is less than $\vv{u}$ in the $i$-th coordinate.
-   It then follows from the definition of special point that the point
+   Choosing \emph{positive} integers $\numvars_1, \ldots, \numvars_t$ that sum to $\numvars-1$, it then follows from the definition of special point that the point
    \[ \frac{ \numvars_1 \vv{s}_1 + \cdots + \numvars_t  \vv{s}_t}{\numvars-1}  \]
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(\numvars-1)\denom_{\circ}$.
 \end{proof}
@@ -938,7 +932,7 @@ Universal denominators exist.
    For every such pair, the point
    \[\vv{s} = \Big(\frac{u_1}{a_1},\ldots,\frac{u_\numvars}{a_\numvars},0,\ldots,0\Big)\]
    satisfies the conditions of \Cref{opt set: P}, and is therefore an optimal point for $(A,\vv{u})$.
-   Since $\O$ is compact, it follows that $\vv{s}$ is a special point.
+   Since $\O$ is bounded, it follows that $\vv{s}$ is a special point.
    Finally, note that since $\deg a_i\canvec_i = d$ for every $i$, $d$ is a multiple of every $a_i$, and thus a denominator for $\vv{s}$.
 \end{example}
 
@@ -948,8 +942,8 @@ The following is a consequence of the discreteness of the $F$-jumping exponents 
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
 
 \begin{proposition}
-\label{discreteness: P}
-Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ less than $\beta$.
+   \label{discreteness: P}
+   Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ that are less than $\beta$.
 \end{proposition}
 
 \begin{proof}
@@ -971,8 +965,6 @@ Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined b
 \begin{enumerate}
    \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_\numvars \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^\numvars$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^\numvars$.
    (The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.)
-% \item The \emph{collapse} of a subset $X$ of $\RR^\numvars$ along $\O$ is the image of $X$ under the projection $\RR^\numvars \stackrel{B}{\longrightarrow} \RR^{\#\rb(\O)^\perp}$, where $B$ is the matrix whose rows are the vectors $\canvec_i$ in $\rb(\O)^\perp$.
-% In other words, the collapse of each point $\vv{v}$ along $\O$ is obtained by deleting each coordinate $v_i$ with $\canvec_i\in \rb(\O)$.
    \item The \emph{collapsing along $\O$} is the projection map $\RR^\numvars \to \RR^{\#\rb(\O)^\perp}$ that deletes the $i$-th coordinate of a point whenever $\canvec_i \in \rb(\O)$, while preserving the order of the remaining coordinates.
    The images of points or sets under this projection are called \emph{collapses} of these objects along $\O$.
    \item The \emph{collapse} of $A$ along $\O$ is the matrix obtained from $A$ by collapsing each of its columns along $\O$, or in other words, the matrix obtained by deleting the $i$-th row of $A$ whenever $\canvec_i\in \rb(\O)$.
@@ -984,20 +976,20 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 \begin{remark}
    \label{rmk: collapse of a matrix}
    It is clear from the definition that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$, for each $\vv{k}$ in the domain of $A$.
-%   Indeed, both are obtained by left-multiplying $\vv{k}$ by $BA$, where $B$ is as in \Cref{collapse: D}.
 \end{remark}
 
 \begin{remark}
    \label{collapse of a defining vector: R}
-   If $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then the coordinates deleted in $\collapse{\defpt}$ correspond precisely to the zero coordinates of $\defpt$.
+   If $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $\collapse{\defpt}$ is a positive point consisting precisely of the nonzero coordinates of $\defpt$.
    Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^\numvars$. \daniel[inline]{Restate this?}
 \end{remark}
 
-
-
 \begin{remark}
-\label{collapse of monomial is monomial: R}
-The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.   On the other hand, if $\defpt \in \RR^\numvars$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\defpt}$ with every column of $\collapse{A}$ is at least one.  In particular, the columns of $\collapse{A}$ are nonzero.
+   \label{collapse of monomial is monomial: R}
+   The collapsed matrix $\collapse{A}$ is monomial.
+   Indeed, each row of $\collapse{A}$ is a row of $A$, and hence is nonzero.
+   On the other hand, if $\defpt \in \RR^\numvars$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\defpt}$ with every column of $\collapse{A}$ is at least $1$.
+   In particular, the columns of $\collapse{A}$ are nonzero.
 \end{remark}
 
 \begin{proposition}\label{collapse of Newton polyhedron: P}
@@ -1012,22 +1004,22 @@ The collapsed matrix $\collapse{A}$ is monomial.  Indeed, each row of $\collapse
    \[ \collapse{\N} = \ol{\conv( \col(A))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{A}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars).\]
    The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{A}$.
 
-Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
-The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
-Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.
+   Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
+   The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
+   Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(A) \cap \O}) = \conv( \col(\collapse{A}) \cap \collapse{\O})$.
 \end{proof}
 
-Below, we describe the relationship between collapses and the other notions introduced in \Cref{sec: LPs,s: newton}.
+Below, we describe the relationship between collapses and other notions introduced in \Cref{sec: LPs,s: newton}.
 
 \begin{proposition}
    \label{collapse of mf and mc: P}
    Consider a monomial pair $(A, \vv{u})$, and let an overbar denote collapse along $\O = \mf(A, \vv{u})$.
    Then the following hold.
-\begin{enumerate}[$(1)$]
-\item $\mf(\collapse{A}, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
-\item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.
-\item Each special point for $(A, \vv{u})$ is a special point for $(\collapse{A}, \collapse{\vv{u}})$.
-\end{enumerate}
+   \begin{enumerate}[$(1)$]
+      \item $\mf(\collapse{A}, \collapse{\vv{u}}) = \collapse{\O}$ and $\ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
+      \item Each optimal point for $\LP(A, \vv{u})$ is also optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.
+      \item Each special point for $(A, \vv{u})$ is a special point for $(\collapse{A}, \collapse{\vv{u}})$.
+   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
@@ -1036,7 +1028,7 @@ Below, we describe the relationship between collapses and the other notions intr
    This shows that $\collapse{\O}= \mf(\collapse{A},\collapse{\vv{u}})$ and $\lambda = \ft{\collapse{A}}{\collapse{\vv{u}}}$.
    Consequently,
    \[ \val \LP(A, \vv{u}) = \ft{A}{\vv{u}} = \ft{\collapse{A}}{\collapse{\vv{u}}} = \val \LP(\collapse{A}, \collapse{\vv{u}}). \]
-   Since each row of $\collapse{A}$ is a row of $A$, the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$.
+   Since each row of $\collapse{A}$ is a row of $A$, the constraints of $\LP(\collapse{A}, \collapse{\vv{u}})$ are a subset of those of $\LP(A, \vv{u})$, and hence $\feas \LP(A,\vv{u})$ is a subset of $\feas \LP(\collapse{A},\collapse{\vv{u}})$.
    It follows that any optimal point for $\LP(A, \vv{u})$ must be optimal for $\LP(\collapse{A}, \collapse{\vv{u}})$.
    The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
    \begin{equation*}
@@ -1078,16 +1070,17 @@ Below, we describe the relationship between collapses and the other notions intr
 \end{example}
 
 \daniel[inline]{I think we'll need this for the section on applications to generic hypersurfaces}
+
 \begin{proposition}
 \label{collapse of a collapse is a collapse: P} Every composition of collapsings is a collapsing.
 \end{proposition}
 
 \begin{proof}
-Consider a face $\O$ of a polyhedron $\N$ lying in $\RR^\numvars$.   Set $\ell = \# \rb(\O)^{\perp}$ and let $\pi: \RR^\numvars \to \RR^{\ell}$ be the collapsing projection along $\O$.  In addition, fix a face $\mathcal{F}$ of $\pi(\N)$,  which \Cref{collapse of Newton polyhedron: P} tells us is a Newton polyhedron in $\RR^{\ell}$.  Set $s=\# \rb(\mathcal{F})^{\perp}$ and let $\rho: \RR^{\ell} \to \RR^s$ be the collapsing projection along $\mathcal{F}$.
+Consider a face $\O$ of a Newton polyhedron $\N \subseteq \RR^\numvars$.   Set $\ell = \# \rb(\O)^{\perp}$ and let $\pi: \RR^\numvars \to \RR^{\ell}$ be the collapsing projection along $\O$.  In addition, fix a face $\mathcal{F}$ of $\pi(\N)$,  which \Cref{collapse of Newton polyhedron: P} tells us is a Newton polyhedron in $\RR^{\ell}$.  Set $s=\# \rb(\mathcal{F})^{\perp}$ and let $\rho: \RR^{\ell} \to \RR^s$ be the collapsing projection along $\mathcal{F}$.
 
-We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^\numvars \to \RR^s$ is the collapsing projection along some face of $\N$.  Let $\canvec_1, \ldots, \canvec_\numvars \in \RR^\numvars$ and $\vv{f}_1, \ldots, \vv{f}_s \in \RR^s$ be the standard basis vectors for each Euclidean space.  After reordering these, we may assume that $\sigma: \RR^\numvars \to \RR^s$ maps $\canvec_i$ to $\vv{f}_i$ for each $1 \leq i \leq s$, and to zero otherwise.   Next, let  $\iota:  \RR^s \hookrightarrow \RR^\numvars$ be the $\RR$-linear map defined by $\vv{f}_i \mapsto \canvec_i$.
+We will now show that $\sigma \coloneqq \rho \circ \pi: \RR^\numvars \to \RR^s$ is the collapsing projection along some face of $\N$.  Let $\canvec_1, \ldots, \canvec_\numvars \in \RR^\numvars$ and $\vv{f}_1, \ldots, \vv{f}_s \in \RR^s$ be the standard basis vectors for each Euclidean space.  After reordering these, we may assume that $\sigma: \RR^\numvars \to \RR^s$ maps $\canvec_i$ to $\vv{f}_i$ for each $1 \leq i \leq s$, and to $\vv{0}$ otherwise.   Next, let  $\iota:  \RR^s \hookrightarrow \RR^\numvars$ be the $\RR$-linear map defined by $\vv{f}_i \mapsto \canvec_i$.
 
-Once again, \Cref{collapse of Newton polyhedron: P} implies that $\sigma(\N) = \rho(\pi(\N))$ is a Newton polyhedron.  Consider a standard compact face of $\mathcal{L}$ of $\sigma(\N)$, for instance, the collapsed face $\pi(\mathcal{F})$.    If $\mathcal{L}$ is defined by a point $\vv{b} \in \RR^s$, then \Cref{prop: MW for faces}  tells us that $\vv{b}$ is positive, and the fact that
+Once again, \Cref{collapse of Newton polyhedron: P} implies that $\sigma(\N) = \rho(\pi(\N))$ is a Newton polyhedron.  Consider a standard compact face of $\mathcal{L}$ of $\sigma(\N)$, for instance, the collapsed face $\rho(\mathcal{F})$.    If $\mathcal{L}$ is defined by a point $\vv{b} \in \RR^s$, then \Cref{prop: MW for faces}  tells us that $\vv{b}$ is positive, and the fact that
 \[ \iprod{\vv{b}}{\sigma(\vv{u})} = \iprod{\iota(\vv{b})}{\vv{u}} \] for every $\vv{u} \in \RR^\numvars$ implies that $\sigma^{-1}(\mathcal{F})$ is a standard face of $\N$ defined by $\iota(\vv{b})$.  By construction, the $i$-th entry of $\iota(\vv{b})$ is not zero if and only if $1 \leq i \leq s$, so that $\rb(\sigma^{-1}(\mathcal{L}))^{\perp} = \{ \canvec_1, \ldots, \canvec_s \}$, from which it follows that $\sigma$ is the collapsing projection along the face $\sigma^{-1}(\mathcal{F})$ of $\N$.
 \end{proof}
 
