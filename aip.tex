@@ -731,7 +731,7 @@ This motivates the following definition.
    This establishes the equality of the numbers described in \ref{lambda} and \ref{new ip}.
 
    To conclude our proof, it remains to show that $\val \LP = \lambda$, where $\LP = \LP(A, \vv{u})$.
-   Towards this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$, where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
+   Toward this, note that if $\vv{s} \in \feas \LP$, then $\vv{s}\ge \vv{0}$ and $A \vv{s} \leq \vv{u}$, and consequently $\norm{\vv{s}} \le \iprod{\vv{c}}{A \vv{s}} \leq \iprod{\vv{c}}{\vv{u}} = \lambda$, where the first inequality follows from \Cref{prop: inner product with columns of A}, and the second from the nonnegativity of $\vv{c}$.
    This shows that the value of $\LP$ is at most $\lambda$.
    On the other hand, since $\lambda^{-1}\vv{u} \in \N$, we have $\lambda^{-1}\vv{u} \ge A\vv{s}$ for some $\vv{s} \geq \vv{0}$ with $\norm{\vv{s}} = 1$.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
@@ -1099,7 +1099,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    \label{tail: D}
    Let $q$ be a positive integer.
    If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
-   \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \]
+   \[ \tail{\lambda}_q \coloneqq \frac{ \lpr{aq}{b}}{b}. \]
    This expression is clearly independent of the choice of the integers $a$ and $b$.
    In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
@@ -1122,13 +1122,13 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 \begin{proof}
    Set $\O = \mf(A, \vv{u})$.
    As $\vv{s} \in \sp(A, \vv{u})$, we can write $\vv{u} = A \vv{s} + \vv{w}$,
-   where $\vv{w}$ in a positive point of $\rs(\O)$.
-   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$---recall that by this, we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$.
+   where $\vv{w}$ is a positive point of $\rs(\O)$.
+   The inequality $\vv{t} \leq \vv{s}$ induces the bound $A \vv{t} \leq A \vv{s} = \vv{u} - \vv{w}$, which shows that $A\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$ (recall that by this, we mean that the $i$-th coordinate of $A\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$).
    To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
-   Towards this, let $(\collapse{A},\collapse{\vv{u}})$ be the collapse of $(A,\vv{u})$ along $\O$.
-   Our choice of $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
-   Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, then the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.
+   Let an overbar denote collapse along $\O$.
+   The assumption on $\vv{t}$ implies that $\collapse{A}( \vv{s} - \vv{t})$ and $\collapse{A} \vv{s} = \collapse{\vv{u}}$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{A}$.
+   Therefore, since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, the same must be true for $\collapse{A}(\vv{s} - \vv{t})$.
    In other words, $\collapse{A} \vv{t} < \collapse{A} \vv{s} = \collapse{\vv{u}}$, which shows that $A \vv{t}$ is less than  $\vv{u}$ in $\rs(\O)^{\perp}$.
 \end{proof}
 
@@ -1141,7 +1141,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{theorem}
    \label{canonical-feasible: T}
-   If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q \in \ZZ$ is positive, then
+   If $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ and $q$ is a positive integer, then
    \[ \vv{s}q - \tail{\vv{s}}_q \in \feas \IP(A, \vv{u}, q).\]
    We call $\vv{s}q - \tail{\vv{s}}_q$ a \emph{canonical feasible point} for $\IP(A,\vv{u},q)$.
 \end{theorem}
@@ -1153,15 +1153,15 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 \begin{remark}[Comparisons with canonical feasible points]
    \label{comparison: R}
    Adopt the context of \Cref{canonical-feasible: T}, and fix a point $\vv{k}$ that is feasible for $\IP = \IP(A, \vv{u}, q)$.
-   Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the feasible point  described in \Cref{canonical-feasible: T}.
+   Our goal is to describe some natural constraints on the difference between $\vv{k}$ and the canonical feasible point described in \Cref{canonical-feasible: T}.
    Toward this, set
    \[ \vv{h} =  \vv{k} - \vv{s}q + \tail{\vv{s}}_q \]
    and let an overbar denote the collapse along the face $\O = \mf(A, \vv{u})$.
 
    Notice that if $s_i = 0$, then $h_i  = k_i \geq 0$ by the nonnegativity constraint of $\IP$.
-   The definition of $\vv{h}$ and the constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w} \in \rs(\O)$ is as in \Cref{mc: D}.
+   The definition of $\vv{h}$ and the constraints of $\IP$ also tell us that $A ( \vv{s}q-\tail{\vv{s}}_q + \vv{h}) = A \vv{k} < \vv{u}q = A \vv{s}q + \vv{w}q$, where $\vv{w}$ is a positive point of $\rs(\O)$.
    Collapsing this inequality, keeping in mind that $\collapse{\vv{w}} = \vv{0}$, and rearranging terms, shows that $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$.
-   This motivates us to study another integer program, that will be formally introduced in the next subsection.
+   This motivates us to study another integer program, which will be formally introduced in the next subsection.
 \end{remark}
 
 \subsection{Another integer program}
@@ -1204,7 +1204,7 @@ Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\col
 In particular,
 \begin{equation}
    \label{ineq between deficits}
-   \val \IP(A, \vv{u}, q) \le \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q} + \val \ip (A, \vv{u}, \vv{s}, q),
+   \val \IP(A, \vv{u}, q) \le \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q} + \val \ip (A, \vv{u}, \vv{s}, q)
 \end{equation}
 where we have used that $\vv{s} \in \opt \LP(A,\vv{u})$ and so $\norm{\vv{s}} = \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$.
 The next proposition gives conditions under which equality holds.
@@ -1223,13 +1223,13 @@ The next proposition gives conditions under which equality holds.
    On the other hand, if $s_i$ is positive, then it must be at least $1/\denom$, and so
    $k_i = s_iq-\tail{s_i}_q+h_i \ge q/d - 1 + h_i$, and the last expression is nonnegative by assumption.
 
-   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$, where $\vv{w}$ in a positive point of $\rs(\O)$, as in \Cref{mc: D}.
+   To proceed, write $\vv{u} = A \vv{s} + \vv{w}$, where $\vv{w}$ is a positive point of $\rs(\O)$, as in \Cref{mc: D}.
    Now, $\vv{k}$ is feasible for $\IP = \IP(A, \vv{u}, q)$ if and only if
-   \[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q,\]
+   \[ A\vv{k} = A (\vv{s}q - \tail{\vv{s}}_q + \vv{h})  < \vv{u}q = A {\vv{s}}q + \vv{w}q\]
    which we rewrite as
    \begin{equation}
       \label{equivalent ineq: e}
-      A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q,
+      A \vv{h} < A \tail{\vv{s}}_q + \vv{w}q
    \end{equation}
    and prove using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
    As $\vv{u}=A\vv{s}+\vv{w}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
@@ -1238,11 +1238,11 @@ The next proposition gives conditions under which equality holds.
    Collapsing along $\O$, on the other hand, \eqref{equivalent ineq: e} becomes $\collapse{A} \vv{h} < \collapse{A} \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$, and shows that \eqref{equivalent ineq: e} also holds in $\rs(\O)^\perp$.
 
    In summary, we have just shown that $\vv{k}$ is feasible for $\IP$, and so
-   \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip, \]
+   \[ \val \IP \geq \norm{\vv{k}} = \ft{A}{\vv{u}} \cdot q - \norm{\tail{\vv{s}}_q} + \val \ip\]
    and equality holds by \eqref{ineq between deficits}.
 \end{proof}
 
-We now move towards establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
+We now move toward establishing a useful bound for the value of $\ip(A, \vv{u}, \vv{s}, q)$.
 
 \begin{lemma}
    \label{tail projection: L}
@@ -1262,7 +1262,7 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
 \end{proposition}
 
 \begin{proof}
-   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
+   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(A, \vv{u})$ in the Newton polyhedron of $A$, and let an overbar denote collapse along $\O$.
    Let $\vv{h}$ be optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$.
    If the $i$-th column of $A$ does not lie in $\O$, then $s_i$ is zero, and consequently $h_i$ is nonnegative.
    \Cref{prop: inner product with columns of A,rmk: collapse of a matrix,collapse of a defining vector: R} then tell us that
@@ -1280,23 +1280,10 @@ We now move towards establishing a useful bound for the value of $\ip(A, \vv{u},
    Finally, the positivity of $\collapse{A}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
 \end{proof}
 
-% \begin{remark}
-%    \label{bounded value sharpened: R}
-%    For later use, note that if we set $\vv{v} = \collapse{A} \tail{\vv{s}}_q - \collapse{A}\vv{h}$, where $\vv{h}$, as in the above proof, is any optimal point for $\ip(A,\vv{u},\vv{s},q)$, then we have
-%    \begin{equation}
-%       \label{sharpened bound: E}
-%    0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) \le \norm{\tail{\vv{s}}_q} - \ft{\collapse{A}}{\vv{v}} < \norm{\tail{\vv{s}}_q}.
-%    \end{equation}
-%    Indeed, \Cref{collapse of Newton polyhedron: P} shows that $\collapse{\defpt}$ is the defining point of the Newton polyhedron $\collapse{\N}$ of $\collapse{A}$, and since $\vv{v}/\ft{\collapse{A}}{\vv{v}}$ lies in $\collapse{\N}$, we have $\iprod{\collapse{\vv{\defpt}}}{\vv{v}} \ge \ft{\collapse{A}}{\vv{v}}$ by \Cref{alpha=1: convention}.
-%    Equations \eqref{bound in inner product: e} and \eqref{norm of tail: e}, on the other hand, tell us that $\iprod{\collapse{\vv{\defpt}}}{\vv{v}} \le \norm{\tail{\vv{s}}_q} - \val \ip$.
-%    Putting these inequalities together and rearranging gives us the central inequality in \eqref{sharpened bound: E}.
-% \end{remark}
-
 \subsection{Some finiteness properties}
 
 We now explore finiteness properties concerning the nature of these programs as, for a fixed monomial matrix $A$, we vary the $A$-list $(A, \vv{u}, \vv{s}, q)$.
 The following theorem underlies some of our later finiteness results.
-
 
 \begin{theorem}
    \label{finitely many secondary programs: T}
@@ -1907,7 +1894,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 %    Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
 % }
 % \emily[inline]{Sounds good to me.}
-% \daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ towards the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
+% \daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ toward the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
 % \pedro[inline]{
 %    I added the lemma below.
 %    I did not modify the proof of \Cref{main theorem wrt diagonal: T}, though, since the fact that $\val \IP > p$ still does not appear in any statement.
@@ -2684,7 +2671,7 @@ The non-leading coefficients appearing in the polynomial expressions described i
    By \Cref{main theorem wrt diagonal: T}, the non-leading coefficients under consideration are the rational numbers $-(\delta_{q}(A,\vv{u})-\epsilon_{qp}(A,\vv{u}))$ whenever $q < \Q$, the rational number $-(\delta_{\Q}(A,\vv{u}) - 1)$ whenever $\Q$ is finite, the rational numbers $-\delta_q(A,\vv{u})$ whenever $q\le \Q$, and $-1$.
 
    The proofs that the coefficients of the first and second type are nonpositive are similar, so we will only consider the coefficients of the second type.
-   Towards this, suppose that $\Q$ is finite.
+   Toward this, suppose that $\Q$ is finite.
    In this case, $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, and so there is an edge $(B,\vv{v}) \to (C,\vv{z})$ in $\sprout_p(A)$ whose initial pair lies in $\S^{\ast}_{\Q}(A,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(A,\vv{u}) = \udeficit(B,\vv{v},p)$ is at least $\ft{C}{\vv{z}}$, which is greater than $1$ as $(C,\vv{z})$ is not very small.
    Thus, $-(\delta_\Q(A,\vv{u})-1)$ is negative.
 \end{proof}
@@ -2899,7 +2886,7 @@ Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal
 \begin{proof}  Set $\idealc = \mon(\idealb)$ and $q=p^e$.  Given that both ideals in question are monomial, it suffices to prove that a monomial lies in $\mon(\idealb^{[q]})$ if and only if it lies in $\idealc^{[q]}$.  However, as $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that
 $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
 
-Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Towards this, consider a monomial $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$ where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
+Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Toward this, consider a monomial $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$ where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
 
 As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
@@ -2951,7 +2938,7 @@ After possibly reordering the variables,  we may assume that there exists $1 \le
 
 Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
 
-Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Towards this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so
+Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Toward this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so
 $\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
 
 Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim.
