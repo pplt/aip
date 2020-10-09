@@ -2145,7 +2145,6 @@ $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \end{algorithm}
 
 \section{Sprouting graphs} \label{sprouting: S}
-\emily{Transition added}
 Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(A, \vv{u}, p^e)$ when the matrix $A$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
 In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.
 
@@ -2155,7 +2154,7 @@ In order to do so, we first build a technical framework in which to carry out ou
    A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some (possibly, none) of its columns.
 \end{definition}
 
-\begin{definition}[$p$-Sprout]
+\begin{definition}[$p$-sprout]
    \label{p-sprout: D}
    Consider a monomial pair $(A,\vv{u})$, and let an overbar denote collapse along $\mf(A,\vv{u})$.
    We say that $(B, \vv{v})$ is a \emph{$p$-sprout} of $(A, \vv{u})$ whenever the following conditions are satisfied.
@@ -2232,7 +2231,7 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 \begin{proof}
    We start by describing what it means for $p$ to be large.
-   Toward this, let $M_1, \cdots, M_l$ be the finitely many descendents of  $A$.
+   Toward this, let $M_1, \ldots, M_l$ be the finitely many descendents of  $A$.
    Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
@@ -2684,16 +2683,16 @@ Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring,
 
 Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a very small monomial pair $(A,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(A,\vv{u})$.
 If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
-\pedro[inline]{
-   I don't think we defined $\crit(A,\vv{u})$.
-   Should we?
-   Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
-   \pedro[inline]{
-      I modified things, going with algebraic notation wherever possible.
-      Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}.
-      Maybe we should just define $\crit(A,\vv{u})$.
-   }
-}
+% \pedro[inline]{
+%    I don't think we defined $\crit(A,\vv{u})$.
+%    Should we?
+%    Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
+%    \pedro[inline]{
+%       I modified things, going with algebraic notation wherever possible.
+%       Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}.
+%       Maybe we should just define $\crit(A,\vv{u})$.
+%    }
+% }
 \begin{equation}\label{eq: crit infinite case}
 \crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}.
 \end{equation}
@@ -2719,12 +2718,12 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
    \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q},\]
    where $r$ is a positive integer congruent to $\Q\deg\vv{u}$ modulo $d$.
    This explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
-   \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
-      \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?}
-      \pedro[inline]{
-         I think so, and gave it a shot above.
-      }
-   }
+%    \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
+%       \daniel[inline]{All I would add is that in the second case, the critical exponent looks like $\ft{A}{\vv{u}}-r/\Q$ with $r \in \QQ$ is such that this fraction is an integer divided by $\Q$.  Really, I just wanted to explain why all of the critical exponents in our Examples paper looked the way they did.  There aren't any weird intermediate terms there in the case that a critical exponent is not the $F$-threshold.  Is this worth mentioning?}
+%       \pedro[inline]{
+%          I think so, and gave it a shot above.
+%       }
+%    }
    % \pedro[inline]{Maybe we could bring up this case more often throughout the paper; \eg as an example when introducing minimal face, universal denominator, etc. \emily[inline]{Sure}}
 \end{remark}
 % \daniel[inline]{Summarize what the constant terms are.  Namely, $-\delta_{p^e}(A,\vv{u})$ and $-1$.  This will come up when looking at the roots of the BS-polynomials}
@@ -2733,12 +2732,9 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
 
 
 \todo[inline]{
-   Find appropriate places for the next two things.
+   Find appropriate places for the next statement.  Proof calls upon \Cref{non-leading coefficients: L}.
 }
-\begin{remark}
-\Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for
-  $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
-\end{remark}
+
 
 
 %\newpage
@@ -2754,7 +2750,7 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
 %
 %\subsection{Generic hypersurfaces in characteristic zero}
 
-\begin{corollary}
+\begin{proposition}
    Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ \textup(\eg take the least common multiple of universal denominators of each of its finitely many descendants\textup).
    Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$,
 \[
@@ -2762,7 +2758,7 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
 \]
 for every very small $A$-pair $(A, \vv{u})$, and all $e \geq 1$.
 In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
-\end{corollary}
+\end{proposition}
 
 % \pedro[inline]{
 %    I modified the statement, replacing $\mu$ with $\val\IP_p$, to be consistent with previous theorems.
@@ -2846,6 +2842,12 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 % \emily[inline]{OK, I removed the explicit induction and pruned it down. Feel free to edit further if you see fit.}
 % \pedro[inline]{Maybe add a quick corollary about crits?}
 
+\section{Consequences on generic hypersurfaces} \label{generic-hypersurfaces: S}
+
+\begin{remark}
+\Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for
+  $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
+\end{remark}
 \appendix
 
 \section{Monomial ideals and reduction}
@@ -2891,16 +2893,16 @@ Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^
 As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
-\pedro[inline]{
-   We can also make the argument more explicit (but longer) and avoid $[1/q]$-th powers:
-   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we can write
-   \[x^{\vv{v}q} x^{\vv{w}} = \sum_i f_i g_i^q\]
-   for some $f_i \in R$ and $g_i \in \idealb$.
-   Observing that $x^{\vv{w}}$ is part of a basis for $R$ over $R^q$, for each $i$ let $a_i^q\in R^q$ be the $x^\vv{w}$-coordinate of $f_i$ in that basis.
-   Comparing $x^\vv{w}$-coordinates in the above equation we see that
-   \[x^{\vv{v}q} = \sum_i a_i^q g_i^q\]
-   and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
-}
+% \pedro[inline]{
+%    We can also make the argument more explicit (but longer) and avoid $[1/q]$-th powers:
+%    As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we can write
+%    \[x^{\vv{v}q} x^{\vv{w}} = \sum_i f_i g_i^q\]
+%    for some $f_i \in R$ and $g_i \in \idealb$.
+%    Observing that $x^{\vv{w}}$ is part of a basis for $R$ over $R^q$, for each $i$ let $a_i^q\in R^q$ be the $x^\vv{w}$-coordinate of $f_i$ in that basis.
+%    Comparing $x^\vv{w}$-coordinates in the above equation we see that
+%    \[x^{\vv{v}q} = \sum_i a_i^q g_i^q\]
+%    and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
+% }
 
 \begin{theorem}
 \label{reduce-to-monomial-case: C}
