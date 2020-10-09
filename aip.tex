@@ -622,29 +622,7 @@ where $\col(A)$ is the set of columns of $A$, and $\canvec_1, \ldots, \canvec_\n
    Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i \in \N$, and thus $c_i = \iprod{\defpt}{\vv{v} + \canvec_i} -\alpha \ge 0$, for each $i$.
 \end{remark}
 
-In this article, we are largely concerned with standard faces, and for those we shall adopt a helpful convention.
-
-\begin{convention}
-\label{alpha=1: convention}
-Take $\O \subseteq \RR^\numvars$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR$ as in \Cref{defn: face}.
-If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.
-Thus, throughout this article, we always assume that defining points of standard faces have been normalized in this way.
-\end{convention}
-
-This convention leads to the following useful observation.
-
-\begin{proposition}\label{prop: inner product with columns of A}
-   Suppose $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and let $\vv{s} \in \RR^n$.
-   If $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$, then $\iprod{\defpt}{A\vv{s}} \ge \norm{\vv{s}}$.
-   Moreover, equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
-\end{proposition}
-
-\begin{proof}
-If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the assumption on $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i}  s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
-Thus,
-\[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
-and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
-\end{proof}
+The following proposition gives an explicit Minkowski--Weyl decomposition for the faces of a Newton polyhedron.
 
 \begin{proposition}
    \label{prop: MW for faces}
@@ -657,18 +635,19 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 \end{proposition}
 
 \begin{proof}
-   \pedro{I modified this proof; please check it out. (I think my previous argument was wrong.)}
    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
    Then the same holds for every $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
    To prove the reverse containment, let $\vv{v} \in \O$.
-   Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
-   Denoting the $i$-th column of $A$ by $\vv{a}_i$, the nonnegativity of $\defpt$ implies that
-   \[
-      \alpha = \iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i
-   \]
-   where $\iprod{\defpt}{\vv{a}_i} = \alpha$ if $\vv{a}_i \in \O$, or $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
-   The displayed inequality, together with the facts that $\vv{s}\ge \vv{0}$ and $\norm{\vv{s}} = 1$, tells us that $s_i = 0$ whenever $\vv{a}_i \notin \O$, and therefore $A\vv{s} \in \conv(\col(A)\cap \O) \subseteq \O$.
-   As $\iprod{\defpt}{\vv{v}-A\vv{s}} = 0$, the nonnegativity of $\vv{v} - A\vv{s}$ and $\defpt$ implies that $\vv{v} - A\vv{s} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
+   Since $\vv{v} \in \N$, we can write $\vv{v} = A \vv{s} + \vv{w}$, with $\vv{s}, \vv{w}\ge \vv{0}$ and $\norm{\vv{s}} = 1$.
+   Denoting the $i$-th column of $A$ by $\vv{a}_i$, we have $\iprod{\defpt}{\vv{a}_i} = \alpha$ if $\vv{a}_i \in \O$, and $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
+   Thus, 
+   \begin{align*}
+     \alpha = \iprod{\defpt}{\vv{v}} &= \iprod{\defpt}{A\vv{s}} + \iprod{\defpt}{\vv{w}}
+     = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i + \iprod{\defpt}{\vv{w}}\\
+     &\ge \alpha \norm{\vv{s}} + \iprod{\defpt}{\vv{w}} = \alpha + \iprod{\defpt}{\vv{w}}
+   \end{align*}
+   Since $\defpt$ and $\vv{w}$ are nonnegative, $\iprod{\defpt}{\vv{w}}$ must be zero and the inequality above must be an equality, which is the case if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
+   This shows that $\vv{w} \in \cone(\rb(\O))$ and $A\vv{s} \in \conv(\col(A) \cap \O)$, so $\vv{v} = A\vv{s} + \vv{w} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
 \end{proof}
 
 % \begin{proof}
@@ -676,12 +655,13 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 %    Then the same holds for every $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
 %    To prove the reverse containment, let $\vv{v} \in \O$.
 %    Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
-%    Denoting the $i$-th column of $A$ by $\vv{a}_i$, we may assume that $\col(A) \cap \O = \{\vv{a}_1,\ldots,\vv{a}_k\}$.
-%    If $s_1, \ldots, s_k$ were all $0$, then $\iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i>k} s_i \iprod{\defpt}{\vv{a}_i}> \alpha \cdot \sum_{i>k} s_i  =\alpha$, a contradiction.
-%    So $s_1+\cdots+s_k >0$, and we set
-%    \[\vv{w} = \frac{s_1\vv{a}_1+\cdots+s_k\vv{a}_k}{s_1+\cdots+s_k}.\]
-%    Then $\vv{w} \in \conv(\col(A)\cap \O) \subseteq \O$, and therefore $\iprod{\defpt}{\vv{w}} = \alpha$.
-%    As $\iprod{\defpt}{\vv{v}-\vv{w}} = 0$, the nonnegativity of $\vv{v} - \vv{w}$ and $\defpt$ implies that $\vv{v} - \vv{w} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
+%    Denoting the $i$-th column of $A$ by $\vv{a}_i$, the nonnegativity of $\defpt$ implies that
+%    \[
+%       \alpha = \iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i
+%    \]
+%    where $\iprod{\defpt}{\vv{a}_i} = \alpha$ if $\vv{a}_i \in \O$, or $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
+%    The displayed inequality, together with the facts that $\vv{s}\ge \vv{0}$ and $\norm{\vv{s}} = 1$, tells us that $s_i = 0$ whenever $\vv{a}_i \notin \O$, and therefore $A\vv{s} \in \conv(\col(A)\cap \O) \subseteq \O$.
+%    As $\iprod{\defpt}{\vv{v}-A\vv{s}} = 0$, the nonnegativity of $\vv{v} - A\vv{s}$ and $\defpt$ implies that $\vv{v} - A\vv{s} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
 % \end{proof}
 
 \begin{definition}[Recession basis and subspace]
@@ -690,6 +670,32 @@ and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
 
 \Cref{prop: MW for faces} shows that these definitions depend only on $\O$, but not on the choice of the defining point $\defpt$.
 It also shows that the cone generated by $\rb(\O)$ is the recession cone of $\O$, motivating our choice of terminology.
+
+In this article, we are largely concerned with standard faces, and for those we shall adopt a helpful convention.
+
+\begin{convention}
+\label{alpha=1: convention}
+Take $\O \subseteq \RR^\numvars$, $\defpt \in \RR^\numvars$, and $\alpha \in \RR$ as in \Cref{defn: face}.
+If $\O$ is standard, then $\alpha$ must be positive, which allows us to rescale $\defpt$ so as to assume that $\alpha = 1$.
+Thus, throughout this article, we always assume that defining points of standard faces have been normalized in this way.
+\end{convention}
+
+This convention leads to the following useful observation, whose simple proof uses ideas of the proof of \Cref{prop: MW for faces}.
+
+\begin{proposition}\label{prop: inner product with columns of A}
+   Suppose $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$.
+   Let $\vv{s} \in \RR^n$, and suppose $\vv{s} \ge \vv{0}$ or, more generally, that $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$.
+   Then $\iprod{\defpt}{A\vv{s}} \ge \norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
+   \qed
+\end{proposition}
+
+% \begin{proof}
+% If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the assumption on $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i}  s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
+% Thus,
+% \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
+% and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
+% \end{proof}
+
 
 \subsection{The $F$-threshold of a monomial pair}
 
@@ -1310,12 +1316,14 @@ The following theorem underlies some of our later finiteness results.
 \section{Toward solving $\IP$}
 \label{solving: S}
 
-Suppose that $(A, \vv{u})$ is a monomial pair and that $q$ is positive integer.
-The goal in this section is to demonstrate that the value and optimal image of $\IP(A, \vv{u}, q)$ vary with $q$ in a uniform way as $q$ tends to infinity.
+Throughout this section, $(A, \vv{u})$ is a monomial pair and $q$ is positive integer.
+Our goal here is to demonstrate that the value and the \hl{image of $\opt\IP(A, \vv{u}, q)$ under $A$}
+\pedro{Replaced ``optimal image'' with this; maybe we'll want to rephrase this.}
+vary with $q$ in a uniform way as $q$ tends to infinity.
 
 \subsection{Shortfall and deficit}
 
-The constraints of the programs $\IP(A,\vv{u},q)$ and $\IP_p(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of their feasible sets, the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ less than $\vv{u}q$.
+The constraints of the integer program $\IP(A,\vv{u},q)$ and of the arithmetic integer program $\IP_p(A,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of their feasible sets, the image of $\mathcal{F}$ under $A$, denoted $A(\mathcal{F})$, consists of points in the target lattice of $A$ that are less than $\vv{u}q$.
 In particular, the Minkowski difference $\vv{u}q-A(\mathcal{F})$ consists of positive lattice points in the target lattice of $A$.
 
 \begin{definition}[Shortfall for $\IP$ and $\IP_p$]
@@ -1331,7 +1339,7 @@ The preceding discussion shows that the shortfall of either program consists of 
 Let $(A,\vv{u})$ be a monomial pair associated to an ideal pair $(\ideala,\ideald)$.
 If $q$ is a power of $p$, $\IP = \IP(A,\vv{u},q)$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP$, then the shortfall of $\IP$ can be interpreted as the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
 
-More precisely, the discussion preceding \Cref{IP: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$, and satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.
+More precisely, the discussion preceding \Cref{IP: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{A \vv{k}}$, with $\vv{k}$ in the domain lattice of $A$ satisfying $\norm{\vv{k}} = \nu$ and $A\vv{k}<\vv{u}q$.
 Keeping in mind that $\nu= \val \IP$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP$.
 Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $A(\opt \IP) = \vv{u}q - \short \IP$.
 In other words,
@@ -1342,13 +1350,13 @@ In other words,
 Likewise, one can show that
 \begin{equation}
 \label{algebraic shortfall PI_p general: e}
-\ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]},
+\ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(A,\vv{u},q)} \bmod \ideald^{[q]}
 \end{equation}
 giving us an algebraic interpretation for the shortfall of the arithmetic integer program $\IP_p(A,\vv{u},q)$.
 \end{remark}
 
 If $\vv{k}$ is optimal for $\IP = \IP(A,\vv{u},q)$ or $\IP_p = \IP_p(A,\vv{u},q)$, then $A\vv{k} < \vv{u}q$.
-For sufficiently small positive $\epsilon$, $A(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(A,\vv{u})$.
+For sufficiently small positive $\epsilon$, we have $A(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(A,\vv{u})$.
 Thus, $\norm{\vv{k}}/q < \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$, showing that the values of $\IP$ and $\IP_p$ are strictly less than $\ft{A}{\vv{u}}q$.
 The notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
 
@@ -1392,8 +1400,8 @@ For that, we shall need the following simple boundedness result.
 \end{proposition}
 
 \begin{proof}
-   Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$, and let an overbar denote collapse along $\O$.
-   If $\vv{k}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{k}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{k}}$, and so $\collapse{A} \vv{k}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} < \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
+   Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$ in the Newton polyhedron of $A$, and let an overbar denote collapse along $\O$.
+   If $\vv{h}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}$, and so $\collapse{A} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
    Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
