@@ -865,7 +865,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
    \begin{enumerate}
       \item $\vv{s} \in \opt \LP(A, \vv{u})$.
       \item \label{item: special condition of special points}
-      $\vv{u} = A \vv{s} + \vv{w}$ for a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when $\rb(\O)$ is empty.
+      $\vv{u} = A \vv{s} + \vv{w}$ for a point $\vv{w}$ in the relative interior of $\cone(\rb(\O))$ or, equivalently, a positive point $\vv{w}$ of $\rs(\O)$, with the convention that $\vv{w}=\vv{0}$ when $\rb(\O)$ is empty.
    \end{enumerate}
    The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
@@ -1522,16 +1522,16 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \begin{remark}[Uniform periodicity of universal shortfall and deficit]
    \label{pair periodicity: R}
    Given a monomial matrix $A$, there exists a positive integer $\denom$ such that for every $A$-pair $(A,\vv{u})$, $\udeficit(A, \vv{u}, q)$ and $\ushort(A,\vv{u},q)$ only depend on $q$ modulo $\denom$.
-   Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for every $A$-pair $(A, \vv{u})$ and every $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
+   Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for every $A$-pair $(A, \vv{u})$ and every $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
    Then
    \[
-      \udeficit(A, \vv{u}, p) = \udeficit(A, \vv{u}, q)
+      \udeficit(A, \vv{u}, q) = \udeficit(A, \vv{u}, r)
    \]
    and
    \[
-      \ushort(A, \vv{u}, p) = \ushort(A, \vv{u}, q)
+      \ushort(A, \vv{u}, q) = \ushort(A, \vv{u}, r)
    \]
-   whenever $p \equiv q \bmod \denom$.
+   whenever $q \equiv r \bmod \denom$.
 \end{remark}
 
 \pedro[inline]{
@@ -2334,7 +2334,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$ or $\S_q(A,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.
       Moreover, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
       \item \label{elementary2 periodic in e}
-      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that both $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
+      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{p^e}(A,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(A,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ are eventually periodic in $e$.
       \item \label{elementary2 periodic in p}
       Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(A,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $A$  and all of its finitely many descendants.
    \end{enumerate}
@@ -2879,26 +2879,29 @@ If $T$ is a domain, and $I$ is an ideal of $T[x_1, \ldots, x_\numvars]=T[x]$, th
 
 \begin{remark}
 \label{single multiplier: R}
-Adopt the context of \Cref{monomialization: D}.  Clearly, if $T$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $x^{\vv{u}} \in I$.  On the other hand, if $T$ is domain, and not necessarily a field, then at least there exists a single fixed multiplier $0 \neq \tau \in T$ with the property that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in T[x]$.  Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ are a generating set for the monomial ideal $\mon(I)$, and $\tau_1, \ldots, \tau_n \in T$ are nonzero elements such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$, then $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
+%Adopt the context of \Cref{monomialization: D}.
+Clearly, if $T$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $x^{\vv{u}} \in I$.
+On the other hand, if $T$ is domain, but not a field, then one can find a single multiplier $0 \neq \tau \in T$ with the property that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in T[x]$.  Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ are a generating set for the monomial ideal $\mon(I)$, and $\tau_1, \ldots, \tau_n \in T$ are nonzero elements such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$, then $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
 \end{remark}
 
 %\daniel[inline]{Add transition}
 \subsection{Results in a fixed prime characteristic}
-\emily{Transition added}
-The goal of this subsection is \Cref{reduce-to-monomial-case: C}, which allows us to apply our results on arithmetic integer programs to compute the value $\mu(\ideala,\idealb,p^e)$, or the critical exponent $\crit(\ideala, \idealb)$, where $\ideala, \idealb$ are ideals of a polynomial ring over a field of characteristic $p>0$.  Indeed, one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal.
+%\emily{Transition added}
+The main result of this subsection is \Cref{reduce-to-monomial-case: C}, which allows us to apply our results on arithmetic integer programs to compute the values $\mu(\ideala,\idealb,p^e)$, or the critical exponent $\crit(\ideala, \idealb)$, where $\ideala$ is a nonzero proper monomial ideal of a polynomial ring over a field of positive characteristic, and $\idealb$ an ideal in the same ring with $\ideala \subseteq \sqrt \idealb$.
+Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal.
 
-
-
-\begin{lemma} \label{frobenius-powers+mon-commute: L}
-Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \geq 1$.
+\begin{lemma}[$\mon$ commutes with standard Frobenius powers] \label{frobenius-powers+mon-commute: L}
+Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars] = \kk[x]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \in \NN$.
 \end{lemma}
 
-\begin{proof}  Set $\idealc = \mon(\idealb)$ and $q=p^e$.  Given that both ideals in question are monomial, it suffices to prove that a monomial lies in $\mon(\idealb^{[q]})$ if and only if it lies in $\idealc^{[q]}$.  However, as $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that
-$\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
+\begin{proof}
+   Set $\idealc = \mon(\idealb)$ and $q=p^e$.
+   As $\idealc^{[q]} \subseteq \idealb^{[q]}$, it follows that $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
+   To prove the reverse containment, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.
 
-Thus, to conclude the proof, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Toward this, consider a monomial $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$ where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
-
-As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.  Applying the $q$-root operation to this inclusion then illustrates that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality here follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, which by definition of the ideal $\idealc$ implies that $x^{\vv{v}} \in \idealc$, and so $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
+   Let $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$, where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
+   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $\kk[x]$ is free over $\kk[x]^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.
+   Applying the $q$-th root operation to this inclusion then shows that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, so $x^{\vv{v}} \in \mon(\idealb) = \idealc$, and we conclude that $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
 % \pedro[inline]{
@@ -2914,28 +2917,11 @@ As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is
 
 \begin{theorem}
 \label{reduce-to-monomial-case: C}
-Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ monomial and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
+Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ a monomial ideal and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
 \end{theorem}
 
-% \begin{corollary}
-% \label{reduce-to-monomial-case: C}
-% Suppose that $\operatorname{char} \kk = p > 0$, that $\ideala$ is a monomial ideal of $\kk[x_1, \ldots, x_\numvars]$, and that $\idealb$ is an ideal of this same ring with $\ideala \subseteq \sqrt{\idealb}$.  If $e$ is an arbitrary nonnegative integer and $\idealc = \mon(\idealb)$, then the following hold.
-% \begin{enumerate}
-% \item $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e)$ and $\ft{\ideala}{\idealb} = \ft{\ideala}{\idealc}$.
-% \item $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ and $\crit(\ideala,\idealb) = \crit(\ideala,\idealc)$.
-% \end{enumerate}
-% \end{corollary}
-
-
-
-% \begin{proof}
-%  Since $\ideala$ is a monomial ideal, the invariants relying on $\idealc$ are well-defined.  Moreover,
-% a (Frobenius) power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-% $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
-% \end{proof}
-
 \begin{proof}
-As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if any only if it sits in $\mon(\idealb^{[p^e]})$, which equals
+   As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals
 $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
 
 Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (\eg see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
@@ -2959,8 +2945,12 @@ In summary, if $e$ is an arbitrary natural number, then
  & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
 \end{align*}
 where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$.
- \end{proof}
+\end{proof}
 
+\pedro[inline]{
+   Perhaps we should add a remark saying that the analogous result for $\nu$s was proven in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.
+} 
+ 
 \subsection{Reduction to prime characteristic}
 
 We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.  To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide references for their proofs, and also refer those unfamiliar with these statements to \cite[Chapter 3]{hernandez.thesis} for more details.

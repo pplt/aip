@@ -97,12 +97,14 @@ search2 := (r,m,n,M,maxTries) ->
     while count <= maxTries and not found do
     (
         print count;
-        (A,u) = ( randomMat(m,n,M), randomVec(m,M) );  
+        (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
+        while gcd(univDenom A,r) != 1 do (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
         num = {(ft(A,u),uDeficit(A,u,r))};
         graph = {{(A,u)}};
         i = 0;
         cool = num_0_0 <= 1;
         while cool and i <= 8 do
+        -- looking at 8 levels
         (
             S = last graph;
             S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
@@ -121,7 +123,7 @@ search2 := (r,m,n,M,maxTries) ->
             diffs = #select(0..7, i -> num_i_1 != num_(i+1)_0);
             ramif = #(unique apply(graph, x -> #x) );
 --          ramif = max apply(graph, x -> #x);
-            found = diffs > 2 and ramif > 2
+            found = diffs > 1 and ramif > 1
         );
         count = count + 1
      );
@@ -134,12 +136,17 @@ search2 := (r,m,n,M,maxTries) ->
      )
 ) 
 
-search2(5,4,3,15,10000)
+search2(11,4,3,20,10000)
 
 toString oo
 
 (r,A,u) = (5, matrix {{6, 12, 9}, {14, 5, 11}, {14, 6, 9}, {4, 6, 1}},matrix {{5}, {6}, {6}, {10}})
 -- my favorite so far
+-- Currently in paper; UNFORTUNATELY r = 5 divides the universal denominator!
+
+univDenom A
+
+univDenom2 A
 
 (r,A,u) = (5, matrix {{9, 6, 12}, {6, 9, 0}, {0, 6, 2}, {8, 11, 3}},matrix {{10}, {2}, {14}, {4}})
 
@@ -533,6 +540,7 @@ r = 11
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 u = colVec {1,1,1}
 
+univDenom A
 
 ------------------------------
 (A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {9}, {6}, {3}})  
@@ -557,3 +565,15 @@ num
 
 apply(graph, x -> #x)
 
+-- In search of smaller univDenom
+
+-- running example
+
+A = matrix {{5,3,4},{5,4,3},{2,8,5}}
+
+univDenom A
+univDenom2 A
+
+facesOfN = properFaces newton A
+
+apply( facesOfN, F -> selectColumnsInFace( A, F ) | rb F )
