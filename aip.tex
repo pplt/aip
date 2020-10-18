@@ -2856,6 +2856,7 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 \Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for
   $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
 \end{remark}
+
 \appendix
 
 \section{Monomial ideals and reduction}
@@ -2877,21 +2878,25 @@ If $T$ is a domain, and $I$ is an ideal of $T[x_1, \ldots, x_\numvars]=T[x]$, th
 \end{definition}
 
 
-\begin{remark}
+\begin{remark}[A single multiplier $\tau$ suffices]
 \label{single multiplier: R}
 %Adopt the context of \Cref{monomialization: D}.
 Clearly, if $T$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $x^{\vv{u}} \in I$.
-On the other hand, if $T$ is domain, but not a field, then one can find a single multiplier $0 \neq \tau \in T$ with the property that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in T[x]$.  Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ are a generating set for the monomial ideal $\mon(I)$, and $\tau_1, \ldots, \tau_n \in T$ are nonzero elements such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$, then $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
+On the other hand, if $T$ is a domain, but not a field, then one can find a single multiplier $0 \neq \tau \in T$ with the property that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in T[x]$.  Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ are a generating set for the monomial ideal $\mon(I)$, and $\tau_1, \ldots, \tau_n \in T$ are nonzero elements such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$, then $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
 \end{remark}
 
 %\daniel[inline]{Add transition}
 \subsection{Results in a fixed prime characteristic}
 %\emily{Transition added}
-The main result of this subsection is \Cref{reduce-to-monomial-case: C}, which allows us to apply our results on arithmetic integer programs to compute the values $\mu(\ideala,\idealb,p^e)$, or the critical exponent $\crit(\ideala, \idealb)$, where $\ideala$ is a nonzero proper monomial ideal of a polynomial ring over a field of positive characteristic, and $\idealb$ an ideal in the same ring with $\ideala \subseteq \sqrt \idealb$.
+Throughout this subsection, $\kk$ is a field of prime characteristic $p$ and $R=\kk[x_1,\ldots,x_\numvars]$.
+Our main result here is \Cref{reduce-to-monomial-case: C}, which allows us to apply our results on arithmetic integer programs to compute the values $\mu(\ideala,\idealb,p^e)$, or the critical exponent $\crit(\ideala, \idealb)$, where $\ideala$ and $\idealb$ are nonzero proper ideals in $R$, with $\ideala$ a monomial ideal, and $\ideala \subseteq \sqrt \idealb$.
 Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal.
 
 \begin{lemma}[$\mon$ commutes with standard Frobenius powers] \label{frobenius-powers+mon-commute: L}
-Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars] = \kk[x]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \in \NN$.
+   % Suppose that $\kk$ is a field of characteristic $p>0$.
+   If $\idealb$ is an ideal of $R$,
+   % $\kk[x_1, \ldots, x_\numvars] = \kk[x]$,
+   then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \in \NN$.
 \end{lemma}
 
 \begin{proof}
@@ -2900,7 +2905,9 @@ Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal
    To prove the reverse containment, it suffices to prove that any monomial in $\idealb^{[q]}$ must lie in $\idealc^{[q]}$.
 
    Let $x^{\vv{u}} \in \idealb^{[q]}$, and write $\vv{u} = \vv{v}q + \vv{w}$, where $\vv{v}$ and $\vv{w}$ are points in $\NN^\numvars$, and $\vv{0} \leq \vv{w} < \vv{1}q$.
-   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $\kk[x]$ is free over $\kk[x]^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.
+   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that
+   %$\kk[x]$ is free over $\kk[x]^q$
+   $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.
    Applying the $q$-th root operation to this inclusion then shows that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality follows from the bounds on $\vv{w}$ noted above.   Therefore, $x^{\vv{v}} \in \idealb$, so $x^{\vv{v}} \in \mon(\idealb) = \idealc$, and we conclude that $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
@@ -2915,37 +2922,84 @@ Suppose that $\kk$ is a field of characteristic $p>0$.  If $\idealb$ is an ideal
 %    and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
 % }
 
+\begin{lemma}
+   \label{quasi-diagonal to diagonal: L}
+   % Suppose that $\kk$ is a field of characteristic $p>0$, and that
+   Suppose $\ideala$ and $I$ are nonzero proper ideals of 
+   %$\kk[x_1, \ldots, x_\numvars]$,
+   $R$, where $\ideala$ is a monomial ideal, $I$ is generated by positive powers of a proper subset of the variables, and $\ideala \subseteq \sqrt{I}$.
+   Then there exists a diagonal ideal $\ideald$ in
+   % $\kk[x_1, \ldots, x_\numvars]$
+   $R$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, I, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.
+\end{lemma}
+
+\begin{proof}
+   Reordering the variables, if necessary, we may assume that $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$, where $1 \leq t < \numvars$ and $w_i > 0$ for each $i$.
+   Let $A$ be a monomial matrix associated to $\ideala$, and let $B$ be the matrix consisting of the first $t$ of the $\numvars$ rows of $A$.
+   Since $\ideala \subseteq \sqrt I = \ideal{x_1, \ldots, x_t}$, every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and thus every column of the truncated matrix $B$ is nonzero.
+   Hence $B$ is a monomial matrix, and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$, it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.
+   Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row of $A$ and any point in $\feas \LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
+
+   Let $\vv{u} = (\vv{w},M,\ldots,M)\in \NN^\numvars$.
+   We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ coincide for each~$e$.
+   Indeed, each linear constraint of $\IP_p(B, \vv{w}, p^e)$ is a constraint of $\IP_p(A, \vv{u},p^e)$, each additional linear constraint of $\IP_p(A, \vv{u},p^e)$ is automatically satisfied on $\IP_p(B, \vv{w},p^e)$ by our choice of $M$, and the arithmetic constraints of these programs are identical.
+   Now, if $\ideald$ is the diagonal ideal associated to the point $\vv{u}$, then
+   \[
+     \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e)  = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
+  \]
+  for every $e$.
+\end{proof}
+
 \begin{theorem}
-\label{reduce-to-monomial-case: C}
-Suppose that $\kk$ is a field of characteristic $p>0$, and that $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala$ a monomial ideal and $\ideala \subseteq \sqrt{\idealb}$.  If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $\kk[x_1, \ldots, x_\numvars]$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
+   \label{reduce-to-monomial-case: C}
+   %Suppose that $\kk$ is a field of characteristic $p>0$, and that
+   Suppose $\ideala$ and $\idealb$ are nonzero proper ideals of
+   % $\kk[x_1, \ldots, x_\numvars]$
+   $R$ with $\ideala$ a monomial ideal and $\ideala \subseteq \sqrt{\idealb}$.
+   If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in
+   % $\kk[x_1, \ldots, x_\numvars]$
+   $R$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.  In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
 \end{theorem}
 
 \begin{proof}
-   As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-$\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
-
-Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (\eg see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
-\pedro{
-   Here we are using a result about $\mu$'s with respect to diagonal ideals (associated to positive points).
-   It seems that we need to do the reduction to diagonal ideals that is done below beforehand.
-   Maybe in a lemma?
-}
-After possibly reordering the variables,  we may assume that there exists $1 \leq t \leq \numvars$ and positive integers $w_i$ for each $1 \leq i \leq t$ such that $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$.
-
-Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
-
-Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Toward this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so
-$\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
-
-Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim.
-
-In summary, if $e$ is an arbitrary natural number, then
-\begin{align*}
- \mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e) \\
- & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
-\end{align*}
-where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$.
+   Since $\ideala$ is a monomial ideal, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
+   Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)\text{ for every $e\in \NN$.}\]
+   Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the variables raised to positive powers (see, \eg \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).
+   Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, 
+   \[
+      \mu(\ideala, \idealc, p^e) = \max\{\mu(\ideala, I_i, p^e): 1\le i\le n\}\text{ for every $e\in \NN$}.
+   \]
+   By \Cref{quasi-diagonal to diagonal: L}, the above remains true after replacing each $I_i$ with a suitable diagonal ideal $\ideald_i$ associated to a positive point of $\NN^\numvars$.
+   Furthermore, though the $\ideald_i$ that achieve the maximum may vary with $e$, \Cref{cor: mu comparison} guarantees that there exists an ideal $\ideald$ among the $\ideald_i$ such that
+   \[\mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)\text{ for every $e\in \NN$}.\qedhere\]
 \end{proof}
+
+% \begin{proof}
+%    As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals
+% $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
+
+% Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (\eg see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
+% \pedro{
+%    Here we are using a result about $\mu$'s with respect to diagonal ideals (associated to positive points).
+%    It seems that we need to do the reduction to diagonal ideals that is done below beforehand.
+%    Maybe in a lemma?
+% }
+% After possibly reordering the variables,  we may assume that there exists $1 \leq t \leq \numvars$ and positive integers $w_i$ for each $1 \leq i \leq t$ such that $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$.
+
+% Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
+
+% Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Toward this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so
+% $\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
+
+% Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim.
+
+% In summary, if $e$ is an arbitrary natural number, then
+% \begin{align*}
+%  \mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e) \\
+%  & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
+% \end{align*}
+% where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$.
+% \end{proof}
 
 \pedro[inline]{
    Perhaps we should add a remark saying that the analogous result for $\nu$s was proven in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.
@@ -3039,7 +3093,7 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are id
 \begin{proof}
    Fix $t \in \NN$ such that $I^t \subseteq J$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  L} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
 
-As $R=\kk[x_1, \ldots, x_n] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
+As $R=\kk[x_1, \ldots, x_\numvars] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
 %
 which is equivalent to the equality of ideals $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  L} to see that
 %
