@@ -140,6 +140,11 @@ search2(11,4,3,20,10000)
 
 toString oo
 
+(r,A,u) = (11,matrix {{16, 16, 13}, {4, 12, 19}, {2, 4, 18}, {18, 2, 18}},matrix {{7}, {8}, {19}, {7}})
+init()
+
+iterate()
+
 (r,A,u) = (5, matrix {{6, 12, 9}, {14, 5, 11}, {14, 6, 9}, {4, 6, 1}},matrix {{5}, {6}, {6}, {10}})
 -- my favorite so far
 -- Currently in paper; UNFORTUNATELY r = 5 divides the universal denominator!

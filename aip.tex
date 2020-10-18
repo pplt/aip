@@ -3064,27 +3064,43 @@ We start with a useful technical lemma.
    In particular, $IB_{\circ}[x]=JB_{\circ}[x]$ for some particular $A[\ell^{-1}]$-algebra $B_{\circ}$ if and only if $IB[x]=JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
 \end{lemma}
 
-\begin{proof} Consider the exact sequence $0 \to J \to A[x] \to A[x]/J \to 0$ of finitely generated $A[x]$-modules.  This sequence remains exact when regarding its terms as $A$-modules, and as the localization $A[\ell^{-1}]$ of $A$ at $0 \neq \ell \in A$ is flat over $A$, we have that
-\[ 0 \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A A[x] \to A[\ell^{-1}] \otimes_A (A[x]/J) \to 0 \]
-is an exact sequence of $A[\ell^{-1}]$-modules.
-By generic freeness over $A$, we may assume that the last term is free over $A[\ell^{-1}]$.
-Thus, as it terminates on a free module, this sequence is a split exact sequence of $A[\ell^{-1}]$-modules, and as split exactness is preserved by base change, taking the tensor product of this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$ yields a split exact sequence  of $B$-modules
-%
-\[ 0 \to B \otimes_A J \to B \otimes_A A[x] \to B \otimes_A (A[x]/J) \to 0. \]
-%
-The middle term above is isomorphic to $B[x_1, \ldots, x_\numvars]=B[x]$,  and the first non-trivial map, which is injective, then identifies $B \otimes_A J$ with $JB[x]$.
-
-Next, consider the exact sequence $0 \to I \to J \to J/I \to 0$.  Once again, by generic freeness, after replacing $\ell$ with a nonzero $A$-multiple, we may also assume that
-%
-$0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0$
-is a split exact sequence of $A[\ell^{-1}]$-modules that terminates on a free $A[\ell^{-1}]$-module of free rank $0 \leq \rho \leq \infty$.  Thus, if $B$ is an $A[\ell^{-1}]$-algebra, then
-%
-\[ 0 \to B \otimes_A I \to B \otimes_A J \to B \otimes_A (J/I) \to 0\]
-%
-is exact over $B$, and terminates on a free $B$-module of rank $\rho$.  However, we have already seen earlier that $B \otimes_A J \cong JB[x]$, from which it follows that the above exact sequence is isomorphic to the exact sequence
- \[ 0 \to I  B[x] \to J B[x] \to  J B[x] /IB[x]  \to 0\]
- of $B$-modules whose last term is free of rank $\rho$.
+\begin{proof}
+   \pedro{Shortened this proof a bit.}
+   Localizing the exact sequence $0 \to I \to J \to J/I \to 0$ of finitely generated $A[x]$-modules at $0\ne \ell \in A$, we obtain the exact sequence of $A[\ell^{-1}]$-modules
+   \[0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0.\]
+   By generic freeness we may assume that $A[\ell^{-1}] \otimes_A (J/I)$ is a free $A[\ell^{-1}]$-module of rank $0 \leq \rho \leq \infty$, so the localized sequence is split exact.
+   As split exactness is preserved by base change, if $B$ is an $A[\ell^{-1}]$-algebra, then tensoring with $B$ over $A[\ell^{-1}]$ gives the split exact sequence of $B$-modules 
+   \begin{equation}
+      \label{eq: exact seq}
+      0 \to B \otimes_A I \to B \otimes_A J \to B \otimes_A (J/I) \to 0
+   \end{equation}
+   that terminates on a free $B$-module of rank $\rho$.
+   In particular, the inclusion $I \subseteq J$ leads to an injection $B\otimes_A I \hookrightarrow B\otimes_A J$, and by replacing $\ell$ by a nonzero $A$-multiple, we may assume that this observation also holds for the inclusions $I\subseteq A[x]$ and $J \subseteq A[x]$.
+   The injection $B\otimes_A I \hookrightarrow B\otimes_A A[x] \cong B[x]$ shows that $B \otimes_A I \cong I B[x]$.
+   Likewise, $B \otimes_A J \cong JB[x]$, so \eqref{eq: exact seq} tells us that $B \otimes_A (J/I) \cong J B[x]/I B[x]$.
 \end{proof}
+
+% \begin{proof} Consider the exact sequence $0 \to J \to A[x] \to A[x]/J \to 0$ of finitely generated $A[x]$-modules.  This sequence remains exact when regarding its terms as $A$-modules, and as the localization $A[\ell^{-1}]$ of $A$ at $0 \neq \ell \in A$ is flat over $A$, we have that
+% \[ 0 \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A A[x] \to A[\ell^{-1}] \otimes_A (A[x]/J) \to 0 \]
+% is an exact sequence of $A[\ell^{-1}]$-modules.
+% By generic freeness over $A$, we may assume that the last term is free over $A[\ell^{-1}]$.
+% Thus, as it terminates on a free module, this sequence is a split exact sequence of $A[\ell^{-1}]$-modules, and as split exactness is preserved by base change, taking the tensor product of this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$ yields a split exact sequence  of $B$-modules
+% %
+% \[ 0 \to B \otimes_A J \to B \otimes_A A[x] \to B \otimes_A (A[x]/J) \to 0. \]
+% %
+% The middle term above is isomorphic to $B[x_1, \ldots, x_\numvars]=B[x]$,  and the first non-trivial map, which is injective, then identifies $B \otimes_A J$ with $JB[x]$.
+
+% Next, consider the exact sequence $0 \to I \to J \to J/I \to 0$.  Once again, by generic freeness, after replacing $\ell$ with a nonzero $A$-multiple, we may also assume that
+% %
+% $0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0$
+% is a split exact sequence of $A[\ell^{-1}]$-modules that terminates on a free $A[\ell^{-1}]$-module of free rank $0 \leq \rho \leq \infty$.  Thus, if $B$ is an $A[\ell^{-1}]$-algebra, then
+% %
+% \[ 0 \to B \otimes_A I \to B \otimes_A J \to B \otimes_A (J/I) \to 0\]
+% %
+% is exact over $B$, and terminates on a free $B$-module of rank $\rho$.  However, we have already seen earlier that $B \otimes_A J \cong JB[x]$, from which it follows that the above exact sequence is isomorphic to the exact sequence
+%  \[ 0 \to I  B[x] \to J B[x] \to  J B[x] /IB[x]  \to 0\]
+%  of $B$-modules whose last term is free of rank $\rho$.
+% \end{proof}
 
 \begin{corollary}
 \label{containment in radical mod p: C}
