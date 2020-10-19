@@ -3055,20 +3055,19 @@ In \Cref{expansion of monomial mod most p is monomial: C} below, we see that the
 
 We start with a useful technical lemma.
 
-\begin{lemma}
-   \label{comparing expansions:  L}
-   Suppose that $A$ is a Noetherian domain.
-   Given ideals $I \subseteq J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ and $\rho \in \NN \cup \{ \infty \}$ with the following property\textup:
-   If $B$ is any $A[\ell^{-1}]$-algebra, then $B \otimes_A (J/I) \cong JB[x]/IB[x]$, and this module is free over $B$ of rank $\rho$.
-
+\begin{proposition}
+   \label{comparing expansions:  P}
+   Suppose $A$ is a Noetherian domain.
+   Given ideals $I \subseteq J$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A\setminus\{0\}$ and $\rho \in \NN \cup \{ \infty \}$ with the following property\textup:
+   If $B$ is any $A[\ell^{-1}]$-algebra, then $B \otimes_A (J/I) \cong JB[x]/IB[x]$, and this is a free $B$-module of rank $\rho$.
    In particular, $IB_{\circ}[x]=JB_{\circ}[x]$ for some particular $A[\ell^{-1}]$-algebra $B_{\circ}$ if and only if $IB[x]=JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
-   \pedro{Shortened this proof a bit.}
-   Localizing the exact sequence $0 \to I \to J \to J/I \to 0$ of finitely generated $A[x]$-modules at $0\ne \ell \in A$, we obtain the exact sequence of $A[\ell^{-1}]$-modules
+   \pedro{Shortened this proof a bit. The old one was commented out.}
+   Localizing the exact sequence $0 \to I \to J \to J/I \to 0$ of finitely generated $A[x]$-modules at $\ell \in A \setminus \{0\}$, we obtain the exact sequence of $A[\ell^{-1}]$-modules
    \[0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0.\]
-   By generic freeness we may assume that $A[\ell^{-1}] \otimes_A (J/I)$ is a free $A[\ell^{-1}]$-module of rank $0 \leq \rho \leq \infty$, so the localized sequence is split exact.
+   By generic freeness we may choose $\ell$ so that $A[\ell^{-1}] \otimes_A (J/I)$ is a free $A[\ell^{-1}]$-module of rank $0 \leq \rho \leq \infty$, so the localized sequence is split exact.
    As split exactness is preserved by base change, if $B$ is an $A[\ell^{-1}]$-algebra, then tensoring with $B$ over $A[\ell^{-1}]$ gives the split exact sequence of $B$-modules 
    \begin{equation}
       \label{eq: exact seq}
@@ -3104,15 +3103,13 @@ We start with a useful technical lemma.
 
 \begin{corollary}
 \label{containment in radical mod p: C}
-Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R=\kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$ for every $\idealm \in \mathcal{U}$.
+Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R = \kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$ for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
 \begin{proof}
-   Fix $t \in \NN$ such that $I^t \subseteq J$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  L} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
-
-As $R=\kk[x_1, \ldots, x_\numvars] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
-%
-which is equivalent to the equality of ideals $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  L} to see that
+   Fix $t \in \NN$ such that $I^t \subseteq J$, and $\ell \in A \setminus \{0\}$ that satisfies the conclusion of \Cref{comparing expansions:  P} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
+   As $R = \kk[x]$, we have $I_A^t \kk[x]  = I^t \subseteq J = J_A \kk[x]$, which is equivalent to $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.
+   Setting $B_{\circ} = \kk$ in \Cref{comparing expansions:  P}, we see that
 %
 \begin{equation}
 \label{step in radical containment: e}
@@ -3123,36 +3120,58 @@ for every $A[\ell^{-1}]$-algebra $B$.
 
 Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that $\operatorname{char}(A/\idealm) \nmid \ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and nonempty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \eqref{step in radical containment: e} tells us that
 %
-$J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)$
+$J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)$,
 %
 which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
 \end{proof}
 
+% \begin{proof}
+%    Fix $t \in \NN$ such that $I^t \subseteq J$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  P} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
+
+% As $R=\kk[x_1, \ldots, x_\numvars] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
+% %
+% which is equivalent to the equality of ideals $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  P} to see that
+% %
+% \begin{equation}
+% \label{step in radical containment: e}
+%  J_A B[x] = (I_A^t +J_A)B[x]
+% \end{equation}
+% %
+% for every $A[\ell^{-1}]$-algebra $B$.
+
+% Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that $\operatorname{char}(A/\idealm) \nmid \ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and nonempty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \eqref{step in radical containment: e} tells us that
+% %
+% $J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)$
+% %
+% which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
+% \end{proof}
+
 \begin{corollary}
-\label{expansion of monomial mod most p is monomial: C}
-Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm)$ is a monomial ideal for every $\idealm \in \mathcal{U}$.
+   \label{expansion of monomial mod most p is monomial: C}
+   Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial ideal of $R=\kk[x_1, \ldots, x_\numvars]$.
+   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm)$ is a monomial ideal for every $\idealm \in \mathcal{U}$.
 \end{corollary}
 
 %\daniel[inline]{FYI:  This argument should show that if $I_A$ and $I'_A$ are two different $A$-models for $I$, then their reductions modulo $\idealm$ agree for most $\idealm$}
 \begin{proof}
-   Let $G$ be a collection of monomials such that $I=G\kk[x]$, and set $L = I_A + G R_A$, an ideal of $R_A=A[x_1, \ldots, x_\numvars] = A[x]$.
-   Suppose that $0 \neq \ell \in A$ is such that the conclusions of \Cref{comparing expansions:  L} hold for the containment of ideals $I_A \subseteq L$ and $GR_A \subseteq L$.  By definition,  $I_A \kk[x] = I_A R = I$ and $(GR_A)\kk[x] = G \kk[x] = I$, and so $L\kk[x] = I$ as well.
-   In this case, \Cref{comparing expansions:  L} implies that
+   Let $G$ be a collection of monomials such that $I=G\kk[x]$.
+   Then $GR_A$ and $L \coloneqq I_A + G R_A$ are also $A$-models of $I$, so that $I_A \kk[x] = L\kk[x] = G \kk[x] = I$.
+   Choosing $\ell \in A \setminus \{0\}$ so that the conclusion of \Cref{comparing expansions:  P} holds for the containments $I_A \subseteq L$ and $GR_A \subseteq L$, \Cref{comparing expansions:  P} implies that
       \[
       I_A B[x] = L_A B[x] = G B[x]
    \]
  for every $A[\ell^{-1}]$-algebra $B$.    Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = G R_A(\idealm)$.
 \end{proof}
 
-\begin{lemma}
-   \label{colon mod p: L}
+\begin{proposition}
+   \label{colon mod p: P}
    Suppose that $A$ is a Noetherian domain.
    Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, and a polynomial $f \in A[x]$, there exists $0 \neq \ell \in A$ with the following property\textup:
    If $B$ is any $A[\ell^{-1}]$-algebra, then
    \[
       (J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f).
    \]
- \end{lemma}
+ \end{proposition}
 
  \begin{proof}
     Consider the exact sequence
@@ -3166,7 +3185,7 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ is a monomial 
        0 \to B \otimes_A (J :_{A[x]} f) \to B \otimes_A A[x] \stackrel{f}{\longrightarrow} B \otimes_A ((f A[x] + J)/J) \to 0
     \]
     which is  a split exact sequence of $B$-modules.
-    Furthermore, as in the proof of \Cref{comparing expansions:  L}, the isomorphism $B \otimes_A A[x] \cong B[x_1, \ldots, x_\numvars]=B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
+    Furthermore, as in the proof of \Cref{comparing expansions:  P}, the isomorphism $B \otimes_A A[x] \cong B[x_1, \ldots, x_\numvars]=B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
     \[
        0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0.
     \]
@@ -3184,12 +3203,12 @@ for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the reduction 
  \end{corollary}
 
 \begin{proof}
-Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: L} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: L} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: L} to see that
+Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: P} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: P} to see that
 \[  (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
 which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
 \end{proof}
 
-In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \ell \in A$ in the statement of \Cref{colon mod p: L} can be chosen independently of $f$, as long as we require $f$ to be a monomial.   In the proof of this extension, we will invoke a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
+In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \ell \in A$ in the statement of \Cref{colon mod p: P} can be chosen independently of $f$, as long as we require $f$ to be a monomial.   In the proof of this extension, we will invoke a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
 \begin{equation}
 \label{iterated colon: e}
  (I: ab) = ((I: a): b) \text{ for every } a,b \in R.
@@ -3271,10 +3290,10 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 %     \[
 %        (J :_{A[x]} x^{\vv{v}})  = (J:_{A[x]} x^{\vv{v}+\canvec_i}) \text{ for every } \vv{v} \in \mathcal{V} \text{ and } \canvec_i \in  \mathcal{W}(\vv{v}).
 %     \]
-%     Suppose that $0 \neq \ell \in A$ is such that the conclusion of \Cref{comparing expansions:  L} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
+%     Suppose that $0 \neq \ell \in A$ is such that the conclusion of \Cref{comparing expansions:  P} holds for each of the finitely many containments of ideals $(J :_{A[x]} x^{\vv{v}}) \subseteq A[x]$ with $\vv{v} \in \mathcal{V}$.  In particular, if $(J :_{A[x]} x^{\vv{v}}) B_{\circ}[x] = B_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $(J :_{A[x]} x^{\vv{v}}) B[x] = B[x]$ for every $A[\ell^{-1}]$-algebra $B$.
 
 
-% Similarly, after further localizing (that is, replacing $\ell$ with a nonzero $A$-multiple), we may also assume that the conclusions of \Cref{colon mod p: L}   hold for each of the colon ideals $(J:_{A[x]} x^{\vv{v}})$ and $(J:_{A[x]} x^{\vv{v}+\canvec_i})$ for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in \mathcal{W}(\vv{v})$.  In particular, if $B$ is an $A[\ell^{-1}]$-algebra, then
+% Similarly, after further localizing (that is, replacing $\ell$ with a nonzero $A$-multiple), we may also assume that the conclusions of \Cref{colon mod p: P}   hold for each of the colon ideals $(J:_{A[x]} x^{\vv{v}})$ and $(J:_{A[x]} x^{\vv{v}+\canvec_i})$ for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in \mathcal{W}(\vv{v})$.  In particular, if $B$ is an $A[\ell^{-1}]$-algebra, then
 % \begin{align*}  (J B[x] :_{B[x]} x^{\vv{v}}) & = (J :_{A[x]} x^{\vv{v}}) B[x] \\ & = (J :_{A[x]} x^{\vv{v}+\canvec_i}) B[x] =(J B[x]:_{B[x]} x^{\vv{v}+\canvec_i})
 % \end{align*}
 % for every $\vv{v} \in \mathcal{V}$ and $\canvec_i \in  \mathcal{W}(\vv{v})$.  Keeping in mind the basic properties of colon ideals recalled in \eqref{iterated colon: e}, the equality of the outermost colon ideals above implies the stronger equality $(J B[x] :_{B[x]} x^{\vv{v}}) = (J B[x]:_{B[x]} x^{\vv{v}+\vv{w}})$ for every $\vv{v} \in \mathcal{V}$ and $\vv{w} \in \NN \mathcal{W}(\vv{v})$.  Putting everything together, we have that
@@ -3324,13 +3343,13 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 %    If $x^\vv{u} \in JB_{\circ}[x]$, then $(J :_{A[x]} x^\vv{u})B_\circ[x] = (JB_\circ[x]:_{B_\circ[x]} x^\vv{u}) = B_\circ[x]$, and thus for every $A[\ell^{-1}]$-algebra $B$ we have $(JB[x]:_{B[x]} x^\vv{u}) = (J :_{A[x]} x^\vv{u})B[x] = B[x]$, whence $x^\vv{u}\in JB[x]$.
 %    \pedro{Maybe we can just say that the result follows easily from the claim, and leave it at that?}
 
-%    The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  L} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
+%    The existence of $\ell$ satisfying (1) will follow from \Cref{comparing expansions:  P} applied to the containments $(J:_{A[x]}x^\vv{u}) \subseteq A[x]$, once we verify that there are only finitely many ideals $(J:_{A[x]} x^\vv{u})$.
 %    As $A[x]$ is Noetherian, we may choose $N\in \NN$ such that all the ascending chains $\{(J:_{A[x]}x_i^n)\}_{n\in \NN}$, with $i=1,\ldots,\numvars$, are stable for $n\ge N$.
 %    We claim that each colon ideal $(J:_{A[x]}x^\vv{u})$ is equal to $(J:_{A[x]}x^\vv{v})$ for some $\vv{v} \le N\vv{1}$, which establishes the desired finiteness.
 %    Indeed, if $\vv{v} = (v_1,\ldots,v_\numvars)$ with $v_i = \min\{u_i,N\}$, then repeated applications of \eqref{iterated colon: e} and our choice of $N$ show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^\vv{v})$.
 
 %    Suppose $\ell$ satisfies (1).
-%    By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: L} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
+%    By possibly replacing $\ell$ with a nonzero $A$-multiple, we may assume that $\ell$ also satisfies the conclusion of \Cref{colon mod p: P} for the finitely many ideals $(J:_{A[x]} x^\vv{v})$ with $\vv{v} \le (N+1)\vv{1}$.
 %    If $B$ is an $A[\ell^{-1}]$-algebra, then our choice of $\ell$ and $N$ show that, for each $i=1,\ldots,\numvars$,
 %    \begin{equation*}
 %      (JB[x]:_{B[x]} x_i^{N+1}) = (J:_{A[x]}x_i^{N+1})B[x]
@@ -3384,13 +3403,13 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 \end{corollary}
 
 \begin{proof}
-   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: L} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
+   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: P} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
    \[ (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
                                = (J:_{A[x]}x_i^{t+1})B[x]
                                =(JB[x]:_{B[x]} x_i^{t+1}) \]
    and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
 
-After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusions of \Cref{colon mod p: L} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
+After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusions of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
 %
 \[ (J:_{A[x]} x^{\vv{u}})B[x] = (J:_{A[x]} x^{\phi(\vv{u})})B[x] = (JB[x]:_{B[x]} x^{\phi(\vv{u})}) = (JB[x]:_{B[x]} x^{\vv{u}}). \qedhere\]
 \end{proof}
@@ -3403,7 +3422,7 @@ Suppose that $A$ is a Noetherian domain.  Given an ideal $J$ of the polynomial r
 
 
 \begin{proof}
-Suppose that $0 \neq \ell \in A$ satisfies the conclusions of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  L} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.
+Suppose that $0 \neq \ell \in A$ satisfies the conclusions of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  P} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.
 
 
 We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.
@@ -3411,10 +3430,10 @@ We require one more condition on $\ell$.  As described in \Cref{single multiplie
 For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.  If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
 
 Next, instead suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
-\Cref{comparing expansions:  L}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$.
+\Cref{comparing expansions:  P}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$.
 \end{proof}
 
-In the same way that \Cref{colon mod p: L} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
+In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
 
 \begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
 \label{mon-operation-modulo-p: T}

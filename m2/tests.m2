@@ -123,7 +123,7 @@ search2 := (r,m,n,M,maxTries) ->
             diffs = #select(0..7, i -> num_i_1 != num_(i+1)_0);
             ramif = #(unique apply(graph, x -> #x) );
 --          ramif = max apply(graph, x -> #x);
-            found = diffs > 1 and ramif > 1
+            found = diffs > 1 and ramif > 2
         );
         count = count + 1
      );
@@ -136,15 +136,38 @@ search2 := (r,m,n,M,maxTries) ->
      )
 ) 
 
-search2(11,4,3,20,10000)
+search2(5,4,3,30,10000)
 
 toString oo
+
+-- NEW EXAMPLES
+--* = skip; c = collapse
 
 (r,A,u) = (11,matrix {{16, 16, 13}, {4, 12, 19}, {2, 4, 18}, {18, 2, 18}},matrix {{7}, {8}, {19}, {7}})
 init()
 
 iterate()
 
+--collapses to 3 right away
+-- 1 1*c 1c 1 2* 1c 1 1 1 1 1 1 1 1 1 1 1
+-- ends in 12-loop
+
+----------------------------------------------------------------------------------------------------------
+(r,A,u) = (11, matrix {{7, 15, 13}, {17, 13, 14}, {4, 19, 14}, {15, 2, 0}},matrix {{18}, {10}, {14}, {3}})
+init()
+
+iterate()
+
+--collapse to 2 right away
+-- 1c 1 1* 1 1 2* 1c 1 1 1 1 1 1 1 1 1 1 1
+-- ends in 12-cycle
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+
+-------OLD EXAMPLE
 (r,A,u) = (5, matrix {{6, 12, 9}, {14, 5, 11}, {14, 6, 9}, {4, 6, 1}},matrix {{5}, {6}, {6}, {10}})
 -- my favorite so far
 -- Currently in paper; UNFORTUNATELY r = 5 divides the universal denominator!
