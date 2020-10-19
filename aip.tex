@@ -3158,34 +3158,32 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
    Then $GR_A$ and $L \coloneqq I_A + G R_A$ are also $A$-models of $I$, so that $I_A \kk[x] = L\kk[x] = G \kk[x] = I$.
    Choosing $\ell \in A \setminus \{0\}$ so that the conclusion of \Cref{comparing expansions:  P} holds for the containments $I_A \subseteq L$ and $GR_A \subseteq L$, \Cref{comparing expansions:  P} implies that
       \[
-      I_A B[x] = L_A B[x] = G B[x]
+      I_A B[x] = L B[x] = G B[x]
    \]
  for every $A[\ell^{-1}]$-algebra $B$.    Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = G R_A(\idealm)$.
 \end{proof}
 
 \begin{proposition}
    \label{colon mod p: P}
-   Suppose that $A$ is a Noetherian domain.
-   Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, and a polynomial $f \in A[x]$, there exists $0 \neq \ell \in A$ with the following property\textup:
+   Let $A$ be a Noetherian domain.
+   Given an ideal $J$ and an element $f$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A \setminus \{0\}$ with the following property\textup:
    If $B$ is any $A[\ell^{-1}]$-algebra, then
    \[
       (J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f).
    \]
- \end{proposition}
+\end{proposition}
 
- \begin{proof}
-    Consider the exact sequence
+\begin{proof}
+   The argument of the proof of \Cref{comparing expansions:  P} applied to the exact sequence
     \[
        0 \to (J :_{A[x]} f) \to A[x] \stackrel{f}{\longrightarrow} (f A[x] + J)/J \to 0
     \]
-    of finitely generated $A[x]$-modules.
-    We may tensor this exact sequence of $A$-modules with the flat $A$-module $A[\ell^{-1}]$ over $A$ to obtain an exact sequence of $A[\ell^{-1}]$-modules, where $0 \neq \ell \in A$.
-    By generic freeness, we may assume that the last term in such a sequence is free over $A[\ell^{-1}]$, and so if we further tensor this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$, we obtain
+    shows the existence of $\ell \in A \setminus \{0\}$ such that the sequence
     \[
        0 \to B \otimes_A (J :_{A[x]} f) \to B \otimes_A A[x] \stackrel{f}{\longrightarrow} B \otimes_A ((f A[x] + J)/J) \to 0
     \]
-    which is  a split exact sequence of $B$-modules.
-    Furthermore, as in the proof of \Cref{comparing expansions:  P}, the isomorphism $B \otimes_A A[x] \cong B[x_1, \ldots, x_\numvars]=B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
+    is split exact for every $A[\ell^{-1}]$-algebra $B$.
+    The isomorphism $B \otimes_A A[x] \cong B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
     \[
        0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0.
     \]
@@ -3195,6 +3193,29 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
       & = (JB[x] :_{B[x]} f). \qedhere
     \end{align*}
 \end{proof}
+
+% \begin{proof}
+%     Consider the exact sequence
+%     \[
+%        0 \to (J :_{A[x]} f) \to A[x] \stackrel{f}{\longrightarrow} (f A[x] + J)/J \to 0
+%     \]
+%     of finitely generated $A[x]$-modules.
+%     We may tensor this exact sequence of $A$-modules with the flat $A$-module $A[\ell^{-1}]$ over $A$ to obtain an exact sequence of $A[\ell^{-1}]$-modules, where $0 \neq \ell \in A$.
+%     By generic freeness, we may assume that the last term in such a sequence is free over $A[\ell^{-1}]$, and so if we further tensor this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$, we obtain
+%     \[
+%        0 \to B \otimes_A (J :_{A[x]} f) \to B \otimes_A A[x] \stackrel{f}{\longrightarrow} B \otimes_A ((f A[x] + J)/J) \to 0
+%     \]
+%     which is  a split exact sequence of $B$-modules.
+%     Furthermore, as in the proof of \Cref{comparing expansions:  P}, the isomorphism $B \otimes_A A[x] \cong B[x_1, \ldots, x_\numvars]=B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
+%     \[
+%        0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0.
+%     \]
+%     However, the last term above equals $(fB[x] + JB[x])/JB[x]$, which shows that
+%     \begin{align*}
+%       (J:_{A[x]} f)B[x] &= \ker ( B[x] \stackrel{f}{\longrightarrow} (fB[x] + JB[x])/JB[x])\\
+%       & = (JB[x] :_{B[x]} f). \qedhere
+%     \end{align*}
+% \end{proof}
 
 \begin{corollary}[The formation of colon ideals commutes with most reductions to prime characteristic]
 \label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$, and an element $f \in R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
