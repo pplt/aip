@@ -3166,11 +3166,11 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
 \begin{proposition}
    \label{colon mod p: P}
    Let $A$ be a Noetherian domain.
-   Given an ideal $J$ and an element $f$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A \setminus \{0\}$ with the following property\textup:
-   If $B$ is any $A[\ell^{-1}]$-algebra, then
+   Given an ideal $J$ and an element $f$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A \setminus \{0\}$ such that
    \[
-      (J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f).
+      (J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f)
    \]
+   for any $A[\ell^{-1}]$-algebra $B$.
 \end{proposition}
 
 \begin{proof}
@@ -3185,13 +3185,9 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
     is split exact for every $A[\ell^{-1}]$-algebra $B$.
     The isomorphism $B \otimes_A A[x] \cong B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
     \[
-       0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0.
+       0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0
     \]
-    However, the last term above equals $(fB[x] + JB[x])/JB[x]$, which shows that
-    \begin{align*}
-      (J:_{A[x]} f)B[x] &= \ker ( B[x] \stackrel{f}{\longrightarrow} (fB[x] + JB[x])/JB[x])\\
-      & = (JB[x] :_{B[x]} f). \qedhere
-    \end{align*}
+    and since the last term above equals $(fB[x] + JB[x])/JB[x]$, that sequence shows that $(J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f)$.
 \end{proof}
 
 % \begin{proof}
@@ -3218,18 +3214,28 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
 % \end{proof}
 
 \begin{corollary}[The formation of colon ideals commutes with most reductions to prime characteristic]
-\label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$, and an element $f \in R$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
+\label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ and an element $f$ of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
 \[ ((I :_R f))_A(\idealm) \coloneqq (I_A :_{R_A} f) R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
-for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the reduction of $f \in R_A$ modulo $\idealm$, \ie the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
+for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
  \end{corollary}
 
-\begin{proof}
-Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: P} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: P} to see that
-\[  (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
-which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
+ \begin{proof}
+    Suppose that $\ell \in A \setminus \{0\}$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideal $J=I_A$ and the polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: P} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which shows that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.
+    Now, if $\mathcal{U} = \{\idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell\}$, then for each $\idealm \in \mathcal{U}$, we may instead take $B=A/\idealm$ in \Cref{colon mod p: P} to see that
+    \[
+       (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)).
+       \qedhere
+    \]
 \end{proof}
 
-In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \ell \in A$ in the statement of \Cref{colon mod p: P} can be chosen independently of $f$, as long as we require $f$ to be a monomial.   In the proof of this extension, we will invoke a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
+% \begin{proof}
+% Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: P} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: P} to see that
+% \[  (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
+% which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
+% \end{proof}
+
+In \Cref{all monomial colons: C} below, we will show that the element $\ell$ in \Cref{colon mod p: P} can be chosen independently of $f$ when $f$ is a monomial.
+In its proof, we will use a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
 \begin{equation}
 \label{iterated colon: e}
  (I: ab) = ((I: a): b) \text{ for every } a,b \in R.
@@ -3419,48 +3425,76 @@ In \Cref{all monomial colons: C} below, we will show that the element $0 \neq \e
 %% NEW VERSION BY DANIEL
 \begin{corollary}
    \label{all monomial colons: C}
-   Suppose that $A$ is a Noetherian domain. Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ with the following property\textup:
-   If $B$ is any $A[\ell^{-1}]$-algebra, and $x^{\vv{u}} \in A[x]$ is an arbitrary monomial, then \[ (J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x]:_{B[x]} x^{\vv{u}}).\]
+   Let $A$ be Noetherian domain.
+   Given an ideal $J$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A \setminus \{0\}$ such that
+   \[ (J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x]:_{B[x]} x^{\vv{u}})\]
+   for every $A[\ell^{-1}]$-algebra $B$ and every monomial $x^{\vv{u}} \in A[x]$.   
 \end{corollary}
 
 \begin{proof}
-   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq m$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$, and repeated applications of \eqref{iterated colon: e}, then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.  Similarly, if $\ell$ satisfies the conclusion of \Cref{colon mod p: P} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
+   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq \numvars$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$ and repeated applications of \eqref{iterated colon: e} then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.
+   If $\ell$ satisfies the conclusion of \Cref{colon mod p: P} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
    \[ (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
                                = (J:_{A[x]}x_i^{t+1})B[x]
                                =(JB[x]:_{B[x]} x_i^{t+1}) \]
    and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
 
-After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusions of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
+After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusion of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
 %
 \[ (J:_{A[x]} x^{\vv{u}})B[x] = (J:_{A[x]} x^{\phi(\vv{u})})B[x] = (JB[x]:_{B[x]} x^{\phi(\vv{u})}) = (JB[x]:_{B[x]} x^{\vv{u}}). \qedhere\]
 \end{proof}
 
 \begin{theorem}
 \label{mon-operation-general-expansion: T}
-Suppose that $A$ is a Noetherian domain.  Given an ideal $J$ of the polynomial ring $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $0 \neq \ell \in A$ with the following property:  If $B$ is any $A[\ell^{-1}]$-algebra \hl{that happens to be a field}, then
-\[ \mon(J) B[x] = \mon(JB[x]).\]
- \end{theorem}
+Let $A$ be a Noetherian domain.  Given an ideal $J$ of $A[x_1, \ldots, x_\numvars] = A[x]$, there exists $\ell \in A \setminus \{0\}$ such that 
+\[ \mon(J) B[x] = \mon(JB[x])\]
+for every $A[\ell^{-1}]$-algebra $B$ \hl{that happens to be a field}.
+\end{theorem}
 
 
 \begin{proof}
-Suppose that $0 \neq \ell \in A$ satisfies the conclusions of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  P} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.
+   The identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$.
+   Thus, we may choose $\ell \in A\setminus \{0\}$ that satisfies the conclusion of \Cref{comparing expansions:  P} for every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$, as well as the conclusion of \Cref{all monomial colons: C}.
 
+   By \Cref{single multiplier: R}, we may fix $a \in A \setminus \{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
+   After replacing $\ell$ with $a \ell$, we may assume that $a$ is a unit in $A[\ell^{-1}]$.
+   For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.
 
-We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.
+   If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
 
-For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.  If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
-
-Next, instead suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
-\Cref{comparing expansions:  P}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$.
+   Now suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as
+   \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
+   \Cref{comparing expansions:  P} and our choice of $\ell$ then imply that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, and hence $x^{\vv{u}} \in \mon(J)$.
 \end{proof}
 
 In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
 
 \begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
 \label{mon-operation-modulo-p: T}
-Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
+Let $\kk$ be a field of characteristic zero and $I$ an ideal of $R=\kk[x_1, \ldots, x_{\numvars}]$.
+If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
 \[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed
 \end{theorem}
+
+% \begin{proof}
+%     Suppose that $\ell \in A \setminus \{0\}$ satisfies the conclusion of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  P} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.
+
+
+% We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.
+
+% For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.  If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
+
+% Next, instead suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
+% \Cref{comparing expansions:  P}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$.
+% \end{proof}
+
+% In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
+
+% \begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
+% \label{mon-operation-modulo-p: T}
+% Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
+% \[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed
+% \end{theorem}
 
 
 \begin{corollary}
