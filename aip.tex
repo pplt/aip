@@ -3183,7 +3183,7 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
        0 \to B \otimes_A (J :_{A[x]} f) \to B \otimes_A A[x] \stackrel{f}{\longrightarrow} B \otimes_A ((f A[x] + J)/J) \to 0
     \]
     is split exact for every $A[\ell^{-1}]$-algebra $B$.
-    The isomorphism $B \otimes_A A[x] \cong B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
+    The isomorphism $B \otimes_A A[x] \cong B[x]$ induces an isomorphism between the above exact sequence and
     \[
        0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0
     \]
@@ -3214,9 +3214,12 @@ which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
 % \end{proof}
 
 \begin{corollary}[The formation of colon ideals commutes with most reductions to prime characteristic]
-\label{colon mod p: C}  Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ and an element $f$ of $R=\kk[x_1, \ldots, x_\numvars]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.   Furthermore, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
-\[ ((I :_R f))_A(\idealm) \coloneqq (I_A :_{R_A} f) R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
-for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
+   \label{colon mod p: C}
+   Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of $R=\kk[x_1, \ldots, x_\numvars]$.
+   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$, and $f \in R_A$, then  $(I_A :_{R_A} f)$ is an $A$-model of $(I:_R f)$.
+   Furthermore, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
+   \[ ((I :_R f))_A(\idealm) \coloneqq (I_A :_{R_A} f) R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
+   for every $\idealm \in \mathcal{U}$, where $f_A(\idealm)$ denotes the image of $f$ under the quotient map $R_A \to R_A(\idealm)$.
  \end{corollary}
 
  \begin{proof}
@@ -3464,7 +3467,9 @@ for every $A[\ell^{-1}]$-algebra $B$ \hl{that happens to be a field}.
 
    Now suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as
    \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
-   \Cref{comparing expansions:  P} and our choice of $\ell$ then imply that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, and hence $x^{\vv{u}} \in \mon(J)$.
+   \Cref{comparing expansions:  P} and our choice of $\ell$ then imply that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1},x] = A[\ell^{-1},x]$.
+   \pedro{or $A[\ell^{-1}][x]$; I prefer the simpler notation}
+   Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, and hence $x^{\vv{u}} \in \mon(J)$.
 \end{proof}
 
 In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
@@ -3500,7 +3505,7 @@ If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-mo
 \begin{corollary}
    \label{invariants associated to a monomial ideal in large characteristic: C}
    Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of  $R=\kk[x_1, \ldots, x_\numvars]$, with $I$ monomial and $I \subseteq \sqrt{J}$.
-   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ of $I$ and $J_A$ of $J$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property\textup:
+   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ and $J_A$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property\textup:
    If $\idealm \in \mathcal{U}$ and $p = \operatorname{char}(A/\idealm)$, then there exists a diagonal ideal $\ideald$
    \daniel{
       I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: C}.
@@ -3519,7 +3524,7 @@ If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-mo
    \]
 \end{corollary}
 
-\begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusions of \Cref{containment in radical mod p: C} holds for $I$ and $J$, and such that the conclusions of \Cref{expansion of monomial mod most p is monomial: C,mon-operation-modulo-p: T} hold for $I$.  Fix a point $\idealm \in \mathcal{U}$.
+\begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusion of \Cref{containment in radical mod p: C} holds for $I$ and $J$, the conclusion of \Cref{expansion of monomial mod most p is monomial: C} holds for $I$, and the conclusion of \Cref{mon-operation-modulo-p: T} holds for $J$.  Fix a point $\idealm \in \mathcal{U}$.
 
 \Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\idealm)$ is a monomial ideal contained in the radical of $J_A(\idealm)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\idealm) = \mon(J_A(\idealm))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
 \end{proof}
