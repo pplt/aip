@@ -42,8 +42,6 @@ vlined]{algorithm2e}
 \newcommand{\mspec}{\operatorname{mSpec}}
 \newcommand{\spec}{\operatorname{Spec}}
 
-
-
 %clever ref package
 %must come before following 3 sections
 \usepackage{cleveref}  %must be consistent with names in following 3 sections
@@ -67,6 +65,8 @@ vlined]{algorithm2e}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{thmintro}{Theorem}
+\renewcommand{\thethmintro}{\Alph{thmintro}}
 
 %definition style environments
 \theoremstyle{definition}
