@@ -104,7 +104,7 @@ TO DO LIST:
  \item[$\Box$] Introduction
  \item[$\Box$] Outline at the end of \Cref{sec: LPs}
  \item[$\Box$] Section on generic hypersurfaces
- \item[$\Box$] Dissolve appendix B
+ \item[$\CheckedBox$] Dissolve appendix B
 % \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
 % \item[$\CheckedBox$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
 % \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
@@ -116,68 +116,151 @@ TO DO LIST:
 
 \section{Introduction}
 
-\begin{itemize}
- \item Motivate via test ideals of general hypersurfaces.
- \item Emphasize the uniformity result over algorithms, and tie it in with previous known results.
- \item State main theorems.
- \item Explain that we reduce to the case that $\idealb$ is a diagonal monomial ideal.
-\end{itemize}
-
-
-
-Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and take ideals $\ideala$ and $\idealb$ in a polynomial ring over $\kk$ for which $\ideala$ is contained in $\sqrt \idealb$.
-\pedro{We might want to require these to be nonzero and proper, or else we need special conventions when $\ideala = 0$ or $\idealb = R$.}
-For a nonnegative integer $e$, we define
-%
-\[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}\]
-%
+Let $\kk$ be a field of prime characteristic $p$ with $[\kk:\kk^p] < \infty$, and let $\ideala$ and $\idealb$ be nonzero proper ideals in $\kk[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$.
+For a nonnegative integer $e$, we set
+\begin{equation}
+   \nu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}
+   \label{eq: nu definition}
+\end{equation}
 where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
 The condition that $\ideala \subseteq \sqrt \idealb$ guarantees that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
 
-The \emph{growth rate} of these integers as a function of the nonnegative integer $e$ is of independent interest.
-It is not hard to see that the sequence $\big(\nu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is nondecreasing and bounded,  and we define
-\[
-   \ft{\ideala}{\idealb} \coloneqq \lim_{e \to \infty} \frac{\nu(\ideala, \idealb, p^e)}{p^e}  = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
-\]
-which we call the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}.
+Starting, instead, with ideals $\ideala$ and $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$; we may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
+Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal.
+Before getting to it, though, we examine some of the motivation behind this question.
 
-% \daniel{Motivate the $\nu$'s by tying them to roots of BS polynomials; motivate $F$-thresholds by relating them to behavior of test ideals.  Relate them to multiplier ideals}
+\mustata, Takagi, and Watanabe observed that the images of the invariants $\nu(\ideala_p,\idealb_p,p^e)$ in $\FF_p$ are roots of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $p \gg 0$ \cite[Proposition~3.11]{mustata+takagi+watanabe.F-thresholds}.
+Furthermore, they noticed that $\nu(\ideala_p,\idealb_p,p^e)$ oftentimes (but not always) varies with $p$ in a uniform way---a behavior that allows them to find \emph{actual} roots of the Bernstein--Sato polynomial of $\ideala$ at the origin.
+They ask for conditions on $\ideala$ under which this special behavior, captured in the definition below, manifests for every $\idealb$ and $e$ \cite[Problem~3.8]{mustata+takagi+watanabe.F-thresholds}.
+%This special property is captured in the following definition. 
 
-\daniel[inline]{This is essentially copied verbatim from \cite[Problem 3.8]{mustata+takagi+watanabe.F-thresholds}.  It also appeared as \cite[Problem 2.3]{budur+mustata+saito.roots_bs_polys} .  We should probably restate it more precisely, and explain its significance.}
+\begin{definition}
+   \label{defn: nuCool}
+   A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\nuCool} if there exists a positive integer $\denom = \denom(\ideala)$ such that the following condition holds.
+   Given a proper ideal $\idealb$ in the same ring with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$, there exist degree $e$ polynomials $G_r(t) \in \QQ[t]$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\nu(\ideala_p, \idealb_p, p^e) = G_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
+\end{definition}
 
-\begin{problem}
-   Find conditions on the ideal $\ideala$ such that the following holds.
-   Given an ideal $\idealb$ with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$, there exists a positive integer $N$ and polynomials $P_i(t) \in \QQ[t]$ of degree $e$ for every $i$ that is a unit modulo $N$ such that $\nu(\ideala_p, \idealb_p, p^e) = P_i(p)$ whenever $p$ is sufficiently large and $p \equiv i \bmod N$.
-   When could $N$ be chosen independently of $\idealb$ and $e$?
-\end{problem}
+If $\ideala$ is \nuCool, then the constant term $G_r(0)$ is a root of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $r$ as above \cite[Remark~3.13]{mustata+takagi+watanabe.F-thresholds}.
 
-\daniel[inline]{Emphasize that when $\ideala$ is monomial and $\idealb$ is arbitrary (over $\QQ$), then the $F$-threshold of $\ideala_p$ with respect to $\idealb_p$ is independent of $p$ for all $p \gg 0$.  This is \Cref{nu-mu-reduce-monomial: C}.}
-
-\begin{theorem}
-   \label{general-nu-theorem: T}
-   Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, and an arbitrary ideal $\idealb$ of this polynomial ring with $\ideala \subseteq \sqrt{\idealb}$, there exist positive integers $\ell = \ell(\ideala)$ and  $\beta = \beta(\ideala, \idealb)$, and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, a rational number $\delta(\ideala, \idealb, r)$ satisfying the following condition.
-   If $p^e > \beta(\ideala, \idealb)$ and $p^e \equiv r \bmod \ell$, then $ \nu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \delta(\ideala, \idealb, r)$.
-\end{theorem}
-
-As above, let $\kk$ be a field of prime characteristic $p>0$ with $[\kk: \kk^p]$ finite.
-If $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$.
-When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators as follows:
-If $k$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[k]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{k}{\vv{u}}$ is nonzero modulo~$p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
-
-Now, if $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then in analogy with the above definitions, given a nonnegative integer $e$, we define
-\[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
-Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is a nondecreasing bounded sequence, and
-\begin{equation}\label{eq: crit as a limit of mus}
-   \crit(\ideala,\idealb) \coloneqq \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
+Budur, \mustata, and Saito showed that monomial ideals are \nuCool \cite[Theorem~4.1]{budur+mustata+saito.roots_bs_polys}.
+Specifically, they showed that if $\ideala$ is a proper, nontrivial monomial ideal in $\QQ[x_1,\ldots,x_\numvars]$, then there exists a positive integer $\denom$ with the following property:
+For each ideal $\idealb$ whose radical contains $\ideala$, there are positive rational numbers $\alpha$ and $\beta_r$, for $0 \le r < \denom$, such that
+\begin{equation}
+   \label{eq: nu-uniformity for monomial ideals}
+   \nu(\ideala_p, \idealb_p, p^e) = \alpha p^e - \beta_r
 \end{equation}
-is the \emph{critical exponent of $\ideala$ with respect to $\idealb$}.
+whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
 
-\begin{theorem}
-   \label{general-mu-theorem: T}
-   Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every ideal $\idealb$ with $\ideala \subseteq {\idealb}$ and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \idealb)$ and a sequence $\big(\epsilon(\ideala, \idealb, r, e)\big)_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following condition.
-   If $p > \beta$ and $p \equiv r \bmod \ell$, then
-   \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
-\end{theorem}
+In this paper we prove an analogous result for a family of analogous invariants, where the regular power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
+% If $\kk$ is as above and $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$, which agrees with standard Frobenius powers or the Frobenius ``roots'' of Blickle, \mustata, and Smith \cite{blickle+mustata+smith.discr_rat_FPTs} when $q$ is an integral power of $p$, agrees with test ideals when $\ideala$ is principal, and in general mimics much of the behavior of multiplier ideals and test ideals.
+% \textcolor{nicered}{When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators:
+%    If $\ell$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[\ell]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{\ell}{\vv{u}}$ is nonzero modulo~$p$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.}
+% \pedro{This may be omitted, so we can get to the point quickly}
+% Now, if $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then in analogy with \eqref{eq: nu definition}, given a nonnegative integer $e$, we define
+% \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
+\[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+
+\begin{definition}
+   \label{defn: muCool}
+   A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\muCool} if a condition analogous to that in \Cref{defn: nuCool} holds for $\mu(\ideala_p,\idealb_p,p^e)$, for each proper ideal $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, and each nonnegative integer $e$.
+\end{definition}
+
+The main result of this article is the proof that every nonzero proper monomial ideal is \muCool.
+Along the way we recover the aforementioned theorem of Budur, \mustata, and Saito, interpreting the coefficients in \eqref{eq: nu-uniformity for monomial ideals} in the context of certain optimization problems, whose study constitute the core of this work. 
+We also describe each coefficient of the polynomials determining $\mu(\ideala_p,\idealb_p,p^e)$, which are typically not as simple as \eqref{eq: nu-uniformity for monomial ideals}, in term of optimization problems.
+The following examples give a taste of the formulas obtained.
+
+\begin{example}
+   Consider the ideals $\ideala = \ideal{x^5 y^5 z^2, x^3 y^4 z^8, x^4 y^3 z^5}$ and $\idealm = \ideal{x,y,z}$ of $\QQ[x,y,z]$.
+   We shall see in \Cref{ex: ft.5} that
+   \[
+      \mu(\ideala_p,\idealm_p,p^e) = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
+    \]
+    for each $e\ge 3$ and each sufficiently large prime $p$ in a certain congruence class modulo a positive integer $\denom$, which depends only on $\ideala$.
+    %congruent to $11$ modulo $2170560$.
+\end{example}
+
+\begin{example}
+   Now consider the ideals $\ideala = \ideal{x^6 y^{14} z^{14} w^4, x^{12} y^5 z^6 w^6, x^9 y^{11} z^9 w}$ and $\ideald = \ideal{x^5,y^6,z^6,w^{10}}$ of $\QQ[x,y,z,w]$.
+   We shall see in \Cref{ex: new example.2} that
+     \[
+      \mu(\ideala_p,\ideald_p,p^e) =
+      \begin{cases}
+         \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac23 & \text{if $e$ is odd}\\
+         \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac13 & \text{if $e$ is even}
+      \end{cases}
+   \]
+   for any $e \ge 5$ and any sufficiently large prime $p$ in a certain congruence class modulo a positive integer $\denom$, which depends only on $\ideala$.
+   %congruent to $5$ modulo $464409919955520$.
+\end{example}
+
+To convey the significance of our main result, we shall trace back some of our motivations to introduce and study generalized Frobenius powers.
+
+\todo[inline]{
+   From here, discuss multiplier ideals, test ideals; motivate Frobenius powers via test ideals of general hypersurfaces; discuss F-jumping exponents/F-thresholds and critical exponents; state consequences for generic hypersurfaces.
+}
+
+% \begin{itemize}
+%  \item Motivate via test ideals of general hypersurfaces.
+%  \item Emphasize the uniformity result over algorithms, and tie it in with previous known results.
+%  \item State main theorems.
+%  \item Explain that we reduce to the case that $\idealb$ is a diagonal monomial ideal.
+% \end{itemize}
+
+% Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and take ideals $\ideala$ and $\idealb$ in a polynomial ring over $\kk$ for which $\ideala$ is contained in $\sqrt \idealb$.
+% \pedro{We might want to require these to be nonzero and proper, or else we need special conventions when $\ideala = 0$ or $\idealb = R$.}
+% For a nonnegative integer $e$, we define
+% %
+% \[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}\]
+% %
+% where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
+% The condition that $\ideala \subseteq \sqrt \idealb$ guarantees that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
+
+% The \emph{growth rate} of these integers as a function of the nonnegative integer $e$ is of independent interest.
+% It is not hard to see that the sequence $\big(\nu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is nondecreasing and bounded,  and we define
+% \[
+%    \ft{\ideala}{\idealb} \coloneqq \lim_{e \to \infty} \frac{\nu(\ideala, \idealb, p^e)}{p^e}  = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
+% \]
+% which we call the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}.
+
+% % \daniel{Motivate the $\nu$'s by tying them to roots of BS polynomials; motivate $F$-thresholds by relating them to behavior of test ideals.  Relate them to multiplier ideals}
+
+% \daniel[inline]{This is essentially copied verbatim from \cite[Problem 3.8]{mustata+takagi+watanabe.F-thresholds}.  It also appeared as \cite[Problem 2.3]{budur+mustata+saito.roots_bs_polys} .  We should probably restate it more precisely, and explain its significance.}
+
+% \begin{problem}
+%    Find conditions on the ideal $\ideala$ such that the following holds.
+%    Given an ideal $\idealb$ with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$, there exists a positive integer $N$ and polynomials $P_i(t) \in \QQ[t]$ of degree $e$ for every $i$ that is a unit modulo $N$ such that $\nu(\ideala_p, \idealb_p, p^e) = P_i(p)$ whenever $p$ is sufficiently large and $p \equiv i \bmod N$.
+%    When could $N$ be chosen independently of $\idealb$ and $e$?
+% \end{problem}
+
+% \daniel[inline]{Emphasize that when $\ideala$ is monomial and $\idealb$ is arbitrary (over $\QQ$), then the $F$-threshold of $\ideala_p$ with respect to $\idealb_p$ is independent of $p$ for all $p \gg 0$.  This is \Cref{nu-mu-reduce-monomial: C}.}
+
+% \begin{theorem}
+%    \label{general-nu-theorem: T}
+%    Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, and an arbitrary ideal $\idealb$ of this polynomial ring with $\ideala \subseteq \sqrt{\idealb}$, there exist positive integers $\ell = \ell(\ideala)$ and  $\beta = \beta(\ideala, \idealb)$, and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, a rational number $\delta(\ideala, \idealb, r)$ satisfying the following condition.
+%    If $p^e > \beta(\ideala, \idealb)$ and $p^e \equiv r \bmod \ell$, then $ \nu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \delta(\ideala, \idealb, r)$.
+% \end{theorem}
+
+% As above, let $\kk$ be a field of prime characteristic $p>0$ with $[\kk: \kk^p]$ finite.
+% If $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$.
+% When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators as follows:
+% If $k$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[k]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{k}{\vv{u}}$ is nonzero modulo~$p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
+
+% Now, if $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then in analogy with the above definitions, given a nonnegative integer $e$, we define
+% \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+% Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is a nondecreasing bounded sequence, and
+% \begin{equation}\label{eq: crit as a limit of mus}
+%    \crit(\ideala,\idealb) \coloneqq \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
+% \end{equation}
+% is the \emph{critical exponent of $\ideala$ with respect to $\idealb$}.
+
+% \begin{theorem}
+%    \label{general-mu-theorem: T}
+%    Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every ideal $\idealb$ with $\ideala \subseteq {\idealb}$ and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \idealb)$ and a sequence $\big(\epsilon(\ideala, \idealb, r, e)\big)_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following condition.
+%    If $p > \beta$ and $p \equiv r \bmod \ell$, then
+%    \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
+% \end{theorem}
 
 \section{Notation and basic notions}
 
@@ -2945,7 +3028,7 @@ Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these v
    Indeed, each linear constraint of $\IP_p(B, \vv{w}, p^e)$ is a constraint of $\IP_p(A, \vv{u},p^e)$, each additional linear constraint of $\IP_p(A, \vv{u},p^e)$ is automatically satisfied on $\IP_p(B, \vv{w},p^e)$ by our choice of $M$, and the arithmetic constraints of these programs are identical.
    Now, if $\ideald$ is the diagonal ideal associated to the point $\vv{u}$, then
    \[
-     \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e)  = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
+     \mu(\ideala, I, p^e) = \val\IP_p(B, \vv{w}, p^e)  = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
   \]
   for every $e$.
 \end{proof}
