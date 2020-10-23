@@ -1881,16 +1881,20 @@ For instance, suppose that $p \equiv 3 \bmod 4$, and let
  \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
  \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
 \]
-Then for $e \geq 1$,
+Then for $e \geq 1$, $\IP(A, \vv{u}, p^e)$ has optimal point $\left( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \right) 
+\right)$ when $e$ is odd and $\left( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\right)$ when $e$ is even, and so 
 \[
 \val\IP(A, \vv{u}, p^e) = \begin{cases}
-\frac{3}{2}p^e - \frac{1}{2} & \text{if } e \text{ is odd} \\
-\frac{3}{2}p^e - \frac{3}{2} & \text{if } e \text{ is even}
+\frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
+\frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
 
-\noindent On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$; its value is $\frac{3}{2}p^e - \frac{3}{2}$ when $e$ is odd, and
-equals $\frac{3}{2}p^e - \frac{1}{2}$ for even $e$.
+\noindent On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$: $\left( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \right)$ is an optimal point for odd $e$,  and 
+$\left( \frac{5p^e-1}{4},\frac{p^e-1}{4} \right)$ is one for even $e$, 
+so that 
+the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and
+equals $\frac{3p^e-1}{2}$ for even $e$.
 \end{remark}
 
 
