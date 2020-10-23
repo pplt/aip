@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\input{../preamble.tex}
+\usepackage{tikz}
+\tikzset{
+    node/.style = {
+       shape=rectangle, %rounded corners,
+       align=center,
+       minimum width = .4cm,
+       minimum height = .4cm,
+ %      fill = gray!30
+ %      fill = cyan!40
+ %      fill = blue!50!white!80
+    },
+    Snode/.style = {
+       shape=rectangle, %rounded corners,
+       align=center,
+       minimum width = .3cm,
+       minimum height = .3cm,
+       fill = green!60!blue!70
+    }
+}
+\begin{document}
+
+\begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=0.6cm,semithick]
+   \node[Snode] (A) {$(A,\vv{u})$};
+   \node[Snode] (B) [below = of A]{$\big(B,\big[\begin{smallmatrix} 28 \\ 31 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (C) [below = of B] {$\big(B,\big[\begin{smallmatrix} 29 \\ 17 \end{smallmatrix}\big]\big)$};
+   \node[node] (D) [below = 1cm of C] {};
+   \node[Snode] (D1) [left = 2.5cm of D] {$\big(B,\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D2) [left = 0.25cm of D] {$\big(B,\big[\begin{smallmatrix} 6 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D3) [right = 0.25cm of D] {$\big(B,\big[\begin{smallmatrix} 9 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D4) [right = 2.5cm of D] {$\big(B,\big[\begin{smallmatrix} 12 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (E) [below = 1cm of D] {$(C,11)$};
+   \node[Snode] (F) [below = of E] {$(C,21)$};
+   \node[Snode] (G) [below = of F] {$(C,6)$};
+   \node[Snode] (H) [below = of G] {$(C,16)$};
+   \node[Snode] (I) [below = of H] {$(C,1)$};
+   \node[node] (J) [below = of I] {$\vdots$};   
+\path
+(A) edge (B)
+(B) edge (C)
+(C) edge (D1)
+(C) edge (D2)
+(C) edge (D3)
+(C) edge (D4)
+(D1) edge (E)
+(D2) edge (E)
+(D3) edge (E)
+(D4) edge (E)
+(E) edge (F)
+(F) edge (G)
+(G) edge (H)
+(H) edge (I)
+(I) edge (J);
+\end{tikzpicture}
+
+\end{document}
