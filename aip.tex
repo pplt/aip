@@ -1509,6 +1509,7 @@ We now extend the definitions of shortfall and deficit to the auxiliary integer 
 \end{definition}
 
 \Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
+Moreover, every universal denominator for $A$ is also a denominator for the deficit of $\ip$.
 
 Our next proposition will show that, even though the optimal set of an integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
 For that, we shall need the following simple boundedness result.
@@ -1525,14 +1526,14 @@ For that, we shall need the following simple boundedness result.
    As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}[Finiteness of shortfalls]
    \label{finite image: P}
    The shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{proposition}
 
 \begin{proof}
    Suppose $\defpt$ defines $\O  = \mf(A, \vv{u})$ in the Newton polyhedron of $A$, and let an overbar denote collapse along $\O$.
-   If $\vv{h}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} implies that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}$, and so $\collapse{A} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
+   If $\vv{h}$ is optimal for $\ip = \ip(A, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} tells us that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{A} \vv{h}}$, and so $\collapse{A} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{A} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
    Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
@@ -1582,7 +1583,7 @@ For that, we shall need the following simple boundedness result.
    If $(A, \vv{u})$ is a monomial pair, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $\denom$, and $q>\beta \denom$, then
    \[ \deficit \IP(A, \vv{u}, q) = \deficit \ip(A, \vv{u}, \vv{s}, q) \]
    and
-   \[ \ol{\short \IP(A, \vv{u}, q)} = \short \ip(A, \vv{u}, \vv{s}, q),\]
+   \[ \ol{\short \IP(A, \vv{u}, q)} = \short \ip(A, \vv{u}, \vv{s}, q)\]
    where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
 \end{proposition}
 
@@ -1592,7 +1593,7 @@ For that, we shall need the following simple boundedness result.
    If $\denom$ is a denominator for $\vv{s}$, fix an integer $q > \beta \denom$, and set $\IP = \IP(A,\vv{u},q)$ and $\ip = \ip(A,\vv{u},\vv{s},q)$.
    \Cref{uniform value: P} then shows that
    \begin{equation}\label{eq: comparing values}
-       \val \IP = \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q}+\val\ip,
+       \val \IP = \ft{A}{\vv{u}}q - \norm{\tail{\vv{s}}_q}+\val\ip
    \end{equation}
    so $\deficit \IP = \deficit \ip$.
    Let $\vv{h}$ be a point in the domain lattice of $A$, and set $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$.
@@ -1608,7 +1609,7 @@ For that, we shall need the following simple boundedness result.
 
 The above result leads to a fundamental observation.
 
-\begin{corollary}
+\begin{corollary}[Non-dependence on the special point]
    \label{independence: C}
 %    Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
 % \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
@@ -1621,11 +1622,13 @@ The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\
    As the deficits and shortfalls of $\ip(A,\vv{u},\vv{s},q)$  and $\ip(A,\vv{u},\vv{s}',q)$ clearly depend only on $q$ modulo $\denom$, it suffices to show that they agree whenever $q \gg 0$, but this follows from \Cref{uniform value and image: P}.
 \end{proof}
 
+The above corollary and \Cref{uniform value and image: P} motivate the following definition.
+
 \begin{definition}[Universal deficit and shortfall]
 \label{independence: D}
 Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{universal shortfall} of $(A,\vv{u},q)$ as follows\textup:
  \[ \udeficit(A, \vv{u}, q) = \deficit\ip( A, \vv{u}, \vv{s}, q)\] and
-\[\ushort(A, \vv{u}, q) = \short\ip( A, \vv{u}, \vv{s}, q), \]
+\[\ushort(A, \vv{u}, q) = \short\ip( A, \vv{u}, \vv{s}, q)\]
 where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{definition}
 
@@ -1640,21 +1643,21 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    Indeed, this follows immediately from \Cref{finitely many secondary programs: T}.
 \end{remark}
 
-\begin{remark}[Invariance of universal deficit and shortfall under collapse]
+\begin{remark}[Invariance under collapse]
    \label{comparing deltas: R}
    If $(A, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{A}, \collapse{\vv{u}})$ is the collapse of $(A ,\vv{u})$ along $\mf(A, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that $(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(A, \vv{u}, \vv{s}, q) = \ip(\collapse{A}, \collapse{\vv{u}}, \vv{s}, q)$.
    Consequently,
    \[ \udeficit(A, \vv{u}, q) = \udeficit(\collapse{A}, \collapse{\vv{u}}, q)\]
    and
-   \[\ushort(A, \vv{u},q) = \ushort(\collapse{A}, \collapse{\vv{u}}, q),\]
+   \[\ushort(A, \vv{u},q) = \ushort(\collapse{A}, \collapse{\vv{u}}, q)\]
    and one may replace the point in $\sp_{\QQ}(A, \vv{u})$ in \Cref{independence: D} with one in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$ without affecting the universal deficit and shortfall.
 \end{remark}
 
-\begin{remark}[Uniform periodicity of universal shortfall and deficit]
+\begin{remark}[Uniform periodicity]
    \label{pair periodicity: R}
    Given a monomial matrix $A$, there exists a positive integer $\denom$ such that for every $A$-pair $(A,\vv{u})$, $\udeficit(A, \vv{u}, q)$ and $\ushort(A,\vv{u},q)$ only depend on $q$ modulo $\denom$.
    Indeed, if $\denom$ is a universal denominator for $A$, as in \Cref{universal denominator:  D}, then we may compute $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for every $A$-pair $(A, \vv{u})$ and every $q$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
-   Then
+   Consequently,
    \[
       \udeficit(A, \vv{u}, q) = \udeficit(A, \vv{u}, r)
    \]
@@ -1665,9 +1668,9 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    whenever $q \equiv r \bmod \denom$.
 \end{remark}
 
-\pedro[inline]{
-   Maybe add somewhere that if $\denom$ is a universal denominator for $A$, then it is also a denominator for the universal deficit.
-}
+% \pedro[inline]{
+%    Maybe add somewhere that if $\denom$ is a universal denominator for $A$, then it is also a denominator for the universal deficit.
+% }
 
 
 % \begin{remark}
@@ -1758,6 +1761,9 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
    \end{equation*}
 \end{corollary}
 
+\todo[inline]{
+   Wrap-up proof of BMS result.
+}
 
 % \pedro[inline]{
 %    This lemma appeared earlier in the section, and contained things we already knew (positivity and integrality).
@@ -1778,12 +1784,11 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 \section{Arithmetic integer programs revisited}
 
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$.
-Throughout this section, $e$ will denote a natural number, and $q$ will denote a power of $p$.
+Throughout this section, $(A,\vv{u})$ is a monomial pair, $e$ is a natural number, and $q$ is a power of a prime $p$.
 
 \subsection{A key theorem}
-The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$, in the case that $\ft{A}{\vv{u}} \le 1$ and the matrix $A$ is associated to an $\idealm$-primary ideal, where $\idealm$ is the ideal generated by the variables.
-The description of this algorithm caps off this section, and justifies the main theorem herein, \Cref{m-primary AIP: T}, which characterizes this value.
-In fact, it is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$, and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
+The following theorem plays a key role in our algorithm for computing the value of $\IP_p(A, \vv{u}, p^e)$ for $p \gg 0$ when $\ft{A}{\vv{u}} \le 1$ and the matrix $A$ is associated to an $\idealm$-primary ideal, where $\idealm$ is the ideal generated by the variables.
+The description of this algorithm caps off this section, and relies on the proof of the main theorem herein, \Cref{m-primary AIP: T}, which shows that $\val \IP_p(A, \vv{u}, p^e)$ is a polynomial in $p$ of degree $e$ with leading coefficient $\ft{A}{\vv{u}}$ and, remarkably, depends only on $(A,\vv{u})$ and the class of $p$ modulo any universal denominator for $A$.
 
 \begin{theorem}
 \label{general AIP: T}
@@ -1792,14 +1797,16 @@ If $q$ is a power of $p$, and $e$ is a nonnegative integer, then
 \[  L \coloneqq \val \IP_p(A, \vv{u}, qp^e) -  \val \IP_p(A, \vv{u}, q)p^e  \]
 is nonnegative, at most $p^e-1$, and also at most
 %
-\[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \},  \]
-where the maximum is over all points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.\footnote{
-   Recall that, as $A$ is a monomial matrix, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.
-}
+\[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \}\]
+where the maximum is over the finitely many points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.
+% \footnote{
+%    Recall that, as $A$ is a monomial matrix, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.
+% }
 
-If, in addition\daniel{I don't know of any case where $M$ is at least $p^e$, but it might be true in low characteristic.}, $M$ is at most $p^e-1$,  then $L=M$, and
-\[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e), \]
+If, in addition\daniel{I don't know of any case where $M$ is at least $p^e$, but it might be true in low characteristic.}, $M \le p^e-1$,  then $L=M$, and
+\[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e)\]
 where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
+\pedro{``that achieve $M$'': is this clear enough? Maybe replace with ``with $\val \IP_p(A, \vv{v}, p^e) = M$ (here and on the proof).}
 \end{theorem}
 
 \begin{proof}
@@ -1808,22 +1815,22 @@ where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that 
 
    Next, consider $\vv{g} \in \opt \IP_p(A, \vv{u}, qp^e)$.
    Dividing by $p^e$, we write
-   \[ \vv{g} = \vv{h} p^e + \vv{k}, \]
+   \[ \vv{g} = \vv{h} p^e + \vv{k}\]
    where $\vv{h}$ and $\vv{k}$ are nonnegative lattice points, and every coordinate of $\vv{k}$ is less than $p^e$.
    By \Cref{dickson: R}, the arithmetic constraint satisfied by $\vv{g}$ implies that $0 \not \equiv \binom{\norm{\vv{g}}}{\vv{g}} \equiv \binom{\norm{\vv{h}}}{\vv{h}} \binom{\norm{\vv{k}}}{\vv{k}} \bmod p$, so that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ must be nonzero modulo $p$.
    In particular, $\vv{h}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u},q)$, and it is easy to see that it also satisfies its linear constraint.
 
    Having established the feasibility of $\vv{h}$ for $\IP_p(A,\vv{u},q)$, we now demonstrate its optimality.
    Observe that, by virtue of being a remainder upon division by $p^e$, the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \sum_{0 \leq s< e} \vv{k}_s  p^s$.
-   As noted in \Cref{dickson: R}, the nonvanishing of $\binom{\norm{\vv{k}}}{\vv{k}} \bmod p$ tells us that each $\norm{\vv{k}_s}$ is less than $p$, and so it follows that $\norm{\vv{k}} < p^e$.
+   As noted in \Cref{dickson: R}, the nonvanishing of $\binom{\norm{\vv{k}}}{\vv{k}}$ modulo $p$ tells us that $\norm{\vv{k}_s} < p$ for each $s$, and thus $\norm{\vv{k}} < p^e$.
    If $\vv{h}$ were not optimal for $\IP_p(A, \vv{u}, q)$, then there would exist $\vv{m}$ feasible for $\IP_p(A, \vv{u}, q)$ with $\norm{\vv{m}} \geq \norm{\vv{h}} + 1$, which would lead to a point $\vv{m}p^e$ feasible for $\IP_p(A, \vv{u}, qp^e)$ whose norm is
-   \[ \norm{\vv{m}}  p^e \geq \norm{\vv{h}}  p^e + p^e >  \norm{\vv{h}}  p^e + \norm{\vv{k}} = \norm{\vv{g}},\]
-   which contradicts the optimality of $\vv{g}$.
+   \[ \norm{\vv{m}}  p^e \geq \norm{\vv{h}}  p^e + p^e >  \norm{\vv{h}}  p^e + \norm{\vv{k}} = \norm{\vv{g}}\]
+   contradicting the optimality of $\vv{g}$.
    We conclude that $\vv{h} \in \opt \IP_p(A, \vv{u},q)$.
 
-   This optimality, along with the definition of shortfalls, tells us that $\vv{v} \coloneqq \vv{u}q-A\vv{h}$ is a point in the shortfall of $\IP_p(A, \vv{u},q)$.
+   This optimality, along with the definition of shortfalls, tells us that $\vv{v} \coloneqq \vv{u}q-A\vv{h}$ lies in the shortfall of $\IP_p(A, \vv{u},q)$.
    We may then express the linear constraint on $\vv{g}$ imposed by $\IP_p(A, \vv{u}, qp^e)$ as
-   \[ \vv{u}qp^e > A \vv{g} = A \vv{h} p^e + A \vv{k} = (\vv{u}q-\vv{v})p^e + A \vv{k}, \]
+   \[ \vv{u}qp^e > A \vv{g} = A \vv{h} p^e + A \vv{k} = (\vv{u}q-\vv{v})p^e + A \vv{k}\]
    which is equivalent to the constraint $A \vv{k} < \vv{v}p^e$.
    As we have already seen above that $\binom{\norm{\vv{k}}}{\vv{k}}$ is nonzero modulo $p$, it follows that $\vv{k} \in \feas \IP_p(A, \vv{v}, p^e)$.
    Putting everything together, we see that
@@ -1835,25 +1842,25 @@ where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that 
    Thus, if $\vv{g}^{\ast} \coloneqq \vv{h}^{\ast} p^e + \vv{k}^{\ast}$, then \Cref{dickson: R} tells us that $\binom{\norm{\vv{g}^{\ast}}}{\vv{g}^{\ast}} \equiv  \binom{\norm{\vv{h}^{\ast}}}{\vv{h}^{\ast}} \binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$.
    A direct computation will also show that $\vv{g}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, qp^e)$, which shows that $\vv{g}^{\ast}$ must be feasible for this program.
    It follows that
-   \[ L \geq \norm{\vv{g}^{\ast}} - \norm{\vv{h}^{\ast}}p^e = \norm{\vv{k}^{\ast}} = M, \]
-   which allows us to conclude that $L=M$, provided that $M \leq p^e-1$.
+   \[ L \geq \norm{\vv{g}^{\ast}} - \norm{\vv{h}^{\ast}}p^e = \norm{\vv{k}^{\ast}} = M \]
+   and hence $L=M$.
 
    It follows that $\vv{g}^{\ast}$ must be optimal for $\IP_p(A, \vv{u}, qp^e)$, and so the identity
    \[  \vv{v}^{\ast} p^e-A\vv{k}^{\ast} = (\vv{u}q-A\vv{h}^{\ast})p^e-A(\vv{g}^{\ast}-\vv{h}^{\ast}p^e) = \vv{u}qp^e-A \vv{g}^{\ast} \]
-   demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, an arbitrary point that achieves $M$ in the shortfall of $\IP_p(A, \vv{v}^{\ast}, p^e)$, lies in the shortfall of $\IP_p(A, \vv{u},qp^e)$, showing that
+   demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, an arbitrary point in the shortfall of $\IP_p(A, \vv{v}^{\ast}, p^e)$, lies in the shortfall of $\IP_p(A, \vv{u},qp^e)$, showing that
    \begin{equation}
       \label{general comparison of shortfalls: e}
       \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
    \end{equation}
 
-   To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument.
+   To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument, and write $\vv{g} = \vv{h} p^e + \vv{k}$ and $\vv{v} = \vv{u}q - A\vv{h}$, as above.
    As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.
    Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
 \end{proof}
 
 We record a consequence of the bound $L \leq p^e-1$ in \Cref{general AIP: T} below.
 
-\begin{corollary}
+\begin{corollary}[Uniform comparison]
    \label{cor: mu comparison}
    Suppose that $(A,\vv{u})$ and $(B,\vv{v})$ are monomial pairs, not necessarily of the same dimension.
    If $\val \IP_p(A, \vv{u}, q)$ is greater than $\val \IP_p(B, \vv{v}, q)$ for some $q$, then $\val \IP_p(A, \vv{u}, qp^e)$ is greater than $\val \IP_p(B, \vv{v}, qp^e)$ for all $e$.
@@ -1881,20 +1888,16 @@ For instance, suppose that $p \equiv 3 \bmod 4$, and let
  \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
  \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
 \]
-Then for $e \geq 1$, $\IP(A, \vv{u}, p^e)$ has optimal point $\left( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \right) 
-\right)$ when $e$ is odd and $\left( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\right)$ when $e$ is even, and so 
+Then for $e \geq 1$, $\IP(A, \vv{u}, p^e)$ has optimal point $\big( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \big)$ when $e$ is odd and $\big( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\big)$ when $e$ is even, and so 
 \[
 \val\IP(A, \vv{u}, p^e) = \begin{cases}
 \frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
-
-\noindent On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$: $\left( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \right)$ is an optimal point for odd $e$,  and 
-$\left( \frac{5p^e-1}{4},\frac{p^e-1}{4} \right)$ is one for even $e$, 
+On the other hand, these values are ``switched'' for $\IP(A, \vv{v}, p^e)$: $\big( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \big)$ is an optimal point for odd $e$,  and $\big( \frac{5p^e-1}{4},\frac{p^e-1}{4} \big)$ is one for even $e$, 
 so that 
-the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and
-equals $\frac{3p^e-1}{2}$ for even $e$.
+the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and equals $\frac{3p^e-1}{2}$ for even $e$.
 \end{remark}
 
 
@@ -2909,7 +2912,7 @@ In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies tha
 On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
 \begin{align*}
 \crit(\ideala,\ideald)& = \frac{\mu(\ideala,\ideald, \Q) +1}{\Q} \\
-& = \ft{\ideala}{\ideald} -  \sum_{1 \leq s < \log_p \Q} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
+& = \ft{\ideala}{\ideald} -  \!\! \sum_{1 \le s < \log_p\!\! \Q} \!\!\! \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
 and so $\crit(\ideala,\ideald)$ is again rational, with denominator a power of $p$.
 
