@@ -2317,9 +2317,10 @@ We are now ready to prove the above theorem.
 \DontPrintSemicolon
 \medskip
 \SetKwInput{Input}{input}\SetKwInput{Output}{output}
+\SetKwFor{Loop}{repeat}{}{}
 \Input{ \\
-   $\bullet$ a very small pair $(A,\vv{u})$, associated to an $\idealm$-primary ideal\\
-   $\bullet$ a positive representative $r$ for a congruence class modulo a universal denominator $\denom$
+   $\bullet$ a very small pair $(A,\vv{u})$, where $A$ is associated to an $\idealm$-primary ideal\\
+   $\bullet$ a positive representative $r$ for a congruence class modulo a universal denominator $\denom$ for $A$
 }
 \medskip
 \Output{ \\ $\bullet$ a generating function $G(\pp,\tt) \in \QQ(\pp,\tt)$ for $\val\IP_p(A,\vv{u},p^e)$, with $p\equiv r \bmod \denom$
@@ -2332,10 +2333,10 @@ $e \leftarrow 1$\;
 %\texttt{done} $\leftarrow$ \texttt{false}\;
 $M_1 \leftarrow \ft{A}{\vv{u}}\pp - \udeficit(A,\vv{u},r)$\;
 \medskip
-\While{\texttt{\em true}}{
+\Loop{}{
    $e\leftarrow e+1$\;
    \nl$\S_{\pp^e} \leftarrow \big\{(A,\vv{v}): \vv{v} \in \bigcup_{(A,\vv{v}^*) \in \S^*_{\pp^{e-1}}} \ushort(A,\vv{v}^*,r)\big\}$\;\label{line1}
-   \If{$\exists k < e: \S_{\pp^k} = \S_{\pp^e}$}{
+   \If{$\S_{\pp^k} = \S_{\pp^e}$ for some $k<e$}{
       \KwRet{$\dfrac{\sum_{1\le i<k} M_i\tt^i}{1-\pp\tt}+\dfrac{\sum_{k\le i<e} M_i\tt^i}{(1-\pp\tt)(1-\tt^{e-k})}$}
    }
    \nl$\epsilon \leftarrow \max \{\ft{A}{\vv{v}}: (A,\vv{v}) \in \S_{\pp^e}\}$\;\label{line2}
@@ -2357,7 +2358,7 @@ In order to do so, we first build a technical framework in which to carry out ou
 \subsection{The sprouting graph of a monomial matrix}
 
 \begin{definition}[Descendant]
-   A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some (possibly, none) of its columns.
+   A \emph{descendant} of a monomial matrix $A$ is any monomial matrix $B$ obtained from $A$ by deleting some (possibly none) of its columns.
 \end{definition}
 
 \begin{definition}[$p$-sprout]
@@ -2372,8 +2373,8 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 \begin{remark}
    \label{p-sprout: R}
-   As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is monomial.
-   This and the positivity of points in shortfalls show that the $p$-sprout of a monomial pair is also a monomial pair.  Furthermore, \Cref{small pairs from shortfalls: R,finitely many deltas for a fixed A: R} tell us that there are only finitely many $p$-sprouts of a fixed monomial pair, and that each such sprouted pair is small.
+   As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is again a monomial matrix.
+   This and the positivity of points in shortfalls show that the $p$-sprout of a monomial pair is also a monomial pair.  Furthermore,  \Cref{finite image: P} tells us that there are only finitely many $p$-sprouts of a fixed monomial pair, while \Cref{small pairs from shortfalls: R} tells us that each such sprouted pair is small.
  \end{remark}
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
@@ -2384,7 +2385,7 @@ In order to do so, we first build a technical framework in which to carry out ou
 %   \emily{No, I removed the ``$= \ushort(A,\vv{u},p)$'' since our intention is to choose a point in the actual shortfall.}
    Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(A,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $A$ is associated to an $\idealm$-primary ideal.
 
-   It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(A,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(A,\vv{u})$ along the face $\O=\mf(A,\vv{u})$.  In particular, when $\O$ is bounded, then there is no difference between $p$-sprouts and $p$-shortfall pairs of $(A,\vv{u})$.
+   It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(A,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(A,\vv{u})$ along the face $\O=\mf(A,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(A,\vv{u})$.
 \end{remark}
 
 \begin{definition}[The directed sprouting graph]
@@ -2407,12 +2408,11 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 \item \label{elementary1 small pairs} \Cref{p-sprout: R} tells us that every vertex of $\sprout_p(A)$ is a small monomial pair.  Furthermore, if $(B,\vv{v})$ is a vertex of $\sprout_p(A)$, then $B$ must be among the finitely many descendants of $A$.
 
-\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of their construction then implies that the sets $\graph_{p^e}(A)$ are eventually periodic in $e$.
+\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $A$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(A)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{p^e}(A)$ then implies that these sets are eventually periodic in $e$.
 
-\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$ | meaning, all of its vertices \emph{and} arrows | depends on the class of $p$ modulo $\denom$.
+\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $A$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(A)$---meaning, all of its vertices \emph{and} arrows---depends only on the class of $p$ modulo $\denom$.
 \end{enumerate}
 \end{remark}
-
 
 \begin{lemma}
    \label{positive-polynomial: L}
@@ -2437,7 +2437,7 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 \begin{proof}
    We start by describing what it means for $p$ to be large.
-   Toward this, let $M_1, \ldots, M_l$ be the finitely many descendents of  $A$.
+   Toward this, let $M_1, \ldots, M_l$ be the finitely many descendants of  $A$.
    Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
    Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
    We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
@@ -2450,17 +2450,17 @@ In order to do so, we first build a technical framework in which to carry out ou
       \tag{$\diamondsuit$} \label{p-big-2}
       &\text{$\frac{p^e}{\denom} > \sum_{i=1}^e \omega_i p^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
     \end{align}
-    In what follows, we assume that $p$ is chosen so as to satisfy \eqref{p-big-1} and \eqref{p-big-2}.
 
+    In what follows, we assume that $p > \beta$.
     Consider a finite path
     \[ (A_1, \vv{u}_1) \to (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \]
     in $\sprout_p(A)$.
-    For every $1 \leq i \leq e$, set $\O_i = \mf(A, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.
+    For every $1 \leq i \leq e$, set $\O_i = \mf(A_i, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(A_i, \vv{u}_i)$ with denominator $\denom$.
     If $1 \leq i < e$, then the sprouting $(A_i, \vv{u}_i) \to (A_{i+1}, \vv{u}_{i+1})$ tells us that $A_{i+1}$ is the collapse of $A_i$ along $\O_i$, and that
     \[
-       \vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, q)= A_{i+1} \tail{\vv{s}_i}_p - A_{i+1}(\opt \ip( A_i, \vv{u}_i, \vv{s}_i, p)).
+       \vv{u}_{i+1} \in \ushort(A_i, \vv{u}_i, p)= A_{i+1} \tail{\vv{s}_i}_p - A_{i+1}(\opt \ip( A_i, \vv{u}_i, \vv{s}_i, p)).
     \]
-    Then \Cref{fsr-exist: T} and our choice of $\fsr$ allow us to fix a point $\vv{h}_i$ in $\fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.
+    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.
     Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
     Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i \coloneqq \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i$.
@@ -2477,11 +2477,10 @@ In order to do so, we first build a technical framework in which to carry out ou
     Our induction hypothesis applied to the truncated path
     \[ (A_2, \vv{u}_2) \to \cdots \to (A_e, \vv{u}_e) \]
     tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i p^{e-i} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.
-    To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast}$ is feasible for $\IP(A_1, \vv{u}_1, p^e)$.
-    However, \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and hence, we must only show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
+    To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast} \in \feas\IP(A_1, \vv{u}_1, p^e)$.
+    However, as \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, it remains to show that $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
 
     To do so, recall that our choice of $\vv{s}_1 \in \sp(A_1, \vv{u}_1)$ allows us to write $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is a positive point of $\rs(\O_1)$.
-    This expression implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$.
     It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $A_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
     \begin{equation}
        \label{target-inequality: e}
@@ -2497,22 +2496,23 @@ In order to do so, we first build a technical framework in which to carry out ou
     We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, by verifying that the stronger inequality
     \[ \sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i} = A_1 \vv{h}_1 p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \]
     holds in $\rs(\O_1)$.
-    However, as $\vv{w}$ is positive in $\rs(\O_1)$ and has denominator $\denom$, $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$, while every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
+    However, $\vv{w}$ is positive in $\rs(\O_1)$, and the equation $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and so $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$.
+    On the other hand, every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
     Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
 
-    We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence, our proof.
+    We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence our proof.
 \end{proof}
 
 
 \subsection{Subgraphs associated to pairs}
-\emily{Transition added}
+%\emily{Transition added}
 We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from.
 
 \begin{definition}[Subgraphs associated to very small pairs]
-   Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u})$ to be the set consisting solely of $(A,\vv{u})$.
+   Suppose that $(A,\vv{u})$ is very small, and define $\S_p(A,\vv{u}) = \{ (A,\vv{u}) \}$.
    Next, suppose that $\S_q(A,\vv{u})$ has been defined for some $q=p^e$.
    \begin{enumerate}
-      \item If $\S_q(A,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(A,\vv{u})$ to be the set of all $(B,\vv{v})$ in $\S_q(A,\vv{u})$ that first maximize $\ft{B}{\vv{v}}$, and only then minimize $\udeficit(B,\vv{v},p)$.  We then~define~$\S_{qp}(A,\vv{u})$ to be the set of all $p$-sprouts of all pairs in $\S^{\ast}_q(A,\vv{u})$.
+      \item If $\S_q(A,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(A,\vv{u})$ to be the subset of $\S_q(A,\vv{u})$ consisting of all $(B,\vv{v})$ that first maximize $\ft{B}{\vv{v}}$, and only then minimize $\udeficit(B,\vv{v},p)$.  We then~define~$\S_{qp}(A,\vv{u})$ to be the set of all $p$-sprouts of all pairs in $\S^{\ast}_q(A,\vv{u})$.
       \item Otherwise, we define $\S_q^{\ast}(A,\vv{u})=\S_{qp}(A,\vv{u}) = \emptyset$.
    \end{enumerate}
    By definition, each $\S_{p^e}(A,\vv{u})$ and $\S^{\ast}_{p^e}(A,\vv{u})$ is a subset of $\graph_{p^e}(A)$, which we identify with the vertices of $\sprout_p(A)$ of level $p^e$.
@@ -2528,7 +2528,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       \item  \label{elementary2 lowest level}
       The only vertex of $\sprout_p^{\ast}(A,\vv{u})$ of level $p$ is $(A,\vv{u})$.
       \item \label{elementary2 small pairs}
-      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when non-empty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.
+      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(A,\vv{u})$, when nonempty, consists of small pairs whose monomial matrix is among the finitely many descendants of $A$.
       Furthermore, $\S_{qp}(A,\vv{u}) = \emptyset$ if and only if $\S_q(A,\vv{u}) = \emptyset$ or $\S_q(A,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(A,\vv{u})= \emptyset$.
       Moreover, $\S_q^{\ast}(A,\vv{u})$ is either empty, or contains only very small pairs.
       \item \label{elementary2 periodic in e}
@@ -2549,8 +2549,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(A,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
    As in \Cref{ex: ft.3}, we consider the case where $p$ is congruent to $11$ modulo a universal denominator for $A$.
    The overbar represents collapse along $\mf(A,\vv{u})$.
-   The figure shows $\S_{p^e}(A,\vv{u})$ for $e=1,\ldots,4$, with $\sprout^*_p(A,\vv{u})$ shown in green.
-   The nodes shown in red are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate.
+   The figure shows $\S_{p^e}(A,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(A,\vv{u})$ shown in green.
+   The nodes shown in red are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate, as $\S_{p^e}(A,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(A,\vv{u})$ is empty for $e\ge 4$.
    % \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
    % \pedro[inline]{
    %    No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
@@ -2565,7 +2565,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       \caption{The sprouting subgraph for \Cref{ex: new example}}
       \label{fig: sprouting graph 2}
    \end{figure}
-   \Cref{fig: sprouting graph 2} shows the first nine levels of the sprouting subgraph associated to the pair $(A,\vv{u})$, where
+   \Cref{fig: sprouting graph 2} shows the first nine levels of $\sprout^*_p(A,\vv{u})$, where
    \[
       A = \begin{bmatrix} 36&10&31 \\ 19&46&31 \\ 47&25&36 \end{bmatrix}
       \quad\text{and} \quad
@@ -2573,7 +2573,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \]
    when $p$ is congruent to $11$ modulo a universal denominator for $A$.
    The matrix $B$ consists of the last two rows of $A$, while $C$ consists of the last row.
-   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last five levels shown in the picture repeat indefinitely.
+   Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ does not terminate---the last five levels shown in the picture repeat indefinitely.
 \end{example}
 
 % \begin{example}
@@ -2595,7 +2595,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 %    Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels shown in the picture repeat indefinitely.
 % \end{example}
 
-\begin{definition}[Numbers associated to the levels of $\sprout^*_p(A,\vv{u})$]
+\begin{definition}%[Numbers associated to the levels of $\sprout^*_p(A,\vv{u})$]
    \label{epsilon delta: D}
    If $(A,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$, then we define
    \begin{align*}
@@ -2609,7 +2609,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 \begin{proposition}
    \label{p large graph: P}
    Given a monomial matrix $A$, there exists $\beta = \beta(A)$ with the following property\textup:
-   If $p > \beta$, $(A,\vv{u})$ is very small, and $\S_{p^e}^{\ast}(A,\vv{u})$ is non-empty, then
+   If $p > \beta$, $(A,\vv{u})$ is very small, and $\S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, then
    \[
       \max \{ \val \IP_p(B,\vv{v},p) : (B,\vv{v}) \in \S_{p^e}(A,\vv{u}) \} = \epsilon_{p^e}(A,\vv{u}) p-\delta_{p^e}(A,\vv{u})
    \]
@@ -2617,7 +2617,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 \end{proposition}
 
 \begin{proof}
-   First, choose $p$ to be large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$, as well as for each of its finitely many descendants.
+   First, choose $p$ to be large enough so that the conclusion of \Cref{arithmetic uniform value and image: T} holds for $A$, as well as for each of its finitely many descendants.
    In particular, for such primes, $\val \IP_p(B,\vv{v},p) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
@@ -2629,15 +2629,13 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \]
 \end{definition}
 
-\begin{remark}
-   As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u})$ is very small, then $\S^{\ast}_p(A,\vv{u}) = \{ (A,\vv{u} )\}$, which shows that $\Q_p(A,\vv{u})$ is at least $p$.
-   Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e}  implies that the issue of whether $\Q_p(A,\vv{u}) = \infty$ can be determined by checking whether $\S_{qp}(A,\vv{u}) \neq \emptyset$ for a finite number of $q$.
-   Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not $p$ itself.
-\end{remark}
+As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(A,\vv{u})$ is very small, then $\S^{\ast}_p(A,\vv{u}) = \{ (A,\vv{u} )\}$, which shows that $\Q_p(A,\vv{u})$ is at least $p$.
+Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\Q_p(A,\vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_p^*(A,\vv{u})$.
+Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(A,\vv{u})$ depends only on $(A,\vv{u})$, and on the class of $p$ modulo any universal denominator for $A$, but not on $p$ itself.
 
 \subsection{The main theorem}
 
-Having the necessary concepts and definition in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices.
+Having the necessary concepts and definitions in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices.
 
 \begin{lemma}\label{lem: upper bound for higher mu}
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
@@ -2676,7 +2674,7 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
    In what follows, we fix such a $p$-sprout.
 
    Let $q$ be the common level of $(B,\vv{v})$ and $(A_1, \vv{u}_1)$ in $\sprout^{\ast}_p(A,\vv{u})$.
-   Being a $p$-sprout of $(B,\vv{v})$, it follows that $(C,\vv{z}) \in \S_{qp}(A,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(A,\vv{u})$ is non-empty, as it contains $(A_2, \vv{u}_2)$.
+   Being a $p$-sprout of $(B,\vv{v})$, it follows that $(C,\vv{z}) \in \S_{qp}(A,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(A,\vv{u})$ is nonempty, as it contains $(A_2, \vv{u}_2)$.
    Below, we establish \eqref{ineq} in cases, depending on whether $(C,\vv{z}) \in \S^{\ast}_{qp}(A,\vv{u})$.
 
    If $(C,\vv{z}) \notin \S^{\ast}_{qp}(A,\vv{u})$, then $\val \IP_p(C,\vv{z}, p)< \val \IP_p(A_2, \vv{u}_2, p)$ by \Cref{p large graph: P}, and consequently $\val \IP_p(C, \vv{z},p^{e-1}) < \val\IP_p(A_2,\vv{u}_2, p^{e-1})$ by \Cref{cor: mu comparison}.
@@ -2846,7 +2844,6 @@ Having the necessary concepts and definition in hand, we now turn to the proof o
          \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
       \end{cases}
    \]
-   \endgroup
    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
    \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}\]
    for any sufficiently large prime $p$ congruent to $11$ modulo a universal denominator for $A$.
