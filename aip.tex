@@ -2550,7 +2550,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    As in \Cref{ex: ft.3}, we consider the case where $p$ is congruent to $11$ modulo a universal denominator for $A$.
    The overbar represents collapse along $\mf(A,\vv{u})$.
    The figure shows $\S_{p^e}(A,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(A,\vv{u})$ highlighted in green.
-   The framed nodes highlighted in red are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate, as $\S_{p^e}(A,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(A,\vv{u})$ is empty for $e\ge 4$.
+   The framed nodes, highlighted in red, are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate, as $\S_{p^e}(A,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(A,\vv{u})$ is empty for $e\ge 4$.
    % \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
    % \pedro[inline]{
    %    No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
@@ -2641,20 +2641,20 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    Given a monomial matrix $A$, there exists an integer $\beta= \beta(A)$ for which the following holds\textup:
    For each $p>\beta$, if $(A, \vv{u})$ is very small, and $(A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ is a path in $\sprout^{\ast}_p(A,\vv{u})$,  then
    \[
-      \val \IP_p(B, \vv{v}, p^e) \leq \sum_{s=1}^e \val \IP_p(A_s, \vv{u}_s, p)p^{e-s}
+      \val \IP_p(B, \vv{v}, p^e) \leq \sum_{i=1}^e \val \IP_p(A_i, \vv{u}_i, p)p^{e-i}
    \]
    for any vertex $(B, \vv{v})$ of $\sprout^{\ast}_p(A,\vv{u})$ of the same level as $(A_1, \vv{u}_1)$.
 \end{lemma}
 
 \begin{proof}
-   Choose $p$ large enough so that the conclusions of \Cref{arithmetic uniform value and image: T} hold for $A$ and for each of its finitely many descendants, and also so that \Cref{p large graph: P} holds for $A$.
+   Choose $p$ large enough so that the conclusion of \Cref{arithmetic uniform value and image: T} holds for $A$ and for each of its finitely many descendants, and also so that \Cref{p large graph: P} holds for $A$.
    This proposition then implies that $\val \IP_p(B,\vv{v},p)$ equals $\val \IP_p(A_1, \vv{u}_1, p)$, by virtue of both being vertices of the same level in the graph $\sprout_p^{\ast}(A, \vv{u})$.
    This establishes the result when $e = 1$.
 
    Next, consider a path $(A_1,\vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ with $e \geq 2$, and suppose that the result holds for all shorter paths.
    Invoking \Cref{general AIP: T} for the pair $(B,\vv{v})$, keeping in mind that  $\val \IP_p(B,\vv{v},p) =  \val \IP_p(A_1,\vv{u}_1,p)$, we see that
     \[
-      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (B,\vv{w},p^{e-1}) \}, \\
+      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (B,\vv{w},p^{e-1}) \}
     \]
     where the maximum above is over all $p$-shortfall pairs derived from $(B,\vv{v})$, that is, over all pairs $(B,\vv{w})$ with $\vv{w} \in \short \IP_p(B,\vv{v},p)$.
 
@@ -2663,12 +2663,12 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
     Therefore, the value of $\IP_p(B,\vv{w},p^{e-1})$ is at most the value of $\IP_p(\collapse{B}, \collapse{\vv{w}}, p^{e-1})$.  On the other hand, as noted in \Cref{sprouts as collapsed shortfall pairs: R}, the collapsed pairs $(\collapse{B}, \collapse{\vv{w}})$ of this form are precisely the $p$-sprouts of $(B,\vv{v})$.
     Thus,
     \[
-      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (C,\vv{z},p^{e-1}) \}, \\
+      \val \IP_p(B,\vv{v},p^e) \leq \val \IP_p(A_1,\vv{u}_1,p) p^{e-1} + \max \{ \val \IP_p (C,\vv{z},p^{e-1}) \}
    \]
    where the maximum above is over all $p$-sprouts $(C,\vv{z})$ of $(B,\vv{v})$.
    Therefore, to complete our inductive step, it suffices to show that
    \begin{equation}\label{ineq}
-      \val \IP_p(C,\vv{z},p^{e-1}) \le \sum_{s=2}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s}
+      \val \IP_p(C,\vv{z},p^{e-1}) \le \sum_{i=2}^e \val \IP_p(A_i,\vv{u}_i,p) p^{e-i}
    \end{equation}
    for each $p$-sprout $(C,\vv{z})$ of $(B,\vv{v})$.
    In what follows, we fix such a $p$-sprout.
@@ -2691,7 +2691,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 
    More explicitly, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, then
    \[
-      \val \IP_p(A,\vv{u}, p^e) =  \ft{A}{\vv{u}}  p^e - \sum_{1 \leq s < e} ( \delta_{p^s}(A,\vv{u}) - \epsilon_{p^{s+1}}(A,\vv{u}))  p^{e-s} - \delta_{p^e}(A,\vv{u}).
+      \val \IP_p(A,\vv{u}, p^e) =  \ft{A}{\vv{u}}  p^e - \sum_{1 \leq i < e} ( \delta_{p^i}(A,\vv{u}) - \epsilon_{p^{i+1}}(A,\vv{u}))  p^{e-i} - \delta_{p^e}(A,\vv{u}).
    \]
    Furthermore, if $\Q = \Q_p(A,\vv{u})$ is finite, then
    \[
@@ -2700,62 +2700,61 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    for every $q$ a power of $p$.
 \end{theorem}
 
+Below we present the proof of all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
+
 \begin{proof}
    Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
    Set $\Q = \Q_p(A,\vv{u})$.
-   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, and by construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ in this graph.
-   This path in $\sprout_p^{\ast}(A,\vv{u})$ also defines a path in $\sprout_p(A)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_1,\ldots,\vv{k}_e$ in the domain lattice of $A$ with each $\vv{k}_s \in \opt \IP(A_s, \vv{u}_s, p)$ for which the point $\vv{k} \coloneqq \sum_{s=1}^e \vv{k}_s p^{e-s}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.
+   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $S_{p^e}^{\ast}(A,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(A,\vv{u})$, there exists a path $(A,\vv{u}) = (A_1, \vv{u}_1) \to \cdots \to (A_e, \vv{u}_e)$ in this graph.
+   This is also a path in $\sprout_p(A)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_i \in \opt \IP(A_i, \vv{u}_i, p)$ for $1 \le i \le e$ such that the point $\vv{k} \coloneqq \sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for the standard integer program $\IP(A, \vv{u}, p^e)$.
 
-   However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(A_s, \vv{u}_s)$ is very small, and  \Cref{arithmetic uniform value and image: T} then implies that $\IP(A_s,\vv{u}_s,p) = \IP_p(A_s, \vv{u}_s, p)$.
-   \Cref{trivial small value bound: P} then tells us that $\norm{\vv{k}_s} \le p - 1$, and \Cref{dickson: R} shows that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(A,\vv{u},p^e)$, so that
+   However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(A_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(A_i,\vv{u}_i,p) = \IP_p(A_i, \vv{u}_i, p)$.
+   \Cref{trivial small value bound: P} then tells us that $\norm{\vv{k}_i} \le p - 1$, and \Cref{dickson: R} shows that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(A,\vv{u},p^e)$, so that
    \begin{align*}
-     \val \IP_p(A,\vv{u},p^e) \geq  \norm{\vv{k}} & = \sum_{s=1}^e \val \IP_p(A_s,\vv{u}_s,p) p^{e-s} \\
-                                                  & = \sum_{s=1}^e (\epsilon_{p^s}(A,\vv{u})p - \delta_{p^s}(A,\vv{u})) p^{e-s}.
+     \val \IP_p(A,\vv{u},p^e) \geq  \norm{\vv{k}} & = \sum_{i=1}^e \val \IP_p(A_i,\vv{u}_i,p) p^{e-i} \\
+                                                  & = \sum_{i=1}^e (\epsilon_{p^i}(A,\vv{u})p - \delta_{p^i}(A,\vv{u})) p^{e-i}.
    \end{align*}
    \Cref{lem: upper bound for higher mu} then implies that we must have equality throughout.
-   Noticing that $\epsilon_p(A,\vv{u}) = \ft{A}{\vv{u}}$, this is simply a rearrangement of our first claim.
+   Noticing that $\epsilon_p(A,\vv{u}) = \ft{A}{\vv{u}}$, this is simply a rearrangement of the fist equation in the statement.
 
    Next, suppose that $\Q$ is finite.
    By definition of $\Q$, we know that $\S_{\Q}^{\ast}(A,\vv{u})$ is nonempty, while $\S^{\ast}_{\Q p}(A,\vv{u})$ is empty, so that $\S_{\Q p}(A,\vv{u})$ must contain a pair that is not very small.
    Set $l=\log_p \Q$.
    Then there exists a path
-   \[
+   \begin{equation}\label{eq: first path}
       (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l})
-   \]
+   \end{equation}
    in $\sprout_p^{\ast}(A,\vv{u})$, which extends to a path
    \[
       (A,\vv{u}) = (B_1,\vv{v}_1) \to \cdots \to (B_{l}, \vv{v}_{l}) \to (B_{l+1}, \vv{v}_{l+1})
    \]
    in $\sprout_p(A)$ whose terminal vertex is small, but not very small.
-   \Cref{ILL: T}, applied to this second path, tells us that there exist points $\vv{h}_1,\ldots, \vv{h}_{l+1}$ with each $\vv{h}_s \in \opt \IP(B_s, \vv{v}_s, p)$, and such that
+   \Cref{ILL: T}, applied to this second path, tells us that there exist points $\vv{h}_i \in \opt \IP(B_i, \vv{v}_i, p)$ for $1\le i\le l+1$ such that
    \[
-      \vv{h} \coloneqq \sum_{s=1}^{l+1} \vv{h}_s p^{l+1-s} \in \feas \IP(A,\vv{u}, \Q p).
+      \vv{h} \coloneqq \sum_{i=1}^{l+1} \vv{h}_i p^{l+1-i} \in \feas \IP(A,\vv{u}, \Q p).
    \]
-   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that the value of the standard linear program $\IP(B_{l+1}, \vv{v}_{l+1},p)$ is greater than~$p$.
-   Therefore, $\norm{\vv{h}_{l+1}} > p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
+   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that $\norm{\vv{h}_{l+1}} = \val\IP(B_{l+1}, \vv{v}_{l+1},p) > p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
    Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{h}_{l+1}$.
 
    Fix an integer $e \geq 1$, and consider the point
    \[
-      \vv{m} \coloneqq \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1,
+      \vv{m} \coloneqq \sum_{i=1}^{l} \vv{h}_i p^{e+l-i} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1
    \]
    which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{l+1}p^{e-1}$ with  $(\vv{g}+\canvec_1)p^{e-1} - \canvec_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.
    Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(A,\vv{u}, \Q p)$ then implies that $\vv{m} \in \feas \IP(A,\vv{u}, \Q p^e)$.
 
    To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u}, \Q p^e)$, observe that the base $p$ expansion of $\vv{m}$ is given by
    \[
-      \vv{m} = \sum_{s=1}^{l} \vv{h}_s p^{e+l-s} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
+      \vv{m} = \sum_{i=1}^{l} \vv{h}_i p^{e+l-i} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
    \]
-   and note that $\norm{\vv{h}_s} = \epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u}) < p$ for each $1 \leq s \leq l$, by virtue of the first path above lying entirely in $\sprout_p^{\ast}(A,\vv{u})$.
+   and note that $\norm{\vv{h}_i} = \epsilon_{p^i}(A,\vv{u})p-\delta_{p^i}(A,\vv{u}) < p$ for each $1 \leq i \leq l$, as the path in \eqref{eq: first path} lies entirely in $\sprout_p^{\ast}(A,\vv{u})$.
    Thus, $\vv{m}$ is feasible for $\IP_p(A,\vv{u}, \Q p^e)$, and this and our earlier work show that
    \begin{align*}
-     \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{e+l-s} + p^e-1 \\
-                                                     & = \Big ( \sum_{s=1}^l (\epsilon_{p^s}(A,\vv{u})p-\delta_{p^s}(A,\vv{u})) p^{l-s} \Big ) p^e + p^e-1 \\
-                                                     & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1,
+     \val \IP_p(A,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{i=1}^l (\epsilon_{p^i}(A,\vv{u})p-\delta_{p^i}(A,\vv{u})) p^{e+l-i} + p^e-1 \\
+                                                     & = \Big ( \sum_{i=1}^l (\epsilon_{p^i}(A,\vv{u})p-\delta_{p^i}(A,\vv{u})) p^{l-i} \Big ) p^e + p^e-1 \\
+                                                     & = \val \IP_p(A,\vv{u}, \Q) p^e + p^e-1
    \end{align*}
    and \Cref{general AIP: T} further implies that equality must hold throughout.
-
-   To conclude our proof, it remains to show that the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$ are nonpositive, but this is done in \Cref{non-leading coefficients: P}.
 \end{proof}
 
 \begin{remark}[An algorithm]
@@ -2764,7 +2763,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    In fact, the pseudocode presented in Algorithm~\ref{alg} applies to the general case with minimal modifications:
    $\S_{\pp^e}$ should be defined as the set consisting of all $p$-sprout of all elements in $\S^*_{\pp^{e-1}}$ in line \ref{line1}, and $A$ should be replaced with a descendant $B$ in lines \ref{line2}--\ref{line5}.
    This algorithm terminates because $\sprout^*_p(A,\vv{u})$ is either finite or its levels eventually repeat cyclically, as pointed out in \Cref{elementary2: R}\eqref{elementary2 periodic in e}.
-   All of the considerations made in \Cref{m-primary algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply in the general case.
+   All of the considerations made in \Cref{m-primary algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply here.
 \end{remark}
 
 \begin{example}
@@ -2795,16 +2794,16 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    For any $e \ge 3$ we have
    \[
       \val\IP_p(A,\vv{u},p^e) = \frac{4}{17}p^e - \frac{20}{17}p^{e-3} + p^{e-3} - 1
-       = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1.
+       = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
     \]
-    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
-    \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}\]
     for sufficiently large $p$ congruent to $11$ modulo a universal denominator for~$A$.
+    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then for $p$ as above we have
+    \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}.\]
 \end{example}
 
 \begin{example}
    \label{ex: new example.2}
-   \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, corresponding to the seven levels of the sprouting subgraph shown in \Cref{fig: sprouting graph 2}.
+   \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, corresponding to the nine levels of the sprouting subgraph shown in \Cref{fig: sprouting graph 2}.
    \begin{table}
       \begin{center}
          \begingroup
@@ -2844,9 +2843,9 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
          \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
       \end{cases}
    \]
-   If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
-   \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}\]
    for any sufficiently large prime $p$ congruent to $11$ modulo a universal denominator for $A$.
+   If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$ and $p$ is as above, then
+   \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}.\]
 \end{example}
 
 % \begin{example}
