@@ -2549,8 +2549,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(A,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
    As in \Cref{ex: ft.3}, we consider the case where $p$ is congruent to $11$ modulo a universal denominator for $A$.
    The overbar represents collapse along $\mf(A,\vv{u})$.
-   The figure shows $\S_{p^e}(A,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(A,\vv{u})$ highlighted in green.
-   The framed nodes, highlighted in red, are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate, as $\S_{p^e}(A,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(A,\vv{u})$ is empty for $e\ge 4$.
+   The figure shows $\S_{p^e}(A,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(A,\vv{u})$ highlighted.
+   The two framed nodes are pairs that are not very small, which cause $\sprout^*_p(A,\vv{u})$ to terminate, as $\S_{p^e}(A,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(A,\vv{u})$ is empty for $e\ge 4$.
    % \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
    % \pedro[inline]{
    %    No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
@@ -2700,7 +2700,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    for every $q$ a power of $p$.
 \end{theorem}
 
-Below we present the proof of all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
+Below we prove all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(A,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
 
 \begin{proof}
    Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
@@ -2925,6 +2925,9 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    Thus, $\O$ must be bounded, and in particular, collapsing along $\O$ is simply the identity.
    Finally, the $\mathfrak{m}$-primary assumption further implies that $\mf(A, \vv{u}) = \O$ for every pair $(A,\vv{u})$.
    Given this, one may retrace the steps above to see that every inequality involving the inner product of $\defpt = \collapse{\defpt}$ with another point must be, in fact, an equality.
+   \pedro{
+      I think we need to explain this further; to get equality in \eqref{bound in inner product: e} we need to show that $h_i=0$ whenever the $i$th column of $A$ is not in $\O$.
+   }
 \end{proof}
 
 \begin{proposition}
@@ -2945,44 +2948,35 @@ The non-leading coefficients appearing in the polynomial expressions described i
 \subsection{Critical exponents versus $F$-thresholds}
 \label{crit versus ft: SS}
 
-Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.
+Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.
 Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.
 
-Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial~matrix~$A$.  Consider a very small monomial pair $(A,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(A,\vv{u})$.
+Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial matrix~$A$.
+Consider a very small monomial pair $(A,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(A,\vv{u})$.
 If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
-% \pedro[inline]{
-%    I don't think we defined $\crit(A,\vv{u})$.
-%    Should we?
-%    Or should we simply use $\crit(\ideala,\ideald)$?  \daniel[inline]{The second option is OK, but we haven't introduced the ideal pair at this point}
-%    \pedro[inline]{
-%       I modified things, going with algebraic notation wherever possible.
-%       Not sure if I like the mixed notation, as in \eqref{eq: crit infinite case}.
-%       Maybe we should just define $\crit(A,\vv{u})$.
-%    }
-% }
 \begin{equation}\label{eq: crit infinite case}
-\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{s=1}^{\infty} \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s}.
+\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{i=1}^{\infty} \frac{\delta_{p^i}(A,\vv{u})-\epsilon_{p^{i+1}}(A,\vv{u})}{p^i}.
 \end{equation}
-In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ are eventually periodic in $s$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
+In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^i}(A,\vv{u})-\epsilon_{p^{i+1}}(A,\vv{u})$ are eventually periodic in $i$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
 
 On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
 \begin{align*}
 \crit(\ideala,\ideald)& = \frac{\mu(\ideala,\ideald, \Q) +1}{\Q} \\
-& = \ft{\ideala}{\ideald} -  \!\! \sum_{1 \le s < \log_p\!\! \Q} \!\!\! \frac{\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})}{p^s} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
+& = \ft{\ideala}{\ideald} -  \!\! \sum_{1 \le i < \log_p\!\! \Q} \!\!\! \frac{\delta_{p^i}(A,\vv{u})-\epsilon_{p^{i+1}}(A,\vv{u})}{p^i} -  \frac{ \delta_{\Q}(A,\vv{u})-1}{\Q}
 \end{align*}
 and so $\crit(\ideala,\ideald)$ is again rational, with denominator a power of $p$.
 
 Thus, if $p \gg 0$ and $(A,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then
-\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \sum_{s=1}^{\infty} \frac{ \sigma_{p^s}(\ideala,\ideald)}{p^s} \]
-where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
+\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \sum_{i=1}^{\infty} \frac{ \sigma_{p^i}(\ideala,\ideald)}{p^i} \]
+where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(A,\vv{u})$ and on the class of $p$ modulo any universal denominator for $A$, but not on the value of $p$ itself.
 
 \begin{remark}
    Consider a very small pair $(A,\vv{u})$ associated to an ideal pair $(\ideala,\ideald)$, where $\ideala$ is an $\idealm$-primary ideal generated by monomials of the same degree $d$ under some positive $\ZZ$-grading, as in \Cref{ex: m-primary homogeneous case}.
    \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(A,\vv{u})-\epsilon_{p^{s+1}}(A,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
-   Thus, for sufficiently large $p$, $\crit(\ideala,\ideald)$ is either equal to $\ft{\ideala}{\ideald} = \deg \vv{u}/d$, if $\Q=\Q(A,\vv{u})$ is infinite, or it is a rational number with denominator a power of $p$ otherwise.
+   Thus, for sufficiently large~$p$, $\crit(\ideala,\ideald)$ is either equal to $\ft{\ideala}{\ideald} = \deg \vv{u}/d$, if $\Q=\Q(A,\vv{u})$ is infinite, or it is a rational number with denominator a power of $p$ otherwise.
    To make this more explicit, note that $d$ is a universal denominator for $A$, as shown in \Cref{ex: m-primary homogeneous case 2}, and hence a denominator for $\delta_\Q(A,\vv{u})$.
    Thus, we have
-   \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q},\]
+   \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q} \]
    where $r$ is a positive integer congruent to $\Q\deg\vv{u}$ modulo $d$.
    This explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
 %    \pedro[inline]{Daniel: is this what you had in mind, or did you want to say more?
@@ -3018,10 +3012,10 @@ where $\{ \sigma_{p^e}(\ideala,\ideald) \}_{e=1}^{\infty}$ is a sequence of nonn
 %\subsection{Generic hypersurfaces in characteristic zero}
 
 \begin{proposition}
-   Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the descendants of $A$ \textup(\eg take the least common multiple of universal denominators of each of its finitely many descendants\textup).
+   Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the finitely many descendants of $A$.
    Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$,
 \[
- \val\IP_p(A,\vv{u},p^e) = (p^e-1) \cdot \ft{A}{\vv{u}}
+ \val\IP_p(A,\vv{u},p^e) = (p^e-1) \ft{A}{\vv{u}}
 \]
 for every very small $A$-pair $(A, \vv{u})$, and all $e \geq 1$.
 In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
@@ -3043,9 +3037,9 @@ Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i
 If $\Theta = \Theta(B, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{B}{\vv{v}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.
 Hence $\udeficit(B, \vv{v}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{B}{\vv{v}}$, proving the claim.\\[2mm]
 Observe that if $(C, \vv{w})$ is a $p$-sprout of a pair $(B, \vv{v})$ as above, then $\ft{C}{\vv{w}} \leq \udeficit(B, \vv{v}, p) = \ft{B}{\vv{v}}$ by \Cref{non-leading coefficients: L} and the above claim, so that $(C, \vv{w})$ is also very small.
-Hence $\S^\ast_{q}(A, \vv{u})$ is nonempty for every $q$, and consequently, $\Q(A,\vv{u})$ is infinite.
+Hence $\S^\ast_{q}(A, \vv{u})$ is nonempty for every $q$, and consequently, $\Q_p(A,\vv{u})$ is infinite.
 
-Fix $(B, \vv{v}) \in \S_{q}^\ast$ for some $q$, and let an overbar denote collapse along $\O = \mf(B, \vv{v})$.
+Fix $(B, \vv{v}) \in \S_{q}^\ast(A,\vv{u})$ for some $q$, and let an overbar denote collapse along $\O = \mf(B, \vv{v})$.
 The proof of the claim shows that a special point $\vv{s}$ for $(B,\vv{v})$ with denominator $\denom$ satisfies $\tail{\vv{s}}_p = \vv{s}$, and $\vv{0} \in \opt \Theta(B,\vv{v},\vv{s},p)$.
 Hence $\overline{\vv{v}} = \overline{B}\vv{s} = \overline{B}\tail{\vv{s}}_p - \overline{B} \, \vv{0} \in \ushort(B, \vv{v}, p)$, and $(\overline{B}, \overline{\vv{v}}) \in \S_{pq}(A, \vv{u})$.
 
@@ -3112,7 +3106,7 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 \section{Consequences on generic hypersurfaces} \label{generic-hypersurfaces: S}
 
 \begin{remark}
-\Cref{main theorem wrt diagonal: T} tells us that that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for
+\Cref{main theorem wrt diagonal: T} tells us that under its assumptions, the constant term of $\val \IP_p(A,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(A,\vv{u})$ for
   $1 \leq e \leq \log_p \Q_p(A,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(A,\vv{u})$.
 \end{remark}
 
