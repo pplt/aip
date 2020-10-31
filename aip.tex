@@ -1954,7 +1954,7 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
       \val \IP_p(A, \vv{u},q)p^e \leq \val \IP_p(A, \vv{u}, qp^e) < (\val \IP_p(A, \vv{u}, q)+1)p^e
    \]
    as well as analogous inequalities for $(B,\vv{v})$.
-   Combining these bounds with our assumption that $\val \IP_p(A, \vv{u}, q) \ge \IP_p(B, \vv{v}, q) + 1$, we see that
+   Combining these bounds with our assumption that $\val \IP_p(A, \vv{u}, q) \ge \val \IP_p(B, \vv{v}, q) + 1$, we see that
    \begin{align*}
      \val \IP_p(A, \vv{u}, qp^e)  &\geq \val \IP_p(A, \vv{u}, q)  p^e \\
                                   &\geq (\val \IP_p(B, \vv{v}, q)+1) p^e \\
@@ -2021,6 +2021,13 @@ It is clear from these interpretations that a very small pair must also be small
    Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $A$ for which $m > 2$.
    For a perhaps simpler (but similar) example, notice that a monomial pair $(A, \vv{u})$ associated to the ideal pair $(\ideala, \ideald)$, where $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$, is small but not very small for every $t > 1$.
 \end{example}
+
+\begin{remark}[$F$-thresholds of small pairs]
+   \label{rem: finitely many F-thresholds of small pairs}
+   Even though there may exist infinitely many small but not very small $A$-pairs, as shown in the previous example, the $F$-thresholds of small $A$-pairs are bounded above, by a bound dependent solely on $A$, and consequently there are only finitely many such $F$-thresholds by \Cref{discreteness: P}.
+   Indeed, if $(A,\vv{u})$ is small and $\vv{s}$ is optimal for $\LP(A,\vv{u})$, then $s_i\vv{a}_i \le A\vv{s} \le \vv{u}$ for each $i$, where $\vv{a}_i$ denotes the $i$-th column of $A$.
+   The smallness of the pair and the positivity of $\vv{u}$ then imply that $s_i \le 1$ for each $i$, whence $\ft{A}{\vv{u}} = \norm{\vv{s}}$ is at most the number of columns of $A$. 
+\end{remark}
 
 \begin{remark}[Small pairs from shortfalls]
 \label{small pairs from shortfalls: R}
@@ -2438,9 +2445,10 @@ In order to do so, we first build a technical framework in which to carry out ou
 \begin{proof}
    We start by describing what it means for $p$ to be large.
    Toward this, let $M_1, \ldots, M_l$ be the finitely many descendants of  $A$.
-   Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}.
-   Set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$, and let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr)$.
-   We stress that $\fsr$ and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
+   Fix a positive integer $\denom$ that is a universal denominator for all $M_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(M_i)$ for each $M_i$, as in \Cref{fsr-exist: T}; set $\fsr = \fsr(M_1) \cup \cdots \cup \fsr(M_l)$.
+   By \Cref{rem: finitely many F-thresholds of small pairs} the set consisting of the $F$-thresholds of all small $A$-pairs is finite, and consequently so is the set $S$ consisting of all special points with denominator $\denom$ of all small $A$-pairs.
+   Let $\Omega$ be the set consisting of all coordinates of all points in $A(\fsr+S\cup\{\vv{0}\})$.
+   We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $A$, and do not depend in any way on $p$.
 
    The finiteness of $\fsr$  and \Cref{positive-polynomial: L}
    imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$.
@@ -2494,10 +2502,13 @@ In order to do so, we first build a technical framework in which to carry out ou
     But $A_2( - \tail{\vv{s}_1}_p + \vv{h}_1 ) = -\vv{u}_2$, by our choice of $\vv{h}_1$, so this inequality reduces to $-\vv{u}_2 p^{e-1} + A_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(A_2, \vv{u}_2, p^{e-1})$.
 
     We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, by verifying that the stronger inequality
-    \[ \sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i} = A_1 \vv{h}_1 p^{e-1} + A_1 \vv{k}^{\ast} < \vv{w}p^e \]
+    \begin{equation}
+       A_1 \vv{h}_1 p^{e-1} + A_1 (\vv{s}_2 p + \vv{h}_2)p^{e-2} + \cdots + A_1 (\vv{s}_e p + \vv{h}_e ) < \vv{w}p^e
+       \label{eq: stronger ineq}
+    \end{equation}
     holds in $\rs(\O_1)$.
     However, $\vv{w}$ is positive in $\rs(\O_1)$, and the equation $\vv{u}_1 = A_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and so $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$.
-    On the other hand, every coordinate of $\sum_{i=1}^{e} A_1 \vv{h}_i p^{e-i}$ is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
+    On the other hand, every coordinate of the left-hand side of \eqref{eq: stronger ineq} is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
     Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
 
     We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence our proof.
