@@ -166,19 +166,26 @@ iterate()
 -- sprouting_graph_4.tex
 (r,A,u) = (11,matrix {{36, 10, 31}, {38, 14, 23}, {19, 46, 31}, {47, 25, 36}},matrix {{29}, {24}, {24}, {30}})
 
+-- may collapse right away
 (r,A,u) = (11,matrix {{36, 10, 31}, {19, 46, 31}, {47, 25, 36}},matrix {{29}, {24}, {30}})
 init()
 
 iterate() 
 
+toString oo
+
 -- 1 1*c(2) 1 4* 1c 1 1 1 1
 -- 5-loop at the end
 
-factor univDenom A
+univDenom2 A
 
 QQ[p,t]
 
 mu(A,u,11,p,t)
+
+toString oo
+
+ft(A,u)
 
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------
@@ -622,3 +629,18 @@ univDenom2 A
 facesOfN = properFaces newton A
 
 apply( facesOfN, F -> selectColumnsInFace( A, F ) | rb F )
+
+----------------------------------------------------------
+
+A = matrix{ {2,1,0,2},{0,1,2,2} }
+u = colVec {1,1}
+ft(A,u)
+s = specialPt(A,u)
+bracket(s,4)
+
+uDeficit(A,u,4)
+
+solveIP theta(A,u,s,4)
+
+A = matrix{{3,0},{0,2},{1,1}}
+apply(2..20,i->numeric ft(A,colVec{2,1,i}))
