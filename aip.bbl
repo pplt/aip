@@ -5,17 +5,12 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{BMS06b}
+\begin{thebibliography}{HTW20b}
 
-\bibitem[BMS06a]{budur+mustata+saito.roots_bs_polys}
-N.~Budur, M.~Musta\c{t}\v{a}, and M.~Saito, \emph{Combinatorial description of
-  the roots of the {B}ernstein-{S}ato polynomials for monomial ideals}, Comm.
-  Algebra \textbf{34} (2006), no.~11, 4103--4117.
-
-\bibitem[BMS06b]{budur+mustata+saito.roots_bs_polys_monomial}
-N.~Budur, M.~Musta{\c{t}}\u{a}, and M.~Saito, \emph{Roots of bernstein-sato
-  polynomials for monomial ideals: A positive characteristic approach}, Math.\
-  Res.\ Lett. \textbf{13} (2006), no.~1, 125--142.
+\bibitem[BMS06]{budur+mustata+saito.roots_bs_polys_monomial}
+N.~Budur, M.~Musta{\c{t}}\u{a}, and M.~Saito, \emph{Roots of {B}ernstein-{S}ato
+  polynomials for monomial ideals: {A} positive characteristic approach},
+  Math.\ Res.\ Lett. \textbf{13} (2006), no.~1, 125--142.
 
 \bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
 M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
@@ -45,11 +40,11 @@ D.~J. Hern\'andez, \emph{{$F$}-purity of hypersurfaces}, Ph.D. thesis,
   University of Michigan, 2011, available at
   \url{http://hdl.handle.net/2027.42/86491}.
 
-\bibitem[HTW19]{hernandez+etal.frobenius_powers}
+\bibitem[HTW20a]{hernandez+etal.frobenius_powers}
 D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers}, Math.\
-  Z. (2019), 1--32.
+  Z. \textbf{296} (2020), 541--572.
 
-\bibitem[HTW20]{hernandez+etal.frobenius_examples}
+\bibitem[HTW20b]{hernandez+etal.frobenius_examples}
 \bysame, \emph{Frobenius powers of some monomial ideals}, J.\ Pure Appl.\
   Algebra \textbf{224} (2020), no.~1, 66--85.
 
