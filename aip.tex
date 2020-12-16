@@ -131,7 +131,7 @@ Starting, instead, with nonzero proper ideals $\ideala$ and $\idealb$ in $\QQ[x_
 Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal---but before getting to it, we examine some of the motivation behind this question.
 
 \mustata, Takagi, and Watanabe observed that the images of the invariants $\nu(\ideala_p,\idealb_p,p^e)$ in $\FF_p$ are roots of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $p \gg 0$ \cite[Proposition~3.11]{mustata+takagi+watanabe.F-thresholds}.
-Furthermore, they noticed that $\nu(\ideala_p,\idealb_p,p^e)$ oftentimes (but not always) varies with $p$ in a uniform way---a behavior that allows them to find \emph{actual} roots of the Bernstein--Sato polynomial of $\ideala$ at the origin.
+Furthermore, they noticed that $\nu(\ideala_p,\idealb_p,p^e)$ oftentimes (but not always) varies with $p$ in a uniform way---a behavior that allows them to find \emph{actual} roots of that Bernstein--Sato polynomial, as opposed to roots modulo $p$.
 They ask for conditions on $\ideala$ under which this uniformity, captured in the definition below, manifests for every $\idealb$ and $e$ \cite[Problem~3.8]{mustata+takagi+watanabe.F-thresholds}.
 %This special property is captured in the following definition. 
 
@@ -143,6 +143,8 @@ They ask for conditions on $\ideala$ under which this uniformity, captured in th
 
 If $\ideala$ is \nuCool, then the constant term $G_r(0)$ is a root of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $r$ as above \cite[Remark~3.13]{mustata+takagi+watanabe.F-thresholds}.
 
+\smallskip
+
 Budur, \mustata, and Saito showed that monomial ideals are \nuCool \cite[Theorem~4.1]{budur+mustata+saito.roots_bs_polys_monomial}.
 Specifically, they showed that if $\ideala$ is a proper, nontrivial monomial ideal in $\QQ[x_1,\ldots,x_\numvars]$, then there exists a positive integer $\denom = \denom(\ideala)$ with the following property:
 For each ideal $\idealb$ whose radical contains $\ideala$, there are positive rational numbers $\alpha$ and $\beta_r$, for $0 \le r < \denom$, such that
@@ -153,7 +155,6 @@ For each ideal $\idealb$ whose radical contains $\ideala$, there are positive ra
 whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
 
 In this paper we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
-%\pedro{We could put here the text highlighted in red below, that just explains what $\ideala^{[\ell]}$ is.}
 If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 
@@ -184,11 +185,12 @@ The following examples give a taste of the formulas obtained.
 \begin{example}
    Now consider the ideals $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$ of $\QQ[x,y,z]$.
    Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
-   We shall see in \Cref{ex: new example.2} that, for $e \ge 4$,
+   We shall see in \Cref{ex: new example.2} that
    \[
       \mu(\ideala_p,\ideald_p,p^e) =
       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
    \]
+   for all $e\ge 4$ and all but finitely many primes $p$ in a certain arithmetic progression.
    %   \[
    %    \mu(\ideala_p,\ideald_p,p^e) =
    %    \begin{cases}
@@ -199,11 +201,11 @@ The following examples give a taste of the formulas obtained.
    %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
    %    \end{cases}
    % \]
-   whenever $p \gg 0$  and $p \equiv 11 \bmod 752523984455421061348766569800$.
-   \pedro{
-      This is a bit ridiculous;
-      probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
-   }
+   % whenever $p \gg 0$  and $p \equiv 11 \bmod 752523984455421061348766569800$.
+   % \pedro{
+   %    This is a bit ridiculous;
+   %    probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
+   % }
 \end{example}
 
 \subsection{Frobenius powers}
@@ -220,11 +222,11 @@ For example, if $\ideala$ is a monomial ideal in a polynomial ring in positive c
 Aiming at understanding how the Frobenius singularities of an ideal in positive characteristic relate to those of a generic element of the ideal, in \cite{hernandez+etal.frobenius_powers} the authors developed a new theory of Frobenius singularities of pairs in prime characteristic called \emph{\textup{(}generalized\textup{)} Frobenius powers}. 
 If $\kk$ is, again, a field of prime characteristic $p$ with $[\kk:\kk^p] <\infty$, and $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$, which agrees with standard Frobenius powers or the ``Frobenius roots'' of \cite{blickle+mustata+smith.discr_rat_FPTs} when $t$ is an integral power of $p$, agrees with test ideals when $\ideala$ is principal, and in general mimics much of the behavior of multiplier ideals and test ideals.
 
-\textcolor{nicered}{When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators:
-   If $\ell$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[\ell]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{\ell}{\vv{u}}$ is nonzero modulo~$p$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.}
-\pedro{This may be omitted; if so, just remember to remove the ``as seen in the introduction'' in Section~3, when this is brought up again.}
-\emily{I think we can omit it, since it will be described when we use it.  Do you prefer to keep it?}
-\pedro{No, I think I prefer to omit it.}
+% \textcolor{nicered}{When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators:
+%    If $\ell$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[\ell]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{\ell}{\vv{u}}$ is nonzero modulo~$p$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.}
+% \pedro{This may be omitted; if so, just remember to remove the ``as seen in the introduction'' in Section~3, when this is brought up again.}
+% \emily{I think we can omit it, since it will be described when we use it.  Do you prefer to keep it?}
+% \pedro{No, I think I prefer to omit it; will remove it for now.}
 Suppose now that $\ideala$ is generated by monomials $x^{\vv{a}_1},\ldots,x^{\vv{a}_n}$.
 Unlike the test ideals $\tau(\ideala^t)$, the Frobenius powers $\ideala^{[t]}$ strongly depend on the characteristic~$p$.
 Moreover, if $f=\alpha_1x^{\vv{a}_1}+\cdots+\alpha_nx^{\vv{a}_n}$ for some $\alpha_1,\ldots,\alpha_n \in \kk$ that are algebraically independent over $\FF_p$ and generate $\kk$ over $\FF_p$, then for each $t \in (0,1)$ we have
@@ -469,7 +471,8 @@ First, recall that for each $q$ a power of $p$, the integer $\mu(\ideala, \ideal
 \[\mu(\ideala,\ideald,q) \coloneqq \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
 where $\ideala^{[\ell]}$ is the $\ell$-th (generalized) Frobenius power of $\ideala$.
 
-As noted in the introduction, if $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which  $\binom{\ell}{\vv{k}} =
+%As noted in the introduction,
+If $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which  $\binom{\ell}{\vv{k}} =
 \frac{\ell!}{k_1 ! \cdots k_n !}$ is nonzero modulo $p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
 In light of this, \Cref{generators-via-exponent-matrix: R} tells us that $\ideala^{[\ell]}$ is generated by the monomials of the form $x^{A \vv{k}}$ with $\vv{k} \in \NN^n$ satisfying $\norm{\vv{k}}=\ell$ and $\binom{\ell}{\vv{k}} \not\equiv 0 \bmod p$.  As in the previous subsection, we may conclude that $\mu(\ideala,\ideald,q)$ is the maximum value of $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$, but also subject to the highly nonlinear constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.  Motivated by this, we introduce a variant of an integer program that we call an \emph{arithmetic integer program}.
 %As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
