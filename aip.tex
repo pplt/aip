@@ -135,7 +135,7 @@ Furthermore, they noticed that $\nu(\ideala_p,\idealb_p,p^e)$ oftentimes (but no
 They ask for conditions on $\ideala$ under which this uniformity, captured in the definition below, manifests for every $\idealb$ and $e$ \cite[Problem~3.8]{mustata+takagi+watanabe.F-thresholds}.
 %This special property is captured in the following definition. 
 
-\begin{definition}
+\begin{definition}[\nuCool ideals]
    \label{defn: nuCool}
    A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\nuCool} if there exists a positive integer $\denom = \denom(\ideala)$ such that the following condition holds.
    Given a proper ideal $\idealb$ in the same ring with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$, there exist degree $e$ polynomials $G_r(t) \in \QQ[t]$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\nu(\ideala_p, \idealb_p, p^e) = G_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
@@ -158,7 +158,7 @@ In this paper we prove an analogous result for a family of analogous invariants,
 If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 
-\begin{definition}
+\begin{definition}[\muCool ideals]
    \label{defn: muCool}
    A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\muCool} if a condition analogous to that in \Cref{defn: nuCool} holds for $\mu(\ideala_p,\idealb_p,p^e)$, for each proper ideal $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, and each nonnegative integer $e$.
 \end{definition}
