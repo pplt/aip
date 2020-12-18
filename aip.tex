@@ -174,6 +174,7 @@ We also describe each coefficient of the polynomials determining $\mu(\ideala_p,
 The following examples give a taste of the formulas obtained.
 
 \begin{example}
+   \label{ex1 intro}
    Consider the ideals $\ideala = \ideal{x^5 y^5 z^2, x^3 y^4 z^8, x^4 y^3 z^5}$ and $\idealm = \ideal{x,y,z}$ of $\QQ[x,y,z]$.
    We shall see in \Cref{ex: ft.5} that
    \[
@@ -183,6 +184,7 @@ The following examples give a taste of the formulas obtained.
 \end{example}
 
 \begin{example}
+   \label{ex2 intro}
    Now consider the ideals $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$ of $\QQ[x,y,z]$.
    Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
    We shall see in \Cref{ex: new example.2} that
@@ -244,18 +246,37 @@ If $\ideala$ and $\idealb$ are nonzero proper ideals with $\ideala \subseteq \sq
 \]
 The set of all critical exponents $\crit(\ideala,\idealb)$, as $\idealb$ ranges over all nonzero proper ideals whose radicals contain $\ideala$, coincides with the set of critical exponents of the Frobenius powers of $\ideala$.
 
-The above definition and observation have their counterparts in the theory of test ideals and $F$-jumping exponents: the limit
+We shall see that if $\ideala \subseteq \QQ[x_1,\ldots,x_\numvars]$ is a monomial ideal, then there exists a positive integer $\denom = \denom(\ideala)$ with the following property:
+Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$, there exist degree $0$ rational functions $Q_r(t) \in \QQ(t)$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\crit(\ideala_p, \idealb_p) = Q_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
+\pedro{
+   Maybe make this an official theorem?
+   We could also introduce another definition, ``crit-uniform'', or is that too much?
+}
+
+% \begin{example}
+%    If $\ideala$ and $\idealm$ are as in \Cref{ex1 intro}, then 
+%    \[
+%       \crit(\ideala_p,\idealm_p) = \frac{4}{17} - \frac{3}{17p^3}
+%     \]
+%     for each sufficiently large prime $p$ congruent to $11$ modulo $2170560$.
+% \end{example}
+
+\begin{example}
+   If $\ideala$ and $\ideald$ are as in \Cref{ex2 intro}, then 
+   \[
+      \crit(\ideala_p,\ideald_p) =
+      \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}
+   \]
+   for all but finitely many primes $p$ in a certain arithmetic progression.
+\end{example}
+
+The above definition and observations have their counterparts in the theory of test ideals and $F$-jumping exponents: the limit
 \[
    \ft{\ideala}{\idealb} \coloneqq \lim_{e\to \infty} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
    = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
 \]
 is called the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}, and the set of all $F$-thresholds $\ft{\ideala}{\idealb}$, as $\idealb$ varies as above, coincides with the set of $F$-jumping exponents of the test ideals of $\ideala$.
-
-\todo[inline]{
-   Mention what \Cref{main theorem} says about crits.
-
-   Compute $\crit$ for second example; emphasize how it differs from ft.
-}
+If $\ideala$ and $\idealb$ are nonzero proper ideals of  $\QQ[x_1,\ldots,x_\numvars]$, where $\ideala$ is a monomial ideal and $\ideala \subseteq \sqrt \idealb$, then \eqref{eq: nu-uniformity for monomial ideals} shows that the $F$-threshold $\ft{\ideala_p}{\idealb_p}$ is independent of $p$, in striking contrast with the situation for $\crit(\ideala_p,\idealb_p)$ described above.
 
 \todo[inline]{
    TBC
