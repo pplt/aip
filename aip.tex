@@ -13,103 +13,13 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
-% \item[$\CheckedBox$] Decide on ``special'' or ``universal'' denominator and uniformize.
-% \emily[inline]{I'm starting to like ``universal.''}
-% \pedro[inline]{I replaced the last few occurrences of ``special'' with ``universal''.}
-%\item[$\Box$]  Look at wording in proof of \Cref{less than u: L}.
-%\item[$\CheckedBox$] Write essential statements/proofs.
-%\item[$\CheckedBox$] Decide on name of paper.
-%\item[$\CheckedBox$] Decide on name for minimal coordinate.
-% \comment[inline]{Going with ``special point''.}
-%\item[$\CheckedBox$] Make sprout notation.
-%\comment[inline]{Going with $\sprout(A,\vv{u},p)$}
-% \item[$\CheckedBox$] Replace any remaining instances of $d$ for dimension with {\tt \text{numvars}}, and fix any inconsistencies.
-   % \begin{itemize}
-   %    \item In the discussion after the definition of Sierpinski gasket; that could be replaced with anything else ($s$, for example).
-   %    \pedro[inline]{Done.}
-   %    \item In the definition of least positive residue; it would be OK to leave it alone, or replace it with anything else.
-   %    \pedro[inline]{Changed to $a$ and $b$.}
-   %    \item $\vv{m}$ appears in the proofs of \Cref{optimal division: L,ILL: T}; again it would be OK to leave it alone, or replace it with anything else.
-   %    \emily[inline]{Like $\mathfrak{m}$, I am OK using this notation; I don't think it is confusing since vectors all have the same text styling.  We use, for instance, both $\ideala$ and $\vv{a}$.}
-   %    \item In \Cref{colon-product-stabilization: L} and in the proof of \Cref{monomial-noetherian-decomposition: L}. Those would need to be replaced.
-   %    \emily[inline]{Done.}
-   % \end{itemize}
-   %It also appeared in the general discussion of optimization, but I replaced it with $n$, as our optimization problems are in $\RR^n$ and $\ZZ^n$.
-% \item[$\CheckedBox$]  Brainstorm list of the desired properties we want from examples, and what section to put them in:
-% \emily[inline]{I'm happy with your examples, Pedro, I don't think we need more.}
-% \begin{itemize}
-%    \item Examples of algorithms (\eg $\idealm$-primary case, general setting)
-%    \pedro[inline]{Done}
-%    \item Maybe introduce the $\idealm$-primary and/or homogeneous case earlier, for instance, when we talk about minimal face, universal denominator, etc.
-%    \pedro[inline]{Done}
-%    % \item Possibly simple picture (2D or 3D) illustrating small and very small after \Cref{geometric small and very small: R}.
-%    % \pedro[inline]{I included an example with a picture.}
-%    % \emily[inline]{Thank you!}
-% \end{itemize}
-% \item[$\Box$] Put in examples. Remember to label $\canvec_1$, $\canvec_2$, $\canvec_3$ when appropriate.
-% \pedro[inline]{Started working on it.}
-%\item[$\CheckedBox$] Rewrite statements in terms of ``shortfall.''
-% \item[$\CheckedBox$] Decide how to define matrix for collapse (remove row vs. zero row), and point out no zero columns.
-%\comment[inline]{Going with dropping rows.}
-%\item[$\Box$] Rewrite proofs with above convention.
-%\item[$\Box$] Decide on how to define $\widehat{\witt}$.  (Sprouting graph?)
- %\item[$\CheckedBox$] Fill in/rewrite preliminaries.
- %\item[$\CheckedBox$] Reorganize and motivate the $\IP$ and $\ip$, and their connection, in Sections 5 and 6.
- %\item[$\CheckedBox$] ``Fractal linear program;'' solve $P$ in ``Sierpinski gasket''
- % \item[$\Box$] Direct proof that $\delta$/$\Delta$ are independent of $\vv{s}$.
-% \item[$\Box$] Minimize and/or ``algebrafy'' statements.
- %\item[$\CheckedBox$] Background section on Frobenius powers, $\mu$, $\nu$, etc.
-% \item[$\Box$] Derive some easy corollaries for critical exponents and very general hypersurfaces.  State them in introduction.
-% \item[$\CheckedBox$] Generalize the definition of $\IP$ so that $\IP(A, \vv{u}q)$ becomes $\IP(A, \vv{u}, q)$?
-% \comment[inline]{Changed to $\IP(A, \vv{u}, q)$}
-
-%    \item[$\Box$] Replace ``Lemma'' with ``Proposition'', if there's no immediate application in sight.
-
- % \item[$\CheckedBox$] Add remark describing how to verify inequalities $A\vv{k} < \vv{v}$ using projections/collapse.
- % \comment[inline]{See \Cref{rmk: verifying inequalities using collapses}.}
-      %\item[$\CheckedBox$] Add remark that points out that $\collapse{A\vv{k}} = \collapse{A}\vv{k}$.
-      %\item[$\CheckedBox$] In Section 4, we should talk about both $\nu$'s and $F$-thresholds. We could then introduce $\IP(A,\vv{u},q)$, immediately relate its value to the $\nu$'s, and relate $\val \LP(A,\vv{u})$ to the normalized limit of $\IP(A,\vv{u},q)$, just like we do later for the fractal programs $\fip_p$ and the arithmetic programs $\IP_p$.  Most of this has already been written, and it should just be moved from Section 5.
-      %\item[$\CheckedBox$] Similarly, introduce $\fip_p$ and $\IP_p$ together, and describe their connection right away.
-      %\item[$\CheckedBox$] Prior to Definition 4.1, state our goal for describing $F$-thresholds and $\nu$'s.  Use this to motivate definition of monomial pair
-      %%%%% Notation %%%%%
-
- % \item[$\CheckedBox$] Uniformize $\collapse{A(X)} = \collapse{A}(X)$, or add a statement about this.
- % \pedro[inline]{I believe this is done now (using $\collapse{A}X$).}
-      % \item[$\CheckedBox$] Use $\vv{d}$ for defining points?
-      % %Pro: opens up $\vv{a}$ for columns of $A$.  Con:  maybe $\collapse{\vv{d}}$ looks ugly?  Another con is $d$ is used for number of variables and $\RR^\numvars$.
-      % Emily suggest using $\vv{c}$.  This is probably a good idea.
-      % \pedro[inline]{I macroed the defining points as \texttt{defpt}, and currently defined it as $\vv{c}$.}
-      %\item[$\CheckedBox$] Uniformize the way we describe programs (\eg as in Section 9).
-%      \item[$\CheckedBox$] Uniformize the way we introduce collapses in statements.
- %     Daniel now prefers saying ``$\collapse{X}$ denotes the collapse of $X$ along $\O$\ldots'' without specifying what $X$ is; Pedro proposed to simply write ``Let the superscript bar denote collapse along\ldots''  I think we agreed Pedro's way is better.
-  %    \pedro[inline]{Gave it a shot. Apparently, ``overbar'', ``overline'', and ``overscore'' are all accepted words for the superscript bar. I used ``overbar'', but feel free to change it, if you prefer a different term.}
-
-      %    \item[$\CheckedBox$] Right now, we are referring to ``the'' monomial matrix associated to a monomial idea.  But, we don't want to restrict to associating columns to minimal generators, since this may not be preserved by collapse.  So, we don't seem to have a canonical monomial matrix, just one associated to every set of generators.
-      % \emily[inline]{Would ``a monomial matrix'' be OK?}
-      % \pedro[inline]{That sounds good to me.}
-    %  \item[$\CheckedBox$] Label $\canvec_1$, $\canvec_2$, $\canvec_3$ in Figure 1, and other figures.
-%      \item[$\CheckedBox$] Change ``image'' to ``optimal image'', at least in definitions. optim instead of im?
-%      \item[$\Box$] Remove image of arithmetic program, restate things algebraically.
-      %\item[$\CheckedBox$] Draw entire line of $\norm{\vv{s}} = \val \fip_p$.
-%      \item[$\Box$] Add the analog to Corollary 2.4 for $F$-thresholds and test ideals?
-%      \item[$\Box$] Does 7.10 come from 7.3, if we replace 1 with $q$ and $\IP$ with $\IP_p$? If so, we should write the proof this way, and replace the comment preceding 7.11 with a remark (that makes clear the reduction to the small case)
-      % \item[$\Box$] Does Corollary 8.3 come from 7.10 too?
-      % \emily[inline]{I think this is defunct now? }
-   %    \item[$\Box$] Identify where ``equal'' and ``equivalent'' linear/integer programs are pointed out, and define this at that point.
-   % \emily[inline]{This only seems to happen with $\IP$ and $\IP_p$ when the arithmetic constraint is automatically satisfied.  I think that the meaning will be clear to the reader, and I don't think we need to make it any more explicit by distinguishing between ``equal'' and ``equivalent.''}
  \item[$\Box$] Put ``titles'' in appropriate statements.
  \pedro[inline]{Done with definitions. We might want to remove some of them later, though (\eg the one for $\epsilon_{p^e}$ and $\delta_{p^e}$).}
  \item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(A,\vv{u},p^e) = \mu(\collapse{A}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(A,\vv{u}) = \sprout_p^{\ast}(\collapse{A}, \collapse{\vv{u}})$.
  \item[$\Box$] Abstract
-  \item[$\Box$] Introduction
-%  \item[$\Box$] Outline at the end of \Cref{sec: LPs}
-%  \pedro[inline]{We decided not to do this, right?}
+ \item[$\Box$] Introduction
  \item[$\Box$] Section on generic hypersurfaces
-% \item[$\CheckedBox$] Dissolve appendix B
-% \item[$\CheckedBox$] Should we explain what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds?
-% \item[$\CheckedBox$] Should we explain why we have a deterministic algorithm for computing critical exponents, modulo algorithms for solving integer programs, or computing lattice points in polyhedra?
-% \item[$\CheckedBox$]  It seems like if $A$ comes from a positively homogeneous $\idealm$-primary ideal, then most non-leading coefficients vanish, and it should be true that either $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$ or $\crit(A,\vv{u})$ is rational with denominator a power of $p$.  Is this worth pointing out?
-   \end{enumerate}
+\end{enumerate}
 }
 
 \setcounter{tocdepth}{1}
@@ -278,72 +188,10 @@ If $\ideala$ and $\idealb$ are nonzero proper ideals of  $\QQ[x_1,\ldots,x_\numv
    TBC
 }
 
-% \begin{itemize}
-%  \item Motivate via test ideals of general hypersurfaces.
-%  \item Emphasize the uniformity result over algorithms, and tie it in with previous known results.
-%  \item State main theorems.
-%  \item Explain that we reduce to the case that $\idealb$ is a diagonal monomial ideal.
-% \end{itemize}
-
-% Let $\kk$ be a field of prime characteristic $p>0$ with $[\kk:\kk^p] < \infty$, and take ideals $\ideala$ and $\idealb$ in a polynomial ring over $\kk$ for which $\ideala$ is contained in $\sqrt \idealb$.
-% \pedro{We might want to require these to be nonzero and proper, or else we need special conventions when $\ideala = 0$ or $\idealb = R$.}
-% For a nonnegative integer $e$, we define
-% %
-% \[\nu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}\]
-% %
-% where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
-% The condition that $\ideala \subseteq \sqrt \idealb$ guarantees that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
-
-% The \emph{growth rate} of these integers as a function of the nonnegative integer $e$ is of independent interest.
-% It is not hard to see that the sequence $\big(\nu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is nondecreasing and bounded,  and we define
-% \[
-%    \ft{\ideala}{\idealb} \coloneqq \lim_{e \to \infty} \frac{\nu(\ideala, \idealb, p^e)}{p^e}  = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
-% \]
-% which we call the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}.
-
-% % \daniel{Motivate the $\nu$'s by tying them to roots of BS polynomials; motivate $F$-thresholds by relating them to behavior of test ideals.  Relate them to multiplier ideals}
-
-% \daniel[inline]{This is essentially copied verbatim from \cite[Problem 3.8]{mustata+takagi+watanabe.F-thresholds}.  It also appeared as \cite[Problem 2.3]{budur+mustata+saito.roots_bs_polys} .  We should probably restate it more precisely, and explain its significance.}
-
-% \begin{problem}
-%    Find conditions on the ideal $\ideala$ such that the following holds.
-%    Given an ideal $\idealb$ with $\ideala \subseteq \sqrt \idealb$ and a nonnegative integer $e$, there exists a positive integer $N$ and polynomials $P_i(t) \in \QQ[t]$ of degree $e$ for every $i$ that is a unit modulo $N$ such that $\nu(\ideala_p, \idealb_p, p^e) = P_i(p)$ whenever $p$ is sufficiently large and $p \equiv i \bmod N$.
-%    When could $N$ be chosen independently of $\idealb$ and $e$?
-% \end{problem}
-
-% \daniel[inline]{Emphasize that when $\ideala$ is monomial and $\idealb$ is arbitrary (over $\QQ$), then the $F$-threshold of $\ideala_p$ with respect to $\idealb_p$ is independent of $p$ for all $p \gg 0$.  This is \Cref{nu-mu-reduce-monomial: C}.}
-
-% \begin{theorem}
-%    \label{general-nu-theorem: T}
-%    Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, and an arbitrary ideal $\idealb$ of this polynomial ring with $\ideala \subseteq \sqrt{\idealb}$, there exist positive integers $\ell = \ell(\ideala)$ and  $\beta = \beta(\ideala, \idealb)$, and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, a rational number $\delta(\ideala, \idealb, r)$ satisfying the following condition.
-%    If $p^e > \beta(\ideala, \idealb)$ and $p^e \equiv r \bmod \ell$, then $ \nu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \delta(\ideala, \idealb, r)$.
-% \end{theorem}
-
-% As above, let $\kk$ be a field of prime characteristic $p>0$ with $[\kk: \kk^p]$ finite.
-% If $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$.
-% When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators as follows:
-% If $k$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[k]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{k}{\vv{u}}$ is nonzero modulo~$p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
-
-% Now, if $\idealb$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then in analogy with the above definitions, given a nonnegative integer $e$, we define
-% \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
-% Then $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^{\infty}$ is a nondecreasing bounded sequence, and
-% \begin{equation}\label{eq: crit as a limit of mus}
-%    \crit(\ideala,\idealb) \coloneqq \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e} = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
-% \end{equation}
-% is the \emph{critical exponent of $\ideala$ with respect to $\idealb$}.
-
-% \begin{theorem}
-%    \label{general-mu-theorem: T}
-%    Given a monomial ideal $\ideala$ of $\QQ[x_1, \ldots, x_\numvars]$, there exists a positive integer $\ell = \ell(\ideala)$, and for every ideal $\idealb$ with $\ideala \subseteq {\idealb}$ and for every integer $1 \leq r < \ell$ relatively prime to $\ell$, there exist a positive integer $\beta = \beta(\ideala, \idealb)$ and a sequence $\big(\epsilon(\ideala, \idealb, r, e)\big)_{e=1}^{\infty}$ of nonnegative rational numbers satisfying the following condition.
-%    If $p > \beta$ and $p \equiv r \bmod \ell$, then
-%    \[ \mu(\ideala_p, \idealb_p, p^e) = \ft{\ideala}{\idealb} \cdot p^e - \sum_{s=1}^{e} \epsilon(\ideala, \idealb, r, s) \cdot p^{e-s}.\]
-% \end{theorem}
-
 \section{Notation and basic notions}
 
 \subsection{Euclidean spaces}
 \label{ss: euclidean spaces and convexity}
-%We review in this subsection some of the terminology, notation, and constructions concerning Euclidean spaces used throughout the paper.
 We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter, in regular font, to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
 The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and we write the standard basis vectors of $\RR^n$ as $\canvec_1,\ldots,\canvec_n$.
 
@@ -443,14 +291,12 @@ This observation motivates the following definition.
 
 It is easy to deduce from the fact that the matrix $A$ is a monomial matrix (\ie has nonnegative, nonzero rows and columns) that the feasible set of $\IP(A,\vv{u},q)$ is finite, and hence this integer program has a well-defined value.
 Moreover, the discussion preceding \Cref{IP: D} demonstrates that
-%
 \begin{equation}
 \label{nu as program value: eq}
 \nu(\ideala,\ideald,q) = \val \IP(A,\vv{u},q).
 \end{equation}
 
 We now shift our attention from the integers $\nu(\ideala, \ideald, q)$ to the $F$-threshold $\ft{\ideala}{\ideald}$.  First, note that \eqref{nu as program value: eq} and the definition of $\ft{\ideala}{\ideald}$ imply that
-%
 \begin{equation}
 \label{ft as limit of normalized program values: eq}
 \ft{\ideala}{\ideald} = \lim_{e\to\infty} \frac{\nu(\ideala,\ideald,p^e)}{p^e} = \lim_{e\to\infty} \frac{\val \IP(A,\vv{u},p^e)}{p^e}.
@@ -488,11 +334,9 @@ First, recall that for each $q$ a power of $p$, the integer $\mu(\ideala, \ideal
 \[\mu(\ideala,\ideald,q) \coloneqq \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
 where $\ideala^{[\ell]}$ is the $\ell$-th (generalized) Frobenius power of $\ideala$.
 
-%As noted in the introduction,
 If $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which  $\binom{\ell}{\vv{k}} =
 \frac{\ell!}{k_1 ! \cdots k_n !}$ is nonzero modulo $p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
 In light of this, \Cref{generators-via-exponent-matrix: R} tells us that $\ideala^{[\ell]}$ is generated by the monomials of the form $x^{A \vv{k}}$ with $\vv{k} \in \NN^n$ satisfying $\norm{\vv{k}}=\ell$ and $\binom{\ell}{\vv{k}} \not\equiv 0 \bmod p$.  As in the previous subsection, we may conclude that $\mu(\ideala,\ideald,q)$ is the maximum value of $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$, but also subject to the highly nonlinear constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.  Motivated by this, we introduce a variant of an integer program that we call an \emph{arithmetic integer program}.
-%As this new constraint is arithmetic in nature, we call such an optimization problem an \emph{arithmetic integer program}.
 
 \begin{definition}[The arithmetic integer program $\IP_p$]
 \label{aip: D}
@@ -503,9 +347,6 @@ We define the terms \emph{feasible, optimal}, and \emph{value} relative to the a
 
 \begin{remark}[A characterization of the arithmetic constraint]
    \label{dickson: R}
-%    \pedro{
-%       I changed the notation here, as $n$ appeared with multiple meanings.
-%    }
    Consider $\ell \in \NN$ and $\vv{k} \in \NN^n$.
    In base $p$, we express these quantities as $\ell = \sum_{e=0}^s \ell_e p^e$ and $\vv{k}=\sum_{e=0}^s \vv{k}_e p^e$ where $0\le \ell_e < p$ and $\vv{0}\le\vv{k}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $\ell_s$ and $\vv{k}_s$ are allowed to be zero.
    In any case, \cite{dickson.multinomial} then tells us that $\binom{\ell}{\vv{k}}\equiv \binom{\ell_0}{\vv{k}_0}\binom{\ell_1}{\vv{k}_1}\cdots \binom{\ell_s}{\vv{k}_s} \mod{p}$.
@@ -513,26 +354,6 @@ We define the terms \emph{feasible, optimal}, and \emph{value} relative to the a
    In particular, the multinomial coefficient $\binom{\ell}{\vv{k}}$ is nonzero modulo $p$ if and only if $\norm{\vv{k}_e}=\ell_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{k}$ sum to $\ell$ \emph{without carrying} in base $p$.
    In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the condition that all terms $\vv{k}_e$ of the base $p$ expansion of the lattice point $\vv{k}$ have coordinate sum less than $p$.
 \end{remark}
-
-% \begin{remark}[A characterization of the arithmetic constraint]
-%  \label{dickson: R}
-%    Consider $n \in \NN$ and $\vv{n} \in \NN^n$.
-%    In base $p$, we may uniquely express these quantities as $n= \sum_{e=0}^s n_e \, p^e$ and $\vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e$
-% %\begin{equation*}
-% %n= \sum_{e=0}^s n_e \, p^e \quad \text{and} \quad \vv{n}=\sum_{e=0}^s \vv{n}_e \, p^e
-% %\end{equation*}
-% where $0\le n_e < p$ and $\vv{0}\le\vv{n}_e < p  \vv{1}$ for each $0 \leq e \leq s$, and where $n_s$ and $\vv{n}_s$ are allowed to be zero.
-% In any case, \cite{dickson.multinomial} then tells us that
-% $\binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_s}{\vv{n}_s} \mod{p}$.
-% %\[
-% %    \binom{n}{\vv{n}}\equiv \binom{n_0}{\vv{n}_0}\binom{n_1}{\vv{n}_1}\cdots \binom{n_t}{\vv{n}_t} \mod{p}.
-% %\]
-
-% In particular, the multinomial coefficient $\binom{n}{\vv{n}}$ is nonzero mod $p$ if and only if $\norm{\vv{n}_e}=n_e$ for each $e$, a condition that is sometimes described by saying that the entries of the vector $\vv{n} \in \NN$ sum to $n$ \emph{without carrying} in base $p$.
-
-% In light of this, the arithmetic constraint in \Cref{aip: D} is equivalent to the following condition:  If
-%  $\vv{k} = \vv{k}_0 + \vv{k}_1 \, p\cdots + \vv{k}_s \, p^s$ is the base $p$ expansion of the nonnegative lattice point $\vv{k}$, then $\norm{\vv{k}_e} < p$ for all $0 \leq e \leq s$.
-% \end{remark}
 
 Clearly, the feasible set of $\IP_p(A, \vv{u}, q)$ lies in the feasible set of $\IP(A, \vv{u},q)$, and is therefore finite.
 In particular, this arithmetic program has a well-defined value, and the discussion preceding \Cref{aip: D} tells us that
@@ -717,7 +538,6 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 \begin{proof}
    If $e \in \NN$, then the constraints of $\IP_p(A, \vv{u}, p^e)$ imply that $p^{-e}  \feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \fip_p(A,\vv{u})$.
    It then follows from this and \eqref{crit as limit of normalized program values: eq} that
-   %
    \[
       \val\fip_p(A,\vv{u}) \ge \displaystyle \lim_{e \to \infty}\frac{\val\IP_p(A,\vv{u}, p^e)}{p^e} = \crit(\ideala, \ideald).
    \]
@@ -737,10 +557,6 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
    We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is at most $\crit(\ideala, \ideald)$ on the set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}$, and so the same must be true on the closure of this set, which is the feasible set of $\fip_p(A, \vv{u})$.
    Restated,  $ \val \fip_p(A, \vv{u})$ is at most $\crit(\ideala,  \ideald)$, and so equality holds.
 \end{proof}
-
-% \subsection{An outline}
-% 
-% \ \daniel[inline]{I imagine placing an outline here that points out the steps we are going to take to solve all of these optimization problems.}
 
 \section{Connections with Newton polyhedra}
 \label{s: newton}
@@ -811,20 +627,6 @@ The following proposition gives an explicit Minkowski--Weyl decomposition for th
    This shows that $\vv{w} \in \cone(\rb(\O))$ and $A\vv{s} \in \conv(\col(A) \cap \O)$, so $\vv{v} = A\vv{s} + \vv{w} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
 \end{proof}
 
-% \begin{proof}
-%    Suppose $\iprod{\defpt}{\vv{v}} = \alpha$ for all $\vv{v} \in \O$.
-%    Then the same holds for every $\vv{v} \in\conv( \col(A) \cap \O ) + \cone(\rb(\O)) \subseteq \N$, showing that this sum is contained in  $\O$.
-%    To prove the reverse containment, let $\vv{v} \in \O$.
-%    Since $\vv{v} \in \N$, we know that $\vv{v} \ge A \vv{s}$ for some $\vv{s}\ge \vv{0}$ with $\norm{\vv{s}} = 1$.
-%    Denoting the $i$-th column of $A$ by $\vv{a}_i$, the nonnegativity of $\defpt$ implies that
-%    \[
-%       \alpha = \iprod{\defpt}{\vv{v}} \ge \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i
-%    \]
-%    where $\iprod{\defpt}{\vv{a}_i} = \alpha$ if $\vv{a}_i \in \O$, or $\iprod{\defpt}{\vv{a}_i} > \alpha$ otherwise.
-%    The displayed inequality, together with the facts that $\vv{s}\ge \vv{0}$ and $\norm{\vv{s}} = 1$, tells us that $s_i = 0$ whenever $\vv{a}_i \notin \O$, and therefore $A\vv{s} \in \conv(\col(A)\cap \O) \subseteq \O$.
-%    As $\iprod{\defpt}{\vv{v}-A\vv{s}} = 0$, the nonnegativity of $\vv{v} - A\vv{s}$ and $\defpt$ implies that $\vv{v} - A\vv{s} \in \cone(\rb(\O))$, showing that $\vv{v} \in \conv( \col(A) \cap \O ) + \cone(\rb(\O))$.
-% \end{proof}
-
 \begin{definition}[Recession basis and subspace]
    If $\defpt \in \RR^\numvars$ defines $\O$, then the \emph{recession basis} of $\O$ is the set $\rb(\O)$ of all standard basis vectors $\canvec_i$ in $\RR^\numvars$ such that the $i$-th coordinate of $\defpt$ is zero, and the \emph{recession subspace} of $\O$ is the subspace $\rs(\O)$ of $\RR^\numvars$ spanned by $\rb(\O)$.
 \end{definition}
@@ -849,14 +651,6 @@ This convention leads to the following useful observation, whose simple proof us
    Then $\iprod{\defpt}{A\vv{s}} \ge \norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
    \qed
 \end{proposition}
-
-% \begin{proof}
-% If $\vv{a}_i$ denotes the $i$-th column of $A$, then \Cref{alpha=1: convention} and the assumption on $\vv{s}$ imply that $\iprod{\defpt}{\vv{a}_i}  s_i \geq s_i$ for every $1 \leq i \leq n$, with equality if and only if $s_i = 0$ or $\vv{a}_i \in \O$.
-% Thus,
-% \[ \iprod{\defpt}{A\vv{s}} = \sum_{i=1}^n \iprod{\defpt}{\vv{a}_i} s_i \geq  \sum_{i=1}^n s_i  = \norm{\vv{s}},\]
-% and equality holds if and only if $s_i = 0$ whenever $\vv{a}_i \notin \O$.
-% \end{proof}
-
 
 \subsection{The $F$-threshold of a monomial pair}
 
@@ -973,7 +767,6 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
 \begin{enumerate}[$(1)$]
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
 \item  \label{mc decomposition: e} $\vv{u} = A \vv{s} + \vv{w}$ for some $\vv{w} \in  \cone(\rb(\O))$.
-%\item  \label{mc sum: e}$\norm{\vv{s}} = \ft{A}{\vv{u}}$.
 \end{enumerate}
 \end{proposition}
 
@@ -981,11 +774,9 @@ Typically, there are many ways to express $\vv{u}$ as such a conical combination
    Set $\LP = \LP(A, \vv{u})$ and $\lambda = \val \LP $, and fix $\defpt \in \RR^\numvars$ that defines the face $\O = \mf(A, \vv{u})$ in the Newton polyhedron of $A$.
    Let $\vv{s} \in \RR^n$ and set $\vv{w} = \vv{u} - A\vv{s}$.
    By \Cref{prop: inner product with columns of A,FT descriptions: P},
-   %
    \begin{equation}\label{eq 1}
       \lambda = \iprod{\defpt}{\vv{u}} = \iprod{\defpt}{A \vv{s}} + \iprod{\defpt}{\vv{w}} \geq \norm{\vv{s}} + \iprod{\defpt}{\vv{w}}.
    \end{equation}
-   %
    If $\vv{s}$ is optimal for $\LP$, then $\vv{s} \ge \vv{0}$, $\vv{w} \ge \vv{0}$, and $\norm{\vv{s}} = \lambda$, and \eqref{eq 1} shows that $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$ and $\iprod{\defpt}{\vv{w}} = 0$.
    The first identity and \Cref{prop: inner product with columns of A} show that $\vv{s}$ satisfies~(1); the second identity shows that $\vv{w}\in \cone(\rb(\O))$, so $\vv{s}$ satisfies~(2).
    Conversely, if $\vv{s}$ satisfies (1) and (2), then $\vv{s}$ is feasible for $\LP$, $\iprod{\defpt}{A \vv{s}} = \norm{\vv{s}}$, and $\iprod{\defpt}{\vv{w}} = 0$.
@@ -1590,12 +1381,10 @@ For that, we shall need the following simple boundedness result.
 
 \Cref{finite image: P,finitely many secondary programs: T} give us the following result.
 
-%\emily[inline]{Restate?}
 \begin{theorem}[Existence of finite sets of representatives]
    \label{fsr-exist: T}
    Given a monomial matrix $A$, there exists a finite subset $\fsr = \fsr(A)$ of the domain lattice of $A$ such that for each integer program $\ip = \ip(A, \vv{u}, \vv{s}, q)$ we have
    \[\short \ip = \collapse{A}\tail{\vv{s}}_q - \collapse{A}(\fsr \cap \opt \ip).\]
-   % For every $A$-list $(A, \vv{u}, \vv{s}, q)$, and for every $\vv{v}$ in the image of $\opt\ip(A, \vv{u}, \vv{s}, q)$ under $\collapse{A}$, the collapse of $A$ along $\mf(A,\vv{u})$, there exists $\vv{h} \in \fsr \cap \opt \ip(A, \vv{s}, \vv{u}, q)$ with $\collapse{A} \vv{h} =  \vv{v}$.
 \end{theorem}
 
 \begin{proof}
@@ -1641,10 +1430,7 @@ The above result leads to a fundamental observation.
 
 \begin{corollary}[Non-dependence on the special point]
    \label{independence: C}
-%    Fix a monomial pair $(A, \vv{u})$ and an integer $q>0$.  If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$, then the quantities
-% \[   \delta(A, \vv{u}, \vv{s}, q)  = \norm{\tail{\vv{s}}_q}  - \val \ip(A, \vv{u}, \vv{s}, q)\] and
-% \[ \Delta(A, \vv{u}, \vv{s}, q)  = \collapse{A} \tail{\vv{s}}_q - \im  \ip( A, \vv{u}, \vv{s}, q)  \]
-The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
+   The deficit and the shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ do not depend on $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{corollary}
 
 \begin{proof}
@@ -1662,11 +1448,6 @@ Given a monomial pair $(A, \vv{u})$ and positive integer $q$, we define the \emp
 where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 \end{definition}
 
-%\begin{remark} Above, we referred to \Cref{uniform value and image: P} to deduce the independence of $\delta(A, \vv{u}, q)$ and $\Delta(A, \vv{u}, q)$ on the rational point $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.  Though it seems likely that this can be established with a more direct argument, we have yet to identify one.
-%\end{remark}
-
-%\emily[inline]{Maybe we should restate \Cref{finitely many deltas for a fixed A: R} more precisely. }
-%
 \begin{remark}[A finiteness property]
    \label{finitely many deltas for a fixed A: R}
    Given a monomial matrix $A$, there are only finitely many universal deficits $\udeficit(A, \vv{u}, q)$ and universal shortfalls $\ushort(A, \vv{u}, q)$, as we vary over all $A$-pairs $(A,\vv{u})$ and all positive integers $q$.
@@ -1697,33 +1478,6 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
    \]
    whenever $q \equiv r \bmod \denom$.
 \end{remark}
-
-% \pedro[inline]{
-%    Maybe add somewhere that if $\denom$ is a universal denominator for $A$, then it is also a denominator for the universal deficit.
-% }
-
-
-% \begin{remark}
-%    \label{pair periodicity: R}
-%    If $(A, \vv{u})$ is fixed, then the universal deficit and shortfall of $(A, \vv{u}, q)$ are periodic in $q$.
-%    Indeed, if $\denom$ is the denominator of some point in $\sp_{\QQ}(A, \vv{u})$, then
-%    \begin{equation}
-%       \label{periodicity: e}
-%       \begin{split}
-%       \udeficit(A, \vv{u}, p) &= \udeficit(A, \vv{u}, q)\\
-%       &\text{and}\\
-%       \ushort(A, \vv{u}, p) &= \ushort(A, \vv{u}, q)
-%    \end{split}
-%    \end{equation}
-%    whenever $p \equiv q \bmod \denom$.
-%    In fact, \Cref{comparing deltas: R} tells us that the same is true if instead $\denom$ is the denominator of a point in $\sp_{\QQ}(\collapse{A}, \collapse{\vv{u}})$.
-% \end{remark}
-
-% \begin{remark}
-%    \label{pair periodicity: R}
-%    If only $A$ is specified, then there exists a uniform integer $\denom$ such that \eqref{periodicity: e} holds for every monomial pair $(A, \vv{u})$ whenever $p \equiv q \bmod \denom$.
-%    Indeed, if $\denom$ is as a universal denominator, as in \Cref{universal denominator:  D}, then we may compute  $\udeficit(A, \vv{u}, q)$ and $\ushort(A, \vv{u}, q)$ for all monomial pairs $(A, \vv{u})$ and integers $q>0$ using a point in $\sp_{\QQ}(A, \vv{u})$ with denominator $\denom$.
-% \end{remark}
 
 We record another application of universal denominators below.
 
@@ -1758,30 +1512,6 @@ Thus, $\collapse{\ideala}$ and $\collapse{\ideald}$ are the images of $\ideala$ 
 We note that the collapsed ideal pair $(\collapse{\ideala},\collapse{\ideald})$ depends on the choice of the associated monomial pair $(A,\vv{u})$ associated to $(\ideala,\ideald)$.
 If this choice is irrelevant or clear from the context, then we shall omit the reference to the minimal face $\O$ when referring to collapsed ideal pairs.
 
-% \begin{remark}[An algebraic interpretation]
-%    \label{leftover p large: R}
-%    Let $(A, \vv{u})$ be a monomial pair associated to an ideal pair $(\ideala, \ideald)$.
-%    If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then the first conclusion of that theorem tells us that if $q > \beta$, then
-%    \[ \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(A, \vv{u},q). \]
-
-%    Next, we consider the algebraic implications of the description of the collapse of the optimal image of $\IP(A, \vv{u}, q)$ in \Cref{uniform uniform value and image: T}.
-%    For simplicity, we first consider the case that $\O = \mf(A, \vv{u})$ is bounded.
-%    In this case,  the collapse along $\O$ is the identity map, and so $\short\IP(A, \vv{u}, q) = \ushort(A, \vv{u},q)$.
-% In light of this, it follows from \Cref{shortfall motivation: R} that whenever $q >\beta$,
-% \[ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{w}}: \vv{w} \in \ushort(A,\vv{u},q)} \bmod \ideald^{[q]}.\]
-% In other words, the ``leftovers" of $\ideala^{\nu(\ideala, \ideald, q)}$ modulo $\ideald^{[q]}$, the diagonal ideal determined by $\vv{u}q$, differ from $\vv{u}q$ in a uniform way, at least when $q > \beta$.
-
-% When $\O$ is unbounded, the situation is slightly more complicated. \daniel{Return to this later;  you'll need to settle on how to describe collapses first}
-% \end{remark}
-
-% The following is a consequence of \Cref{comparing deltas: R,uniform uniform value and image: T}.
-
-% \begin{corollary}
-% Given a monomial matrix $A$, there exists an integer $\beta$ with the following property\textup:  If $q > \beta$ and $(A, \vv{u})$ is a monomial pair with $\O = \mf(A, \vv{u})$, then $\val \IP(A, \vv{u}, q) = \val \IP(\collapse{A}, \collapse{\vv{u}}, q)$ and $\ol{ \im \IP(A, \vv{u}, q)} = \im \IP(\collapse{A}, \collapse{\vv{u}}, q)$ where the overbar denotes collapse along $\O$.
-% \end{corollary}
-
-% \emily[inline]{The following could just replace the above statement?  Replace integer programming language with algebraic language? For instance, as follows?}
-
 \begin{corollary}
 \label{computing nu for large q: C}
    Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property\textup:
@@ -1795,22 +1525,6 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
    Wrap-up proof of BMS result.
 }
 
-% \pedro[inline]{
-%    This lemma appeared earlier in the section, and contained things we already knew (positivity and integrality).
-%    I removed those things, and what is left should go somewhere else (where it's used), maybe as a remark, maybe incorporated in another proof.
-% \begin{lemma}
-% \label{independence: L}
-% If $\collapse{A}$ is the collapse of $A$ along $\O = \mf(A, \vv{u})$ and $q>0$ is an integer, then no column of $\collapse{A}$ is less than any point in $\ushort(A, \vv{u}, q)$.
-% \end{lemma}
-% \begin{proof}
-%    Suppose $\vv{k}$ is optimal for $\ip = \ip(A,\vv{u},\vv{s},q)$, for some $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
-%    Then optimality implies that  $\collapse{A}( \vv{k} + \canvec_i) \not < \collapse{A} \tail{\vv{s}}_q$ for each standard basis vector $\canvec_i$ in the domain of $\collapse{A}$, and thus  $\collapse{A} \canvec_i \not < \collapse{A} \tail{\vv{s}}_q - \collapse{A} \vv{k}$.
-% \end{proof}
-
-
-% \daniel[inline]{I think it is OK to just omit this here, as it is noted (in a slightly more general context) in \Cref{sprouts as collapsed shortfall pairs: R}, which is probably a better location anyway.}
-% }
-
 \section{Arithmetic integer programs revisited}
 
 The remainder of this paper is dedicated to the study of the arithmetic integer programs $\IP_p(A, \vv{u}, p^e)$ described in \Cref{aip: D}, which perhaps unsurprisingly, turn out to be far more complex in nature than their non-arithmetic counterparts $\IP(A, \vv{u}, p^e)$.
@@ -1823,7 +1537,6 @@ We start with a technical lemma.
 
 \begin{lemma}
    \label{general AIP prep: L}
-%   Let $q$ be a power of $p$, and $e$ is a nonnegative integer.
    Consider nonnegative points $\vv{h}$ and $\vv{k}$ in the domain lattice of $A$, and set $\vv{g} = \vv{h} p^e + \vv{k}$ and $\vv{v} = \vv{u}q - A\vv{h}$.
    Then the following conditions are equivalent\textup:
    \begin{enumerate}[$(1)$]
@@ -1856,10 +1569,8 @@ We start with a technical lemma.
 \begin{theorem}
 \label{general AIP: T}
 If $q$ is a power of $p$, and $e$ is a nonnegative integer, then
-%
 \[  L \coloneqq \val \IP_p(A, \vv{u}, qp^e) -  \val \IP_p(A, \vv{u}, q)p^e  \]
 is nonnegative, at most $p^e-1$, and also at most
-%
 \[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \}\]
 where the maximum is over the finitely many points $\vv{v} \in \short \IP_p(A, \vv{u}, q)$.
 % \footnote{
@@ -1901,73 +1612,6 @@ where the union is over all $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ with $\val \
    and hence $L=M$, and $\vv{g}$ must be optimal for $\IP_p(A,\vv{u},qp^e)$.
    Finally, \eqref{eq: relating shortfalls} shows that $\vv{v}p^e - A\vv{k}$, an arbitrary point of $\short \IP_p(A,\vv{v},p^e)$, lies in $\short\IP_p(A,\vv{u},qp^e)$, establishing the reverse containment to \eqref{general comparison of shortfalls: e}.
 \end{proof}
-
-% \begin{theorem}
-% \label{general AIP: T}
-% If $q$ is a power of $p$, and $e$ is a nonnegative integer, then
-% %
-% \[  L \coloneqq \val \IP_p(A, \vv{u}, qp^e) -  \val \IP_p(A, \vv{u}, q)p^e  \]
-% is nonnegative, at most $p^e-1$, and also at most
-% %
-% \[ M \coloneqq \max \{ \val \IP_p(A, \vv{v}, p^e)  \}\]
-% where the maximum is over the finitely many points $\vv{v}$ in the shortfall of $\IP_p(A, \vv{u}, q)$.
-% % \footnote{
-% %    Recall that, as $A$ is a monomial matrix, the feasible set of $\IP_p(A, \vv{v}, q)$ is finite, and hence, so is the shortfall of this program.  In particular, this maximum value is well defined.
-% % }
-
-% If, in addition\daniel{I don't know of any case where $M$ is at least $p^e$, but it might be true in low characteristic.}, $M \le p^e-1$,  then $L=M$, and
-% \[  \short \IP_p(A, \vv{u}, qp^e) = \bigcup \short \IP_p(A, \vv{v}^{\ast}, p^e)\]
-% where the union is over all $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieve $M$.
-% \pedro{``that achieve $M$'': is this clear enough? Maybe replace with ``with $\val \IP_p(A, \vv{v}, p^e) = M$ (here and in the proof).}
-% \end{theorem}
-
-% \begin{proof}
-%    It is clear that multiplying a feasible point for $\IP_p(A, \vv{u}, q)$ by $p^e$ yields a feasible point for $\IP_p(A, \vv{u}, qp^e)$, from which it follows that $L\geq 0$.
-
-%    Next, consider $\vv{g} \in \opt \IP_p(A, \vv{u}, qp^e)$.
-%    Dividing by $p^e$, we write
-%    \[ \vv{g} = \vv{h} p^e + \vv{k}\]
-%    where $\vv{h}$ and $\vv{k}$ are nonnegative lattice points, and every coordinate of $\vv{k}$ is less than $p^e$.
-%    By \Cref{dickson: R}, the arithmetic constraint satisfied by $\vv{g}$ implies that $0 \not \equiv \binom{\norm{\vv{g}}}{\vv{g}} \equiv \binom{\norm{\vv{h}}}{\vv{h}} \binom{\norm{\vv{k}}}{\vv{k}} \bmod p$, so that both $\binom{\norm{\vv{h}}}{\vv{h}}$ and $\binom{\norm{\vv{k}}}{\vv{k}}$ must be nonzero modulo $p$.
-%    In particular, $\vv{h}$ satisfies the arithmetic constraint of $\IP_p(A,\vv{u},q)$, and it is easy to see that it also satisfies its linear constraint.
-
-%    Having established the feasibility of $\vv{h}$ for $\IP_p(A,\vv{u},q)$, we now demonstrate its optimality.
-%    Observe that, by virtue of being a remainder upon division by $p^e$, the base $p$ expansion of $\vv{k}$ is of the form $\vv{k} = \sum_{0 \leq s< e} \vv{k}_s  p^s$.
-%    As noted in \Cref{dickson: R}, the nonvanishing of $\binom{\norm{\vv{k}}}{\vv{k}}$ modulo $p$ tells us that $\norm{\vv{k}_s} < p$ for each $s$, and thus $\norm{\vv{k}} < p^e$.
-%    If $\vv{h}$ were not optimal for $\IP_p(A, \vv{u}, q)$, then there would exist $\vv{m}$ feasible for $\IP_p(A, \vv{u}, q)$ with $\norm{\vv{m}} \geq \norm{\vv{h}} + 1$, which would lead to a point $\vv{m}p^e$ feasible for $\IP_p(A, \vv{u}, qp^e)$ whose norm is
-%    \[ \norm{\vv{m}}  p^e \geq \norm{\vv{h}}  p^e + p^e >  \norm{\vv{h}}  p^e + \norm{\vv{k}} = \norm{\vv{g}}\]
-%    contradicting the optimality of $\vv{g}$.
-%    We conclude that $\vv{h} \in \opt \IP_p(A, \vv{u},q)$.
-
-%    This optimality, along with the definition of shortfalls, tells us that $\vv{v} \coloneqq \vv{u}q-A\vv{h}$ lies in the shortfall of $\IP_p(A, \vv{u},q)$.
-%    We may then express the linear constraint on $\vv{g}$ imposed by $\IP_p(A, \vv{u}, qp^e)$ as
-%    \[ \vv{u}qp^e > A \vv{g} = A \vv{h} p^e + A \vv{k} = (\vv{u}q-\vv{v})p^e + A \vv{k}\]
-%    which is equivalent to the constraint $A \vv{k} < \vv{v}p^e$.
-%    As we have already seen above that $\binom{\norm{\vv{k}}}{\vv{k}}$ is nonzero modulo $p$, it follows that $\vv{k} \in \feas \IP_p(A, \vv{v}, p^e)$.
-%    Putting everything together, we see that
-%    \[ L = \norm{\vv{g}}-\norm{\vv{h}}p^e = \norm{\vv{k}} \leq \min \{ p^e-1, \val \IP_p(A, \vv{v}, p^e) \} \leq \min \{ p^e-1, M \}.\]
-
-%    For the remainder of this proof, suppose that $M \leq p^e-1$.
-%    Consider a point  $\vv{v}^{\ast} \in \short \IP_p(A, \vv{u}, q)$ that achieves $M$, and write $\vv{v}^{\ast} = \vv{u}q - A \vv{h}^{\ast}$ for some $\vv{h}^{\ast} \in \opt \IP(A, \vv{u}, q)$.
-%    If $\vv{k}^{\ast} \in \opt \IP_p(A, \vv{v}^{\ast}, p^e)$, then $\norm{\vv{k}^{\ast}} = M \leq p^e-1$, and so every entry of $\vv{k}^{\ast}$ is at most $p^e - 1$.
-%    Thus, if $\vv{g}^{\ast} \coloneqq \vv{h}^{\ast} p^e + \vv{k}^{\ast}$, then \Cref{dickson: R} tells us that $\binom{\norm{\vv{g}^{\ast}}}{\vv{g}^{\ast}} \equiv  \binom{\norm{\vv{h}^{\ast}}}{\vv{h}^{\ast}} \binom{\norm{\vv{k}^{\ast}}}{\vv{k}^{\ast}} \not \equiv 0 \bmod p$.
-%    A direct computation will also show that $\vv{g}^{\ast}$ satisfies the linear constraint of  $\IP_p(A, \vv{u}, qp^e)$, which shows that $\vv{g}^{\ast}$ must be feasible for this program.
-%    It follows that
-%    \[ L \geq \norm{\vv{g}^{\ast}} - \norm{\vv{h}^{\ast}}p^e = \norm{\vv{k}^{\ast}} = M \]
-%    and hence $L=M$.
-
-%    It follows that $\vv{g}^{\ast}$ must be optimal for $\IP_p(A, \vv{u}, qp^e)$, and so the identity
-%    \[  \vv{v}^{\ast} p^e-A\vv{k}^{\ast} = (\vv{u}q-A\vv{h}^{\ast})p^e-A(\vv{g}^{\ast}-\vv{h}^{\ast}p^e) = \vv{u}qp^e-A \vv{g}^{\ast} \]
-%    demonstrates that $\vv{v}^{\ast} p^e-A\vv{k}^{\ast}$, an arbitrary point in the shortfall of $\IP_p(A, \vv{v}^{\ast}, p^e)$, lies in the shortfall of $\IP_p(A, \vv{u},qp^e)$, showing that
-%    \begin{equation}
-%       \label{general comparison of shortfalls: e}
-%       \bigcup_{\vv{v}^{\ast}} \short \IP_p(A, \vv{v}^{\ast}, p^e) \subseteq \short \IP_p(A, \vv{u}, qp^e).
-%    \end{equation}
-
-%    To establish the opposite containment, let $\vv{g}$ be the optimal point for $\IP_p(A, \vv{u}, qp^e)$ considered earlier in this argument, and write $\vv{g} = \vv{h} p^e + \vv{k}$ and $\vv{v} = \vv{u}q - A\vv{h}$, as above.
-%    As the reader may verify, now that we know that $L=M$, the optimality of $\vv{g}$ implies that $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ must also achieve $M$, and an argument similar to the one above will show that $\vv{u}qp^e - A \vv{g}$, which represents an arbitrary point in the shortfall of $\IP_p(A, \vv{u}, qp^e)$, equals $\vv{v}p^e-A\vv{k}$, a point in the shortfall of $\IP_p(A, \vv{v}, p^e)$.
-%    Thus, the containment of sets in \eqref{general comparison of shortfalls: e} must be an equality.
-% \end{proof}
 
 We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{general AIP: T}.
 
@@ -2175,31 +1819,8 @@ In view of the above lemma, \Cref{uniform uniform value and image: T} immediatel
    \qed
 \end{theorem}
 
-% \begin{theorem}
-%    \label{arithmetic uniform value and image: T}
-%    Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
-%    If $(A, \vv{u})$ is very small, and $p > \beta$, then the arithmetic integer program $\IP_p(A, \vv{u}, p)$ agrees with the standard integer program $\IP(A, \vv{u}, p)$.
-%    In particular, if $p > \beta$, then
-%    \[\deficit \IP_p(A,\vv{u},p)=\deficit \IP(A,\vv{u},p) = \udeficit(A,\vv{u},p) \]
-%    and
-%    \[ \collapse{\short \IP_p(A,{\vv{u}},p)}= \collapse{\short \IP(A,{\vv{u}},p)}= \ushort(A,\vv{u},p), \]
-%    where the overbar denotes collapse along $\O = \mf(A, \vv{u})$.
-% \end{theorem}
-
-% \begin{proof}
-%    If $\beta = \beta(A)$ is as in \Cref{uniform uniform value and image: T}, then
-%    \[ \val \IP(A, \vv{u}, p) = \ft{A}{\vv{u}} \cdot p - \udeficit(A, \vv{u}, p) \]
-%    for every $A$-pair $(A, \vv{u})$ and $p > \beta$.
-%    Suppose from here on that $(A,\vv{u})$ is very small and $p > \beta$.
-%    As $\ft{A}{\vv{u}} \leq 1$, the positivity of $\udeficit(A, \vv{u},p)$ implies that $\val\IP(A,\vv{u},p)\le p-1$.
-%    Consequently, every point $\vv{k}$ that is feasible for $\IP(A, \vv{u}, p)$ automatically satisfies the arithmetic constraint of $\IP_p(A, \vv{u}, p)$.
-%    We conclude that $\IP(A, \vv{u}, p) = \IP_p(A, \vv{u}, p)$, and our assertion follows from applying \Cref{uniform uniform value and image: T} once again.
-% \end{proof}
-
 \begin{remark} \label{program behavior small: R}
    \Cref{arithmetic uniform value and image: T}, together with the periodicity of universal deficits and shortfalls shown in \Cref{pair periodicity: R}, shows that for a very small pair $(A,\vv{u})$, the deficit and the collapse of the shortfall of  $\IP_p(A,\vv{u},p)$ along $\mf(A, \vv{u})$ do not depend on $p$,  but rather on the class of $p$ modulo a universal denominator for $A$.
-% For $(A, \vv{u})$ very small, \Cref{arithmetic uniform value and image: T} tells us that for $p \gg 0$, the programs $\IP = \IP(A, \vv{u},p)$ and $\IP_p = \IP_p(A, \vv{u},p)$ coincide, and consequently, the collapse of the shortfall along $\O = \mf(A,\vv{u})$ of $\IP_p$ equals that of $\IP$.
-% Hence, since the collapse of $\short \IP$ along $\O = \mf(A, \vv{u})$ does not depend on $p$,  but rather on the class of $p$ modulo a universal denominator (see \Cref{pair periodicity: R} and \Cref{uniform uniform value and image: T}), the collapse of $\short \IP_p$ is also independent of $p$.
 \end{remark}
 
 \begin{example}
@@ -2546,7 +2167,7 @@ In order to do so, we first build a technical framework in which to carry out ou
 
 
 \subsection{Subgraphs associated to pairs}
-%\emily{Transition added}
+
 We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from.
 
 \begin{definition}[Subgraphs associated to very small pairs]
@@ -2616,25 +2237,6 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    The matrix $B$ consists of the last two rows of $A$, while $C$ consists of the last row.
    Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ does not terminate---the last five levels shown in the picture repeat indefinitely.
 \end{example}
-
-% \begin{example}
-%    \label{ex: new example}
-%    \begin{figure}
-%       \centering
-%       \includegraphics[width=.5\textwidth]{pictures/sprouting_graph_3.pdf}
-%       \caption{The sprouting subgraph for \Cref{ex: new example}}
-%       \label{fig: sprouting graph 2}
-%    \end{figure}
-%    \Cref{fig: sprouting graph 2} shows the first seven levels of the sprouting subgraph associated to the pair $(A,\vv{u})$, where
-%    \[
-%       A = \begin{bmatrix} 6&12&9 \\ 14&5&11 \\ 14&6&9 \\4&6&1 \end{bmatrix}
-%       \quad\text{and} \quad
-%       \vv{u} =\begin{bmatrix} 5 \\ 6 \\ 6 \\ 10 \end{bmatrix}
-%    \]
-%    when $p$ is congruent to $5$ modulo a universal denominator for $A$.
-%    The matrix $B$ is obtained from $A$ by deleting the last row;  $C$ is obtained from $B$ by deleting the middle row; finally, $D$ and $E$ are the first and second rows of $C$, respectively.
-%    Unlike the previous example, here $\sprout^*_p(A,\vv{u})$ is infinite---the last two levels shown in the picture repeat indefinitely.
-% \end{example}
 
 \begin{definition}%[Numbers associated to the levels of $\sprout^*_p(A,\vv{u})$]
    \label{epsilon delta: D}
@@ -2889,48 +2491,6 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
    \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}.\]
 \end{example}
 
-% \begin{example}
-%    \label{ex: new example.2}
-%    \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, corresponding to the seven levels of the sprouting subgraph shown in \Cref{fig: sprouting graph 2}.
-%    \begin{table}
-%       \begin{center}
-%          \begingroup
-%          \setlength{\tabcolsep}{8pt} % Default value: 6pt
-%          \renewcommand{\arraystretch}{1.4} % Default value: 1
-%          \begin{tabular}{cccc}
-%            \toprule
-%            $e$ & $\epsilon_{p^e}(A,\vv{u})$ & $\delta_{p^e}(A,\vv{u})$ & $\val\IP_p(A,\vv{u},p^e)$ \\
-%            \midrule
-%            1 & $\frac{65}{112}$ & $\frac{101}{112}$ & $\frac{65}{112}p - \frac{101}{112}$\\
-%            2 & $\frac{101}{112}$ & $\frac{57}{112}$ & $\frac{65}{112}p^2 -\frac{57}{112}$ \\
-%            3 & $\frac{1}{2}$ & $\frac{1}{2}$ & $\frac{65}{112}p^3 - \frac{1}{112}p - \frac12$ \\
-%            4 & $\frac{35}{72}$ & $\frac{31}{72}$ & $\frac{65}{112}p^4 - \frac{1}{112}p^2 - \frac{1}{72}p - \frac{31}{72}$ \\
-%            5 & $\frac13$ & $\frac23$ & $\frac{65}{112}p^5 - \frac{1}{112}p^3 - \frac{1}{72}p^2 - \frac{7}{72}p -\frac23$ \\
-%            6 & $\frac23$ & $\frac13$ & $\frac{65}{112}p^6 - \frac{1}{112}p^4 - \frac{1}{72}p^3 - \frac{7}{72}p^2 -\frac13$ \\
-%            7 & $\frac13$ & $\frac23$ & $\frac{65}{112}p^7 - \frac{1}{112}p^5 - \frac{1}{72}p^4 - \frac{7}{72}p^3 -\frac23$ \\
-%            \bottomrule
-%          \end{tabular}
-%          \endgroup
-%          % The \begingroup ... \endgroup pair ensures the separation
-%          % parameters only affect this particular table, and not any
-%          % sebsequent ones in the document.
-%       \end{center}
-%       \caption{The data obtained for \Cref{ex: new example.2}}
-%       \label{table: new example data}
-%    \end{table}
-%    For any $e\ge 5$ we have
-%      \[
-%       \val\IP_p(A,\vv{u},p^e) =
-%       \begin{cases}
-%          \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac23 & \text{if $e$ is odd}\\
-%          \frac{65}{112}p^e - \frac{1}{112}p^{e-2} - \frac{1}{72}p^{e-3} - \frac{7}{72}p^{e-4} - \frac13 & \text{if $e$ is even}
-%       \end{cases}
-%    \]
-%    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then
-%    \[\crit(\ideala,\ideald) = \frac{65}{112} - \frac1{112 p^2} - \frac1{72 p^3} - \frac7{72 p^4} \]
-%    for any sufficiently large prime $p$ congruent to $5$ modulo a universal denominator for $A$.
-% \end{example}
-
 \subsection{Concerning non-leading coefficients}
 
 We now address the nonpositivity of the non-leading coefficients, claimed in \Cref{main theorem wrt diagonal: T}.
@@ -3032,25 +2592,9 @@ where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of
 % \emily[inline]{See below.}
 % \daniel[inline]{Thanks.}
 
-
 \todo[inline]{
    Find appropriate places for the next statement.  Proof calls upon \Cref{non-leading coefficients: L}.
 }
-
-
-
-%\newpage
-%
-%\section{Applications to generic hypersurfaces}
-%
-%\subsection{Generic hypersurfaces in large characteristics}
-%
-%
-%\begin{theorem}  Given a collection of non-constant monomials $\mathcal{M}$, there exists $\beta = \beta(\mathcal{M})$ with the following property:  If $p > \beta$, then the test ideals of a generic polynomial over a field of characteristic $p$ supported at $\mathcal{M}$
-%
-%\end{theorem}
-%
-%\subsection{Generic hypersurfaces in characteristic zero}
 
 \begin{proposition}
    Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the finitely many descendants of $A$.
@@ -3062,10 +2606,6 @@ for every very small $A$-pair $(A, \vv{u})$, and all $e \geq 1$.
 In particular, for such $p$ we have $\crit(A,\vv{u}) = \ft{A}{\vv{u}}$.
 \end{proposition}
 
-% \pedro[inline]{
-%    I modified the statement, replacing $\mu$ with $\val\IP_p$, to be consistent with previous theorems.
-%    However, we should think if we want to state these big theorems in terms of $\mu(\ideala,\ideald,p^e)$ instead.
-% }
 \begin{proof}
 We first prove the following claim:
 
@@ -3093,56 +2633,7 @@ Inductively, we conclude that for each $e\ge 1$, there exists a path $(A,\vv{u})
 Consequently, $\udeficit(A_i,\vv{u}_i,p) = \ft{A_i}{\vv{u}_i} = \ft{A}{\vv{u}}$, for each $1\le i \le e$.
 Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft{A}{\vv{u}}$, and the desired formula follows from
 \Cref{main theorem wrt diagonal: T}.
-% First, consider the following claim:
-%
-% \vspace{.2cm}
-%
-% \noindent \emph{Claim.} If $C$ is a descendant of $A$ and $(C, \vv{z})$ is a very small pair, then $\udeficit(C, \vv{z}, p) = \ft{C}{\vv{z}}$.
-%
-% \vspace{.2cm}
-%
-% Toward the claim, let $\vv{s}$ be a special point for $(C, \vv{z})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
-% Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie
-% $\tail{\vv{s}}_p = \vv{s}$.
-% If  $\Theta = \Theta(C, \vv{z}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{C}{\vv{z}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.  Hence $\udeficit(C, \vv{z}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{C}{\vv{z}}$.
-%
-% Let $\lambda = \ft{A}{\vv{u}}$. We now proceed by induction to show that $\epsilon_{p^s}(A,\vv{u})  =  \delta_{p^s}(A,\vv{u}) = \lambda$ for all $s \geq 1$ (so that in particular, $\mathcal{Q}_p(A,\vv{u})$ is infinite).
-% For $s=1$, notice that $\S_p^\ast = \{ (A, \vv{u} ) \}$, so that
-% $\lambda = \epsilon_{p^s}(A,\vv{u}) = \delta_{p^s}(A,\vv{u})$ by the above claim.
-%
-% Suppose now that $\epsilon_{p^s}(A,\vv{u})  =  \delta_{p^s}(A,\vv{u}) = \lambda$ for some $s \geq 1$.  Take any $(B, \vv{v}) \in \S_{p^s}^\ast$, and let an overbar denote collapse along $\O = \mf(B, \vv{v})$.
-% By \Cref{collapse of mf and mc: P},
-% $\ft{\overline{B}}{\overline{\vv{v}}} = \ft{B}{\vv{v}}  = \lambda$, and
-% noting \Cref{comparing deltas: R}, $\udeficit(\overline{B}, \overline{\vv{v}}, p) = \udeficit(B, \vv{v}, p) = \lambda$ as well.
-%
-% If $\vv{r}$ is a special point for $(\overline{B}, \overline{\vv{v}} )$, then $\vv{0}$ is feasible for $\Theta(B,\vv{v},\vv{r},p)$, as pointed out in the proof of \Cref{bounded value: P}.
-% This means that $\overline{\vv{v}} = \overline{B}\vv{r} = \overline{B}\tail{\vv{r}}_p - \overline{B} \, \vv{0}$ is in $\ushort(B, \vv{v}, p)$, and so $(\overline{B}, \overline{\vv{v}}) \in \S_{p^{s+1}}(A, \vv{u})$.
-%
-% Given an arbitrary $p$-sprout $(\overline{B}, \vv{w})$ of $(B, \vv{v})$, we have that
-% $\ft{\overline{B}}{\vv{w}} \leq
-% \udeficit(B, \vv{v}, p) = \lambda$ by \Cref{non-leading coefficients: L},  and in particular, $(\overline{B}, \vv{w})$ is very small.
-% Moreover, if $\ft{\overline{B}}{\vv{w}}$ achieves the maximum value among all such $p$-sprouts, namely $\lambda = \ft{\overline{B}}{\overline{\vv{v}}}$, then by our claim above,  $\udeficit(\overline{B},\vv{w},p) = \lambda = \udeficit(\overline{B}, \overline{\vv{v}}, p)$.
-% Hence $(\overline{B}, \overline{\vv{v}}) \in \S_{p^{s+1}}^\ast(A, \vv{u})$,
-% and since we have already found that $\ft{\overline{B}}{\overline{\vv{v}}} = \udeficit(\overline{B}, \overline{\vv{v}}, p)= \lambda$,
-%  we conclude that
-%  $\epsilon_{p^{s+1}}(A,\vv{u})  =  \delta_{p^{s+1}}(A,\vv{u}) = \lambda$, completing our inductive proof.
-%
-%
-% Finally, after replacing each $\epsilon_{p^s}(A,\vv{u})$ and $\delta_{p^s}(A,\vv{u})$, for  $1 \leq s \leq e$, with $\lambda$ in the statement of
-% \Cref{main theorem wrt diagonal: T}, we confirm that $\val \Pi_p(A, \vv{u}, p^e) = p^e \lambda - \lambda = (p^e-1)\lambda$, for all $p$ greater than some integer $\beta = \beta(A)$.
 \end{proof}
-
-% \pedro[inline]{
-%    We can probably shorten the proof a bit:
-%    First notice that the claim and \Cref{non-leading coefficients: L} imply that $p$-sprouts of very small pairs are themselves very small; in particular, $\S^*_q(A,\vv{u})$ is nonempty, for each $q$, and $\Q(A,\vv{u})$ is infinite.
-%    Let $(B,\vv{v}) \in \S^*_q(A,\vv{u})$.
-%    The proof of the claim shows that $(\collapse{B},\collapse{\vv{v}})$ is a $p$-sprout of $(B,\vv{v})$, and therefore an element of $\S_{pq}(A,\vv{u})$.
-%    Now notice that the claim implies that a pair in $\S_{pq}(A,\vv{u})$ lies in $\S^*_{pq}(A,\vv{u})$ if and only if it has maximal $F$-threshold.
-%    This observation, combined with \Cref{non-leading coefficients: L} and the claim, tells us that $(\collapse{B},\collapse{\vv{v}}) \in \S^*_{pq}(A,\vv{u})$.
-%    This shows that for each $e\ge 1$ there exists a path $(A,\vv{u}) = (A_1,\vv{u}_1) \to \cdots \to (A_e,\vv{u}_e)$ in $\sprout^*(A,\vv{u})$ where each pair is the collapse of the previous one along its minimal face, and consequently $\udeficit(A_i,\vv{u}_i,p) = \ft{A_i}{\vv{u}_i} = \ft{A}{\vv{u}}$, for each $1\le i \le e$.
-% }
-% \emily[inline]{OK, I removed the explicit induction and pruned it down. Feel free to edit further if you see fit.}
-% \pedro[inline]{Maybe add a quick corollary about crits?}
 
 \section{Consequences on generic hypersurfaces} \label{generic-hypersurfaces: S}
 
@@ -3159,7 +2650,7 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 \daniel[inline]{
 \begin{enumerate}
 \item  I changed the order of things here.  Can we talk about this more once everyone is able to take a look at the new organization?
-\item I think that we should start the appendix with an overview, but I think we should discuss what we think the main points are first.  For me, the main point is \Cref{mon-operation-modulo-p: T}, which states that $\mon$ commutes with reduction modulo $p \gg 0$.  But, we should also maybe highlight \Cref{reduce-to-monomial-case: C,invariants associated to a monomial ideal in large characteristic: C}, since these are what we cite in the main part of the article.
+\item I think that we should start the appendix with an overview, but I think we should discuss what we think the main points are first.  For me, the main point is \Cref{mon-operation-modulo-p: T}, which states that $\mon$ commutes with reduction modulo $p \gg 0$.  But, we should also maybe highlight \Cref{reduce-to-monomial-case: T,invariants associated to a monomial ideal in large characteristic: C}, since these are what we cite in the main part of the article.
 \item We may want to carefully contrast \Cref{mon-operation-modulo-p: T} with \cite[Lemma 6.1]{budur+mustata+saito.roots_bs_polys_monomial}.  The BMS result is very closely related, and our proof follows the roadmap established by them, but fills in a lot of details (\eg BMS simply asserts \Cref{monomial-noetherian-decomposition: L} but doesn't give a proof), and also works in the full framework of reduction to prime characteristic.
 
 However, we should also make clear that  \Cref{mon-operation-modulo-p: T} is not just a translation of BMS to this general framework.  The main mathematical merit of our generalization is that it concerns the $\mon$ operation in polynomial rings, while the BMS result concerns the $\mon$ operation (which they don't actually define) in a kind of odd way, and only in localizations of polynomial rings at the origin.
@@ -3181,8 +2672,8 @@ Indeed, if $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ generate $\mon(I)$ and $\tau_1, 
 \subsection{Results in a fixed prime characteristic}
 
 Throughout this subsection, $\kk$ is a field of prime characteristic $p$ and $R=\kk[x_1,\ldots,x_\numvars]$.
-Our main result here, \Cref{reduce-to-monomial-case: C}, allows us to apply our results on arithmetic integer programs to compute the values $\mu(\ideala,\idealb,p^e)$, where $\ideala \subseteq \sqrt \idealb$ are nonzero proper ideals in $R$, with $\ideala$ a monomial ideal.
-Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal.
+Our main result here, \Cref{reduce-to-monomial-case: T}, allows us to apply our results on arithmetic integer programs to compute the values $\mu(\ideala,\idealb,p^e)$, where $\ideala \subseteq \sqrt \idealb$ are nonzero proper ideals in $R$, with $\ideala$ a monomial ideal.
+Indeed, \Cref{reduce-to-monomial-case: T} will show that one can compute these values after replacing $\idealb$ with $\mon(\idealb)$, and even with a diagonal ideal.
 
 \begin{lemma}[$\mon$ commutes with standard Frobenius powers] \label{frobenius-powers+mon-commute: L}
    If $\idealb$ is an ideal of~$R$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e \in \NN$.
@@ -3211,14 +2702,14 @@ Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these v
 
 \begin{lemma}
    \label{quasi-diagonal to diagonal: L}
-   Suppose $\ideala$ and $I$ are nonzero proper ideals of $R$, where $\ideala$ is a monomial ideal, $I$ is generated by positive powers of a proper subset of the variables, and $\ideala \subseteq \sqrt{I}$.
-   Then there exists a diagonal ideal $\ideald$ in $R$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, I, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.
+   Suppose $\ideala$ and $\idealc$ are nonzero proper ideals of $R$, where $\ideala$ is a monomial ideal, $\idealc$ is generated by positive powers of a proper subset of the variables, and $\ideala \subseteq \sqrt{\idealc}$.
+   Then there exists a diagonal ideal $\ideald$ in $R$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.
 \end{lemma}
 
 \begin{proof}
-   We may assume that $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$, where $1 \leq t < \numvars$ and $w_i > 0$ for each $i$.
+   We may assume that $\idealc = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$, where $1 \leq t < \numvars$ and $w_i > 0$ for each $i$.
    Let $A$ be a monomial matrix associated to $\ideala$, and let $B$ be the matrix consisting of the first $t$ of the $\numvars$ rows of $A$.
-   Since $\ideala \subseteq \sqrt I = \ideal{x_1, \ldots, x_t}$, every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and thus every column of $B$ is nonzero.
+   Since $\ideala \subseteq \sqrt \idealc = \ideal{x_1, \ldots, x_t}$, every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and thus every column of $B$ is nonzero.
    Hence $B$ is a monomial matrix, and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$, it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.
    Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row of $A$ and any point in $\feas \LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
 
@@ -3227,60 +2718,35 @@ Indeed, \Cref{reduce-to-monomial-case: C} will show that one can compute these v
    Indeed, each linear constraint of $\IP_p(B, \vv{w}, p^e)$ is a constraint of $\IP_p(A, \vv{u},p^e)$, each additional linear constraint of $\IP_p(A, \vv{u},p^e)$ is automatically satisfied on $\IP_p(B, \vv{w},p^e)$ by our choice of $M$, and the arithmetic constraints of these programs are identical.
    Now, if $\ideald$ is the diagonal ideal associated to the point $\vv{u}$, then
    \[
-      \mu(\ideala, I, p^e) = \val\IP_p(B, \vv{w}, p^e)  = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)\text{ for every $e \in \NN$.}
+      \mu(\ideala, \idealc, p^e) = \val\IP_p(B, \vv{w}, p^e)  = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)\text{ for every $e \in \NN$.}
       \qedhere
   \]
 \end{proof}
 
 \begin{theorem}
-   \label{reduce-to-monomial-case: C}
+   \label{reduce-to-monomial-case: T}
    Suppose that $\ideala$ and $\idealb$ are nonzero proper ideals of $R$ with $\ideala$ a monomial ideal and $\ideala \subseteq \sqrt{\idealb}$.
    If we set $\idealc = \mon(\idealb)$,  then there exists a diagonal ideal $\ideald$ in $R$ associated to a positive point in $\NN^\numvars$ such that $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)$ for every natural number $e$.
    In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \idealc) = \crit(\ideala, \ideald)$.
-   \pedro{
-   Perhaps we should have a remark saying that the analogous result for $\nu$s was proven in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.
-   } 
 \end{theorem}
 
-\begin{proof}
-   Since $\ideala$ is a monomial ideal, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
+ 
+\begin{remark}
+   An analogous result holds for $\nu(\ideala,\idealb,p^e)$ and $\ft{\ideala}{\idealb}$; see \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.
+\end{remark}
+
+\begin{proof}[Proof of \Cref{reduce-to-monomial-case: T}]
+   Since $\ideala$ is a monomial ideal, a Frobenius power of $\ideala$ sits in~$\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.
    Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)\text{ for every $e\in \NN$.}\]
-   Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the variables raised to positive powers (see, \eg \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).
-   Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, 
+   Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = \idealc_1 \cap \cdots \cap \idealc_n$, where each $\idealc_i$ is generated by some subset of the variables raised to positive powers (see, \eg \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).
+   Thus, as $\idealc^{[p^e]} = \idealc_1^{[p^e]} \cap \cdots \cap \idealc_n^{[p^e]}$, 
    \[
-      \mu(\ideala, \idealc, p^e) = \max\{\mu(\ideala, I_i, p^e): 1\le i\le n\}\text{ for every $e\in \NN$}.
+      \mu(\ideala, \idealc, p^e) = \max\{\mu(\ideala, \idealc_i, p^e): 1\le i\le n\}\text{ for every $e\in \NN$}.
    \]
-   By \Cref{quasi-diagonal to diagonal: L}, the above remains true after replacing each $I_i$ with a suitable diagonal ideal $\ideald_i$ associated to a positive point of $\NN^\numvars$.
-   Furthermore, though the $\ideald_i$ that achieve the maximum may vary with $e$, \Cref{cor: mu comparison} guarantees that there exists an ideal $\ideald$ among the $\ideald_i$ such that
+   By \Cref{quasi-diagonal to diagonal: L}, the above remains true after replacing each $\idealc_i$ with a suitable diagonal ideal $\ideald_i$ associated to a positive point of $\NN^\numvars$.
+   Furthermore, though the ideals $\ideald_i$ that achieve the maximum may vary with $e$, \Cref{cor: mu comparison} guarantees that there exists an ideal $\ideald$ among the $\ideald_i$ such that
    \[\mu(\ideala, \idealc, p^e) = \mu(\ideala, \ideald, p^e)\text{ for every $e\in \NN$}.\qedhere\]
 \end{proof}
-
-% \begin{proof}
-%    As $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in $\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals
-% $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Thus, \[\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e).\]
-
-% Next, recall that the monomial ideal $\idealc = \mon(\idealb)$ can be written as an intersection $\idealc = I_1 \cap \cdots \cap I_n$, where each $I_i$ is generated by some subset of the ambient variables raised to positive powers (\eg see \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA}).  Thus, as $\idealc^{[p^e]} = I_1^{[p^e]} \cap \cdots \cap I_n^{[p^e]}$, it follows that $\mu(\ideala, \idealc, p^e)$ is the maximum among the  $\mu(\ideala, I_i, p^e)$.    Furthermore, though the ideals that achieve this maximum may vary as $e$ grows, \Cref{cor: mu comparison} guarantees that there exists an ideal $I$ among the $I_i$ such that $\mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e)$ for every $e$.
-% \pedro{
-%    Here we are using a result about $\mu$'s with respect to diagonal ideals (associated to positive points).
-%    It seems that we need to do the reduction to diagonal ideals that is done below beforehand.
-%    Maybe in a lemma?
-% }
-% After possibly reordering the variables,  we may assume that there exists $1 \leq t \leq \numvars$ and positive integers $w_i$ for each $1 \leq i \leq t$ such that $I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$.
-
-% Let $A$ be a monomial matrix associated to $\ideala$, which necessarily has $m$ rows, and let $B$ be the matrix consisting of the first $t$ rows of $A$.  If some column of the truncated matrix $B$ were zero, then some monomial generator of $\ideala$ would not be divisible by $x_i$  for all $1 \leq i \leq t$, which is impossible, since  $\ideala \subseteq \idealc \subseteq I = \ideal{x_1^{w_1}, \ldots, x_t^{w_t}}$ and each $w_i$ is positive. Hence $B$ is a monomial matrix,  and so if we define $\vv{w} = (w_1, \ldots, w_t) \in \NN^t$,   it follows that the feasible set of the linear program $\LP(B, \vv{w})$ is compact.  Therefore, there exists a positive integer $M$ such that the inner product of the $i$-th row and any point in the feasible set of $\LP(B, \vv{w})$ is less than $M$ for each $t < i \leq m$.
-
-% Let $\vv{u} \in \NN^n$ be the vector whose $i$-th coordinate is $w_i$ for $1 \leq i \leq t$, and is $M$ for $t < i \leq \numvars$.  We claim that the feasible sets of the arithmetic integer programs $\IP_p(A,\vv{u},p^e)$ and $\IP_p(B,\vv{w},p^e)$ agree for each natural number $e$.  Toward this,  note that the arithmetic constraints of these programs are identical, and also that the program $\IP_p(A, \vv{u}, p^e)$  has \emph{at least} as many linear constraints as $\IP_p(B, \vv{w},p^e)$, and so
-% $\feas \IP_p(A, \vv{u}, p^e)$ lies in $\feas \IP_p(B, \vv{w}, p^e)$.
-
-% Next, consider a point $\vv{k} \in \feas \IP_p(B, \vv{w},p^e)$.  Then, the normalized point $\vv{k}/p^e$ must lie in $\feas\LP(B,\vv{w})$, and so the inner product of $\vv{k}/p^e$ with the $i$-th row of $A$ is less than $M$ for each $t < i \leq m$.    Restated, the inner product of $\vv{k}$ with the $i$-th row of $A$ is less than $u_ip^e = Mp^e$ for each $t < i \leq m$, while the feasibility of $\vv{k}$ for $\IP_p(B,\vv{w},p^e)$ implies that the inner product of the $i$-th row of $A$ is less than $w_ip^e = u_ip^e$ for $1 \leq i \leq t$.  In other words, $A \vv{k} < \vv{u}p^e$, which implies that $\vv{k} \in \feas \IP_p(A,\vv{u},p^e)$, and establishes our claim.
-
-% In summary, if $e$ is an arbitrary natural number, then
-% \begin{align*}
-%  \mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e) = \mu(\ideala, I, p^e) & = \val\IP_p(B, \vv{w}, p^e) \\
-%  & = \val \IP_p(A, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e)
-% \end{align*}
-% where $\ideald$ is the diagonal ideal associated to the positive point $\vv{u} \in \NN^\numvars$.
-% \end{proof}
  
 \subsection{Reduction to prime characteristic}
 
@@ -3347,28 +2813,6 @@ In \Cref{expansion of monomial mod most p is monomial: C} below, we will see tha
    Likewise, $B \otimes_A J \cong JB[x]$, so \eqref{eq: exact seq} tells us that $B \otimes_A (J/I) \cong J B[x]/I B[x]$.
 \end{proof}
 
-% \begin{proof} Consider the exact sequence $0 \to J \to A[x] \to A[x]/J \to 0$ of finitely generated $A[x]$-modules.  This sequence remains exact when regarding its terms as $A$-modules, and as the localization $A[\ell^{-1}]$ of $A$ at $0 \neq \ell \in A$ is flat over $A$, we have that
-% \[ 0 \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A A[x] \to A[\ell^{-1}] \otimes_A (A[x]/J) \to 0 \]
-% is an exact sequence of $A[\ell^{-1}]$-modules.
-% By generic freeness over $A$, we may assume that the last term is free over $A[\ell^{-1}]$.
-% Thus, as it terminates on a free module, this sequence is a split exact sequence of $A[\ell^{-1}]$-modules, and as split exactness is preserved by base change, taking the tensor product of this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$ yields a split exact sequence  of $B$-modules
-% %
-% \[ 0 \to B \otimes_A J \to B \otimes_A A[x] \to B \otimes_A (A[x]/J) \to 0. \]
-% %
-% The middle term above is isomorphic to $B[x_1, \ldots, x_\numvars]=B[x]$,  and the first non-trivial map, which is injective, then identifies $B \otimes_A J$ with $JB[x]$.
-
-% Next, consider the exact sequence $0 \to I \to J \to J/I \to 0$.  Once again, by generic freeness, after replacing $\ell$ with a nonzero $A$-multiple, we may also assume that
-% %
-% $0 \to A[\ell^{-1}] \otimes_A I \to A[\ell^{-1}] \otimes_A J \to A[\ell^{-1}] \otimes_A (J/I) \to 0$
-% is a split exact sequence of $A[\ell^{-1}]$-modules that terminates on a free $A[\ell^{-1}]$-module of free rank $0 \leq \rho \leq \infty$.  Thus, if $B$ is an $A[\ell^{-1}]$-algebra, then
-% %
-% \[ 0 \to B \otimes_A I \to B \otimes_A J \to B \otimes_A (J/I) \to 0\]
-% %
-% is exact over $B$, and terminates on a free $B$-module of rank $\rho$.  However, we have already seen earlier that $B \otimes_A J \cong JB[x]$, from which it follows that the above exact sequence is isomorphic to the exact sequence
-%  \[ 0 \to I  B[x] \to J B[x] \to  J B[x] /IB[x]  \to 0\]
-%  of $B$-modules whose last term is free of rank $\rho$.
-% \end{proof}
-
 \begin{corollary}
 \label{containment in radical mod p: C}
 Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of $R = \kk[x_1, \ldots, x_\numvars]$ with $I \subseteq \sqrt{J}$.  If $A$ is any finitely generated $\ZZ$-subalgebra of $\kk$ that supports models $I_A$ and $J_A$, then there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that $I_A(\idealm) \subseteq \sqrt{J_A(\idealm)}$ for every $\idealm \in \mathcal{U}$.
@@ -3378,38 +2822,15 @@ Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are id
    Fix $t \in \NN$ such that $I^t \subseteq J$, and $\ell \in A \setminus \{0\}$ that satisfies the conclusion of \Cref{comparing expansions:  P} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
    As $R = \kk[x]$, we have $I_A^t \kk[x]  = I^t \subseteq J = J_A \kk[x]$, which is equivalent to $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.
    Setting $B_{\circ} = \kk$ in \Cref{comparing expansions:  P}, we see that
-%
 \begin{equation}
 \label{step in radical containment: e}
  J_A B[x] = (I_A^t +J_A)B[x]
 \end{equation}
-%
 for every $A[\ell^{-1}]$-algebra $B$.
 
 Let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that $\operatorname{char}(A/\idealm) \nmid \ell$, a dense open subset of $\mspec(A)$.
 If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \eqref{step in radical containment: e} tells us that $J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)$, so $I_A(\idealm)^t \subseteq J_A(\idealm)$.
 \end{proof}
-
-% \begin{proof}
-%    Fix $t \in \NN$ such that $I^t \subseteq J$, and suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{comparing expansions:  P} relative to the containment of ideals $J_A \subseteq I_A^t + J_A$ in $R_A$.
-
-% As $R=\kk[x_1, \ldots, x_\numvars] = \kk[x]$, we have that $I_A \kk[x] = I_A R = I$, and likewise, that $J_A\kk[x] = J$.  Therefore, the containment $I^t \subseteq J$ may be written as $I_A^t \kk[x] \subseteq J_A \kk[x]$
-% %
-% which is equivalent to the equality of ideals $J_A \kk[x] = I_A^t \kk[x] + J_A \kk[x] = (I_A^t +J_A)\kk[x]$.  Given this, we may then set $B_{\circ} = \kk$ in \Cref{comparing expansions:  P} to see that
-% %
-% \begin{equation}
-% \label{step in radical containment: e}
-%  J_A B[x] = (I_A^t +J_A)B[x]
-% \end{equation}
-% %
-% for every $A[\ell^{-1}]$-algebra $B$.
-
-% Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that $\operatorname{char}(A/\idealm) \nmid \ell$.  Note that $\mathcal{U}$ is an open dense (\ie open and nonempty) subset of $\mspec(A)$.  If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and setting $B=A/\idealm$ in \eqref{step in radical containment: e} tells us that
-% %
-% $J_A (\idealm) = I_A(\idealm)^t + J_A(\idealm)$
-% %
-% which implies that $I_A(\idealm)^t \subseteq J_A(\idealm)$.
-% \end{proof}
 
 \begin{corollary}
    \label{expansion of monomial mod most p is monomial: C}
@@ -3456,29 +2877,6 @@ If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and
     which shows that $(J:_{A[x]} f)B[x] = (JB[x] :_{B[x]} f)$.
 \end{proof}
 
-% \begin{proof}
-%     Consider the exact sequence
-%     \[
-%        0 \to (J :_{A[x]} f) \to A[x] \stackrel{f}{\longrightarrow} (f A[x] + J)/J \to 0
-%     \]
-%     of finitely generated $A[x]$-modules.
-%     We may tensor this exact sequence of $A$-modules with the flat $A$-module $A[\ell^{-1}]$ over $A$ to obtain an exact sequence of $A[\ell^{-1}]$-modules, where $0 \neq \ell \in A$.
-%     By generic freeness, we may assume that the last term in such a sequence is free over $A[\ell^{-1}]$, and so if we further tensor this sequence with an $A[\ell^{-1}]$-algebra $B$ over $A[\ell^{-1}]$, we obtain
-%     \[
-%        0 \to B \otimes_A (J :_{A[x]} f) \to B \otimes_A A[x] \stackrel{f}{\longrightarrow} B \otimes_A ((f A[x] + J)/J) \to 0
-%     \]
-%     which is  a split exact sequence of $B$-modules.
-%     Furthermore, as in the proof of \Cref{comparing expansions:  P}, the isomorphism $B \otimes_A A[x] \cong B[x_1, \ldots, x_\numvars]=B[x]$ induces an isomorphism between the above exact sequence and the exact sequence
-%     \[
-%        0 \to (J :_{A[x]} f) B[x] \to  B[x] \stackrel{f}{\longrightarrow} (f A[x] + J)B[x]/JB[x] \to 0.
-%     \]
-%     However, the last term above equals $(fB[x] + JB[x])/JB[x]$, which shows that
-%     \begin{align*}
-%       (J:_{A[x]} f)B[x] &= \ker ( B[x] \stackrel{f}{\longrightarrow} (fB[x] + JB[x])/JB[x])\\
-%       & = (JB[x] :_{B[x]} f). \qedhere
-%     \end{align*}
-% \end{proof}
-
 \begin{corollary}[The formation of colon ideals commutes with most reductions to prime characteristic]
    \label{colon mod p: C}
    Let $\kk$ be a field of characteristic zero, and $I$ an ideal of $R=\kk[x_1, \ldots, x_\numvars]$.
@@ -3496,12 +2894,6 @@ If $\idealm \in \mathcal{U}$, then $A/\idealm$ is an $A[\ell^{-1}]$-algebra, and
        \qedhere
     \]
 \end{proof}
-
-% \begin{proof}
-% Suppose that $0 \neq \ell \in A$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideal $J=I_A$ and polynomial $f \in R_A$.  We may then take $B=\kk$ in \Cref{colon mod p: P} to see that $(I_A:_{R_A} f)R = (I :_{R} f)$, which demonstrates that $(I_A :_{R_A} f)$ is an $A$-model for $(I :_R f)$.  Next, let $\mathcal{U}$ denote the set of all points $\idealm \in \mspec(A)$ such that the characteristic of $A/\idealm$ does not divide $\ell$.  If $\idealm \in \mathcal{U}$, then we may instead take $B=A/\idealm$ in \Cref{colon mod p: P} to see that
-% \[  (I_A:_{R_A} f)R_A(\idealm) = (I_A(\idealm) :_{R_A(\idealm)} f_A(\idealm)) \]
-% which concludes our proof, as the left-most term above is $((I :_R f))_A(\idealm)$.
-% \end{proof}
 
 In \Cref{all monomial colons: C} below, we will show that the element $\ell$ in \Cref{colon mod p: P} can be chosen independently of $f$ when $f$ is a monomial.
 In its proof, we will use a basic property of colon ideals:  If $I$ is an ideal of an arbitrary commutative ring $R$, then
@@ -3527,7 +2919,6 @@ In its proof, we will use a basic property of colon ideals:  If $I$ is an ideal 
    and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
 
 After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusion of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
-%
 \[ (J:_{A[x]} x^{\vv{u}})B[x] = (J:_{A[x]} x^{\phi(\vv{u})})B[x] = (JB[x]:_{B[x]} x^{\phi(\vv{u})}) = (JB[x]:_{B[x]} x^{\vv{u}}). \qedhere\]
 \end{proof}
 
@@ -3568,36 +2959,15 @@ In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{
 \[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm$ in some dense open subset of $\mspec(A)$. \qed
 \end{theorem}
 
-% \begin{proof}
-%     Suppose that $\ell \in A \setminus \{0\}$ satisfies the conclusion of \Cref{all monomial colons: C}.  Furthermore, the identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$, and so after replacing $\ell$ with a nonzero multiple, we may also suppose that $\ell$ satisfies the conclusions of \Cref{comparing expansions:  P} relative to every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$.
-
-
-% We require one more condition on $\ell$.  As described in \Cref{single multiplier: R}, we may fix $0 \neq a \in A$ such that if $x^{\vv{u}} \in  A[x]$,  then $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.  After replacing $\ell$ with $a \ell$, we may also assume that $a$ is a unit in $A[\ell^{-1}]$.
-
-% For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.  If $x^{\vv{u}} \in \mon(J)$, then $a x^{\vv{u}} \in J \subseteq JB[x]$.  Furthermore, as $a$ is a unit in $A[\ell^{-1}]$, it must map to a unit in $B$, which allows us to conclude that $x^{\vv{u}} \in \mon(JB[x])$.   %As $x^{\vv{u}} \in \mon(J)$ was arbitrary, this demonstrates that $\mon(J) B[x]$ lies in $\mon(J B[x])$.
-
-% Next, instead suppose that $x^{\vv{u}} \in \mon(JB[x])$.  As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and  \Cref{all monomial colons: C} allows us to rewrite this as \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
-% \Cref{comparing expansions:  P}, and our choice of $\ell$, then implies that $(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}] = A[\ell^{-1}]$.  Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, which implies that $x^{\vv{u}} \in \mon(J)$.
-% \end{proof}
-
-% In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{mon-operation-general-expansion: T} implies the following result.
-
-% \begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
-% \label{mon-operation-modulo-p: T}
-% Let $\kk$ be a field of characteristic zero, and consider an ideal $I$ of the polynomial ring $R=\kk[x_1, \ldots, x_{\numvars}]$.  If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.  Furthermore, with this choice of $A$-model, there exists a dense open set $\mathcal{U} \subseteq \mspec(A)$ such that
-% \[ (\mon(I))_A(\idealm) \coloneqq \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm \in \mathcal{U}$. \qed
-% \end{theorem}
-
-
 \begin{corollary}
    \label{invariants associated to a monomial ideal in large characteristic: C}
    Let $\kk$ be a field of characteristic zero, and suppose that $I$ and $J$ are ideals of  $R=\kk[x_1, \ldots, x_\numvars]$, with $I$ a monomial ideal and $I \subseteq \sqrt{J}$.
    If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ supporting models $I_A$ and $J_A$, then there exists a monomial ideal $L \subseteq R$, an $A$-model $L_A \subseteq R_A$, and a dense open set $\mathcal{U} \subseteq \mspec(A)$ with the following property\textup:
    If $\idealm \in \mathcal{U}$ and $p = \operatorname{char}(A/\idealm)$, then there exists a diagonal ideal $\ideald$
    \daniel{
-      I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: C}.
+      I think we can actually pick the ideal $\ideald$ so that it is the reduction of a diagonal ideal containing $\mon(J)$, as in the proof of \Cref{reduce-to-monomial-case: T}.
       The point is that it shouldn't really involve $p$, say, in any of its generators.
-      This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: C}, as opposed to simply citing it.
+      This will lead to a more complicated statement, and the proof will have to invoke the proof of \Cref{reduce-to-monomial-case: T}, as opposed to simply citing it.
       What do you guys think about this?
    }
    in $R_A(\idealm)$ associated to a positive point in $\NN^\numvars$ such that
@@ -3611,15 +2981,17 @@ In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, \Cref{
    \]
 \end{corollary}
 
-\begin{proof}  Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusion of \Cref{containment in radical mod p: C} holds for $I$ and $J$, the conclusion of \Cref{expansion of monomial mod most p is monomial: C} holds for $I$, and the conclusion of \Cref{mon-operation-modulo-p: T} holds for $J$.  Fix a point $\idealm \in \mathcal{U}$.
+\begin{proof}
+   Let $\mathcal{U} \subseteq \mspec(A)$ be a dense open set such that the conclusion of \Cref{containment in radical mod p: C} holds for $I$ and $J$, the conclusion of \Cref{expansion of monomial mod most p is monomial: C} holds for $I$, and the conclusion of \Cref{mon-operation-modulo-p: T} holds for $J$.
+   Fix a point $\idealm \in \mathcal{U}$.
 
-\Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\idealm)$ is a monomial ideal contained in the radical of $J_A(\idealm)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\idealm) = \mon(J_A(\idealm))$.    Our claims then follow from \Cref{reduce-to-monomial-case: C}.
+   \Cref{expansion of monomial mod most p is monomial: C,containment in radical mod p: C} tell us that $I_A(\idealm)$ is a monomial ideal contained in the radical of $J_A(\idealm)$, while if we set $L=\mon(J)$, then \Cref{mon-operation-modulo-p: T} tells us that $L_A = \mon(J_A)$ is a model for $L$, and that $L_A(\idealm) = \mon(J_A(\idealm))$.
+   Our claims then follow from \Cref{reduce-to-monomial-case: T}.
 \end{proof}
 
 {\small
 \bibliographystyle{amsalpha}
 \bibliography{bibdatabase}
 }
-
 
 \end{document}
