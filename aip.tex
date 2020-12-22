@@ -18,6 +18,7 @@ TO DO LIST:
     \begin{itemize}
        \item Done for all definitions but $\epsilon_{p^e}$ and $\delta_{p^e}$.
        \item Done for most theorems.
+       \item Done for most examples.
     \end{itemize}
     While some of these are reasonable summaries/titles, others may feel forced.
     Feel free to delete or modify them.
@@ -276,8 +277,8 @@ Our goal here, and for much of the rest of the article, is to study the integers
 As will soon be apparent, it is natural to do so in terms of various optimization problems.
 
 \begin{remark} \label{reduction to diagonal :R}
-   This context might seem restrictive, given that our ultimate goal is to understand the nature of those numerical invariants when the diagonal ideal $\ideald$ is replaced with an arbitrary ideal $\idealb$.
-   However, as we explain in \Cref{monomial-reduction: A}, understanding the situation for all ideal pairs $(\ideala, \ideald)$ with $\ideala$ fixed, but $\ideald$ varying, leads to \Cref{general-nu-theorem: T,general-mu-theorem: T}.
+   This context might seem restrictive, given that our ultimate goal is to understand the nature of those numerical invariants when the diagonal ideal~$\ideald$ is replaced with an arbitrary ideal $\idealb$.
+   However, as we explain in \Cref{monomial-reduction: A}, understanding the situation for all ideal pairs $(\ideala, \ideald)$ with $\ideala$ fixed, but $\ideald$ varying, leads to \Cref{main theorem}.
 \end{remark}
 
 To transition from algebra to optimization, fix a monomial pair $(A, \vv{u})$ associated to $(\ideala, \ideald)$, as described in \Cref{associate of pairs: R}.  In particular, $A$ is an $\numvars \times n$ monomial matrix, $\vv{u} \in \ZZ^\numvars$ is a positive lattice point, and
@@ -377,7 +378,7 @@ Turning to the critical exponents $\crit(\ideala, \ideald)$, the identity \eqref
 In what follows, in analogy with \Cref{ft as val LP: P}, we seek to relate these quantities to the value of a variant of a linear program that we call a \emph{fractal linear program}.  To do so, we require the following concept.
 
 \begin{definition}[Sierpi\'nski gasket]
-\label{sierpinski: D}
+   \label{sierpinski: D}
    The \emph{Sierpi\'nski $p$-gasket of dimension $n$} is the set $\sierp_{p,n}$ consisting of all points $\vv{t}\in \RR^n$ for which there exist $s \in \ZZ$ and a sequence of points $( \vv{t}_e )_{e=s}^\infty$ in $\NN^n$ such that $\norm{\vv{t}_e} < p$ for all $e \geq s$, and
  \[
 \vv{t} = \sum_{e=s}^{\infty} \frac{\vv{t}_e}{p^e}.
@@ -392,17 +393,20 @@ Recall that every point $t \in [0,1]$ either has a unique base $p$ expansion, wh
 Thus, if $\vv{t} \in [0,1]^n$ is such that no component of $p^k \vv{t}$ is an integer for each $k \in \NN$, then there is a unique sequence $( \vv{t}_e )_{e=1}^{\infty}$ in $ \NN^n$ such that $\vv{t} = \sum_{e=1}^{\infty} \frac{\vv{t}_e}{p^e}$, and such point lies in ${\sierp}_{p,n}$ if and only if $\norm{\vv{t}_e} < p$ for every  $e$.
 However, things can be more subtle when some $p^k \vv{t}$ has an integer component.
 
-\begin{example}
-If $p=2$, then $(1/4, 1/4) \in \sierp_{2,2}$.  Indeed, for the first component, take the non-terminating binary expansion $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$, and for the second component, simply take the expansion $\frac{1}{4} = \frac{1}{2^2}$.  Note that if one instead considered the non-terminating expansion for both components, or the terminating expansion for both components, then the resulting expansion of $(1/4, 1/4)$ would fail to satisfy the condition in \Cref{sierpinski: D}.
+\begin{example}[A point of $\sierp_{2,2}$]
+   If $p=2$, then $(1/4, 1/4) \in \sierp_{2,2}$.
+   Indeed, for the first component, take the non-terminating binary expansion $\frac{1}{4} = \frac{1}{2^3} + \frac{1}{2^4} + \frac{1}{2^5} + \cdots$, and for the second component, simply take the expansion $\frac{1}{4} = \frac{1}{2^2}$.
+   Note that if one instead considered the non-terminating expansion for both components, or the terminating expansion for both components, then the resulting expansion of $(1/4, 1/4)$ would fail to satisfy the condition in \Cref{sierpinski: D}.
 \end{example}
 
 This description of the Sierpi\'nski $p$-gasket in terms of expansions is not hard to translate geometrically into its description as a fractal.
 
-\begin{example}
-\label{sierpinski triangle: E}
-The set $\sierp_{2,2} \cap [0,1]^2$ is the familiar Sierpi\'nski triangle, together with the line segments connecting $(1,0)$ to $(1,1)$, and $(1,1)$ to $(0,1)$.
-Indeed, the points $\vv{t}$ in the unit square $[0,1]^2$ that have \emph{no} binary expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ as above with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  $T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}$.
-At the next stage, the points $\vv{t} \in [0,1]^2$ with \emph{no} expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ with both  $\norm{\vv{t}_1} < 2$ and $\norm{\vv{t}_2} < 2$ are those in the union of open triangles $T$ and $\frac{1}{2} T$.  The condition on expansions at the third place removes three additional open triangles from this set, namely $\frac14 T$, $\frac14 T + (\frac12,0)$, and $\frac14 T + (0,\frac12)$, and we continue analogously.
+\begin{example}[Geometric description of $\sierp_{2,2}$]
+   \label{sierpinski triangle: E}
+   The set $\sierp_{2,2} \cap [0,1]^2$ is the familiar Sierpi\'nski triangle, together with the line segments connecting $(1,0)$ to $(1,1)$, and $(1,1)$ to $(0,1)$.
+   Indeed, the points $\vv{t}$ in the unit square $[0,1]^2$ that have \emph{no} binary expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ as above with $\norm{\vv{t}_1} < 2$ are precisely the points in the open triangle  $T = \{ (a,b) \in \RR^2 : a,b < 1, a+b > 1 \}$.
+   At the next stage, the points $\vv{t} \in [0,1]^2$ with \emph{no} expansion $\vv{t} = \sum_{e=1}^{\infty}\frac{\vv{t}_e}{2^e}$ with both  $\norm{\vv{t}_1} < 2$ and $\norm{\vv{t}_2} < 2$ are those in the union of open triangles $T$ and $\frac{1}{2} T$.
+   The condition on expansions at the third place removes three additional open triangles from this set, namely $\frac14 T$, $\frac14 T + (\frac12,0)$, and $\frac14 T + (0,\frac12)$, and we continue analogously.
 \end{example}
 
 As suggested by \Cref{sierpinski triangle: E}, each $\sierp_{p,n}$  can be realized by removing a union of open simplices from $\RRnn^n$, and hence, is a closed set.
@@ -446,7 +450,8 @@ Thus, $\feas \fip_p(A, \vv{u})$ is compact, and so the value of $\fip_p(A, \vv{u
 which is a well-defined real number.
 As usual, we define the optimal set of $\fip_p(A, \vv{u})$ to be the set $\opt \fip_p(A, \vv{u})$ of feasible points where this maximum is attained.
 
-\begin{example} \label{ex: feas fip}
+\begin{example}[A simple fractal linear program, in various characteristics]
+   \label{ex: feas fip}
    Consider the fractal linear program $\fip_p = \fip_p(A, \vv{u})$, where
 \[ A = \begin{bmatrix}
  3&11\\ 11&2 \\ 5&10 \\ 2&0
@@ -705,7 +710,8 @@ This motivates the following definition.
    Multiplying by $\lambda$, we see that  $\lambda\vv{s}$ is feasible for $\LP$, and so the value of $\LP$ is at least $\lambda$.
 \end{proof}
 
-\begin{example}\label{ex: ft}
+\begin{example}[A running example]
+   \label{ex: ft}
    We examine the different characterizations of $\ft{A}{\vv{u}}$ given in \Cref{FT descriptions: P}, for
    \[A=\begin{bmatrix}5&3&4\\ 5&4&3\\ 2&8&5\end{bmatrix} \quad \text{and} \quad \vv{u} =
       \begin{bmatrix} 1 \\ 1\\ 1 \end{bmatrix}.\]
@@ -741,7 +747,7 @@ This motivates the following definition.
    \[\ft{A}{\vv{u}} = \val \LP = \bigg\|\bigg(\frac1{17}, 0, \frac3{17}\bigg)\bigg\| = \frac4{17}.\]
 \end{example}
 
-\begin{example}
+\begin{example}[The homogeneous $\idealm$-primary case]
    \label{ex: m-primary homogeneous case}
    Let $\idealm$ be the maximal ideal of  $\kk[x_1,\ldots,x_\numvars]$ generated by the variables, and let $\ideala$ be an $\idealm$-primary ideal generated by monomials of the same degree $d$ under a positive $\ZZ$-grading.
    Let $\vv{w} = (\deg x_1,\ldots,\deg x_\numvars)$.
@@ -852,7 +858,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
   But this shows that $\sp(A,\vv{u})$ is empty---a contradiction.
 \end{proof}
 
-\begin{example}
+\begin{example}[Running example: special and optimal points]
    \label{ex: ft.1}
    The containments asserted in \Cref{opt versus mc: P} may all be proper.
    Indeed, if $A$, $\vv{u}$, and $\O$ are as in \Cref{ex: ft}, then $\opt \LP(A,\vv{u})$, highlighted in green in \Cref{fig: splitting polytope}, is the line segment connecting $\vv{s}_0 = (2/17, 1/17, 1/17)$ and $\vv{s}_1 = (1/17, 0, 3/17)$.
@@ -887,7 +893,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
    lies in $\sp_{\QQ}(A, \vv{u})$ and has denominator $(\numvars-1)\denom_{\circ}$.
 \end{proof}
 
-\begin{example}
+\begin{example}[A universal denominator for the homogeneous $\idealm$-primary case]
    \label{ex: m-primary homogeneous case 2}
    As in \Cref{ex: m-primary homogeneous case}, let $A$ be a monomial matrix associated to an $\idealm$-primary ideal generated by monomials of the same degree $d$ under a positive $\ZZ$-grading.
    Then $d$ is a universal denominator for $A$.
@@ -1002,7 +1008,7 @@ Below, we describe the relationship between collapses and other notions introduc
 \end{equation*}
 \end{proof}
 
-\begin{example}
+\begin{example}[Running example: collapsing]
    \label{ex: ft.2}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft}.
    Then $\O = \mf(A,\vv{u}) = \conv(\col(A)) + \cone(\canvec_2)$, so $\rb(\O) = \{\canvec_2\}$.
@@ -1149,7 +1155,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 Recall that since each row of $\collapse{A}$ is a row of $A$, the inequalities determined by $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ are a subset of those in $A \vv{h}  < A \tail{\vv{s}}_q$.
 Also note that because $\collapse{A}$ is a monomial matrix, the inequality $\collapse{A} \vv{h}  < \collapse{A} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(A, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
-\begin{example}
+\begin{example}[Running example: an auxiliary integer program]
    \label{ex: ft.3}
    Let $A$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(A,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{A}\vv{h} < \collapse{A}\tail{\vv{s}}_q$, where
@@ -1366,7 +1372,7 @@ For that, we shall need the following simple boundedness result.
    Thus, $\collapse{A}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
 \end{proof}
 
-\begin{example}
+\begin{example}[Running example: shortfall]
    In the situation of \Cref{ex: ft.3}, we have seen that the optimal set for $\ip = \ip(A,\vv{u},\vv{s},q)$ consists of three infinite families of points.
    A direct computation shows that each of those families provides a unique point in the shortfall of $\ip$, and that $\short\ip = \{(3,1),(2,4),(1,7)\}$.
    % \begin{align*}
@@ -1683,7 +1689,7 @@ On the other hand, \Cref{FT: D} and \Cref{FT descriptions: P}\ref{lambda} imply 
 It is clear from these interpretations that a very small pair must also be small, and that a small pair can fail to be very small.
 \end{remark}
 
-\begin{example}
+\begin{example}[A typical picture]
    \label{ex: small vs very small}
    \begin{figure}
       \centering
@@ -1832,7 +1838,7 @@ In view of the above lemma, \Cref{uniform uniform value and image: T} immediatel
    \Cref{arithmetic uniform value and image: T}, together with the periodicity of universal deficits and shortfalls shown in \Cref{pair periodicity: R}, shows that for a very small pair $(A,\vv{u})$, the deficit and the collapse of the shortfall of  $\IP_p(A,\vv{u},p)$ along $\mf(A, \vv{u})$ do not depend on $p$,  but rather on the class of $p$ modulo a universal denominator for $A$.
 \end{remark}
 
-\begin{example}
+\begin{example}[$\IP(A,\vv{u},p)$ \emph{vs.} $\IP_p(A,\vv{u},p)$ for a small but not very small pair]
    If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
    Moreover, the collapses of their shortfalls along the minimal face can also differ.
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
@@ -2209,7 +2215,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \end{enumerate}
 \end{remark}
 
-\begin{example}
+\begin{example}[Running example: a sprouting subgraph]
    \label{ex: ft.4}
    \begin{figure}
       \centering
@@ -2228,7 +2234,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    % }
 \end{example}
 
-\begin{example}
+\begin{example}[Another sprouting subgraph]
    \label{ex: new example}
    \begin{figure}
       \centering
@@ -2418,7 +2424,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
    All of the considerations made in \Cref{m-primary algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply here.
 \end{remark}
 
-\begin{example}
+\begin{example}[Running example: values of $\IP_p$]
    \label{ex: ft.5}
    \Cref{table: running example data} shows the data associated to the pair $(A,\vv{u})$ in our running example, whose sprouting subgraph is shown in \Cref{fig: sprouting graph}.
    \begin{table}
@@ -2453,7 +2459,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
     \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}.\]
 \end{example}
 
-\begin{example}
+\begin{example}[Another illustration of \Cref{main theorem wrt diagonal: T}]
    \label{ex: new example.2}
    \Cref{table: new example data} shows the data associated to the pair $(A,\vv{u})$ in \Cref{ex: new example}, corresponding to the nine levels of the sprouting subgraph shown in \Cref{fig: sprouting graph 2}.
    \begin{table}
@@ -2791,7 +2797,7 @@ This process is also simple for monomial ideals:
 If $\kk$ is a field of characteristic zero, and $I$ is an ideal in $R=\kk[x_1, \ldots, x_\numvars]$ generated by a collection of monomials~$G$, then $I_A = GR_A = GA[x_1, \ldots, x_\numvars]$ is a canonical $A$-model for every finitely generated $\ZZ$-subalgebra $A$ of $\kk$, and $I_A(\idealm) = GR_A(\idealm)$ for every $\idealm \in \mspec(A)$.
 Despite such canonical $A$-models, we must work with arbitrary $A$-models, which may have undesirable qualities upon reduction to low characteristic, as illustrated below.
 
-\begin{example}
+\begin{example}[A strange model for a monomial ideal]
    Consider the ideals $I=\langle x, y \rangle \in \QQ[x,y]$ and $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$.
    Though $I_{\ZZ}$ is a $\ZZ$-model for $I$, it is a bit of an unusual one.
    If we reduce $I_{\ZZ}$ modulo $2$, we get the ideal $\langle x+y \rangle \subseteq \FF_2[x,y]$, which is not monomial, and in fact contains no monomials.  Fortunately, if we instead reduce $I_{\ZZ}$ modulo any prime $p \neq 2$, then we get $\langle x, y \rangle \subseteq \FF_p[x,y]$.
