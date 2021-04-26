@@ -105,26 +105,28 @@ The following examples give a taste of the formulas obtained.
    Now consider the ideals $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$ of $\QQ[x,y,z]$.
    Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
    We shall see in \Cref{ex: new example.2} that
+%   \[
+%      \mu(\ideala_p,\ideald_p,p^e) =
+%      \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
+%   \]
+%   for all $e\ge 4$ and all but finitely many primes $p$ in a certain arithmetic progression.
+%
    \[
-      \mu(\ideala_p,\ideald_p,p^e) =
-      \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
-   \]
-   for all $e\ge 4$ and all but finitely many primes $p$ in a certain arithmetic progression.
-   %   \[
-   %    \mu(\ideala_p,\ideald_p,p^e) =
-   %    \begin{cases}
-   %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
-   %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
-   %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
-   %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
-   %       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
-   %    \end{cases}
-   % \]
-   % whenever $p \gg 0$  and $p \equiv 11 \bmod 752523984455421061348766569800$.
-   % \pedro{
-   %    This is a bit ridiculous;
-   %    probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
-   % }
+    \mu(\ideala_p,\ideald_p,p^e) =
+    \begin{cases}
+       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
+    \end{cases}
+ \]
+ whenever $p \gg 0$  and $p \equiv 11 \bmod 752523984455421061348766569800$.
+ \pedro{
+    This is a bit ridiculous;
+    probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
+ }
+ \daniel{I actually really like the precision.  It gives a real taste of what we can do.  Maybe we can hold off to see if Emily weighs in, but in order to appreciate the glory, I restored the old version (the shortened one is still commented out here)}
 \end{example}
 
 \subsection{Frobenius powers}
@@ -334,6 +336,21 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
    \[\val \IP(A, \vv{u}, q) \geq \norm{\vv{t}_q} \geq \sum_{i=1}^n \big(\lceil q t_i \rceil - 1\big) \geq q \norm{\vv{t}} -n = q \cdot \val \LP - n.\]
    Dividing by $q$ and taking the limit as $q$ tends to infinity, we find that the limits in \eqref{ft as limit of normalized program values: eq} are at least $\val \LP$, which completes the proof.
 \end{proof}
+
+\daniel[inline]{The following is new}
+
+Thus, in practice, it is as difficult to effectively compute $\ft{\ideala}{\ideald}$ and $\nu(\ideala, \ideald, p^e)$ as it is to effectively solve standard linear and integer programs, which can be hard.  Nevertheless, there are still some special cases in which these quantities are easier to determine.  We consider perhaps the simplest such example below.
+
+\begin{example}
+\label{concrete-solution-to-LP-IP: E}  
+
+Fix a positive integer $d$ at least $2$, and consider the diagonal matrix 
+\[ A = \begin{bmatrix} d & 0 \\ 0 & d \end{bmatrix}. \] 
+
+If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and if $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ consists of the single point
+\[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - (\lpr{sq}{d}, \lpr{tq}{d})}{d} \] 
+where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Therefore, $\val \LP(A,\vv{u})$ equals $\norm{\vv{u}}/d$ and $\val \IP(A,\vv{u},q)$ equals $\val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
+\end{example}
 
 \subsection{Relations with arithmetic and fractal programs}
 
@@ -1628,7 +1645,7 @@ where the union is over all $\vv{v} \in \short \IP_p(A, \vv{u}, q)$ with $\val \
 
 We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{general AIP: T}.
 
-\begin{corollary}[Uniform comparison]
+\begin{corollary}
    \label{cor: mu comparison}
    Suppose that $(A,\vv{u})$ and $(B,\vv{v})$ are monomial pairs, not necessarily of the same dimension.
    If $\val \IP_p(A, \vv{u}, q)$ is greater than $\val \IP_p(B, \vv{v}, q)$ for some $q$, then $\val \IP_p(A, \vv{u}, qp^e)$ is greater than $\val \IP_p(B, \vv{v}, qp^e)$ for all $e$.
@@ -2238,7 +2255,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \label{ex: new example}
    \begin{figure}
       \centering
-      \includegraphics[width=.6\textwidth]{pictures/sprouting_graph_4.pdf}
+      \daniel[inline]{Pedro:  Can you place a copy of this in the dropbox folder?  In the meantime, I am omitting this, so that the document will compile.}
+%      \includegraphics[width=.6\textwidth]{pictures/sprouting_graph_4.pdf}
       \caption{The sprouting subgraph for \Cref{ex: new example}}
       \label{fig: sprouting graph 2}
    \end{figure}
