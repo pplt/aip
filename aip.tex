@@ -1665,25 +1665,45 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
    \end{align*}
 \end{proof}
 
-\begin{remark}
-The integer programs $\IP$ do not always satisfy the uniform comparison property of the arithmetic integer programs $\Pi_p$ in  \Cref{cor: mu comparison}.
-For instance, suppose that $p \equiv 3 \bmod 4$, and let
-\[
- A = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \
- \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
- \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
-\]
-Then for $e \geq 1$, $\IP(A, \vv{u}, p^e)$ has optimal point $\big( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \big)$ when $e$ is odd and $\big( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\big)$ when $e$ is even, and so 
+%\begin{remark}
+%The integer programs $\IP$ do not always satisfy the uniform comparison property of the arithmetic integer programs $\Pi_p$ in  \Cref{cor: mu comparison}.
+%For instance, suppose that $p \equiv 3 \bmod 4$, and let
+%\[
+% A = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \
+% \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
+% \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
+%\]
+%Then for $e \geq 1$, $\IP(A, \vv{u}, p^e)$ has optimal point $\big( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \big)$ when $e$ is odd and $\big( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\big)$ when $e$ is even, and so 
+%\[
+%\val\IP(A, \vv{u}, p^e) = \begin{cases}
+%\frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
+%\frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
+%\end{cases}
+%\]
+%These values, however, are switched for $\IP(A, \vv{v}, p^e)$: $\big( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \big)$ is an optimal point for odd $e$,  and $\big( \frac{5p^e-1}{4},\frac{p^e-1}{4} \big)$ is one for even $e$, 
+%so that 
+%the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and $\frac{3p^e-1}{2}$ when $e$ is even.
+%\end{remark}
+
+\begin{example}
+\label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the arithmetic integer programs in its statement with their standard integer program counterparts.  For instance, suppose that $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}=(3,3)$ and $\vv{v}=(5,1)$.  
+
+Then, if $p \equiv 3 \bmod 4$, it follows from \Cref{concrete-solution-to-LP-IP: E}  that
 \[
 \val\IP(A, \vv{u}, p^e) = \begin{cases}
 \frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
-These values, however, are switched for $\IP(A, \vv{v}, p^e)$: $\big( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \big)$ is an optimal point for odd $e$,  and $\big( \frac{5p^e-1}{4},\frac{p^e-1}{4} \big)$ is one for even $e$, 
-so that 
-the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and $\frac{3p^e-1}{2}$ when $e$ is even.
-\end{remark}
+and also, that these formulas are swapped after replacing $\vv{u}$ with $\vv{v}$, i.e., 
+\[
+\val\IP(A, \vv{v}, p^e) = \begin{cases}
+\frac{3 p^e - 3}{2} & \text{if } e \text{ is odd} \\ 
+\frac{3 p^e - 1}{2} & \text{if } e \text{ is even}.
+\end{cases}
+\]
+\end{example}
+
 
 \subsection{Small and very small pairs}
 
