@@ -44,6 +44,7 @@ For a nonnegative integer $e$, we set
 \end{equation}
 where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
 The assumptions on~$\ideala$ and~$\idealb$ ensure that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
+\pedro{Say a little about what these numbers are for.}
 
 Starting, instead, with nonzero proper ideals $\ideala$ and $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$; we may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
 Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal---but before getting to it, we examine some of the motivation behind this question.
@@ -70,8 +71,8 @@ For each ideal $\idealb$ whose radical contains $\ideala$, there are positive ra
    \nu(\ideala_p, \idealb_p, p^e) = \alpha p^e - \beta_r
 \end{equation}
 whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
-
 In this paper we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
+
 If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
 \[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 
@@ -90,19 +91,19 @@ Along the way we recover the aforementioned theorem of Budur, \mustata, and Sait
 We also describe each coefficient of the polynomials determining $\mu(\ideala_p,\idealb_p,p^e)$, which are typically not as simple as \eqref{eq: nu-uniformity for monomial ideals}, in term of optimization problems.
 The following examples give a taste of the formulas obtained.
 
-\begin{example}
+\begin{example}[See \Cref{ex: ft.5}]
    \label{ex1 intro}
    Consider the ideals $\ideala = \ideal{x^5 y^5 z^2, x^3 y^4 z^8, x^4 y^3 z^5}$ and $\idealm = \ideal{x,y,z}$ of $\QQ[x,y,z]$.
-   We shall see in \Cref{ex: ft.5} that
+   We shall see that
    \[
       \mu(\ideala_p,\idealm_p,p^e) = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
     \]
     for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $2170560$.
 \end{example}
 
-\begin{example}
+\begin{example}[\Cref{ex: new example.2}]
    \label{ex2 intro}
-   Now consider the ideals $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$ of $\QQ[x,y,z]$.
+   Let $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$.
    Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
    We shall see in \Cref{ex: new example.2} that
 %   \[
@@ -130,7 +131,7 @@ The following examples give a taste of the formulas obtained.
 \end{example}
 
 \subsection{Frobenius powers}
-To convey the significance of \Cref{main theorem}, we trace back some of our motivations to introduce generalized Frobenius powers, which stem from a well-known property of multiplier ideals:
+To convey the significance of \Cref{main theorem}, we trace back some of our motivation to introduce generalized Frobenius powers, which stem from a well-known property of multiplier ideals:
 if $\ideala$ is an ideal of $\CC[x_1,\ldots,x_\numvars]$ and $f \in \ideala$ is a general $\CC$-linear combination of a set of generators of $\ideala$, then
 \[ \mathcal{J}(f^t) = \mathcal{J}(\ideala^t)\]
 for each $t \in (0,1)$ \cite[Proposition~9.2.28]{lazarsfeld.positivity-II}.
@@ -630,7 +631,7 @@ where $\col(A)$ is the set of columns of $A$, and $\canvec_1, \ldots, \canvec_\n
 
 The following proposition gives an explicit Minkowski--Weyl decomposition for the faces of a Newton polyhedron.
 
-\begin{proposition}
+\begin{proposition}[Minkowski--Weyl for faces]
    \label{prop: MW for faces}
    Let $\O$ be a face of the Newton polyhedron $\N$ associated to the monomial matrix $A$, and suppose $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
    Set $\rb(\O) =  \{ \canvec_i \in \RR^\numvars : \iprod{\defpt}{\canvec_i} = 0\}$.
@@ -674,7 +675,8 @@ Thus, throughout this article, we always assume that defining points of standard
 
 This convention leads to the following useful observation, whose simple proof uses ideas of the proof of \Cref{prop: MW for faces}.
 
-\begin{proposition}\label{prop: inner product with columns of A}
+\begin{proposition}
+   \label{prop: inner product with columns of A}
    Suppose $\defpt \in \RR^\numvars$ defines a standard face $\O$ of the Newton polyhedron $\N$ associated to the monomial matrix $A$.
    Let $\vv{s} \in \RR^n$, and suppose $\vv{s} \ge \vv{0}$ or, more generally, that $s_i \ge 0$ whenever the $i$-th column of $A$ is not in $\O$.
    Then $\iprod{\defpt}{A\vv{s}} \ge \norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $A$ is not in $\O$.
@@ -792,7 +794,8 @@ This motivates the following definition.
 \Cref{prop: MW for faces} above implies that $\vv{u}$ is a conical combination of the columns of $A$ lying in $\O = \mf(A,\vv{u})$ and the standard basis vectors in the recession basis of $\O$.
 Typically, there are many ways to express $\vv{u}$ as such a conical combination, and as we see below, the set of all such expressions parameterizes  $\opt \LP(A, \vv{u})$.
 
-\begin{proposition}\label{opt set: P}
+\begin{proposition}[A characterization of optimal points]
+   \label{opt set: P}
    A point $\vv{s} \in \RR^n$ is optimal for $\LP(A, \vv{u})$ if and only if it satisfies the following conditions.
 \begin{enumerate}[$(1)$]
 \item  \label{mc coords: e} The coordinates of $\vv{s}$ are nonnegative, and the $i$-th coordinate of $\vv{s}$ is zero whenever the $i$-th column of $A$ is not contained in $\O = \mf(A, \vv{u})$.
@@ -852,7 +855,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
    The set of all such points is denoted $\sp(A, \vv{u})$, and the set of all such points with rational coordinates is denoted $\sp_{\QQ}(A, \vv{u})$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[Special points \vs the optimal set and its relative interior]
    \label{opt versus mc: P}
    If $\O = \mf(A, \vv{u})$ is bounded, then $\sp(A, \vv{u}) = \opt \LP(A, \vv{u})$.
    Otherwise, $\sp(A, \vv{u})$ is a nonempty convex set lying between $\opt \LP(A, \vv{u})$ and its relative interior, $\ri \opt \LP(A, \vv{u})$.
@@ -929,7 +932,7 @@ Technicalities that arise in future sections whenever the minimal face of $(A, \
 The following is a consequence of the discreteness of the $F$-jumping exponents of an ideal in a regular ring \cite[Theorem~3.1]{blickle+mustata+smith.discr_rat_FPTs}.
 However, to keep our discussion self-contained, we include an elementary proof in our specialized setting.
 
-\begin{proposition}
+\begin{proposition}[Discreteness of $F$-thresholds]
    \label{discreteness: P}
    Given a monomial matrix $A$ and a real number $\beta > 0 $, there are only finitely many numbers of the form $\ft{A}{\vv{u}}$ that are less than $\beta$.
 \end{proposition}
@@ -980,7 +983,8 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    In particular, the columns of $\collapse{A}$ are nonzero.
 \end{remark}
 
-\begin{proposition}\label{collapse of Newton polyhedron: P}
+\begin{proposition}[Faces under collapsing]
+   \label{collapse of Newton polyhedron: P}
    Let $\O$ be a face of the Newton polyhedron $\N$ of a monomial matrix $A$.
    As above, we use an overbar to denote collapse along $\O$.
    Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{A}$, and $\collapse{\O}$ is a bounded face of $\collapse{\N}$.
@@ -999,7 +1003,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 Below, we describe the relationship between collapses and other notions introduced in \Cref{sec: LPs,s: newton}.
 
-\begin{proposition}
+\begin{proposition}[Minimal face, $F$-threshold, special and optimal points under collapsing]
    \label{collapse of mf and mc: P}
    Consider a monomial pair $(A, \vv{u})$, and let an overbar denote collapse along $\O = \mf(A, \vv{u})$.
    Then the following hold.
@@ -1197,7 +1201,7 @@ In particular,
 where we have used that $\vv{s} \in \opt \LP(A,\vv{u})$ and so $\norm{\vv{s}} = \val \LP(A,\vv{u}) = \ft{A}{\vv{u}}$.
 The next proposition gives conditions under which equality holds.
 
-\begin{proposition}
+\begin{proposition}[Obtaining optimal points for $\IP$ from optimal points for $\ip$]
    \label{uniform value: P}
    Consider a monomial list $(A, \vv{u}, \vv{s}, q)$, and a denominator $\denom$ for the special point $\vv{s}$.
    If $\vv{h} \in \opt \ip(A, \vv{u}, \vv{s}, q)$, and $q/\denom$ is greater than every coordinate of $\vv{1} - \vv{h}$ and every coordinate of $A \vv{h}$, then the point $\vv{s}q - \tail{\vv{s}}_q + \vv{h}$ is optimal for $\IP(A, \vv{u}, q)$.
@@ -1243,7 +1247,7 @@ We now move toward establishing a useful bound for the value of $\ip(A, \vv{u}, 
    It is then easy to see that since $\collapse{\vv{u}} = \collapse{A} \vv{s}$ is positive, so is $\collapse{A} \tail{\vv{s}}_q$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}[Bounds on the value of $\ip$]
    \label{bounded value: P}
    If $(A, \vv{u}, \vv{s}, q)$ is a monomial list, then
    \[0 \leq  \val  \ip(A, \vv{u}, \vv{s}, q) < \norm{\tail{\vv{s}}_q}.\]
@@ -1377,7 +1381,7 @@ For that, we shall need the following simple boundedness result.
    As $\vv{c}$ has positive coordinates, $\alpha\le \iprod{\vv{c}}{\vv{v}}\le \iprod{\vv{c}}{\vv{u} + (v_i -u_i)\canvec_i} = \iprod{\vv{c}}{\vv{u}} + c_i(v_i - u_i)$, so $v_i \ge (\alpha + c_iu_i - \iprod{\vv{c}}{\vv{u}})/c_i$.
 \end{proof}
 
-\begin{proposition}[Finiteness of shortfalls]
+\begin{proposition}%[Finiteness of shortfalls]
    \label{finite image: P}
    The shortfall of $\ip(A, \vv{u}, \vv{s}, q)$ is finite.
 \end{proposition}
@@ -1426,7 +1430,7 @@ For that, we shall need the following simple boundedness result.
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
 
-\begin{proposition}
+\begin{proposition}[Relating deficit and shortfall of $\IP$ and $\ip$]
    \label{uniform value and image: P}
    Given a monomial matrix $A$, there exists $\beta = \beta(A) \in \ZZ$ satisfying the following condition\textup:
    If $(A, \vv{u})$ is a monomial pair, $\vv{s} \in \sp_{\QQ}(A, \vv{u})$ is a point with denominator $\denom$, and $q>\beta \denom$, then
@@ -1511,7 +1515,7 @@ where  $\vv{s} \in \sp_{\QQ}(A, \vv{u})$.
 
 We record another application of universal denominators below.
 
-\begin{theorem}[Deficit and shortfall of $\IP$ \emph{vs}.\ $\udeficit$ and $\ushort$]
+\begin{theorem}[Deficit and shortfall of $\IP$ \vs $\udeficit$ and $\ushort$]
 \label{uniform uniform value and image: T}
 Given a monomial matrix $A$, there exists an integer $\beta = \beta(A)$ with the following property\textup:
 If $q > \beta$ and $(A, \vv{u})$ is a monomial pair, then
@@ -1875,7 +1879,7 @@ In view of the above lemma, \Cref{uniform uniform value and image: T} immediatel
    \Cref{arithmetic uniform value and image: T}, together with the periodicity of universal deficits and shortfalls shown in \Cref{pair periodicity: R}, shows that for a very small pair $(A,\vv{u})$, the deficit and the collapse of the shortfall of  $\IP_p(A,\vv{u},p)$ along $\mf(A, \vv{u})$ do not depend on $p$,  but rather on the class of $p$ modulo a universal denominator for $A$.
 \end{remark}
 
-\begin{example}[$\IP(A,\vv{u},p)$ \emph{vs.} $\IP_p(A,\vv{u},p)$ for a small but not very small pair]
+\begin{example}[$\IP(A,\vv{u},p)$ \vs $\IP_p(A,\vv{u},p)$ for a small but not very small pair]
    If $(A, \vv{u})$ is small but not very small, $\IP = \IP(A,\vv{u},p)$ and $\IP_p = \IP_p(A,\vv{u},p)$ need not agree.
    Moreover, the collapses of their shortfalls along the minimal face can also differ.
    For instance, let $A$ be the $2 \times 2$ identity matrix and $\vv{u} = (1,1)$, so that $(A,\vv{u})$ is small, but not very small.
@@ -2317,7 +2321,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    In particular, for such primes, $\val \IP_p(B,\vv{v},p) = \ft{B}{\vv{v}}p-\udeficit(B,\vv{v},p)$  for each vertex $(B,\vv{v})$ of $\sprout_p^{\ast}(A,\vv{u})$, and the existence of $\beta(A)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
-\begin{definition}[Depth of $\sprout_p^{\ast}(A,\vv{u})$]
+\begin{definition}[Depth of a sprouting subgraph]
    If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(A,\vv{u})$.
    Formally,
    \[
@@ -2649,7 +2653,7 @@ where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of
    Find appropriate places for the next statement.  Proof calls upon \Cref{non-leading coefficients: L}.
 }
 
-\begin{proposition}
+\begin{proposition}[A simple special case]
    Given a monomial matrix $A$, fix a universal denominator $\denom$ for all the finitely many descendants of $A$.
    Then there exists $\beta = \beta(A)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$,
 \[
