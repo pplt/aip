@@ -2707,9 +2707,16 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 
 Throughout this appendix, we focus on polynomial rings in the string of variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will \hl{consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
 
-Recall, from \hl{the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible} if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ contained in the radical of $\idealb$.  Our purpose in this appendix is two-fold:  First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.   Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
+Recall, from \hl{the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible} if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ contained in the radical of $\idealb$.
+Our purpose in this appendix is two-fold:
+First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.
+This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.
+Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.
+Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text.
+\pedro{Except for \Cref{cor: mu comparison}}
 
-Our approach is based on framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.  For example, the \emph{monomialization operator} defined in \Cref{monomialization: D} plays an important role in our arguments, and though this operator was not formally defined in \loccit, it, and a natural variant, appear in \cite[Proposition~6.1 and Lemma~6.2]{budur+mustata+saito.roots_bs_polys_monomial}.
+Our approach is based on the framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.
+For example, the \emph{monomialization operator} introduced in \Cref{monomialization: D} plays an important role in our arguments, and though this operator was not formally defined in \loccit, it, and a natural variant, appear in \cite[Proposition~6.1 and Lemma~6.2]{budur+mustata+saito.roots_bs_polys_monomial}.
 
 \begin{definition}[The $\mon$ operator on ideals]
 \label{monomialization: D}
@@ -2727,8 +2734,9 @@ Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \c
 \end{proof}
 
 Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma~6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic; due to this, we also choose to work generally when reducing to prime characteristic.
+\pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
 
-We also provide examples illustrating that the uniformity properties established here for the $\mu$ invariants attached to a monomial ideal are strictly stronger than the ones for their $\nu$ counterparts established in \loccit, both over a field of fixed positive characteristic, and when reducing to positive characteristic.  
+We also provide examples illustrating that the uniformity properties established here for the $\mu$ invariants attached to a monomial ideal are strictly stronger than the ones for their $\nu$ counterparts established in \loccit, both over a field of fixed positive characteristic, and when reducing to large prime characteristic.  
 
 \subsection{Concerning polynomial rings over fields of positive characteristic}
 
@@ -2740,7 +2748,7 @@ In what follows, we extend our use of the term \emph{radically compatible}, and 
    Then, there exists a finite, nonempty set $\mathcal{W}$ of positive points in $\ZZ^\numvars$ with the following property\textup:
    If $\kk$ is a field of characteristic $p>0$, and $(\ideala, \idealc)$ is the radically compatible pair of ideals of $\kk[x]$ associated to $(A, \mathcal{C})$, then
    \[ \mu(\ideala, \idealc, p^e) = \max \{ \val \IP_p(A, \vv{u}, p^e) : \vv{u} \in \mathcal{W} \}\]
-   and there is a point $\vv{u} \in \mathcal{W}$ that achieves this maximum for every positive integer $e$.
+   and there is a point $\vv{u} \in \mathcal{W}$ that achieves this maximum for every nonnegative integer~$e$.
 \end{theorem}
 
 \begin{proof}
@@ -2749,8 +2757,8 @@ In what follows, we extend our use of the term \emph{radically compatible}, and 
 We now construct the promised set $\mathcal{W}$, which will consist of a single positive point in $\ZZ^\numvars$.  Towards this, let $B$ be the matrix consisting of the first $t$ rows of $A$.  If $\LL$ is an arbitrary field, and $(\ideala, \idealc)$ is the radically compatible pair in $\LL[x]$ associated to $(A, \mathcal{C})$, then $\ideala \subseteq \sqrt \idealc = \ideal{x_1, \ldots, x_t}$, which shows that every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and hence, that every column of $B$ is nonzero. Thus,  $B$ is a monomial matrix with $t$ rows, and $(B, \widetilde{\vv{v}})$ is a monomial pair.
 The feasible set of the standard linear program $\LP(B, \widetilde{\vv{v}})$ is compact, and so we may fix a positive integer $\omega$ greater than every inner product of the form $\iprod{\vv{r}}{\vv{f}}$, where $\vv{r}$ ranges over the last $\numvars-t$ rows of $A$, and $\vv{f}$ ranges over all points in $\feas \LP(B,\widetilde{\vv{v}})$. Let $\vv{u} \in \NN^{\numvars}$ be any point such that $u_i = v_i$ for $1 \leq i \leq t$, and $u_i \geq \omega$ for $t < i \leq \numvars$, and let $\mathcal{W}$ be the set consisting of the single positive point $\vv{u}$.
 
-Now, specialize to the case that $\LL=\kk$ is a field of characteristic $p>0$.  To conclude in this special case, we must show that $\mu(\ideala, \idealc, p^e) = \val \IP_p(A, \vv{u}, p^e)$.  However, it is clear that $\mu(\ideala, \idealc, p^e) = \val \IP_p(B, \widetilde{\vv{v}}, p^e)$, and to justify that the values of $\IP_p(B, \widetilde{\vv{v}}, p^e)$ and $\IP_p(A, \vv{u}, p^e)$ agree, we will show that their feasible sets coincide:   First, note that the arithmetic constraints of these programs are identical, and that each linear constraint of $\IP_p(B, \widetilde{\vv{v}}, p^e)$ is a linear constraint of $\IP_p(A, \vv{u},p^e)$, and so $\feas \IP_p(A, \vv{u}, p^e)$ is at least contained in $\feas \IP_p(B, \widetilde{\vv{v}}, p^e)$.  On the other hand, if $\vv{k} \in \feas \IP_p(B, \widetilde{\vv{v}}, p^e)$, then the normalized point $\vv{k}/p^e$ is feasible for the linear program $\LP(B,\widetilde{\vv{v}})$, and the bounds $u_i \geq \omega$ for $t < i \leq \numvars$ then guarantee $A (\vv{k}/p^e) < \vv{u}$, which in turn demonstrates that $\vv{k} \in \feas \IP_p(A, \vv{u}, p^e)$. 
-
+Now, specialize to the case that $\LL=\kk$ is a field of characteristic $p>0$.  To conclude in this special case, we must show that $\mu(\ideala, \idealc, p^e) = \val \IP_p(A, \vv{u}, p^e)$.  However, it is clear that $\mu(\ideala, \idealc, p^e) = \val \IP_p(B, \widetilde{\vv{v}}, p^e)$, and to justify that the values of $\IP_p(B, \widetilde{\vv{v}}, p^e)$ and $\IP_p(A, \vv{u}, p^e)$ agree, we will show that their feasible sets coincide.
+First, note that the arithmetic constraints of these programs are identical, and that each linear constraint of $\IP_p(B, \widetilde{\vv{v}}, p^e)$ is a linear constraint of $\IP_p(A, \vv{u},p^e)$, and so $\feas \IP_p(A, \vv{u}, p^e)$ is at least contained in $\feas \IP_p(B, \widetilde{\vv{v}}, p^e)$.  On the other hand, if $\vv{k} \in \feas \IP_p(B, \widetilde{\vv{v}}, p^e)$, then the normalized point $\vv{k}/p^e$ is feasible for the linear program $\LP(B,\widetilde{\vv{v}})$, and the bounds $u_i \geq \omega$ for $t < i \leq \numvars$ then guarantee $A (\vv{k}/p^e) < \vv{u}$, which in turn demonstrates that $\vv{k} \in \feas \IP_p(A, \vv{u}, p^e)$. 
 
 We now consider the case where $\mathcal{C}$ is general.   According to \cite[Lemma~5.18]{miller+sturmfels.combinatorial_CA},  if $\LL$ is an arbitrary field, then one may decompose the monomial ideal $\mathcal{C} \LL[x]$ as
 %
@@ -2759,10 +2767,14 @@ We now consider the case where $\mathcal{C}$ is general.   According to \cite[Le
  \mathcal{C} \LL[x] = \mathcal{C}_1 \LL[x] \cap \cdots \cap \mathcal{C}_{\ell} \LL[x]
  \end{equation}
 %
-where each set of monomials $\mathcal{C}_i = \{ x_s^{v_s(i)} : v_s(i) \neq 0 \}$ is associated to the nonzero point $\vv{v}_i = (v_1(i), \ldots, v_\numvars(i)) \in \NN^\numvars$. Furthermore, the points $\vv{v}_1, \ldots, \vv{v}_{\ell}$ arising in this way depend only on $\mathcal{C}$, but are independent of the choice of field $\LL$.  In addition, as the pair $(A, \mathcal{C})$ is radically compatible, then so is each pair $(A, \mathcal{C}_i)$.
+where each set of monomials $\mathcal{C}_j = \{ x_i^{v_i(j)} : v_i(j) \neq 0 \}$ is associated to the nonzero point $\vv{v}_j = (v_1(j), \ldots, v_\numvars(j)) \in \NN^\numvars$. Furthermore, the points $\vv{v}_1, \ldots, \vv{v}_{\ell}$ arising in this way depend only on $\mathcal{C}$, but are independent of the choice of field $\LL$.  In addition, as the pair $(A, \mathcal{C})$ is radically compatible, then so is each pair $(A, \mathcal{C}_j)$.
 
-By the special case considered above, there is a positive point $\vv{u}_i \in \ZZ^\numvars$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(A, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with finite intersections in $\kk[x]$,  that 
-\[ \mu(\ideala, \mathfrak{c}, p^e) = \max \{ \mu(\ideala, \idealc_i, p^e) : 1 \leq i \leq \ell \} = \max \{ \val \IP_p(A, \vv{u}, p^e) : \vv{u} \in \mathcal{W} \} \] where $\mathcal{W} = \{ \vv{u}_1, \ldots, \vv{u}_{\ell} \}$.  Finally, though the points that achieve the maximum may vary with $e$, \Cref{cor: mu comparison} guarantees that there exists a single $\vv{u} \in \mathcal{W}$ such that
+By the special case considered above, there is a positive point $\vv{u}_j \in \ZZ^\numvars$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\mu(\ideala, \idealc_j, p^e) = \val \IP_p(A, \vv{u}_j, p^e)$ for every positive integer $e$, where $\idealc_j = \mathcal{C}_j \LL[x]$.
+It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with finite intersections in $\kk[x]$,
+\pedro{Maybe include reference?}
+that 
+\[ \mu(\ideala, \mathfrak{c}, p^e) = \max \{ \mu(\ideala, \idealc_j, p^e) : 1 \leq j \leq \ell \} = \max \{ \val \IP_p(A, \vv{u}, p^e) : \vv{u} \in \mathcal{W} \} \] where $\mathcal{W} = \{ \vv{u}_1, \ldots, \vv{u}_{\ell} \}$.
+Finally, though the points that achieve the maximum may vary with $e$, \Cref{cor: mu comparison} guarantees that there exists a single $\vv{u} \in \mathcal{W}$ such that
 \[\mu(\ideala, \mathfrak{c}, p^e) =  \val \IP_p(A, \vv{u}, p^e)\text{ for every $e\in \NN$}. \qedhere \]
 \end{proof}
 
@@ -2790,10 +2802,10 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
 %    and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
 % }
 
-
-
 \begin{theorem}[Reduction to diagonal ideals]
-   \label{reduce-to-monomial-case: T} Given a {radically compatible} pair of ideals $(\ideala, \idealb)$ of $\kk[x]$, with $\kk$ a field of characteristic $p>0$, and $\ideala$ the monomial ideal associated to a monomial matrix $A$, there exists a positive point $\vv{u} \in \ZZ^\numvars$ such that \[ \mu(\ideala, \idealb, p^e) = \mu(\ideala, \mon(\idealb), p^e) = \val \IP_p(A,\vv{u}, p^e)\] for every natural number $e$.
+   \label{reduce-to-monomial-case: T} Given a {radically compatible} pair of ideals $(\ideala, \idealb)$ of $\kk[x]$, with $\kk$ a field of characteristic $p>0$, and $\ideala$ the monomial ideal associated to a monomial matrix $A$, there exists a positive point $\vv{u} \in \ZZ^\numvars$ such that
+   \[ \mu(\ideala, \idealb, p^e) = \mu(\ideala, \mon(\idealb), p^e) = \val \IP_p(A,\vv{u}, p^e)\]
+   for every natural number $e$.
    In particular, $\crit(\ideala,\idealb) = \crit(\ideala, \mon(\idealb)) = \val \fip_p(A,\vv{u})$.
 \end{theorem}
 
@@ -2802,23 +2814,29 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
 \end{proof}
 
 \daniel{\emph{analogous} $\leftrightarrow$ \emph{similar}, and expanded.  \Cref{less uniformity for nu: E} is new.}
-A result similar to \Cref{reduce-to-monomial-case: T}, but concerning $\nu(\ideala,\idealb,p^e)$, was established in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.  Let us summarize it:  If $(\ideala, \idealb)$ and $A$ are as in \Cref{reduce-to-monomial-case: T}, and $e$ is positive, then there is a positive $\vv{u}$ such that $\nu(\ideala, \idealb, p^e) = \val \IP(A, \vv{u}, p^e)$. 
+A result similar to \Cref{reduce-to-monomial-case: T}, but concerning $\nu(\ideala,\idealb,p^e)$, was established in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial}.
+Let us summarize it:
+If $(\ideala, \idealb)$ and $A$ are as in \Cref{reduce-to-monomial-case: T}, and $e$ is positive, then there is a positive point $\vv{u} \in \ZZ^\numvars$ such that $\nu(\ideala, \idealb, p^e) = \val \IP(A, \vv{u}, p^e)$. 
 
-In contrast with \Cref{reduce-to-monomial-case: T}, this allows for the possibility that $\vv{u}$ may also depend on $e$, and in fact, as we see in \Cref{less uniformity for nu: E}, it necessarily does.  Thus, in this sense, the $\mu$-variants enjoy stronger uniformity properties than the $\nu$-invariants.
+In contrast with \Cref{reduce-to-monomial-case: T}, this allows for the possibility that $\vv{u}$ may also depend on $e$, and in fact, as we see in \Cref{less uniformity for nu: E}, it necessarily does.
+Thus, in this sense, the $\mu$ invariants enjoy stronger uniformity properties than the $\nu$ invariants.
 
 \begin{example} 
-\label{less uniformity for nu: E}
-Let $\kk$ be a field of characteristic $p \equiv 3 \bmod 4$, and consider the ideals $\ideala = \langle x^4, y^4 \rangle$ and $\idealb = \mon(\idealb) = \ideal{x^5, x^3 y, y^3} = \ideal{x^3, y^3} \cap \ideal{x^5, y}$.  Then 
-\[ \nu(\ideala, \idealb, p^e) = \max \{ \val \IP(A,\vv{u}, p^e), \val \IP(A, \vv{v}, p^e) \} \] where $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry,  $\vv{u}=(3,3)$ and $\vv{v}=(5,1)$, and \Cref{max depends on p and e: E} tells us both that this maximum value equals $(3p^e-1)/2$, and that the integer program achieving this maximum depends on $e$.
+   \label{less uniformity for nu: E}
+   Let $\kk$ be a field of characteristic $p \equiv 3 \bmod 4$, and consider the ideals $\ideala = \langle x^4, y^4 \rangle$ and $\idealb = \mon(\idealb) = \ideal{x^5, x^3 y, y^3} = \ideal{x^3, y^3} \cap \ideal{x^5, y}$.
+   Let $A$ be the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, $\vv{u}=(3,3)$, and $\vv{v}=(5,1)$.
+   Then 
+   \[ \nu(\ideala, \idealb, p^e) = \max \{ \val \IP(A,\vv{u}, p^e), \val \IP(A, \vv{v}, p^e) \} \]
+   and \Cref{max depends on p and e: E} tells us both that this maximum value equals $(3p^e-1)/2$, and that the integer program achieving this maximum depends on $e$.
 
-Furthermore, it is not hard to see that there is no positive point $\vv{w} \in \NN^2$ such that $\val \IP(A, \vv{w}, p^e) = (3p^e-1)/2 = \nu(\ideala, \idealb, p^e)$ for every $e$, at least when $p \equiv 3 \bmod 4$.  Indeed, \Cref{max depends on p and e: E} implies that an equality $\val \IP(A, \vv{w}, p^e) = (3p^e-1)/2$ for all $e$ would force an equality $\ft{A}{\vv{w}} = 3/2$, and so $\vv{w}$ would have to be one $(1,5), (2,4), (3,3), (2,4)$, or $(1,5)$.  However, as $p \equiv 3 \bmod 4$,  \Cref{max depends on p and e: E} would then tell us that, in each case, $\val \IP(A, \vv{w}, p^e) = (3p^e-3)/2$ for infinitely many $e$.
+   Furthermore, it is not hard to see that there is no positive point $\vv{w} \in \NN^2$ such that $\val \IP(A, \vv{w}, p^e) = (3p^e-1)/2 = \nu(\ideala, \idealb, p^e)$ for every $e$.
+   Indeed, by \Cref{FT descriptions: P} an equality $\val \IP(A, \vv{w}, p^e) = (3p^e-1)/2$ for all $e$ would imply that $\ft{A}{\vv{w}} = 3/2$, and $\vv{w}$ would have to be one of $(1,5)$, $(2,4)$, $(3,3)$, $(4,2)$, or $(5,1)$.
+   However, as $p \equiv 3 \bmod 4$,  \Cref{max depends on p and e: E} would then tell us that, in each case, $\val \IP(A, \vv{w}, p^e) = (3p^e-3)/2$ for infinitely many $e$.
 \end{example}
  
 \subsection{Reduction to prime characteristic}
 
-We now briefly recall the process of reduction to prime characteristic, at least in the context of polynomial rings.
-
-
+We now briefly recall the process of reduction to prime characteristic, in the context of polynomial rings.
 To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide formal references for their proofs, though the reader may also consult the thesis \cite[Chapter~3]{hernandez.thesis} for more details.
 
 \begin{remark}[Generic freeness]\label{generic-freeness}
@@ -2826,10 +2844,13 @@ To start, we recall some fundamental facts, both of which may be thought of as c
    Generic freeness states that if $M$ is any finitely generated $S$-module, then there exists a nonzero element  $\ell \in A$ such that $A[\ell^{-1}] \otimes_A M$, the localization of $M$ at $\ell$, is a free $A[\ell^{-1}]$-module \cite[Theorem~24.1]{matsumura} .
 \end{remark}
 
-\begin{remark}[Maximal ideals of domains finitely generated over a copy of $\ZZ$]
+\begin{remark}[Maximal ideals of domains finitely generated over $\ZZ$]
    \label{maximal ideals: R}
    Let $A$ be a domain of characteristic zero that is finitely generated as an algebra over $\ZZ$.
-   Then every maximal ideal of $A$ contains a positive prime integer, and all but finitely many prime integers are contained in some maximal ideal of $A$.
+   Then every maximal ideal of $A$ contains a positive prime integer,
+   \pedro{The previous claim follows from \cite[V.3.4, Theorem~3(ii)]{bourbaki.commalg}, and does not depend on $A$ being a domain.}
+   and all but finitely many prime integers are contained in some maximal ideal of $A$.
+   \pedro{Does anyone know a reference for this in the standard literature?}
    Furthermore, the quotient of $A$ by any maximal ideal is a finite field \cite[V.3.4, Corollary~1]{bourbaki.commalg}.
 \end{remark}
 
@@ -2930,7 +2951,7 @@ For the first assertion, set $L=I_A + J_A$, and choose $\ell \in A \setminus \{0
 %and the reader may verify that the composition $B \otimes_A \im(\theta_A) \hookrightarrow B \otimes_A M_A \cong M_B$ induces an isomorphism $B \otimes_A \im(\theta_A) \cong \im(\theta_B)$.
 \end{proof}
 
-\begin{example} The dense open set referenced in \Cref{reduction basics: C} \eqref{reduction preserves being monomial} may not be all of $\mspec(A)$, even when $A=\ZZ$.  For an extreme example,  note that the ideal $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$ is a $\ZZ$-model of $I=\langle x, y \rangle \subseteq \QQ[x,y]$, and through $I_{\ZZ} \bmod p$ is what one expects when $p \neq 2$, the reduction $I_{\ZZ} \bmod 2  = \langle x+y \rangle \subseteq \FF_2[x,y]$ is especially far from being a monomial ideal, given that it contains no monomials.  
+\begin{example} The dense open set referenced in \Cref{reduction basics: C}\ref{reduction preserves being monomial} may not be all of $\mspec(A)$, even when $A=\ZZ$.  For an extreme example,  note that the ideal $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$ is a $\ZZ$-model of $I=\langle x, y \rangle \subseteq \QQ[x,y]$, and through $I_{\ZZ} \bmod p$ is what one expects when $p \neq 2$, the reduction $I_{\ZZ} \bmod 2  = \langle x+y \rangle \subseteq \FF_2[x,y]$ is especially far from being a monomial ideal, given that it contains no monomials.  
 \end{example}
 
 \begin{proposition}
