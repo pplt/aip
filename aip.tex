@@ -39,7 +39,7 @@ TO DO LIST:
 Let $\kk$ be a field of prime characteristic $p$ with $[\kk:\kk^p] < \infty$, and let $\ideala$ and $\idealb$ be nonzero proper ideals in the polynomial ring $\kk[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$.
 For a nonnegative integer $e$, we set
 \begin{equation}
-   \nu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}
+   \nu(\ideala,\idealb,p^e) = \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}
    \label{eq: nu definition}
 \end{equation}
 where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
@@ -74,7 +74,7 @@ whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
 In this paper we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
 
 If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
-\[\mu(\ideala,\idealb,p^e) \coloneqq \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+\[\mu(\ideala,\idealb,p^e) = \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 
 \begin{definition}[\muCool ideal]
    \label{defn: muCool}
@@ -98,7 +98,7 @@ The following examples give a taste of the formulas obtained.
    \[
       \mu(\ideala_p,\idealm_p,p^e) = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
     \]
-    for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $2170560$.
+    for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $\num{2170560}$.
 \end{example}
 
 \begin{example}[\Cref{ex: new example.2}]
@@ -108,21 +108,21 @@ The following examples give a taste of the formulas obtained.
    We shall see in \Cref{ex: new example.2} that
 %   \[
 %      \mu(\ideala_p,\ideald_p,p^e) =
-%      \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
+%      \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
 %   \]
 %   for all $e\ge 4$ and all but finitely many primes $p$ in a certain arithmetic progression.
 %
    \[
     \mu(\ideala_p,\ideald_p,p^e) =
     \begin{cases}
-       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
-       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
-       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
-       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
-       \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
+       \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
+       \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
     \end{cases}
  \]
- whenever $p \gg 0$  and $p \equiv 11 \bmod 752523984455421061348766569800$.
+ whenever $p \gg 0$  and $p \equiv 11 \bmod \num{752523984455421061348766569800}$.
  \pedro{
     This is a bit ridiculous;
     probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
@@ -158,7 +158,7 @@ Like multiplier and test ideals, the Frobenius powers $\ideala^{[t]}$ form a non
 Critical exponents can be more concretely realized as rates of growth of the numbers $\mu(\ideala,\idealb,p^e)$ which are the focus of this manuscript.
 If $\ideala$ and $\idealb$ are nonzero proper ideals with $\ideala \subseteq \sqrt \idealb$, then the sequence $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^\infty$ is bounded and nondecreasing; the \emph{critical exponent of $\ideala$ with respect to $\idealb$} is the limit
 \[
-   \crit(\ideala,\idealb) \coloneqq \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
+   \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
    = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
 \]
 The set of all critical exponents $\crit(\ideala,\idealb)$, as $\idealb$ ranges over all nonzero proper ideals whose radicals contain $\ideala$, coincides with the set of critical exponents of the Frobenius powers of $\ideala$.
@@ -175,21 +175,21 @@ Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ with $\ideal
 %    \[
 %       \crit(\ideala_p,\idealm_p) = \frac{4}{17} - \frac{3}{17p^3}
 %     \]
-%     for each sufficiently large prime $p$ congruent to $11$ modulo $2170560$.
+%     for each sufficiently large prime $p$ congruent to $11$ modulo $\num{2170560}$.
 % \end{example}
 
 \begin{example}
    If $\ideala$ and $\ideald$ are as in \Cref{ex2 intro}, then 
    \[
       \crit(\ideala_p,\ideald_p) =
-      \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}
+      \frac{624}{773} - \frac{\num{1551}}{\num{681013} p} - \frac{\num{2794}}{\num{22025} p^3}
    \]
    for all but finitely many primes $p$ in a certain arithmetic progression.
 \end{example}
 
 The above definition and observations have their counterparts in the theory of test ideals and $F$-jumping exponents: the limit
 \[
-   \ft{\ideala}{\idealb} \coloneqq \lim_{e\to \infty} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
+   \ft{\ideala}{\idealb} = \lim_{e\to \infty} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
    = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
 \]
 is called the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}, and the set of all $F$-thresholds $\ft{\ideala}{\idealb}$, as $\idealb$ varies as above, coincides with the set of $F$-jumping exponents of the test ideals of $\ideala$.
@@ -340,14 +340,14 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
 
 \daniel[inline]{The following is new}
 
-Thus, in practice, it is as difficult to effectively compute $\ft{\ideala}{\ideald}$ and $\nu(\ideala, \ideald, p^e)$ as it is to effectively solve standard linear and integer programs, which can be hard.  Nevertheless, there are still some special cases in which these quantities are easier to determine.  We consider perhaps the simplest such example below.
+Thus, in practice, it is as difficult to effectively compute $\ft{\ideala}{\ideald}$ and $\nu(\ideala, \ideald, p^e)$ as it is to effectively solve standard linear and integer programs, which can be hard.
+Nevertheless, there are still some special cases in which these quantities are easy to determine.
+We consider perhaps the simplest such example below.
 
 \begin{example}
 \label{concrete-solution-to-LP-IP: E}  
-
-Fix a positive integer $d$ at least $2$, and consider the diagonal matrix 
+Fix a positive integer $d \ge 2$, and consider the diagonal matrix 
 \[ A = \begin{bmatrix} d & 0 \\ 0 & d \end{bmatrix}. \] 
-
 If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and if $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ consists of the single point
 \[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - (\lpr{sq}{d}, \lpr{tq}{d})}{d} \] 
 where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Therefore, $\val \LP(A,\vv{u})$ equals $\norm{\vv{u}}/d$ and $\val \IP(A,\vv{u},q)$ equals $\val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
@@ -357,7 +357,7 @@ where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Ther
 
 We now turn our attention to the integers $\mu(\ideala, \ideald, p^e)$ and rational numbers $\crit(\ideala,\ideald)$.
 First, recall that for each $q$ a power of $p$, the integer $\mu(\ideala, \ideald, q)$ is defined as
-\[\mu(\ideala,\ideald,q) \coloneqq \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
+\[\mu(\ideala,\ideald,q) = \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
 where $\ideala^{[\ell]}$ is the $\ell$-th (generalized) Frobenius power of $\ideala$.
 
 If $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which  $\binom{\ell}{\vv{k}} =
@@ -770,7 +770,7 @@ This motivates the following definition.
    \label{ex: m-primary homogeneous case}
    Let $\idealm$ be the maximal ideal of  $\kk[x_1,\ldots,x_\numvars]$ generated by the variables, and let $\ideala$ be an $\idealm$-primary ideal generated by monomials of the same degree $d$ under a positive $\ZZ$-grading.
    Let $\vv{w} = (\deg x_1,\ldots,\deg x_\numvars)$.
-   For convenience, set $\deg \vv{t} \coloneqq \iprod{\vv{w}}{\vv{t}}$ for each $\vv{t} \in \RR^\numvars$, so that for every nonnegative lattice point $\vv{u}$ we have $\deg \vv{u} = \deg x^\vv{u}$.
+   For convenience, set $\deg \vv{t} = \iprod{\vv{w}}{\vv{t}}$ for each $\vv{t} \in \RR^\numvars$, so that for every nonnegative lattice point $\vv{u}$ we have $\deg \vv{u} = \deg x^\vv{u}$.
 
    Let $A$ be a monomial matrix associated to $\ideala$.
    Then the convex hull $\O$ \hl{of the degree $d$ columns of $A$}
@@ -1091,7 +1091,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    \label{tail: D}
    Let $q$ be a positive integer.
    If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
-   \[ \tail{\lambda}_q \coloneqq \frac{ \lpr{aq}{b}}{b}. \]
+   \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \]
    This expression is clearly independent of the choice of the integers $a$ and $b$.
    In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
@@ -1699,7 +1699,7 @@ Then, if $p \equiv 3 \bmod 4$, it follows from \Cref{concrete-solution-to-LP-IP:
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
-and also, that these formulas are swapped after replacing $\vv{u}$ with $\vv{v}$, i.e., 
+and also, that these formulas are swapped after replacing $\vv{u}$ with $\vv{v}$, that is, 
 \[
 \val\IP(A, \vv{v}, p^e) = \begin{cases}
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is odd} \\ 
@@ -2178,7 +2178,7 @@ In order to do so, we first build a technical framework in which to carry out ou
     \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( A_i, \vv{u}_i, \vv{s}_i, p)$ such that $\vv{u}_{i+1} = A_{i+1} \tail{\vv{s}_i}_p - A_{i+1} \vv{h}_i$.
     Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( A_e, \vv{u}_e, \vv{s}_e, p)$.
 
-    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i \coloneqq \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i$.
+    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i = \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i$.
     Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $A_i \vv{h}_i$.
     It then follows from \Cref{uniform value: P} that
     \begin{equation}
@@ -2299,8 +2299,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \label{epsilon delta: D}
    If $(A,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(A,\vv{u}) \neq \emptyset$, then we define
    \begin{align*}
-     \epsilon_{p^e}(A,\vv{u}) & \coloneqq \ft{B}{\vv{v}} \\
-     \delta_{p^e}(A,\vv{u}) & \coloneqq \udeficit(B,\vv{v},p)
+     \epsilon_{p^e}(A,\vv{u}) & = \ft{B}{\vv{v}} \\
+     \delta_{p^e}(A,\vv{u}) & = \udeficit(B,\vv{v},p)
    \end{align*}
    where $(B,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(A,\vv{u})$.
    Observe that, by definition of $\S^{\ast}_{p^e}(A,\vv{u})$, these numbers are independent of the choice of $(B,\vv{v}) \in \S^{\ast}_{p^e}(A,\vv{u})$.
@@ -2325,7 +2325,7 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    If $(A,\vv{u})$ is very small, then $\mathcal{Q}_p(A,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(A,\vv{u})$.
    Formally,
    \[
-      \mathcal{Q}_p(A,\vv{u}) \coloneqq \inf \{ q :  \S^{\ast}_{qp}(A,\vv{u}) = \emptyset \}.
+      \mathcal{Q}_p(A,\vv{u}) = \inf \{ q :  \S^{\ast}_{qp}(A,\vv{u}) = \emptyset \}.
    \]
 \end{definition}
 
@@ -2514,14 +2514,14 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
            $e$ & $\epsilon_{p^e}(A,\vv{u})$ & $\delta_{p^e}(A,\vv{u})$ & $\val\IP_p(A,\vv{u},p^e)$ \\
            \midrule
            1 & $\frac{624}{773}$ & $\frac{680}{773}$ & $\frac{624}{773}p - \frac{680}{773}$\\
-           2 & $\frac{773}{881}$ & $\frac{574}{881}$ & $\frac{624}{773}p^2 - \frac{1551}{681013}p - \frac{574}{881}$ \\
-           3 & $\frac{574}{881}$ & $\frac{147}{881}$ & $\frac{624}{773}p^3 - \frac{1551}{681013}p^2 - \frac{147}{881}$ \\
-           4 & $\frac{1}{25}$ & $\frac{11}{25}$ & $\frac{624}{773}p^4 - \frac{1551}{681013}p^3 - \frac{2794}{22025}p - \frac{11}{25}$ \\
-           5 & $\frac{11}{25}$ & $\frac{21}{25}$ & $\frac{624}{773}p^5 - \frac{1551}{681013}p^4 - \frac{2794}{22025}p^2 - \frac{21}{25}$ \\
-           6 & $\frac{21}{25}$ & $\frac{6}{25}$ & $\frac{624}{773}p^6 - \frac{1551}{681013}p^5 - \frac{2794}{22025}p^3 - \frac{6}{25}$ \\
-           7 & $\frac{6}{25}$ & $\frac{16}{25}$ & $\frac{624}{773}p^7 - \frac{1551}{681013}p^6 - \frac{2794}{22025}p^4 - \frac{16}{25}$ \\
-           8 & $\frac{16}{25}$ & $\frac{1}{25}$ & $\frac{624}{773}p^8 - \frac{1551}{681013}p^7 - \frac{2794}{22025}p^5 - \frac{1}{25}$ \\
-           9 & $\frac{1}{25}$ & $\frac{11}{25}$ & $\frac{624}{773}p^9 - \frac{1551}{681013}p^8 - \frac{2794}{22025}p^6 - \frac{11}{25}$ \\
+           2 & $\frac{773}{881}$ & $\frac{574}{881}$ & $\frac{624}{773}p^2 - \frac{\num{1551}}{\num{681013}}p - \frac{574}{881}$ \\
+           3 & $\frac{574}{881}$ & $\frac{147}{881}$ & $\frac{624}{773}p^3 - \frac{\num{1551}}{\num{681013}}p^2 - \frac{147}{881}$ \\
+           4 & $\frac{1}{25}$ & $\frac{11}{25}$ & $\frac{624}{773}p^4 - \frac{\num{1551}}{\num{681013}}p^3 - \frac{\num{2794}}{\num{22025}}p - \frac{11}{25}$ \\
+           5 & $\frac{11}{25}$ & $\frac{21}{25}$ & $\frac{624}{773}p^5 - \frac{\num{1551}}{\num{681013}}p^4 - \frac{\num{2794}}{\num{22025}}p^2 - \frac{21}{25}$ \\
+           6 & $\frac{21}{25}$ & $\frac{6}{25}$ & $\frac{624}{773}p^6 - \frac{\num{1551}}{\num{681013}}p^5 - \frac{\num{2794}}{\num{22025}}p^3 - \frac{6}{25}$ \\
+           7 & $\frac{6}{25}$ & $\frac{16}{25}$ & $\frac{624}{773}p^7 - \frac{\num{1551}}{\num{681013}}p^6 - \frac{\num{2794}}{\num{22025}}p^4 - \frac{16}{25}$ \\
+           8 & $\frac{16}{25}$ & $\frac{1}{25}$ & $\frac{624}{773}p^8 - \frac{\num{1551}}{\num{681013}}p^7 - \frac{\num{2794}}{\num{22025}}p^5 - \frac{1}{25}$ \\
+           9 & $\frac{1}{25}$ & $\frac{11}{25}$ & $\frac{624}{773}p^9 - \frac{\num{1551}}{\num{681013}}p^8 - \frac{\num{2794}}{\num{22025}}p^6 - \frac{11}{25}$ \\
            \bottomrule
          \end{tabular}
          \endgroup
@@ -2536,16 +2536,16 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
    \[
       \val\IP_p(A,\vv{u},p^e) =
       \begin{cases}
-         \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
-         \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
-         \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
-         \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
-         \frac{624}{773}p^{e} - \frac{1551}{681013}p^{e-1} - \frac{2794}{22025}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
+         \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{21}{25} & \text{if $e \equiv 0 \bmod 5$}\\[1mm]
+         \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{6}{25} & \text{if $e \equiv 1 \bmod 5$}\\[1mm]
+         \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{16}{25} & \text{if $e \equiv 2 \bmod 5$}\\[1mm]
+         \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{1}{25} & \text{if $e \equiv 3 \bmod 5$}\\[1mm]
+         \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{11}{25} & \text{if $e \equiv 4 \bmod 5$}
       \end{cases}
    \]
    for any sufficiently large prime $p$ congruent to $11$ modulo a universal denominator for $A$.
    If $(A,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$ and $p$ is as above, then
-   \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{1551}{681013 p} - \frac{2794}{22025 p^3}.\]
+   \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{\num{1551}}{\num{681013} p} - \frac{\num{2794}}{\num{22025} p^3}.\]
 \end{example}
 
 \subsection{Concerning non-leading coefficients}
@@ -2707,9 +2707,9 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 
 Throughout this appendix, we focus on polynomial rings in the string of variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will \hl{consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
 
-Recall, from \hl{the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible} if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ contained in the radical of $\idealb$.
-Our purpose in this appendix is two-fold:
-First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.
+Recall, from \hl{the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible} if $\ideala$ and $\idealb$ are nonzero and proper, and $\ideala$ contained in the radical of $\idealb$.
+Our purpose in this appendix is twofold:
+First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\ideala$ is a monomial ideal and $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.
 This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.
 Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.
 Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text.
@@ -2723,17 +2723,20 @@ For example, the \emph{monomialization operator} introduced in \Cref{monomializa
 Consider a Noetherian domain $\LL$.  If $I$ is an ideal of the polynomial ring $\LL[x]$, then $\mon(I)$ is the ideal generated by all monomials $x^{\vv{u}} \in \LL[x]$ that are multiplied into $I$ by some nonzero element of $\LL$.
 \end{definition}
 
-Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \cdot x^{\vv{u}} \in I$.  Otherwise, one can still find a single nonzero multiplier in $\LL$ with which to test inclusion in $\mon(I)$.  
+Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \cdot x^{\vv{u}} \in I$.
+Otherwise, one can still find a single nonzero multiplier in $\LL$ with which to test inclusion in $\mon(I)$, as shown in the next proposition.  
 
-\begin{lemma}
-\label{single multiplier: L}
-  Consider a Noetherian domain $\LL$.  Given an ideal $I$ of $\LL[x]$, there exists a single nonzero element $\tau \in \LL$ with which to test inclusion in $\mon(I)$, i.e., such that for every monomial $x^{\vv{u}} \in \LL[x]$, $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$.
-\end{lemma}
+\begin{proposition}
+\label{single multiplier: P}
+  Consider a Noetherian domain $\LL$.  Given an ideal $I$ of $\LL[x]$, there exists a single nonzero element $\tau \in \LL$ with which to test inclusion in $\mon(I)$, \ie such that for every monomial $x^{\vv{u}} \in \LL[x]$, $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$.
+\end{proposition}
 
 \begin{proof}  As $\LL[x]$ is Noetherian, and $\mon(I)$ is generated by monomials, there exist $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ that generate $\mon(I)$, and nonzero elements $\tau_1, \ldots, \tau_n \in \LL$ such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$.  It is then easy to verify that $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
 \end{proof}
 
-Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma~6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic; due to this, we also choose to work generally when reducing to prime characteristic.
+Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.
+For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma~6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.
+To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic; due to this, we also choose to work generally when reducing to prime characteristic.
 \pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
 
 We also provide examples illustrating that the uniformity properties established here for the $\mu$ invariants attached to a monomial ideal are strictly stronger than the ones for their $\nu$ counterparts established in \loccit, both over a field of fixed positive characteristic, and when reducing to large prime characteristic.  
@@ -2810,7 +2813,7 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
 \end{theorem}
 
 \begin{proof}
-   Set $\idealc \coloneqq \mon(\idealb)$.  Since $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in~$\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Consequently, $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ for every natural number $e$.  Finally, if we fix a set of monomials $\mathcal{C}$ in $x = x_1, \ldots, x_\numvars$ such that $\mathcal{C} \kk[x] = \idealc$, then invoking \Cref{reduce to diagonal general: T} for the radically compatible pair $(A, \mathcal{C})$ guarantees that there exists a positive point $\vv{u} \in \ZZ^\numvars$ such that $\mu(\ideala, \idealc, p^e) = \val \IP_p(A, \vv{u}, p^e)$ for every natural number $e$.
+   Set $\idealc = \mon(\idealb)$.  Since $\ideala$ is monomial, a Frobenius power of $\ideala$ sits in~$\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Consequently, $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ for every natural number $e$.  Finally, if we fix a set of monomials $\mathcal{C}$ in $x = x_1, \ldots, x_\numvars$ such that $\mathcal{C} \kk[x] = \idealc$, then invoking \Cref{reduce to diagonal general: T} for the radically compatible pair $(A, \mathcal{C})$ guarantees that there exists a positive point $\vv{u} \in \ZZ^\numvars$ such that $\mu(\ideala, \idealc, p^e) = \val \IP_p(A, \vv{u}, p^e)$ for every natural number $e$.
 \end{proof}
 
 \daniel{\emph{analogous} $\leftrightarrow$ \emph{similar}, and expanded.  \Cref{less uniformity for nu: E} is new.}
@@ -2857,7 +2860,7 @@ To start, we recall some fundamental facts, both of which may be thought of as c
 \begin{definition}[Reduction to prime characteristic]
    \label{reduction: D}
    Let $\kk$ be a field of characteristic zero, and set $R = \kk[x]$.
-   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then we set $R_A \coloneqq A[x]$, and if $I$ is an ideal of $R$, then $I_A$ denotes any ideal of $R_A$ that extends to $I$ under the inclusion $R_A \hooklongrightarrow R$.   We call such an ideal $I_A$ an $A$-model of $I$, and when such an ideal exists, we say that $A$ \emph{supports} a model for $I$.\footnote{Note that every ideal $I$ of $R$ has an $A$-model for a suitable $A$: one may take $A$ to be the $\ZZ$-subalgebra of $\kk$ generated by the coefficients appearing in a finite generating set for $I$.}
+   If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then we set $R_A = A[x]$, and if $I$ is an ideal of $R$, then $I_A$ denotes any ideal of $R_A$ that extends to $I$ under the inclusion $R_A \hooklongrightarrow R$.   We call such an ideal $I_A$ an $A$-model of $I$, and when such an ideal exists, we say that $A$ \emph{supports} a model for $I$.\footnote{Note that every ideal $I$ of $R$ has an $A$-model for a suitable $A$: one may take $A$ to be the $\ZZ$-subalgebra of $\kk$ generated by the coefficients appearing in a finite generating set for $I$.}
 
    If $I_A$ exists and $\idealm \in \mspec(A)$, then $I_A(\idealm)$ is the extension of $I_A$ to the ring $R_{A}(\idealm) \coloneqq (A/\idealm)[x]$ under the quotient map $R_A \longrightarrow R_A(\idealm)$.
    As noted in \Cref{maximal ideals: R}, $A/\idealm$ is a finite field, and for this reason we may regard $I_A(\idealm)$ as a prime characteristic model of~$I$.
@@ -3045,12 +3048,11 @@ Let $A$ be a Noetherian domain.  Given an ideal $J$ of $A[x]$, there exists $\el
 for every $A[\ell^{-1}]$-algebra $B$ \hl{that happens to be a field}.\daniel{I used to be curious to see if we could drop this, but I don't care anymore}
 \end{theorem}
 
-
 \begin{proof}
    The identity $(J:_{A[x]} x^{\vv{u}}) = (J:_{A[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{A[x]} x^{\vv{u}})$.
    Thus, we may choose $\ell \in A\setminus \{0\}$ that satisfies the conclusion of \Cref{comparing expansions:  P} for every containment $(J:_{A[x]} x^{\vv{u}}) \subseteq A[x]$, as well as the conclusion of \Cref{all monomial colons: C}.
 
-   By \Cref{single multiplier: L}, we may fix $a \in A \setminus \{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
+   By \Cref{single multiplier: P}, we may fix $a \in A \setminus \{0\}$ such that $x^{\vv{u}} \in \mon(J)$ if and only if $ax^{\vv{u}} \in J$.
    After replacing $\ell$ with $a \ell$, we may assume that $a$ is a unit in $A[\ell^{-1}]$.
    For the remainder of this proof, let $B$ be an $A[\ell^{-1}]$-algebra that happens to be a field.
 
@@ -3061,7 +3063,6 @@ for every $A[\ell^{-1}]$-algebra $B$ \hl{that happens to be a field}.\daniel{I u
    As $B$ is a field, this simply means that $x^{\vv{u}} \in JB[x]$, and \Cref{all monomial colons: C} allows us to rewrite this as
    \[(J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x] :_{B[x]} x^{\vv{u}}) = B[x].\]
    \Cref{comparing expansions:  P} and our choice of $\ell$ then imply that \[(J:_{A[x]} x^{\vv{u}}) A[\ell^{-1}][x] = A[\ell^{-1}][x].\]
-   %\pedro{or $A[\ell^{-1}][x]$; I prefer the simpler notation} \daniel{OK.  I exchanged $A[\ell^{-1},x] \leftrightarrow A[\ell^{-1}][x]$}
    Thus, $\ell^n \in (J:_{A[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, and hence $x^{\vv{u}} \in \mon(J)$.
 \end{proof}
 
