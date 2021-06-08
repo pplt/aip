@@ -36,17 +36,17 @@ TO DO LIST:
 \section{Introduction}
 
 \subsection{Main result}
-Let $\kk$ be a field of prime characteristic $p$ with $[\kk:\kk^p] < \infty$, and let $\ideala$ and $\idealb$ be nonzero proper ideals in the polynomial ring $\kk[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$.
+Let $\kk$ be a field of prime characteristic $p$ with $[\kk:\kk^p] < \infty$, and let $\ideala$ and $\idealb$ be nonzero proper ideals in the polynomial ring $\kk[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$; for convenience, we convey these conditions on $\ideala$ and $\idealb$ by saying that the pair $(\ideala,\idealb)$ is \emph{radically compatible}.
 For a nonnegative integer $e$, we set
 \begin{equation}
    \nu(\ideala,\idealb,p^e) = \max\big\{\ell\in \NN : \ideala^{\ell} \not\subseteq \idealb^{[p^e]}\big\}
    \label{eq: nu definition}
 \end{equation}
 where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
-The assumptions on~$\ideala$ and~$\idealb$ ensure that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
+The assumption that $(\ideala, \idealb)$ is radically compatible ensures that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
 \pedro{Say a little about what these numbers are for.}
 
-Starting, instead, with nonzero proper ideals $\ideala$ and $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$; we may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
+Starting, instead, with a radically compatible pair of ideals $(\ideala,\idealb)$ in $\QQ[x_1,\ldots,x_\numvars]$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$; we may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
 Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal---but before getting to it, we examine some of the motivation behind this question.
 
 \mustata, Takagi, and Watanabe observed that the images of the invariants $\nu(\ideala_p,\idealb_p,p^e)$ in $\FF_p$ are roots of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $p \gg 0$ \cite[Proposition~3.11]{mustata+takagi+watanabe.F-thresholds}.
@@ -73,7 +73,7 @@ For each ideal $\idealb$ whose radical contains $\ideala$, there are positive ra
 whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
 In this paper we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
 
-If $\kk$ is as above and $\ideala$ and $\idealb$ are nonzero proper ideals of $\kk[x_1, \ldots, x_\numvars]$ with $\ideala \subseteq \sqrt{\idealb}$, then for each nonnegative integer $e$ we define
+If $\kk$ is as above and $(\ideala,\idealb)$ is a radically compatible pair of ideals of $\kk[x_1, \ldots, x_\numvars]$, then for each nonnegative integer $e$ we define
 \[\mu(\ideala,\idealb,p^e) = \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
 
 \begin{definition}[\muCool ideal]
@@ -104,7 +104,7 @@ The following examples give a taste of the formulas obtained.
 \begin{example}[\Cref{ex: new example.2}]
    \label{ex2 intro}
    Let $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$.
-   Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
+%   Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
    We shall see in \Cref{ex: new example.2} that
 %   \[
 %      \mu(\ideala_p,\ideald_p,p^e) =
@@ -156,7 +156,7 @@ Moreover, if $f=\alpha_1x^{\vv{a}_1}+\cdots+\alpha_nx^{\vv{a}_n}$ for some $\alp
 Like multiplier and test ideals, the Frobenius powers $\ideala^{[t]}$ form a nonincreasing chain of ideals, that remains constant for small increments of the parameter, and only changes at a discrete set of rational numbers called \emph{critical exponents}---the analogues of the jumping numbers of multiplier ideals, or the $F$-jumping exponents of test ideals.
 
 Critical exponents can be more concretely realized as rates of growth of the numbers $\mu(\ideala,\idealb,p^e)$ which are the focus of this manuscript.
-If $\ideala$ and $\idealb$ are nonzero proper ideals with $\ideala \subseteq \sqrt \idealb$, then the sequence $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^\infty$ is bounded and nondecreasing; the \emph{critical exponent of $\ideala$ with respect to $\idealb$} is the limit
+If $(\ideala,\idealb)$ is a radically compatible pair of ideals in a polynomial ring over a field of characteristic $p>0$, then the sequence $\big(\mu(\ideala,\idealb,p^e)/p^e\big)_{e=0}^\infty$ is bounded and nondecreasing; the \emph{critical exponent of $\ideala$ with respect to $\idealb$} is the limit
 \[
    \crit(\ideala,\idealb) = \lim_{e\to \infty} \frac{\mu(\ideala,\idealb,p^e)}{p^e}
    = \sup_{e\in \NN} \frac{\mu(\ideala,\idealb,p^e)}{p^e}.
@@ -164,7 +164,7 @@ If $\ideala$ and $\idealb$ are nonzero proper ideals with $\ideala \subseteq \sq
 The set of all critical exponents $\crit(\ideala,\idealb)$, as $\idealb$ ranges over all nonzero proper ideals whose radicals contain $\ideala$, coincides with the set of critical exponents of the Frobenius powers of $\ideala$.
 
 We shall see that if $\ideala \subseteq \QQ[x_1,\ldots,x_\numvars]$ is a monomial ideal, then there exists a positive integer $\denom = \denom(\ideala)$ with the following property:
-Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$, there exist degree $0$ rational functions $Q_r(t) \in \QQ(t)$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\crit(\ideala_p, \idealb_p) = Q_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
+Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, there exist degree $0$ rational functions $Q_r(t) \in \QQ(t)$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\crit(\ideala_p, \idealb_p) = Q_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
 \pedro{
    Maybe make this an official theorem?
    We could also introduce another definition, ``crit-uniform'', or is that too much?
@@ -184,7 +184,7 @@ Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ with $\ideal
       \crit(\ideala_p,\ideald_p) =
       \frac{624}{773} - \frac{\num{1551}}{\num{681013} p} - \frac{\num{2794}}{\num{22025} p^3}
    \]
-   for all but finitely many primes $p$ in a certain arithmetic progression.
+   for all but finitely many primes $p \equiv 11 \bmod \num{752523984455421061348766569800}$.
 \end{example}
 
 The above definition and observations have their counterparts in the theory of test ideals and $F$-jumping exponents: the limit
@@ -193,7 +193,7 @@ The above definition and observations have their counterparts in the theory of t
    = \sup_{e\in \NN} \frac{\nu(\ideala,\idealb,p^e)}{p^e}
 \]
 is called the \emph{$F$-threshold of $\ideala$ with respect to $\idealb$}, and the set of all $F$-thresholds $\ft{\ideala}{\idealb}$, as $\idealb$ varies as above, coincides with the set of $F$-jumping exponents of the test ideals of $\ideala$.
-If $\ideala$ and $\idealb$ are nonzero proper ideals of  $\QQ[x_1,\ldots,x_\numvars]$, where $\ideala$ is a monomial ideal and $\ideala \subseteq \sqrt \idealb$, then \eqref{eq: nu-uniformity for monomial ideals} shows that the $F$-threshold $\ft{\ideala_p}{\idealb_p}$ is independent of $p$, in striking contrast with the situation for $\crit(\ideala_p,\idealb_p)$ described above.
+If $(\ideala,\idealb)$ is a radically compatible pair of ideals of  $\QQ[x_1,\ldots,x_\numvars]$, where $\ideala$ is a monomial ideal, then \eqref{eq: nu-uniformity for monomial ideals} shows that the $F$-threshold $\ft{\ideala_p}{\idealb_p}$ is independent of~$p$, in striking contrast with the situation for $\crit(\ideala_p,\idealb_p)$ described above.
 
 \todo[inline]{
    TBC
@@ -348,9 +348,11 @@ We consider perhaps the simplest such example below.
 \label{concrete-solution-to-LP-IP: E}  
 Fix a positive integer $d \ge 2$, and consider the diagonal matrix 
 \[ A = \begin{bmatrix} d & 0 \\ 0 & d \end{bmatrix}. \] 
-If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and if $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ consists of the single point
-\[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - (\lpr{sq}{d}, \lpr{tq}{d})}{d} \] 
-where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Therefore, $\val \LP(A,\vv{u})$ equals $\norm{\vv{u}}/d$ and $\val \IP(A,\vv{u},q)$ equals $\val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
+If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and thus $\val \LP(A,\vv{u}) = \norm{\vv{u}}/d$.
+If $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ also consists of a single point, namely
+\[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - \lpr{\vv{u}q}{d}}{d} \] 
+where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.
+Therefore, $\val \IP(A,\vv{u},q) = \val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
 \end{example}
 
 \subsection{Relations with arithmetic and fractal programs}
@@ -360,8 +362,8 @@ First, recall that for each $q$ a power of $p$, the integer $\mu(\ideala, \ideal
 \[\mu(\ideala,\ideald,q) = \max\big\{ \ell \in \NN : \ideala^{[\ell]} \not\subseteq \ideald^{[q]}\big\},\]
 where $\ideala^{[\ell]}$ is the $\ell$-th (generalized) Frobenius power of $\ideala$.
 
-If $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which  $\binom{\ell}{\vv{k}} =
-\frac{\ell!}{k_1 ! \cdots k_n !}$ is nonzero modulo $p$  \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
+If $\idealb$ is an ideal of a ring of characteristic $p$ with generators $g_1, \ldots, g_n$, then $\idealb^{[\ell]}$ is the ideal generated by the products $g_1^{k_1}\cdots g_n^{k_n}$, ranging over $\vv{k} \in \NN^n$ with $\norm{\vv{k}}=\ell$, and for which the multinomial coefficient $\binom{\ell}{\vv{k}} =
+\frac{\ell!}{k_1 !\, \cdots\, k_n !}$ is nonzero modulo~$p$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.
 In light of this, \Cref{generators-via-exponent-matrix: R} tells us that $\ideala^{[\ell]}$ is generated by the monomials of the form $x^{A \vv{k}}$ with $\vv{k} \in \NN^n$ satisfying $\norm{\vv{k}}=\ell$ and $\binom{\ell}{\vv{k}} \not\equiv 0 \bmod p$.  As in the previous subsection, we may conclude that $\mu(\ideala,\ideald,q)$ is the maximum value of $\norm{\vv{k}}$, with $\vv{k} \in \NN^n$ subject to the linear constraint $A\vv{k} < \vv{u}q$, but also subject to the highly nonlinear constraint $\binom{\norm{\vv{k}}}{\vv{k}} \not\equiv 0 \bmod{p}$.  Motivated by this, we introduce a variant of an integer program that we call an \emph{arithmetic integer program}.
 
 \begin{definition}[The arithmetic integer program $\IP_p$]
@@ -2727,8 +2729,9 @@ Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \c
 Otherwise, one can still find a single nonzero multiplier in $\LL$ with which to test inclusion in $\mon(I)$, as shown in the next proposition.  
 
 \begin{proposition}
-\label{single multiplier: P}
-  Consider a Noetherian domain $\LL$.  Given an ideal $I$ of $\LL[x]$, there exists a single nonzero element $\tau \in \LL$ with which to test inclusion in $\mon(I)$, \ie such that for every monomial $x^{\vv{u}} \in \LL[x]$, $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$.
+   \label{single multiplier: P}
+   Consider a Noetherian domain $\LL$.
+   Given an ideal $I$ of $\LL[x]$, there exists a nonzero element $\tau \in \LL$ such that for every monomial $x^{\vv{u}} \in \LL[x]$, $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$.
 \end{proposition}
 
 \begin{proof}  As $\LL[x]$ is Noetherian, and $\mon(I)$ is generated by monomials, there exist $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ that generate $\mon(I)$, and nonzero elements $\tau_1, \ldots, \tau_n \in \LL$ such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$.  It is then easy to verify that $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
