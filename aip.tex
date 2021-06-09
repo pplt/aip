@@ -36,6 +36,7 @@ TO DO LIST:
 \section{Introduction}
 
 \subsection{Main result}
+
 Let $\kk$ be a field of prime characteristic $p$ with $[\kk:\kk^p] < \infty$, and let $\ideala$ and $\idealb$ be nonzero proper ideals in the polynomial ring $\kk[x_1,\ldots,x_\numvars]$ with $\ideala \subseteq \sqrt \idealb$; for convenience, we convey these conditions on $\ideala$ and $\idealb$ by saying that the pair $(\ideala,\idealb)$ is \emph{radically compatible}.
 For a nonnegative integer $e$, we set
 \begin{equation}
@@ -43,11 +44,13 @@ For a nonnegative integer $e$, we set
    \label{eq: nu definition}
 \end{equation}
 where $\idealb^{[p^e]} = \langle g^{p^e} : g \in \idealb \rangle$ is the $p^e$-th Frobenius power of $\idealb$.
-The assumption that $(\ideala, \idealb)$ is radically compatible ensures that each $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
-\pedro{Say a little about what these numbers are for.}
+The assumption that $(\ideala, \idealb)$ is radically compatible ensures that $\nu(\ideala, \idealb, p^e)$ is a well-defined integer.
+\pedro{Say a little about what these numbers are for and where they come up ($F$-thresholds, $F$-singularities, \ldots).}
 
-Starting, instead, with a radically compatible pair of ideals $(\ideala,\idealb)$ in $\QQ[x_1,\ldots,x_\numvars]$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$; we may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
-Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal---but before getting to it, we examine some of the motivation behind this question.
+Starting, instead, with a radically compatible pair of ideals $(\ideala,\idealb)$ in $\QQ[x_1,\ldots,x_\numvars]$, for each sufficiently large prime $p$ we have well-defined characteristic $p$ reductions $\ideala_p$ and $\idealb_p$ in $\FF_p[x_1,\ldots,x_\numvars]$ such that $(\ideala_p,\idealb_p)$ is radically compatible.
+We may thus consider the numbers $\nu(\ideala_p,\idealb_p,p^e)$, and ask how these vary with $p$.
+Although little is known in general, a complete answer is known when $\ideala$ is a monomial ideal.
+Before getting to it, though, we first examine some of the motivation behind this question.
 
 \mustata, Takagi, and Watanabe observed that the images of the invariants $\nu(\ideala_p,\idealb_p,p^e)$ in $\FF_p$ are roots of the Bernstein--Sato polynomial of $\ideala$ at the origin, for each $p \gg 0$ \cite[Proposition~3.11]{mustata+takagi+watanabe.F-thresholds}.
 Furthermore, they noticed that $\nu(\ideala_p,\idealb_p,p^e)$ oftentimes (but not always) varies with $p$ in a uniform way---a behavior that allows them to find \emph{actual} roots of that Bernstein--Sato polynomial, as opposed to roots modulo $p$.
@@ -65,16 +68,17 @@ If $\ideala$ is \nuCool, then the constant term $G_r(0)$ is a root of the Bernst
 
 Budur, \mustata, and Saito showed that monomial ideals are \nuCool \cite[Theorem~4.1]{budur+mustata+saito.roots_bs_polys_monomial}.
 Specifically, they showed that if $\ideala$ is a proper, nontrivial monomial ideal in $\QQ[x_1,\ldots,x_\numvars]$, then there exists a positive integer $\denom = \denom(\ideala)$ with the following property:
-For each ideal $\idealb$ whose radical contains $\ideala$, there are positive rational numbers $\alpha$ and $\beta_r$, for $0 \le r < \denom$, such that
+For each proper ideal $\idealb$ whose radical contains $\ideala$, there are positive rational numbers $\alpha$ and $\beta_r$, for $0 \le r < \denom$, such that
 \begin{equation}
    \label{eq: nu-uniformity for monomial ideals}
    \nu(\ideala_p, \idealb_p, p^e) = \alpha p^e - \beta_r
 \end{equation}
 whenever $p^e \gg 0$ and $p \equiv r \bmod \denom$.
-In this paper we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
 
+In this paper, we prove an analogous result for a family of analogous invariants, where the standard power $\ideala^\ell$ in \eqref{eq: nu definition} is replaced with the (generalized) Frobenius power $\ideala^{[\ell]}$, introduced by the authors in \cite{hernandez+etal.frobenius_powers}.
 If $\kk$ is as above and $(\ideala,\idealb)$ is a radically compatible pair of ideals of $\kk[x_1, \ldots, x_\numvars]$, then for each nonnegative integer $e$ we define
 \[\mu(\ideala,\idealb,p^e) = \max\big\{\ell\in \NN : \ideala^{[\ell]} \not\subseteq \idealb^{[p^e]}\big\}.\]
+As before, we may start with a radically compatible pair $(\ideala,\idealb)$ in $\QQ[x_1,\ldots,x_\numvars]$, and ask how the numbers $\mu(\ideala_p,\idealb_p,p^e)$ vary with $p$.
 
 \begin{definition}[\muCool ideal]
    \label{defn: muCool}
@@ -101,11 +105,9 @@ The following examples give a taste of the formulas obtained.
     for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $\num{2170560}$.
 \end{example}
 
-\begin{example}[\Cref{ex: new example.2}]
+\begin{example}[See \Cref{ex: new example.2}]
    \label{ex2 intro}
-   Let $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$.
-%   Given integers $a$ and $b$, we denote by $\lpr{a}{b}$ the least positive residue of $a$ modulo $b$.
-   We shall see in \Cref{ex: new example.2} that
+   If $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$, we shall see that
 %   \[
 %      \mu(\ideala_p,\ideald_p,p^e) =
 %      \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
@@ -128,6 +130,10 @@ The following examples give a taste of the formulas obtained.
     probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
  }
  \daniel{I actually really like the precision.  It gives a real taste of what we can do.  Maybe we can hold off to see if Emily weighs in, but in order to appreciate the glory, I restored the old version (the shortened one is still commented out here)}
+ \pedro{
+    I'm OK with keeping it annoyingly precise :-)
+    Maybe we should include an example after \Cref{universal-denominators-exist:  T} where this monstrous number is ``computed'' (we'll just say that following the steps in the proof, this is what we get).  
+ }
 \end{example}
 
 \subsection{Frobenius powers}
