@@ -82,7 +82,9 @@ As before, we may start with a radically compatible pair $(\ideala,\idealb)$ in 
 
 \begin{definition}[\muCool ideal]
    \label{defn: muCool}
-   A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\muCool} if a condition analogous to that in \Cref{defn: nuCool} holds for $\mu(\ideala_p,\idealb_p,p^e)$, for each proper ideal $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, and each nonnegative integer $e$.
+   A nonzero proper ideal $\ideala$ of $\QQ[x_1,\ldots,x_\numvars]$ is \emph{\muCool} if a condition analogous to that in \Cref{defn: nuCool}
+   \pedro{Maybe just make this explicit?}
+   holds for $\mu(\ideala_p,\idealb_p,p^e)$, for each proper ideal $\idealb$ in $\QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, and each nonnegative integer $e$.
 \end{definition}
 
 Our main result shows that monomial ideals are \muCool.
@@ -2779,11 +2781,12 @@ Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \c
 The $\mon$ operation commutes with standard Frobenius powers for ideals of any polynomial ring over a field of prime characteristic. %[$\mon$ commutes with standard Frobenius powers]  If $\kk$ is a field with $\operatorname{char}(\kk)=p>0$, and $\idealb$ is an ideal of $\kk[x]$, then $\mon(\idealb^{[p^e]}) = \mon(\idealb)^{[p^e]}$ for every $e$.
 \end{lemma}
 
-\begin{proof}  Consider an ideal $\idealb$ of $R=\kk[x]$, where $\kk$ is a field of characteristic $p>0$, set $\idealc = \mon(\idealb)$, and let $q=p^e$.  We will now demonstrate that $\idealc^{[q]} = \mon(\idealb^{[q]})$.  One containment is immedate:   As $\idealc^{[q]} \subseteq \idealb^{[q]}$, we have that $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
+\begin{proof}  Consider an ideal $\idealb$ of $R=\kk[x]$, where $\kk$ is a field of characteristic $p>0$, set $\idealc = \mon(\idealb)$, and let $q=p^e$.  We will now demonstrate that $\idealc^{[q]} = \mon(\idealb^{[q]})$.  One containment is immediate:   As $\idealc^{[q]} \subseteq \idealb^{[q]}$, we have that $\idealc^{[q]} = \mon(\idealc^{[q]}) \subseteq \mon(\idealb^{[q]})$.
    
-   To conclude, it remains to show that any monomial $x^{\vv{u}} \in \idealb^{[q]}$ must lie in $\idealc^{[q]}$.  Write $\vv{u} = \vv{v}q + \vv{w}$, where $\vv{v}, \vv{w} \in \NN^\numvars$ and $\vv{0} \leq \vv{w} < \vv{1}q$.
-   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, the fact that $R$ is free over $R^q$ implies that $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$.
-   Applying the $q$-th root operation to this inclusion then shows that $\langle 1 \rangle = \langle x^{\vv{w}} \rangle^{[1/q]}  \subseteq (\idealb: x^{\vv{v}})$,  where the first equality follows from the bounds on $\vv{w}$ noted above.
+   To conclude, it remains to show that any monomial $x^{\vv{u}} \in \idealb^{[q]}$ must lie in $\idealc^{[q]}$.
+   Write $\vv{u} = \vv{v}q + \vv{w}$, where $\vv{v}, \vv{w} \in \NN^\numvars$ and $\vv{0} \leq \vv{w} < \vv{1}q$.
+   As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we have $x^{\vv{w}} \in ( \idealb^{[q]}: x^{\vv{v}q}) = (\idealb:x^{\vv{v}})^{[q]}$, where the equality follows from the fact that $R$ is free over $R^q$.
+   Applying the $q$-th root operation to this inclusion and observing that $\ideal{x^{\vv{w}}}^{[1/q]} = \ideal{1}$, due to the bounds on $\vv{w}$ noted above, we see that $ (\idealb: x^{\vv{v}}) = \ideal{1}$.
    Therefore, $x^{\vv{v}} \in \idealb$, so $x^{\vv{v}} \in \mon(\idealb) = \idealc$, and we conclude that $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
@@ -2881,7 +2884,6 @@ Furthermore, it is not hard to see that there is no positive point $\vv{v} \in \
 
 We now briefly recall the process of reduction to prime characteristic, in the context of polynomial rings.
 
-
 To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide formal references for their proofs, though the reader may also consult the thesis \cite[Chapter~3]{hernandez.thesis} for more details.
 
 \begin{remark}[Generic freeness]\label{generic-freeness}
@@ -2910,27 +2912,27 @@ To start, we recall some fundamental facts, both of which may be thought of as c
    Furthermore, as $\idealm \in \mspec(A)$ varies we obtain models $I_A(\idealm)$ of $I$ over finite fields of all but finitely many characteristics.
 \end{definition}
 
-The following application of generic freeness forms the technical basis for the process of reduction of prime characteristic, and is well-known to experts.  
+The following application of generic freeness forms the technical basis for the process of reduction to prime characteristic, and is well known to experts.  
 
 \begin{proposition}
    \label{comparing expansions:  P}
    Suppose $A$ is a Noetherian domain.
    Given ideals $I \subseteq J$ of $A[x]$, there exists a nonzero element $\ell \in A$ with the following property\textup:
-  If $B$ is any $A[\ell^{-1}]$-algebra, then the canonical $B$-linear map  $B \otimes_A (J/I) \to B[x]/IB[x]$ defined by $b \otimes (f+I) \mapsto bf+IB[x]$ is injective, and hence, induces an isomorphism \[ B \otimes_A (J/I) \cong JB[x] / IB[x].\]  
-  
+  If $B$ is any $A[\ell^{-1}]$-algebra, then the canonical $B$-linear map  $B \otimes_A (J/I) \to B[x]/IB[x]$ defined by $b \otimes (f+I) \mapsto bf+IB[x]$ is injective, and hence, induces an isomorphism \[ B \otimes_A (J/I) \cong JB[x] / IB[x].\]    
   Furthermore, and significantly, if $IB_{\circ}[x]=JB_{\circ}[x]$ for some $A[\ell^{-1}]$-algebra $B_{\circ}$, then $IB[x]=JB[x]$ for every $A[\ell^{-1}]$-algebra $B$.
   \end{proposition}
 
 \begin{proof}
-By generic freeness, we may fix a nonzero element $\ell \in A$ such that each of the tensor products $A[\ell^{-1}] \otimes_A J/I$ and $A[\ell^{-1}] \otimes_A A[x]/J$ is free over $A[\ell^{-1}]$.  Let $0 \leq \rho \leq \infty$ denote the rank of the free $A[\ell^{-1}]$-module $A[\ell^{-1}] \otimes_A (J/I)$.
+   By generic freeness, we may fix a nonzero element $\ell \in A$ such that each of the tensor products $A[\ell^{-1}] \otimes_A (J/I)$ and $A[\ell^{-1}] \otimes_A A[x]/J$ is free over $A[\ell^{-1}]$.
+   Let $0 \leq \rho \leq \infty$ denote the rank of the free $A[\ell^{-1}]$-module $A[\ell^{-1}] \otimes_A (J/I)$, and let $B$ be an $A[\ell^{-1}]$-module.
 
 Applying the functor $M \mapsto A[\ell^{-1}] \otimes_A M$ to the short exact sequence
 \[ 0 \to J/I \to A[x] / I \to A[x]/J \to 0 \] 
-yields a short exact sequence over $A[\ell^{-1}]$ that splits, as the last term is free.  Split exactness and free-rank is preserved by base change, so applying the functor $L \mapsto B \otimes_{A[\ell^{-1}]} L$ to this split exact sequence then yields the split exact sequence
+yields a short exact sequence of $A[\ell^{-1}]$-modules that splits, as the last term is free.
+Split exactness and free rank are preserved by base change, so applying the functor $L \mapsto B \otimes_{A[\ell^{-1}]} L$ to this split exact sequence then yields the split exact sequence
 \[ 0 \to B \otimes_A (J/I) \to B \otimes_A (A[x]/I) \to B \otimes_A (A[x]/J) \to 0 \] 
-of $B$-modules, which starts at a free $B$-module of rank $\rho$.  
-
-To conclude the proof, note that the composition $B \otimes_A (J/I)  \to B \otimes_A (A[x]/I)$ with the canonical isomorphism $B \otimes_A (A[x]/I) \cong B[x]/IB[x]$ is the canonical map referenced above, and that the free rank $\rho$ of the first term is independent of $B$.
+of $B$-modules, which starts with a free $B$-module of rank $\rho$.  
+To conclude the proof, note that the composition of the injective map $B \otimes_A (J/I)  \to B \otimes_A (A[x]/I)$ with the canonical isomorphism $B \otimes_A (A[x]/I) \cong B[x]/IB[x]$ is the canonical map in the statement, and that the free rank $\rho$ of the first term is independent of $B$.
 %OLD PROOF STARTS HERE
 % 
 %   Localizing the exact sequence $0 \to I \to J \to J/I \to 0$ at $\ell \in A \setminus \{0\}$, we obtain the exact sequence of $A[\ell^{-1}]$-modules
@@ -2949,13 +2951,12 @@ To conclude the proof, note that the composition $B \otimes_A (J/I)  \to B \otim
 % Finally, for the last statement, simply note that $\rho$, the rank of the free $B$-module $B \otimes_A (J/I) \cong J B[x]/I B[x]$, is independent of the choice of $A[\ell^{-1}]$-algebra $B$.   
 \end{proof}
 
-
-\begin{remark} Let $\kk$ be a field of characteristic zero, $I$ be an ideal of $R=\kk[x]$, and $A$ be a finitely-generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$ of $I$.  
-
+\begin{remark}
+   Let $\kk$ be a field of characteristic zero, $I$ an ideal of $R=\kk[x]$, and $A$ a finitely generated $\ZZ$-subalgebra of $\kk$ that supports a model $I_A$ of $I$.  
 According to \Cref{comparing expansions:  P}, there exists a nonzero element $\ell \in A$ such that 
-\[ B \otimes_A I_A  \cong I_AB[x]  \text{ and } B \otimes_A (R_A / I_A)  \cong B[x]/I_A B[x] \] 
-for each $A[\ell^{-1}]$-algebra $B$.  In particular, if we take $B=\kk$, then
-\[ \kk \otimes_A I_A  \cong I_A R = I  \text{ and } \kk \otimes_A (R_A / I_A)  \cong R/I. \] 
+\[ B \otimes_A I_A  \cong I_AB[x] \quad \text{and} \quad B \otimes_A (R_A / I_A)  \cong B[x]/I_A B[x] \] 
+for every $A[\ell^{-1}]$-algebra $B$.  In particular, if we take $B=\kk$, then
+\[ \kk \otimes_A I_A  \cong I_A R = I  \quad \text{and} \quad \kk \otimes_A (R_A / I_A)  \cong R/I. \] 
 On the other hand, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  a dense open subset of $\mspec(A)$, 
  then for each $\idealm \in \mathcal{U}$, we may take $B=A/\idealm$ above to see that 
 \[ (A/\idealm) \otimes_A I_A  \cong I_A R_A(\idealm) = I_A(\idealm)  \text{ and } \kk \otimes_A (R_A / I_A)  \cong R_A(\idealm) /I_A(\idealm). \] 
@@ -2977,13 +2978,13 @@ If $I=J$, that is, if $I_A$ and $J_A$ are $A$-models of the same ideal, then $I_
 \end{corollary}
 
 \begin{proof}
-For the first assertion, set $L=I_A + J_A$, and choose $\ell \in A \setminus \{0\}$ so that the conclusion of \Cref{comparing expansions:  P} holds for the containments $I_A \subseteq L$ and $J_A \subseteq L$.    
-   
-   Given that the expansion of each of $I_A, J_A$, and $L$ to $R$ equals $I$, setting $B_{\circ} = \kk$ in \Cref{comparing expansions:  P} implies that their expansions to $B[x]$ agree for every $A[\ell^{-1}]$-algebra $B$.
+   For the first assertion, set $L=I_A + J_A$, and choose $\ell \in A \setminus \{0\}$ so that the conclusion of \Cref{comparing expansions:  P} holds for the containments $I_A \subseteq L$ and $J_A \subseteq L$.
+   Given that the extension of each of $I_A$, $J_A$, and $L$ to $R$ equals $I$, setting $B_{\circ} = \kk$ in \Cref{comparing expansions:  P} implies that their extensions to $B[x]$ agree for every $A[\ell^{-1}]$-algebra~$B$.
    Thus, if $\mathcal{U} = \{ \idealm \in \mspec(A) : \operatorname{char}(A/\idealm) \nmid \ell \}$,  a dense open subset of $\mspec(A)$, 
  then for each $\idealm \in \mathcal{U}$, we may set $B=A/\idealm$ above to see that $I_A(\idealm) = J_A(\idealm)$.
 
- In the context of the second assertion, both $I_A$ and $GR_A$ are $A$-models for $I$, and in the context of the third, if $I^t \subseteq J$, then both $J_A$ and $I_A^t +J_A$ are $A$-models for $J=I^t + J$.   Thus, the second and third assertion follow from the first. 
+ In the context of the second assertion, both $I_A$ and $\mathcal{C}R_A$ are $A$-models for $I$, and in the context of the third, if $I^t \subseteq J$, then both $J_A$ and $I_A^t +J_A$ are $A$-models for $J=I^t + J$.
+ Thus, the second and third assertions follow from the first. 
 %
 %For the last assertion, for every $A$-algebra $B$, consider the canonical map 
 %\[ \theta_B:  B[x] {\longrightarrow} M_B \coloneqq B[x]/ I_A B[x] \oplus B[x]/ J_A B[x] \] 
@@ -2994,8 +2995,6 @@ For the first assertion, set $L=I_A + J_A$, and choose $\ell \in A \setminus \{0
 %yields a split exact sequence of $B$-modules $0 \to B \otimes_A \im(\theta_A) \to B \otimes_A  M_A \to B \otimes_A (M_A/\im(\theta_A)) \to 0$ 
 %and the reader may verify that the composition $B \otimes_A \im(\theta_A) \hookrightarrow B \otimes_A M_A \cong M_B$ induces an isomorphism $B \otimes_A \im(\theta_A) \cong \im(\theta_B)$.
 \end{proof}
-
-
 
 \begin{example} The dense open set referenced in \Cref{reduction basics: C} \ref{reduction preserves being monomial} may not be all of $\mspec(A)$, even when $A=\ZZ$.  For an extreme example,  note that the ideal $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$ is a $\ZZ$-model of $I=\langle x, y \rangle \subseteq \QQ[x,y]$, and through $I_{\ZZ} \bmod p$ is what one expects when $p \neq 2$, the reduction $I_{\ZZ} \bmod 2  = \langle x+y \rangle \subseteq \FF_2[x,y]$ is especially far from being a monomial ideal, given that it contains no monomials.  
 \end{example}
@@ -3054,21 +3053,23 @@ In \Cref{all monomial colons: C} {below, we will show that, once $J$ is fixed, t
 
 \begin{corollary}
    \label{all monomial colons: C} 
-   Let $A$ be Noetherian domain.
+   Let $A$ be a Noetherian domain.
    Given an ideal $J$ of $A[x]$, there exists a nonzero element $\ell \in A$ such that
    \[ (J:_{A[x]} x^{\vv{u}}) B[x] = (JB[x]:_{B[x]} x^{\vv{u}})\]
    for every $A[\ell^{-1}]$-algebra $B$ and every monomial $x^{\vv{u}} \in A[x]$.   
 \end{corollary}
 
 \begin{proof}
-   As $A[x]$ is Noetherian, there is $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq \numvars$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$ and repeated applications of \eqref{iterated colon: e} then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.
+   As $A[x]$ is Noetherian, there exists $t \in \NN$ such that $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$ for each $1 \leq i \leq \numvars$.  Define $\phi:  \NN^\numvars \to \NN^\numvars$ by $\vv{u} \mapsto (\min\{u_1, t\}, \ldots, \min \{u_\numvars,t\})$.  Our choice of $t$ and repeated applications of \eqref{iterated colon: e} then show that $(J:_{A[x]}x^\vv{u}) = (J:_{A[x]}x^{\phi(\vv{u})})$.
    If $\ell$ satisfies the conclusion of \Cref{colon mod p: P} for the finitely many colon ideals $(J:_{A[x]}x_i^t)=(J:_{A[x]}x_i^{t+1})$, and $B$ is an $A[\ell^{-1}]$-algebra, then
-   \[ (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
+ \[
+       (JB[x]:_{B[x]} x_i^{t}) = (J:_{A[x]}x_i^{t})B[x]
                                = (J:_{A[x]}x_i^{t+1})B[x]
-                               =(JB[x]:_{B[x]} x_i^{t+1}) \]
-   and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
+                               =(JB[x]:_{B[x]} x_i^{t+1})
+   \]
+   for each $i$, and as above, we may conclude that $(JB[x]:_{B[x]}x^\vv{u}) = (JB[x]:_{B[x]}x^{\phi(\vv{u})})$.
 
-After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusion of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A$, and so
+   After replacing $\ell$ with a nonzero multiple, we may also assume that the conclusion of \Cref{colon mod p: P} holds for the finitely many ideals $(J:_{A[x]} x^{\phi(\vv{u})})$ of $A[x]$, and so
 \[ (J:_{A[x]} x^{\vv{u}})B[x] = (J:_{A[x]} x^{\phi(\vv{u})})B[x] = (JB[x]:_{B[x]} x^{\phi(\vv{u})}) = (JB[x]:_{B[x]} x^{\vv{u}}). \qedhere\]
 \end{proof}
 
@@ -3106,9 +3107,9 @@ for every $A[\ell^{-1}]$-algebra $B$ {that happens to be a field}.
    \label{mon-operation-modulo-p: T}
    Let $\kk$ be a field of characteristic zero and $I$ an ideal of $R=\kk[x]$.
    If $A$ is a finitely generated $\ZZ$-subalgebra of $\kk$ that supports an $A$-model $I_A$ of $I$, then $\mon(I_A)$ is an $A$-model for $\mon(I)$.
-   Furthermore, 
-\[ %(\mon(I))_A(\idealm) \coloneqq 
-\mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \] for every point $\idealm$ in some dense open subset of $\mspec(A)$. \qed
+   Furthermore,
+   \[ \mon(I_A) R_A(\idealm) = \mon(I_A(\idealm)) \]
+   for every point $\idealm$ in some dense open subset of $\mspec(A)$. \qed
 \end{theorem}
 
 We are now prepared to describe the behavior of the $\nu / \mu$ invariants associated to a monomial ideal under reduction to prime characteristic.  We begin with a general fact that holds for all compatible pairs in characteristic zero, monomial or not.
