@@ -278,6 +278,27 @@ To distinguish between these cases, we refer to a program in $\mathcal{X} = \RR^
 
 Every program $\Omega$ we consider in this article has the property that the values taken on by the objective function on $\feas \Omega$ are bounded from above, and in this case, the maximum value achieved by the objective function on this feasible set is called the \emph{value} of the program $\Omega$, and is denoted $\val \Omega$.  The subset of $\feas \Omega$ where the objective function achieves this maximum value is called the \emph{optimal set} of $\Omega$, and is denoted $\opt \Omega$.   When $\Omega$ is a linear program in $\RR^n$, its optimal set is a face of the polyhedron $\feas \Omega$ in $\RR^n$.
 
+\section{Background}
+\label{background: S}
+
+\daniel[inline]{Not sure where this should go, but it will be needed in the appendix}
+\begin{lemma} 
+\label{compatible to small compatible: L}
+ \hl{Suppose that $(\ideala, \idealb)$ is a compatible pair of ideals in $\kk[x]$, where $\kk$ is a field of characteristic $p>0$, let $t$ be the natural number such that $\ideala^t \not \subseteq \idealb$ but $\ideala^{t+1} \subseteq \idealb$, and set $\idealc = (\idealb : \ideala^t)$.   If $p > t+1$ and $e$ is a positive integer, then}
+\[ \mu(\ideala, \idealb, p^e) = t p^e + \mu(\ideala, \idealc, p^e). \] 
+\end{lemma}
+
+\begin{proof}  Set $q=p^e$ and $s=\mu(\ideala, \idealc, p^e)$.  The containment $\ideala \subseteq \idealc$ implies that $0 \leq s < q$, and combining this with the bounds that $0 < t < p-1$, we see that 
+%
+\begin{align*}
+\ideala^{[tq+s]} & = (\ideala^t)^{[q]} \ideala^{[s \, ]} \\ 
+ \ideala^{[tq+s+1]} & = (\ideala^t)^{[q]} \ideala^{[s+1]}
+\end{align*}
+%
+though to establish the second identity, the case $s=q-1$ must be considered separately, and requires the bound $p>t+1$.  Thus, $\ideala^{[tq+s]} \not \subseteq \idealb^{[q]}$, for otherwise, \[ \ideala^{[s]} \subseteq (\idealb^{[q]} : (\ideala^t)^{[q]}) = \idealc^{[q]}\]  contradicting our choice of $s$.  The containment $\ideala^{[tq+s+1]} \subseteq \idealb^{[q]}$ follows similarly. 
+\end{proof}.
+
+
 \section{Connections with optimization}
 \label{sec: LPs}
 
@@ -344,8 +365,6 @@ The value of $\LP(A, \vv{u})$ equals the $F$-threshold $\ft{\ideala}{\ideald}$.
    Dividing by $q$ and taking the limit as $q$ tends to infinity, we find that the limits in \eqref{ft as limit of normalized program values: eq} are at least $\val \LP$, which completes the proof.
 \end{proof}
 
-\daniel[inline]{The following is new}
-
 Thus, in practice, it is as difficult to effectively compute $\ft{\ideala}{\ideald}$ and $\nu(\ideala, \ideald, p^e)$ as it is to effectively solve standard linear and integer programs, which can be hard.
 Nevertheless, there are still some special cases in which these quantities are easy to determine.
 We consider perhaps the simplest such example below.
@@ -354,11 +373,10 @@ We consider perhaps the simplest such example below.
 \label{concrete-solution-to-LP-IP: E}  
 Fix a positive integer $d \ge 2$, and consider the diagonal matrix 
 \[ A = \begin{bmatrix} d & 0 \\ 0 & d \end{bmatrix}. \] 
-If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and thus $\val \LP(A,\vv{u}) = \norm{\vv{u}}/d$.
-If $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ also consists of a single point, namely
-\[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - \lpr{\vv{u}q}{d}}{d} \] 
-where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.
-Therefore, $\val \IP(A,\vv{u},q) = \val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
+
+If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and if $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ consists of the single point
+\[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - (\lpr{sq}{d}, \lpr{tq}{d})}{d} \] 
+where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Therefore, $\val \LP(A,\vv{u})$ equals $\norm{\vv{u}}/d$ and $\val \IP(A,\vv{u},q)$ equals $\val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
 \end{example}
 
 \subsection{Relations with arithmetic and fractal programs}
@@ -595,6 +613,18 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
    We have just shown that the objective function $\vv{t} \mapsto \norm{\vv{t}}$ is at most $\crit(\ideala, \ideald)$ on the set $\{ \vv{t} \in \sierp_{p,n} : A \vv{t} < \vv{u} \}$, and so the same must be true on the closure of this set, which is the feasible set of $\fip_p(A, \vv{u})$.
    Restated,  $ \val \fip_p(A, \vv{u})$ is at most $\crit(\ideala,  \ideald)$, and so equality holds.
 \end{proof}
+
+\daniel[inline]{This isolates an argument from the appendix that I felt was more appropriate here.}
+\begin{lemma} 
+\label{lifted-programs: L}
+ {Suppose that $B$ is a monomial matrix obtained by deleting some rows a monomial matrix $A$ with $m$ rows.    In fact, for the sake of concreteness, suppose that $B$ consists of the first $\ell$ rows of $A$, and is monomial.   Given a positive point $\vv{v} \in \mathbb{Z}^{\ell}$, there is a positive point $\vv{u} \in \ZZ^{\numvars}$ such that $u_i = v_i$ for all $1 \leq i \leq \ell$, and such that the values of $\IP_p(A, \vv{u}, p^e)$ and $\IP_p(B, \vv{v}, p^e)$ coincide for all $p$ and $e$.}
+\end{lemma}
+
+\begin{proof}  As $B$ is monomial, the feasible set of the standard linear program $\LP(B, \vv{v})$ is compact, and so we may fix a positive integer $\omega$ greater than every inner product of the form $\iprod{\vv{r}}{\vv{f}}$, where $\vv{r}$ ranges over the last $m-\ell$ rows of $A$, and $\vv{f}$ ranges over all points in $\feas \LP(B,\vv{v})$. In what follows, let $\vv{u} \in \ZZ^{\numvars}$ be any point with $u_i = v_i$ for $1 \leq i \leq \ell$, and whose remaining $m-\ell$ coordinates are at least $\omega$. 
+
+To conclude, we will show that the feasible sets of $\IP_p(A, \vv{u}, p^e)$ and $\IP_p(B, \vv{v}, p^e)$ coincide for all $p$ and $e$.  First, note that the arithmetic constraints of these programs are identical, and that each linear constraint of $\IP_p(B, \vv{v}, p^e)$ is a linear constraint of $\IP_p(A, \vv{u},p^e)$.  Thus, $\feas \IP_p(A, \vv{u}, p^e)$ is contained in $\feas \IP_p(B, \vv{v}, p^e)$.  On the other hand, if $\vv{k} \in \feas \IP_p(B, \vv{v}, p^e)$, then the normalized point $\vv{k}/p^e$ lies in $\feas \LP(B, \vv{v})$, and so if $\ell < i \leq m$, its inner product with the $i$-th row of $A$ is less than $\omega$, and thus, less than $u_i$, which demonstrates that $\vv{k} \in \feas \IP_p(A, \vv{u}, p^e)$.  
+\end{proof}
+
 
 \section{Connections with Newton polyhedra}
 \label{s: newton}
@@ -1698,18 +1728,18 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
 %\end{remark}
 
 \begin{example}
-\label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the arithmetic integer programs in its statement with their standard integer program counterparts.  For instance, suppose that $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}=(3,3)$ and $\vv{v}=(5,1)$.  
+\label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the standard program $\IP$ with the arithmetic program $\IP_p$.  For instance, suppose that $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}_1=(3,3)$ and $\vv{u}_2=(5,1)$;  note that $\ft{A}{\vv{u}_1} = \ft{A}{\vv{u}_2} = 3/2$.
 
 Then, if $p \equiv 3 \bmod 4$, it follows from \Cref{concrete-solution-to-LP-IP: E}  that
 \[
-\val\IP(A, \vv{u}, p^e) = \begin{cases}
+\val\IP(A, \vv{u}_1, p^e) = \begin{cases}
 \frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
 \end{cases}
 \]
-and also, that these formulas are swapped after replacing $\vv{u}$ with $\vv{v}$, that is, 
+and also, that these formulas are swapped after replacing $\vv{u}_1$ with $\vv{u}_2$, that is, 
 \[
-\val\IP(A, \vv{v}, p^e) = \begin{cases}
+\val\IP(A, \vv{u}_2, p^e) = \begin{cases}
 \frac{3 p^e - 3}{2} & \text{if } e \text{ is odd} \\ 
 \frac{3 p^e - 1}{2} & \text{if } e \text{ is even}.
 \end{cases}
@@ -1760,6 +1790,12 @@ It is clear from these interpretations that a very small pair must also be small
 \begin{remark}[$F$-thresholds of small pairs]
    \label{rem: finitely many F-thresholds of small pairs}
    Even though there may exist infinitely many small but not very small $A$-pairs, as shown in the previous example, the $F$-thresholds of small $A$-pairs are bounded above, by a bound dependent solely on $A$, and consequently there are only finitely many such $F$-thresholds by \Cref{discreteness: P}.
+   
+   \daniel[inline]{Here is an argument that may produce a much tighter bound (e.g., if $\numvars$ is small):
+   
+   {Suppose that $\vv{c} \in \RR^d$ defines $\O = \mf(A, \vv{u})$, and without loss of generality, assume that the columns of $A$ lying in $\O$ are $\vv{a}_1, \ldots, \vv{a}_{\ell}$.  Write  $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \cone(\vv{a}_1, \ldots, \vv{a}_{\ell})$ and $\vv{w} \in \rs(\O)$.  By Carath\'eodory's Theorem for cones, we may express $\vv{v}$ as a conical combination of $t$ linearly independent columns among $\vv{a}_1, \ldots, \vv{a}_{\ell}$, and the smallness of $(A,\vv{u})$ implies that every coefficient in such a conical combination is at most $1$.  Given that $\iprod{\vv{c}}{\vv{a}_i} = 1$ for every $1 \leq i \leq \ell$, it follows that}
+\[ \ft{A}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \iprod{\vv{c}}{\vv{v}} \leq t \leq \min \{ d, \ell \} \leq \min \{ d, n \}.\]}
+
    Indeed, if $(A,\vv{u})$ is small and $\vv{s}$ is optimal for the linear program $\LP(A,\vv{u})$, then $s_i\vv{a}_i \le A\vv{s} \le \vv{u}$ for each $i$, where $\vv{a}_i$ denotes the $i$-th column of $A$.
    The smallness of the pair and the positivity of $\vv{u}$ then imply that $s_i \le 1$ for each $i$, whence $\ft{A}{\vv{u}} = \norm{\vv{s}}$ is at most the number of columns of $A$. 
 \end{remark}
