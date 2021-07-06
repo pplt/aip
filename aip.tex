@@ -286,18 +286,18 @@ Every program $\Omega$ we consider in this article has the property that the val
 \daniel[inline]{Not sure where this should go, but it will be needed in the appendix}
 \begin{lemma} 
 \label{compatible to small compatible: L}
- \hl{Suppose that $(\ideala, \idealb)$ is a compatible pair of ideals in $\kk[x]$, where $\kk$ is a field of characteristic $p>0$, let $t$ be the natural number such that $\ideala^t \not \subseteq \idealb$ but $\ideala^{t+1} \subseteq \idealb$, and set $\idealc = (\idealb : \ideala^t)$.   If $p > t+1$ and $e$ is a positive integer, then}
+ Suppose that $(\ideala, \idealb)$ is a compatible pair of ideals in a polynomial ring over a field of characteristic $p>0$, let $t$ be the natural number such that $\ideala^t \not \subseteq \idealb$ but $\ideala^{t+1} \subseteq \idealb$, and set $\idealc = (\idealb : \ideala^t)$.   If $p > t+1$ and $e$ is a nonnegative integer, then
 \[ \mu(\ideala, \idealb, p^e) = t p^e + \mu(\ideala, \idealc, p^e). \] 
 \end{lemma}
 
-\begin{proof}  Set $q=p^e$ and $s=\mu(\ideala, \idealc, p^e)$.  The containment $\ideala \subseteq \idealc$ implies that $0 \leq s < q$, and combining this with the bounds that $0 < t < p-1$, we see that 
+\begin{proof}  Set $q=p^e$ and $s=\mu(\ideala, \idealc, p^e)$.  The containment $\ideala \subseteq \idealc$ implies that $0 \leq s < q$, and combining this with the bounds $0 \le t < p-1$, we see that 
 %
 \begin{align*}
 \ideala^{[tq+s]} & = (\ideala^t)^{[q]} \ideala^{[s \, ]} \\ 
  \ideala^{[tq+s+1]} & = (\ideala^t)^{[q]} \ideala^{[s+1]}
 \end{align*}
 %
-though to establish the second identity, the case $s=q-1$ must be considered separately, and requires the bound $p>t+1$.  Thus, $\ideala^{[tq+s]} \not \subseteq \idealb^{[q]}$, for otherwise, \[ \ideala^{[s]} \subseteq (\idealb^{[q]} : (\ideala^t)^{[q]}) = \idealc^{[q]}\]  contradicting our choice of $s$.  The containment $\ideala^{[tq+s+1]} \subseteq \idealb^{[q]}$ follows similarly. 
+though to establish the second identity, the case $s=q-1$ must be considered separately, and requires the bound $p>t+1$.  Thus, $\ideala^{[tq+s]} \not \subseteq \idealb^{[q]}$, for otherwise, \[ \ideala^{[s]} \subseteq \big(\idealb^{[q]} : (\ideala^t)^{[q]}\big) = \idealc^{[q]}\]  contradicting our choice of $s$.  The containment $\ideala^{[tq+s+1]} \subseteq \idealb^{[q]}$ follows similarly, and we conclude that $\mu(\ideala,\idealb,q) = tq + s$. 
 \end{proof}.
 
 
@@ -375,7 +375,6 @@ We consider perhaps the simplest such example below.
 \label{concrete-solution-to-LP-IP: E}  
 Fix a positive integer $d \ge 2$, and consider the diagonal matrix 
 \[ A = \begin{bmatrix} d & 0 \\ 0 & d \end{bmatrix}. \] 
-
 If $\vv{u} = (s, t) \in \ZZ^2$ is a positive point, then the optimal set of $\LP(A,\vv{u})$ consists of the single point $(s/d, t/d)= \vv{u}/d$, and if $q$ is a positive integer, then it is not hard to verify that the optimal set of $\IP(A, \vv{u}, q)$ consists of the single point
 \[ \left( \frac{s q  - \lpr{s q}{d}}{d},  \frac{t q  - \lpr{t q}{d}}{d} \right) = \frac{\vv{u}q - (\lpr{sq}{d}, \lpr{tq}{d})}{d} \] 
 where $\lpr{a}{b}$ is the least \emph{positive} residue of $a$ modulo $b$.  Therefore, $\val \LP(A,\vv{u})$ equals $\norm{\vv{u}}/d$ and $\val \IP(A,\vv{u},q)$ equals $\val \LP(A,\vv{u})  q - \lpr{sq}{d}/d-\lpr{tq}{d}/d$.
@@ -1730,7 +1729,7 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
 %\end{remark}
 
 \begin{example}
-\label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the standard program $\IP$ with the arithmetic program $\IP_p$.  For instance, suppose that $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}_1=(3,3)$ and $\vv{u}_2=(5,1)$;  note that $\ft{A}{\vv{u}_1} = \ft{A}{\vv{u}_2} = 3/2$.
+\label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the arithmetic program $\IP_p$ with the standard program $\IP$.  For instance, suppose that $A$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}_1=(3,3)$ and $\vv{u}_2=(5,1)$;  note that $\ft{A}{\vv{u}_1} = \ft{A}{\vv{u}_2} = 3/2$.
 
 Then, if $p \equiv 3 \bmod 4$, it follows from \Cref{concrete-solution-to-LP-IP: E}  that
 \[
@@ -1795,8 +1794,8 @@ It is clear from these interpretations that a very small pair must also be small
    
    \daniel[inline]{Here is an argument that may produce a much tighter bound (e.g., if $\numvars$ is small):
    
-   {Suppose that $\vv{c} \in \RR^d$ defines $\O = \mf(A, \vv{u})$, and without loss of generality, assume that the columns of $A$ lying in $\O$ are $\vv{a}_1, \ldots, \vv{a}_{\ell}$.  Write  $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \cone(\vv{a}_1, \ldots, \vv{a}_{\ell})$ and $\vv{w} \in \rs(\O)$.  By Carath\'eodory's Theorem for cones, we may express $\vv{v}$ as a conical combination of $t$ linearly independent columns among $\vv{a}_1, \ldots, \vv{a}_{\ell}$, and the smallness of $(A,\vv{u})$ implies that every coefficient in such a conical combination is at most $1$.  Given that $\iprod{\vv{c}}{\vv{a}_i} = 1$ for every $1 \leq i \leq \ell$, it follows that}
-\[ \ft{A}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \iprod{\vv{c}}{\vv{v}} \leq t \leq \min \{ d, \ell \} \leq \min \{ d, n \}.\]}
+   {Suppose that $\vv{c} \in \RR^\numvars$ defines $\O = \mf(A, \vv{u})$, and without loss of generality, assume that the columns of $A$ lying in $\O$ are $\vv{a}_1, \ldots, \vv{a}_{\ell}$.  Write  $\vv{u} = \vv{v} + \vv{w}$ with $\vv{v} \in \cone(\vv{a}_1, \ldots, \vv{a}_{\ell})$ and $\vv{w} \in \rs(\O)$.  By Carath\'eodory's Theorem for cones, we may express $\vv{v}$ as a conical combination of $t$ linearly independent columns among $\vv{a}_1, \ldots, \vv{a}_{\ell}$, and the smallness of $(A,\vv{u})$ implies that every coefficient in such a conical combination is at most $1$.  Given that $\iprod{\vv{c}}{\vv{a}_i} = 1$ for every $1 \leq i \leq \ell$, it follows that}
+\[ \ft{A}{\vv{u}} = \iprod{\vv{c}}{\vv{u}} = \iprod{\vv{c}}{\vv{v}} \leq t \leq \min \{ \numvars, \ell \} \leq \min \{ \numvars, n \}.\]}
 
    Indeed, if $(A,\vv{u})$ is small and $\vv{s}$ is optimal for the linear program $\LP(A,\vv{u})$, then $s_i\vv{a}_i \le A\vv{s} \le \vv{u}$ for each $i$, where $\vv{a}_i$ denotes the $i$-th column of $A$.
    The smallness of the pair and the positivity of $\vv{u}$ then imply that $s_i \le 1$ for each $i$, whence $\ft{A}{\vv{u}} = \norm{\vv{s}}$ is at most the number of columns of $A$. 
@@ -2752,14 +2751,14 @@ Then for each such $i$, $\epsilon_{p^i}(A,\vv{u}) = \delta_{p^i}(A,\vv{u}) = \ft
 \section{Monomial ideals and reduction}
 \label{monomial-reduction: A}
 
-Throughout this appendix, we focus on polynomial rings in the string of variables variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will {consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
+Throughout this appendix, we focus on polynomial rings in the string of variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will {consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
 
 Recall, from {the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible}\daniel{I want to switch, and in some places have switched, \emph{radically compatible} $\to$ \emph{compatible} and \emph{compatible} $\to$ \emph{small compatible} to emphasize the connection with small monomial pairs.  I have probably failed to update this in various spots} if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ contained in the radical of $\idealb$.  
-Our purpose in this appendix is two-fold:  First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.   Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
+Our purpose in this appendix is twofold:  First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.   Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
 \pedro{Except for \Cref{cor: mu comparison}}
 \daniel{This will need to be clarified (there are more exceptions now).The point is that it is logically independent of all of the nitty-gritty details that we used to solve AIP and fractal programs.}
 
-Our approach is based on framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.  For example, the \emph{monomialization operator} in \Cref{monomialization: D} below plays an important role in our arguments, and though this operator was not formally defined in \loccit, and a natural variant, appear in \cite[Proposition 6.1 and Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}.  After introducing this operator, we establis some of its basic properties.
+Our approach is based on framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.  For example, the \emph{monomialization operator} in \Cref{monomialization: D} below plays an important role in our arguments, and though this operator was not formally defined in \loccit, it appears, along with a natural variant, in \cite[Proposition 6.1 and Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}.  After introducing this operator, we establish some of its basic properties.
 
 \begin{definition}[The $\mon$ operator on ideals]
 \label{monomialization: D}
