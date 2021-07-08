@@ -22,19 +22,19 @@
 \begin{document}
 
 \begin{tikzpicture}[->,>=stealth,shorten >=1pt,auto,node distance=0.6cm,semithick]
-   \node[Snode] (A) {$(A,\vv{u})$};
-   \node[Snode] (B) [below = of A]{$\big(B,\big[\begin{smallmatrix} 28 \\ 31 \end{smallmatrix}\big]\big)$};
-   \node[Snode] (C) [below = of B] {$\big(B,\big[\begin{smallmatrix} 29 \\ 17 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (A) {$(\matA,\vv{u})$};
+   \node[Snode] (B) [below = of A]{$\big(\matB,\big[\begin{smallmatrix} 28 \\ 31 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (C) [below = of B] {$\big(\matB,\big[\begin{smallmatrix} 29 \\ 17 \end{smallmatrix}\big]\big)$};
    \node[node] (D) [below = 1cm of C] {};
-   \node[Snode] (D1) [left = 2.5cm of D] {$\big(B,\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big]\big)$};
-   \node[Snode] (D2) [left = 0.25cm of D] {$\big(B,\big[\begin{smallmatrix} 6 \\ 1 \end{smallmatrix}\big]\big)$};
-   \node[Snode] (D3) [right = 0.25cm of D] {$\big(B,\big[\begin{smallmatrix} 9 \\ 1 \end{smallmatrix}\big]\big)$};
-   \node[Snode] (D4) [right = 2.5cm of D] {$\big(B,\big[\begin{smallmatrix} 12 \\ 1 \end{smallmatrix}\big]\big)$};
-   \node[Snode] (E) [below = 1cm of D] {$(C,11)$};
-   \node[Snode] (F) [below = of E] {$(C,21)$};
-   \node[Snode] (G) [below = of F] {$(C,6)$};
-   \node[Snode] (H) [below = of G] {$(C,16)$};
-   \node[Snode] (I) [below = of H] {$(C,1)$};
+   \node[Snode] (D1) [left = 2.5cm of D] {$\big(\matB,\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D2) [left = 0.25cm of D] {$\big(\matB,\big[\begin{smallmatrix} 6 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D3) [right = 0.25cm of D] {$\big(\matB,\big[\begin{smallmatrix} 9 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (D4) [right = 2.5cm of D] {$\big(\matB,\big[\begin{smallmatrix} 12 \\ 1 \end{smallmatrix}\big]\big)$};
+   \node[Snode] (E) [below = 1cm of D] {$(\matC,11)$};
+   \node[Snode] (F) [below = of E] {$(\matC,21)$};
+   \node[Snode] (G) [below = of F] {$(\matC,6)$};
+   \node[Snode] (H) [below = of G] {$(\matC,16)$};
+   \node[Snode] (I) [below = of H] {$(\matC,1)$};
    \node[node] (J) [below = of I] {$\vdots$};   
 \path
 (A) edge (B)

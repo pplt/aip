@@ -1709,7 +1709,7 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
 \end{proof}
 
 %\begin{remark}
-%The integer programs $\IP$ do not always satisfy the uniform comparison property of the arithmetic integer programs $\Pi_p$ in  \Cref{cor: mu comparison}.
+%The integer programs $\IP$ do not always satisfy the uniform comparison property of the arithmetic integer programs $\IP_p$ in  \Cref{cor: mu comparison}.
 %For instance, suppose that $p \equiv 3 \bmod 4$, and let
 %\[
 % \matA = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \
@@ -1965,7 +1965,7 @@ The main result of this subsection is the following.
 Before presenting the proof, we clarify our requirements for $p\gg 0$.
 
 \begin{remark}[On $p$ being sufficiently large]
-   \label{p large m-primary: R}
+   \label{p large m-primary: R} 
    First off, we assume that $p$ is large enough so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.
    Moreover, given a collection $\S$ of very small pairs $(\matA,\vv{u})$, we want the subset~$\S^*$ of~$\S$ consisting of the pairs for which $\val \IP_p(\matA,\vv{u},p)$ is maximum to only depend on $p$ modulo some integer, and not on $p$ itself.
    We explain below how this can be accomplished by choosing $p$ sufficiently large.
@@ -2110,7 +2110,7 @@ $M_1 \leftarrow \ft{\matA}{\vv{u}}\pp - \udeficit(\matA,\vv{u},r)$\;
 \end{algorithm}
 
 \section{Sprouting graphs} \label{sprouting: S}
-Now that we have a grasp on the value of the arithmetic integer program $\Pi_p(\matA, \vv{u}, p^e)$ when the matrix $\matA$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
+Now that we have a grasp on the value of the arithmetic integer program $\IP_p(\matA, \vv{u}, p^e)$ when the matrix $\matA$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
 In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.
 
 \subsection{The sprouting graph of a monomial matrix}
@@ -2419,7 +2419,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    In what follows, we fix such a $p$-sprout.
 
    Let $q$ be the common level of $(\matB,\vv{v})$ and $(\matA_1, \vv{u}_1)$ in $\sprout^{\ast}_p(\matA,\vv{u})$.
-   Being a $p$-sprout of $(\matB,\vv{v})$, it follows that $(\matC,\vv{z}) \in \S_{qp}(\matA,\vv{u})$, while our assumption that $e \geq 2$ implies that $S^{\ast}_{qp}(\matA,\vv{u})$ is nonempty, as it contains $(\matA_2, \vv{u}_2)$.
+   Being a $p$-sprout of $(\matB,\vv{v})$, it follows that $(\matC,\vv{z}) \in \S_{qp}(\matA,\vv{u})$, while our assumption that $e \geq 2$ implies that $\S^{\ast}_{qp}(\matA,\vv{u})$ is nonempty, as it contains $(\matA_2, \vv{u}_2)$.
    Below, we establish \eqref{ineq} in cases, depending on whether $(\matC,\vv{z}) \in \S^{\ast}_{qp}(\matA,\vv{u})$.
 
    If $(\matC,\vv{z}) \notin \S^{\ast}_{qp}(\matA,\vv{u})$, then $\val \IP_p(\matC,\vv{z}, p)< \val \IP_p(\matA_2, \vv{u}_2, p)$ by \Cref{p large graph: P}, and consequently $\val \IP_p(\matC, \vv{z},p^{e-1}) < \val\IP_p(\matA_2,\vv{u}_2, p^{e-1})$ by \Cref{cor: mu comparison}.
@@ -2450,7 +2450,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
 \begin{proof}
    Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
    Set $\Q = \Q_p(\matA,\vv{u})$.
-   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
+   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
    This is also a path in $\sprout_p(\matA)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i, p)$ for $1 \le i \le e$ such that the point $\vv{k} \coloneqq \sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for the standard integer program $\IP(\matA, \vv{u}, p^e)$.
 
    However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(\matA_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(\matA_i,\vv{u}_i,p) = \IP_p(\matA_i, \vv{u}_i, p)$.
@@ -2717,13 +2717,13 @@ We first prove the following claim:
 
 Let $\vv{s}$ be a special point for $(\matB, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \ft{\matB}{\vv{v}} \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
 Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie $\tail{\vv{s}}_p = \vv{s}$.
-If $\Theta = \Theta(\matB, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \Theta < \norm{\vv{s}} = \ft{\matB}{\vv{v}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\Theta$ to be $0$.
-Hence $\udeficit(\matB, \vv{v}, p) = \deficit \Theta = \norm{\vv{s}} - \val\Theta = \ft{\matB}{\vv{v}}$, proving the claim.\\[2mm]
+If $\ip = \ip(\matB, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \ip < \norm{\vv{s}} = \ft{\matB}{\vv{v}} \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\ip$ to be $0$.
+Hence $\udeficit(\matB, \vv{v}, p) = \deficit \ip = \norm{\vv{s}} - \val\ip = \ft{\matB}{\vv{v}}$, proving the claim.\\[2mm]
 Observe that if $(\matC, \vv{w})$ is a $p$-sprout of a pair $(\matB, \vv{v})$ as above, then $\ft{\matC}{\vv{w}} \leq \udeficit(\matB, \vv{v}, p) = \ft{\matB}{\vv{v}}$ by \Cref{non-leading coefficients: L} and the above claim, so that $(\matC, \vv{w})$ is also very small.
 Hence $\S^\ast_{q}(\matA, \vv{u})$ is nonempty for every $q$, and consequently, $\Q_p(\matA,\vv{u})$ is infinite.
 
 Fix $(\matB, \vv{v}) \in \S_{q}^\ast(\matA,\vv{u})$ for some $q$, and let an overbar denote collapse along $\O = \mf(\matB, \vv{v})$.
-The proof of the claim shows that a special point $\vv{s}$ for $(\matB,\vv{v})$ with denominator $\denom$ satisfies $\tail{\vv{s}}_p = \vv{s}$, and $\vv{0} \in \opt \Theta(\matB,\vv{v},\vv{s},p)$.
+The proof of the claim shows that a special point $\vv{s}$ for $(\matB,\vv{v})$ with denominator $\denom$ satisfies $\tail{\vv{s}}_p = \vv{s}$, and $\vv{0} \in \opt \ip(\matB,\vv{v},\vv{s},p)$.
 Hence $\overline{\vv{v}} = \overline{\matB}\vv{s} = \overline{\matB}\tail{\vv{s}}_p - \overline{\matB} \, \vv{0} \in \ushort(\matB, \vv{v}, p)$, and $(\overline{\matB}, \overline{\vv{v}}) \in \S_{pq}(\matA, \vv{u})$.
 
 The claim implies that $\S^\ast_{pq}(\matA, \vv{u})$ consists of the pairs in $\S_{pq}(\matA, \vv{u})$ with maximum $F$-threshold.
@@ -2754,10 +2754,15 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
 
 Throughout this appendix, we focus on polynomial rings in the string of variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will {consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
 
-Recall, from {the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible}\daniel{I want to switch, and in some places have switched, \emph{radically compatible} $\to$ \emph{compatible} and \emph{compatible} $\to$ \emph{small compatible} to emphasize the connection with small monomial pairs.  I have probably failed to update this in various spots} if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ contained in the radical of $\idealb$.  
-Our purpose in this appendix is twofold:  First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: C}.   Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
+Recall, from {the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{radically compatible}
+\daniel{I want to switch, and in some places have switched, \emph{radically compatible} $\to$ \emph{compatible} and \emph{compatible} $\to$ \emph{small compatible} to emphasize the connection with small monomial pairs.  I have probably failed to update this in various spots}
+\pedro{How about simply ``small''?}
+if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ is contained in the radical of $\idealb$.  
+Our purpose in this appendix is twofold:  First, we show that if $(\ideala, \idealb)$ is a radically compatible pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: T}.
+Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
 \pedro{Except for \Cref{cor: mu comparison}}
 \daniel{This will need to be clarified (there are more exceptions now).The point is that it is logically independent of all of the nitty-gritty details that we used to solve AIP and fractal programs.}
+\pedro{Maybe we should just say that the appendix is ``mostly independent'' of the in-depth examination of \ldots}
 
 Our approach is based on framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.  For example, the \emph{monomialization operator} in \Cref{monomialization: D} below plays an important role in our arguments, and though this operator was not formally defined in \loccit, it appears, along with a natural variant, in \cite[Proposition 6.1 and Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}.  After introducing this operator, we establish some of its basic properties.
 
@@ -2770,7 +2775,7 @@ Clearly, if $\LL$ is a field, then $x^{\vv{u}} \in \mon(I)$ if and only if $1 \c
 
 \begin{lemma}
 \label{single multiplier: L}
-  Consider a Noetherian domain $\LL$.  Given an ideal $I$ of $\LL[x]$, there exists a nonzero element $\tau \in \LL$ with which to test inclusion in $\mon(I)$, i.e., such that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in \LL[x]$.
+  Consider a Noetherian domain $\LL$.  Given an ideal $I$ of $\LL[x]$, there exists a nonzero element $\tau \in \LL$ with which to test inclusion in $\mon(I)$, \ie such that $x^{\vv{u}} \in \mon(I)$ if and only if $\tau x^{\vv{u}} \in I$ for every monomial $x^{\vv{u}} \in \LL[x]$.
 \end{lemma}
 
 \begin{proof}  As $\LL[x]$ is Noetherian, and $\mon(I)$ is generated by monomials, there exist $x^{\vv{u}_1}, \ldots, x^{\vv{u}_n}$ that generate $\mon(I)$, and nonzero elements $\tau_1, \ldots, \tau_n \in \LL$ such that $\tau_i x^{\vv{u}_i} \in I$ for every $i$.  It is then easy to verify that $\tau\coloneqq \tau_1 \cdots \tau_n$ does the trick.
@@ -2811,12 +2816,11 @@ We also provide examples illustrating that the uniformity properties established
 
 \subsection{Reducing to monomial pairs}
 
-In what follows, we extend our use of the term \emph{(small) compatible pair}, and say that a pair $(\matA, \mathcal{C})$ consisting of a monomial matrix $\matA$ with $\numvars$ rows, and a collection $\mathcal{C}$ of monomials in the ambient variables $x = x_1, \ldots, x_{\numvars}$, is \emph{compatible} (and \emph{small}) if for some (equivalently, for every) field $\LL$, the pair of ideals $(\ideala, \idealc)$ is  compatible (and small),  where $\ideala$ is the monomial ideal of $\LL[x]$ associated to $\matA$, and $\idealc = \mathcal{C} \LL[x]$ is the monomial ideal generated by $\mathcal{C}$.
-
+In what follows, we extend our use of the term (\emph{small}) \emph{compatible pair}, and say that a pair $(\matA, \mathcal{C})$ consisting of a monomial matrix $\matA$ with $\numvars$ rows, and a collection $\mathcal{C}$ of monomials in the ambient variables $x = x_1, \ldots, x_{\numvars}$, is \emph{compatible} (and \emph{small}) if for some (equivalently, for every) field $\LL$, the pair of ideals $(\ideala, \idealc)$ is  compatible (and small),  where $\ideala$ is the monomial ideal of $\LL[x]$ associated to $\matA$, and $\idealc = \mathcal{C} \LL[x]$ is the monomial ideal generated by $\mathcal{C}$.
 
 \begin{theorem}
 \label{reduce to diagonal general: T}
-{Consider a compatible pair $(\matA, \mathcal{C})$, where $\matA$ is a monomial matrix with $m$ rows, and $\mathcal{C}$ is a collection of monomials in the variables $x = x_1, \ldots, x_\numvars$.    Then, there exist monomial pairs $(\matA_1, \vv{u}_1), \ldots, (\matA_{\ell}, \vv{u}_{\ell})$, all of which are small when $(\matA, \mathcal{C})$ is, with the following properties\textup:  Each $\matA_i$ either equals $\matA$, or can be obtained from $\matA$ by deleting some of its rows, and if $\kk$ is a field of characteristic $p>0$, and $(\ideala, \idealc)$ is the compatible pair of ideals of $\kk[x]$ associated to $(\matA, \mathcal{C})$, then} 
+Consider a compatible pair $(\matA, \mathcal{C})$, where $\matA$ is a monomial matrix with $m$ rows, and $\mathcal{C}$ is a collection of monomials in the variables $x = x_1, \ldots, x_\numvars$.    Then, there exist monomial pairs $(\matA_1, \vv{u}_1), \ldots, (\matA_{\ell}, \vv{u}_{\ell})$, all of which are small when $(\matA, \mathcal{C})$ is, with the following properties\textup:  Each $\matA_i$ either equals $\matA$, or can be obtained from $\matA$ by deleting some of its rows, and if $\kk$ is a field of characteristic $p>0$, and $(\ideala, \idealc)$ is the compatible pair of ideals of $\kk[x]$ associated to $(\matA, \mathcal{C})$, then 
 \begin{align*}
 \nu(\ideala, \idealc, p^e) & = \max  \val \IP(\matA_i, \vv{u}_i, p^e)  \\ 
 \mu(\ideala, \idealc, p^e) & = \max  \val \IP_p(\matA_i, \vv{u}_i, p^e) 
@@ -2825,9 +2829,10 @@ for every positive integer~$e$.  Finally, there exists a single pair $(\matA_i, 
 \end{theorem}
 
 \begin{proof}  
-We will start by considering the special case that $\mathcal{C}$ is corresponds a nonzero point $\vv{v} \in \NN^\numvars$, in the sense that $\mathcal{C} = \{ x_i^{v_i} : v_i \neq 0 \}$. Without loss of generality, we may assume that exactly the first $t$ coordinates of the point $\vv{v}$ are nonzero, so that $\mathcal{C} = \{x_1^{v_1}, \ldots, x_t^{v_t}\}$, and the truncated point ${\vv{u}} = (v_1, \ldots, v_t) \in \ZZ^t$ is positive.  
+We will start by considering the special case where $\mathcal{C}$ corresponds to a nonzero point $\vv{v} \in \NN^\numvars$, in the sense that $\mathcal{C} = \{ x_i^{v_i} : v_i \neq 0 \}$. Without loss of generality, we may assume that exactly the first $t$ coordinates of the point $\vv{v}$ are nonzero, so that $\mathcal{C} = \{x_1^{v_1}, \ldots, x_t^{v_t}\}$, and the truncated point ${\vv{u}} = (v_1, \ldots, v_t) \in \NN^t$ is positive.  
 
-Let $\matB$ be the matrix consisting of the first $t$ rows of $\matA$.  If $\LL$ is an arbitrary field, and $(\ideala, \idealc)$ is the radically compatible pair in $\LL[x]$ associated to $(\matA, \mathcal{C})$, then $\ideala \subseteq \sqrt \idealc = \ideal{x_1, \ldots, x_t}$, which shows that every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and hence, that every column of $\matB$ is nonzero. Thus,  $\matB$ is a monomial matrix, and $(\matB, {\vv{u}})$ is a monomial pair.  Similarly, if $(\matA, \mathcal{C})$ is compatible, then every monomial generator of $\ideala$ is a multiple of some $x_i^{v_i}$ for some $1 \leq i \leq t$, and so $(\matB, \vv{u})$ is small.  Regardless, when $\LL=\kk$ is a field of characteristic $p>0$ it is obvious that $\nu(\ideala, \idealc, p^e) = \val \IP (\matB, \vv{u}, p^e)$ and $\mu(\ideala, \idealc, p^e) = \val \IP_p(\matB, \vv{u}, p^e)$ for all $e$.
+Let $\matB$ be the matrix consisting of the first $t$ rows of $\matA$.  If $\LL$ is an arbitrary field, and $(\ideala, \idealc)$ is the radically compatible pair in $\LL[x]$ associated to $(\matA, \mathcal{C})$, then $\ideala \subseteq \sqrt \idealc = \ideal{x_1, \ldots, x_t}$, which shows that every monomial generator of $\ideala$ is divisible by some $x_i$ with $1 \leq i \leq t$, and hence, that every column of $\matB$ is nonzero. Thus,  $\matB$ is a monomial matrix, and $(\matB, {\vv{u}})$ is a monomial pair.
+Similarly, if $(\matA, \mathcal{C})$ is small, then every monomial generator of $\ideala$ is a multiple of some $x_i^{v_i}$ for some $1 \leq i \leq t$, and so $(\matB, \vv{u})$ is small.  Regardless, when $\LL=\kk$ is a field of characteristic $p>0$ it is obvious that $\nu(\ideala, \idealc, p^e) = \val \IP (\matB, \vv{u}, p^e)$ and $\mu(\ideala, \idealc, p^e) = \val \IP_p(\matB, \vv{u}, p^e)$ for all $e$.
 
 We now consider the case where $\mathcal{C}$ is general.   According to \cite[Lemma 5.18]{miller+sturmfels.combinatorial_CA},  if $\LL$ is an arbitrary field, then one may decompose the monomial ideal $\mathcal{C} \LL[x]$ as
 %
@@ -2838,21 +2843,23 @@ We now consider the case where $\mathcal{C}$ is general.   According to \cite[Le
 %
 where each set of monomials $\mathcal{C}_i = \{ x_s^{v_s(i)} : v_s(i) \neq 0 \}$ is associated to the nonzero point $\vv{v}_i = (v_1(i), \ldots, v_\numvars(i)) \in \NN^\numvars$. Furthermore, the points $\vv{v}_1, \ldots, \vv{v}_{\ell}$ arising in this way depend only on $\mathcal{C}$, but are independent of the choice of field $\LL$.  In addition, as the pair $(\matA, \mathcal{C})$ is radically compatible, then so is each pair $(\matA, \mathcal{C}_i)$.
 
-By the special case considered above, there is a pair $(\matA_i, \vv{u}_i)$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\nu(\ideala, \idealc_i, p^e) = \val \IP(\matA, \vv{u}_i, p^e)$ and $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(\matA, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with intersection in $\kk[x]$ | see, e.g., \cite[Lemma 2.3]{blickle+mustata+smith.discr_rat_FPTs} | \pedro{Maybe include reference?} 
+By the special case considered above, for each $1\le i \le \ell$ there is a pair $(\matA_i, \vv{u}_i)$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\nu(\ideala, \idealc_i, p^e) = \val \IP(\matA_i, \vv{u}_i, p^e)$ and $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(\matA_i, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with intersection in $\kk[x]$---a consequence of the flatness of the Frobenius over $\kk[x]$ and the fact that extensions under flat maps commute with finite intersections \cite[Theorem~7.4(ii)]{matsumura}---that
+\pedro{Maybe include reference?} 
 \daniel{I included one to paper in which fractional Frobenius powers were first defined.  But, it is overkill, since it deals with arbitrary intersections.  In this case, we only need to deal with finitely many terms in the intersection.  If you know of an reference for the fact that such intersections commute with flat base change, then we would only need to remind the reader that Frobenius is flat in this case}
-that 
+\pedro{Sounds good; I did that.}
 %
 \[ \mu(\ideala, \mathfrak{c}, p^e) = \max  \mu(\ideala, \idealc_i, p^e)  = \max \val \IP_p(\matA_i, \vv{u}_i, p^e) \] and likewise for $\nu(\ideala, \mathfrak{c}, p^e)$.  Finally,  \Cref{cor: mu comparison} guarantees that, in the case of $\mu(\ideala, \mathfrak{c}, p^e)$, there is a single such index that achieves this maximum for every $e$.
 \end{proof}
 
 \begin{remark}
 \label{lifting pairs: R}
-{Our proof of} \Cref{reduce to diagonal general: T} is explicit, in the sense that the monomial pairs $(\matA_1, \vv{u}_1), \ldots, (\matA_{\ell}, \vv{u}_{\ell})$ that it exhibits correspond to the components of the combinatorial decomposition \eqref{irreducible-decomposition: e}.  Nevertheless, there are other valid choices of such pairs that are of theoretical interest.  For instance,  \Cref{lifted-programs: L} implies that one can always assume that there are such pairs with $\matA_i=\matA$ for all $1 \leq i \leq \ell$.
+{Our proof of} \Cref{reduce to diagonal general: T} is explicit, in the sense that the monomial pairs $(\matA_1, \vv{u}_1), \ldots, (\matA_{\ell}, \vv{u}_{\ell})$ that it exhibits correspond to the components of the combinatorial decomposition \eqref{irreducible-decomposition: e}.  Nevertheless, there are other valid choices of such pairs that are of theoretical interest.
+For instance,  \Cref{lifted-programs: L} shows that one may always choose pairs with $\matA_i=\matA$ for all $1 \leq i \leq \ell$.
 \end{remark}
 
-
 \begin{theorem}%[Reduction to diagonal ideals]
-   \label{reduce-to-monomial-case: T} {Given a radically compatible pair of ideals $(\ideala, \idealb)$ of $\kk[x]$, with $\kk$ a field of characteristic $p>0$, and $\ideala$ the monomial ideal associated to a monomial matrix $\matA$, there exists positive points $\vv{u}_1, \ldots, \vv{u}_{\ell} \in \ZZ^\numvars$ such that}
+   \label{reduce-to-monomial-case: T}
+   Given a radically compatible pair of ideals $(\ideala, \idealb)$ of $\kk[x]$, with $\kk$ a field of characteristic $p>0$, and $\ideala$ the monomial ideal associated to a monomial matrix $\matA$, there exist positive points $\vv{u}_1, \ldots, \vv{u}_{\ell} \in \ZZ^\numvars$ such that
 \begin{align*} 
 \nu(\ideala, \idealb, p^e) = \nu(\ideala, \mon(\idealb), p^e) & = \max \val \IP(\matA,\vv{u}_i, p^e) \\ 
 \mu(\ideala, \idealb, p^e) = \mu(\ideala, \mon(\idealb), p^e) & = \max \val \IP_p(\matA,\vv{u}_i, p^e)
@@ -2861,8 +2868,8 @@ that
 for every natural number $e$.  Furthermore, there exists a single positive point $\vv{u}_i$ that achieves the maximum in the expression for $\mu(\ideala, \idealb, p^e)$ for all such $e$
 \end{theorem}
 
-\begin{proof} {
-   Set $\idealc \coloneqq \mon(\idealb)$.  Since $\ideala$ is monomial, a (Frobenius) power of $\ideala$ sits in~$\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by} \Cref{frobenius-powers+mon-commute: L}.  Consequently, $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e)$ and $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ for every $e$.  Finally, if we fix a set of monomials $\mathcal{C}$ in $x = x_1, \ldots, x_\numvars$ such that $\mathcal{C} \kk[x] = \idealc$, then the theorem follows from applying \Cref{reduce to diagonal general: T} and \Cref{lifting pairs: R} with the compatible pair $(\matA, \mathcal{C})$.
+\begin{proof} 
+   Set $\idealc = \mon(\idealb)$.  Since $\ideala$ is monomial, a (Frobenius) power of $\ideala$ sits in~$\idealb^{[p^e]}$ if and only if it sits in $\mon(\idealb^{[p^e]})$, which equals $\idealc^{[p^e]}$ by \Cref{frobenius-powers+mon-commute: L}.  Consequently, $\nu(\ideala, \idealb, p^e) = \nu(\ideala, \idealc, p^e)$ and $\mu(\ideala, \idealb, p^e) = \mu(\ideala, \idealc, p^e)$ for every $e$.  Finally, if we fix a set of monomials $\mathcal{C}$ in $x = x_1, \ldots, x_\numvars$ such that $\mathcal{C} \kk[x] = \idealc$, then the theorem follows from applying \Cref{reduce to diagonal general: T} and \Cref{lifting pairs: R} with the compatible pair $(\matA, \mathcal{C})$.
    \end{proof}
 
 \Cref{reduce-to-monomial-case: T} was established in \cite[Section~4]{budur+mustata+saito.roots_bs_polys_monomial} for $\nu$-invariants, and our argument follows the one presented there.  However, \Cref{reduce-to-monomial-case: T} allows for the possibility that the point $\vv{u}_i$ corresponding to the maximum in the formula for $\nu(\ideala, \idealb, p^e)$ may  depend on $e$, and as we see in \Cref{less uniformity for nu: E}, it sometimes necessarily does.  Thus, in this sense, the $\mu$-variants enjoy stronger uniformity properties than the $\nu$-invariants.
@@ -2871,7 +2878,6 @@ for every natural number $e$.  Furthermore, there exists a single positive point
 \begin{example} 
 \label{less uniformity for nu: E}
 Let $\kk$ be a field of characteristic $p \equiv 3 \bmod 4$. Consider the ideals $\ideala = \langle x^4, y^4 \rangle$ and $\idealb = \mon(\idealb) = \ideal{x^5, x^3 y, y^3} = \ideal{x^3, y^3} \cap \ideal{x^5, y}$ of $\kk[x,y]$.  Let $\matA$ be the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, $\vv{u}_1=(3,3)$, and $\vv{u}_2=(5,1)$.  
-
 Then 
 \[ \nu(\ideala, \idealb, p^e) = \max \{ \val \IP(\matA,\vv{u}_1, p^e), \val \IP(\matA, \vv{u}_2, p^e) \} \] and \Cref{max depends on p and e: E} tells us both that this maximum value equals $(3p^e-1)/2$, and that the integer program achieving this maximum alternates with $e$.
 
@@ -2884,11 +2890,11 @@ Furthermore, it is not hard to see that there is no positive point $\vv{v} \in \
 
 We now briefly recall the process of reduction to prime characteristic, in the context of polynomial rings.
 
-To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide formal references for their proofs, though the reader may also consult the thesis \cite[Chapter~3]{hernandez.thesis} for more details.
+To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide formal references for their proofs, though the reader may also consult the first author's thesis \cite[Chapter~3]{hernandez.thesis} for more details.
 
 \begin{remark}[Generic freeness]\label{generic-freeness}
-   Consider a Noetherian domain $\ringA$, and $\ringS$ a finitely generated $\ringA$-algebra.
-   Generic freeness states that if $M$ is any finitely generated $\ringS$-module, then there exists a nonzero element  $\ell \in \ringA$ such that $\ringA[\ell^{-1}] \otimes_\ringA M$, the localization of $M$ at $\ell$, is a free $\ringA[\ell^{-1}]$-module \cite[Theorem~24.1]{matsumura} .
+   Consider a Noetherian domain $\ringA$, and a finitely generated $\ringA$-algebra $\ringS$.
+   Generic freeness states that if $M$ is any finitely generated $\ringS$-module, then there exists a nonzero element  $\ell \in \ringA$ such that $\ringA[\ell^{-1}] \otimes_\ringA M$, the localization of $M$ at $\ell$, is a free $\ringA[\ell^{-1}]$-module \cite[Theorem~24.1]{matsumura}.
 \end{remark}
 
 \begin{remark}[Maximal ideals of domains finitely generated over $\ZZ$]
@@ -2905,9 +2911,9 @@ To start, we recall some fundamental facts, both of which may be thought of as c
 \begin{definition}[Reduction to prime characteristic]
    \label{reduction: D}
    Let $\kk$ be a field of characteristic zero, and set $\ringR = \kk[x]$.
-   If $\ringA$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then we set $\ringR_\ringA \coloneqq \ringA[x]$, and if $I$ is an ideal of $\ringR$, then $I_\ringA$ denotes any ideal of $\ringR_\ringA$ that extends to $I$ under the inclusion $\ringR_\ringA \hooklongrightarrow \ringR$.   We call such an ideal $I_\ringA$ an $\ringA$-model of $I$, and when such an ideal exists, we say that $\ringA$ \emph{supports} {the model $I_\ringA$ of $I$}.\footnote{Note that every ideal $I$ of $\ringR$ has an $\ringA$-model for a suitable $\ringA$: one may take $\ringA$ to be the $\ZZ$-subalgebra of $\kk$ generated by the coefficients appearing in a finite generating set for $I$.}
+   If $\ringA$ is a finitely generated $\ZZ$-subalgebra of $\kk$, then we set $\ringR_\ringA = \ringA[x]$, and if $I$ is an ideal of $\ringR$, then $I_\ringA$ denotes any ideal of $\ringR_\ringA$ that extends to $I$ under the inclusion $\ringR_\ringA \hookrightarrow \ringR$.   We call such an ideal $I_\ringA$ an $\ringA$-model of $I$, and when such an ideal exists, we say that $\ringA$ \emph{supports} {the model $I_\ringA$ of $I$}.\footnote{Note that every ideal $I$ of $\ringR$ has an $\ringA$-model for a suitable $\ringA$: one may take $\ringA$ to be the $\ZZ$-subalgebra of $\kk$ generated by all coefficients appearing in a finite generating set for $I$.}
 
-   If $I_\ringA$ exists and $\idealm \in \mspec(\ringA)$, then $I_\ringA(\idealm)$ is the extension of $I_\ringA$ to the ring $\ringR_{\ringA}(\idealm) \coloneqq (\ringA/\idealm)[x]$ under the quotient map $\ringR_\ringA \longrightarrow \ringR_\ringA(\idealm)$.
+   If $I_\ringA$ exists and $\idealm \in \mspec(\ringA)$, then $I_\ringA(\idealm)$ is the extension of $I_\ringA$ to the ring $\ringR_{\ringA}(\idealm) \coloneqq (\ringA/\idealm)[x]$ under the quotient map $\ringR_\ringA \to \ringR_\ringA(\idealm)$.
    As noted in \Cref{maximal ideals: R}, $\ringA/\idealm$ is a finite field, and for this reason we may regard $I_\ringA(\idealm)$ as a prime characteristic model of~$I$.
    Furthermore, as $\idealm \in \mspec(\ringA)$ varies we obtain models $I_\ringA(\idealm)$ of $I$ over finite fields of all but finitely many characteristics.
 \end{definition}
@@ -2924,7 +2930,7 @@ The following application of generic freeness forms the technical basis for the 
 
 \begin{proof}
    By generic freeness, we may fix a nonzero element $\ell \in \ringA$ such that each of the tensor products $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$ and $\ringA[\ell^{-1}] \otimes_\ringA \ringA[x]/J$ is free over $\ringA[\ell^{-1}]$.
-   Let $0 \leq \rho \leq \infty$ denote the rank of the free $\ringA[\ell^{-1}]$-module $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$, and let $\ringB$ be an $\ringA[\ell^{-1}]$-module.
+   Let $0 \leq \rho \leq \infty$ denote the rank of the free $\ringA[\ell^{-1}]$-module $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$, and let $\ringB$ be an $\ringA[\ell^{-1}]$-algebra.
 
 Applying the functor $M \mapsto \ringA[\ell^{-1}] \otimes_\ringA M$ to the short exact sequence
 \[ 0 \to J/I \to \ringA[x] / I \to \ringA[x]/J \to 0 \] 
@@ -3011,10 +3017,10 @@ If $I=J$, that is, if $I_\ringA$ and $J_\ringA$ are $\ringA$-models of the same 
    for any $\ringA[\ell^{-1}]$-algebra $\ringB$.
 \end{proposition}
 
-\begin{proof}  \hl{As this result is well-known, we will only consider the case that $I$ is principally generated by an element $f \in \ringA[x]$.  The general case, which requires an additional, standard application of generic freeness, is left to the reader.}
+\begin{proof}  \hl{As this result is well known, we will only consider the case that $I$ is principally generated by an element $f \in \ringA[x]$.  The general case, which requires an additional, standard application of generic freeness, is left to the reader.}
 
 
-By  \Cref{comparing expansions: P}, there exists a nonzero element $\ell \in \ringA$ such that \[  \ringB \otimes_\ringA ((f \ringA[x] + J)/J)  \cong (fB[x] + J \ringB[x])/J \ringB[x]  \] for every  $\ringA[\ell^{-1}]$-algebra $\ringB$.  Thus, the exact sequence of $\ringA$-modules 
+By  \Cref{comparing expansions: P}, there exists a nonzero element $\ell \in \ringA$ such that \[  \ringB \otimes_\ringA ((f \ringA[x] + J)/J)  \cong (f \ringB[x] + J \ringB[x])/J \ringB[x]  \] for every  $\ringA[\ell^{-1}]$-algebra $\ringB$.  Thus, the exact sequence of $\ringA$-modules 
 \[  
 0 \to (J :_{\ringA[x]} f) \to \ringA[x] \stackrel{f}{\longrightarrow} (f \ringA[x] + J)/J \to 0
 \]
@@ -3185,7 +3191,7 @@ The main difference between  \Cref{invariants associated to a monomial ideal in 
 
 \begin{theorem}
    \label{nu invariants associated to a monomial ideal in large characteristic: T}   
-   {Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exist monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following properties} \textup:
+   {Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exist monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following property}\textup:
    If $\idealm \in \mathcal{U}, p = \operatorname{char}(\ringA/\idealm)$, and $e$ is a positive integer, then 
    \[
       \nu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = \max \val \IP (\matM, \vv{u}_i, p^e).  \qed

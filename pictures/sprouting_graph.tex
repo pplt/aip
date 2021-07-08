@@ -41,22 +41,22 @@
     every node/.style       = {font=\footnotesize}
 %    sloped
   ]
-  \node [Snode] {$(A,\vv{u})$} 
-  child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 7 \end{smallmatrix}\big])$}
+  \node [Snode] {$(\matA,\vv{u})$} 
+  child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 1 \\ 7 \end{smallmatrix}\big])$}
   }
-  child { node [Snode] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 4 \end{smallmatrix}\big])$}
-     child { node [Snode] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 2 \end{smallmatrix}\big])$}
-        child { node [bad] {$(\collapse{A},\big[\begin{smallmatrix} 5 \\ 5 \end{smallmatrix}\big])$}}
-        child { node [bad] {$(\collapse{A},\big[\begin{smallmatrix} 4 \\ 8 \end{smallmatrix}\big])$}}
-        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 17 \end{smallmatrix}\big])$}}
-        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 6 \\ 2 \end{smallmatrix}\big])$}}
-        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 3 \\ 11 \end{smallmatrix}\big])$}}
-        child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 2 \\ 14 \end{smallmatrix}\big])$}}
+  child { node [Snode] {$(\collapse{\matA},\big[\begin{smallmatrix} 2 \\ 4 \end{smallmatrix}\big])$}
+     child { node [Snode] {$(\collapse{\matA},\big[\begin{smallmatrix} 2 \\ 2 \end{smallmatrix}\big])$}
+        child { node [bad] {$(\collapse{\matA},\big[\begin{smallmatrix} 5 \\ 5 \end{smallmatrix}\big])$}}
+        child { node [bad] {$(\collapse{\matA},\big[\begin{smallmatrix} 4 \\ 8 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 1 \\ 17 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 6 \\ 2 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 3 \\ 11 \end{smallmatrix}\big])$}}
+        child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 2 \\ 14 \end{smallmatrix}\big])$}}
      }
-     child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 1 \\ 5 \end{smallmatrix}\big])$}
+     child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 1 \\ 5 \end{smallmatrix}\big])$}
      }
   }
-  child { node [node] {$(\collapse{A},\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big])$}
+  child { node [node] {$(\collapse{\matA},\big[\begin{smallmatrix} 3 \\ 1 \end{smallmatrix}\big])$}
   };
 \end{tikzpicture}
 \end{document}
