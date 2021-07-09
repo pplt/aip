@@ -873,7 +873,7 @@ For that, we shall need the following well-known characterization of the vertice
 
 \begin{proof}
    By \Cref{opt set: P}, $\opt \LP(\matA,\vv{u})$ is defined by the inequalities $\matA\vv{s} \le \vv{u}$ and $\vv{s}\ge \vv{0}$, where equality is required in a prescribed set of coordinates.
-   Thus, if $\matM$ is the matrix obtained by stacking $\matA$, $-\matA$, the identity matrix $I_n$, and $-I_n$, and $\vv{b}$ is the column vector obtained by stacking $\vv{u}$, $-\vv{u}$, and $\vv{0}\in \RR^{2n}$, then $\opt \LP(\matA,\vv{u})$ is defined by a subsystem of $\matM \vv{x} \le \vv{b}$.
+   Thus, if $\matM$ is the matrix obtained by stacking $\matA$, $-\matA$, the $n \times n$ identity matrix $\matI$, and $-\matI$, and $\vv{b}$ is the column vector obtained by stacking $\vv{u}$, $-\vv{u}$, and $\vv{0}\in \RR^{2n}$, then $\opt \LP(\matA,\vv{u})$ is defined by a subsystem of $\matM \vv{x} \le \vv{b}$.
    Let $\denom$ be the least common multiple of the nonzero $n\times n$ minors of $\matM$.
    Then by \Cref{prop: characterization of vertices}, every vertex of $\opt \LP(\matA,\vv{u})$ is rational, with denominator $\denom$.
 \end{proof}
@@ -1222,7 +1222,7 @@ Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $
    \[\collapse{\matA} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
    \begin{figure}
       \includegraphics[width=.5\textwidth]{pictures/Theta.pdf}
-      \caption{The feasible set for the integer program $\ip(\matA,\vv{u},\vv{s},q)$ in \Cref{ex: ft.3}, with $\lpr{q}{17}=11$}
+      \caption{The feasible and optimal sets for the integer program $\ip(\matA,\vv{u},\vv{s},q)$ in \Cref{ex: ft.3}, with $\lpr{q}{17}=11$}
       \label{fig: Theta}
    \end{figure}
    \Cref{fig: Theta} shows a portion of the (unbounded) polyhedron defined by the above inequalities, in the case where $\lpr{q}{17}=11$, together with the feasible points for $\ip$.
@@ -1773,8 +1773,12 @@ It is clear from these interpretations that a very small pair must also be small
    \label{ex: small vs very small}
    \begin{figure}
       \centering
-      \includegraphics[width=.5\textwidth]{pictures/small_very_small_illustration.pdf}
-      \caption{Illustration for \Cref{ex: small vs very small}}
+      \includegraphics[width=.5\textwidth]{pictures/small_very_small_illustration.pdf}\\[2mm]
+      \begin{tabular}{l}
+        $(\matA,\mathbin{\vcenter{\hbox{\scalebox{1.5}{$\bullet$}}}})$ is small (but not very small)\\[1mm]
+        $(\matA,\textcolor{lightgray}{\mathbin{\vcenter{\hbox{\scalebox{1.5}{$\bullet$}}}}})$ is very small
+      \end{tabular}                                                              
+      \caption{Small and very small pairs}
       \label{fig: small vs very small}
    \end{figure}
    \Cref{fig: small vs very small} shows the typical situation in two dimensions.
@@ -2825,7 +2829,7 @@ Consider a compatible pair $(\matA, \mathcal{C})$, where $\matA$ is a monomial m
 \nu(\ideala, \idealc, p^e) & = \max  \val \IP(\matA_i, \vv{u}_i, p^e)  \\ 
 \mu(\ideala, \idealc, p^e) & = \max  \val \IP_p(\matA_i, \vv{u}_i, p^e) 
 \end{align*}
-for every positive integer~$e$.  Finally, there exists a single pair $(\matA_i, \vv{u}_i)$ that achieves the maximum in the expression for $\mu(\ideala, \idealc, p^e)$ for all such $e$
+for every positive integer~$e$.  Finally, there exists a single pair $(\matA_i, \vv{u}_i)$ that achieves the maximum in the expression for $\mu(\ideala, \idealc, p^e)$ for all such $e$.
 \end{theorem}
 
 \begin{proof}  
@@ -2843,7 +2847,7 @@ We now consider the case where $\mathcal{C}$ is general.   According to \cite[Le
 %
 where each set of monomials $\mathcal{C}_i = \{ x_s^{v_s(i)} : v_s(i) \neq 0 \}$ is associated to the nonzero point $\vv{v}_i = (v_1(i), \ldots, v_\numvars(i)) \in \NN^\numvars$. Furthermore, the points $\vv{v}_1, \ldots, \vv{v}_{\ell}$ arising in this way depend only on $\mathcal{C}$, but are independent of the choice of field $\LL$.  In addition, as the pair $(\matA, \mathcal{C})$ is radically compatible, then so is each pair $(\matA, \mathcal{C}_i)$.
 
-By the special case considered above, for each $1\le i \le \ell$ there is a pair $(\matA_i, \vv{u}_i)$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\nu(\ideala, \idealc_i, p^e) = \val \IP(\matA_i, \vv{u}_i, p^e)$ and $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(\matA_i, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with intersection in $\kk[x]$---a consequence of the flatness of the Frobenius over $\kk[x]$ and the fact that extensions under flat maps commute with finite intersections \cite[Theorem~7.4(ii)]{matsumura}---that
+By the special case considered above, for each $1\le i \le \ell$ there is a pair $(\matA_i, \vv{u}_i)$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\nu(\ideala, \idealc_i, p^e) = \val \IP(\matA_i, \vv{u}_i, p^e)$ and $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(\matA_i, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with intersection in $\kk[x]$---since finite intersections commute with extensions under flat maps \cite[Theorem~7.4(ii)]{matsumura}, and the Frobenius is flat over $\kk[x]$---that
 \pedro{Maybe include reference?} 
 \daniel{I included one to paper in which fractional Frobenius powers were first defined.  But, it is overkill, since it deals with arbitrary intersections.  In this case, we only need to deal with finitely many terms in the intersection.  If you know of an reference for the fact that such intersections commute with flat base change, then we would only need to remind the reader that Frobenius is flat in this case}
 \pedro{Sounds good; I did that.}
@@ -2865,7 +2869,7 @@ For instance,  \Cref{lifted-programs: L} shows that one may always choose pairs 
 \mu(\ideala, \idealb, p^e) = \mu(\ideala, \mon(\idealb), p^e) & = \max \val \IP_p(\matA,\vv{u}_i, p^e)
 \end{align*}
 %
-for every natural number $e$.  Furthermore, there exists a single positive point $\vv{u}_i$ that achieves the maximum in the expression for $\mu(\ideala, \idealb, p^e)$ for all such $e$
+for every natural number $e$.  Furthermore, there exists a single positive point $\vv{u}_i$ that achieves the maximum in the expression for $\mu(\ideala, \idealb, p^e)$ for all such $e$.
 \end{theorem}
 
 \begin{proof} 
@@ -2881,7 +2885,7 @@ Let $\kk$ be a field of characteristic $p \equiv 3 \bmod 4$. Consider the ideals
 Then 
 \[ \nu(\ideala, \idealb, p^e) = \max \{ \val \IP(\matA,\vv{u}_1, p^e), \val \IP(\matA, \vv{u}_2, p^e) \} \] and \Cref{max depends on p and e: E} tells us both that this maximum value equals $(3p^e-1)/2$, and that the integer program achieving this maximum alternates with $e$.
 
-Furthermore, it is not hard to see that there is no positive point $\vv{v} \in \NN^2$ such that $\val \IP(\matA, \vv{v}, p^e) = (3p^e-1)/2 = \nu(\ideala, \idealb, p^e)$ for every $e$, at least when $p \equiv 3 \bmod 4$.  Indeed, \Cref{max depends on p and e: E} implies that an equality $\val \IP(\matA, \vv{v}, p^e) = (3p^e-1)/2$ for all $e$ would force an equality $\ft{\matA}{\vv{v}} = 3/2$, and so $\vv{v}$ would have to be one $(1,5), (2,4), (3,3), (2,4)$, or $(1,5)$.  However, as $p \equiv 3 \bmod 4$,  \Cref{concrete-solution-to-LP-IP: E}   would then tell us that, in each case, $\val \IP(\matA, \vv{v}, p^e) = (3p^e-3)/2$ for infinitely many $e$.
+Furthermore, it is not hard to see that there is no positive point $\vv{v} \in \NN^2$ such that $\val \IP(\matA, \vv{v}, p^e) = (3p^e-1)/2 = \nu(\ideala, \idealb, p^e)$ for every $e$, at least when $p \equiv 3 \bmod 4$.  Indeed, \Cref{max depends on p and e: E} implies that an equality $\val \IP(\matA, \vv{v}, p^e) = (3p^e-1)/2$ for all $e$ would force an equality $\ft{\matA}{\vv{v}} = 3/2$, and so $\vv{v}$ would have to be one of $(1,5), (2,4), (3,3), (4,2)$, or $(5,1)$.  However, as $p \equiv 3 \bmod 4$,  \Cref{concrete-solution-to-LP-IP: E}   would then tell us that, in each case, $\val \IP(\matA, \vv{v}, p^e) = (3p^e-3)/2$ for infinitely many $e$.
 \end{example}
 
 
@@ -2929,7 +2933,7 @@ The following application of generic freeness forms the technical basis for the 
   \end{proposition}
 
 \begin{proof}
-   By generic freeness, we may fix a nonzero element $\ell \in \ringA$ such that each of the tensor products $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$ and $\ringA[\ell^{-1}] \otimes_\ringA \ringA[x]/J$ is free over $\ringA[\ell^{-1}]$.
+   By generic freeness, we may fix a nonzero element $\ell \in \ringA$ such that each of the tensor products $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$ and $\ringA[\ell^{-1}] \otimes_\ringA (\ringA[x]/J)$ is free over $\ringA[\ell^{-1}]$.
    Let $0 \leq \rho \leq \infty$ denote the rank of the free $\ringA[\ell^{-1}]$-module $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$, and let $\ringB$ be an $\ringA[\ell^{-1}]$-algebra.
 
 Applying the functor $M \mapsto \ringA[\ell^{-1}] \otimes_\ringA M$ to the short exact sequence
@@ -2939,22 +2943,6 @@ Split exactness and free rank are preserved by base change, so applying the func
 \[ 0 \to \ringB \otimes_\ringA (J/I) \to \ringB \otimes_\ringA (\ringA[x]/I) \to \ringB \otimes_\ringA (\ringA[x]/J) \to 0 \] 
 of $\ringB$-modules, which starts with a free $\ringB$-module of rank $\rho$.  
 To conclude the proof, note that the composition of the injective map $\ringB \otimes_\ringA (J/I)  \to \ringB \otimes_\ringA (\ringA[x]/I)$ with the canonical isomorphism $\ringB \otimes_\ringA (\ringA[x]/I) \cong \ringB[x]/I \ringB[x]$ is the canonical map in the statement, and that the free rank $\rho$ of the first term is independent of $\ringB$.
-%OLD PROOF STARTS HERE
-% 
-%   Localizing the exact sequence $0 \to I \to J \to J/I \to 0$ at $\ell \in \ringA \setminus \{0\}$, we obtain the exact sequence of $\ringA[\ell^{-1}]$-modules
-%   \[0 \to \ringA[\ell^{-1}] \otimes_\ringA I \to \ringA[\ell^{-1}] \otimes_\ringA J \to \ringA[\ell^{-1}] \otimes_\ringA (J/I) \to 0.\]
-%
-%   By generic freeness, we may assume that $\ringA[\ell^{-1}] \otimes_\ringA (J/I)$ is a free $\ringA[\ell^{-1}]$-module of rank $0 \leq \rho \leq \infty$, so the localized sequence above is split exact.
-%   Split exactness and free-rank is preserved by base change, so tensoring with an $\ringA[\ell^{-1}]$-algebra $\ringB$ over $\ringA[\ell^{-1}]$ gives the split exact sequence of $\ringB$-modules 
-%   \begin{equation}
-%      \label{eq: exact seq}
-%      0 \to \ringB \otimes_\ringA I \to \ringB \otimes_\ringA J \to \ringB \otimes_\ringA (J/I) \to 0
-%   \end{equation}
-%   that terminates on a free $\ringB$-module of rank $\rho$.   
-%   
-%   In particular, tensoring the containment $I \subseteq J$ with $\ringB$ over $\ringA$ yields an inclusion of $\ringB$-modules $\ringB\otimes_\ringA I \hookrightarrow \ringB\otimes_\ringA J$.  In fact, after replacing $\ell$ by a nonzero $\ringA$-multiple, we may also assume that $\ringA[\ell^{-1}] \otimes_\ringA (\ringA[x]/J)$ is free over $\ringA[\ell^{-1}]$, and an analogous argument shows that tensoring the containment $J \subseteq \ringA[x]$ with $\ringB$ over $\ringA$ yields an inclusion of $\ringB$-modules $\ringB \otimes_\ringA J \hookrightarrow \ringB \otimes_\ringA \ringA[x] \cong \ringB[x]$.  Thus, there is a resulting string of inclusions $\ringB \otimes_\ringA I \hookrightarrow \ringB \otimes_\ringA J \hookrightarrow \ringB[x]$, and by examining the corresponding images in $\ringB[x]$, we may identify this with the containments $I \ringB[x] \subseteq J \ringB[x] \subseteq \ringB[x]$,  and in light of this, \eqref{eq: exact seq} then identifies $\ringB \otimes_\ringA (J/I)$ with $J \ringB[x]/I \ringB[x]$.
-% 
-% Finally, for the last statement, simply note that $\rho$, the rank of the free $\ringB$-module $\ringB \otimes_\ringA (J/I) \cong J \ringB[x]/I \ringB[x]$, is independent of the choice of $\ringA[\ell^{-1}]$-algebra $\ringB$.   
 \end{proof}
 
 \begin{remark}
@@ -2967,18 +2955,21 @@ On the other hand, if $\mathcal{U} = \{ \idealm \in \mspec(\ringA) : \operatorna
  then for each $\idealm \in \mathcal{U}$, we may take $\ringB=\ringA/\idealm$ above to see that 
 \[ (\ringA/\idealm) \otimes_\ringA I_\ringA  \cong I_\ringA \ringR_\ringA(\idealm) = I_\ringA(\idealm)  \text{ and } \kk \otimes_\ringA (\ringR_\ringA / I_\ringA)  \cong \ringR_\ringA(\idealm) /I_\ringA(\idealm). \] 
 
-These isomorphisms illustrate that  \Cref{reduction: D} is consistent with other standard notions of reduction to prime characteristic considered in the literature.  For example, the {conditions $I_\ringA \ringR = I$ on $I_\ringA$ and $\kk \otimes_\ringA I_\ringA \cong I$} are equivalent, and though $I_\ringA \ringR_\ringA(\idealm)$  may differ from $(\ringA/\idealm) \otimes_\ringA I_\ringA$ for some $\idealm \in \mspec(\ringA)$, they are isomorphic for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.  In particular, every result below concerning the expansions $I_\ringA(\idealm) =I_\ringA \ringR_\ringA(\idealm)$ for all $\idealm$ in such a subset of $\mspec(\ringA)$ is valid for $(\ringA/\idealm) \otimes_\ringA I_\ringA$ for all $\idealm$ in another such subset of $\mspec(\ringA)$.
+These isomorphisms illustrate that  \Cref{reduction: D} is consistent with other standard notions of reduction to prime characteristic considered in the literature.
+\pedro{Maybe give a reference for one such treatment of reduction to positive characteristic}
+For example, the conditions $I_\ringA \ringR = I$ on $I_\ringA$ and $\kk \otimes_\ringA I_\ringA \cong I$ are equivalent, and though $I_\ringA \ringR_\ringA(\idealm)$  may differ from $(\ringA/\idealm) \otimes_\ringA I_\ringA$ for some $\idealm \in \mspec(\ringA)$, they are isomorphic for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.
+In particular, every result below concerning the extensions $I_\ringA(\idealm) =I_\ringA \ringR_\ringA(\idealm)$ for all $\idealm$ in such a subset of $\mspec(\ringA)$ is valid for $(\ringA/\idealm) \otimes_\ringA I_\ringA$ for all $\idealm$ in another such subset of $\mspec(\ringA)$.
 \end{remark}
 
 \begin{corollary}
 \label{reduction basics: C}
 Let $\kk$ be a field of characteristic zero.  Consider ideals  $I$ and $J$ of the polynomial ring $\ringR = \kk[x]$, and let $\ringA$ be a finitely generated $\ZZ$-subalgebra of $\kk$ that supports $\ringA$-models $I_\ringA$ of $I$, and $J_\ringA$ of $J$.   
 
-\begin{enumerate}
+\begin{enumerate}[$(1)$]
 \item \label{different models of same ideal}
 If $I=J$, that is, if $I_\ringA$ and $J_\ringA$ are $\ringA$-models of the same ideal, then $I_\ringA(\idealm) = J_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.
-\item \label{reduction preserves being monomial} If $I$ is a monomial ideal generated by a collection of monomials $G$, then $I_\ringA(\idealm) = G \ringR_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.
-\item \label{reduction preserves compatibility} \hl{If $(I,J)$ is a (small) compatible pair, then so are almost all of its reductions.  More precisely, If $I^t \subseteq J$ for some natural number $t$, then $I_\ringA(\idealm)^t \subseteq J_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.}
+\item \label{reduction preserves being monomial} If $I$ is a monomial ideal generated by a collection of monomials $\mathcal{C}$, then $I_\ringA(\idealm) = \mathcal{C} \ringR_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.
+\item \label{reduction preserves compatibility} \hl{If $(I,J)$ is a \textup(small\textup) compatible pair, then so are almost all of its reductions.  More precisely, if $I^t \subseteq J$ for some natural number $t$, then $I_\ringA(\idealm)^t \subseteq J_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.}
 %\item \label{intersection of models} \hl{$I_\ringA \cap J_\ringA$ is an $\ringA$-model of $I \cap J$, and $(I_\ringA \cap J_\ringA) \ringR_\ringA(\idealm) = I_\ringA(\idealm) \cap J_\ringA(\idealm)$ for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$.} \daniel{Unnecessary?  Proof commented out}
 \end{enumerate}
 \end{corollary}
@@ -2991,21 +2982,12 @@ If $I=J$, that is, if $I_\ringA$ and $J_\ringA$ are $\ringA$-models of the same 
 
  In the context of the second assertion, both $I_\ringA$ and $\mathcal{C}\ringR_\ringA$ are $\ringA$-models for $I$, and in the context of the third, if $I^t \subseteq J$, then both $J_\ringA$ and $I_\ringA^t +J_\ringA$ are $\ringA$-models for $J=I^t + J$.
  Thus, the second and third assertions follow from the first. 
-%
-%For the last assertion, for every $\ringA$-algebra $\ringB$, consider the canonical map 
-%\[ \theta_\ringB:  \ringB[x] {\longrightarrow} M_\ringB \coloneqq \ringB[x]/ I_\ringA \ringB[x] \oplus \ringB[x]/ J_\ringA \ringB[x] \] 
-%%
-%
-%By generic freeness, we may fix  $\ell \in \ringA \setminus \{ 0 \}$ such that  $\ringA[\ell^{-1}] \otimes_\ringA (M_\ringA / \im (\theta_\ringA))$ is free over $\ringA[\ell^{-1}]$.  Thus, if $\ringB$ is any $\ringA[\ell^{-1}]$-algebra, then applying $N \mapsto \ringB \otimes_\ringA N$ to the short exact sequence
-%$0 \to \im(\theta_\ringA) \to M_\ringA \to  M_\ringA / \im(\theta_\ringA) \to 0$ 
-%yields a split exact sequence of $\ringB$-modules $0 \to \ringB \otimes_\ringA \im(\theta_\ringA) \to \ringB \otimes_\ringA  M_\ringA \to \ringB \otimes_\ringA (M_\ringA/\im(\theta_\ringA)) \to 0$ 
-%and the reader may verify that the composition $\ringB \otimes_\ringA \im(\theta_\ringA) \hookrightarrow \ringB \otimes_\ringA M_\ringA \cong M_\ringB$ induces an isomorphism $\ringB \otimes_\ringA \im(\theta_\ringA) \cong \im(\theta_\ringB)$.
 \end{proof}
 
-\begin{example} The dense open set referenced in \Cref{reduction basics: C} \ref{reduction preserves being monomial} may not be all of $\mspec(\ringA)$, even when $\ringA=\ZZ$.  For an extreme example,  note that the ideal $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$ is a $\ZZ$-model of $I=\langle x, y \rangle \subseteq \QQ[x,y]$, and through $I_{\ZZ} \bmod p$ is what one expects when $p \neq 2$, the reduction $I_{\ZZ} \bmod 2  = \langle x+y \rangle \subseteq \FF_2[x,y]$ is especially far from being a monomial ideal, given that it contains no monomials.  
+\begin{example}
+   The dense open set referenced in \Cref{reduction basics: C}\ref{reduction preserves being monomial} may not be all of $\mspec(\ringA)$, even when $\ringA=\ZZ$.
+   For an extreme example,  note that the ideal $I_{\ZZ} = \ideal{2x, 3x+y} \subseteq \ZZ[x,y]$ is a $\ZZ$-model of $I=\ideal{ x, y } \subseteq \QQ[x,y]$, and though $I_{\ZZ}( \ideal{p} )$ is what one expects when $p \neq 2$, the reduction $I_{\ZZ}(\ideal{2})  = \ideal{ x+y } \subseteq \FF_2[x,y]$ is especially far from being a monomial ideal, given that it contains no monomials.  
 \end{example}
-
-
 
 \begin{proposition}
    \label{colon mod p: P}
@@ -3086,7 +3068,6 @@ Let $\ringA$ be a Noetherian domain.  Given an ideal $J$ of $\ringA[x]$, there e
 for every $\ringA[\ell^{-1}]$-algebra $\ringB$ {that happens to be a field}.
 \end{theorem}
 
-
 \begin{proof}
    The identity $(J:_{\ringA[x]} x^{\vv{u}}) = (J:_{\ringA[x]} x^{\phi(\vv{u})})$ established in the proof of \Cref{all monomial colons: C} implies that there are only finitely many ideals of the form $(J:_{\ringA[x]} x^{\vv{u}})$.
    Thus, we may choose $\ell \in \ringA\setminus \{0\}$ that satisfies the conclusion of \Cref{comparing expansions:  P} for every containment $(J:_{\ringA[x]} x^{\vv{u}}) \subseteq \ringA[x]$, as well as the conclusion of \Cref{all monomial colons: C}.
@@ -3118,32 +3099,33 @@ for every $\ringA[\ell^{-1}]$-algebra $\ringB$ {that happens to be a field}.
    for every point $\idealm$ in some dense open subset of $\mspec(\ringA)$. \qed
 \end{theorem}
 
-We are now prepared to describe the behavior of the $\nu / \mu$ invariants associated to a monomial ideal under reduction to prime characteristic.  We begin with a general fact that holds for all compatible pairs in characteristic zero, monomial or not.
+We are now prepared to describe the behavior of the $\nu$ and $\mu$ invariants associated to a monomial ideal under reduction to prime characteristic.  We begin with a general fact that holds for all compatible pairs in characteristic zero, monomial or not.
 
 \begin{proposition}
 \label{general-compatible->smalll: P}
-  {Consider a compatible pair of ideals $(I,J)$ of $\kk[x]$, where $\kk$ is a field of characteristic zero. Let $t$ be the natural number such that $I^t \not \subseteq J$ but $I^{t+1} \subseteq J$, and set $L=(J: I^t)$.  Then $(I,L)$ is a small compatible pair, and given a finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$, and models $I_\ringA, J_\ringA$ and $L_\ringA$ for $I,J$ and $L$, respectively, there exists a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$ such that}
+  Consider a compatible pair of ideals $(I,J)$ of $\kk[x]$, where $\kk$ is a field of characteristic zero. Let $t$ be the natural number such that $I^t \not \subseteq J$ but $I^{t+1} \subseteq J$, and set $L=(J: I^t)$.  Then $(I,L)$ is a small compatible pair, and given a finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$, and models $I_\ringA, J_\ringA$ and $L_\ringA$ for $I,J$ and $L$, respectively, there exists a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$ such that
 %
 \[ \mu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = t p^e + \mu(I_\ringA(\idealm), L_\ringA(\idealm), p^e) \] 
 %
 for all $\idealm \in \mathcal{U}$ and $e \geq 1$.
 \end{proposition}
 
-\begin{proof}   Let $\ringA, I_\ringA, J_\ringA$, and $L_\ringA$ be as above.  A standard application of \Cref{comparing expansions:  P} shows that $I_\ringA(\idealm)^t \not \subseteq J_\ringA(\idealm)$ for all $\idealm$ in some dense open subset $\mathcal{U}$ of $\mspec(\ringA)$, and \Cref{reduction basics: C}  \eqref{reduction preserves compatibility} tells us that, after possible shrinking $\mathcal{U}$, we may also assume that $I_\ringA(\idealm)^{t+1} \subseteq J_\ringA(\idealm)$ for all $\idealm \in \mathcal{U}$. In addition,  \Cref{reduction basics: C} \eqref{different models of same ideal}
+\begin{proof}   Let $\ringA, I_\ringA, J_\ringA$, and $L_\ringA$ be as above.  A standard application of \Cref{comparing expansions:  P} shows that $I_\ringA(\idealm)^t \not \subseteq J_\ringA(\idealm)$ for all $\idealm$ in some dense open subset $\mathcal{U}$ of $\mspec(\ringA)$, and \Cref{reduction basics: C}\ref{reduction preserves compatibility} tells us that, after possible shrinking $\mathcal{U}$, we may also assume that $I_\ringA(\idealm)^{t+1} \subseteq J_\ringA(\idealm)$ for all $\idealm \in \mathcal{U}$. In addition,  \Cref{reduction basics: C}\ref{different models of same ideal}
  and \Cref{colon mod p: C} imply that we may further assume that 
  \[ L_\ringA(\idealm) = (J_\ringA(\idealm) : I_\ringA(\idealm)^t) \text{ for every $\idealm \in \mathcal{U}$}. \] 
  
- Replacing $\mathcal{U}$ with a dense open subset, we may even assume that the characteristic of $\ringA/\idealm$ is greater than $t+1$ for every $\idealm \in \mathcal{U}$, and the result then follows from \Cref{compatible to small compatible: L} with $p = \operatorname{char}(\ringA/\idealm)$, and $\ideala = I_\ringA(\idealm), \idealb = J_\ringA(\idealm)$, and $\idealc = L_\ringA(\idealm)$.
+ Replacing $\mathcal{U}$ with a dense open subset, we may even assume that the characteristic of $\ringA/\idealm$ is greater than $t+1$ for every $\idealm \in \mathcal{U}$, and the result then follows from \Cref{compatible to small compatible: L} with $p = \operatorname{char}(\ringA/\idealm)$, $\ideala = I_\ringA(\idealm), \idealb = J_\ringA(\idealm)$, and $\idealc = L_\ringA(\idealm)$.
  \end{proof}
 
 
 \begin{theorem}
    \label{invariants associated to a monomial ideal in large characteristic: T}   
-   {Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exists $t \in \NN$, small monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following properties}\textup:
-   If $\idealm \in \mathcal{U}, p = \operatorname{char}(\ringA/\idealm)$, then 
+   Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exists $t \in \NN$, small monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following properties\textup:
+   If $\idealm \in \mathcal{U}$ and $p = \operatorname{char}(\ringA/\idealm)$, then 
    \[
-      \mu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = tp^e + \max \val \IP_p(\matM, \vv{u}_i, p^e). 
-   \] for every positive integer $e$.
+      \mu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = tp^e + \max \val \IP_p(\matM, \vv{u}_i, p^e) 
+   \]
+   for every positive integer $e$.
 Furthermore, for each such $p$, there is a single pair $(\matM, \vv{u}_i)$ that achieves this maximum for every such $e$.  
 \end{theorem}
 
@@ -3170,9 +3152,9 @@ Let $\idealm \in \mspec(\ringA)$, and consider the following analogous ``mod $\i
 \end{equation}
 
 
-We claim that each of these statements hold for all points $\idealm$ in some dense open subset of $\mspec(\ringA)$.  For \eqref{step-3-mu-reduction: e}, this simply follows from  \Cref{reduction basics: C} \eqref{reduction preserves being monomial}.  
+We claim that each of these statements hold for all points $\idealm$ in some dense open subset of $\mspec(\ringA)$.  For \eqref{step-3-mu-reduction: e}, this simply follows from  \Cref{reduction basics: C}\ref{reduction preserves being monomial}.  
 
-For \eqref{step-2-mu-reduction: e},  \Cref{mon-operation-modulo-p: T} implies that $\mon(L_\ringA)$ is an $\ringA$-model for $\mon(L)$, and our choice of $\mathcal{C}$ guarantees that $\mathcal{C} \ringR_\ringA$ is another $\ringA$-model for $\mon(L)$.  In light of this redundancy, \Cref{reduction basics: C} \eqref{different models of same ideal} implies that $\mon(L_\ringA) \ringR_\ringA(\idealm) = \mathcal{C} \ringR_\ringA(\idealm)$ for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.  On the other hand, \Cref{mon-operation-modulo-p: T} also tells us that $\mon(L_\ringA) \ringR_\ringA(\idealm) = \mon(L_\ringA(\idealm))$ for all $\idealm$ in some dense open subset of $\mspec(\ringA)$, and combining this with the preceding observation, we conclude that \eqref{step-2-mu-reduction: e} also holds for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.  
+For \eqref{step-2-mu-reduction: e},  \Cref{mon-operation-modulo-p: T} implies that $\mon(L_\ringA)$ is an $\ringA$-model for $\mon(L)$, and our choice of $\mathcal{C}$ guarantees that $\mathcal{C} \ringR_\ringA$ is another $\ringA$-model for $\mon(L)$.  In light of this redundancy, \Cref{reduction basics: C}\ref{different models of same ideal} implies that $\mon(L_\ringA) \ringR_\ringA(\idealm) = \mathcal{C} \ringR_\ringA(\idealm)$ for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.  On the other hand, \Cref{mon-operation-modulo-p: T} also tells us that $\mon(L_\ringA) \ringR_\ringA(\idealm) = \mon(L_\ringA(\idealm))$ for all $\idealm$ in some dense open subset of $\mspec(\ringA)$, and combining this with the preceding observation, we conclude that \eqref{step-2-mu-reduction: e} also holds for all $\idealm$ in some dense open subset of $\mspec(\ringA)$.  
 
 Thus, \eqref{step-1-mu-reduction: e}, \eqref{step-3-mu-reduction: e}, and \eqref{step-2-mu-reduction: e} hold simultaneously for all $\idealm$ in some dense open subset $\mathcal{U}$ of $\mspec(\ringA)$.  Fix a point $\idealm \in \mathcal{U}$, and note that
 %
@@ -3191,10 +3173,11 @@ The main difference between  \Cref{invariants associated to a monomial ideal in 
 
 \begin{theorem}
    \label{nu invariants associated to a monomial ideal in large characteristic: T}   
-   {Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exist monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following property}\textup:
-   If $\idealm \in \mathcal{U}, p = \operatorname{char}(\ringA/\idealm)$, and $e$ is a positive integer, then 
+   Consider a compatible pair of ideals $(I,J)$ of $\ringR=\kk[x]$, where $\kk$ is a field of characteristic zero, and $I$ is the monomial ideal associated to a monomial matrix $\matM$.  Then there exist monomial pairs $(\matM, \vv{u}_1),  \ldots, (\matM, \vv{u}_{\ell}),$ and a function $(\ringA, I_\ringA, J_\ringA) \mapsto \mathcal{U}$  that associates to every finitely generated $\ZZ$-subalgebra $\ringA$ of $\kk$ supporting models $I_\ringA$ of $I$, and $J_\ringA$ of $J$, a dense open set $\mathcal{U} \subseteq \mspec(\ringA)$, with the following property\textup:
+   If $\idealm \in \mathcal{U}$, $p = \operatorname{char}(\ringA/\idealm)$, and $e$ is a positive integer, then 
    \[
-      \nu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = \max \val \IP (\matM, \vv{u}_i, p^e).  \qed
+      \nu(I_\ringA(\idealm), J_\ringA(\idealm), p^e) = \max \val \IP (\matM, \vv{u}_i, p^e).
+      \qed
    \]
 \end{theorem}
 
