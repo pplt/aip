@@ -91,10 +91,13 @@ getFilename = () ->
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
 
--- newtonPolyhedron
+-- newton(A) returns the newton polyhedron of a matrix A.
 newton := A -> convexHull( A ) + posOrthant( rank target A )
 
--- feasLPting polytope
+-- feasLP(A,u) returns the polyhedron consisting of all nonnegative points x
+-- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
+-- program P(A,u)). u can be a simple list, or a column matrix; if not provided, it's
+-- assumed to be the column matrix with all entries equal to 1.
 feasLP = method() 
 feasLP ( Matrix, Matrix ) := ( A, u ) -> 
 (
@@ -106,12 +109,15 @@ feasLP ( Matrix, Matrix ) := ( A, u ) ->
 feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, colVec u ) 
 feasLP Matrix := A -> feasLP( A, constantVector( 1, rank target A) )
 
--- optimal set for linear program P(A,u)
+-- optLP(A,u) returns the the optimal set for the linear program P(A,u).
+-- u can be a simple list, or a column matrix; if not provided, it's
+-- assumed to be the column matrix with all entries equal to 1.
 optLP = method()
 optLP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, feasLP(A, u) )
 optLP ( Matrix, List ) := ( A, u ) -> optLP( A, colVec u )
 optLP Matrix := A -> maxFace( constantVector( 1, rank source A ), feasLP A )     
 
+-- univDenon(A) returns a universal denominator for the matrix A.
 univDenom = method()
 univDenom Matrix := A ->
 (
@@ -123,22 +129,24 @@ univDenom Matrix := A ->
     (m-1)*(lcm allMinors)
 )
 
+-- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
-
 properFaces Polyhedron := P -> 
 (
     d := dim P;
     toList sum(1..d, i -> set facesAsPolyhedra( i, P ) )
 )
 
+-- selectColumnsInFace(A,P) returns a submatrix of A consisting of all columns
+-- contained in the polyhedron P.
 selectColumnsInFace = method()
-
 selectColumnsInFace ( Matrix, Polyhedron ) := ( A, P ) ->
 (
    indices := select( rank source A, i -> contains( P, A_{i} ) );
    A_indices
 )
 
+-- lcmMinors(A) returns the lcm of all maximal minors of A.
 lcmMinors := A -> 
 (
     d := min( numRows A, rank source A );
@@ -152,16 +160,18 @@ univDenom2 Matrix := A ->
     matrices := apply( faces, F -> selectColumnsInFace( A, F ) | rb F );
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
- 
+
+-- ft(A,u) returns the F-threshold of the monomial pair (A,u).
+-- u can be a column matrix or a list; if not provided, assumed to be {1,1,...1}. 
 ft = method()
 ft ( Matrix, Matrix ) := (A,u) -> (
     NA := newton A;
+    -- the intersection point of the ray spanned by u and the newton polyhedron of A:
     intPt := first entries vertices intersection( coneFromVData u, NA );
     u_(0,0)/intPt#0
 )
 ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
 ft Matrix := A -> ft( A, constantVector( 1, rank target A ) )
-
 
 -- minimal face mf(A,u)
 minimalFace = method()

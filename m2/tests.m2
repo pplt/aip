@@ -649,4 +649,27 @@ apply(2..20,i->numeric ft(A,colVec{2,1,i}))
 A = matrix{ {36,10,31},{19,46,31},{47,25,36} }
 u = colVec {29,24,30}
 
+univDenom2 A
+univDenom A
+
 mu(A,u,11,p,t)
+toString oo
+
+-----------------------------------
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
+u = colVec {1,1,1}
+
+univDenom2 A
+univDenom A
+
+mu(A,u,11,p,t)
+toString oo
+
+N = newton A
+vertices N
+
+Nbar = newton collapse(A,u)
+vertices Nbar
+
+c1 = convexHull matrix{{0,5,3},{0,2,8}}
+latticePoints c1
