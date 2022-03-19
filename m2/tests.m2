@@ -644,3 +644,9 @@ solveIP theta(A,u,s,4)
 
 A = matrix{{3,0},{0,2},{1,1}}
 apply(2..20,i->numeric ft(A,colVec{2,1,i}))
+------------------------
+
+A = matrix{ {36,10,31},{19,46,31},{47,25,36} }
+u = colVec {29,24,30}
+
+mu(A,u,11,p,t)

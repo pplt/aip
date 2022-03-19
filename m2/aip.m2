@@ -1,17 +1,30 @@
+--installPackage("Polyhedra")
+
 loadPackage("Polyhedra", Reload => true)
 -- loadPackage("FrobeniusThresholds")
 -- loadPackage("FourTiTwo") -- loaded with Polyhedra
+
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
 -------------------------------------------------------------------------------
 
+-- constantList(c,n) returns a list with n copies of c
 constantList := (c,n) -> apply( n, x -> c )
 
+-- identityMatrix(n) returns the nxn identity matrix
 identityMatrix := n -> id_(ZZ^n)
 
+-- If L is a list of rational numbers, denominator(L) returns a
+-- common denominator D for all members of L, while numerator(L) 
+-- returns a list with the numerators, once all entries are written
+-- with denominator D. 
+-- In other words, L = numerator(L)/denominator(L).
 denominator List := L -> lcm apply( L, denominator )
 numerator List := L -> denominator(L) * L
 
+-- posRes(a,d) returns the least positive residue of a modulo D.
+-- If the first entry is a list, this operation is carried out in a 
+-- componentwise fashion.
 posRes = method()
 posRes (ZZ,ZZ) := (a,d) -> (
     residue := a % d;
@@ -19,6 +32,10 @@ posRes (ZZ,ZZ) := (a,d) -> (
 )
 posRes (List,ZZ) := (L,d) -> apply(L, x -> posRes(x,d) )
 
+-- If t = a/b is a rational number, and q is an integer, then 
+-- bracket(t,q) = posRes(aq,b)/b (or 0, if t is 0).
+-- This operation extends to lists and matrices, in a 
+-- componentwise fashion.
 bracket = method()
 bracket (QQ,ZZ) := (t,q) -> (
     if t == 0 then return 0;
@@ -30,19 +47,25 @@ bracket (ZZ,ZZ) := (t,q) -> bracket(t/1,q)
 bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
 bracket (Matrix,ZZ) := (M,q) -> matrix apply(entries M, t -> bracket(t,q))
 
+-- canVec(n,i) returns the (i+1)-th canonical basis vector of ZZ^n.
 canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
+-- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
 randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
+-- conVec(u) transforms a one-dimensional list u into a column vector
 colVec := u -> transpose matrix {u}
---transforms a one-dimensional list into a column vector
 
+-- constantMatrix(c,m,n) generates an mxn matrix whose entries all equal c. 
 constantMatrix := (c,m,n) -> matrix toList apply(m, i -> toList apply(n, x -> c) )
 
+-- constantVector(c,m) generates an m dimensional column vector whose entries all equal c. 
 constantVector := (c,m) -> constantMatrix(c,m,1)
 
+-- zeroMatrix(m,n) returns the mxn zero matrix.
 zeroMatrix := (m,n) -> constantMatrix(0,m,n)
-    
+
+-- getFilename generates a random name for temporary files.    
 getFilename = () -> 
 (
     filename := temporaryFileName();
