@@ -1,6 +1,8 @@
 \documentclass{amsart}
 \input{preamble.tex}
 
+\usepackage{soul}
+
 \begin{document}
 
 \title[Fractal and arithmetic programs]{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
@@ -14,11 +16,11 @@
 TO DO LIST:
 \begin{enumerate}
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?.
- \item[$\Box$] Address request after \Cref{computing nu for large q: C}.
+ \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result).
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
- \item[$\Box$]  Describe an analog of \Cref{computing nu for large q: C}:  Explain how our proof demonstrates that $\mu(\matA,\vv{u},p^e) = \mu(\collapse{\matA}, \collapse{\vv{u}}, p^e)$ for every $p \gg 0$ and $e \geq 1$.  This follows from the fact that $\sprout_p^{\ast}(\matA,\vv{u}) = \sprout_p^{\ast}(\collapse{\matA}, \collapse{\vv{u}})$.
- \item[$\Box$] Update \Cref{collapse of Newton polyhedron: P} to describe collapses of faces $\mathcal{L}$ with $\rb(\O) \subseteq \rb(\mathcal{L})$.
+ \item[$\Box$] Complete the sketched proof of \Cref{value-of-aip-invariant-under-collapse: C}.
+ \item[$\Box$] Complete proof of updated \Cref{collapse of Newton polyhedron: P}.
  \item[$\Box$] Explicitly describe a finite set $\mathsf{W}=\mathsf{W}(A)$ of positive points in $\NN^m$ such that \[ \{\crit(A, \vv{u}) : (A, \vv{u})\text{ is very small}\} = \{ \crit(A,\vv{u}) : \vv{u} \in \mathsf{W}  \}\] for all $p \gg 0$, depending only on $A$.  The point is that we will need to invoke that crit is invariant under collapsing. 
  \item[$\Box$]  Use this to describe $\ideala^{[\lambda]}$ when $\lambda \in [0,1]$ and $p \gg 0$.
  \item[$\Box$] Produce an example describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
@@ -2505,6 +2507,16 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
    \end{align*}
    and \Cref{general AIP: T} further implies that equality must hold throughout.
 \end{proof}
+
+\begin{corollary}
+	\label{value-of-aip-invariant-under-collapse: C}
+	Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(A)$ with the following property:  If $p > \beta$, and $(\matA, \vv{u})$ is very small, then for all $e$, \[ \val \IP_p(\matA, \vv{u}, p^e) = \val \IP_p(\collapse{\matA}, \collapse{\vv{u}}, p^e)\] where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$.  Thus, if $p > \beta$, then
+	\[ \val \fip_p(\matA,\vv{u}) = \val \fip_p(\collapse{\matA},\collapse{\vv{u}}). \]
+	\end{corollary} 
+
+\begin{proof} The point is that $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ are essentially the same:  The first level of the first graph consists of the single vertex $(\matA, \vv{u})$, the first level of the second graph consists of the single vertex $(\collapse{\matA}, \collapse{\vv{u}})$, and $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  Moreover, the $F$-thresholds these vertices agree.  After this, the remaining levels, and all arrows, of these two graphs agree.  \hl{Maybe include this in} \Cref{elementary2: R}.
+\end{proof}
+
 
 \begin{remark}[An algorithm]
    \label{algorithm: R}
