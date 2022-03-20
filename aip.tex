@@ -1065,12 +1065,14 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \details[inline]{
    Suppose that for each $\vv{u}\in \N$ we have $\iprod{\vv{b}}{\vv{u}} \ge \alpha$, with equality iff $\vv{u} \in \L$.
-%   Let $\vv{u} \in \pi^{-1}(\collapse{\L})$.
-   If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} \ge \alpha$.
-   If $\collapse{\vv{u}} \in \collapse{\L}$ (where $\vv{u} \in \L$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} = \alpha$.
-   If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) and $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} =\alpha$, then  $\iprod{\vv{b}}{\vv{u}} = \alpha$, and so $\vv{u}\in \L$, and $\collapse{\vv{u}} \in \collapse{\L}$.
-   Thus, $\collapse{\L}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{b}}$.
-   In view of this, the last part of the argument is showing that $\pi^{-1}(\collapse{\L}) \subseteq \L$; the reverse containment is trivial.
+   Then\ldots
+   \begin{enumerate}
+      \item If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} \ge \alpha$.
+      \item If $\collapse{\vv{u}} \in \collapse{\L}$ (where $\vv{u} \in \L$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} = \alpha$.
+      \item If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) and $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} =\alpha$, then  $\iprod{\vv{b}}{\vv{u}} = \alpha$, and so $\vv{u}\in \L$, and $\collapse{\vv{u}} \in \collapse{\L}$.
+   \end{enumerate}
+   (1)--(3) show that $\collapse{\L}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{b}}$.
+   In view of this, (3) also shows that $\pi^{-1}(\collapse{\L}) \subseteq \L$; the reverse containment is trivial.
 }
 
 
