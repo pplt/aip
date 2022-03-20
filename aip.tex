@@ -1024,12 +1024,34 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    In particular, the columns of $\collapse{\matA}$ are nonzero.
 \end{remark}
 
+% \begin{proposition}[Faces under collapsing]
+%    \label{collapse of Newton polyhedron: P}
+%    Let $\O$ be a face of the Newton polyhedron $\N$ of a monomial matrix $\matA$.
+%    As above, we use an overbar to denote collapse along $\O$.
+%    Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{\matA}$, and $\collapse{\O}$ is a bounded face of $\collapse{\N}$.
+%    In addition, if $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$.
+% \end{proposition}
+
+% \begin{proof}
+%    Taking the equation defining $\N$ and collapsing it along $\O$, we obtain
+%    \[ \collapse{\N} = \ol{\conv( \col(\matA))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{\matA}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars).\]
+%    The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{\matA}$.
+
+%    Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
+%    The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
+%    Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(\matA) \cap \O}) = \conv( \col(\collapse{\matA}) \cap \collapse{\O})$.
+% \end{proof}
+
+\pedro[inline]{Previous version of following proposition is commented out.}
+
 \begin{proposition}[Faces under collapsing]
    \label{collapse of Newton polyhedron: P}
-   Let $\O$ be a face of the Newton polyhedron $\N$ of a monomial matrix $\matA$.
+   Let $\O$ and $\L$ be proper faces of the Newton polyhedron $\N$ of a monomial matrix $\matA$, defined by points $\defpt$ and $\vv{b}$, respectively.
+   Suppose the recession basis of $\O$ is contained in the recession basis of $\L$.
    As above, we use an overbar to denote collapse along $\O$.
-   Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{\matA}$, and $\collapse{\O}$ is a bounded face of $\collapse{\N}$.
-   In addition, if $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$.
+   Let $\pi: \N \to \collapse{\N}$ be the collapsing along $\O$, restricted to $\N$.
+   Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{\matA}$, $\collapse{\L}$ is a face of $\collapse{\N}$ defined by the point  $\collapse{\vv{b}}$, and $\pi^{-1}(\collapse{\L}) = \L$.
+   In particular,  $\collapse{\O}$ is a face of  $\collapse{\N}$ defined by the positive point $\collapse{\vv{c}}$, and so $\collapse{\O}$ is bounded.
 \end{proposition}
 
 \begin{proof}
@@ -1037,10 +1059,20 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    \[ \collapse{\N} = \ol{\conv( \col(\matA))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{\matA}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars).\]
    The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{\matA}$.
 
-   Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
-   The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
-   Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(\matA) \cap \O}) = \conv( \col(\collapse{\matA}) \cap \collapse{\O})$.
+   As $\rb(\O) \subseteq \rb(\L)$, the point $\collapse{\vv{b}}$ is obtained by deleting zero coordinates from $\vv{b}$.
+   Thus, as in \Cref{collapse of a defining vector: R}, we have $\iprod{\vv{b}}{\vv{u}} = \iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^\numvars$, and it is now straightforward  to verify that  $\collapse{\L}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{b}}$, and that $\pi^{-1}(\collapse{\L}) = \L$. 
 \end{proof}
+
+\details[inline]{
+   Suppose that for each $\vv{u}\in \N$ we have $\iprod{\vv{b}}{\vv{u}} \ge \alpha$, with equality iff $\vv{u} \in \L$.
+%   Let $\vv{u} \in \pi^{-1}(\collapse{\L})$.
+   If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} \ge \alpha$.
+   If $\collapse{\vv{u}} \in \collapse{\L}$ (where $\vv{u} \in \L$) then $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} = \iprod{\vv{b}}{\vv{u}} = \alpha$.
+   If $\collapse{\vv{u}} \in \collapse{\N}$ (where $\vv{u} \in \N$) and $\iprod{\collapse{\vv{b}}}{\collapse{\vv{u}}} =\alpha$, then  $\iprod{\vv{b}}{\vv{u}} = \alpha$, and so $\vv{u}\in \L$, and $\collapse{\vv{u}} \in \collapse{\L}$.
+   Thus, $\collapse{\L}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{b}}$.
+   In view of this, the last part of the argument is showing that $\pi^{-1}(\collapse{\L}) \subseteq \L$; the reverse containment is trivial.
+}
+
 
 Below, we describe the relationship between collapses and other notions introduced in \Cref{sec: LPs,s: newton}.
 

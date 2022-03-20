@@ -161,7 +161,8 @@ univDenom2 Matrix := A ->
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
 
--- ft(A,u) returns the F-threshold of the monomial pair (A,u).
+-- ft(A,u) returns the F-threshold of the monomial pair (A,u), that is, the unique 
+-- scalar lambda such that u/lambda lies in the boudary of the Newton polyhedron of A.
 -- u can be a column matrix or a list; if not provided, assumed to be {1,1,...1}. 
 ft = method()
 ft ( Matrix, Matrix ) := (A,u) -> (
@@ -173,7 +174,9 @@ ft ( Matrix, Matrix ) := (A,u) -> (
 ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
 ft Matrix := A -> ft( A, constantVector( 1, rank target A ) )
 
--- minimal face mf(A,u)
+-- minimalFace(A,u) returns the minimal face mf(A,u), that is, the smallest
+-- face of the Newton polyhedron of A containing the scaled point u/ft(A,u).
+-- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 minimalFace = method()
 minimalFace ( Matrix, Matrix ) := (A,u) -> (
     NA := newton A;
@@ -183,26 +186,31 @@ minimalFace ( Matrix, Matrix ) := (A,u) -> (
 minimalFace ( Matrix, List ) := (A,u) -> minimalFace(A, colVec u)
 minimalFace Matrix := A -> minimalFace( A, constantVector( 1, rank target A ) )
      
--- recession basis for minimal face     
+-- recession basis for minimal face or polyhedron     
 rb = method()
 rb ( Matrix, Matrix ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
 rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
 rb Matrix := A -> entries transpose rays tailCone minimalFace A
 rb Polyhedron := P -> rays tailCone P
 
+-- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
+-- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 collapseMap = method()
 collapseMap (Matrix, Matrix) := (A,u) -> (
     rbasis := rb(A,u);
     d := rank target A;
     idMat := entries identityMatrix d;
-    proj := matrix select( idMat, v -> not member( v, rbasis ) )
+    matrix select( idMat, v -> not member( v, rbasis ) )
 )
 collapseMap (Matrix,List) := (A,u) -> collapseMap(A,colVec u)
 collapseMap Matrix := A -> collapseMasp( A, constantVector( 1, rank target A ) )
 
+-- collapse(A,u) returns the collapse of matrix A along mf(A,u)
+-- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 collapse = method()
 collapse (Matrix,Matrix) := (A,u) -> collapseMap(A,u)*A
 collapse (Matrix,List) := (A,u) -> collase(A, colVec u)
+collapse Matrix := A -> collapseMap(A)*A
     
 -- a special point
 specialPt = method()
@@ -210,6 +218,8 @@ specialPt (Matrix,Matrix) := (A,u) -> interiorPoint optLP(A,u)
 specialPt (Matrix,List) := (A,u) -> interiorPoint optLP(A,u)
 specialPt Matrix := A -> interiorPoint optLP A
 
+-- Feasible region of the auxiliary integer program Theta;
+-- not used in code below
 consTheta = (A,u,s,q) -> (
     n := rank source A;
     d := rank target A;
@@ -489,5 +499,15 @@ mu := ( A, u, p0, p, t ) ->
         M = append( M, epsilon*p - delta )
     )
 )
+
+-- need to eliminate p and t; just use some protected symbols or something.
+crit := ( A, u, p0, p , t) -> 
+(
+    G := mu( A, u, p0, p, t );
+    print(1);
+    G = G*(1-p*t);
+    sub(numerator G, t => 1/p)/sub(denominator G, t => 1/p)
+)
+
 
 
