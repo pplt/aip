@@ -2838,25 +2838,27 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
 
 \begin{lemma}
    Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
-   Let $\O$ be a standard face of $\N$, and let an overbar denote the collapse along~$\O$.
+   Let $\O$ be a standard unbounded face of $\N$, and let an overbar denote the collapse along~$\O$.
    Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$.
    Then there exists a positive point $\vv{u}$ in the domain lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$.
 \end{lemma}
 
 \begin{proof}
-   Let $\L$ be a standard face of $\N$ such that $\rb(\O) \not\subseteq \rb(\L)$.
-   Let $\vv{b}$ and $\defpt$ be points that define $\L$ and $\O$ in $\N$, and let $\vv{e}$ denote the sum of the standard basis vectors not in $\rb(\O)$.
-   Finally, let $\vv{v}$ be a positive point in the domain lattice of $\matA$ such that $\collapse{\vv{v}}=\vv{w}$.
-
+   Let $\vv{v}$ be a positive point in the domain lattice of $\matA$ such that $\collapse{\vv{v}}=\vv{w}$.
+   Consider a standard face $\L$ of $\N$ such that $\rb(\O) \not\subseteq \rb(\L)$.
+   We start by showing that we can modify $\vv{v}$, producing another lift $\vv{u}$ of $\vv{w}$ so that $\mf(\matA,\vv{u}) \ne \L$.
+   
+   Let $\vv{b}$ and $\defpt$ be points that define $\L$ and $\O$ in $\N$, and let $\vv{e}$ denote the sum of the standard basis vectors in $\rb(\O)$.
    The assumption on the recession basis of $\L$ implies that $\iprod{\vv{b}}{\vv{e}} \ne 0$.
-   Let $K$ be a positive integer with
-   \[ K > \frac{\iprod{\vv{c}}{\vv{v}} - \iprod{\vv{b}}{\vv{v}}}{\iprod{\vv{b}}{\vv{e}}}\]
+   Let $k$ be a positive integer with
+   \[ k > \frac{\iprod{\vv{c}}{\vv{v}} - \iprod{\vv{b}}{\vv{v}}}{\iprod{\vv{b}}{\vv{e}}}\]
+   and set $\vv{u} = \vv{v} + k\vv{e}$.
    We then have
-   \[\iprod{\vv{b}}{\vv{v}+K\vv{e}} = \iprod{\vv{b}}{\vv{v}} + K\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{v}+K\vv{e}} \]
-   and \Cref{lem: minimality property of minimal face} shows that $\L$ cannot be the minimal face of $(\matA,\vv{v}+K\vv{e})$.
+   \[\iprod{\vv{b}}{\vv{u}} = \iprod{\vv{b}}{\vv{v}} + k\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{u}} \]
+   and \Cref{lem: minimality property of minimal face} shows that $\mf(\matA,\vv{u})$ cannot be $\L$.
 
-   The argument above shows that we can choose an integer $K$ large enough and set $\vv{u} = \vv{v} + K\vv{e}$ in a way to ensure that the recession basis of the minimal face of $(\matA,\vv{u})$ contains $\rb(\O)$.
-   By \Cref{lem: lifting pairs}, this minimal face must be $\O$.
+   Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
+   With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must actually be $\O$.
 \end{proof}
 
 
