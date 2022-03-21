@@ -15,7 +15,8 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
- \item[$\Box$] Put ``titles'' in new statements, maybe remove some?.
+ \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
+ \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result).
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
@@ -1594,7 +1595,7 @@ We record another application of universal denominators below.
 \label{uniform uniform value and image: T}
 Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
 If $q > \beta$ and $(\matA, \vv{u})$ is a monomial pair, then
-\[  \deficit \IP(\matA, \vv{u}, q) = \udeficit(\matA, \vv{u}, q) \]
+\[  \ft{\matA}{\vv{u}} q - \val \IP(\matA, \vv{u}, q) \eqqcolon \deficit \IP(\matA, \vv{u}, q) = \udeficit(\matA, \vv{u}, q) \]
 and
 \[  \ol{ \short \IP(\matA, \vv{u}, q)} = \ushort (\matA, \vv{u}, q).\]
 \end{theorem}
@@ -1629,6 +1630,9 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
       \nu(\ideala, \ideald, q) = \ft{\ideala}{\ideald} q - \udeficit(\matA, \vv{u},q) = \nu(\collapse{\ideala},\collapse{\ideald}, q). \qed
    \end{equation*}
 \end{corollary}
+
+
+
 
 \todo[inline]{
    Wrap-up proof of BMS result.
@@ -2548,7 +2552,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
 	\[ \val \fip_p(\matA,\vv{u}) = \val \fip_p(\collapse{\matA},\collapse{\vv{u}}). \]
 	\end{corollary} 
 
-\begin{proof} The point is that $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ are essentially the same:  The first level of the first graph consists of the single vertex $(\matA, \vv{u})$, the first level of the second graph consists of the single vertex $(\collapse{\matA}, \collapse{\vv{u}})$, and $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  Moreover, the $F$-thresholds these vertices agree.  After this, the remaining levels, and all arrows, of these two graphs agree.  \hl{Maybe include this in} \Cref{elementary2: R}.
+\begin{proof} The point is that $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ are essentially the same:  The first level of the first graph consists of the single vertex $(\matA, \vv{u})$, the first level of the second graph consists of the single vertex $(\collapse{\matA}, \collapse{\vv{u}})$, and $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  Moreover, the $F$-thresholds these vertices agree.  After this, the remaining levels, and all arrows, of these two graphs agree.  \hl{Maybe include this in \mbox{\Cref{elementary2: R}}.}
 \end{proof}
 
 
@@ -2795,6 +2799,22 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
 \Cref{main theorem wrt diagonal: T} tells us that under its assumptions, the constant term of $\val \IP_p(\matA,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(\matA,\vv{u})$ for
   $1 \leq e \leq \log_p \Q_p(\matA,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(\matA,\vv{u})$.
 \end{remark}
+
+
+\begin{lemma}
+Consider a face $\O$ of $\N$, and let an overbar denote the collapse along $\O$.  Consider a pair  $(\collapse{A}, \vv{w})$ with $\mf(\collapse{A}, \vv{w}) = \collapse{\O}$, and fix a pair $(A, \vv{u})$ with $\collapse{\vv{u}} = \vv{w}$.  {If we set $\mathcal{L} \coloneqq \mf(A, \vv{u})$, then $\O = \mathcal{L}$ if and only if $\rb(\O) \subseteq \rb(\mathcal{L})$.}
+\end{lemma}
+
+\begin{proof}  We will prove that if $\rb(\O) \subseteq \rb(\mathcal{L})$, then $\O =\mathcal{L}$:  Assume that $\rb(\mathcal{O})$ lies in $\rb(\mathcal{L})$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \deg(A, \vv{u})$.  Then $\lambda^{-1} \vv{u} \in \mathcal{L}$, and so 
+\begin{equation}
+\label{cansado: e} \lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\mathcal{L}} \subseteq \partial \collapse{\N}
+\end{equation}
+where above, we have invoked \Cref{collapse of Newton polyhedron: P} to conclude that $\collapse{\mathcal{L}}$ is a face of $\collapse{\N}$.
+
+In light of \eqref{cansado: e}, the minimality of $\collapse{\O} = \mf(\collapse{A}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\mathcal{L}}$, and invoking \Cref{collapse of Newton polyhedron: P} again implies that $\O \subseteq \mathcal{L}$.   On the other hand, \eqref{cansado: e} also implies 
+\[ \lambda = \ft{\collapse{A}}{\vv{w}} = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \] 
+and as we have already noted that $\lambda^{-1} \vv{u} \in \mathcal{L} \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$. Finally, the minimality of $\mathcal{L} = \mf(A, \vv{u})$ implies that $\mathcal{L} \subseteq \O$.
+\end{proof}
 
 
 \newpage
