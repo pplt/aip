@@ -22,6 +22,8 @@ TO DO LIST:
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
  \item[$\Box$] Complete the sketched proof of \Cref{value-of-aip-invariant-under-collapse: C}.
  \item[$\Box$] Complete proof of updated \Cref{collapse of Newton polyhedron: P} 
+ \item[$\Box$] Prove \Cref{finite-set-small-crits: P}. 
+ \item[$\Box$]  Restate, prove \Cref{frobenius-powers-main: T}.
  \item[$\Box$] Prove \Cref{finite-representatives-small-crits: P}. 
  \item[$\Box$]  Use this to describe $\ideala^{[\lambda]}$ when $\lambda \in [0,1]$ and $p \gg 0$.
  \item[$\Box$] Produce an example describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
@@ -2799,10 +2801,15 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
 \section{Frobenius powers of monomial ideals}
 \label{frobenius-powers-monomial-ideals: S}
 
-\begin{remark}
-\Cref{main theorem wrt diagonal: T} tells us that under its assumptions, the constant term of $\val \IP_p(\matA,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(\matA,\vv{u})$ for
-  $1 \leq e \leq \log_p \Q_p(\matA,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(\matA,\vv{u})$.
-\end{remark}
+\begin{theorem}[Main Theorem on Frobenius powers of monomial ideals]
+	\label{frobenius-powers-main: T}
+	Given a monomial matrix $\matA$, there exist $\beta = \beta(\matA)$ with the following property:  If $d$ is a universal denominator for $A$, $p > \beta$, and $\ideala$ is the monomial ideal in a polynomial ring of characteristic $p>0$ associated to $\matA$ , then 
+	\begin{enumerate}
+	\item the number of constancy regions of $\ideala^{[t]}$ with $t$ in the unit interval depends only on $\lpr{p}{d}$;
+	\item though the endpoints of these regions depend on $p$, they agree with rational functions in $p$ that depend only on $\lpr{p}{d}$; 
+	\item the values of $\ideala^{[t]}$ within each constancy region in the unit interval depends only on $\lpr{p}{d}$.
+	\end{enumerate}	
+\end{theorem}
 
 
 \begin{lemma}
@@ -2861,8 +2868,8 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    \[\iprod{\vv{b}}{\vv{u}} = \iprod{\vv{b}}{\vv{v}} + k\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{u}} \]
    which, in view of the equivalence of \ref{new ip} and \ref{min} in \Cref{FT descriptions: P}, shows that $\mf(\matA,\vv{u})$ cannot be $\L$.
 
-   Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
-   With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must actually be $\O$.
+   Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the finitely many standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
+   With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must be $\O$.
 \end{proof}
 
 
@@ -2876,6 +2883,12 @@ $\crit(\matA, \vv{u}) = \lambda$ for some $\vv{u} \in \mathsf{W}$.
 
 \section{Applications to generic hypersurfaces}
 \label{generic-hypersurfaces: S}
+
+\begin{remark}
+	\Cref{main theorem wrt diagonal: T} tells us that under its assumptions, the constant term of $\val \IP_p(\matA,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(\matA,\vv{u})$ for
+	$1 \leq e \leq \log_p \Q_p(\matA,\vv{u})$, and is $-1$ for $e > \log_p \Q_p(\matA,\vv{u})$.
+\end{remark}
+
 
 \newpage
 \appendix
