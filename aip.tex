@@ -21,7 +21,8 @@ TO DO LIST:
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
  \item[$\Box$] Complete the sketched proof of \Cref{value-of-aip-invariant-under-collapse: C}.
- \item[$\Box$] Complete proof of updated \Cref{collapse of Newton polyhedron: P}.
+ \item[$\Box$] Complete proof of updated \Cref{collapse of Newton polyhedron: P} 
+ \item[$\Box$] Prove \Cref{finite-set-small-crits: P}. 
  \item[$\Box$] Explicitly describe a finite set $\mathsf{W}=\mathsf{W}(A)$ of positive points in $\NN^m$ such that \[ \{\crit(A, \vv{u}) : (A, \vv{u})\text{ is very small}\} = \{ \crit(A,\vv{u}) : \vv{u} \in \mathsf{W}  \}\] for all $p \gg 0$, depending only on $A$.  The point is that we will need to invoke that crit is invariant under collapsing. 
  \item[$\Box$]  Use this to describe $\ideala^{[\lambda]}$ when $\lambda \in [0,1]$ and $p \gg 0$.
  \item[$\Box$] Produce an example describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
@@ -2796,8 +2797,8 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
 \Cref{main theorem wrt diagonal: T}.
 \end{proof}
 
-\section{Consequences on generic hypersurfaces}
-\label{generic-hypersurfaces: S}
+\section{Frobenius powers of monomial ideals}
+\label{frobenius-powers-monomial-ideals: S}
 
 \begin{remark}
 \Cref{main theorem wrt diagonal: T} tells us that under its assumptions, the constant term of $\val \IP_p(\matA,\vv{u},p^e)$ as a polynomial in $p$ is $- \delta_{p^e}(\matA,\vv{u})$ for
@@ -2865,6 +2866,18 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must actually be $\O$.
 \end{proof}
 
+\begin{proposition}[]
+\label{finite-set-small-crits: P}
+There exists a finite set $\mathsf{W}=\mathsf{W}(A)$ and an integer $\beta = \beta(A)$ such that the following property holds for all $p > \beta$:  
+$\crit(A, \vv{u}) \in (0,1]$ for all $\vv{u} \in \mathsf{W}$ 
+
+ \item[$\Box$] Explicitly describe a finite seof positive points in $\NN^m$ such that \[ \{\crit(A, \vv{u}) : (A, \vv{u})\text{ is very small}\} = \{ \crit(A,\vv{u}) : \vv{u} \in \mathsf{W}  \}\] for all $p \gg 0$, depending only on $A$.  The point is that we will need to invoke that crit is invariant under collapsing. 
+ 
+ \end{proposition}
+
+
+\section{Applications to generic hypersurfaces}
+\label{generic-hypersurfaces: S}
 
 \newpage
 \appendix
