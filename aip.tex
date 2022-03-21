@@ -2802,18 +2802,61 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
 
 
 \begin{lemma}
-Consider a face $\O$ of $\N$, and let an overbar denote the collapse along $\O$.  Consider a pair  $(\collapse{A}, \vv{w})$ with $\mf(\collapse{A}, \vv{w}) = \collapse{\O}$, and fix a pair $(A, \vv{u})$ with $\collapse{\vv{u}} = \vv{w}$.  {If we set $\mathcal{L} \coloneqq \mf(A, \vv{u})$, then $\O = \mathcal{L}$ if and only if $\rb(\O) \subseteq \rb(\mathcal{L})$.}
+   \label{lem: lifting pairs}
+   Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
+   Let $\O$ be a standard face of $\N$, and let an overbar denote the collapse along~$\O$.
+   Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and fix a pair $(\matA, \vv{u})$ with $\collapse{\vv{u}} = \vv{w}$.
+   If we set $\mathcal{L} \coloneqq \mf(\matA, \vv{u})$, then $\O = \mathcal{L}$ if and only if $\rb(\O) \subseteq \rb(\mathcal{L})$.
 \end{lemma}
 
-\begin{proof}  We will prove that if $\rb(\O) \subseteq \rb(\mathcal{L})$, then $\O =\mathcal{L}$:  Assume that $\rb(\mathcal{O})$ lies in $\rb(\mathcal{L})$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \deg(A, \vv{u})$.  Then $\lambda^{-1} \vv{u} \in \mathcal{L}$, and so 
+\begin{proof}
+   We will prove that if $\rb(\O) \subseteq \rb(\mathcal{L})$, then $\O =\mathcal{L}$.
+   Assume that $\rb(\mathcal{O})$ lies in $\rb(\mathcal{L})$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \ft{\matA}{\vv{u}}$.
+   Then $\lambda^{-1} \vv{u} \in \mathcal{L}$, and so 
 \begin{equation}
-\label{cansado: e} \lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\mathcal{L}} \subseteq \partial \collapse{\N}
+\label{cansado: e} \lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\mathcal{L}}.
 \end{equation}
-where above, we have invoked \Cref{collapse of Newton polyhedron: P} to conclude that $\collapse{\mathcal{L}}$ is a face of $\collapse{\N}$.
+Since $\collapse{\mathcal{L}}$ is a face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and $\lambda = \ft{\collapse{\matA}}{\vv{w}}$ by \Cref{collapse of mf and mc: P}, the minimality of $\collapse{\O} = \mf(\collapse{\matA}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\mathcal{L}}$, and invoking \Cref{collapse of Newton polyhedron: P} again we conclude that $\O \subseteq \mathcal{L}$.
 
-In light of \eqref{cansado: e}, the minimality of $\collapse{\O} = \mf(\collapse{A}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\mathcal{L}}$, and invoking \Cref{collapse of Newton polyhedron: P} again implies that $\O \subseteq \mathcal{L}$.   On the other hand, \eqref{cansado: e} also implies 
-\[ \lambda = \ft{\collapse{A}}{\vv{w}} = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \] 
-and as we have already noted that $\lambda^{-1} \vv{u} \in \mathcal{L} \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$. Finally, the minimality of $\mathcal{L} = \mf(A, \vv{u})$ implies that $\mathcal{L} \subseteq \O$.
+On the other hand, we have 
+\[ \lambda = \ft{\collapse{\matA}}{\vv{w}} = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \] 
+and as $\lambda^{-1} \vv{u} \in \mathcal{L} \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$.
+Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mathcal{L} \subseteq \O$.
+\end{proof}
+
+\begin{lemma}
+   \label{lem: minimality property of minimal face}
+   Let $\N$ be the Newton polyhedron of a monomial matrix $\matA$, let $\O$ be the minimal face of a monomial pair $(\matA,\vv{u})$, and let $\L$ be a standard face of $\N$.
+   If $\O$ and $\L$ are defined in $\N$ by points $\defpt$ and $\vv{b}$, respectively, then $\iprod{\defpt}{\vv{u}} \le \iprod{\vv{b}}{\vv{u}}$.
+\end{lemma}
+
+\begin{proof}
+   Let $\lambda = \ft{\matA}{\vv{u}} = \iprod{\defpt}{\vv{u}}$.
+   Then $\lambda^{-1}\vv{u} \in \O \subseteq \N$, and so $\iprod{\vv{b}}{\lambda^{-1}\vv{u}} \ge 1$.
+   Thus, $\iprod{\vv{b}}{\vv{u}} \ge \lambda = \iprod{\vv{c}}{\vv{u}}$, as desired.
+\end{proof}
+
+\begin{lemma}
+   Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
+   Let $\O$ be a standard face of $\N$, and let an overbar denote the collapse along~$\O$.
+   Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$.
+   Then there exists a positive point $\vv{u}$ in the domain lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$.
+\end{lemma}
+
+\begin{proof}
+   Let $\L$ be a standard face of $\N$ such that $\rb(\O) \not\subseteq \rb(\L)$.
+   Let $\vv{b}$ and $\defpt$ be points that define $\L$ and $\O$ in $\N$, and let $\vv{e}$ denote the sum of the standard basis vectors not in $\rb(\O)$.
+   Finally, let $\vv{v}$ be a positive point in the domain lattice of $\matA$ such that $\collapse{\vv{v}}=\vv{w}$.
+
+   The assumption on the recession basis of $\L$ implies that $\iprod{\vv{b}}{\vv{e}} \ne 0$.
+   Let $K$ be a positive integer with
+   \[ K > \frac{\iprod{\vv{c}}{\vv{v}} - \iprod{\vv{b}}{\vv{v}}}{\iprod{\vv{b}}{\vv{e}}}\]
+   We then have
+   \[\iprod{\vv{b}}{\vv{v}+K\vv{e}} = \iprod{\vv{b}}{\vv{v}} + K\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{v}+K\vv{e}} \]
+   and \Cref{lem: minimality property of minimal face} shows that $\L$ cannot be the minimal face of $(\matA,\vv{v}+K\vv{e})$.
+
+   The argument above shows that we can choose an integer $K$ large enough and set $\vv{u} = \vv{v} + K\vv{e}$ in a way to ensure that the recession basis of the minimal face of $(\matA,\vv{u})$ contains $\rb(\O)$.
+   By \Cref{lem: lifting pairs}, this minimal face must be $\O$.
 \end{proof}
 
 
