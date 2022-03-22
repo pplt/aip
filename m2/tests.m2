@@ -735,8 +735,8 @@ toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries t
 
 --- tests collapseMap, collapse
 
-collapseMap {{1,0,0}}
-collapseMap {{1,0,0,0},{0,0,1,0}}
+collapseMap { colVec {1,0,0}}
+collapseMap { colVec {1,0,0,0}, colVec {0,0,1,0}}
 
 N = newton matrix { {2,4,7}, {6,4,3} }
 L = select( properStandardFaces N, x -> not isCompact(x) )
@@ -751,9 +751,14 @@ u = colVec {1,1,1}
 L = pointsAimedAtUnboundedFace minimalFace(A,u)
 toString apply(L, x -> first entries transpose x)
 
---- test pointsToMatrix
+rb(A,u)
+rb(collapse(A,u), colVec {10,1})
+rb(collapse(A,u), colVec {1,10})
 
--- test matrixToPoints
+-- test matrixToPoints, pointsToMatrix
 
 A = matrix { {5,3,4,1}, {5,4,0,3}, {1,2,8,5} }
-matrixToPoints A
+pts = matrixToPoints A
+mat = pointsToMatrix pts
+A == mat
+

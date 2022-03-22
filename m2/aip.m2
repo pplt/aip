@@ -1,3 +1,5 @@
+-- IDEA: create Types MonomialMatrix and MonomialPair, that will cache information already computed
+
 --installPackage("Polyhedra")
 
 loadPackage("Polyhedra", Reload => true)
@@ -64,6 +66,12 @@ constantVector := (c,m) -> constantMatrix(c,m,1)
 
 -- zeroMatrix(m,n) returns the mxn zero matrix.
 zeroMatrix := (m,n) -> constantMatrix(0,m,n)
+
+--pointsToMatrix gathers mx1 matrices into a big matrix
+pointsToMatrix := L -> fold( (x,y) -> x|y, L )
+
+--matrixToPoints separates columns
+matrixToPoints := M -> apply(rank source M, i -> M_{i})
 
 -- getFilename generates a random name for temporary files.    
 getFilename = () -> 
@@ -156,8 +164,15 @@ lcmMinors := A ->
 univDenom2 = method()
 univDenom2 Matrix := A ->
 (
+    local rbasis;
     faces := properFaces newton A;
-    matrices := apply( faces, F -> selectColumnsInFace( A, F ) | rb F );
+    matrices := apply( faces, F -> 
+        (
+            rbasis = rb F;
+            if rbasis == {} then selectColumnsInFace( A, F ) 
+            else selectColumnsInFace( A, F ) | pointsToMatrix rbasis
+        )
+    );
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
 
@@ -185,25 +200,35 @@ minimalFace ( Matrix, Matrix ) := (A,u) -> (
 )
 minimalFace ( Matrix, List ) := (A,u) -> minimalFace(A, colVec u)
 minimalFace Matrix := A -> minimalFace( A, constantVector( 1, rank target A ) )
-     
--- recession basis for minimal face or polyhedron     
-rb = method()
-rb ( Matrix, Matrix ) := (A,u) -> entries transpose rays tailCone minimalFace(A,u)
-rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
-rb Matrix := A -> entries transpose rays tailCone minimalFace A
-rb Polyhedron := P -> rays tailCone P
 
+-- recession basis for minimal face or polyhedron
+-- returns list of points (expressed as column matrices)     
+rb = method()
+rb ( Matrix, Matrix ) := (A,u) -> matrixToPoints rays tailCone minimalFace(A,u)
+rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
+rb Matrix := A -> matrixToPoints rays tailCone minimalFace A
+rb Polyhedron := P -> matrixToPoints rays tailCone P
+
+collapseMap = method()
+--collapse along a recession basis (assumes nonempty)
+collapseMap List := rbasis ->
+(
+    d := rank target first rbasis;
+    idMat := entries identityMatrix d;
+    rb := apply( rbasis, x -> first entries transpose x );
+    matrix select( idMat, v -> not member( v, rb ) )    
+)
+-- collapse along recession basis of a polyhedron
+collapseMap Polyhedron := P -> 
+(
+    rbasis := rb P;
+    if rbasis == {} then identityMatrix ambDim P else collapseMap rbasis
+) 
 -- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
-collapseMap = method()
-collapseMap (Matrix, Matrix) := (A,u) -> (
-    rbasis := rb(A,u);
-    d := rank target A;
-    idMat := entries identityMatrix d;
-    matrix select( idMat, v -> not member( v, rbasis ) )
-)
+collapseMap (Matrix, Matrix) := (A,u) -> collapseMap minimalFace(A,u)
 collapseMap (Matrix,List) := (A,u) -> collapseMap(A,colVec u)
-collapseMap Matrix := A -> collapseMasp( A, constantVector( 1, rank target A ) )
+collapseMap Matrix := A -> collapseMap( A, constantVector( 1, rank target A ) )
 
 -- collapse(A,u) returns the collapse of matrix A along mf(A,u)
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
@@ -211,7 +236,9 @@ collapse = method()
 collapse (Matrix,Matrix) := (A,u) -> collapseMap(A,u)*A
 collapse (Matrix,List) := (A,u) -> collase(A, colVec u)
 collapse Matrix := A -> collapseMap(A)*A
-    
+-- the collapse of a polyhedron along its own recession basis
+collapse Polyhedron := P -> affineImage( collapseMap P, P )
+        
 -- a special point
 specialPt = method()
 specialPt (Matrix,Matrix) := (A,u) -> interiorPoint optLP(A,u)
@@ -229,6 +256,21 @@ isStandard Polyhedron := P ->
 
 properStandardFaces = method()
 properStandardFaces Polyhedron := P -> select( properFaces P, isStandard )
+
+pointsAimedAtCompactFace := L -> 
+(
+    O := constantVector( 0, ambDim L );
+    P := convexHull({ O, L });
+    join( interiorLatticePoints P, interiorLatticePoints L )
+)
+
+pointsAimedAtUnboundedFace := L -> 
+(
+    pointsAimedAtCompactFace collapse L
+--     join( interiorLatticePoints P, interiorLatticePoints L )
+)
+
+liftPoint := (u,rb)
 
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below
