@@ -738,13 +738,16 @@ toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries t
 collapseMap { colVec {1,0,0}}
 collapseMap { colVec {1,0,0,0}, colVec {0,0,1,0}}
 
-N = newton matrix { {2,4,7}, {6,4,3} }
-L = select( properStandardFaces N, x -> not isCompact(x) )
+A = matrix { {2,4,7}, {6,4,3} }
+N = newton A
+L = properStandardFaces N
 rb \ L
 collapseMap \ L
 
 pointsAimedAtUnboundedFace \ L
 
+apply(L, F -> collapse(A,F))
+    
 -- running example
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
 u = colVec {1,1,1}
@@ -762,3 +765,31 @@ pts = matrixToPoints A
 mat = pointsToMatrix pts
 A == mat
 
+-- test liftPoint
+
+rbasis = { colVec {0,1,0,0,0}, colVec {0,0,0,0,1} }
+P = liftPoint( colVec {1,2,3}, rbasis ) 
+
+A = matrix { {2,4,7}, {6,4,3} }
+N = newton A
+L = properStandardFaces N
+L = select(L, F -> not isCompact F)
+
+rays \ L
+
+P = minimalLifts( colVec {1}, L#1 )
+
+peek P#cache
+
+halfspaces P
+hyperplanes P
+
+halfspaces N
+rank target (hyperplanes N)#0
+
+
+( matrix { {1,2},{3,4} } ) || matrix { {5,6},{7,8} } 
+
+M = openOut("~/Desktop/bla")
+M << "hey"
+close M

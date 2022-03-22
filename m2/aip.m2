@@ -52,6 +52,8 @@ bracket (Matrix,ZZ) := (M,q) -> matrix apply(entries M, t -> bracket(t,q))
 -- canVec(n,i) returns the (i+1)-th canonical basis vector of ZZ^n.
 canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
+stdBasis := n -> matrixToPoints identityMatrix n
+
 -- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
 randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
@@ -238,6 +240,7 @@ collapse (Matrix,List) := (A,u) -> collase(A, colVec u)
 collapse Matrix := A -> collapseMap(A)*A
 -- the collapse of a polyhedron along its own recession basis
 collapse Polyhedron := P -> affineImage( collapseMap P, P )
+collapse (Matrix,Polyhedron) := (A,P) -> collapseMap(P)*A
         
 -- a special point
 specialPt = method()
@@ -270,7 +273,54 @@ pointsAimedAtUnboundedFace := L ->
 --     join( interiorLatticePoints P, interiorLatticePoints L )
 )
 
-liftPoint := (u,rb)
+-- the preimage of a collapsed point
+liftPoint := (u,rbasis) ->
+(
+    n := rank target first rbasis; -- ambient dimension
+    rbPerp := select( stdBasis n, x -> not member(x,rbasis) );
+    -- lift u inserting zeros in coordinates corresponding to basis vectors in rbasis
+    v := sum( first entries transpose u, rbPerp, (i,j) -> i*j );
+    convexHull( {v} ) + coneFromVData( rbasis )
+)
+
+-- u is a point collapsed along face F
+minimalLifts := (u,F) ->
+(
+    rbasis := rb F;
+    n := ambDim F;
+    P := intersection( liftPoint( u, rbasis ), convexHull( { constantVector(0,n), F } ) );
+    eqns := hyperplanes P;
+    ineqs := halfspaces P;
+    numEqns := rank target first eqns;
+    numIneqs := rank target first ineqs;
+    -- build matrix, rhs, and relations
+    mat := eqns#0 || ineqs#0;
+    rhs := eqns#1 || ineqs#1;
+    rel := "1 " | toString(numEqns+numIneqs);
+    scan(numEqns, x -> rel = rel | " =");
+    scan(numIneqs, x -> rel = rel | " <");
+--    path242 := prefixDirectory | currentLayout#"programs";
+    path242 := "/usr/local/bin/";
+    file := getFilename();
+    -- store matrix
+    MAT := openOut( file | ".mat");
+    putMatrix( MAT, mat );
+    close MAT;
+    -- store rhs 
+    RHS := openOut( file | ".rhs");
+    putMatrix( RHS, rhs );
+    close RHS;
+    -- store relations
+    REL := openOut( file | ".rel");
+    REL << rel;
+    close REL;
+    -- run 4ti2
+    execstr := path242 | "zsolve " | rootPath | file;
+    ret := run execstr;
+    if ret =!= 0 then error "minimalLifts: error occurred while executing external program 4ti2/zsolve";
+    sol := getMatrix( file | ".zinhom" );
+    matrixToPoints transpose sol
+)
 
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below
