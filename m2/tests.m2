@@ -775,21 +775,13 @@ N = newton A
 L = properStandardFaces N
 L = select(L, F -> not isCompact F)
 
-rays \ L
+pointsAimedAtUnboundedFace \ L
 
-P = minimalLifts( colVec {1}, L#1 )
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
+u = colVec {1,1,1}
+N = newton A
+L = properStandardFaces N
+L = select(L, F -> not isCompact F)
 
-peek P#cache
+pointsAimedAtUnboundedFace \ L
 
-halfspaces P
-hyperplanes P
-
-halfspaces N
-rank target (hyperplanes N)#0
-
-
-( matrix { {1,2},{3,4} } ) || matrix { {5,6},{7,8} } 
-
-M = openOut("~/Desktop/bla")
-M << "hey"
-close M
