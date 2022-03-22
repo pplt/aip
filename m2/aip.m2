@@ -218,6 +218,18 @@ specialPt (Matrix,Matrix) := (A,u) -> interiorPoint optLP(A,u)
 specialPt (Matrix,List) := (A,u) -> interiorPoint optLP(A,u)
 specialPt Matrix := A -> interiorPoint optLP A
 
+isStandard = method()
+isStandard Polyhedron := P -> 
+(
+    n := ambDim P;
+    I := identityMatrix n;
+    coordSpaces := apply(n, j -> coneFromVData transpose matrix drop(entries I,{j,j}));
+    not any(coordSpaces, S -> contains(S,P))
+)
+
+properStandardFaces = method()
+properStandardFaces Polyhedron := P -> select( properFaces P, isStandard )
+
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below
 consTheta = (A,u,s,q) -> (
@@ -468,8 +480,10 @@ minimize := (L,f) ->
     (minimum, L_(positions(vals, x -> x == minimum )) )
 )
 
-mu := ( A, u, p0, p, t ) ->
+mu := ( A, u, p0 ) ->
 (
+    R := QQ(monoid[getSymbol "p",getSymbol "t"]);
+    (p,t) := toSequence R_*;
     localUShort := memoize uShort;
     localUDeficit := memoize uDeficit;
     localFt := memoize ft;
@@ -500,11 +514,10 @@ mu := ( A, u, p0, p, t ) ->
     )
 )
 
--- need to eliminate p and t; just use some protected symbols or something.
-crit := ( A, u, p0, p , t) -> 
+crit := ( A, u, p0 ) -> 
 (
-    G := mu( A, u, p0, p, t );
-    print(1);
+    G := mu( A, u, p0 );
+    (p,t) := toSequence (ring numerator G)_*;
     G = G*(1-p*t);
     sub(numerator G, t => 1/p)/sub(denominator G, t => 1/p)
 )

@@ -652,7 +652,9 @@ u = colVec {29,24,30}
 univDenom2 A
 univDenom A
 
-mu(A,u,11,p,t)
+mu(A,u,11)
+crit(A,u,11)
+
 toString oo
 
 -----------------------------------
@@ -662,8 +664,10 @@ u = colVec {1,1,1}
 univDenom2 A
 univDenom A
 
-mu(A,u,11,p,t)
+mu(A,u,11)
 toString oo
+
+crit(A,u,11)
 
 N = newton A
 vertices N
@@ -673,3 +677,83 @@ vertices Nbar
 
 c1 = convexHull matrix{{0,5,3},{0,2,8}}
 latticePoints c1
+
+------------------------------------
+A = matrix { {2,4,7}, {6,4,3} }
+N = newton A
+
+mu(A,colVec {3,4},11)
+crit(A,colVec {3,4},11)
+
+propfaces = properFaces N
+regions = apply( propfaces, F -> convexHull {F, colVec {0,0}})
+compactregions = select(regions,isCompact)
+apply(compactregions,latticePoints)
+
+univDenom A
+
+G = mu(A,colVec {3,4},11)
+
+g = G*(1-p*t)
+sub(numerator g, t => 1/p)/sub(denominator g, t => 1/p)
+
+
+
+apply( propfaces, F -> - objectiveVector(N,F) )
+
+viewHelp Polyhedra
+
+peek N#cache
+halfspaces N
+faces N
+
+--- test isStandard, properStandardFaces
+
+N = newton transpose matrix {{0,4},{2,2},{5,1}}
+facesOfN = properFaces N
+isStandard \ facesOfN
+
+properStandardFaces N
+
+N = newton transpose matrix {{4,0,0},{0,3,0},{0,0,5}}
+properStandardFaces N
+isStandard \ properFaces N
+
+--- test pointsAimedAtCompactFace
+
+N = newton transpose matrix {{4,0},{0,4}}
+L = first properStandardFaces N
+pointsAimedAtCompactFace L
+
+N = newton matrix { {2,4,7}, {6,4,3} }
+L = select( properStandardFaces N, isCompact)
+pts = apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
+
+N = newton transpose matrix {{3, 11}, {4, 8}, {6, 5}, {10, 4}}
+L = select( properStandardFaces N, isCompact)
+toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
+
+--- tests collapseMap, collapse
+
+collapseMap {{1,0,0}}
+collapseMap {{1,0,0,0},{0,0,1,0}}
+
+N = newton matrix { {2,4,7}, {6,4,3} }
+L = select( properStandardFaces N, x -> not isCompact(x) )
+rb \ L
+collapseMap \ L
+
+pointsAimedAtUnboundedFace \ L
+
+-- running example
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
+u = colVec {1,1,1}
+L = pointsAimedAtUnboundedFace minimalFace(A,u)
+toString apply(L, x -> first entries transpose x)
+
+--- test pointsToMatrix
+
+-- test matrixToPoints
+
+A = matrix { {5,3,4,1}, {5,4,0,3}, {1,2,8,5} }
+matrixToPoints A
