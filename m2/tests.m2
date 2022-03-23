@@ -765,10 +765,12 @@ pts = matrixToPoints A
 mat = pointsToMatrix pts
 A == mat
 
--- test liftPoint
+-- test liftPoint, pointsAimedAtUnboundedFace
 
 rbasis = { colVec {0,1,0,0,0}, colVec {0,0,0,0,1} }
 P = liftPoint( colVec {1,2,3}, rbasis ) 
+
+----------
 
 A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
@@ -776,6 +778,21 @@ L = properStandardFaces N
 L = select(L, F -> not isCompact F)
 
 pointsAimedAtUnboundedFace \ L
+
+apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> minimalFace(A,u) == F ))
+
+unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains(F, minimalFace(A,u)) ))
+
+crit( A, colVec {1,3}, 11 )
+crit( A, colVec {1,4}, 11 )
+
+crit( A, colVec {2,6}, 11 )
+crit( A, colVec {2,7}, 11 )
+
+crit( A, colVec {7,3}, 11 )
+crit( A, colVec {8,3}, 11 )
+
+-------------
 
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
 u = colVec {1,1,1}
@@ -785,3 +802,10 @@ L = select(L, F -> not isCompact F)
 
 pointsAimedAtUnboundedFace \ L
 
+apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> minimalFace(A,u) == F ))
+
+unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains(F, minimalFace(A,u)) ))
+
+rb L#0
+crit(A,colVec {4,3,5},11)
+crit(A,colVec {4,3,6},11)

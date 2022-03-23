@@ -267,12 +267,6 @@ pointsAimedAtCompactFace := L ->
     join( interiorLatticePoints P, interiorLatticePoints L )
 )
 
-pointsAimedAtUnboundedFace := L -> 
-(
-    pointsAimedAtCompactFace collapse L
---     join( interiorLatticePoints P, interiorLatticePoints L )
-)
-
 -- the preimage of a collapsed point
 liftPoint := (u,rbasis) ->
 (
@@ -308,18 +302,25 @@ minimalLifts := (u,F) ->
     close MAT;
     -- store rhs 
     RHS := openOut( file | ".rhs");
-    putMatrix( RHS, rhs );
+    putMatrix( RHS, transpose rhs );
     close RHS;
     -- store relations
     REL := openOut( file | ".rel");
     REL << rel;
     close REL;
     -- run 4ti2
-    execstr := path242 | "zsolve " | rootPath | file;
+    execstr := path242 | "zsolve --quiet " | rootPath | file;
     ret := run execstr;
     if ret =!= 0 then error "minimalLifts: error occurred while executing external program 4ti2/zsolve";
     sol := getMatrix( file | ".zinhom" );
     matrixToPoints transpose sol
+)
+
+pointsAimedAtUnboundedFace := L -> 
+(
+    collapsedPoints := pointsAimedAtCompactFace collapse L;
+    flatten apply( collapsedPoints, u -> minimalLifts(u,L) )
+    -- now need to find pts with the wrong minimal face, and "bump them"
 )
 
 -- Feasible region of the auxiliary integer program Theta;
