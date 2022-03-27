@@ -97,6 +97,12 @@ getFilename = () ->
     filename
 )
 
+-- selects the minimal elements of a list L of sets
+minimalSets := L -> 
+(
+    select( L, A -> select( L, B -> isSubset( B, A ) ) == { A } )
+)
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -212,7 +218,8 @@ rb Matrix := A -> matrixToPoints rays tailCone minimalFace A
 rb Polyhedron := P -> matrixToPoints rays tailCone P
 
 collapseMap = method()
---collapse along a recession basis (assumes nonempty)
+-- collapse along a recession basis
+-- Assumes basis is nonempty, because othewise it can't possibly know the size of the identity matrix.
 collapseMap List := rbasis ->
 (
     d := rank target first rbasis;
@@ -319,8 +326,53 @@ minimalLifts := (u,F) ->
 pointsAimedAtUnboundedFace := L -> 
 (
     collapsedPoints := pointsAimedAtCompactFace collapse L;
-    flatten apply( collapsedPoints, u -> minimalLifts(u,L) )
-    -- now need to find pts with the wrong minimal face, and "bump them"
+    pts = flatten apply( collapsedPoints, u -> minimalLifts(u,L) );
+    local int;
+    local mf;
+    local v;
+    local directions;
+    rbasis := rb L;
+    -- print("Original minimal lifts");
+    -- print pts;
+    pts = flatten apply( pts, u -> 
+        (
+            int = intersection( coneFromVData u, L );
+            if smallestFace( vertices int, L ) == L 
+            then u
+            else 
+            (
+                print("Problem point", u, "Intersection with face", vertices int);
+                directions = delete( {}, subsets rbasis);
+                directions = select( directions, e -> 
+                    (
+                        v = u + fold( plus, e );
+                        int = intersection( coneFromVData v, L );
+                        smallestFace( vertices int, L ) == L
+                    )
+                );
+                print("Directions we can go", apply( directions, e -> fold( plus, e ) ));
+                directions = minimalSets directions;
+                print("Minimal directions we can go", apply( directions, e -> fold( plus, e ) ));
+                apply( directions, e -> u + fold( plus, e ) )
+            )
+            -- apply( rbasis, e ->
+            --     ( 
+            --         print("Trying to move in direction ", e);
+            --         int = intersection( coneFromVData(u + e), L );
+            --         print("Is the intersection of ray with L empty? ", int == emptyPolyhedron(ambDim L) );
+            --         mf = smallestFace( vertices int, L );
+            --         print("Is the min face of u+e the face equal L? ", mf == L)
+            --     )
+            -- )             
+        )
+    ); 
+    -- print("Here are the points", pts);
+    -- print("Now let's see if they all work");
+    print apply( pts, u -> (
+            int = intersection( coneFromVData u, L );
+            smallestFace( vertices int, L ) == L 
+    ));
+    pts
 )
 
 -- Feasible region of the auxiliary integer program Theta;

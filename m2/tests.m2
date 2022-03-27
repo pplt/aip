@@ -802,6 +802,24 @@ L = select(L, F -> not isCompact F)
 
 pointsAimedAtUnboundedFace \ L
 
+F = L#1
+rb F
+
+pointsAimedAtUnboundedFace \ L
+
+unique oo == oo
+
+interiorPoint F
+
+vertices F
+rays F
+
+help delete
+
+
+
+viewHelp subsets
+
 apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> minimalFace(A,u) == F ))
 
 unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains(F, minimalFace(A,u)) ))
@@ -809,3 +827,10 @@ unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains
 rb L#0
 crit(A,colVec {4,3,5},11)
 crit(A,colVec {4,3,6},11)
+
+univDenom matrix { { 0,1,2,3,4,5},{5,4,3,2,1,0}}
+
+
+minimalSets{ {1,2}, {1}, {3,4}, {2}, {4} }
+
+fold(plus,minimalSets rb L#1)
