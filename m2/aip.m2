@@ -323,12 +323,12 @@ minimalLifts := (u,F) ->
     matrixToPoints transpose sol
 )
 
+mf := (u,L) -> smallestFace( vertices intersection( coneFromVData u, L ), L )
+
 pointsAimedAtUnboundedFace := L -> 
 (
     collapsedPoints := pointsAimedAtCompactFace collapse L;
     pts = flatten apply( collapsedPoints, u -> minimalLifts(u,L) );
-    local int;
-    local mf;
     local v;
     local directions;
     rbasis := rb L;
@@ -336,24 +336,21 @@ pointsAimedAtUnboundedFace := L ->
     -- print pts;
     pts = flatten apply( pts, u -> 
         (
-            int = intersection( coneFromVData u, L );
-            if smallestFace( vertices int, L ) == L 
-            then u
+            if mf( u, L ) == L then u
             else 
             (
-                print("Problem point", u, "Intersection with face", vertices int);
+--                print("Problem point", u, "Intersection with face", vertices int);
                 directions = delete( {}, subsets rbasis);
                 directions = select( directions, e -> 
                     (
-                        v = u + fold( plus, e );
-                        int = intersection( coneFromVData v, L );
-                        smallestFace( vertices int, L ) == L
+                        v = u + sum e;
+                        mf( v, L ) == L
                     )
                 );
-                print("Directions we can go", apply( directions, e -> fold( plus, e ) ));
+--                print("Directions we can go", apply( directions, e -> fold( plus, e ) ));
                 directions = minimalSets directions;
-                print("Minimal directions we can go", apply( directions, e -> fold( plus, e ) ));
-                apply( directions, e -> u + fold( plus, e ) )
+--                print("Minimal directions we can go", apply( directions, e -> fold( plus, e ) ));
+                apply( directions, e -> u + sum e )
             )
             -- apply( rbasis, e ->
             --     ( 
@@ -368,12 +365,12 @@ pointsAimedAtUnboundedFace := L ->
     ); 
     -- print("Here are the points", pts);
     -- print("Now let's see if they all work");
-    print apply( pts, u -> (
-            int = intersection( coneFromVData u, L );
-            smallestFace( vertices int, L ) == L 
-    ));
+--    print apply( pts, u -> mf( u, L ) == L ); 
     pts
 )
+
+pointsAimedAtFace := L -> 
+    if isCompact L then pointsAimedAtCompactFace L else pointsAimedAtUnboundedFace L
 
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below

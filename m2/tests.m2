@@ -798,23 +798,29 @@ A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
 u = colVec {1,1,1}
 N = newton A
 L = properStandardFaces N
-L = select(L, F -> not isCompact F)
+-- L = select(L, F -> not isCompact F)
 
-pointsAimedAtUnboundedFace \ L
+toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
+
+first entries transpose colVec {1,2,3} 
 
 F = L#1
 rb F
 
-pointsAimedAtUnboundedFace \ L
+apply( L, F ->  #(pointsAimedAtFace F))
+
+apply( pointsAimedAtFace L#12, u -> (c = crit(A,u,11); print toString c; c ) )
+
+pointsAimedAtFace L#12
 
 unique oo == oo
-
+g
 interiorPoint F
 
 vertices F
 rays F
 
-help delete
+viewHelp tally
 
 
 
@@ -834,3 +840,34 @@ univDenom matrix { { 0,1,2,3,4,5},{5,4,3,2,1,0}}
 minimalSets{ {1,2}, {1}, {3,4}, {2}, {4} }
 
 fold(plus,minimalSets rb L#1)
+
+--- From Examples paper
+-- 3.15
+QQ[x,y,z]
+m=ideal(x,y,z)
+A = transpose matrix apply( (m^ 7)_*, f -> first exponents f )
+N = newton A
+F = convexHull( {colVec {7,0,0}, colVec {0,7,0}, colVec {0,0,7}} ) 
+-- first properStandardFaces N
+pts = pointsAimedAtFace F 
+crits = unique apply( pts, u -> ( c = toString crit(A,u,5); print c; c ) )
+-- taking too long
+
+--  5.11, 5.12
+A = matrix {{7,0,0},{0,7,0},{0,0,7}}
+F = convexHull( {colVec {7,0,0}, colVec {0,7,0}, colVec {0,0,7}} ) 
+pts = pointsAimedAtFace F 
+unique apply( pts, u -> toString crit(A,u,6) )
+unique apply( pts, u -> toString crit(A,u,5) )
+
+-- 5.15
+A = matrix {{6,0},{0,4}}
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+unique apply( pts, u -> toString crit(A,u,5) )
+
+-- 5.13
+A = 47*identityMatrix(2)
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+unique apply( pts, u -> (c = toString crit(A,u,5); print c; c ) )
