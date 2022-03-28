@@ -2876,7 +2876,48 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    \label{finite-representatives-small-crits: P}
    If $\matA$ is a monomial matrix, then there exist a finite set $\mathsf{W}=\mathsf{W}(\matA)$ of positive points in the target lattice of $\matA$ and an integer $\beta = \beta(\matA)$ such that the following property holds for all $p > \beta$\textup:
    $\crit(\matA, \vv{u}) \in (0,1]$ for all $\vv{u} \in \mathsf{W}$, and if $\crit(\matA, \vv{v}) \in (0,1]$ for some positive point $\vv{v} \in \NN^m$, then $\crit(\matA,\vv{v}) = \crit(\matA, \vv{u})$ for some $\vv{u} \in \mathsf{W}$ with $\vv{u} \le \vv{v}$.
- \end{proposition}
+\end{proposition}
+
+\begin{example}[Running example: critical exponents and Frobenius powers]
+   Let $\kk$ be a field of positive characteristic $p$, and $\ideala = \ideal{x^5 y^5 z^2, x^3 y^4 z^8, x^4 y^3 z^5} \subseteq \kk[x,y,z]$.
+   When $p$ is sufficiently large and congruent to $11$ modulo $\num{2170560}$, the following are the critical exponents of $\ideala$ in the open unit interval:
+   \begin{center}
+      \begingroup
+      \setlength{\tabcolsep}{8pt} % Default value: 6pt
+      \renewcommand{\arraystretch}{1.4} % Default value: 1
+      \begin{tabular}{llll}
+        $\lambda_1 = \frac{4}{17} - \frac{3}{17 p^3}$
+        & $\lambda_2 = \frac5{19}$
+        & $\lambda_3 = \frac27 - \frac1{7 p}$
+        & $\lambda_4 = \frac5{17} - \frac3{17 p^4}$ \\
+        $\lambda_5 = \frac13$ 
+        & $\lambda_6 = \frac7{17} - \frac1{17 p^3}$
+        & $\lambda_7 = \frac8{19}$
+        & $\lambda_8 = \frac8{17} - \frac3{17 p}$ \\
+        $\lambda_9 = \frac12$
+        & $\lambda_{10} = \frac{10}{19}$
+        & $\lambda_{11} = \frac9{17} - \frac1{17 p^2}$
+        & $\lambda_{12} = \frac47 - \frac1{7 p^2}$ \\
+        $\lambda_{13} = \frac{10}{17} - \frac3{17 p^2}$
+        & $\lambda_{14} = \frac{12}{19}$
+        & $\lambda_{15} = \frac{11}{17} - \frac2{17 p}$ 
+        & $\lambda_{16} = \frac23$ \\
+        $\lambda_{17} = \frac{13}{19}$
+        & $\lambda_{18} = \frac{12}{17} - \frac1{17 p^5}$
+        & $\lambda_{19} = \frac{13}{17} - \frac1{17 p^4}$
+        & $\lambda_{20} = \frac{15}{19}$ \\
+        $\lambda_{21} = \frac{14}{17} - \frac1{17 p}$
+        & $\lambda_{22} = \frac{16}{19}$
+        & $\lambda_{23} = \frac67 - \frac2{21 p}$
+        & $\lambda_{24} = \frac{15}{17} - \frac1{17 p^6}$ \\
+        $\lambda_{25} = \frac{17}{19}$
+        & $\lambda_{26} = \frac{16}{17} - \frac1{51 p}$
+        & $\lambda_{27} = \frac{18}{19}$
+        & $\lambda_{28} = 1$ 
+      \end{tabular}
+   \endgroup
+   \end{center}
+\end{example}
 
 
 \section{Applications to generic hypersurfaces}

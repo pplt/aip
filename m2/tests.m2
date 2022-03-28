@@ -772,74 +772,6 @@ P = liftPoint( colVec {1,2,3}, rbasis )
 
 ----------
 
-A = matrix { {2,4,7}, {6,4,3} }
-N = newton A
-L = properStandardFaces N
-L = select(L, F -> not isCompact F)
-
-pointsAimedAtUnboundedFace \ L
-
-apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> minimalFace(A,u) == F ))
-
-unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains(F, minimalFace(A,u)) ))
-
-crit( A, colVec {1,3}, 11 )
-crit( A, colVec {1,4}, 11 )
-
-crit( A, colVec {2,6}, 11 )
-crit( A, colVec {2,7}, 11 )
-
-crit( A, colVec {7,3}, 11 )
-crit( A, colVec {8,3}, 11 )
-
--------------
-
-A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
-u = colVec {1,1,1}
-N = newton A
-L = properStandardFaces N
--- L = select(L, F -> not isCompact F)
-
-toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
-
-first entries transpose colVec {1,2,3} 
-
-F = L#1
-rb F
-
-apply( L, F ->  #(pointsAimedAtFace F))
-
-apply( pointsAimedAtFace L#12, u -> (c = crit(A,u,11); print toString c; c ) )
-
-pointsAimedAtFace L#12
-
-unique oo == oo
-g
-interiorPoint F
-
-vertices F
-rays F
-
-viewHelp tally
-
-
-
-viewHelp subsets
-
-apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> minimalFace(A,u) == F ))
-
-unique flatten apply( L, F -> apply( pointsAimedAtUnboundedFace F, u -> contains(F, minimalFace(A,u)) ))
-
-rb L#0
-crit(A,colVec {4,3,5},11)
-crit(A,colVec {4,3,6},11)
-
-univDenom matrix { { 0,1,2,3,4,5},{5,4,3,2,1,0}}
-
-minimalSets{ {1,2}, {1}, {3,4}, {2}, {4} }
-
-fold(plus,minimalSets rb L#1)
-
 --- From Examples paper
 -- 3.14, 3.15
 QQ[x,y,z]
@@ -923,3 +855,5 @@ F = properStandardFaces newton A
 pts = flatten( pointsAimedAtFace \ F )
 unique apply( pts, u -> ( c = toString crit(A,u,11); print c; c ) )
 
+-- used this for pic in Mathematica (tests.nb)
+toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
