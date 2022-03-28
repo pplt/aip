@@ -842,32 +842,78 @@ minimalSets{ {1,2}, {1}, {3,4}, {2}, {4} }
 fold(plus,minimalSets rb L#1)
 
 --- From Examples paper
--- 3.15
+-- 3.14, 3.15
 QQ[x,y,z]
 m=ideal(x,y,z)
-A = transpose matrix apply( (m^ 7)_*, f -> first exponents f )
-N = newton A
-F = convexHull( {colVec {7,0,0}, colVec {0,7,0}, colVec {0,0,7}} ) 
--- first properStandardFaces N
-pts = pointsAimedAtFace F 
-crits = unique apply( pts, u -> ( c = toString crit(A,u,5); print c; c ) )
+A = transpose matrix apply( (m^7)_*, f -> first exponents f )
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+unique apply( pts, u -> ( c = toString crit(A,u,6); print c; c ) )
+unique apply( pts, u -> ( c = toString crit(A,u,5); print c; c ) )
 -- taking too long
 
 --  5.11, 5.12
-A = matrix {{7,0,0},{0,7,0},{0,0,7}}
-F = convexHull( {colVec {7,0,0}, colVec {0,7,0}, colVec {0,0,7}} ) 
+A = 7*identityMatrix(3)
+F = first properStandardFaces newton A
 pts = pointsAimedAtFace F 
 unique apply( pts, u -> toString crit(A,u,6) )
 unique apply( pts, u -> toString crit(A,u,5) )
+-- got all crits!
 
 -- 5.15
 A = matrix {{6,0},{0,4}}
 F = first properStandardFaces newton A
 pts = pointsAimedAtFace F
 unique apply( pts, u -> toString crit(A,u,5) )
+-- got all crits!
 
 -- 5.13
 A = 47*identityMatrix(2)
 F = first properStandardFaces newton A
 pts = pointsAimedAtFace F
-unique apply( pts, u -> (c = toString crit(A,u,5); print c; c ) )
+unique apply( pts, u -> (c = toString crit(A,u,7); print c; c ) )
+-- got all listed in paper.
+
+--- From Frobenius paper
+
+-- 3.24
+QQ[x,y]
+m=ideal(x,y)
+A = transpose matrix apply( (m^7)_*, f -> first exponents f )
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,4); print c; c ) )
+-- got all crits!
+
+-- 3.25
+QQ[x,y]
+m=ideal(x,y)
+A = transpose matrix apply( (m^5)_*, f -> first exponents f )
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+-- got all crits!
+
+A = 5*identityMatrix(2)
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+-- got all crits!
+
+-----------------
+A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} }
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+
+-----------------
+A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} }
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,7); print c; c ) )
+
+-----------------
+A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} }
+F = first properStandardFaces newton A
+pts = pointsAimedAtFace F
+crits = unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
