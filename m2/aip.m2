@@ -622,10 +622,16 @@ minimize := (L,f) ->
     (minimum, L_(positions(vals, x -> x == minimum )) )
 )
 
+----------------------------------------------------------------------------------
+-- mu and crit
+----------------------------------------------------------------------------------
+
+R1 := memoize ( () -> QQ(monoid[getSymbol "p",getSymbol "t"]) );
+
 mu := ( A, u, p0 ) ->
 (
-    R := QQ(monoid[getSymbol "p",getSymbol "t"]);
-    (p,t) := toSequence R_*;
+--    R := QQ(monoid[getSymbol "p",getSymbol "t"]);
+    (p,t) := toSequence (R1())_*;
     localUShort := memoize uShort;
     localUDeficit := memoize uDeficit;
     localFt := memoize ft;
@@ -659,10 +665,34 @@ mu := ( A, u, p0 ) ->
 crit := ( A, u, p0 ) -> 
 (
     G := mu( A, u, p0 );
-    (p,t) := toSequence (ring numerator G)_*;
+--     (p,t) := toSequence (ring numerator G)_*;
+    (p,t) := toSequence (R1())_*;
     G = G*(1-p*t);
     sub(numerator G, t => 1/p)/sub(denominator G, t => 1/p)
 )
 
-
+allCrits = method( Options => { Verbose => false } )
+allCrits ( Matrix, ZZ ) := o -> (A, p0) -> 
+(
+    F := properStandardFaces newton A;
+    pts := flatten( pointsAimedAtFace \ F );
+    local c;
+    local ptsRealizingC;
+    ptsAndCrits := apply( pts, u -> 
+        ( 
+            c = crit( A, u, p0 );
+            if o.Verbose then print toString ( first entries transpose u, c );
+            ( u, c )
+        )
+    );
+    crits := unique apply( ptsAndCrits, last );
+    --- TODO: sort crits
+    apply( crits, c -> 
+        (
+            ptsRealizingC = select( ptsAndCrits, u -> u#1 == c );
+            ptsRealizingC = apply( ptsRealizingC, first );
+            ( c, ptsRealizingC ) 
+        )
+    )
+)
 

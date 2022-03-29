@@ -774,86 +774,85 @@ P = liftPoint( colVec {1,2,3}, rbasis )
 
 --- From Examples paper
 -- 3.14, 3.15
-QQ[x,y,z]
-m=ideal(x,y,z)
-A = transpose matrix apply( (m^7)_*, f -> first exponents f )
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> ( c = toString crit(A,u,6); print c; c ) )
-unique apply( pts, u -> ( c = toString crit(A,u,5); print c; c ) )
--- taking way too long
+QQ[x,y,z];
+m=ideal(x,y,z);
+A = transpose matrix apply( (m^7)_*, f -> first exponents f );
+print \  allCrits( A, 6, Verbose => true );
+print \  allCrits( A, 5, Verbose => true );
+-- taking way too long (even after several hours, could not 
 
 --  5.11, 5.12
-A = 7*identityMatrix(3)
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F 
-unique apply( pts, u -> toString crit(A,u,6) )
-unique apply( pts, u -> toString crit(A,u,5) )
+A = 7*identityMatrix(3);
+print \  allCrits( A, 6, Verbose => true );
+print \  allCrits( A, 5, Verbose => true );
 -- got all crits!
 
 -- 5.15
-A = matrix {{6,0},{0,4}}
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> toString crit(A,u,5) )
+A = matrix {{6,0},{0,4}};
+print \ allCrits( A, 5, Verbose => true );
 -- got all crits!
 
 -- 5.13
-A = 47*identityMatrix(2)
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> (c = toString crit(A,u,7); print c; c ) )
+A = 47*identityMatrix(2);
+print \ allCrits( A, 7, Verbose => true );
 -- got all listed in paper.
 
 --- From Frobenius paper
 
 -- 3.24
-QQ[x,y]
-m=ideal(x,y)
-A = transpose matrix apply( (m^7)_*, f -> first exponents f )
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> ( c = toString crit(A,u,4); print c; c ) )
+QQ[x,y];
+m=ideal(x,y);
+A = transpose matrix apply( (m^7)_*, f -> first exponents f );
+print \ allCrits( A, 4, Verbose => true );
 -- got all crits!
 
 -- 3.25
-QQ[x,y]
-m=ideal(x,y)
-A = transpose matrix apply( (m^5)_*, f -> first exponents f )
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+QQ[x,y];
+m=ideal(x,y);
+A = transpose matrix apply( (m^5)_*, f -> first exponents f );
+print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
 
-A = 5*identityMatrix(2)
-F = first properStandardFaces newton A
-pts = pointsAimedAtFace F
-unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+A = 5*identityMatrix(2);
+print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
 
 --- A homogeneous trinomial in 3 vars
-A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} }
-F = properStandardFaces newton A
-pts = flatten( pointsAimedAtFace \ F )
-unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
+print \ allCrits( A, 3, Verbose => true );
 
 --- A homogeneous trinomial in 3 vars
-A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} }
-F = properStandardFaces newton A
-pts = flatten( pointsAimedAtFace \ F )
-unique apply( pts, u -> ( c = toString crit(A,u,7); print c; c ) )
+A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
+print \ allCrits( A, 7, Verbose => true );
 
 --- A homogeneous trinomial in 3 vars
-A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} }
-F = properStandardFaces newton A
-pts = flatten( pointsAimedAtFace \ F )
-unique apply( pts, u -> ( c = toString crit(A,u,3); print c; c ) )
+A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} };
+print \ allCrits( A, 3, Verbose => true );
 
 --- Our running example
-A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
-F = properStandardFaces newton A
-pts = flatten( pointsAimedAtFace \ F )
-unique apply( pts, u -> ( c = toString crit(A,u,11); print c; c ) )
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+print \ allCrits( A, 11, Verbose => true );
 
 -- used this for pic in Mathematica (tests.nb)
 toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
+
+---------------------------------
+viewHelp degreesRing
+
+fourTiTwo = findProgram(
+    "4ti2", 
+    "zsolve -h",
+    Prefix => 
+    {
+        (".*", "4ti2-"), -- debian
+	(".*", "4ti2_") -- suse
+    }, 
+    AdditionalPaths => {"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"},
+    Verbose => true
+) 
+
+rootPath | temporaryFileName()
+
+
+keys programPaths
+
