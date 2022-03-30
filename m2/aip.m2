@@ -76,22 +76,22 @@ pointsToMatrix := L -> fold( (x,y) -> x|y, L )
 matrixToPoints := M -> apply(rank source M, i -> M_{i})
 
 -- getFilename generates a random name for temporary files.    
-getFilename = () -> 
+getFilename := () -> 
 (
     filename := temporaryFileName();
     while 
     (
         fileExists filename 
         or 
-        fileExists( filename|".mat" ) 
+        fileExists( filename | ".mat" ) 
         or 
-        fileExists( filename|".zsol" ) 
+        fileExists( filename | ".zsol" ) 
         or 
-        fileExists( filename|".cost" ) 
+        fileExists( filename | ".cost" ) 
         or 
-        fileExists( filename|".min" ) 
+        fileExists( filename | ".min" ) 
         or 
-        fileExists( filename|".sign" ) 
+        fileExists( filename | ".sign" ) 
     )    
     do filename = temporaryFileName();
     filename
@@ -696,3 +696,4 @@ allCrits ( Matrix, ZZ ) := o -> (A, p0) ->
     )
 )
 
+-- TODO: function that returns crits and ideals

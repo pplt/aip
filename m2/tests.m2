@@ -829,10 +829,85 @@ print \ allCrits( A, 7, Verbose => true );
 A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} };
 print \ allCrits( A, 3, Verbose => true );
 
+---------------------------------------------------------------------------------------------
 --- Our running example
+---------------------------------------------------------------------------------------------
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-print \ allCrits( A, 11, Verbose => true );
+c = allCrits( A, 11, Verbose => true );
+print \ c;
+toString c
 
+c = {
+((4*p^3-3)/(17*p^3),{matrix {{1}, {1}, {1}}}), 
+(5/19,{matrix {{2}, {1}, {1}}}),
+((2*p-1)/(7*p),{matrix {{1}, {1}, {2}}}), 
+((5*p^4-3)/(17*p^4),{matrix {{1}, {2}, {2}}}), 
+(1/3,{matrix {{1}, {2}, {3}}, matrix {{2}, {1}, {2}}}),
+((7*p^3-1)/(17*p^3),{matrix {{2}, {2}, {1}}}), 
+(8/19,{matrix {{3}, {2}, {1}}}), 
+((8*p-3)/(17*p),{matrix {{2}, {2}, {2}}}), 
+(1/2,{matrix {{3}, {3}, {1}}}), 
+(10/19,{matrix {{3}, {2}, {2}}}), 
+((9*p^2-1)/(17*p^2),{matrix {{2}, {2}, {3}}}), 
+((4*p^2-1)/(7*p^2),{matrix {{2}, {2}, {4}}}), 
+((10*p^2-3)/(17*p^2),{matrix {{2}, {3}, {4}}}), 
+(12/19,{matrix {{3}, {2}, {3}}}),
+((11*p-2)/(17*p),{matrix {{2}, {3}, {5}}, matrix {{3}, {3}, {2}}}),
+(2/3,{matrix {{2}, {3}, {6}}, matrix {{3}, {2}, {4}}}), 
+(13/19,{matrix {{4}, {3}, {2}}}),
+((12*p^5-1)/(17*p^5),{matrix {{3}, {3}, {3}}}), 
+((13*p^4-1)/(17*p^4),{matrix {{3}, {3}, {4}}}), 
+(15/19,{matrix {{4}, {3}, {3}}}), 
+((14*p-1)/(17*p),{matrix {{3}, {3}, {5}}, matrix {{4}, {4}, {2}}}),
+(16/19,{matrix {{5}, {4}, {2}}}), 
+((18*p-2)/(21*p),{matrix {{3}, {3}, {6}}}), 
+((15*p^6-1)/(17*p^6),{matrix {{4}, {4}, {3}}, matrix {{3}, {4}, {6}}}),
+(17/19,{matrix {{4}, {3}, {4}}}),
+((48*p-1)/(51*p),{matrix {{3}, {4}, {7}}, matrix {{4}, {4}, {4}}}),
+(18/19,{matrix {{5}, {4}, {3}}}),
+(1,{matrix {{5}, {5}, {2}}, matrix {{3}, {4}, {8}}, matrix {{4}, {3}, {6}}, matrix {{3}, {4}, {9}}, matrix {{6}, {6}, {2}}, matrix {{3}, {5}, {9}}, matrix {{4}, {3}, {5}}, matrix {{5}, {6}, {2}}, matrix {{6}, {5}, {2}}, matrix {{5}, {3}, {5}}, matrix {{3}, {5}, {8}}, matrix {{4}, {4}, {5}}, matrix {{5}, {3}, {6}}})
+}
+-- sorted by hand
+
+QQ[x,y,z]
+mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
+
+ideals = apply(28, i -> 
+    (
+        m = apply(toList(i..27), j -> apply( last c_j, mon) );
+        m = flatten m;
+        mingens ideal m
+    )
+)
+
+print \ apply( ideals, a -> toString first entries a )
+
+loadPackage "TestIdeals"
+
+p = 11
+ZZ/p[x,y,z,s,v,t]
+F = s*x^5*y^5*z^2 + t*x^3*y^4*z^8 + v*x^4*y^3*z^5
+--p = 11
+-- ZZ/p[x,y,z]
+-- F = x^5*y^5*z^2 + x^3*y^4*z^8 + x^4*y^3*z^5
+
+testIdeal( (4*p^3 - 3)/(17*p^3), F )
+testIdeal( 5/19, F )
+testIdeal( (2*p-1)/(7*p), F )
+testIdeal( 1/3, F )
+testIdeal( (5*p^4-3)/(17*p^4), F )
+
+testIdeal( (12*p^5-1)/(17*p^5), F )
+
+testIdeal( (18*p-2)/(21*p), F )
+testIdeal( (15*p^6-1)/(17*p^6), F )
+testIdeal( 17/19, F )
+testIdeal( (48*p-1)/(51*p), F )
+testIdeal( 18/19, F ) -- I'm missing a generator!
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+    
 -- used this for pic in Mathematica (tests.nb)
 toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
 
@@ -855,4 +930,20 @@ rootPath | temporaryFileName()
 
 
 keys programPaths
+
+QQ[p, MonomialOrder => Lex, Inverses => true]
+
+R = QQ[p]
+
+F = (4*p^2-1)/(5*p^2)
+
+F = 4/5 - (1/5)*p^(-2)
+
+coefficients F
+
+coefficient( p^(-2), F )
+
+degree F
+
+sub( sub( numerator F, p => 1/p )/sub( denominator F, p => 1/p ), R )
 
