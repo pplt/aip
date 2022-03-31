@@ -792,11 +792,15 @@ A = 7*identityMatrix(3);
 print \  allCrits( A, 6, Verbose => true );
 print \  allCrits( A, 5, Verbose => true );
 -- got all crits!
-
+print \ critsAndIdeals( A, 6, {x,y,z}, Verbose => true );
+print \ critsAndIdeals( A, 5, {x,y,z}, Verbose => true );
+-- ideals are correct
+    
 -- 5.15
 A = matrix {{6,0},{0,4}};
 print \ allCrits( A, 5, Verbose => true );
 -- got all crits!
+print \ critsAndIdeals( A, 5, {x,y}, Verbose => true );
 
 -- 5.13
 A = 47*identityMatrix(2);
@@ -839,57 +843,28 @@ print \ allCrits( A, 3, Verbose => true );
 --- Our running example
 ---------------------------------------------------------------------------------------------
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-c = allCrits( A, 11, Verbose => true );
+c = allCrits( A, 11, Verbose => true )
 print \ c;
 
-c = {
-((4*p^3-3)/(17*p^3),{matrix {{1}, {1}, {1}}}), 
-(5/19,{matrix {{2}, {1}, {1}}}),
-((2*p-1)/(7*p),{matrix {{1}, {1}, {2}}}), 
-((5*p^4-3)/(17*p^4),{matrix {{1}, {2}, {2}}}), 
-(1/3,{matrix {{1}, {2}, {3}}, matrix {{2}, {1}, {2}}}),
-((7*p^3-1)/(17*p^3),{matrix {{2}, {2}, {1}}}), 
-(8/19,{matrix {{3}, {2}, {1}}}), 
-((8*p-3)/(17*p),{matrix {{2}, {2}, {2}}}), 
-(1/2,{matrix {{3}, {3}, {1}}}), 
-(10/19,{matrix {{3}, {2}, {2}}}), 
-((9*p^2-1)/(17*p^2),{matrix {{2}, {2}, {3}}}), 
-((4*p^2-1)/(7*p^2),{matrix {{2}, {2}, {4}}}), 
-((10*p^2-3)/(17*p^2),{matrix {{2}, {3}, {4}}}), 
-(12/19,{matrix {{3}, {2}, {3}}}),
-((11*p-2)/(17*p),{matrix {{2}, {3}, {5}}, matrix {{3}, {3}, {2}}}),
-(2/3,{matrix {{2}, {3}, {6}}, matrix {{3}, {2}, {4}}}), 
-(13/19,{matrix {{4}, {3}, {2}}}),
-((12*p^5-1)/(17*p^5),{matrix {{3}, {3}, {3}}}), 
-((13*p^4-1)/(17*p^4),{matrix {{3}, {3}, {4}}}), 
-(15/19,{matrix {{4}, {3}, {3}}}), 
-((14*p-1)/(17*p),{matrix {{3}, {3}, {5}}, matrix {{4}, {4}, {2}}}),
-(16/19,{matrix {{5}, {4}, {2}}}), 
-((18*p-2)/(21*p),{matrix {{3}, {3}, {6}}}), 
-((15*p^6-1)/(17*p^6),{matrix {{4}, {4}, {3}}, matrix {{3}, {4}, {6}}}),
-(17/19,{matrix {{4}, {3}, {4}}}),
-((48*p-1)/(51*p),{matrix {{3}, {4}, {7}}, matrix {{4}, {4}, {4}}}),
-(18/19,{matrix {{5}, {4}, {3}}}),
-(1,{matrix {{5}, {5}, {2}}, matrix {{3}, {4}, {8}}, matrix {{4}, {3}, {6}}, matrix {{3}, {4}, {9}}, matrix {{6}, {6}, {2}}, matrix {{3}, {5}, {9}}, matrix {{4}, {3}, {5}}, matrix {{5}, {6}, {2}}, matrix {{6}, {5}, {2}}, matrix {{5}, {3}, {5}}, matrix {{3}, {5}, {8}}, matrix {{4}, {4}, {5}}, matrix {{5}, {3}, {6}}})
-}
--- sorted by hand
-
 QQ[x,y,z]
+
+critsAndIdeals( A, 11, {x,y,z} )
+
 mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
 aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
 bb = (integralClosure aa)_*
-bb = apply( bb,  m -> colVec ((first exponents m) - {1,1,1} ))
+bb = apply( bb,  m -> colVec ((first exponents m) ))
 bb = ideal apply( bb, mon)
 
 ideals = apply(28, i -> 
     (
         m = apply(toList(i..27), j -> apply( last c_j, mon) );
         m = flatten m;
-        mingens( ideal(m) )
+        mingens( ideal(m) + bb )
     )
 )
 
-print \ apply( ideals, a -> toString first entries a )
+print \ apply( ideals, a -> toString first entries a );
 
 crit(A, colVec {4,4,1}, 11)
 
