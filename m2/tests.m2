@@ -770,6 +770,12 @@ A == mat
 rbasis = { colVec {0,1,0,0,0}, colVec {0,0,0,0,1} }
 P = liftPoint( colVec {1,2,3}, rbasis ) 
 
+-- test makeMonomial
+ 
+QQ[x,y,z]
+makeMonomial({x,y,z},{3,7,1})
+makeMonomial({x,y,z}, colVec {3,7,1})
+
 ----------
 
 --- From Examples paper
@@ -817,7 +823,7 @@ A = 5*identityMatrix(2);
 print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
 
---- A homogeneous trinomial in 3 vars
+--- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
 print \ allCrits( A, 3, Verbose => true );
 
@@ -835,7 +841,6 @@ print \ allCrits( A, 3, Verbose => true );
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
 c = allCrits( A, 11, Verbose => true );
 print \ c;
-toString c
 
 c = {
 ((4*p^3-3)/(17*p^3),{matrix {{1}, {1}, {1}}}), 
@@ -871,16 +876,22 @@ c = {
 
 QQ[x,y,z]
 mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
+aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
+bb = (integralClosure aa)_*
+bb = apply( bb,  m -> colVec ((first exponents m) - {1,1,1} ))
+bb = ideal apply( bb, mon)
 
 ideals = apply(28, i -> 
     (
         m = apply(toList(i..27), j -> apply( last c_j, mon) );
         m = flatten m;
-        mingens ideal m
+        mingens( ideal(m) )
     )
 )
 
 print \ apply( ideals, a -> toString first entries a )
+
+crit(A, colVec {4,4,1}, 11)
 
 loadPackage "TestIdeals"
 
@@ -904,6 +915,17 @@ testIdeal( (15*p^6-1)/(17*p^6), F )
 testIdeal( 17/19, F )
 testIdeal( (48*p-1)/(51*p), F )
 testIdeal( 18/19, F ) -- I'm missing a generator!
+
+pts = apply( {matrix {{5}, {5}, {2}}, matrix {{3}, {4}, {8}}, matrix {{4}, {3}, {6}}, matrix {{3}, {4}, {9}}, matrix {{6}, {6}, {2}}, matrix {{3}, {5}, {9}}, matrix {{4}, {3}, {5}}, matrix {{5}, {6}, {2}}, matrix {{6}, {5}, {2}}, matrix {{5}, {3}, {5}}, matrix {{3}, {5}, {8}}, matrix {{4}, {4}, {5}}, matrix {{5}, {3}, {6}}}, v -> first entries transpose v )
+
+crit(A,colVec {5,4,4}, 11)
+
+c = crit(A, colVec {1,1,1}, 11)
+
+ord c
+
+
+viewHelp degrees
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
@@ -946,4 +968,7 @@ coefficient( p^(-2), F )
 degree F
 
 sub( sub( numerator F, p => 1/p )/sub( denominator F, p => 1/p ), R )
+
+sort {{11/47,0,0,-13/47,0,0,0,0,11/47-13/47*p^(-3)},{11/47,0,0,0,0,0,0,-5/47,11/47-5/47*p^(-7)}, {11/47,-30/47,0,0,0,0,0,0,11/47-30/47*p^(-1)}, {11/47,0,0,0,0,0,0,-1/47,11/47-1/47*p^(-7)}}
+
 
