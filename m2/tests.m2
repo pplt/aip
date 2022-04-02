@@ -776,6 +776,36 @@ QQ[x,y,z]
 makeMonomial({x,y,z},{3,7,1})
 makeMonomial({x,y,z}, colVec {3,7,1})
 
+-- test steps
+
+-- From Fig, 6 in arithmetic integer program paper
+A = transpose matrix { {1,10},{3,6},{7,3},{10,2} }
+steps A
+
+-- running example
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+steps A
+
+print \ irreducibleDecomposition matrixToIdeal A;
+
+steps transpose matrix { {5,0},{4,1},{3,2},{2,3},{1,4},{0,5} }
+
+-- test matrixToIdeal
+A =  transpose matrix { {1,7,10},{5,0,6},{7,3,4},{10,2,0} }
+I = matrixToIdeal A
+B = idealToMatrix I
+A == B
+
+-- test types
+
+A = monomialMatrix matrix { {5,3,4}, {5,4,3}, {2,8,5} }
+timing N = newton A
+peek A#cache
+
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+timing N = newton A
+
+
 ----------
 
 --- From Examples paper
@@ -795,6 +825,10 @@ print \  allCrits( A, 5, Verbose => true );
 print \ critsAndIdeals( A, 6, {x,y,z}, Verbose => true );
 print \ critsAndIdeals( A, 5, {x,y,z}, Verbose => true );
 -- ideals are correct
+
+crit(A,colVec {3,3,2} ,6) 
+crit(A,colVec {3,2,2} ,6) 
+
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
@@ -815,6 +849,7 @@ m=ideal(x,y);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
 print \ allCrits( A, 4, Verbose => true );
 -- got all crits!
+print \ critsAndIdeals( A, 4, {x,y}, Verbose => true );
 
 -- 3.25
 QQ[x,y];
@@ -830,6 +865,7 @@ print \ allCrits( A, 3, Verbose => true );
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
 print \ allCrits( A, 3, Verbose => true );
+print \ allCrits( A, 1, Verbose => true );
 
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
@@ -838,6 +874,12 @@ print \ allCrits( A, 7, Verbose => true );
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} };
 print \ allCrits( A, 3, Verbose => true );
+
+--- Trevor's example
+A = matrix{ {0,3,2}, {6,0,2} }
+univDenom A
+print \ allCrits( A, 11, Verbose => true );
+print \ critsAndIdeals( A, 5, {x,y}, Verbose => true );
 
 ---------------------------------------------------------------------------------------------
 --- Our running example
@@ -947,3 +989,9 @@ sub( sub( numerator F, p => 1/p )/sub( denominator F, p => 1/p ), R )
 sort {{11/47,0,0,-13/47,0,0,0,0,11/47-13/47*p^(-3)},{11/47,0,0,0,0,0,0,-5/47,11/47-5/47*p^(-7)}, {11/47,-30/47,0,0,0,0,0,0,11/47-30/47*p^(-1)}, {11/47,0,0,0,0,0,0,-1/47,11/47-1/47*p^(-7)}}
 
 
+QQ[x,y]
+m=monomialIdeal(x,y)
+
+integralClosure m^7
+
+integralClosure ideal(x^7,y^7)

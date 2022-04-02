@@ -7,6 +7,15 @@ loadPackage("Polyhedra", Reload => true)
 -- loadPackage("FourTiTwo") -- loaded with Polyhedra
 
 -------------------------------------------------------------------------------
+-- Types
+-------------------------------------------------------------------------------
+
+MonomialMatrix = new Type of HashTable
+
+monomialMatrix = method()
+monomialMatrix Matrix := A -> new MonomialMatrix from {matrix => A, cache => new CacheTable}
+
+-------------------------------------------------------------------------------
 -- Auxiliary Functions
 -------------------------------------------------------------------------------
 
@@ -49,10 +58,16 @@ bracket (ZZ,ZZ) := (t,q) -> bracket(t/1,q)
 bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
 bracket (Matrix,ZZ) := (M,q) -> matrix apply(entries M, t -> bracket(t,q))
 
+--pointsToMatrix gathers mx1 matrices into a big matrix
+pointsToMatrix := L -> fold( (x,y) -> x|y, L )
+
+--columns returns the columns of a matrix in a list 
+columns := M -> apply(rank source M, i -> M_{i})
+
 -- canVec(n,i) returns the (i+1)-th canonical basis vector of ZZ^n.
 canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
-stdBasis := n -> matrixToPoints identityMatrix n
+stdBasis := n -> columns identityMatrix n
 
 -- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
 randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
@@ -68,12 +83,6 @@ constantVector := (c,m) -> constantMatrix(c,m,1)
 
 -- zeroMatrix(m,n) returns the mxn zero matrix.
 zeroMatrix := (m,n) -> constantMatrix(0,m,n)
-
---pointsToMatrix gathers mx1 matrices into a big matrix
-pointsToMatrix := L -> fold( (x,y) -> x|y, L )
-
---matrixToPoints separates columns
-matrixToPoints := M -> apply(rank source M, i -> M_{i})
 
 -- getFilename generates a random name for temporary files.    
 getFilename := () -> 
@@ -103,12 +112,28 @@ minimalSets := L ->
     select( L, A -> select( L, B -> isSubset( B, A ) ) == { A } )
 )
 
+matrixToIdeal := A -> 
+(
+    m := rank target A;
+    X := getSymbol "X";
+    R := QQ(monoid[X_1..X_m]);
+    monomialIdeal ideal apply( columns A, u -> 
+        product( R_*, first entries transpose u, (x,i) -> x^i )
+    )  
+) 
+
+idealToMatrix := I -> transpose matrix apply(I_*, m -> first exponents m )
+
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
 
 -- newton(A) returns the newton polyhedron of a matrix A.
-newton := A -> convexHull( A ) + posOrthant( rank target A )
+newton = method()
+newton Matrix := A -> convexHull( A ) + posOrthant( rank target A )
+newton MonomialMatrix := A -> newton A#matrix
+newton = (cacheValue "newton") newton
 
 -- feasLP(A,u) returns the polyhedron consisting of all nonnegative points x
 -- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
@@ -728,6 +753,7 @@ ord := f -> min( first \ degree \ terms f )
 
 -- TODO: study cache tables
 
+-- WORK IN PROGRESS
 critsAndIdeals = method( Options => { Verbose => false } )
 critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
@@ -745,4 +771,11 @@ critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
     transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } );
 )
 
+steps = method()
+steps Matrix := M -> 
+(
+    decomp := irreducibleDecomposition matrixToIdeal M;
+    decomp = apply( decomp, I -> sum columns idealToMatrix I)
+--    select( decomp, u -> all( first entries transpose u, x -> x>0 ) )
+)
 
