@@ -14,6 +14,7 @@ MonomialMatrix = new Type of HashTable
 
 monomialMatrix = method()
 monomialMatrix Matrix := A -> new MonomialMatrix from {matrix => A, cache => new CacheTable}
+monomialMatrix List := A -> monomialMatrix matrix A
 
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
@@ -132,8 +133,7 @@ idealToMatrix := I -> transpose matrix apply(I_*, m -> first exponents m )
 -- newton(A) returns the newton polyhedron of a matrix A.
 newton = method()
 newton Matrix := A -> convexHull( A ) + posOrthant( rank target A )
-newton MonomialMatrix := A -> newton A#matrix
-newton = (cacheValue "newton") newton
+newton MonomialMatrix := (cacheValue symbol newton)( A -> newton A#matrix )
 
 -- feasLP(A,u) returns the polyhedron consisting of all nonnegative points x
 -- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
@@ -169,6 +169,7 @@ univDenom Matrix := A ->
     allMinors := (minors(n, M))_*;
     (m-1)*(lcm allMinors)
 )
+univDenom MonomialMatrix := ( cacheValue symbol univDenom )( A -> univDenom A#matrix )
 
 -- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
@@ -221,6 +222,11 @@ ft ( Matrix, Matrix ) := (A,u) -> (
 )
 ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
 ft Matrix := A -> ft( A, constantVector( 1, rank target A ) )
+ft ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+(
+    cacheFT := (cacheValue ( symbol ft, u ))( M -> ft( M#matrix, u ) );
+    cacheFT A
+)
 
 -- minimalFace(A,u) returns the minimal face mf(A,u), that is, the smallest
 -- face of the Newton polyhedron of A containing the scaled point u/ft(A,u).
@@ -233,6 +239,11 @@ minimalFace ( Matrix, Matrix ) := (A,u) -> (
 )
 minimalFace ( Matrix, List ) := (A,u) -> minimalFace(A, colVec u)
 minimalFace Matrix := A -> minimalFace( A, constantVector( 1, rank target A ) )
+minimalFace ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+(
+    cacheMF := (cacheValue ( symbol minimalFace, u ))( M -> minimalFace( M#matrix, u ) );
+    cacheMF A
+)
 
 -- recession basis for minimal face or polyhedron
 -- returns list of points (expressed as column matrices)     
@@ -399,19 +410,19 @@ pointsAimedAtFace := L ->
 
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below
-consTheta = (A,u,s,q) -> (
-    n := rank source A;
-    d := rank target A;
-    nonnegConstraints := apply(select(n, i -> s#i == 0), i -> -canVec(n,i));
-    nonnegConstraintsRHS := apply(select(n, i -> s#i == 0), i -> 0);
-    B := collapse(A,u);
-    otherConstraints := B || matrix {constantList(-1,n)};  
-    otherConstraintsRHS := B*(transpose matrix {bracket(s,q)}) || matrix {{0}};
-    constraints := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints | otherConstraints;
-    constraintsRHS := if nonnegConstraints === {} then otherConstraintsRHS else matrix nonnegConstraintsRHS | otherConstraintsRHS;
-    print( constraints | constraintsRHS );
-    polyhedronFromHData( constraints, constraintsRHS )
-)
+-- consTheta = (A,u,s,q) -> (
+--     n := rank source A;
+--     d := rank target A;
+--     nonnegConstraints := apply(select(n, i -> s#i == 0), i -> -canVec(n,i));
+--     nonnegConstraintsRHS := apply(select(n, i -> s#i == 0), i -> 0);
+--     B := collapse(A,u);
+--     otherConstraints := B || matrix {constantList(-1,n)};  
+--     otherConstraintsRHS := B*(transpose matrix {bracket(s,q)}) || matrix {{0}};
+--     constraints := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints | otherConstraints;
+--     constraintsRHS := if nonnegConstraints === {} then otherConstraintsRHS else matrix nonnegConstraintsRHS | otherConstraintsRHS;
+--     print( constraints | constraintsRHS );
+--     polyhedronFromHData( constraints, constraintsRHS )
+-- )
 
 --------------------------------------------
 -- Integer Programs
@@ -445,7 +456,8 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
     "augmentedMatrix" => A | identityMatrix numRows A, -- adds columns corresponding to slack variables
     "signs" => s
 }
-        
+
+-- MAKE THIS A METHOD THAT USES cacheValue     
 solveIP := IP ->
 (
     -- if the result is already cached, just return it
@@ -487,6 +499,7 @@ solveIP := IP ->
     ( value, optPt )
 )    
 
+--- Probably useless, since we cache results
 solveIP = memoize solveIP
 
 valueIP := IP -> first solveIP IP
@@ -778,4 +791,18 @@ steps Matrix := M ->
     decomp = apply( decomp, I -> sum columns idealToMatrix I)
 --    select( decomp, u -> all( first entries transpose u, x -> x>0 ) )
 )
+
+-------------------------------------------------
+-- MonomialMatrix:
+
+-- matrix => A
+-- cache => {
+--     u => {
+                ft => ...
+                mf => ...
+                mu => { p => ... } 
+                crit => {p =>
+                    }
+--     v => { p3 => { mu(A,v,p3), crit(A,v,p3), p3 => ...}
+-- }
 

@@ -798,13 +798,15 @@ A == B
 
 -- test types
 
-A = monomialMatrix matrix { {5,3,4}, {5,4,3}, {2,8,5} }
-timing N = newton A
+A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
+
+timing newton A
+timing univDenom A
 peek A#cache
 
-A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-timing N = newton A
-
+timing ft( A, colVec {1,1,1} )
+timing minimalFace( A, colVec {1,1,1} )
+peek A#cache
 
 ----------
 
