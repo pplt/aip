@@ -2896,7 +2896,7 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    }
    
    Suppose now that $\O$ is an unbounded standard face of $\N$, and denote collapsing along $\O$ by an overbar.
-   Then $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
+   Then $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a finite set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
    For each point $\vv{w}$ in $\setW_{\collapse{\O}}$, let
    \[ S_\vv{w} = \{ \vv{u} \in \ZZpos^\numvars: \collapse{\vv{u}} = \vv{w}\text{ and }\mf(\matA,\vv{u}) = \O \}.\]
    \Cref{lem: lifting pairs 2} tells us that
@@ -2904,12 +2904,12 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    this set is nonempty, and Dickson's Lemma \todo{Add reference} tells us that the set $\min S_\vv{w}$  of minimal elements of $S_\vv{w}$ under componentwise inequality is finite.
    Set
    \[\setW_\O = \bigcup_{\vv{w}} \min S_\vv{w} \]
-   where the union ranges over all of the finitely many elements $\vv{w}$ of $\setW_{\collapse{\O}}$.
+   where the union ranges over all $\vv{w} \in \setW_{\collapse{\O}}$.
 
    To conclude the construction of $\setW$, set 
    \[\setW^* = \min\{\vv{u} \in \ZZpos^\numvars : (\matA,\vv{u})\text{ is small but not very small}\}\]
    where `$\min$' is again used to denote the set of all minimal elements of a set under componentwise inequality.
-   This is finite set, again by Dickson's Lemma, and we set
+   This set is finite, again by Dickson's Lemma, and we set
    \[\setW = \setW^* \cup \bigg(\bigcup_\O \setW_\O\bigg)\]
    where the union ranges over all standard faces $\O$ of $\N$.
 
