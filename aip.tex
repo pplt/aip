@@ -176,6 +176,9 @@ If $(\ideala,\idealb)$ is a radically compatible pair of ideals in a polynomial 
 \]
 The set of all critical exponents $\crit(\ideala,\idealb)$, as $\idealb$ ranges over all nonzero proper ideals whose radicals contain $\ideala$, coincides with the set of critical exponents of the Frobenius powers of $\ideala$.
 
+\pedro[inline]{
+   Somewhere (either here, or in \Cref{sec: LPs}) we need to include the characterization of crits in terms of Frobenius powers.
+}
 We shall see that if $\ideala \subseteq \QQ[x_1,\ldots,x_\numvars]$ is a monomial ideal, then there exists a positive integer $\denom = \denom(\ideala)$ with the following property:
 Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ whose radical contains $\ideala$, there exist degree $0$ rational functions $Q_r(t) \in \QQ(t)$, for every integer $1 \le r < \denom$ prime to $\denom$, such that $\crit(\ideala_p, \idealb_p) = Q_r(p)$ whenever $p$ is sufficiently large and $p \equiv r \bmod \denom$.
 \pedro{
@@ -214,7 +217,7 @@ If $(\ideala,\idealb)$ is a radically compatible pair of ideals of  $\QQ[x_1,\ld
 
 \section{Notation and basic notions}
 
-\subsection{Euclidean spaces}
+\subsection{Euclidean space}
 \label{ss: euclidean spaces and convexity}
 We use bold-face lower-case letters to denote points of the Euclidean space $\RR^n$, and the same letter in regular font to represent their coordinates (\eg $\vv{v}=(v_1,\ldots,v_n)$).
 The points $(0,\ldots,0)$ and $(1,\ldots,1)$ are denoted $\vv{0}$ and $\vv{1}$, and we write the standard basis vectors of $\RR^n$ as $\canvec_1,\ldots,\canvec_n$.
@@ -593,6 +596,7 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 \end{example}
 
 \begin{proposition}
+   \label{prop: value of fractal program is crit}
    The value of $\fip_p(\matA,\vv{u})$ equals $\crit(\ideala, \ideald)$.
 \end{proposition}
 
@@ -1841,7 +1845,7 @@ It is clear from these interpretations that a very small pair must also be small
 
 \begin{remark}[$F$-thresholds of small pairs]
    \label{rem: finitely many F-thresholds of small pairs}
-   Even though there may exist infinitely many small but not very small $\matA$-pairs, as shown in the previous example, the $F$-thresholds of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$, and consequently there are only finitely many such $F$-thresholds by \Cref{discreteness: P}.
+   Even though there may exist infinitely many small $\matA$-pairs, as shown in the previous example, the $F$-thresholds of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$, and consequently there are only finitely many such $F$-thresholds by \Cref{discreteness: P}.
    
    \daniel[inline]{Here is an argument that may produce a much tighter bound (e.g., if $\numvars$ is small):
    
@@ -1863,13 +1867,27 @@ Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(\matA, \
 
 \begin{proposition}
    \label{trivial small value bound: P}
-   If $(\matA, \vv{u})$ is small,  then $\val \IP_p(\matA, \vv{u}, p^e) \leq p^e-1$.
+   \pedro{Made this a TFAE statement, and included formulation in terms of crit.}
+   For a monomial pair $(\matA,\vv{u})$, the following statements are equivalent\textup:   
+   \begin{enumerate}[$(1)$]
+      \item $(\matA, \vv{u})$ is small.
+      \item $\val \IP_p(\matA, \vv{u}, p^e) \leq p^e-1$ for each $e\in \NN$.
+      \item $\val \fip_p(\matA,\vv{u}) \le 1$.
+   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
    For a change of pace, we give an algebraic proof.
-   If $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$, then as noted in \Cref{algebraic small and very small: R}, the smallness of $(\matA, \vv{u})$ is equivalent to the containment $\ideala \subseteq \ideald$.
-   However, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(\matA, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
+   Suppose $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$ in positive characteristic $p$.
+   If $(\matA, \vv{u})$ is small, then $\ideala \subseteq \ideald$ by \Cref{algebraic small and very small: R}.
+   For each $e\in \NN$, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(\matA, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
+   This shows that $(1)$ implies $(2)$.
+
+   The implication $(2) \Rightarrow (3)$ follows directly from \eqref{crit as limit of normalized program values: eq} and \Cref{prop: value of fractal program is crit}, which tell us that
+   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \lim_{e \to \infty} \frac{\val \IP_p(\matA, \vv{u}, p^e)}{p^e}.\]
+   Finally, note that if $(\matA,\vv{u})$ is not small, then $\ideala^{[1]} = \ideala  \not\subseteq \ideald$, and therefore
+   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \min\{t\in \RRnn: \ideala^{[t]} \subseteq \ideald\} > 1\]
+   showing that $(3)$ implies $(1)$.
 \end{proof}
 
 \begin{remark}[Reduction to the small case]
@@ -1893,7 +1911,8 @@ However, as mentioned in \Cref{ex: small vs very small}, given a monomial matrix
    Given a monomial matrix $\matA$, there exists an integer $\beta=\beta(\matA)$ with the following property\textup:
    If $(\matA, \vv{u})$ is small, but not very small, then
    \[ \val \IP_p(\matA, \vv{u}, p^e) = p^e-1\]
-   for every $p > \beta$ and $e \geq 1$.
+   for every $p > \beta$ and $e \geq 1$, and consequently $\val \fip_p(\matA,\vv{u}) = 1$.
+   \pedro{Added conclusion about crit.}
 \end{theorem}
 
 \begin{proof}
@@ -2913,7 +2932,18 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    \[\setW = \setW^* \cup \bigg(\bigcup_\O \setW_\O\bigg)\]
    where the union ranges over all standard faces $\O$ of $\N$.
 
-   We now prove that the set $\setW$ just constructed does the job, for $\beta = \beta(\matA)$ as in \Cref{value-of-aip-invariant-under-collapse: C}.
+   We now prove that the set $\setW$ just constructed does the job.
+   Fix an integer $\beta$ for which the conclusions of both \Cref{small not very small value: T,value-of-aip-invariant-under-collapse: C} hold for all $p > \beta$, and fix $p>\beta$.
+
+   To prove $(1)$, we show  that for every point $\vv{u}$ in $\setW$, the pair $(\matA,\vv{u})$ is small, and $(1)$ will then follow from \Cref{trivial small value bound: P}.
+   This is clear by construction whenever $\vv{u}$ lies in $\setW^*$ or $\setW_\O$ for some bounded face $\O$.
+   If $\vv{u} \in \setW_\O$ for some unbounded face $\O$, on the other hand, then $(\collapse{\matA},\collapse{\vv{u}})$ is very small, again by construction, where overbars indicate collapsing along $\O$.
+   Since $\ft{\matA}{\vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$ by \Cref{collapse of mf and mc: P},  $(\matA,\vv{u})$ is very small as well.
+
+   Toward $(2)$, let $\vv{v}$ be a positive point such that $\crit(\matA,\vv{v},p) \le 1$.
+   Then $(\matA,\vv{v})$ is small by \Cref{trivial small value bound: P}.
+   If this pair is not very small, then $\vv{v} \ge \vv{u}$ for some $\vv{u} \in \setW^*$, and $\crit(\matA,\vv{v},p) = \crit(\matA,\vv{u},p) = 1$, by \Cref{small not very small value: T}.
+   Suppose now that $(\matA,\vv{v})$ is very small, and let $\O = \mf(\matA,\vv{v})$.
    \todo[inline]{TBC}
 \end{proof}
 
