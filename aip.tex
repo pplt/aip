@@ -2874,39 +2874,41 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must be $\O$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}[Finite set of representatives for small critical exponents]
    \label{finite-representatives-small-crits: P}
-   If $\matA$ is a monomial matrix, then there exist a finite set $\setW=\setW(\matA)$ of positive points in the target lattice of $\matA$ and an integer $\beta = \beta(\matA)$ such that the following property holds for all $p > \beta$\textup:
-   $\crit(\matA,\vv{u},p) \in (0,1]$ for all $\vv{u} \in \setW$, and if $\crit(\matA,\vv{v},p) \in (0,1]$ for some positive point $\vv{v}$ in the target lattice of $\matA$, then $\crit(\matA,\vv{v},p) = \crit(\matA,\vv{u},p)$ for some $\vv{u} \in \setW$ with $\vv{u} \le \vv{v}$.
+   If~$\matA$ is a monomial matrix, then there exist a finite set $\setW=\setW(\matA)$ of positive points in the target lattice of $\matA$ and an integer $\beta = \beta(\matA)$ such that the following properties hold whenever $p > \beta$\textup:
+   \begin{enumerate}[$(1)$]
+      \item $\crit(\matA,\vv{u},p) \le 1$ for all $\vv{u} \in \setW$.
+      \item If $\crit(\matA,\vv{v},p) \le 1$ for some $\vv{v}$, then there exists $\vv{u} \in \setW$ with $\vv{u} \le \vv{v}$ such that $\crit(\matA,\vv{v},p) = \crit(\matA,\vv{u},p)$.
+   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-   We shall construct the set $\setW$ as a union of finite sets associated to the standard faces of the newton polyhedron $\N$ of $\matA$, and a finite set coming from small but not very small pairs.
-   Suppose $\matA$ has $\numvars$ rows.
+   We shall construct the set $\setW$ as a union of finite sets associated to the standard faces of the Newton polyhedron $\N$ of $\matA$, and a finite set coming from small but not very small pairs.
+   For concreteness, suppose $\matA$ has $\numvars$ rows.
    
-   If $\O$ is a \emph{bounded} standard face of $\N$, let
+   If $\O$ is a \emph{bounded} standard face of $\N$, set
    \[\setW_\O = \{\vv{u} \in \ZZpos^\numvars : (\matA,\vv{u})\text{ is very small and }\mf(\matA,\vv{u}) = \O\}.\]
-%   to be the set of all positive points $\vv{u}$ in the target lattice of $\matA$ such that the pair $(\matA,\vv{u})$ is very small and $\mf(\matA,\vv{u}) = \O$.
-   Observe that if $\vv{u} \in \setW$, then $\lambda \coloneqq \ft{\matA}{\vv{u}} \le 1$ and $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$, and consequently $\vv{u}$ lies in the convex hull of $\O \cup \{\vv{0}\}$.
+   Observe that if $\vv{u} \in \setW$, then $\lambda \coloneqq \ft{\matA}{\vv{u}} \le 1$ and $\lambda^{-1} \vv{u}\in \O$, and consequently $\vv{u}$ lies in the convex hull of $\O \cup \{\vv{0}\}$.
    Since $\O$ is bounded, so is this convex hull, and consequently the set $\setW_\O$ is finite.
    \pedro[inline]{
       I believe $\setW_\O = (\ri \O \cup \ri \conv(\O\cup \{\vv{0}\})) \cap \ZZpos^\numvars$, but we don't need this level of precision here.
    }
    
-   Suppose now that $\O$ is an unbounded standard face of $\N$, and as usual denote collapsing along $\O$ by an overbar.
+   Suppose now that $\O$ is an unbounded standard face of $\N$, and denote collapsing along $\O$ by an overbar.
    Then $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
    For each point $\vv{w}$ in $\setW_{\collapse{\O}}$, let
    \[ S_\vv{w} = \{ \vv{u} \in \ZZpos^\numvars: \collapse{\vv{u}} = \vv{w}\text{ and }\mf(\matA,\vv{u}) = \O \}.\]
    \Cref{lem: lifting pairs 2} tells us that
    % the set of positive points $\vv{u}$ in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$ is nonempty.
    this set is nonempty, and Dickson's Lemma \todo{Add reference} tells us that the set $\min S_\vv{w}$  of minimal elements of $S_\vv{w}$ under componentwise inequality is finite.
-   Let
+   Set
    \[\setW_\O = \bigcup_{\vv{w}} \min S_\vv{w} \]
    where the union ranges over all of the finitely many elements $\vv{w}$ of $\setW_{\collapse{\O}}$.
 
    To conclude the construction of $\setW$, set 
    \[\setW^* = \min\{\vv{u} \in \ZZpos^\numvars : (\matA,\vv{u})\text{ is small but not very small}\}\]
-   where $\min$ is again used to gather the minimal elements of a set with respect to componentwise inequality.
+   where `$\min$' is again used to denote the set of all minimal elements of a set under componentwise inequality.
    This is finite set, again by Dickson's Lemma, and we set
    \[\setW = \setW^* \cup \bigg(\bigcup_\O \setW_\O\bigg)\]
    where the union ranges over all standard faces $\O$ of $\N$.
@@ -2916,7 +2918,7 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
 \end{proof}
 
 \begin{remark}[On the computability of $\setW$]
-   Retaining the notation introduced in the proof of \Cref{finite-representatives-small-crits: P}, when considering the compact faces in the computation of $\setW$, one may restrict to the compact standard faces $\L$ that are \emph{maximal} with respect to inclusion, and take the set of all positive lattice points in the convex hull of $\L\cup \{\vv{0}\}$.
+   Retaining the notation introduced in the proof of \Cref{finite-representatives-small-crits: P}, when considering the bounded faces in the computation of $\setW$, we may consider only the bounded standard faces $\L$ that are \emph{maximal} with respect to inclusion, and take the set of all positive lattice points in the convex hull of $\L\cup \{\vv{0}\}$.
    This set is computable (\eg using the package \emph{Polyhedra} \todo{Add reference} of \emph{Macaulay2} \cite{M2}), 
    and coincides with the (disjoint) union of the sets $\setW_\O$, where $\O$ ranges over all standard faces of $\N$ contained in $\L$.
    \details[inline]{
@@ -2928,7 +2930,7 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
       Then $\vv{u}$ is a convex combination of $\vv{v}_1, \ldots, \vv{v}_k$ and $\vv{0}$, and therefore $\vv{u} = \sum_{i=1}^k \lambda_i\vv{v}_i$ for some nonnegative $\lambda_i$ with $\lambda \coloneqq \sum_{i=1}^k \lambda_i \le 1$.
       Moreover, the positivity of $\vv{u}$ tells us that $\lambda > 0$.
       Thus, $\lambda^{-1}\vv{u}$ is a convex combination of the vertices of $\L$, and therefore $\lambda^{-1}\vv{u} \in \L$.
-      This implies that $\mf(\matA,\vv{u})$ is a standard face $\O \subseteq \L$.
+      This implies that $\O \coloneqq \mf(\matA,\vv{u}) \subseteq \L$.
       Moreover, $\ft{\matA}{\vv{u}} = \lambda \le 1$, so $(\matA,\vv{u})$ is very small, and consequently $\vv{u} \in \setW_\O$.
 
       Conversely, suppose $\vv{u} \in \setW_\O$, for some standard face $\O \subseteq \L$.
@@ -2936,6 +2938,7 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
       Thus, we can write $\lambda^{-1} \vv{u} = \sum_{i=1}^kt_i \vv{v}_i$, where $t_i \ge 0$ and  $\sum_{i=1}^k t_i = 1$.
       Then $\vv{u} = \sum_{i=1}^k (\lambda t_i) \vv{v}_i +(1-\lambda)\vv{0}$, a convex combination of $\vv{v}_1, \ldots, \vv{v}_k$ and $\vv{0}$, whence $\vv{u} \in \conv(\L\cup \{\vv{0}\})$.
    }
+   \todo[inline]{TBC}
 \end{remark}
 
 The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+etal.frobenius_examples}---describes the Frobenius powers of a monomial ideal in terms of critical exponents.
@@ -2944,10 +2947,11 @@ The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+eta
    \label{crits of mon ideals: P}
    Let $\matA$ be a monomial matrix, and let $\setW$ and $\beta$ be as in \Cref{finite-representatives-small-crits: P}.
    If $\ideala$ is a monomial ideal in characteristic $p>\beta$ associated to $\matA$, then for each $t\in [0,1)$ we have
-   \[ \ideala^{[t]} = \ideal{x^{\vv{u}-\vv{1}} : \vv{u} \in \setW\text{ and }\crit(\ideala,\vv{u},p) > t}.\]	
+   \[ \ideala^{[t]} = \ideal{x^{\vv{u}-\vv{1}} : \vv{u} \in \setW\text{ and }\crit(\matA,\vv{u},p) > t}.\]	
 \end{proposition}
 
-\begin{proof}
+\begin{proof}\ 
+   \todo[inline]{TBC}
 	% If a monomial $x^{\vv{u}-\vv{1}}$ lies in $\ideala^{[t]}$, then $\crit(\ideala,\ideald_\vv{u}) > t$, as $x^{\vv{u}-\vv{1}}\notin \ideald_\vv{u}$.
 	% Conversely, if $\crit(\ideala, \ideald_\vv{u}) > t$, then $\ideala^{[t]}\not\subseteq \ideald_\vv{u}$, so there exists a monomial $x^{\vv{v}} \in \ideala^{[t]}$ with $\vv{v} < \vv{u}$.
 	% Equivalently, $\vv{v} \leq \vv{u}-\vv{1}$, hence $x^{\vv{u}-\vv{1}}\in \ideal{x^{\vv{v}}}\subseteq \ideala^{[t]}$. 
