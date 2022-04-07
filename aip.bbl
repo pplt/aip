@@ -7,6 +7,11 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{HTW20b}
 
+\bibitem[BK]{PolyhedraSource}
+R.~Birkner and L.~Kastner, \emph{{Polyhedra: convex polyhedra. Version~1.10}},
+  A \emph{Macaulay2} package available at
+  \url{https://github.com/Macaulay2/M2/tree/master/M2/Macaulay2/packages}.
+
 \bibitem[BMS06]{budur+mustata+saito.roots_bs_polys_monomial}
 N.~Budur, M.~Musta{\c{t}}\u{a}, and M.~Saito, \emph{Roots of {B}ernstein-{S}ato
   polynomials for monomial ideals\textup: {A} positive characteristic
@@ -29,6 +34,11 @@ M.~Conforti, G.~Cornu\'ejols, and G.~Zambelli, \emph{{I}nteger {P}rogramming},
 L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
   respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
   (1902), 378--384.
+
+\bibitem[Dic13]{dickson}
+\bysame, \emph{Finiteness of the odd perfect and primitive abundant numbers
+  with n distinct prime factors}, Amer.\ J.\ Math. \textbf{35} (1913), no.~4,
+  413--422.
 
 \bibitem[GS]{M2}
 D.~R. Grayson and M.~E. Stillman, \emph{Macaulay2, a software system for
