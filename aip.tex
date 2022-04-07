@@ -2914,13 +2914,12 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
       I believe $\setW_\O = (\ri \O \cup \ri \conv(\O\cup \{\vv{0}\})) \cap \ZZpos^\numvars$, but we don't need this level of precision here.
    }
    
-   Suppose now that $\O$ is an unbounded standard face of $\N$, and denote collapsing along $\O$ by an overbar.
-   Then $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a finite set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
+   If $\O$ is an unbounded standard face of $\N$, the set of all positive points $\vv{u}$ such that $(\matA,\vv{u})$ is very small and $\mf(\matA,\vv{u}) = \O$ may be infinite, so we need to be more selective, and settle for a finite subset of ``representatives''.
+   Denoting collapsing along $\O$ by an overbar, $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a finite set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
    For each point $\vv{w}$ in $\setW_{\collapse{\O}}$, let
    \[ S_\vv{w} = \{ \vv{u} \in \ZZpos^\numvars: \collapse{\vv{u}} = \vv{w}\text{ and }\mf(\matA,\vv{u}) = \O \}.\]
-   \Cref{lem: lifting pairs 2} tells us that
-   % the set of positive points $\vv{u}$ in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$ is nonempty.
-   this set is nonempty, and Dickson's Lemma \todo{Add reference} tells us that the set $\min S_\vv{w}$  of minimal elements of $S_\vv{w}$ under componentwise inequality is finite.
+   Note that if $\vv{u} \in S_\vv{w}$, then $(\matA,\vv{u})$ is very small, since $\ft{\matA}{\vv{u}} = \ft{\collapse{\matA}}{\vv{w}}$ by \Cref{collapse of mf and mc: P} and $(\collapse{\matA},\vv{w})$ is very small by construction.
+   \Cref{lem: lifting pairs 2} tells us that $S_\vv{w}$ is nonempty, and Dickson's Lemma \todo{Add reference} tells us that the set $\min S_\vv{w}$  of minimal elements of $S_\vv{w}$ under componentwise inequality is finite.
    Set
    \[\setW_\O = \bigcup_{\vv{w}} \min S_\vv{w} \]
    where the union ranges over all $\vv{w} \in \setW_{\collapse{\O}}$.
@@ -2935,18 +2934,18 @@ Finally, the minimality of $\mathcal{L} = \mf(\matA, \vv{u})$ implies that $\mat
    We now prove that the set $\setW$ just constructed does the job.
    Fix an integer $\beta$ for which the conclusions of both \Cref{small not very small value: T,value-of-aip-invariant-under-collapse: C} hold for all $p > \beta$, and fix $p>\beta$.
 
-   To prove $(1)$, we show  that for every point $\vv{u}$ in $\setW$, the pair $(\matA,\vv{u})$ is small, and $(1)$ will then follow from \Cref{trivial small value bound: P}.
-   This is clear by construction whenever $\vv{u}$ lies in $\setW^*$ or $\setW_\O$ for some bounded face $\O$.
-   If $\vv{u} \in \setW_\O$ for some unbounded face $\O$, on the other hand, then $(\collapse{\matA},\collapse{\vv{u}})$ is very small, again by construction, where overbars indicate collapsing along $\O$.
-   Since $\ft{\matA}{\vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$ by \Cref{collapse of mf and mc: P},  $(\matA,\vv{u})$ is very small as well.
-
+   Claim $(1)$ follows from \Cref{trivial small value bound: P}, as $(\matA,\vv{u})$ is small for every $\vv{u} \in \setW$.
+   % This is clear by construction whenever $\vv{u}$ lies in $\setW^*$ or $\setW_\O$ for some bounded face $\O$.
+   % If $\vv{u} \in \setW_\O$ for some unbounded face $\O$, on the other hand, then $(\collapse{\matA},\collapse{\vv{u}})$ is very small, again by construction, where overbars indicate collapsing along $\O$.
+   % Since $\ft{\matA}{\vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$ by \Cref{collapse of mf and mc: P},  $(\matA,\vv{u})$ is very small as well.
    Toward $(2)$, let $\vv{v}$ be a positive point such that $\crit(\matA,\vv{v},p) \le 1$.
    Then $(\matA,\vv{v})$ is small by \Cref{trivial small value bound: P}.
    If this pair is not very small, then $\vv{v} \ge \vv{u}$ for some $\vv{u} \in \setW^*$, and $\crit(\matA,\vv{v},p) = \crit(\matA,\vv{u},p) = 1$, by \Cref{small not very small value: T}.
    Suppose now that $(\matA,\vv{v})$ is very small, and let $\O = \mf(\matA,\vv{v})$.
-   If $\O$ is bounded, then $\vv{v}$ itself is in $\setW_\O$.
-   If $\O$ is unbounded\ldots
-   \todo[inline]{TBC}
+   If $\O$ is bounded, then $\vv{v}$ itself is in $\setW_\O$, and we are done.
+   If $\O$ is unbounded, then, again indicating collapsing along $\O$ by overbars, \Cref{collapse of mf and mc: P} shows that the pair $(\collapse{\matA},\collapse{\vv{v}})$ is very small, since $\ft{\collapse{\matA}}{\collapse{\vv{v}}} = \ft{\matA}{\vv{v}} \le 1$, and that $\mf(\collapse{\matA},\collapse{\vv{v}}) = \collapse{\O}$.
+   Thus, $\collapse{\vv{v}} \in \setW_{\collapse{\O}}$, so that $\vv{v} \in S_{\collapse{\vv{v}}}$, and $\vv{v} \ge \vv{u}$ for some $\vv{u} \in \min S_{\collapse{\vv{v}}} \subseteq \setW_\O$.
+   To conclude the proof, note that $\crit(\matA,\vv{v},p) = \crit(\collapse{\matA},\collapse{\vv{v}},p) = \crit(\matA,\vv{u},p)$ by \Cref{value-of-aip-invariant-under-collapse: C}.
 \end{proof}
 
 \begin{remark}[On the computability of $\setW$]
