@@ -827,16 +827,14 @@ print \  allCrits( A, 5, Verbose => true );
 print \ critsAndIdeals( A, 6, {x,y,z}, Verbose => true );
 print \ critsAndIdeals( A, 5, {x,y,z}, Verbose => true );
 -- ideals are correct
-
-crit(A,colVec {3,3,2} ,6) 
-crit(A,colVec {3,2,2} ,6) 
-
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
 print \ allCrits( A, 5, Verbose => true );
 -- got all crits!
+QQ[x,y]
 print \ critsAndIdeals( A, 5, {x,y}, Verbose => true );
+-- PERFECT!
 
 -- 5.13
 A = 47*identityMatrix(2);
@@ -852,6 +850,7 @@ A = transpose matrix apply( (m^7)_*, f -> first exponents f );
 print \ allCrits( A, 4, Verbose => true );
 -- got all crits!
 print \ critsAndIdeals( A, 4, {x,y}, Verbose => true );
+-- taking too long
 
 -- 3.25
 QQ[x,y];
@@ -859,10 +858,14 @@ m=ideal(x,y);
 A = transpose matrix apply( (m^5)_*, f -> first exponents f );
 print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
+print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
+-- PERFECT!
 
 A = 5*identityMatrix(2);
 print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
+print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
+-- PERFECT!
 
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
