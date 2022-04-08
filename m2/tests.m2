@@ -864,6 +864,7 @@ print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
 A = 5*identityMatrix(2);
 print \ allCrits( A, 3, Verbose => true );
 -- got all crits!
+QQ[x,y]
 print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
 -- PERFECT!
 
@@ -894,10 +895,11 @@ c = allCrits( A, 11, Verbose => true )
 print \ c;
 
 QQ[x,y,z]
-
 critsAndIdeals( A, 11, {x,y,z} )
 print \ oo;
 
+A = transpose matrix { {1,10}, {3,6}, {7,3}, {10,2} }
+critsAndIdeals( A, 11, {x,y} )
 
 mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
 aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)

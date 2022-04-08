@@ -770,23 +770,29 @@ ord := f -> min( first \ degree \ terms f )
 critsAndIdeals = method( Options => { Verbose => false } )
 critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
-    crits := allCrits( A, p0, o );
-    N := newton A; 
+    --crits := allCrits( A, p0, o );
+    N := newton A;
+    m := numRows A; 
     aa := ideal apply( matrixToPoints A, u -> makeMonomial( variables, u ) );
     bb := select( (integralClosure aa)_*, m -> m % aa != 0 );
     -- -- Thought using integralClosure was a good idea, but its 
     -- -- computation can be super slow...
     bb = apply( bb, m -> transpose matrix exponents m ); -- make points
+    bb = flatten apply( bb, u -> 
+        if not inInterior(u,N) then 
+            select( apply( stdBasis m, e -> u+e ), v -> inInterior(v,N) ) 
+        else u 
+    ); 
     cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
     cc = apply( cc, m -> transpose matrix exponents m ); -- make points
+    cc = select( cc, u -> inInterior( u, N ) );
     bb = join( bb, cc );
-    bb = select( bb, u -> inInterior( u, N ) );
-    bb = makeIdeal( variables, bb );
-    skewedList :=apply( reverse crits, 
-         c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
-    u := first transpose skewedList;
-    v := last transpose skewedList;
-    reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
+    -- bb = makeIdeal( variables, bb );
+    -- skewedList :=apply( reverse crits, 
+    --      c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
+    -- u := first transpose skewedList;
+    -- v := last transpose skewedList;
+    -- reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
 )
 
 -------------------------------------------------
