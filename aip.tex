@@ -20,10 +20,10 @@ TO DO LIST:
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result).
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
- \item[$\CheckedBox$] Add another entry to \Cref{elementary2: R} that describes how $\sprout^{\ast}(\matA, \vv{u})$ is, essentially, the same as $\sprout^{\ast}(\collapse{\matA}, \collapse{\vv{u}})$;  something to this effect is already written in the proof of \Cref{value-of-aip-invariant-under-collapse: C}.  Once this is done, update the proof of \Cref{value-of-aip-invariant-under-collapse: C}.
- \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
+  \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
  \item[$\CheckedBox$] Prove \Cref{finite-representatives-small-crits: P}. 
  \pedro[inline]{This is now done, but I'm sure the proof can be improved.}
+ \item[$\Box$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Produce examples describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
  \pedro[inline]{Working on it\ldots}
  \item[$\Box$] A $\kk$-generic hypersurface with support $x^{\vv{a}_1}, \ldots, x^{\vv{a}_n}$ will refer to any linear combination of these monomials $g = z_1 x^{\vv{a}_1} + \cdots + z_n x^{\vv{a}_n}$, which may be thought of as an element of either $\kk[z][x]$ or $\kk(z)[x]$.  If $S$ denotes either of these rings, then Theorem 5.3/Corollary 5.7 in Frobenius Powers implies that $\tau(f^t) = \ideala^{[t]} S$.  Thus, we have the following result:  \emph{If the supporting monomials are fixed beforehand, and $p \gg 0$, then any the test ideals of any $\kk$-generic hypersurface, where $\kk$ is a field of characteristic $p$, with those supporting exponents are well-behaved and can be described explicitly}.
@@ -2946,7 +2946,7 @@ Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u
    To conclude the proof, note that $\crit(\matA,\vv{v},p) = \crit(\collapse{\matA},\collapse{\vv{v}},p) = \crit(\matA,\vv{u},p)$ by \Cref{value-of-aip-invariant-under-collapse: C}.
 \end{proof}
 
-\begin{remark}[On the computability of $\setW$]
+\begin{remark}[On the computability of $\setW$] \label{computibility of W: R}
    Retaining the notation introduced in the proof of \Cref{finite-representatives-small-crits: P}, when considering the bounded faces in the computation of $\setW$, we may consider only the bounded standard faces $\L$ that are \emph{maximal} with respect to inclusion, and take the set of all positive lattice points in the convex hull of $\L\cup \{\vv{0}\}$.
    This set is computable (\eg using the package \emph{Polyhedra} for \emph{Macaulay2} \cite{PolyhedraSource,M2}), 
    and coincides with the union of the sets $\setW_\O$, where $\O$ ranges over all standard faces of $\N$ contained in $\L$.
