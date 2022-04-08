@@ -20,7 +20,7 @@ TO DO LIST:
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result).
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
- \item[$\Box$] Add another entry to \Cref{elementary2: R} that describes how $\sprout^{\ast}(\matA, \vv{u})$ is, essentially, the same as $\sprout^{\ast}(\collapse{\matA}, \collapse{\vv{u}})$;  something to this effect is already written in the proof of \Cref{value-of-aip-invariant-under-collapse: C}.  Once this is done, update the proof of \Cref{value-of-aip-invariant-under-collapse: C}.
+ \item[$\CheckedBox$] Add another entry to \Cref{elementary2: R} that describes how $\sprout^{\ast}(\matA, \vv{u})$ is, essentially, the same as $\sprout^{\ast}(\collapse{\matA}, \collapse{\vv{u}})$;  something to this effect is already written in the proof of \Cref{value-of-aip-invariant-under-collapse: C}.  Once this is done, update the proof of \Cref{value-of-aip-invariant-under-collapse: C}.
  \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
  \item[$\CheckedBox$] Prove \Cref{finite-representatives-small-crits: P}. 
  \pedro[inline]{This is now done, but I'm sure the proof can be improved.}
@@ -2368,7 +2368,11 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{p^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(\matA,\vv{u})$ and $\S^{\ast}_{p^e}(\matA,\vv{u})$ are eventually periodic in $e$.
       \item \label{elementary2 periodic in p}
       Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(\matA,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
-   \end{enumerate}
+      \item \label{collapse sprout star graphs same}
+      The graphs $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
+      The first level of $\sprout^{\ast}_p(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
+      all edges also agree.
+\end{enumerate}
 \end{remark}
 
 \begin{example}[Running example: a sprouting subgraph]
@@ -2578,7 +2582,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
 	\[ \val \fip_p(\matA,\vv{u}) = \val \fip_p(\collapse{\matA},\collapse{\vv{u}}). \]
 	\end{corollary} 
 
-\begin{proof} The point is that $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ are essentially the same:  The first level of the first graph consists of the single vertex $(\matA, \vv{u})$, the first level of the second graph consists of the single vertex $(\collapse{\matA}, \collapse{\vv{u}})$, and $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  Moreover, the $F$-thresholds these vertices agree.  After this, the remaining levels, and all arrows, of these two graphs agree.  \hl{Maybe include this in \mbox{\Cref{elementary2: R}}.}
+\begin{proof} This follows from \Cref{main theorem wrt diagonal: T,elementary2: R}\eqref{collapse sprout star graphs same}.
 \end{proof}
 
 
