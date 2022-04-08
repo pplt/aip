@@ -893,12 +893,16 @@ print \ c;
 QQ[x,y,z]
 
 critsAndIdeals( A, 11, {x,y,z} )
+print \ oo;
+
 
 mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
 aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
 bb = (integralClosure aa)_*
 bb = apply( bb,  m -> colVec ((first exponents m) ))
 bb = ideal apply( bb, mon)
+
+unique flatten apply( first entries mingens aa, m -> apply( {x,y,z}, v -> v*m ) )
 
 ideals = apply(28, i -> 
     (

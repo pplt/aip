@@ -770,26 +770,22 @@ ord := f -> min( first \ degree \ terms f )
 critsAndIdeals = method( Options => { Verbose => false } )
 critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
-    crits := allCrits( A, p0, o ); 
+    crits := allCrits( A, p0, o );
+    N := newton A; 
     aa := ideal apply( matrixToPoints A, u -> makeMonomial( variables, u ) );
-    bb := (integralClosure aa)_*;
-    -- Thought using integralClosure was a good idea, but its 
-    -- computation can be super slow...
-    bb = apply( bb, m -> transpose matrix exponents m );
-    bb = makeIdeal( variables, bb );
+    bb := select( (integralClosure aa)_*, m -> m % aa != 0 );
+    -- -- Thought using integralClosure was a good idea, but its 
+    -- -- computation can be super slow...
+    bb = apply( bb, m -> transpose matrix exponents m ); -- make points
+    cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
+    cc = apply( cc, m -> transpose matrix exponents m ); -- make points
+    cc = select( cc, u -> inInterior( u, N ) );
+    bb = makeIdeal( variables, join( bb, cc ) );
     skewedList :=apply( reverse crits, 
-        c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
+         c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
     u := first transpose skewedList;
     v := last transpose skewedList;
-    transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } );
-)
-
-steps = method()
-steps Matrix := M -> 
-(
-    decomp := irreducibleDecomposition matrixToIdeal M;
-    decomp = apply( decomp, I -> sum columns idealToMatrix I)
---    select( decomp, u -> all( first entries transpose u, x -> x>0 ) )
+    reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
 )
 
 -------------------------------------------------
