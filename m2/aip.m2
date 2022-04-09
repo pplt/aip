@@ -15,6 +15,16 @@ MonomialMatrix = new Type of HashTable
 monomialMatrix = method()
 monomialMatrix Matrix := A -> new MonomialMatrix from {matrix => A, cache => new CacheTable}
 monomialMatrix List := A -> monomialMatrix matrix A
+monomialMatrix = memoize monomialMatrix
+
+MonomialPair = new Type of HashTable
+
+monomialPair = method()
+monomialPair (MonomialMatrix, Matrix) := ( A, u ) -> 
+   new MonomialPair from {matrix => A, (symbol point) => u, cache => new CacheTable}
+monomialPair (Matrix, Matrix) := ( A, u ) -> monomialPair( monomiaMatrix A, u )
+monomialPair (List, List) := ( A, u ) -> monomialPair( monomialMatrix A, transpose matrix {u} )
+monomialPair = memoize monomialPair
 
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
@@ -125,15 +135,14 @@ matrixToIdeal := A ->
 
 idealToMatrix := I -> transpose matrix apply(I_*, m -> first exponents m )
 
-
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
 
 -- newton(A) returns the newton polyhedron of a matrix A.
 newton = method()
-newton Matrix := A -> convexHull( A ) + posOrthant( rank target A )
-newton MonomialMatrix := (cacheValue symbol newton)( A -> newton A#matrix )
+newton MonomialMatrix := (cacheValue symbol newton)( A -> convexHull( A#matrix ) + posOrthant( rank target A#matrix ) )
+newton Matrix := A -> newton monomialMatrix A
 
 -- feasLP(A,u) returns the polyhedron consisting of all nonnegative points x
 -- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
@@ -160,16 +169,17 @@ optLP Matrix := A -> maxFace( constantVector( 1, rank source A ), feasLP A )
 
 -- univDenon(A) returns a universal denominator for the matrix A.
 univDenom = method()
-univDenom Matrix := A ->
+univDenom MonomialMatrix := ( cacheValue symbol univDenom )( M -> 
 (
+    A := M#matrix;    
     n := rank source A;
     m := rank target A;
     I := identityMatrix n;
     M := A || -A || I || -I;
     allMinors := (minors(n, M))_*;
     (m-1)*(lcm allMinors)
-)
-univDenom MonomialMatrix := ( cacheValue symbol univDenom )( A -> univDenom A#matrix )
+))
+univDenom Matrix := A -> monomialMatrix A
 
 -- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
@@ -212,38 +222,32 @@ univDenom2 Matrix := A ->
 
 -- ft(A,u) returns the F-threshold of the monomial pair (A,u), that is, the unique 
 -- scalar lambda such that u/lambda lies in the boudary of the Newton polyhedron of A.
--- u can be a column matrix or a list; if not provided, assumed to be {1,1,...1}. 
+-- u can be a column matrix or a list.
 ft = method()
-ft ( Matrix, Matrix ) := (A,u) -> (
-    NA := newton A;
-    -- the intersection point of the ray spanned by u and the newton polyhedron of A:
-    intPt := first entries vertices intersection( coneFromVData u, NA );
-    u_(0,0)/intPt#0
-)
-ft ( Matrix, List ) := (A,u) -> ft(A,colVec u)
-ft Matrix := A -> ft( A, constantVector( 1, rank target A ) )
-ft ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+ft MonomialPair := ( cacheValue symbol ft )( P ->
 (
-    cacheFT := (cacheValue ( symbol ft, u ))( M -> ft( M#matrix, u ) );
-    cacheFT A
-)
+    N := newton P#matrix;
+    u := P#point;
+    -- the intersection point of the ray spanned by u and the newton polyhedron of A:
+    intPt := first entries vertices intersection( coneFromVData u, N );
+    u_(0,0)/intPt#0
+))
+ft ( Matrix, Matrix ) := ( A, u ) -> ft monomialPair( A, u ) 
+ft ( List, List ) := ( A, u ) -> ft monomialPair( A, u ) 
 
 -- minimalFace(A,u) returns the minimal face mf(A,u), that is, the smallest
 -- face of the Newton polyhedron of A containing the scaled point u/ft(A,u).
--- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
+-- u can be a column matrix or plain list.
 minimalFace = method()
-minimalFace ( Matrix, Matrix ) := (A,u) -> (
-    NA := newton A;
-    int := intersection( coneFromVData u, NA );
-    smallestFace( vertices int, NA )
-)
-minimalFace ( Matrix, List ) := (A,u) -> minimalFace(A, colVec u)
-minimalFace Matrix := A -> minimalFace( A, constantVector( 1, rank target A ) )
-minimalFace ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+minimalFace MonomialPair := ( cacheValue symbol minimalFace )( P ->
 (
-    cacheMF := (cacheValue ( symbol minimalFace, u ))( M -> minimalFace( M#matrix, u ) );
-    cacheMF A
-)
+    N := newton P#matrix;
+    u := P#point;
+    int := intersection( coneFromVData u, N );
+    smallestFace( vertices int, N )
+))
+minimalFace ( Matrix, Matrix ) := ( A, u ) -> minimalFace monomialPair( A, u ) 
+minimalFace ( List, List ) := ( A, u ) -> minimalFace monomialPair( A, u ) 
 
 -- recession basis for minimal face or polyhedron
 -- returns list of points (expressed as column matrices)     
@@ -801,11 +805,11 @@ critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 -- matrix => A
 -- cache => {
 --     u => {
-                ft => ...
-                mf => ...
-                mu => { p => ... } 
-                crit => {p =>
-                    }
+--              ft => ...
+--              mf => ...
+--              mu => { p => ... } 
+--              crit => {p =>
+--                   }
 --     v => { p3 => { mu(A,v,p3), crit(A,v,p3), p3 => ...}
 -- }
 

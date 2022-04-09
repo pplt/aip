@@ -798,15 +798,24 @@ A == B
 
 -- test types
 
+timing newton matrix{ {5,3,4}, {5,4,3}, {2,8,5} }
+timing univDenom monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
-
+peek A#cache
 timing newton A
 timing univDenom A
-peek A#cache
 
-timing ft( A, colVec {1,1,1} )
-timing minimalFace( A, colVec {1,1,1} )
-peek A#cache
+timing ft monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+peek P#cache
+peek P#matrix#cache
+timing ft P
+
+timing minimalFace( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+peek P#cache
+peek P#matrix#cache
+timing minimalFace P
 
 ----------
 
