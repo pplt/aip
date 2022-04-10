@@ -844,7 +844,7 @@ print \  criticalExponents( A, 5, Verbose => true );
 -- got all crits!
 print \ frobeniusPowers( A, 6, {x,y,z} );
 print \ frobeniusPowers( A, 5, {x,y,z} );
--- taking too long (because of integralClosure)
+-- Missing last ideal in each
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
@@ -928,16 +928,28 @@ peek P#matrix#cache
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
-    
+
+QQ[x,y]
+m = ideal(x,y)    
 timing integralClosure(m^5)
 timing integralClosure(m^5, Strategy => RadicalCodim1)
 timing integralClosure(m^5, Strategy => Radical)
 timing integralClosure(m^5, Strategy => AllCodimensions)
 timing integralClosure(m^5, Strategy => Vasconcelos)
 timing integralClosure(m^5, Strategy => SimplifyFractions)
+timing integralClosure(m^5, Strategy => StartWithOneMinor)
+timing integralClosure monomialIdeal m^5
+
 timing integralClosure(m^7, Strategy => StartWithOneMinor)
+timing integralClosure monomialIdeal m^7
 
-viewHelp integralClosure
+timing I = integralClosure ideal(x^7,y^7)
+timing J = integralClosure monomialIdeal (x^7,y^7)
+I == J 
 
-integralClosure ideal(x^7,y^7)
+R = QQ[x,y,z]
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
 
+timing I = integralClosure matrixToIdeal( A, R )
+timing J = integralClosure ideal I
+J == I

@@ -126,11 +126,18 @@ minimalSets := L ->
     select( L, A -> select( L, B -> isSubset( B, A ) ) == { A } )
 )
 
-matrixToIdeal := A -> 
+matrixToIdeal = method()
+matrixToIdeal Matrix := A -> 
 (
     m := rank target A;
     X := getSymbol "X";
     R := QQ(monoid[X_1..X_m]);
+    monomialIdeal ideal apply( columns A, u -> 
+        product( R_*, first entries transpose u, ( x, i ) -> x^i )
+    )  
+) 
+matrixToIdeal ( Matrix, Ring ) := ( A, R ) -> 
+(
     monomialIdeal ideal apply( columns A, u -> 
         product( R_*, first entries transpose u, ( x, i ) -> x^i )
     )  
@@ -140,6 +147,12 @@ idealToMatrix := I -> transpose matrix apply( I_*, m -> first exponents m )
 
 -- the order of a Laurent polynomial
 ord := f -> min( first \ degree \ terms f ) 
+
+integralClosure MonomialIdeal := I -> 
+(
+    R := ring I;
+    
+)    
 
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
