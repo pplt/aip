@@ -805,6 +805,10 @@ peek A#cache
 timing newton A
 timing univDenom A
 
+properFaces newton A
+n = first keys (A#cache)
+peek A#cache#n#cache
+
 timing ft monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 peek P#cache
@@ -816,6 +820,11 @@ P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 peek P#cache
 peek P#matrix#cache
 timing minimalFace P
+
+timing specialPoint( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+peek P#cache
+timing specialPoint P
 
 ----------
 
@@ -833,9 +842,9 @@ A = 7*identityMatrix(3);
 print \  criticalExponents( A, 6, Verbose => true );
 print \  criticalExponents( A, 5, Verbose => true );
 -- got all crits!
-print \ frobeniusPowers( A, 6, {x,y,z}, Verbose => true );
-print \ frobeniusPowers( A, 5, {x,y,z}, Verbose => true );
--- ideals are correct
+print \ frobeniusPowers( A, 6, {x,y,z} );
+print \ frobeniusPowers( A, 5, {x,y,z} );
+-- taking too long (because of integralClosure)
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
@@ -850,7 +859,11 @@ A = 47*identityMatrix(2);
 print \ criticalExponents( A, 7, Verbose => true );
 -- got all listed in paper.
 
---- From Frobenius paper
+-- checking a random pair, for what was stored:
+
+peek (monomialPair( A, colVec {4,42} ))#cache
+peek (monomialMatrix A)#cache
+--- FROM Frobenius paper
 
 -- 3.24
 QQ[x,y];
@@ -858,8 +871,8 @@ m=ideal(x,y);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
 print \ criticalExponents( A, 4, Verbose => true );
 -- got all crits!
-print \ frobeniusPowers( A, 4, {x,y}, Verbose => true );
--- taking too long
+print \ frobeniusPowers( A, 4, {x,y});
+-- PERFECT!
 
 -- 3.25
 QQ[x,y];
@@ -867,20 +880,22 @@ m=ideal(x,y);
 A = transpose matrix apply( (m^5)_*, f -> first exponents f );
 print \ criticalExponents( A, 3, Verbose => true );
 -- got all crits!
-print \ frobeniusPowers( A, 3, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 3, {x,y} );
 -- PERFECT!
 
 A = 5*identityMatrix(2);
 print \ criticalExponents( A, 3, Verbose => true );
 -- got all crits!
 QQ[x,y]
-print \ frobeniusPowers( A, 3, {x,y}, Verbose => true )
+print \ frobeniusPowers( A, 3, {x,y} );
 -- PERFECT!
 
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
 print \ criticalExponents( A, 3, Verbose => true );
-print \ criticalExponents( A, 1, Verbose => true );
+QQ[x,y,z]
+print \ frobeniusPowers( A, 3, {x,y,z} );
+-- taking too long
 
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
@@ -899,119 +914,30 @@ print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
 ---------------------------------------------------------------------------------------------
 --- Our running example
 ---------------------------------------------------------------------------------------------
+
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-c = criticalExponents( A, 11, Verbose => true )
-print \ c;
+print \ criticalExponents( A, 11, Verbose => true );
 
 QQ[x,y,z]
-frobeniusPowers( A, 11, {x,y,z} )
-print \ oo;
+print \ frobeniusPowers( A, 11, {x,y,z} );
 
-A = transpose matrix { {1,10}, {3,6}, {7,3}, {10,2} }
-frobeniusPowers( A, 11, {x,y} )
-
-mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
-aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)
-bb = (integralClosure aa)_*
-bb = apply( bb,  m -> colVec ((first exponents m) ))
-bb = ideal apply( bb, mon)
-
-unique flatten apply( first entries mingens aa, m -> apply( {x,y,z}, v -> v*m ) )
-
-ideals = apply(28, i -> 
-    (
-        m = apply(toList(i..27), j -> apply( last c_j, mon) );
-        m = flatten m;
-        mingens( ideal(m) + bb )
-    )
-)
-
-print \ apply( ideals, a -> toString first entries a );
-
-crit(A, colVec {4,4,1}, 11)
-
-loadPackage "TestIdeals"
-
-p = 11
-ZZ/p[x,y,z,s,v,t]
-F = s*x^5*y^5*z^2 + t*x^3*y^4*z^8 + v*x^4*y^3*z^5
---p = 11
--- ZZ/p[x,y,z]
--- F = x^5*y^5*z^2 + x^3*y^4*z^8 + x^4*y^3*z^5
-
-testIdeal( (4*p^3 - 3)/(17*p^3), F )
-testIdeal( 5/19, F )
-testIdeal( (2*p-1)/(7*p), F )
-testIdeal( 1/3, F )
-testIdeal( (5*p^4-3)/(17*p^4), F )
-
-testIdeal( (12*p^5-1)/(17*p^5), F )
-
-testIdeal( (18*p-2)/(21*p), F )
-testIdeal( (15*p^6-1)/(17*p^6), F )
-testIdeal( 17/19, F )
-testIdeal( (48*p-1)/(51*p), F )
-testIdeal( 18/19, F ) -- I'm missing a generator!
-
-pts = apply( {matrix {{5}, {5}, {2}}, matrix {{3}, {4}, {8}}, matrix {{4}, {3}, {6}}, matrix {{3}, {4}, {9}}, matrix {{6}, {6}, {2}}, matrix {{3}, {5}, {9}}, matrix {{4}, {3}, {5}}, matrix {{5}, {6}, {2}}, matrix {{6}, {5}, {2}}, matrix {{5}, {3}, {5}}, matrix {{3}, {5}, {8}}, matrix {{4}, {4}, {5}}, matrix {{5}, {3}, {6}}}, v -> first entries transpose v )
-
-crit(A,colVec {5,4,4}, 11)
-
-c = crit(A, colVec {1,1,1}, 11)
-
-ord c
-
-
-viewHelp degrees
+-- checking random pair
+P = monomialPair( A, colVec {1,1,1} )
+peek P#cache
+peek P#matrix#cache
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
     
--- used this for pic in Mathematica (tests.nb)
-toString apply( L, F -> apply( pointsAimedAtFace F, u -> { first entries transpose u, first entries transpose vertices intersection( coneFromVData u, F ) } ) )
+timing integralClosure(m^5)
+timing integralClosure(m^5, Strategy => RadicalCodim1)
+timing integralClosure(m^5, Strategy => Radical)
+timing integralClosure(m^5, Strategy => AllCodimensions)
+timing integralClosure(m^5, Strategy => Vasconcelos)
+timing integralClosure(m^5, Strategy => SimplifyFractions)
+timing integralClosure(m^7, Strategy => StartWithOneMinor)
 
----------------------------------
-viewHelp degreesRing
-
-fourTiTwo = findProgram(
-    "4ti2", 
-    "zsolve -h",
-    Prefix => 
-    {
-        (".*", "4ti2-"), -- debian
-	(".*", "4ti2_") -- suse
-    }, 
-    AdditionalPaths => {"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"},
-    Verbose => true
-) 
-
-rootPath | temporaryFileName()
-
-
-keys programPaths
-
-QQ[p, MonomialOrder => Lex, Inverses => true]
-
-R = QQ[p]
-
-F = (4*p^2-1)/(5*p^2)
-
-F = 4/5 - (1/5)*p^(-2)
-
-coefficients F
-
-coefficient( p^(-2), F )
-
-degree F
-
-sub( sub( numerator F, p => 1/p )/sub( denominator F, p => 1/p ), R )
-
-sort {{11/47,0,0,-13/47,0,0,0,0,11/47-13/47*p^(-3)},{11/47,0,0,0,0,0,0,-5/47,11/47-5/47*p^(-7)}, {11/47,-30/47,0,0,0,0,0,0,11/47-30/47*p^(-1)}, {11/47,0,0,0,0,0,0,-1/47,11/47-1/47*p^(-7)}}
-
-
-QQ[x,y]
-m=monomialIdeal(x,y)
-
-integralClosure m^7
+viewHelp integralClosure
 
 integralClosure ideal(x^7,y^7)
+

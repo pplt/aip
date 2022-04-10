@@ -1,6 +1,4 @@
 loadPackage("Polyhedra", Reload => true)
--- loadPackage("FrobeniusThresholds")
--- loadPackage("FourTiTwo") -- loaded with Polyhedra
 
 -------------------------------------------------------------------------------
 -- Types
@@ -12,15 +10,19 @@ monomialMatrix = method()
 monomialMatrix Matrix := A -> new MonomialMatrix from {matrix => A, cache => new CacheTable}
 monomialMatrix List := A -> monomialMatrix matrix A
 monomialMatrix = memoize monomialMatrix
+-- If monomialMatrix is called multiple times with the same matrix, memoize
+-- will prevent the creation of a copy, therefore keeping the cached values
 
 MonomialPair = new Type of HashTable
 
 monomialPair = method()
-monomialPair (MonomialMatrix, Matrix) := ( A, u ) -> 
+monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
    new MonomialPair from {matrix => A, (symbol point) => u, cache => new CacheTable}
-monomialPair (Matrix, Matrix) := ( A, u ) -> monomialPair( monomialMatrix A, u )
-monomialPair (List, List) := ( A, u ) -> monomialPair( monomialMatrix A, transpose matrix {u} )
+monomialPair ( Matrix, Matrix ) := ( A, u ) -> monomialPair( monomialMatrix A, u )
+monomialPair ( List, List ) := ( A, u ) -> monomialPair( monomialMatrix A, transpose matrix {u} )
 monomialPair = memoize monomialPair
+-- If monomialPair is called multiple times with the same pair, memoize
+-- will prevent the creation of a copy, therefore keeping the cached values
 
 -------------------------------------------------------------------------------
 -- Auxiliary Functions
@@ -38,58 +40,63 @@ identityMatrix := n -> id_(ZZ^n)
 -- with denominator D. 
 -- In other words, L = numerator(L)/denominator(L).
 denominator List := L -> lcm apply( L, denominator )
-numerator List := L -> denominator(L) * L
+numerator List := L -> denominator( L ) * L
 
 -- posRes(a,d) returns the least positive residue of a modulo D.
 -- If the first entry is a list, this operation is carried out in a 
 -- componentwise fashion.
 posRes = method()
-posRes (ZZ,ZZ) := (a,d) -> (
+posRes ( ZZ, ZZ ) := ( a, d ) -> 
+(
     residue := a % d;
     if residue == 0 then d else residue
 )
-posRes (List,ZZ) := (L,d) -> apply(L, x -> posRes(x,d) )
+posRes ( List, ZZ ) := ( L, d ) -> apply( L, x -> posRes( x, d ) )
 
 -- If t = a/b is a rational number, and q is an integer, then 
 -- bracket(t,q) = posRes(aq,b)/b (or 0, if t is 0).
 -- This operation extends to lists and matrices, in a 
 -- componentwise fashion.
 bracket = method()
-bracket (QQ,ZZ) := (t,q) -> (
-    if t == 0 then return 0;
-    a := numerator t;
-    b := denominator t;
-    posRes( a*q, b )/b
+bracket ( QQ, ZZ ) := ( t, q ) -> 
+(
+    if t == 0 then 0
+    else
+    (
+        a := numerator t;
+        b := denominator t;
+        posRes( a*q, b )/b
+    )
 )
-bracket (ZZ,ZZ) := (t,q) -> bracket(t/1,q)
-bracket (List,ZZ) := (L,q) -> apply(L, t -> bracket(t,q))
-bracket (Matrix,ZZ) := (M,q) -> matrix apply(entries M, t -> bracket(t,q))
+bracket ( ZZ, ZZ ) := ( t, q ) -> bracket( t/1, q )
+bracket ( List, ZZ ) := ( L, q ) -> apply( L, t -> bracket( t, q ) )
+bracket ( Matrix, ZZ ) := ( M, q ) -> matrix apply( entries M, t -> bracket( t, q ) )
 
 --pointsToMatrix gathers mx1 matrices into a big matrix
-pointsToMatrix := L -> fold( (x,y) -> x|y, L )
+pointsToMatrix := L -> fold( ( x, y ) -> x | y, L )
 
 --columns returns the columns of a matrix in a list 
-columns := M -> apply(rank source M, i -> M_{i})
+columns := M -> apply( rank source M, i -> M_{i} )
 
--- canVec(n,i) returns the (i+1)-th canonical basis vector of ZZ^n.
-canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
+-- -- canVec(n,i) returns the (i+1)-th canonical basis vector of ZZ^n.
+-- canVec := (n,i) -> apply( n, j -> if i == j then 1 else 0 )
 
 stdBasis := n -> columns identityMatrix n
 
--- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
-randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
+-- -- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
+-- randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
 -- conVec(u) transforms a one-dimensional list u into a column vector
 colVec := u -> transpose matrix {u}
 
 -- constantMatrix(c,m,n) generates an mxn matrix whose entries all equal c. 
-constantMatrix := (c,m,n) -> matrix toList apply(m, i -> toList apply(n, x -> c) )
+constantMatrix := ( c, m, n ) -> matrix toList apply( m, i -> toList apply( n, x -> c ) )
 
 -- constantVector(c,m) generates an m dimensional column vector whose entries all equal c. 
-constantVector := (c,m) -> constantMatrix(c,m,1)
+constantVector := ( c, m ) -> constantMatrix( c, m, 1 )
 
 -- zeroMatrix(m,n) returns the mxn zero matrix.
-zeroMatrix := (m,n) -> constantMatrix(0,m,n)
+zeroMatrix := ( m, n ) -> constantMatrix( 0, m, n )
 
 -- getFilename generates a random name for temporary files.    
 getFilename := () -> 
@@ -125,11 +132,11 @@ matrixToIdeal := A ->
     X := getSymbol "X";
     R := QQ(monoid[X_1..X_m]);
     monomialIdeal ideal apply( columns A, u -> 
-        product( R_*, first entries transpose u, (x,i) -> x^i )
+        product( R_*, first entries transpose u, ( x, i ) -> x^i )
     )  
 ) 
 
-idealToMatrix := I -> transpose matrix apply(I_*, m -> first exponents m )
+idealToMatrix := I -> transpose matrix apply( I_*, m -> first exponents m )
 
 -- the order of a Laurent polynomial
 ord := f -> min( first \ degree \ terms f ) 
@@ -140,52 +147,29 @@ ord := f -> min( first \ degree \ terms f )
 
 -- newton(A) returns the newton polyhedron of a matrix A.
 newton = method()
-newton MonomialMatrix := (cacheValue symbol newton)( A -> convexHull( A#matrix ) + posOrthant( rank target A#matrix ) )
-newton Matrix := A -> newton monomialMatrix A
-
--- feasLP(A,u) returns the polyhedron consisting of all nonnegative points x
--- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
--- program P(A,u)). u can be a simple list, or a column matrix; if not provided, it's
--- assumed to be the column matrix with all entries equal to 1.
-feasLP = method() 
-feasLP ( Matrix, Matrix ) := ( A, u ) -> 
-(
-    n := rank source A;
-    M := A || - identityMatrix n; 
-    v := u || colVec constantList( 0, n );
-    polyhedronFromHData( M, v )
+newton MonomialMatrix := ( cacheValue symbol newton )( A -> 
+    convexHull( A#matrix ) + posOrthant( rank target A#matrix ) 
 )
-feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, colVec u ) 
-feasLP Matrix := A -> feasLP( A, constantVector( 1, rank target A) )
-
--- optLP(A,u) returns the the optimal set for the linear program P(A,u).
--- u can be a simple list, or a column matrix; if not provided, it's
--- assumed to be the column matrix with all entries equal to 1.
-optLP = method()
-optLP ( Matrix, Matrix ) := ( A, u ) -> maxFace( transpose matrix { constantList( 1, rank source A) }, feasLP(A, u) )
-optLP ( Matrix, List ) := ( A, u ) -> optLP( A, colVec u )
-optLP Matrix := A -> maxFace( constantVector( 1, rank source A ), feasLP A )     
+newton Matrix := A -> newton monomialMatrix A
 
 -- univDenon(A) returns a universal denominator for the matrix A.
 univDenom = method()
-univDenom MonomialMatrix := ( cacheValue symbol univDenom )( M -> 
+univDenom MonomialMatrix := ( cacheValue symbol univDenom )( M ->
 (
     A := M#matrix;    
     n := rank source A;
     m := rank target A;
     I := identityMatrix n;
-    M := A || -A || I || -I;
-    allMinors := (minors(n, M))_*;
-    (m-1)*(lcm allMinors)
+    B := A || -A || I || -I;
+    allMinors := ( minors( n, B ) )_*;
+    ( m-1 )*( lcm allMinors )
 ))
 univDenom Matrix := A -> univDenom monomialMatrix A
 
 -- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
-properFaces Polyhedron := P -> 
-(
-    d := dim P;
-    toList sum(1..d, i -> set facesAsPolyhedra( i, P ) )
+properFaces Polyhedron := ( cacheValue symbol properFaces )( P -> 
+    flatten toList apply( 1..( dim P ), i -> facesAsPolyhedra( i, P ) )
 )
 
 -- selectColumnsInFace(A,P) returns a submatrix of A consisting of all columns
@@ -193,8 +177,8 @@ properFaces Polyhedron := P ->
 selectColumnsInFace = method()
 selectColumnsInFace ( Matrix, Polyhedron ) := ( A, P ) ->
 (
-   indices := select( rank source A, i -> contains( P, A_{i} ) );
-   A_indices
+   I := select( rank source A, i -> contains( P, A_{i} ) );
+   A_I
 )
 
 -- lcmMinors(A) returns the lcm of all maximal minors of A.
@@ -211,7 +195,7 @@ univDenom2 Matrix := A ->
     faces := properFaces newton A;
     matrices := apply( faces, F -> 
         (
-            rbasis = rb F;
+            rbasis = recessionBasis F;
             if rbasis == {} then selectColumnsInFace( A, F ) 
             else selectColumnsInFace( A, F ) | pointsToMatrix rbasis
         )
@@ -250,11 +234,12 @@ minimalFace ( List, List ) := ( A, u ) -> minimalFace monomialPair( A, u )
 
 -- recession basis for minimal face or polyhedron
 -- returns list of points (expressed as column matrices)     
-rb = method()
-rb ( Matrix, Matrix ) := (A,u) -> columns rays tailCone minimalFace(A,u)
-rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
-rb Matrix := A -> columns rays tailCone minimalFace A
-rb Polyhedron := P -> columns rays tailCone P
+recessionBasis = method()
+-- recessionBasis MonomialPair := ( cacheValue symbol recessionBasis )( P -> 
+--     columns rays tailCone minimalFace P )
+-- recessionBasis ( Matrix, Matrix ) := ( A, u ) -> recessionBasis monomialPair( A, u )
+-- recessionBasis ( List, List ) := ( A, u ) -> recessionBasis monomialPair( A, u )
+recessionBasis Polyhedron := P -> columns rays tailCone P
 
 collapseMap = method()
 -- collapse along a recession basis
@@ -269,7 +254,7 @@ collapseMap List := rbasis ->
 -- collapse along recession basis of a polyhedron
 collapseMap Polyhedron := P -> 
 (
-    rbasis := rb P;
+    rbasis := recessionBasis P;
     if rbasis == {} then identityMatrix ambDim P else collapseMap rbasis
 ) 
 -- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
@@ -287,24 +272,67 @@ collapse Matrix := A -> collapseMap(A)*A
 -- the collapse of a polyhedron along its own recession basis
 collapse Polyhedron := P -> affineImage( collapseMap P, P )
 collapse (Matrix,Polyhedron) := (A,P) -> collapseMap(P)*A
+
+-- -- feasLP of a pair (A,u) returns the polyhedron consisting of all nonnegative points x
+-- -- in the domain of A such that Ax<=u (i.e., the feasible region of the linear 
+-- -- program P(A,u)). 
+-- feasLP = method() 
+-- feasLP MonomialPair := P -> 
+-- (
+--     A := P#matrix#matrix;
+--     u := P#point;
+--     n := rank source A;
+--     M := A || - identityMatrix n; 
+--     v := u || colVec constantList( 0, n );
+--     polyhedronFromHData( M, v )
+-- )
+-- feasLP ( Matrix, Matrix ) := ( A, u ) -> feasLP monomialPair( A, u )
+-- feasLP ( List, List ) := ( A, u ) -> feasLP monomialPair( A, u )
+
+-- -- optLP of a pair (a,u) returns the the optimal set for the linear program P(A,u).
+-- optLP = method()
+-- optLP MonomialPair := ( cacheValue symbol optLP )( P -> 
+-- (   A := P#matrix#matrix;
+--     u := P#point;
+--     maxFace( transpose matrix { constantList( 1, rank source A) }, feasLP(A, u) )
+-- ))
+-- optLP ( Matrix, Matrix ) := ( A, u ) -> optLP monomialPair( A, u )
+-- optLP ( List, List ) := ( A, u ) -> optLP monomialPair( A, u )
         
 -- a special point
-specialPt = method()
-specialPt (Matrix,Matrix) := (A,u) -> interiorPoint optLP(A,u)
-specialPt (Matrix,List) := (A,u) -> interiorPoint optLP(A,u)
-specialPt Matrix := A -> interiorPoint optLP A
+specialPoint = method()
+specialPoint MonomialPair := ( cacheValue symbol specialPoint )( P ->
+(
+    -- First, get the feasible region of the linear program P(A,u), that is, 
+    -- the polyhedron consisting of nonnegative points x in the domain of A 
+    -- such that Ax <= u.
+    A := P#matrix#matrix;
+    u := P#point;
+    n := rank source A;
+    M := A || - identityMatrix n; 
+    v := u || colVec constantList( 0, n );
+    feasibleRegion := polyhedronFromHData( M, v );
+    -- Now, the optimal set:
+    optimalSet := maxFace( transpose matrix { constantList( 1, rank source A) }, feasibleRegion );
+    -- an interior point of the optimal set is a special point:
+    interiorPoint optimalSet
+))
+specialPoint ( Matrix, Matrix ) := ( A, u ) -> specialPoint monomialPair ( A, u )
+specialPoint ( List, List ) := ( A, u ) -> specialPoint monomialPair ( A, u )
 
 isStandard = method()
-isStandard Polyhedron := P -> 
+isStandard Polyhedron := ( cacheValue symbol isStandard )( P -> 
 (
     n := ambDim P;
     I := identityMatrix n;
     coordSpaces := apply(n, j -> coneFromVData transpose matrix drop(entries I,{j,j}));
     not any(coordSpaces, S -> contains(S,P))
-)
+))
 
 properStandardFaces = method()
-properStandardFaces Polyhedron := P -> select( properFaces P, isStandard )
+properStandardFaces Polyhedron := ( cacheValue symbol properStandardFaces )( P -> 
+    select( properFaces P, isStandard )
+)
 
 pointsAimedAtCompactFace := L -> 
 (
@@ -326,7 +354,7 @@ liftPoint := (u,rbasis) ->
 -- u is a point collapsed along face F
 minimalLifts := (u,F) ->
 (
-    rbasis := rb F;
+    rbasis := recessionBasis F;
     n := ambDim F;
     P := intersection( liftPoint( u, rbasis ), convexHull( { constantVector(0,n), F } ) );
     eqns := hyperplanes P;
@@ -370,7 +398,7 @@ pointsAimedAtUnboundedFace := L ->
     pts = flatten apply( collapsedPoints, u -> minimalLifts(u,L) );
     local v;
     local directions;
-    rbasis := rb L;
+    rbasis := recessionBasis L;
     -- print("Original minimal lifts");
     -- print pts;
     pts = flatten apply( pts, u -> 
@@ -555,7 +583,7 @@ theta := (A,u,s,q) -> (
 -- returns the universal deficit and shortfall
 uData := (A,u,q) -> 
 (
-    s := specialPt(A,u);
+    s := specialPoint(A,u);
     sq := bracket(s,q);
     Abar := collapse(A,u);
     Asq := Abar*sq;
@@ -604,7 +632,7 @@ uData := (A,u,q) ->
 -- -- TO DO: need to check that points in the shortfall really come from integral optimal points.
 -- uData := (A,u,q) -> 
 -- (
---     s := specialPt(A,u);
+--     s := specialPoint(A,u);
 --     sq := bracket(s,q);
 --     Abar := collapse(A,u);
 --     Asq := Abar*sq;
@@ -720,7 +748,7 @@ crit := ( A, u, p0 ) ->
 crit = memoize crit
 
 criticalExponents = method( Options => { Verbose => false } )
-criticalExponents ( Matrix, ZZ ) := o -> (A, p0) -> 
+criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) -> 
 (
     F := properStandardFaces newton A;
     pts := flatten( pointsAimedAtFace \ F );
@@ -765,7 +793,8 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
     N := newton A;
     m := numRows A; 
     aa := ideal apply( columns A, u -> makeMonomial( variables, u ) );
-    bb := select( (integralClosure aa)_*, m -> m % aa != 0 );
+    ic := integralClosure( aa, Strategy => StartWithOneMinor );
+    bb := select( ic_*, m -> m % aa != 0 );
     -- -- Thought using integralClosure was a good idea, but its 
     -- -- computation can be super slow...
     bb = apply( bb, m -> transpose matrix exponents m ); -- make points
@@ -783,7 +812,8 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
          c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
     u := first transpose skewedList;
     v := last transpose skewedList;
-    reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
+    answer := reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } );
+    apply( answer, u -> u#0 => u#1 )
 )
 
 -------------------------------------------------
