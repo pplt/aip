@@ -824,30 +824,30 @@ timing minimalFace P
 QQ[x,y,z];
 m=ideal(x,y,z);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
-print \  allCrits( A, 6, Verbose => true );
-print \  allCrits( A, 5, Verbose => true );
+print \  criticalExponents( A, 6, Verbose => true );
+print \  criticalExponents( A, 5, Verbose => true );
 -- taking way too long (even after several hours, could not 
 
 --  5.11, 5.12
 A = 7*identityMatrix(3);
-print \  allCrits( A, 6, Verbose => true );
-print \  allCrits( A, 5, Verbose => true );
+print \  criticalExponents( A, 6, Verbose => true );
+print \  criticalExponents( A, 5, Verbose => true );
 -- got all crits!
-print \ critsAndIdeals( A, 6, {x,y,z}, Verbose => true );
-print \ critsAndIdeals( A, 5, {x,y,z}, Verbose => true );
+print \ frobeniusPowers( A, 6, {x,y,z}, Verbose => true );
+print \ frobeniusPowers( A, 5, {x,y,z}, Verbose => true );
 -- ideals are correct
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
-print \ allCrits( A, 5, Verbose => true );
+print \ criticalExponents( A, 5, Verbose => true );
 -- got all crits!
 QQ[x,y]
-print \ critsAndIdeals( A, 5, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
 -- PERFECT!
 
 -- 5.13
 A = 47*identityMatrix(2);
-print \ allCrits( A, 7, Verbose => true );
+print \ criticalExponents( A, 7, Verbose => true );
 -- got all listed in paper.
 
 --- From Frobenius paper
@@ -856,59 +856,59 @@ print \ allCrits( A, 7, Verbose => true );
 QQ[x,y];
 m=ideal(x,y);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
-print \ allCrits( A, 4, Verbose => true );
+print \ criticalExponents( A, 4, Verbose => true );
 -- got all crits!
-print \ critsAndIdeals( A, 4, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 4, {x,y}, Verbose => true );
 -- taking too long
 
 -- 3.25
 QQ[x,y];
 m=ideal(x,y);
 A = transpose matrix apply( (m^5)_*, f -> first exponents f );
-print \ allCrits( A, 3, Verbose => true );
+print \ criticalExponents( A, 3, Verbose => true );
 -- got all crits!
-print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 3, {x,y}, Verbose => true );
 -- PERFECT!
 
 A = 5*identityMatrix(2);
-print \ allCrits( A, 3, Verbose => true );
+print \ criticalExponents( A, 3, Verbose => true );
 -- got all crits!
 QQ[x,y]
-print \ critsAndIdeals( A, 3, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 3, {x,y}, Verbose => true )
 -- PERFECT!
 
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
-print \ allCrits( A, 3, Verbose => true );
-print \ allCrits( A, 1, Verbose => true );
+print \ criticalExponents( A, 3, Verbose => true );
+print \ criticalExponents( A, 1, Verbose => true );
 
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
-print \ allCrits( A, 7, Verbose => true );
+print \ criticalExponents( A, 7, Verbose => true );
 
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} };
-print \ allCrits( A, 3, Verbose => true );
+print \ criticalExponents( A, 3, Verbose => true );
 
 --- Trevor's example
 A = matrix{ {0,3,2}, {6,0,2} }
 univDenom A
-print \ allCrits( A, 11, Verbose => true );
-print \ critsAndIdeals( A, 5, {x,y}, Verbose => true );
+print \ criticalExponents( A, 11, Verbose => true );
+print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
 
 ---------------------------------------------------------------------------------------------
 --- Our running example
 ---------------------------------------------------------------------------------------------
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-c = allCrits( A, 11, Verbose => true )
+c = criticalExponents( A, 11, Verbose => true )
 print \ c;
 
 QQ[x,y,z]
-critsAndIdeals( A, 11, {x,y,z} )
+frobeniusPowers( A, 11, {x,y,z} )
 print \ oo;
 
 A = transpose matrix { {1,10}, {3,6}, {7,3}, {10,2} }
-critsAndIdeals( A, 11, {x,y} )
+frobeniusPowers( A, 11, {x,y} )
 
 mon := v -> x^(v_0_0 - 1)*y^(v_0_1 - 1)*z^(v_0_2 - 1)
 aa = ideal(x^5*y^5*z^2,x^3*y^4*z^8,x^4*y^3*z^5)

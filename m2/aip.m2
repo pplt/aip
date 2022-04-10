@@ -1,7 +1,3 @@
--- IDEA: create Types MonomialMatrix and MonomialPair, that will cache information already computed
-
---installPackage("Polyhedra")
-
 loadPackage("Polyhedra", Reload => true)
 -- loadPackage("FrobeniusThresholds")
 -- loadPackage("FourTiTwo") -- loaded with Polyhedra
@@ -22,7 +18,7 @@ MonomialPair = new Type of HashTable
 monomialPair = method()
 monomialPair (MonomialMatrix, Matrix) := ( A, u ) -> 
    new MonomialPair from {matrix => A, (symbol point) => u, cache => new CacheTable}
-monomialPair (Matrix, Matrix) := ( A, u ) -> monomialPair( monomiaMatrix A, u )
+monomialPair (Matrix, Matrix) := ( A, u ) -> monomialPair( monomialMatrix A, u )
 monomialPair (List, List) := ( A, u ) -> monomialPair( monomialMatrix A, transpose matrix {u} )
 monomialPair = memoize monomialPair
 
@@ -135,6 +131,9 @@ matrixToIdeal := A ->
 
 idealToMatrix := I -> transpose matrix apply(I_*, m -> first exponents m )
 
+-- the order of a Laurent polynomial
+ord := f -> min( first \ degree \ terms f ) 
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -179,7 +178,7 @@ univDenom MonomialMatrix := ( cacheValue symbol univDenom )( M ->
     allMinors := (minors(n, M))_*;
     (m-1)*(lcm allMinors)
 ))
-univDenom Matrix := A -> monomialMatrix A
+univDenom Matrix := A -> univDenom monomialMatrix A
 
 -- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
@@ -252,10 +251,10 @@ minimalFace ( List, List ) := ( A, u ) -> minimalFace monomialPair( A, u )
 -- recession basis for minimal face or polyhedron
 -- returns list of points (expressed as column matrices)     
 rb = method()
-rb ( Matrix, Matrix ) := (A,u) -> matrixToPoints rays tailCone minimalFace(A,u)
+rb ( Matrix, Matrix ) := (A,u) -> columns rays tailCone minimalFace(A,u)
 rb ( Matrix, List ) := (A,u) -> rb(A, colVec u)
-rb Matrix := A -> matrixToPoints rays tailCone minimalFace A
-rb Polyhedron := P -> matrixToPoints rays tailCone P
+rb Matrix := A -> columns rays tailCone minimalFace A
+rb Polyhedron := P -> columns rays tailCone P
 
 collapseMap = method()
 -- collapse along a recession basis
@@ -360,7 +359,7 @@ minimalLifts := (u,F) ->
     ret := run execstr;
     if ret =!= 0 then error "minimalLifts: error occurred while executing external program 4ti2/zsolve";
     sol := getMatrix( file | ".zinhom" );
-    matrixToPoints transpose sol
+    columns transpose sol
 )
 
 mf := (u,L) -> smallestFace( vertices intersection( coneFromVData u, L ), L )
@@ -720,8 +719,8 @@ crit := ( A, u, p0 ) ->
 )
 crit = memoize crit
 
-allCrits = method( Options => { Verbose => false } )
-allCrits ( Matrix, ZZ ) := o -> (A, p0) -> 
+criticalExponents = method( Options => { Verbose => false } )
+criticalExponents ( Matrix, ZZ ) := o -> (A, p0) -> 
 (
     F := properStandardFaces newton A;
     pts := flatten( pointsAimedAtFace \ F );
@@ -759,25 +758,13 @@ makeMonomial ( List, Matrix ) := ( v, e ) -> makeMonomial( v, first entries tran
 makeIdeal := ( variables, L ) -> 
     ideal apply( L,  u -> makeMonomial( variables, u - constantVector( 1, #variables ) ) )
 
--- the order of a Laurent polynomial
-ord := f -> min( first \ degree \ terms f ) 
-
--- TODO: memoize functions that find points aimed at faces
-
--- TODO: function that returns crits and ideals (WORKING ON IT)
-
--- TODO: types for monomial matrices and pairs?
-
--- TODO: study cache tables
-
--- WORK IN PROGRESS
-critsAndIdeals = method( Options => { Verbose => false } )
-critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
+frobeniusPowers = method( Options => { Verbose => false } )
+frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
-    --crits := allCrits( A, p0, o );
+    crits := criticalExponents( A, p0, o );
     N := newton A;
     m := numRows A; 
-    aa := ideal apply( matrixToPoints A, u -> makeMonomial( variables, u ) );
+    aa := ideal apply( columns A, u -> makeMonomial( variables, u ) );
     bb := select( (integralClosure aa)_*, m -> m % aa != 0 );
     -- -- Thought using integralClosure was a good idea, but its 
     -- -- computation can be super slow...
@@ -791,12 +778,12 @@ critsAndIdeals ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
     cc = apply( cc, m -> transpose matrix exponents m ); -- make points
     cc = select( cc, u -> inInterior( u, N ) );
     bb = join( bb, cc );
-    -- bb = makeIdeal( variables, bb );
-    -- skewedList :=apply( reverse crits, 
-    --      c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
-    -- u := first transpose skewedList;
-    -- v := last transpose skewedList;
-    -- reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
+    bb = makeIdeal( variables, bb );
+    skewedList :=apply( reverse crits, 
+         c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
+    u := first transpose skewedList;
+    v := last transpose skewedList;
+    reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } )
 )
 
 -------------------------------------------------
