@@ -164,6 +164,9 @@ integralClosure MonomialIdeal := o -> I ->
     trim matrixToIdeal( pointsToMatrix latticePoints P, R )
 )    
 
+-- given list of points, returns the minimal ones
+minimalPoints := L -> columns idealToMatrix trim matrixToIdeal pointsToMatrix L
+
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
@@ -773,7 +776,8 @@ crit = memoize crit
 criticalExponents = method( Options => { Verbose => false } )
 criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) -> 
 (
-    F := properStandardFaces newton A;
+    N := newton A;
+    F := properStandardFaces N;
     pts := flatten( pointsAimedAtFace \ F );
     local c;
     local ptsRealizingC;
@@ -791,13 +795,32 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) ->
     crits =  last \ sort apply( crits, c -> 
         append( apply( 0..(-minOrder), i -> coefficient( p^(-i), c ) ) , c ) 
     );
-    apply( crits, c -> 
+    crits = apply( crits, c -> 
         (
             ptsRealizingC = select( ptsAndCrits, u -> u#1 == c );
             ptsRealizingC = apply( ptsRealizingC, first );
             { c, ptsRealizingC }
         )
-    )
+    );
+    m := numRows A; 
+    -- Here, I'm gathering small but not very small points.
+    aa := matrixToIdeal A;
+    ic := integralClosure aa;
+--    bb := select( ic_*, m -> m % aa != 0 );
+    bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
+    -- if a point is not in ri(N), move in every direction that takes to the interior
+    bb = flatten apply( bb, u -> 
+        if not inInterior(u,N) then 
+            select( apply( cube m, e -> u+e ), v -> inInterior( v, N ) ) 
+        else u 
+    ); 
+    bb = minimalPoints bb;
+    lastCrit := last crits;
+    if lastCrit#0 == 1_(R2()) then 
+        crits = append( drop( crits, {-1,-1} ), { 1_(R2()), join( lastCrit#1, bb ) } )
+    else 
+        crits = append( crits, { 1_(R2()), bb } );
+    crits
 )
 
 -- builds a monomial from a list of variables and a list (or column matrix) of exponents
@@ -813,26 +836,34 @@ frobeniusPowers = method( Options => { Verbose => false } )
 frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
     crits := criticalExponents( A, p0, o );
-    N := newton A;
-    m := numRows A; 
-    aa := monomialIdeal apply( columns A, u -> makeMonomial( variables, u ) );
-    ic := integralClosure aa;
---    bb := select( ic_*, m -> m % aa != 0 );
-    bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
-    -- if a point is not in ri(N), move in every direction that takes to the interior
-    bb = flatten apply( bb, u -> 
-        if not inInterior(u,N) then 
-            select( apply( cube m, e -> u+e ), v -> inInterior(v,N) ) 
-        else u 
-    ); 
---    cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
---    cc = apply( cc, m -> transpose matrix exponents m ); -- make points
---    cc = select( cc, u -> inInterior( u, N ) );
---    bb = join( bb, cc );
-    bb = makeIdeal( variables, bb );
---    print \ toString \ crits;
+--     N := newton A;
+--     m := numRows A; 
+--     -- Here, I'm gathering small but not very small points.
+--     -- However, this should happen inside criticalExponents.
+--     aa := monomialIdeal apply( columns A, u -> makeMonomial( variables, u ) );
+--     ic := integralClosure aa;
+-- --    bb := select( ic_*, m -> m % aa != 0 );
+--     bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
+--     -- if a point is not in ri(N), move in every direction that takes to the interior
+--     bb = flatten apply( bb, u -> 
+--         if not inInterior(u,N) then 
+--             select( apply( cube m, e -> u+e ), v -> inInterior(v,N) ) 
+--         else u 
+--     ); 
+-- --    cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
+-- --    cc = apply( cc, m -> transpose matrix exponents m ); -- make points
+-- --    cc = select( cc, u -> inInterior( u, N ) );
+-- --    bb = join( bb, cc );
+--     lastCrit := last crits;
+--     if lastCrit#0 == 1_(R2()) then 
+--         crits = append( drop( crits, {-1,-1} ), { 1_(R2()), join( lastCrit#1, bb ) } )
+--     else 
+--         crits = append( crits, { 1_(R2()), bb } );
+-- --    bb = makeIdeal( variables, bb );
+-- --    print \ toString \ crits;
+    I := ideal 0_(ring variables#0);
     skewedList :=apply( reverse crits, 
-         c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
+         c -> { c#0, I = trim (I + makeIdeal( variables, c#1 )) } );
     u := first transpose skewedList;
     v := last transpose skewedList;
     answer := reverse transpose( { drop(u,{0,0}), drop(v,{#v - 1, #v - 1}) } );
