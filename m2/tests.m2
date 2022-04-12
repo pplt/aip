@@ -18,7 +18,7 @@ local ramif;
 while not found and count <= 100 do (
     print count;
 notCool = true;
-u = colVec toList apply(4,i-> 1+ random(10)); -- 4-vec
+u = columnVector toList apply(4,i-> 1+ random(10)); -- 4-vec
 while notCool do (
    a = toList apply(3, i -> toList apply(4, j -> 1 + random(15))); -- 3x4
    A = transpose matrix a;
@@ -35,7 +35,7 @@ count = count + 1;
 (A,u)
 )
 
-randomVec := (n,M) -> colVec toList apply(n,i-> 1+ random(M))
+randomVec := (n,M) -> columnVector toList apply(n,i-> 1+ random(M))
 
 randomMat := (m,n,M) -> 
 (
@@ -218,7 +218,7 @@ iterate()
 -----------------------------
 
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 r = 11
 
 QQ[p,t]
@@ -263,7 +263,7 @@ frobeniusNu(5,I,Verbose=>true,ContainmentTest=>FrobeniusPower)
 -- diagonal
 ------------------------------------------------------
 A = matrix {{5,0,0},{0,6,0},{0,0,9}}
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 QQ[p,t]
 
 toString mPrimaryMu(A,u,7,p,t)
@@ -283,7 +283,7 @@ QQ[p,t]
 ZZ/7[x,y,z];
 I = (monomialIdeal(x,y,z))^4
 A = transpose matrix apply(I_*,v-> first exponents v)
-u = colVec{1,1,1}
+u = columnVector{1,1,1}
 
 time toString mPrimaryMu(A,u,7,p,t)
 time toString mPrimaryMu(A,u,7,p,t)
@@ -299,7 +299,7 @@ frobeniusNu(3,I,Verbose=>true,ContainmentTest=>FrobeniusPower)
 QQ[x,y,z];
 I = (monomialIdeal(x,y,z))^5
 A = transpose matrix apply(I_*,v-> first exponents v)
-u = colVec{1,1,1}
+u = columnVector{1,1,1}
 
 QQ[p,t]
 time toString mPrimaryMu(A,u,2,p,t)
@@ -310,7 +310,7 @@ time toString mPrimaryMu(A,u,2,p,t)
 -----------------------------
 
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 Abar = collapse(A,u)
 
 QQ[p,t]
@@ -355,7 +355,7 @@ numeric apply(S5,v->ft(B,v)) -- second and third
 -- This example has a "second coefficient" and cycles
 
 A = matrix {{9, 7, 8}, {2, 8, 5}, {0, 1, 3}}
-u = colVec {6,3,1}
+u = columnVector {6,3,1}
 r = 3
 S1 = {u}
 M1 = ft(A,u)*p - uDeficit(A,u,r)
@@ -421,7 +421,7 @@ toString gf
 
 r = 3
 A = matrix {{3, 4, 6}, {3, 7, 3}, {8, 2, 6}}
-u = colVec {2,4,3}
+u = columnVector {2,4,3}
 graph = {{(A,u)}}
 num = {(ft(A,u),uDeficit(A,u,r))}
 
@@ -448,8 +448,8 @@ toString gf
       (C,3) cycle to itself
       
 B = collapse(A,u)
-uShort(B,colVec{2,6},r)      
-uShort(B,colVec{2,7},r)      
+uShort(B,columnVector{2,6},r)      
+uShort(B,columnVector{2,7},r)      
 
 
 ---------------------------------------------------
@@ -457,7 +457,7 @@ uShort(B,colVec{2,7},r)
 
 r = 3
 A = matrix {{7, 7, 5}, {10, 9, 4}, {7, 10, 8}}
-u = colVec {9,3,3}
+u = columnVector {9,3,3}
 graph = {{(A,u)}}
 num = {(ft(A,u),uDeficit(A,u,r))}
 
@@ -475,7 +475,7 @@ num = append(num,(eps,delta))
 
 r = 3
 A = matrix {{10, 9, 5}, {3, 5, 9}, {4, 4, 7}}
-u = colVec {6,6,10}
+u = columnVector {6,6,10}
 graph = {{(A,u)}}
 num = {(ft(A,u),uDeficit(A,u,r))}
 
@@ -492,7 +492,7 @@ num = append(num,(eps,delta))
 -- Example from paper; other classes
 
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 
 r = 1 -- u -> ubar (cycle)
 
@@ -590,7 +590,7 @@ r = 7
 -- running example
 r = 11
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 
 univDenom A
 
@@ -633,7 +633,7 @@ apply( facesOfN, F -> selectColumnsInFace( A, F ) | rb F )
 ----------------------------------------------------------
 
 A = matrix{ {2,1,0,2},{0,1,2,2} }
-u = colVec {1,1}
+u = columnVector {1,1}
 ft(A,u)
 s = specialPt(A,u)
 bracket(s,4)
@@ -643,11 +643,11 @@ uDeficit(A,u,4)
 solveIP theta(A,u,s,4)
 
 A = matrix{{3,0},{0,2},{1,1}}
-apply(2..20,i->numeric ft(A,colVec{2,1,i}))
+apply(2..20,i->numeric ft(A,columnVector{2,1,i}))
 ------------------------
 
 A = matrix{ {36,10,31},{19,46,31},{47,25,36} }
-u = colVec {29,24,30}
+u = columnVector {29,24,30}
 
 univDenom2 A
 univDenom A
@@ -659,7 +659,7 @@ toString oo
 
 -----------------------------------
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 
 univDenom2 A
 univDenom A
@@ -682,17 +682,17 @@ latticePoints c1
 A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
 
-mu(A,colVec {3,4},11)
-crit(A,colVec {3,4},11)
+mu(A,columnVector {3,4},11)
+crit(A,columnVector {3,4},11)
 
 propfaces = properFaces N
-regions = apply( propfaces, F -> convexHull {F, colVec {0,0}})
+regions = apply( propfaces, F -> convexHull {F, columnVector {0,0}})
 compactregions = select(regions,isCompact)
 apply(compactregions,latticePoints)
 
 univDenom A
 
-G = mu(A,colVec {3,4},11)
+G = mu(A,columnVector {3,4},11)
 
 g = G*(1-p*t)
 sub(numerator g, t => 1/p)/sub(denominator g, t => 1/p)
@@ -735,8 +735,8 @@ toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries t
 
 --- tests collapseMap, collapse
 
-collapseMap { colVec {1,0,0}}
-collapseMap { colVec {1,0,0,0}, colVec {0,0,1,0}}
+collapseMap { columnVector {1,0,0}}
+collapseMap { columnVector {1,0,0,0}, columnVector {0,0,1,0}}
 
 A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
@@ -750,13 +750,13 @@ apply(L, F -> collapse(A,F))
     
 -- running example
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
-u = colVec {1,1,1}
+u = columnVector {1,1,1}
 L = pointsAimedAtUnboundedFace minimalFace(A,u)
 toString apply(L, x -> first entries transpose x)
 
 rb(A,u)
-rb(collapse(A,u), colVec {10,1})
-rb(collapse(A,u), colVec {1,10})
+rb(collapse(A,u), columnVector {10,1})
+rb(collapse(A,u), columnVector {1,10})
 
 -- test matrixToPoints, pointsToMatrix
 
@@ -767,14 +767,14 @@ A == mat
 
 -- test liftPoint, pointsAimedAtUnboundedFace
 
-rbasis = { colVec {0,1,0,0,0}, colVec {0,0,0,0,1} }
-P = liftPoint( colVec {1,2,3}, rbasis ) 
+rbasis = { columnVector {0,1,0,0,0}, columnVector {0,0,0,0,1} }
+P = liftPoint( columnVector {1,2,3}, rbasis ) 
 
 -- test makeMonomial
  
 QQ[x,y,z]
 makeMonomial({x,y,z},{3,7,1})
-makeMonomial({x,y,z}, colVec {3,7,1})
+makeMonomial({x,y,z}, columnVector {3,7,1})
 
 -- test steps
 
@@ -861,7 +861,7 @@ print \ criticalExponents( A, 7, Verbose => true );
 
 -- checking a random pair, for what was stored:
 
-peek (monomialPair( A, colVec {4,42} ))#cache
+peek (monomialPair( A, columnVector {4,42} ))#cache
 peek (monomialMatrix A)#cache
 --- FROM Frobenius paper
 
@@ -922,7 +922,7 @@ QQ[x,y,z]
 print \ frobeniusPowers( A, 11, {x,y,z} );
 
 -- checking random pair
-P = monomialPair( A, colVec {1,1,1} )
+P = monomialPair( A, columnVector {1,1,1} )
 peek P#cache
 peek P#matrix#cache
 

@@ -94,7 +94,7 @@ cube := m ->
 -- randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
 -- conVec(u) transforms a one-dimensional list u into a column vector
-colVec := u -> transpose matrix {u}
+columnVector := u -> transpose matrix {u}
 
 -- constantMatrix(c,m,n) generates an mxn matrix whose entries all equal c. 
 constantMatrix := ( c, m, n ) -> matrix toList apply( m, i -> toList apply( n, x -> c ) )
@@ -295,14 +295,14 @@ collapseMap Polyhedron := P ->
 -- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 collapseMap (Matrix, Matrix) := (A,u) -> collapseMap minimalFace(A,u)
-collapseMap (Matrix,List) := (A,u) -> collapseMap(A,colVec u)
+collapseMap (Matrix,List) := (A,u) -> collapseMap(A,columnVector u)
 collapseMap Matrix := A -> collapseMap( A, constantVector( 1, rank target A ) )
 
 -- collapse(A,u) returns the collapse of matrix A along mf(A,u)
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 collapse = method()
 collapse (Matrix,Matrix) := (A,u) -> collapseMap(A,u)*A
-collapse (Matrix,List) := (A,u) -> collase(A, colVec u)
+collapse (Matrix,List) := (A,u) -> collase(A, columnVector u)
 collapse Matrix := A -> collapseMap(A)*A
 -- the collapse of a polyhedron along its own recession basis
 collapse Polyhedron := P -> affineImage( collapseMap P, P )
@@ -318,7 +318,7 @@ collapse (Matrix,Polyhedron) := (A,P) -> collapseMap(P)*A
 --     u := P#point;
 --     n := rank source A;
 --     M := A || - identityMatrix n; 
---     v := u || colVec constantList( 0, n );
+--     v := u || columnVector constantList( 0, n );
 --     polyhedronFromHData( M, v )
 -- )
 -- feasLP ( Matrix, Matrix ) := ( A, u ) -> feasLP monomialPair( A, u )
@@ -345,7 +345,7 @@ specialPoint MonomialPair := ( cacheValue symbol specialPoint )( P ->
     u := P#point;
     n := rank source A;
     M := A || - identityMatrix n; 
-    v := u || colVec constantList( 0, n );
+    v := u || columnVector constantList( 0, n );
     feasibleRegion := polyhedronFromHData( M, v );
     -- Now, the optimal set:
     optimalSet := maxFace( transpose matrix { constantList( 1, rank source A) }, feasibleRegion );
@@ -523,7 +523,6 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
     "signs" => s
 }
 
--- MAKE THIS A METHOD THAT USES cacheValue     
 solveIP := IP ->
 (
     -- if the result is already cached, just return it
@@ -608,7 +607,7 @@ theta := (A,u,s,q) -> (
     m := numRows Abar;
     n := rank source Abar;
     rhs := Abar*bracket(s,q) - constantVector(1,m);
-    signs := colVec apply(n, i -> if s_0_i == 0 then 1 else 0 );
+    signs := columnVector apply(n, i -> if s_0_i == 0 then 1 else 0 );
     weights := constantVector(1,n);
     integerProgram(Abar,rhs,weights,signs)
 )
@@ -627,7 +626,7 @@ uData := (A,u,q) ->
     val := first solveIP theta(A,u,s,q);
     eqsMat := (Abar | -identityMatrix m) || (zeroMatrix(m,n) | identityMatrix m);    
     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
-    eqsRHS := constantVector( 0, m ) || Asq - constantVector(1,m) || colVec {val};
+    eqsRHS := constantVector( 0, m ) || Asq - constantVector(1,m) || columnVector {val};
     rel := "1 " | toString(2*m+1) | "\n";
     scan(m,i->rel=rel|"= ");
     scan(m,i->rel=rel|"< ");
@@ -657,60 +656,28 @@ uData := (A,u,q) ->
     if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/zsolve";
     -- process image
     im := getMatrix( file | ".zinhom" );
-    im = apply( entries im, x -> colVec x ); 
+    im = apply( entries im, x -> columnVector x ); 
     proj := zeroMatrix(m,n) | identityMatrix(m);
     im  = apply( im, v -> proj*v );
     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
 )
 
--- -- returns the universal deficit and shortfall
--- -- TO DO: need to check that points in the shortfall really come from integral optimal points.
--- uData := (A,u,q) -> 
--- (
---     s := specialPoint(A,u);
---     sq := bracket(s,q);
---     Abar := collapse(A,u);
---     Asq := Abar*sq;
---     m := numRows Abar;
---     n := rank source Abar;
---     val := first solveIP theta(A,u,s,q);
---     eqsMat := Abar | -identityMatrix m;
---     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
---     eqsRHS := colVec append( constantList( 0, m ), val );
---     nonnegConstraints := apply(select(n, i -> s_0_i == 0), i -> - canVec(m+n,i));
---     nonnegConstraintsRHS := apply(select(n, i -> s_0_i == 0), i -> 0);
---     otherConstraints := Abar | zeroMatrix(m,m);
---     otherConstraintsRHS := Asq - constantVector(1,m);
---     ineqsMat := if nonnegConstraints === {} then otherConstraints else matrix nonnegConstraints || otherConstraints;
--- --    print(nonnegConstraints);
--- --    print(nonnegConstraintsRHS);
--- --    print(otherConstraints);
--- --    print(otherConstraintsRHS);
--- --    print(matrix { nonnegConstraintsRHS });
---     ineqsRHS := if nonnegConstraintsRHS === {} then otherConstraintsRHS else (colVec nonnegConstraintsRHS) || otherConstraintsRHS;
---     polyh := polyhedronFromHData( ineqsMat, ineqsRHS, eqsMat, eqsRHS );
---     proj := zeroMatrix(m,n) | identityMatrix(m);
---     im := if isCompact polyh then apply(latticePoints polyh, v -> proj*v ) else latticePoints affineImage(proj,polyh);
---     -- the else above is wrong; that set may properly contain the image.
---     ( sum(first entries transpose sq) - val, apply(im, v -> Asq - v ) )
--- )
-
 uDeficit := (A,u,q) -> first uData(A,u,q)
 
 uShort := (A,u,q) -> last uData(A,u,q)
     
--- This solves the integer program Pi from the paper
-solveMyIP := ( A, u, q ) ->
-(
-    rhs := q*u - colVec constantList( 1, numRows A );
-    weights := colVec constantList( 1, rank source A );
-    IP := integerProgram( A, rhs, weights );
-    solveIP IP
-)    
+-- -- This solves the integer program Pi from the paper
+-- solveMyIP := ( A, u, q ) ->
+-- (
+--     rhs := q*u - columnVector constantList( 1, numRows A );
+--     weights := columnVector constantList( 1, rank source A );
+--     IP := integerProgram( A, rhs, weights );
+--     solveIP IP
+-- )    
     
-valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
+-- valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
 
-optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
+-- optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
 
 maximize := (L,f) ->
 (
@@ -727,7 +694,7 @@ minimize := (L,f) ->
 )
 
 ----------------------------------------------------------------------------------
--- mu and crit
+-- mus, crits, and Frobenius powers
 ----------------------------------------------------------------------------------
 
 R1 := memoize ( () -> QQ(monoid[getSymbol "p",getSymbol "t"]) );
@@ -735,7 +702,6 @@ R2 := memoize ( () -> QQ[((R1())_*)#0, MonomialOrder => Lex, Inverses => true ] 
 
 mu := ( A, u, p0 ) ->
 (
---    R := QQ(monoid[getSymbol "p",getSymbol "t"]);
     (p,t) := toSequence (R1())_*;
     localUShort := memoize uShort;
     localUDeficit := memoize uDeficit;
@@ -771,10 +737,8 @@ mu = memoize mu
 crit := ( A, u, p0 ) -> 
 (
     G := mu( A, u, p0 );
---     (p,t) := toSequence (ring numerator G)_*;
     (p,t) := toSequence (R1())_*;
     G = G*(1-p*t);
---    sub(numerator G, t => 1/p)/sub(denominator G, t => 1/p)
     G = sub(numerator G, t => 1/p)/sub(denominator G, t => 1/p);
     f = sub( numerator G, R2() );
     g = sub( denominator G, R2() );
@@ -784,6 +748,7 @@ crit = memoize crit
 
 criticalExponents = method( Options => { Verbose => false } )
 criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) -> 
+
 (
     N := newton A;
     F := properStandardFaces N;
@@ -849,16 +814,14 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 )
 
 -------------------------------------------------
--- MonomialMatrix:
 
--- matrix => A
--- cache => {
---     u => {
---              ft => ...
---              mf => ...
---              mu => { p => ... } 
---              crit => {p =>
---                   }
---     v => { p3 => { mu(A,v,p3), crit(A,v,p3), p3 => ...}
--- }
+-- TODO: 
 
+-- Searching small not very small points should be a separate command
+
+-- criticalExponents should return just the sorted list of exponents;
+-- the current implementation should be an intenal command
+
+-- Continue with the use of types.
+
+-- Make SolveIP a method that uses cacheValue     
