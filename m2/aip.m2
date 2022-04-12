@@ -83,6 +83,13 @@ columns := M -> apply( rank source M, i -> M_{i} )
 
 stdBasis := n -> columns identityMatrix n
 
+-- all sums of standard basis vectors
+cube := m -> 
+(    
+    L := select( columns vertices hypercube( m, 0, 1 ), x -> x != 0 );
+    apply( L, u -> lift( u, ZZ ) )
+)
+
 -- -- randomMatrix(m,n,max) returns a random mxn matrix with integer entries in [0,max).
 -- randomMatrix := (m,n,maximum) -> matrix apply( m, i -> apply( n, j -> random(maximum) ) )
 
@@ -148,10 +155,13 @@ idealToMatrix := I -> transpose matrix apply( I_*, m -> first exponents m )
 -- the order of a Laurent polynomial
 ord := f -> min( first \ degree \ terms f ) 
 
-integralClosure MonomialIdeal := I -> 
+integralClosure MonomialIdeal := o -> I -> 
 (
     R := ring I;
-    
+    A := idealToMatrix I;
+    m := numRows A;
+    P := convexHull( A ) + hypercube( m, 0, 1 );
+    trim matrixToIdeal( pointsToMatrix latticePoints P, R )
 )    
 
 -------------------------------------------------------------------------------
@@ -805,22 +815,22 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
     crits := criticalExponents( A, p0, o );
     N := newton A;
     m := numRows A; 
-    aa := ideal apply( columns A, u -> makeMonomial( variables, u ) );
-    ic := integralClosure( aa, Strategy => StartWithOneMinor );
-    bb := select( ic_*, m -> m % aa != 0 );
-    -- -- Thought using integralClosure was a good idea, but its 
-    -- -- computation can be super slow...
-    bb = apply( bb, m -> transpose matrix exponents m ); -- make points
+    aa := monomialIdeal apply( columns A, u -> makeMonomial( variables, u ) );
+    ic := integralClosure aa;
+--    bb := select( ic_*, m -> m % aa != 0 );
+    bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
+    -- if a point is not in ri(N), move in every direction that takes to the interior
     bb = flatten apply( bb, u -> 
         if not inInterior(u,N) then 
-            select( apply( stdBasis m, e -> u+e ), v -> inInterior(v,N) ) 
+            select( apply( cube m, e -> u+e ), v -> inInterior(v,N) ) 
         else u 
     ); 
-    cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
-    cc = apply( cc, m -> transpose matrix exponents m ); -- make points
-    cc = select( cc, u -> inInterior( u, N ) );
-    bb = join( bb, cc );
+--    cc := flatten apply( first entries mingens aa, m -> apply( variables, v -> v*m ) );
+--    cc = apply( cc, m -> transpose matrix exponents m ); -- make points
+--    cc = select( cc, u -> inInterior( u, N ) );
+--    bb = join( bb, cc );
     bb = makeIdeal( variables, bb );
+--    print \ toString \ crits;
     skewedList :=apply( reverse crits, 
          c -> { c#0, bb = trim (bb + makeIdeal( variables, c#1 )) } );
     u := first transpose skewedList;

@@ -953,3 +953,5 @@ A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
 timing I = integralClosure matrixToIdeal( A, R )
 timing J = integralClosure ideal I
 J == I
+
+vertices hypercube( 3, 0, 1 )
