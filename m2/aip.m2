@@ -803,7 +803,6 @@ frobeniusPowers = method( Options => { Verbose => false } )
 frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 (
     crits := criticalExponents( A, p0, o );
-    print \ crits;
     I := ideal 0_(ring variables#0);
     skewedList :=apply( reverse crits, 
          c -> { c#0, I = trim (I + makeIdeal( variables, c#1 )) } );
