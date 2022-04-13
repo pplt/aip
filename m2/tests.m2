@@ -839,19 +839,23 @@ print \  criticalExponents( A, 5, Verbose => true );
 
 --  5.11, 5.12
 A = 7*identityMatrix(3);
-print \  criticalExponents( A, 6, Verbose => true );
-print \  criticalExponents( A, 5, Verbose => true );
+print \  criticalExponents( A, 6 );
+print \  criticalExponents( A, 5 );
 -- got all crits!
-print \ frobeniusPowers( A, 6, {x,y,z} );
-print \ frobeniusPowers( A, 5, {x,y,z} );
--- Missing last ideal in each
+QQ[x,y,z];
+m=ideal(x,y,z);
+print \ (ideals6 = frobeniusPowers( A, 6, {x,y,z} ) );
+print \ (ideals5 = frobeniusPowers( A, 5, {x,y,z} ) );
+(last \ ideals6) == { m, m^2, m^3, m^4, m^5 }
+(last \ ideals5) == { m, m^2, m^3, m^4 + ideal( x*y*z, x^2*y, x*y^2, x^2*z, x*z^2, y^2*z, y*z^2), m^4, m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2, x^2*y^2, x^2*z^2, y^2*z^2), m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2), m^5}
+-- PERFECT! 
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
-print \ criticalExponents( A, 5, Verbose => true );
+print \ criticalExponents( A, 5 );
 -- got all crits!
 QQ[x,y]
-print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
+print \ frobeniusPowers( A, 5, {x,y} );
 -- PERFECT!
 
 -- 5.13
@@ -955,3 +959,8 @@ timing J = integralClosure ideal I
 J == I
 
 vertices hypercube( 3, 0, 1 )
+
+matrixToIdeal A
+R = QQ[x,y,z]
+matrixToIdeal(A,R)
+matrixToIdeal(A,{x,y,z})
