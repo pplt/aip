@@ -17,7 +17,7 @@ TO DO LIST:
 \begin{enumerate}
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
- \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result).
+ \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result). \daniel[inline]{Working on it\ldots}
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
   \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
@@ -1644,10 +1644,24 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 
 
 
+Recall that a pair of ideals $(\ideala, \idealb)$ of a polynomial ring over a field are called \hl{\emph{compatible}} if $\idealb$ contains $\sqrt{a}$, that is, there exists a positive integer $t$ such that $\ideala^t \subseteq \idealb$. \todo{Defined outside of appendix?}
 
-\todo[inline]{
-   Wrap-up proof of BMS result.
-}
+\begin{corollary}  Consider a compatible pair of ideals $(\ideala, \idealb)$ of $\QQ[x]$, with $\ideala$ monomial, and fix a pair of ideals $(\ideala_{\ZZ}, \idealb_{\ZZ})$ of $\ZZ[x]$ such that $\ideala_{\ZZ} \QQ[x] = \ideala$ and $\idealb_{\ZZ} \QQ[x] = \idealb$.    Then, there exist positive integers $\beta$ and $d$, a positive rational number $\lambda$, and a finite sequence of positive rational numbers $\{ \eta_r \}_r$ indexed by the units of $\ZZ/d\ZZ$, with the following properties:  If $p > \beta$, and $e$ is a positive integer with $\lpr{p^e}{d} = r$, then 
+\[ \nu(\ideala_p, \idealb_p, p^e) = \lambda p^e - \eta_r \] where $\ideala_p = \ideala_{\ZZ} \FF_p[x]$, and $\idealb_p = \idealb_{\ZZ} \FF_p[x]$.
+\end{corollary}
+
+\begin{proof}  Let $\matA$ be a monomial matrix associated to $\ideala$.  \Cref{nu invariants associated to a monomial ideal in large characteristic: T}  then implies that there exist a finite collection of pairs $(\matA, \vv{u}_1), \ldots, (\matA, \vv{u}_{\ell})$, which depend on $\matA$ and $\idealb$, and a positive integer $\beta$, which depends on the pair $(\ideala_{\ZZ}, \idealb_{\ZZ})$,  such that $\nu(\ideala_p, \idealb_p, p^e) = \max \val \IP(\matA, \vv{u}_i, p^e)$  for every prime $p > \beta$, and positive integer $e$.  
+
+On the other hand, after possibly increasing $\beta$, \Cref{uniform uniform value and image: T} guarantees that 
+$\val \IP(\matA, \vv{u}_i, p^e) = \deg(\matA, \vv{u}_i) p^e - \udeficit(A, \vv{u}_i, p^e)$  for every prime $p > \beta$ and positive integer $e$, and for each $(\matA, \vv{u}_i)$ as above.   Combining these observations, 
+$\nu(\ideala_p, \idealb_p, p^e) = \max  \{ \deg(\matA, \vv{u}_i) p^e - \udeficit(\matA, \vv{u}_i, p^e) \}$ for every $p > \beta$ and $e > 0$.  
+
+Set $\lambda = \max \deg(\matA, \vv{u}_i)$, and for every positive integer $q$, let $\eta_{q}$ be the minimum value of all $\udeficit(A, \vv{u}_i, q)$ with $ \deg(\matA, \vv{u}_i) = \lambda$.  Note that, if we fix a universal denominator $d$ for $\matA$, then \Cref{pair periodicity: R} tells us that $\eta_q = \eta_r$ whenever $q \equiv r \bmod d$.  
+
+It follows from these definitions that, after possibly increasing $\beta$ again, 
+\[ \nu(\ideala_p, \idealb_p, p^e) = \lambda p^e - \eta_{\lpr{p^e}{d}} \] 
+for all $p > \beta$ and $e > 0$.
+\end{proof}
 
 \section{Arithmetic integer programs revisited}
 
