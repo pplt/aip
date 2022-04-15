@@ -18,6 +18,8 @@ TO DO LIST:
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result). \daniel[inline]{Working on it\ldots}
+ \item[$\Box$] To make the next point easier: Update \Cref{depth-of-graph: D} to include $\mathcal{E}_p(A, \vv{u})$, and update \Cref{main theorem wrt diagonal: T}.  Look for other things that will need updates. \daniel[inline]{Working on it\ldots}
+\item[$\Box$]  What do you think about Daniel's comment before \Cref{p-sprout: D}?  Maybe we can discuss how to proceed during the Friday meeting.
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
   \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
@@ -1994,6 +1996,7 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
 
 In view of the above lemma, \Cref{uniform uniform value and image: T} immediately gives us the following result.
 
+\daniel[inline]{Update this}
 \begin{theorem}[Uniformity of deficit and shortfall for very small pairs]
    \label{arithmetic uniform value and image: T}
    Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
@@ -2203,6 +2206,8 @@ In order to do so, we first build a technical framework in which to carry out ou
 \begin{definition}[Descendant]
    A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its columns.
 \end{definition}
+
+\daniel[inline]{The notion of $r$-sprouts, and the graphs $\mathfrak{S}_{r^e}(A)$ and $\mathcal{S}^{\ast}_{r^e}(A, \vv{u})$ don't require $r$ to be prime, and this becomes relevant later.  We can either switch to $r$ throughout, or just mention here that $p$ doesn't need to be prime for now, though it will be whenever we start talking about $\mu$'s and $\crit$'s.  Maybe use $q$ instead of $r$?  Not sure\ldots}
 
 \begin{definition}[$p$-sprout]
    \label{p-sprout: D}
@@ -2456,16 +2461,22 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 \end{proof}
 
 \begin{definition}[Depth of a sprouting subgraph]
-   If $(\matA,\vv{u})$ is very small, then $\mathcal{Q}_p(\matA,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(\matA,\vv{u})$.
-   Formally,
-   \[
-      \mathcal{Q}_p(\matA,\vv{u}) = \inf \{ q :  \S^{\ast}_{qp}(\matA,\vv{u}) = \emptyset \}.
-   \]
+\label{depth-of-graph: D}
+   If $(\matA,\vv{u})$ is very small, then $\mathcal{Q}_p(\matA,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(\matA,\vv{u})$, and $\mathcal{E}_p(\matA, \vv{u})$ is the exponent $e$ such that $\mathcal{Q}_p(A, \vv{u}) = p^{e}$.  Formally,
+   \begin{align*}
+      \mathcal{Q}_p(\matA,\vv{u}) & = \inf \{ q :  \S^{\ast}_{qp}(\matA,\vv{u}) = \emptyset \} \\       
+      \mathcal{E}_p(\matA,\vv{u}) & = \log_p \mathcal{Q}_p(\matA, \vv{u})
+   \end{align*}
+   where we adopt the convention that $\log_p (\infty) = \infty$.
 \end{definition}
 
+\begin{remark}
+\label{curly-Q-E-basic-facts: R}
 As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(\matA,\vv{u})$ is very small, then $\S^{\ast}_p(\matA,\vv{u}) = \{ (\matA,\vv{u} )\}$, which shows that $\Q_p(\matA,\vv{u})$ is at least $p$.
-Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\Q_p(\matA,\vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_p^*(\matA,\vv{u})$.
-Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\log_p \Q_p(\matA,\vv{u})$ depends only on $(\matA,\vv{u})$, and on the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
+Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\mathcal{E}_p(\matA, \vv{u}) = \Q_p(\matA,\vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_p^*(\matA,\vv{u})$.
+Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\mathcal{E}_p(\matA,\vv{u}) = \log_p \Q_p(\matA,\vv{u})$ depends only on $(\matA,\vv{u})$, and on the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
+
+\end{remark}
 
 \subsection{The main theorem}
 
@@ -2518,78 +2529,144 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 
 \begin{theorem}[Main Theorem]
    \label{main theorem wrt diagonal: T}
-   Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
-   If $p > \beta$ and $(\matA,\vv{u})$ is very small, then $\val \IP_p(\matA,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.
-   The leading coefficient of this polynomial is $\ft{\matA}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.
-   Furthermore, these coefficients depend on $(\matA,\vv{u})$ and the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
+   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exist a positive integer $\beta = \beta(\matA)$, and a function that associates to every unit $r$ in $\ZZ/d\ZZ$ and monomial pair $(\matA, \vv{u})$, a pair of eventually periodic sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ of rational numbers% determined by the graph $\sprout^{\ast}_r(\matA, \vv{u})$, 
+   , with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive, satisfying the following condition:  \\ If $p > \beta$ and $\lpr{p}{d} = r$, and $e$ is a positive integer, then
+%
+\[
+ \val \IP_p(\matA,\vv{u}, p^e) =  \deg(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
+   \]%
+ 
+ \daniel[inline]{The original statement is commented out here.}
+%%%%%%ORIGINAL VERSION OF MAIN THEOREM APPEARS BELOW
 
-   More explicitly, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(\matA,\vv{u})$, then
-   \[
-      \val \IP_p(\matA,\vv{u}, p^e) =  \ft{\matA}{\vv{u}}  p^e - \sum_{1 \leq i < e} ( \delta_{p^i}(\matA,\vv{u}) - \epsilon_{p^{i+1}}(\matA,\vv{u}))  p^{e-i} - \delta_{p^e}(\matA,\vv{u}).
-   \]
-   Furthermore, if $\Q = \Q_p(\matA,\vv{u})$ is finite, then
-   \[
-      \val \IP_p(\matA,\vv{u}, \Q q) = \val \IP_p(\matA,\vv{u}, \Q)  q + q-1
-   \]
-   for every $q$ a power of $p$.
+%   Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
+%   If $p > \beta$ and $(\matA,\vv{u})$ is very small, then $\val \IP_p(\matA,\vv{u},p^e)$ is a polynomial of degree $e$ in $p$.
+%   The leading coefficient of this polynomial is $\ft{\matA}{\vv{u}}$, and all non-leading coefficients are nonpositive and rational.
+%   Furthermore, these coefficients depend on $(\matA,\vv{u})$ and the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
+%
+%   More explicitly, if $e$ is an integer with $1 \leq e \leq \log_p \Q_p(\matA,\vv{u})$, then
+%   \[
+%      \val \IP_p(\matA,\vv{u}, p^e) =  \ft{\matA}{\vv{u}}  p^e - \sum_{1 \leq i < e} ( \delta_{p^i}(\matA,\vv{u}) - \epsilon_{p^{i+1}}(\matA,\vv{u}))  p^{e-i} - \delta_{p^e}(\matA,\vv{u}).
+%   \]
+%   Furthermore, if $\Q = \Q_p(\matA,\vv{u})$ is finite, then
+%   \[
+%      \val \IP_p(\matA,\vv{u}, \Q q) = \val \IP_p(\matA,\vv{u}, \Q)  q + q-1
+%   \]
+%   for every $q$ a power of $p$.
 \end{theorem}
 
-Below we prove all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(\matA,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
+%Below we prove all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(\matA,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
 
 \begin{proof}
-   Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid.
-   Set $\Q = \Q_p(\matA,\vv{u})$.
-   If $e$ is an integer satisfying $1 \leq e \leq \log_p\Q$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
+   Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid, and also so that $p$ does not divide $d$.  Set $r = \lpr{p}{d}$, which is a unit in $\ZZ/d\ZZ$, and also set $\Q = \Q_p(\matA,\vv{u})$ and $\mathcal{E} = \mathcal{E}_p(\matA, \vv{u})$.  
+   
+   If $e$ is an integer satisfying $1 \leq e \leq \mathcal{E}$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
    This is also a path in $\sprout_p(\matA)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i, p)$ for $1 \le i \le e$ such that the point $\vv{k} \coloneqq \sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for the standard integer program $\IP(\matA, \vv{u}, p^e)$.
 
    However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(\matA_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(\matA_i,\vv{u}_i,p) = \IP_p(\matA_i, \vv{u}_i, p)$.
    \Cref{trivial small value bound: P} then tells us that $\norm{\vv{k}_i} \le p - 1$, and \Cref{dickson: R} shows that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(\matA,\vv{u},p^e)$, so that
+   \[
+	\val \IP_p(\matA,\vv{u},p^e) \geq  \norm{\vv{k}} = \sum_{i=1}^e \val \IP_p(\matA_i,\vv{u}_i,p) p^{e-i}
+	\]
+   
+   \Cref{lem: upper bound for higher mu} then implies that we must have equality above.  Furthermore, \Cref{p large graph: P} tells us that, for each summand above,  $\val \IP_p(\matA_i, \vv{u}_i)$ coincides with $\epsilon_{p^i}(\matA,\vv{u})p - \delta_{p^i}(\matA,\vv{u})$.  Thus, we obtain the description
+   %
+   \begin{equation}
+   \label{value-for-e-at-most-curly-E: q}
+     \val \IP_p(\matA,\vv{u},p^e) = \sum_{i=1}^e (\epsilon_{p^i}(\matA,\vv{u})p - \delta_{p^i}(\matA,\vv{u})) p^{e-i}.
+   \end{equation}
+ and noticing that $\epsilon_p(\matA,\vv{u}) = \ft{\matA}{\vv{u}}$, we may rewrite to see that
+%   \begin{equation}
+%   \label{main-theorem-e-at-most-Q: e}
+\[
+     \val \IP_p(\matA,\vv{u},p^e) = \deg(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \boxed{\delta_{p^i}(\matA, \vv{u}) - \epsilon_{p^{i+1}}(\matA, \vv{u})} \cdot p^{e-i} - \boxed{\delta_{p^e}(\matA, \vv{u})}
+\]
+   for every integer $e$ with $1 \leq e \leq \mathcal{E}$.  
+   
+   We now use this expression to define our sequences:  As recorded in \Cref{curly-Q-E-basic-facts: R}, the value of $\mathcal{E}$ depends only on $r$, but not $p$, and \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the same is true for the boxed coefficients above.  Thus, if we define 
    \begin{align*}
-     \val \IP_p(\matA,\vv{u},p^e) \geq  \norm{\vv{k}} & = \sum_{i=1}^e \val \IP_p(\matA_i,\vv{u}_i,p) p^{e-i} \\
-                                                  & = \sum_{i=1}^e (\epsilon_{p^i}(\matA,\vv{u})p - \delta_{p^i}(\matA,\vv{u})) p^{e-i}.
-   \end{align*}
-   \Cref{lem: upper bound for higher mu} then implies that we must have equality throughout.
-   Noticing that $\epsilon_p(\matA,\vv{u}) = \ft{\matA}{\vv{u}}$, this is simply a rearrangement of the fist equation in the statement.
-
-   Next, suppose that $\Q$ is finite.
-   By definition of $\Q$, we know that $\S_{\Q}^{\ast}(\matA,\vv{u})$ is nonempty, while $\S^{\ast}_{\Q p}(\matA,\vv{u})$ is empty, so that $\S_{\Q p}(\matA,\vv{u})$ must contain a pair that is not very small.
-   Set $l=\log_p \Q$.
-   Then there exists a path
+   \lambda_{r^i}(\matA, \vv{u}) & = \delta_{p^i}(\matA, \vv{u}) - \epsilon_{r^{i+1}}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i  < \mathcal{E} \\ 
+   \eta_{r^i}(\matA, \vv{u}) & = \delta_{r^i}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i \leq \mathcal{E}
+  \end{align*}   
+   we have shown above that, if $e$ is an integer with $1 \leq e \leq \mathcal{E}$, then
+   \begin{equation}
+   \label{val-up-to-curly-e-via-two-sequences: e}
+   \val \IP_p(\matA,\vv{u},p^e) = \deg(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{e-i} - {\eta_{r^e}(\matA, \vv{u})}.
+   \end{equation}
+   
+   If $\mathcal{E} = \infty$, then we have defined the terms $\lambda_{r^i}(\matA, \vv{u})$ and $\eta_{r^i}(\matA, \vv{u})$ for all natural numbers $i$. Next, we consider the situation when $\mathcal{E}$, and hence $\mathcal{Q} = p^{\mathcal{E}}$, is finite.
+   
+   By definition of $\Q$, we know that $\S_{\Q}^{\ast}(\matA,\vv{u}) \neq \emptyset$ and $\S^{\ast}_{\Q p}(\matA,\vv{u}) = \emptyset$, and $\S_{\Q p}(\matA,\vv{u})$ must contain a pair that is not very small.  As $\mathcal{E} = \log_p \Q$, there is a path
    \begin{equation}\label{eq: first path}
-      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{l}, \vv{v}_{l})
+      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\mathcal{E}}, \vv{v}_{\mathcal{E}})
    \end{equation}
    in $\sprout_p^{\ast}(\matA,\vv{u})$, which extends to a path
    \[
-      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{l}, \vv{v}_{l}) \to (\matB_{l+1}, \vv{v}_{l+1})
+      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\mathcal{E}}, \vv{v}_{\mathcal{E}}) \to (\matB_{\mathcal{E}+1}, \vv{v}_{\mathcal{E}+1})
    \]
    in $\sprout_p(\matA)$ whose terminal vertex is small, but not very small.
+   
    \Cref{ILL: T}, applied to this second path, tells us that there exist points $\vv{h}_i \in \opt \IP(\matB_i, \vv{v}_i, p)$ for $1\le i\le l+1$ such that
    \[
-      \vv{h} \coloneqq \sum_{i=1}^{l+1} \vv{h}_i p^{l+1-i} \in \feas \IP(\matA,\vv{u}, \Q p).
-   \]
-   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that $\norm{\vv{h}_{l+1}} = \val\IP(\matB_{l+1}, \vv{v}_{l+1},p) > p$, and so there exists a point $\vv{g} \leq \vv{h}_{l+1}$ with $\norm{\vv{g}} = p-1$.
-   Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{l+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{h}_{l+1}$.
+      \vv{h} \coloneqq \sum_{i=1}^{\mathcal{E}+1} \vv{h}_i p^{\mathcal{E}+1-i} \in \feas \IP(\matA,\vv{u}, \Q p) = \feas \IP(\matA,\vv{u}, p^{\mathcal{E}+e}).
+   \] 
+   
+   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that $\norm{\vv{h}_{\mathcal{E}+1}} = \val\IP(\matB_{\mathcal{E}+1}, \vv{v}_{\mathcal{E}+1},p) > p$, and so there exists a point $\vv{g} \leq \vv{h}_{\mathcal{E}+1}$ with $\norm{\vv{g}} = p-1$.
+   Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{\mathcal{E}+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{h}_{\mathcal{E}+1}$.
 
    Fix an integer $e \geq 1$, and consider the point
    \[
-      \vv{m} \coloneqq \sum_{i=1}^{l} \vv{h}_i p^{e+l-i} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1
+      \vv{m} \coloneqq \sum_{i=1}^{\mathcal{E}} \vv{h}_i p^{\mathcal{E} + e-i} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1
    \]
-   which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{l+1}p^{e-1}$ with  $(\vv{g}+\canvec_1)p^{e-1} - \canvec_1$, which is less than or equal to $\vv{h}_{l+1} p^{e-1}$, by our choice of $\vv{g}$.
-   Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(\matA,\vv{u}, \Q p)$ then implies that $\vv{m} \in \feas \IP(\matA,\vv{u}, \Q p^e)$.
+   which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{\mathcal{E}+1}p^{e-1}$ with  $(\vv{g}+\canvec_1)p^{e-1} - \canvec_1$, which is less than or equal to $\vv{h}_{\mathcal{E}+1} p^{e-1}$, by our choice of $\vv{g}$.
+   Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(\matA,\vv{u}, p^{\mathcal{E}+1})$ then implies that $\vv{m} \in \feas \IP(\matA,\vv{u}, p^{\mathcal{E}+e})$.
 
-   To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(\matA,\vv{u}, \Q p^e)$, observe that the base $p$ expansion of $\vv{m}$ is given by
+   To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(\matA,\vv{u}, p^{\mathcal{E}+e})$, observe that the base $p$ expansion of $\vv{m}$ is given by
    \[
-      \vv{m} = \sum_{i=1}^{l} \vv{h}_i p^{e+l-i} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
+      \vv{m} = \sum_{i=1}^{\mathcal{E}} \vv{h}_i p^{\mathcal{E} + e-i} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
    \]
-   and note that $\norm{\vv{h}_i} = \epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u}) < p$ for each $1 \leq i \leq l$, as the path in \eqref{eq: first path} lies entirely in $\sprout_p^{\ast}(\matA,\vv{u})$.
-   Thus, $\vv{m}$ is feasible for $\IP_p(\matA,\vv{u}, \Q p^e)$, and this and our earlier work show that
+   and note that $\norm{\vv{h}_i} = \epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u}) < p$ for each $1 \leq i \leq \mathcal{E}$, as the path in \eqref{eq: first path} lies entirely in $\sprout_p^{\ast}(\matA,\vv{u})$.
+   Thus, $\vv{m}$ is feasible for $\IP_p(\matA,\vv{u}, p^{\mathcal{E}+e})$, and invoking the formula for $\norm{\vv{h}_i}$ just recalled, we see that
    \begin{align*}
-     \val \IP_p(\matA,\vv{u}, \Q p^e) \geq \norm{\vv{m}} & = \sum_{i=1}^l (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{e+l-i} + p^e-1 \\
-                                                     & = \Big ( \sum_{i=1}^l (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{l-i} \Big ) p^e + p^e-1 \\
-                                                     & = \val \IP_p(\matA,\vv{u}, \Q) p^e + p^e-1
+     \val \IP_p(\matA,\vv{u}, p^{\mathcal{E}+e}) \geq \norm{\vv{m}} & = \sum_{i=1}^{\mathcal{E}} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\mathcal{E} + e-i} + p^e-1 \\
+%         & = \Big ( \sum_{i=1}^{\mathcal{E}} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\mathcal{E}-i} \Big ) p^e + p^e-1 \\
+         & = \val \IP_p(\matA,\vv{u}, p^{\mathcal{E}}) \cdot p^e + p^e-1
    \end{align*}
-   and \Cref{general AIP: T} further implies that equality must hold throughout.
+   where the last equality above follows from \eqref{value-for-e-at-most-curly-E: q}.
+   
+   Comparing this with \Cref{general AIP: T}, we see that inequality above must be an equality.  Then, invoking the description of $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}})$ given in \eqref{val-up-to-curly-e-via-two-sequences: e}, we conclude that if $\mathcal{E} \neq \infty$ and $e \geq 1$, then  $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}+e})$ coincides with
+   \[
+   \deg(\matA, \vv{u}) \cdot p^{\mathcal{E}+e} - \sum_{1 \leq i < \mathcal{E}} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{\mathcal{E} + e -i} - \boxed{{\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1} \cdot p^e  - \boxed{1}.  
+	\]
+
+Using the boxed terms above, we may now complete the definition of our sequences when $\mathcal{E}$ is finite.  In this case, define $\lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) =  {\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1 = {\delta_{p^{\mathcal{E}}}(\matA, \vv{u})}-1$ and define $\lambda_{r^s}(\matA, \vv{u})= 0$ and $\eta_{r^s}(\matA, \vv{u}) = 1$ for all $s > \mathcal{E}$.  Finally, with these definitions, and as the reader may verify, we obtain the following formula:  If $e \geq 1$, then
+\[
+\val \IP_p(\matA,\vv{u}, p^e) =  \deg(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
+\]
+
+To finish, it remains to show that the sequences 
+$\{ \lambda_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ satisfy the asserted conditions.  However, this is done in \Cref{finishing-with-the-fundamental-sequences: P}.
 \end{proof}
+ 
+ 
+ \newpage
+\begin{definition}[Fundamental sequences]
+	\label{fundamental-sequences: D}	
+	Consider a monomial matrix $\matA$, and a universal denominator $d$ for $\matA$, and each of its finitely many descendants.  The \emph{fundamental sequences} associated to a unit $r \in \ZZ/d\ZZ$ and pair $(\matA, \vv{u})$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ described in \Cref{main theorem wrt diagonal: T}, i.e., 
+	%
+\begin{align*}
+\lambda_{r^s}(\matA, \vv{u}) & = \begin{cases} 
+\delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) & \text{if }1 \leq s < \mathcal{E}_r(\matA, \vv{u}) \\ 
+\delta_{r^s}(\matA, \vv{u}) - 1 & \text{if } s = \mathcal{E}_r(\matA, \vv{u}) \\ 
+0 	&  \text{if }  s > \mathcal{E}_r(\matA, \vv{u})
+\end{cases} \\
+\eta_{r^s}(\matA, \vv{u}) & = \begin{cases} 
+\delta_{r^s}(\matA, \vv{u}) & \hspace{58pt} \text{if }1 \leq s \leq \mathcal{E}_r(\matA, \vv{u}) \\ 
+1 & \hspace{58pt} \text{if } s >  \mathcal{E}_r(\matA, \vv{u}) \\ 
+\end{cases}
+\end{align*}
+
+\end{definition}
 
 \begin{corollary}
 	\label{value-of-aip-invariant-under-collapse: C}
@@ -2597,7 +2674,7 @@ Below we prove all claims above except the nonpositivity of the non-leading coef
 	\[ \val \fip_p(\matA,\vv{u}) = \val \fip_p(\collapse{\matA},\collapse{\vv{u}}). \]
 	\end{corollary} 
 
-\begin{proof} This follows from \Cref{main theorem wrt diagonal: T,elementary2: R}\eqref{collapse sprout star graphs same}.
+\begin{proof}  \Cref{elementary2: R}\eqref{collapse sprout star graphs same} implies that the fundamental sequences associated to $(\matA, \vv{u})$ and $(\overline{\matA}, \overline{\vv{u}})$ coincide, and our claim then follows from \Cref{main theorem wrt diagonal: T}.
 \end{proof}
 
 
@@ -2732,8 +2809,9 @@ We now address the nonpositivity of the non-leading coefficients, claimed in \Cr
    }
 \end{proof}
 
+\daniel[inline]{Update this}
 \begin{proposition}
-\label{non-leading coefficients: P}
+\label{finishing-with-the-fundamental-sequences: P}
 The non-leading coefficients appearing in the polynomial expressions described in \Cref{main theorem wrt diagonal: T} are rational and nonpositive.
 \end{proposition}
 
