@@ -18,7 +18,9 @@ TO DO LIST:
 	\item[$\Box$] Have a discussion about using $\degree(\matA,\vv{u})$. In the meantime, use the macro ``degree.''
 \emily[inline]{I believe that I replaced the current instances of ``deg'' with ``degree,'' but need to do the same for ``ft.''} 
 	\item[$\Box$] Address Pedro's comment after the proof of \ref{non-leading coefficients: L}. 
-	\item[$\Box$]  Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 	
+	\item[$\Box$]  Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 
+	\item[$\Box$] Update \Cref{sprouting: S} to remove dependence on $p$ to $r$ when we don't require a prime.  Explain this distinction at the beginning of the section.
+	\emily[inline]{I did this, but I will check it over with fresh eyes once more.}	
 	\item[$\Box$]  Move the work on critical exponents vs. $F$-thresholds from \Cref{sprouting: S} to \Cref{frobenius-powers-monomial-ideals: S}. 
  \item[$\Box$] Describe the critical exponents of monomial ideals in \Cref{frobenius-powers-monomial-ideals: S}.  
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
@@ -2211,28 +2213,31 @@ $M_1 \leftarrow \ft{\matA}{\vv{u}}\pp - \udeficit(\matA,\vv{u},r)$\;
 Now that we have a grasp on the value of the arithmetic integer program $\IP_p(\matA, \vv{u}, p^e)$ when the matrix $\matA$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
 In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.
 
+This graph's construction relies on a positive integer $r$, and its powers, where $r$ need not be prime.  Indeed, they are defined in terms of shortfalls and universal shortfalls, and deficits and universal deficits, which we remind the reader are defined in terms of an arbitrary positive integer $q$.  We choose ``$r$'' because it will ultimately represent a residue class modulo an integer. 
+
+
+
+
 \subsection{The sprouting graph of a monomial matrix} 
 
 \begin{definition}[Descendant]
    A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its columns.
 \end{definition}
 
-\daniel[inline]{The notion of $r$-sprouts, and the graphs $\mathfrak{S}_{r^e}(A)$ and $\mathcal{S}^{\ast}_{r^e}(A, \vv{u})$ don't require $r$ to be prime, and this becomes relevant later.  We can either switch to $r$ throughout, or just mention here that $p$ doesn't need to be prime for now, though it will be whenever we start talking about $\mu$'s and $\crit$'s.  Maybe use $q$ instead of $r$?  Not sure\ldots}
-
-\begin{definition}[$p$-sprout]
-   \label{p-sprout: D}
+\begin{definition}[$r$-sprout]
+   \label{r-sprout: D}
    Consider a monomial pair $(\matA,\vv{u})$, and let an overbar denote collapse along $\mf(\matA,\vv{u})$.
-   We say that $(\matB, \vv{v})$ is a \emph{$p$-sprout} of $(\matA, \vv{u})$ whenever the following conditions are satisfied.
+   We say that $(\matB, \vv{v})$ is a \emph{$r$-sprout} of $(\matA, \vv{u})$ whenever the following conditions are satisfied.
    \begin{enumerate}
       \item $\matB = \collapse{\matA}$, the collapse of $\matA$ along $\O = \mf(\matA, \vv{u})$.
-      \item $\vv{v}$ is any point in $\ushort(\matA, \vv{u}, p) = \ushort(\matB, \collapse{\vv{u}}, p)$.
+      \item $\vv{v}$ is any point in $\ushort(\matA, \vv{u}, r) = \ushort(\matB, \collapse{\vv{u}}, r)$.
    \end{enumerate}
 \end{definition}
 
 \begin{remark}
-   \label{p-sprout: R}
+   \label{r-sprout: R}
    As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is again a monomial matrix.
-   This and the positivity of points in shortfalls show that the $p$-sprout of a monomial pair is also a monomial pair.  Furthermore,  \Cref{finite image: P} tells us that there are only finitely many $p$-sprouts of a fixed monomial pair, while \Cref{small pairs from shortfalls: R} tells us that each such sprouted pair is small.
+   This and the positivity of points in shortfalls show that the $r$-sprout of a monomial pair is also a monomial pair.  Furthermore,  \Cref{finite image: P} tells us that there are only finitely many $r$-sprouts of a fixed monomial pair, while \Cref{small pairs from shortfalls: R} tells us that each such sprouted pair is small.
  \end{remark}
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
@@ -2243,125 +2248,125 @@ In order to do so, we first build a technical framework in which to carry out ou
 %   \emily{No, I removed the ``$= \ushort(\matA,\vv{u},p)$'' since our intention is to choose a point in the actual shortfall.}
    Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(\matA,\vv{u},p^e)$ described in \Cref{m-primary: SS} when $\matA$ is associated to an $\idealm$-primary ideal.
 
-   It follows immediately from \Cref{p-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
+   It follows immediately from \Cref{r-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
 \end{remark}
 
 \begin{definition}[The directed sprouting graph]
    Let $\matA$ be a monomial matrix.
-   We define $\graph_p(\matA)$ to be the set consisting of all very small $\matA$-pairs, and once $\graph_q(\matA)$ has been defined for some $q$ a power of $p$, we then define $\graph_{qp}(\matA)$ to be the set consisting of all $p$-sprouts of all pairs in $\graph_q(\matA)$.
+   We define $\graph_r(\matA)$ to be the set consisting of all very small $\matA$-pairs, and once $\graph_q(\matA)$ has been defined for some $q$ a power of $r$, we then define $\graph_{qr}(\matA)$ to be the set consisting of all $r$-sprouts of all pairs in $\graph_q(\matA)$.
 
-   We define the vertices of the graph $\sprout_p(\matA)$ to be the disjoint union
-   \[ \bigsqcup_{e=1}^{\infty} \graph_{p^e}(\matA). \]
-   A vertex in the $p^e$-th component of the above disjoint union is said to be of \emph{level} $p^e$.
-   The directed edges in $\sprout_p(\matA)$ are defined only between points of consecutive levels:
-   There is a directed edge from a vertex of level $q$ to one of level $qp$ if the latter is a $p$-sprout of the former.
+   We define the vertices of the graph $\sprout_r(\matA)$ to be the disjoint union
+   \[ \bigsqcup_{e=1}^{\infty} \graph_{r^e}(\matA). \]
+   A vertex in the $r^e$-th component of the above disjoint union is said to be of \emph{level} $r^e$.
+   The directed edges in $\sprout_r(\matA)$ are defined only between points of consecutive levels:
+   There is a directed edge from a vertex of level $q$ to one of level $qr$ if the latter is a $r$-sprout of the former.
 \end{definition}
 
 \begin{remark}[Elementary observations]
    \label{elementary1: R}
    Consider a monomial matrix $\matA$.
-   In this remark, we gather some basic facts concerning the graph $\sprout_p(\matA)$.
+   In this remark, we gather some basic facts concerning the graph $\sprout_r(\matA)$.
 \begin{enumerate}
-\item The set $\graph_p(\matA)$ of very small $\matA$-pairs is independent of $p$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
+\item The set $\graph_r(\matA)$ of very small $\matA$-pairs is independent of $r$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
 
-\item \label{elementary1 small pairs} \Cref{p-sprout: R} tells us that every vertex of $\sprout_p(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_p(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
+\item \label{elementary1 small pairs} \Cref{r-sprout: R} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
 
-\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{p^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{p^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
+\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{r^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{r^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
 
-\item \label{elementary1 periodic in p} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $\matA$ and all of its finitely many descendants, then the sprouting graph  $\sprout_p(\matA)$---meaning, all of its vertices \emph{and} arrows---depends only on the class of $p$ modulo $\denom$.
+\item \label{elementary1 periodic in r} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $\matA$ and all of its finitely many descendants, then the sprouting graph  $\sprout_r(\matA)$---all of its vertices \emph{and} arrows---depends only on the class of $r$ modulo $\denom$.
 \end{enumerate}
 \end{remark}
 
 \begin{lemma}
    \label{positive-polynomial: L}
    Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
-   If $p > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wp^{e} >  \omega_1 p^{e-1} + \cdots + \omega_{e-1} p + \omega_e$.
+   If $r > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wr^{e} >  \omega_1 r^{e-1} + \cdots + \omega_{e-1} r + \omega_e$.
 \end{lemma}
 
 \begin{proof}
    Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
-   Then for $p>\beta$, $\omega_1 p^{e-1} + \cdots + \omega_{e-1}  p + \omega_e$ is at most $\lambda(p^{e-1} + p^{e-2} + \cdots + 1) = \lambda \cdot \frac{p^e-1}{p-1}$, which, in turn, is less than $\lambda (p^e-1) \cdot w/\lambda < w p^e$.
+   Then for $r>\beta$, $\omega_1 r^{e-1} + \cdots + \omega_{e-1}  r + \omega_e$ is at most $\lambda(r^{e-1} + r^{e-2} + \cdots + 1) = \lambda \cdot \frac{r^e-1}{r-1}$, which, in turn, is less than $\lambda (r^e-1) \cdot w/\lambda < w r^e$.
 \end{proof}
 
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
    For each monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
-   If $p>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\sprout_p(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(\matA_i, \vv{u}_i,p)$  such that
+   If $r>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\sprout_r(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(\matA_i, \vv{u}_i,r)$  such that
    \[
-      \vv{k}_1 p^{e-1} + \vv{k}_2 p^{e-2} + \cdots + \vv{k}_{e-1} p + \vv{k}_e
+      \vv{k}_1 r^{e-1} + \vv{k}_2 r^{e-2} + \cdots + \vv{k}_{e-1} r + \vv{k}_e
    \]
-   is feasible for $\IP(\matA_1, \vv{u}_1, p^e)$.
+   is feasible for $\IP(\matA_1, \vv{u}_1, r^e)$.
  \end{theorem}
 
 \begin{proof}
-   We start by describing what it means for $p$ to be large.
+   We start by describing what it means for $r$ to be large.
    Toward this, let $\matM_1, \ldots, \matM_l$ be the finitely many descendants of  $\matA$.
    Fix a positive integer $\denom$ that is a universal denominator for all $\matM_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(\matM_i)$ for each $\matM_i$, as in \Cref{fsr-exist: T}; set $\fsr = \fsr(\matM_1) \cup \cdots \cup \fsr(\matM_l)$.
    By \Cref{rem: finitely many F-thresholds of small pairs} the set consisting of the $F$-thresholds of all small $\matM_i$-pairs for $i=1,\ldots,l$ is finite, and consequently so is the set $S$ consisting of all special points with denominator $\denom$ of all those pairs.
    Let $\Omega$ be the set consisting of all coordinates of all points in $\matA(\fsr+S\cup\{\vv{0}\})$.
    \pedro{$\vv{0}$ included so that this set contains $\matA(\fsr)$}
-   We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $\matA$, and do not depend in any way on $p$.
+   We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $\matA$, and do not depend in any way on $r$.
 
    The finiteness of $\fsr$  and \Cref{positive-polynomial: L}
-   imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $p > \beta$.
+   imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $r > \beta$.
     \begin{align}
-      \tag{$\heartsuit$} \label{p-big-1}
-      &\text{$\frac{p}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
-      \tag{$\diamondsuit$} \label{p-big-2}
-      &\text{$\frac{p^e}{\denom} > \sum_{i=1}^e \omega_i p^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
+      \tag{$\heartsuit$} \label{r-big-1}
+      &\text{$\frac{r}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
+      \tag{$\diamondsuit$} \label{r-big-2}
+      &\text{$\frac{r^e}{\denom} > \sum_{i=1}^e \omega_i r^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
     \end{align}
 
-    In what follows, we assume that $p > \beta$.
+    In what follows, we assume that $r > \beta$.
     Consider a finite path
     \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e) \]
-    in $\sprout_p(\matA)$.
+    in $\sprout_r(\matA)$.
     For every $1 \leq i \leq e$, set $\O_i = \mf(\matA_i, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(\matA_i, \vv{u}_i)$ with denominator $\denom$.
     If $1 \leq i < e$, then the sprouting $(\matA_i, \vv{u}_i) \to (\matA_{i+1}, \vv{u}_{i+1})$ tells us that $\matA_{i+1}$ is the collapse of $\matA_i$ along $\O_i$, and that
     \[
-       \vv{u}_{i+1} \in \ushort(\matA_i, \vv{u}_i, p)= \matA_{i+1} \tail{\vv{s}_i}_p - \matA_{i+1}(\opt \ip( \matA_i, \vv{u}_i, \vv{s}_i, p)).
+       \vv{u}_{i+1} \in \ushort(\matA_i, \vv{u}_i, r)= \matA_{i+1} \tail{\vv{s}_i}_r - \matA_{i+1}(\opt \ip( \matA_i, \vv{u}_i, \vv{s}_i, r)).
     \]
-    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( \matA_i, \vv{u}_i, \vv{s}_i, p)$ such that $\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_p - \matA_{i+1} \vv{h}_i$.
-    Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( \matA_e, \vv{u}_e, \vv{s}_e, p)$.
+    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( \matA_i, \vv{u}_i, \vv{s}_i, r)$ such that $\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_p - \matA_{i+1} \vv{h}_i$.
+    Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( \matA_e, \vv{u}_e, \vv{s}_e, r)$.
 
-    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i = \vv{s}_i p - [\vv{s}_i]_p + \vv{h}_i$.
-    Observe that \eqref{p-big-1} and \eqref{p-big-2} imply that for every $1 \leq i \leq e$, the quantity $p/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $\matA_i \vv{h}_i$.
+    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i = \vv{s}_i r - [\vv{s}_i]_r + \vv{h}_i$.
+    Observe that \eqref{r-big-1} and \eqref{r-big-2} imply that for every $1 \leq i \leq e$, the quantity $r/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $\matA_i \vv{h}_i$.
     It then follows from \Cref{uniform value: P} that
     \begin{equation}
        \label{optimality-for-each-component: e}
-       \vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i,p).
+       \vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i,r).
     \end{equation}
 
-    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i p^{e-i} \in \feas\IP(\matA_1, \vv{u}_1, p^e)$.
+    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i r^{e-i} \in \feas\IP(\matA_1, \vv{u}_1, r^e)$.
     When $e = 1$, this follows from \eqref{optimality-for-each-component: e}.
     Next, suppose that $e \geq 2$.
     Our induction hypothesis applied to the truncated path
     \[ (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e) \]
-    tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i p^{e-i} \in \feas \IP(\matA_2, \vv{u}_2, p^{e-1})$.
-    To complete the induction step, we must show that $\vv{k}_1 p^{e-1} + \vv{k}^{\ast} \in \feas\IP(\matA_1, \vv{u}_1, p^e)$.
-    However, as \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, it remains to show that $\matA_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$.
+    tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i r^{e-i} \in \feas \IP(\matA_2, \vv{u}_2, r^{e-1})$.
+    To complete the induction step, we must show that $\vv{k}_1 r^{e-1} + \vv{k}^{\ast} \in \feas\IP(\matA_1, \vv{u}_1, r^e)$.
+    However, as \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, it remains to show that $\matA_1 ( \vv{k}_1 r^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 r^e$.
 
     To do so, recall that our choice of $\vv{s}_1 \in \sp(\matA_1, \vv{u}_1)$ allows us to write $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is a positive point of $\rs(\O_1)$.
-    It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $\matA_1 ( \vv{k}_1 p^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 p^e$ is equivalent to
+    It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $\matA_1 ( \vv{k}_1 r^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 r^e$ is equivalent to
     \begin{equation}
        \label{target-inequality: e}
-       \matA_1( - \tail{\vv{s}_1}_p + \vv{h}_1 ) p^{e-1} + \matA_1\vv{k}^{\ast} < \vv{w} p^e.
+       \matA_1( - \tail{\vv{s}_1}_r + \vv{h}_1 ) r^{e-1} + \matA_1\vv{k}^{\ast} < \vv{w} r^e.
     \end{equation}
 
     We prove this inequality using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
     First we verify that the inequality holds in $\rb(\O_1)^{\perp}$, by verifying that it holds after collapsing along $\O_1$.
     As $\matA_2$ is the collapse of $\matA_1$ along $\O_1$ and $\vv{w}\in \rs(\O_1)$, this means verifying that
-    \[\matA_2( - \tail{\vv{s}_1}_p + \vv{h}_1 ) p^{e-1} + \matA_2\vv{k}^{\ast} < \vv{0}.\]
-    But $\matA_2( - \tail{\vv{s}_1}_p + \vv{h}_1 ) = -\vv{u}_2$, by our choice of $\vv{h}_1$, so this inequality reduces to $-\vv{u}_2 p^{e-1} + \matA_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(\matA_2, \vv{u}_2, p^{e-1})$.
+    \[\matA_2( - \tail{\vv{s}_1}_r + \vv{h}_1 ) r^{e-1} + \matA_2\vv{k}^{\ast} < \vv{0}.\]
+    But $\matA_2( - \tail{\vv{s}_1}_r + \vv{h}_1 ) = -\vv{u}_2$, by our choice of $\vv{h}_1$, so this inequality reduces to $-\vv{u}_2 r^{e-1} + \matA_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(\matA_2, \vv{u}_2, r^{e-1})$.
 
     We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, by verifying that the stronger inequality
     \begin{equation}
-       \matA_1 \vv{h}_1 p^{e-1} + \matA_1 (\vv{s}_2 p + \vv{h}_2)p^{e-2} + \cdots + \matA_1 (\vv{s}_e p + \vv{h}_e ) < \vv{w}p^e
+       \matA_1 \vv{h}_1 r^{e-1} + \matA_1 (\vv{s}_2 r + \vv{h}_2)r^{e-2} + \cdots + \matA_1 (\vv{s}_e r + \vv{h}_e ) < \vv{w}r^e
        \label{eq: stronger ineq}
     \end{equation}
     holds in $\rs(\O_1)$.
-    However, $\vv{w}$ is positive in $\rs(\O_1)$, and the equation $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and so $\vv{w} p^e$ is greater than or equal to $p^e \vv{1} / \denom$ in $\rs(\O_1)$.
-    On the other hand, every coordinate of the left-hand side of \eqref{eq: stronger ineq} is of the form $\sum_{i=1}^{e} \omega_i  p^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
-    Thus, the condition \eqref{p-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
+    However, $\vv{w}$ is positive in $\rs(\O_1)$, and the equation $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and so $\vv{w} r^e$ is greater than or equal to $r^e \vv{1} / \denom$ in $\rs(\O_1)$.
+    On the other hand, every coordinate of the left-hand side of \eqref{eq: stronger ineq} is of the form $\sum_{i=1}^{e} \omega_i  r^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
+    Thus, the condition \eqref{r-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
 
     We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence our proof.
 \end{proof}
@@ -2372,35 +2377,35 @@ In order to do so, we first build a technical framework in which to carry out ou
 We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the $\idealm$-primary setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{m-primary algorithm: R} is built from.
 
 \begin{definition}[Subgraphs associated to very small pairs]
-   Suppose that $(\matA,\vv{u})$ is very small, and define $\S_p(\matA,\vv{u}) = \{ (\matA,\vv{u}) \}$.
-   Next, suppose that $\S_q(\matA,\vv{u})$ has been defined for some $q=p^e$.
+   Suppose that $(\matA,\vv{u})$ is very small, and define $\S_r(\matA,\vv{u}) = \{ (\matA,\vv{u}) \}$.
+   Next, suppose that $\S_q(\matA,\vv{u})$ has been defined for some $q=r^e$.
    \begin{enumerate}
-      \item If $\S_q(\matA,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(\matA,\vv{u})$ to be the subset of $\S_q(\matA,\vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\ft{\matB}{\vv{v}}$, and only then minimize $\udeficit(\matB,\vv{v},p)$.  We then~define~$\S_{qp}(\matA,\vv{u})$ to be the set of all $p$-sprouts of all pairs in $\S^{\ast}_q(\matA,\vv{u})$.
-      \item Otherwise, we define $\S_q^{\ast}(\matA,\vv{u})=\S_{qp}(\matA,\vv{u}) = \emptyset$.
+      \item If $\S_q(\matA,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(\matA,\vv{u})$ to be the subset of $\S_q(\matA,\vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},r)$.  We then~define~$\S_{qr}(\matA,\vv{u})$ to be the set of all $r$-sprouts of all pairs in $\S^{\ast}_q(\matA,\vv{u})$.
+      \item Otherwise, we define $\S_q^{\ast}(\matA,\vv{u})=\S_{qr}(\matA,\vv{u}) = \emptyset$.
    \end{enumerate}
-   By definition, each $\S_{p^e}(\matA,\vv{u})$ and $\S^{\ast}_{p^e}(\matA,\vv{u})$ is a subset of $\graph_{p^e}(\matA)$, which we identify with the vertices of $\sprout_p(\matA)$ of level $p^e$.
-   We then define $\sprout_p^{\ast}(\matA,\vv{u})$ to be the induced subgraph of $\sprout_p(\matA)$ on the set of vertices
-   \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{p^e}(\matA,\vv{u}). \]
+   By definition, each $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ is a subset of $\graph_{r^e}(\matA)$, which we identify with the vertices of $\sprout_r(\matA)$ of level $r^e$.
+   We then define $\sprout_r^{\ast}(\matA,\vv{u})$ to be the induced subgraph of $\sprout_r(\matA)$ on the set of vertices
+   \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u}). \]
 \end{definition}
 
 \begin{remark}[Elementary observations]
    \label{elementary2: R}
    Suppose $(\matA,\vv{u})$ is very small.
-   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_p(\matA,\vv{u})$.
+   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_r(\matA,\vv{u})$.
    \begin{enumerate}
       \item  \label{elementary2 lowest level}
-      The only vertex of $\sprout_p^{\ast}(\matA,\vv{u})$ of level $p$ is $(\matA,\vv{u})$.
+      The only vertex of $\sprout_r^{\ast}(\matA,\vv{u})$ of level $r$ is $(\matA,\vv{u})$.
       \item \label{elementary2 small pairs}
       It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(\matA,\vv{u})$, when nonempty, consists of small pairs whose monomial matrix is among the finitely many descendants of $\matA$.
-      Furthermore, $\S_{qp}(\matA,\vv{u}) = \emptyset$ if and only if $\S_q(\matA,\vv{u}) = \emptyset$ or $\S_q(\matA,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(\matA,\vv{u})= \emptyset$.
+      Furthermore, $\S_{qr}(\matA,\vv{u}) = \emptyset$ if and only if $\S_q(\matA,\vv{u}) = \emptyset$ or $\S_q(\matA,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(\matA,\vv{u})= \emptyset$.
       Moreover, $\S_q^{\ast}(\matA,\vv{u})$ is either empty, or contains only very small pairs.
       \item \label{elementary2 periodic in e}
-      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{p^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{p^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{p^e}(\matA,\vv{u})$ and $\S^{\ast}_{p^e}(\matA,\vv{u})$ are eventually periodic in $e$.
-      \item \label{elementary2 periodic in p}
-      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in p}, the graph $\sprout_p^{\ast}(\matA,\vv{u})$ depends only on $p$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
+      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{r^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ are eventually periodic in $e$.
+      \item \label{elementary2 periodic in r}
+      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in r}, the graph $\sprout_r^{\ast}(\matA,\vv{u})$ depends only on $r$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
       \item \label{collapse sprout star graphs same}
-      The graphs $\sprout^{\ast}_p(\matA,\vv{u})$ and $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
-      The first level of $\sprout^{\ast}_p(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_p^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\ft{\matA}{ \vv{u}} = \ft{\collapse{\matA}}{\collapse{\vv{u}}}$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
+      The graphs $\sprout^{\ast}_r(\matA,\vv{u})$ and $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
+      The first level of $\sprout^{\ast}_r(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\degree(\matA, \vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
       all edges also agree.
 \end{enumerate}
 \end{remark}
@@ -2448,11 +2453,11 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \label{epsilon delta: D}
    If $(\matA,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(\matA,\vv{u}) \neq \emptyset$, then we define
    \begin{align*}
-     \epsilon_{p^e}(\matA,\vv{u}) & = \ft{\matB}{\vv{v}} \\
-     \delta_{p^e}(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},p)
+     \epsilon_{r^e}(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
+     \delta_{r^e}(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},r)
    \end{align*}
-   where $(\matB,\vv{v})$ is any pair in $\S^{\ast}_{p^e}(\matA,\vv{u})$.
-   Observe that, by definition of $\S^{\ast}_{p^e}(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S^{\ast}_{p^e}(\matA,\vv{u})$.
+   where $(\matB,\vv{v})$ is any pair in $\S^{\ast}_{r^e}(\matA,\vv{u})$.
+   Observe that, by definition of $\S^{\ast}_{r^e}(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S^{\ast}_{r^e}(\matA,\vv{u})$.
 \end{definition}
 
 \begin{proposition}
@@ -2472,19 +2477,19 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 
 \begin{definition}[Depth of a sprouting subgraph]
 \label{depth-of-graph: D}
-   If $(\matA,\vv{u})$ is very small, then $\mathcal{Q}_p(\matA,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_p^{\ast}(\matA,\vv{u})$, and $\mathcal{E}_p(\matA, \vv{u})$ is the exponent $e$ such that $\mathcal{Q}_p(A, \vv{u}) = p^{e}$.  Formally,
+   If $(\matA,\vv{u})$ is very small, then $\mathcal{Q}_r(\matA,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_r^{\ast}(\matA,\vv{u})$, and $\mathcal{E}_r(\matA, \vv{u})$ is the exponent $e$ such that $\mathcal{Q}_p(A, \vv{u}) = r^{e}$.  Formally,
    \begin{align*}
-      \mathcal{Q}_p(\matA,\vv{u}) & = \inf \{ q :  \S^{\ast}_{qp}(\matA,\vv{u}) = \emptyset \} \\       
-      \mathcal{E}_p(\matA,\vv{u}) & = \log_p \mathcal{Q}_p(\matA, \vv{u})
+      \mathcal{Q}_r(\matA,\vv{u}) & = \inf \{ q :  \S^{\ast}_{qr}(\matA,\vv{u}) = \emptyset \} \\       
+      \mathcal{E}_r(\matA,\vv{u}) & = \log_r \mathcal{Q}_r(\matA, \vv{u})
    \end{align*}
-   where we adopt the convention that $\log_p (\infty) = \infty$.
+   where we adopt the convention that $\log_r (\infty) = \infty$.
 \end{definition}
 
 \begin{remark}
 \label{curly-Q-E-basic-facts: R}
 As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(\matA,\vv{u})$ is very small, then $\S^{\ast}_p(\matA,\vv{u}) = \{ (\matA,\vv{u} )\}$, which shows that $\Q_p(\matA,\vv{u})$ is at least $p$.
 Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\mathcal{E}_p(\matA, \vv{u}) = \Q_p(\matA,\vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_p^*(\matA,\vv{u})$.
-Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in p} implies that $\mathcal{E}_p(\matA,\vv{u}) = \log_p \Q_p(\matA,\vv{u})$ depends only on $(\matA,\vv{u})$, and on the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
+Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in r} implies that $\mathcal{E}_p(\matA,\vv{u}) = \log_p \Q_p(\matA,\vv{u})$ depends only on $(\matA,\vv{u})$, and on the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
 
 \end{remark}
 
@@ -3191,7 +3196,7 @@ The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+eta
 
 \begin{theorem}[Main theorem on test ideals of generic hypersurfaces]
 	\label{generic-test-ideals-main: T}
-Given monomials $h_1, \ldots, h_n$ in variables $x = x_1, \ldots, x_m$, there exist positive integers $d$ and $\beta$ with the following property:  
+Given non-constant monomials $h_1, \ldots, h_n$ in variables $x = x_1, \ldots, x_m$, there exist positive integers $d$ and $\beta$ with the following property:  
 Suppose that $\kk$ is a field of prime characteristic $p > \beta$ with $[\kk:\kk^p] < \infty$.  
 Fix variables $z = z_1, \ldots, z_n$ over $\kk[x]$, and let $R$ denote either $\kk[z]$ or $\kk(z)$. 
 If $G = z_1 h_1 + \cdots + z_n h_n \in R[x]$ is a generic linear combination of the $h_i$, then
@@ -3205,7 +3210,7 @@ If $G = z_1 h_1 + \cdots + z_n h_n \in R[x]$ is a generic linear combination of 
 
 \begin{proof}
 If some variable $x_i$ does not appear in any monomial $h_j$, then it will not effectively appear in $G$, nor in  any minimal generator of its test ideals.  
-Hence, without loss of generality, after removing any such variables, we can assume that the matrix $\matA$ whose $j$-th column is the exponent vector of the monomial $h_j$ 
+Hence, without loss of generality, by working in the polynomial ring over the variables that appear in some $h_j$, we can assume that the matrix $\matA$ whose $j$-th column is the exponent vector of the monomial $h_j$ 
 is a monomial matrix.  Let $\ideala = \langle h_1, \ldots, h_n \rangle$ be the monomial ideal associated to $\matA$.
 
 The statement now immediately follows from  \Cref{frobenius-powers-main: T} and 
