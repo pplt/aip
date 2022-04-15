@@ -15,8 +15,12 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
-	\item[$\Box$]
-Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 	
+	\item[$\Box$] Have a discussion about using $\degree(\matA,\vv{u})$. In the meantime, use the macro ``degree.''
+\emily[inline]{I believe that I replaced the current instances of ``deg'' with ``degree,'' but need to do the same for ``ft.''} 
+	\item[$\Box$] Address Pedro's comment after the proof of \ref{non-leading coefficients: L}. 
+	\item[$\Box$]  Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 	
+	\item[$\Box$]  Move the work on critical exponents vs. $F$-thresholds from \Cref{sprouting: S} to \Cref{frobenius-powers-monomial-ideals: S}. 
+ \item[$\Box$] Describe the critical exponents of monomial ideals in \Cref{frobenius-powers-monomial-ideals: S}.  
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result). \daniel[inline]{Working on it\ldots}
@@ -28,6 +32,10 @@ Set some notation early on, possibly in the introduction:  A pair of ideals is $
  \item[$\CheckedBox$] Prove \Cref{finite-representatives-small-crits: P}. 
  \pedro[inline]{This is now done, but I'm sure the proof can be improved.}
  \item[$\Box$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
+ \end{enumerate}}
+ \details[inline]{
+ 	TO DO LIST:
+ 	\begin{enumerate}
  \item[$\Box$] Produce examples describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
  \pedro[inline]{Working on it\ldots}
  \item[$\Box$] A $\kk$-generic hypersurface with support $x^{\vv{a}_1}, \ldots, x^{\vv{a}_n}$ will refer to any linear combination of these monomials $g = z_1 x^{\vv{a}_1} + \cdots + z_n x^{\vv{a}_n}$, which may be thought of as an element of either $\kk[z][x]$ or $\kk(z)[x]$.  If $S$ denotes either of these rings, then Theorem 5.3/Corollary 5.7 in Frobenius Powers implies that $\tau(f^t) = \ideala^{[t]} S$.  Thus, we have the following result:  \emph{If the supporting monomials are fixed beforehand, and $p \gg 0$, then any the test ideals of any $\kk$-generic hypersurface, where $\kk$ is a field of characteristic $p$, with those supporting exponents are well-behaved and can be described explicitly}.
@@ -1658,10 +1666,10 @@ Recall that a pair of ideals $(\ideala, \idealb)$ of a polynomial ring over a fi
 \begin{proof}  Let $\matA$ be a monomial matrix associated to $\ideala$.  \Cref{nu invariants associated to a monomial ideal in large characteristic: T}  then implies that there exist a finite collection of pairs $(\matA, \vv{u}_1), \ldots, (\matA, \vv{u}_{\ell})$, which depend on $\matA$ and $\idealb$, and a positive integer $\beta$, which depends on the pair $(\ideala_{\ZZ}, \idealb_{\ZZ})$,  such that $\nu(\ideala_p, \idealb_p, p^e) = \max \val \IP(\matA, \vv{u}_i, p^e)$  for every prime $p > \beta$, and positive integer $e$.  
 
 On the other hand, after possibly increasing $\beta$, \Cref{uniform uniform value and image: T} guarantees that 
-$\val \IP(\matA, \vv{u}_i, p^e) = \deg(\matA, \vv{u}_i) p^e - \udeficit(A, \vv{u}_i, p^e)$  for every prime $p > \beta$ and positive integer $e$, and for each $(\matA, \vv{u}_i)$ as above.   Combining these observations, 
-$\nu(\ideala_p, \idealb_p, p^e) = \max  \{ \deg(\matA, \vv{u}_i) p^e - \udeficit(\matA, \vv{u}_i, p^e) \}$ for every $p > \beta$ and $e > 0$.  
+$\val \IP(\matA, \vv{u}_i, p^e) = \degree(\matA, \vv{u}_i) p^e - \udeficit(A, \vv{u}_i, p^e)$  for every prime $p > \beta$ and positive integer $e$, and for each $(\matA, \vv{u}_i)$ as above.   Combining these observations, 
+$\nu(\ideala_p, \idealb_p, p^e) = \max  \{ \degree(\matA, \vv{u}_i) p^e - \udeficit(\matA, \vv{u}_i, p^e) \}$ for every $p > \beta$ and $e > 0$.  
 
-Set $\lambda = \max \deg(\matA, \vv{u}_i)$, and for every positive integer $q$, let $\eta_{q}$ be the minimum value of all $\udeficit(A, \vv{u}_i, q)$ with $ \deg(\matA, \vv{u}_i) = \lambda$.  Note that, if we fix a universal denominator $d$ for $\matA$, then \Cref{pair periodicity: R} tells us that $\eta_q = \eta_r$ whenever $q \equiv r \bmod d$.  
+Set $\lambda = \max \degree(\matA, \vv{u}_i)$, and for every positive integer $q$, let $\eta_{q}$ be the minimum value of all $\udeficit(A, \vv{u}_i, q)$ with $ \degree(\matA, \vv{u}_i) = \lambda$.  Note that, if we fix a universal denominator $d$ for $\matA$, then \Cref{pair periodicity: R} tells us that $\eta_q = \eta_r$ whenever $q \equiv r \bmod d$.  
 
 It follows from these definitions that, after possibly increasing $\beta$ again, 
 \[ \nu(\ideala_p, \idealb_p, p^e) = \lambda p^e - \eta_{\lpr{p^e}{d}} \] 
@@ -2203,7 +2211,7 @@ $M_1 \leftarrow \ft{\matA}{\vv{u}}\pp - \udeficit(\matA,\vv{u},r)$\;
 Now that we have a grasp on the value of the arithmetic integer program $\IP_p(\matA, \vv{u}, p^e)$ when the matrix $\matA$ is associated to an $\idealm$-primary monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
 In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.
 
-\subsection{The sprouting graph of a monomial matrix}
+\subsection{The sprouting graph of a monomial matrix} 
 
 \begin{definition}[Descendant]
    A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its columns.
@@ -2535,7 +2543,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    , with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive, satisfying the following condition:  \\ If $p > \beta$ and $\lpr{p}{d} = r$, and $e$ is a positive integer, then
 %
 \[
- \val \IP_p(\matA,\vv{u}, p^e) =  \deg(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
+ \val \IP_p(\matA,\vv{u}, p^e) =  \degree(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
    \]%
  
  \daniel[inline]{The original statement is commented out here.}
@@ -2581,7 +2589,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 %   \begin{equation}
 %   \label{main-theorem-e-at-most-Q: e}
 \[
-     \val \IP_p(\matA,\vv{u},p^e) = \deg(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \boxed{\delta_{p^i}(\matA, \vv{u}) - \epsilon_{p^{i+1}}(\matA, \vv{u})} \cdot p^{e-i} - \boxed{\delta_{p^e}(\matA, \vv{u})}
+     \val \IP_p(\matA,\vv{u},p^e) = \degree(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \boxed{\delta_{p^i}(\matA, \vv{u}) - \epsilon_{p^{i+1}}(\matA, \vv{u})} \cdot p^{e-i} - \boxed{\delta_{p^e}(\matA, \vv{u})}
 \]
    for every integer $e$ with $1 \leq e \leq \mathcal{E}$.  
    
@@ -2593,7 +2601,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    we have shown above that, if $e$ is an integer with $1 \leq e \leq \mathcal{E}$, then
    \begin{equation}
    \label{val-up-to-curly-e-via-two-sequences: e}
-   \val \IP_p(\matA,\vv{u},p^e) = \deg(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{e-i} - {\eta_{r^e}(\matA, \vv{u})}.
+   \val \IP_p(\matA,\vv{u},p^e) = \degree(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{e-i} - {\eta_{r^e}(\matA, \vv{u})}.
    \end{equation}
    
    If $\mathcal{E} = \infty$, then we have defined the terms $\lambda_{r^i}(\matA, \vv{u})$ and $\eta_{r^i}(\matA, \vv{u})$ for all natural numbers $i$. Next, we consider the situation when $\mathcal{E}$, and hence $\mathcal{Q} = p^{\mathcal{E}}$, is finite.
@@ -2638,12 +2646,12 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    
    Comparing this with \Cref{general AIP: T}, we see that inequality above must be an equality.  Then, invoking the description of $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}})$ given in \eqref{val-up-to-curly-e-via-two-sequences: e}, we conclude that if $\mathcal{E} \neq \infty$ and $e \geq 1$, then  $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}+e})$ coincides with
    \[
-   \deg(\matA, \vv{u}) \cdot p^{\mathcal{E}+e} - \sum_{1 \leq i < \mathcal{E}} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{\mathcal{E} + e -i} - \boxed{{\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1} \cdot p^e  - \boxed{1}.  
+   \degree(\matA, \vv{u}) \cdot p^{\mathcal{E}+e} - \sum_{1 \leq i < \mathcal{E}} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{\mathcal{E} + e -i} - \boxed{{\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1} \cdot p^e  - \boxed{1}.  
 	\]
 
 Using the boxed terms above, we may now complete the definition of our sequences when $\mathcal{E}$ is finite.  In this case, define $\lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) =  {\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1 = {\delta_{p^{\mathcal{E}}}(\matA, \vv{u})}-1$ and define $\lambda_{r^s}(\matA, \vv{u})= 0$ and $\eta_{r^s}(\matA, \vv{u}) = 1$ for all $s > \mathcal{E}$.  Finally, with these definitions, and as the reader may verify, we obtain the following formula:  If $e \geq 1$, then
 \[
-\val \IP_p(\matA,\vv{u}, p^e) =  \deg(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
+\val \IP_p(\matA,\vv{u}, p^e) =  \degree(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
 \]
 
 To finish, it remains to show that the sequences 
@@ -3183,10 +3191,10 @@ The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+eta
 
 \begin{theorem}[Main theorem on test ideals of generic hypersurfaces]
 	\label{generic-test-ideals-main: T}
-Given nonnegative nonzero $\vv{a}_1, \ldots, \vv{a}_n \in \ZZ^m$, there exist $d$ and $\beta$ with the following property:  
+Given monomials $h_1, \ldots, h_n$ in variables $x = x_1, \ldots, x_m$, there exist positive integers $d$ and $\beta$ with the following property:  
 Suppose that $\kk$ is a field of prime characteristic $p > \beta$ with $[\kk:\kk^p] < \infty$.  
-Fix variables $z = z_1, \ldots, z_n$ over $\kk[x] = [x_1, \ldots, x_m]$, and let $R$ denote either $\kk[z]$ or $\kk(z)$. 
-If $G = z_1 x^{\vv{a}_1} + \cdots + z_n x^{\vv{a}_n} \in R[x]$ is a generic linear combination of the $x^{\vv{a}_i}$, then
+Fix variables $z = z_1, \ldots, z_n$ over $\kk[x]$, and let $R$ denote either $\kk[z]$ or $\kk(z)$. 
+If $G = z_1 h_1 + \cdots + z_n h_n \in R[x]$ is a generic linear combination of the $h_i$, then
 \begin{enumerate}[$(1)$]
 		\item the number of $F$-jumping numbers of $G$ in the unit interval depends only on the congruence class of $p$ modulo $\denom$\textup;
 		\item though the endpoints of the constancy regions of the test ideals $\tau(G^t)$ with $t$ in the unit interval 
@@ -3196,7 +3204,9 @@ If $G = z_1 x^{\vv{a}_1} + \cdots + z_n x^{\vv{a}_n} \in R[x]$ is a generic line
 \end{theorem}
 
 \begin{proof}
-If for any $1 \leq j \leq m$, the $j$-th coordinate of $\vv{a}_i$ is zero for every $1 \leq i \leq n$, then $x_i$ will not appear in $G$, so will not appear in any minimal generator of its test ideals.  Hence we can remove any coordinate(s) of each $\vv{a}_i$ for which the above property holds, and after replacing $m$ with the remaining number of coordinates we can assume, without loss of generality, that $\matA = \begin{bmatrix} \vv{a}_1 & \cdots & \vv{a}_n \end{bmatrix}$ is an $m \times n$ monomial matrix.  Let $\ideala$ be the monomial ideal of $\kk[x]$ associated to $\matA$. 
+If some variable $x_i$ does not appear in any monomial $h_j$, then it will not effectively appear in $G$, nor in  any minimal generator of its test ideals.  
+Hence, without loss of generality, after removing any such variables, we can assume that the matrix $\matA$ whose $j$-th column is the exponent vector of the monomial $h_j$ 
+is a monomial matrix.  Let $\ideala = \langle h_1, \ldots, h_n \rangle$ be the monomial ideal associated to $\matA$.
 
 The statement now immediately follows from  \Cref{frobenius-powers-main: T} and 
 the fact that for all $1 < t < 0$, $\tau(G^t) = \ideala^{[t]} R[z]$ when $\ideala$ is an ideal of 
