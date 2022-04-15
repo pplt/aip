@@ -15,6 +15,8 @@
 \details[inline]{
 TO DO LIST:
 \begin{enumerate}
+	\item[$\Box$]
+Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 	
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result). \daniel[inline]{Working on it\ldots}
@@ -1647,7 +1649,7 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 
 
 
-Recall that a pair of ideals $(\ideala, \idealb)$ of a polynomial ring over a field are called \hl{\emph{compatible}} if $\idealb$ contains $\sqrt{a}$, that is, there exists a positive integer $t$ such that $\ideala^t \subseteq \idealb$. \todo{Defined outside of appendix?}
+Recall that a pair of ideals $(\ideala, \idealb)$ of a polynomial ring over a field are called \hl{\emph{compatible}} if $\idealb$ contains $\sqrt{\ideala}$, that is, there exists a positive integer $t$ such that $\ideala^t \subseteq \idealb$. \todo{Defined outside of appendix?}
 
 \begin{corollary}  Consider a compatible pair of ideals $(\ideala, \idealb)$ of $\QQ[x]$, with $\ideala$ monomial, and fix a pair of ideals $(\ideala_{\ZZ}, \idealb_{\ZZ})$ of $\ZZ[x]$ such that $\ideala_{\ZZ} \QQ[x] = \ideala$ and $\idealb_{\ZZ} \QQ[x] = \idealb$.    Then, there exist positive integers $\beta$ and $d$, a positive rational number $\lambda$, and a finite sequence of positive rational numbers $\{ \eta_r \}_r$ indexed by the units of $\ZZ/d\ZZ$, with the following properties:  If $p > \beta$, and $e$ is a positive integer with $\lpr{p^e}{d} = r$, then 
 \[ \nu(\ideala_p, \idealb_p, p^e) = \lambda p^e - \eta_r \] where $\ideala_p = \ideala_{\ZZ} \FF_p[x]$, and $\idealb_p = \idealb_{\ZZ} \FF_p[x]$.
