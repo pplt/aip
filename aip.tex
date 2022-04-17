@@ -2549,10 +2549,10 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    On the other hand, if $(\matC, \vv{z}) \in \S^{\ast}_{qp}(\matA,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(\matA,\vv{u})$ as $(\matA_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)$ and the point $(\matC, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
-\begin{theorem}[Main Theorem]
+\begin{theorem}[Main Theorem for AIPs]
    \label{main theorem wrt diagonal: T}
    Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exist a positive integer $\beta = \beta(\matA)$, and a function that associates to every unit $r$ in $\ZZ/d\ZZ$ and monomial pair $(\matA, \vv{u})$, a pair of eventually periodic sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ of rational numbers% determined by the graph $\sprout^{\ast}_r(\matA, \vv{u})$, 
-   , with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive, satisfying the following condition:  \\ If $p > \beta$ and $\lpr{p}{d} = r$, and $e$ is a positive integer, then
+   , with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive, satisfying the following condition:  If $p > \beta$ and $\lpr{p}{d} = r$, and $e$ is a positive integer, then
 %
 \[
  \val \IP_p(\matA,\vv{u}, p^e) =  \degree(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
@@ -2674,7 +2674,7 @@ $\{ \lambda_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ and $\{ \eta_{r^s}(\matA, \v
  \newpage
 \begin{definition}[Fundamental sequences]
 	\label{fundamental-sequences: D}	
-	Consider a monomial matrix $\matA$, and a universal denominator $d$ for $\matA$, and each of its finitely many descendants.  The \emph{fundamental sequences} associated to a unit $r \in \ZZ/d\ZZ$ and pair $(\matA, \vv{u})$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ described in \Cref{main theorem wrt diagonal: T}, i.e., 
+The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a positive integer $r$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ referred to in the statement of \Cref{main theorem wrt diagonal: T}, and explicitly defined in its proof.  In other words,
 	%
 \begin{align*}
 \lambda_{r^s}(\matA, \vv{u}) & = \begin{cases} 
@@ -2824,9 +2824,9 @@ To start, note that, in this context, the Newton polyhedron $\N$ is particularly
 
 \begin{proposition}
 \label{finishing-with-the-fundamental-sequences: P}
-The non-leading coefficients appearing in the polynomial expressions described in \Cref{main theorem wrt diagonal: T} are rational and nonpositive.
+Given a pair $(\matA, \vv{u})$ and positive integer $r$, the fundamental sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ satisfy the conditions described in \Cref{main theorem wrt diagonal: T}.  That is, each is an eventually periodic sequence of rational numbers, with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive.
 \end{proposition}
-\daniel[inline]{Update this statement and proof}
+\daniel[inline]{Update the proof.  Maybe address what is going on in the context of the second part of \Cref{fundamental-sequences: L}.}
 
 \begin{proof}
    Fix a pair $(\matA,\vv{u})$, and set $\Q=\Q_p(\matA,\vv{u})$.
@@ -2837,6 +2837,53 @@ The non-leading coefficients appearing in the polynomial expressions described i
    In this case, $\S^{\ast}_{\Q p}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{\Q}(\matA,\vv{u})$, and whose terminal pair is not very small. \Cref{non-leading coefficients: L} then tells us that $\delta_{\Q}(\matA,\vv{u}) = \udeficit(\matB,\vv{v},p)$ is at least $\degree(\matC,\vv{z})$, which is greater than $1$ as $(\matC,\vv{z})$ is not very small.
    Thus, $-(\delta_\Q(\matA,\vv{u})-1)$ is negative.
 \end{proof}
+
+\todo[inline]{
+   Find appropriate places for the next statement.  Proof calls upon \Cref{non-leading coefficients: L}.
+}
+\daniel[inline]{Restate in terms of the fundamental sequences?}
+\begin{proposition}[A simple special case]
+	\label{simple-special: P}
+   Given a monomial matrix $\matA$, fix a universal denominator $\denom$ for all the finitely many descendants of $\matA$.
+   Then there exists $\beta = \beta(\matA)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$,
+\[
+ \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
+\]
+for every very small $\matA$-pair $(\matA, \vv{u})$, and all $e \geq 1$.
+In particular, for such $p$ we have $\crit(\matA,\vv{u}) = \degree(\matA,\vv{u})$.
+\end{proposition}
+
+\begin{proof}
+We first prove the following claim:
+
+\begin{claim}
+   If $\matB$ is a descendant of $\matA$, $(\matB, \vv{v})$ is a very small pair, and $p \equiv 1 \bmod d$, then $\udeficit(\matB, \vv{v}, p) = \degree(\matB,\vv{v})$.
+\end{claim}
+
+Let $\vv{s}$ be a special point for $(\matB, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \degree(\matB,\vv{v}) \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
+Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie $\tail{\vv{s}}_p = \vv{s}$.
+If $\ip = \ip(\matB, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \ip < \norm{\vv{s}} = \degree(\matB,\vv{v}) \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\ip$ to be $0$.
+Hence $\udeficit(\matB, \vv{v}, p) = \deficit \ip = \norm{\vv{s}} - \val\ip = \degree(\matB,\vv{v})$, proving the claim.\\[2mm]
+Observe that if $(\matC, \vv{w})$ is a $p$-sprout of a pair $(\matB, \vv{v})$ as above, then $\degree(\matC,\vv{w}) \leq \udeficit(\matB, \vv{v}, p) = \degree(\matB,\vv{v})$ by \Cref{non-leading coefficients: L} and the above claim, so that $(\matC, \vv{w})$ is also very small.
+Hence $\S^\ast_{q}(\matA, \vv{u})$ is nonempty for every $q$, and consequently, $\Q_p(\matA,\vv{u})$ is infinite.
+
+Fix $(\matB, \vv{v}) \in \S_{q}^\ast(\matA,\vv{u})$ for some $q$, and let an overbar denote collapse along $\O = \mf(\matB, \vv{v})$.
+The proof of the claim shows that a special point $\vv{s}$ for $(\matB,\vv{v})$ with denominator $\denom$ satisfies $\tail{\vv{s}}_p = \vv{s}$, and $\vv{0} \in \opt \ip(\matB,\vv{v},\vv{s},p)$.
+Hence $\collapse{\vv{v}} = \collapse{\matB}\vv{s} = \collapse{\matB}\tail{\vv{s}}_p - \collapse{\matB} \, \vv{0} \in \ushort(\matB, \vv{v}, p)$, and $(\collapse{\matB}, \collapse{\vv{v}}) \in \S_{pq}(\matA, \vv{u})$.
+
+The claim implies that $\S^\ast_{pq}(\matA, \vv{u})$ consists of the pairs in $\S_{pq}(\matA, \vv{u})$ with maximum degree.
+We know $\degree(\collapse{\matB},\collapse{\vv{v}}) = \degree(\matB,\vv{v})$ by \Cref{collapse of mf and mc: P}, and
+that the degree of any $p$-sprout of $(\matB, \vv{v})$ is bounded above by $\degree(\matB,\vv{v})$ by our earlier observation.
+Hence $(\collapse{\matB}, \collapse{\vv{v}}) \in \S^\ast_{pq}(\matA, \vv{u})$.
+
+Inductively, we conclude that for each $e\ge 1$, there exists a path $(\matA,\vv{u}) = (\matA_1,\vv{u}_1) \to \cdots \to (\matA_e,\vv{u}_e)$ in $\sprout^*(\matA,\vv{u})$, where each pair is the collapse of the previous one along its minimal face.
+Consequently, $\udeficit(\matA_i,\vv{u}_i,p) = \degree(\matA_i,\vv{u}_i) = \degree(\matA,\vv{u})$, for each $1\le i \le e$.
+Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u}) = \degree(\matA,\vv{u})$, and the desired formula follows from
+\Cref{main theorem wrt diagonal: T}.
+\end{proof}
+
+
+\daniel[inline]{I think the rest of this needs to be more general, that is, about critical exponents of a monomial ideal with respect to an arbitrary ideal.  This will be where we add the analogue fo the main result of BMS for the $\mu$'s.  The rest of this section will also, eventually, be absorbed into the next section.}
 
 \subsection{Critical exponents versus $F$-thresholds}
 \label{crit versus ft: SS}
@@ -2884,50 +2931,6 @@ where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of
 % \emily[inline]{See below.}
 % \daniel[inline]{Thanks.}
 
-\todo[inline]{
-   Find appropriate places for the next statement.  Proof calls upon \Cref{non-leading coefficients: L}.
-}
-
-\daniel[inline]{Restate in terms of the fundamental sequences?}
-\begin{proposition}[A simple special case]
-	\label{simple-special: P}
-   Given a monomial matrix $\matA$, fix a universal denominator $\denom$ for all the finitely many descendants of $\matA$.
-   Then there exists $\beta = \beta(\matA)$ such that whenever $p>\beta$ and $p \equiv 1 \bmod \denom$,
-\[
- \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
-\]
-for every very small $\matA$-pair $(\matA, \vv{u})$, and all $e \geq 1$.
-In particular, for such $p$ we have $\crit(\matA,\vv{u}) = \degree(\matA,\vv{u})$.
-\end{proposition}
-
-\begin{proof}
-We first prove the following claim:
-
-\begin{claim}
-   If $\matB$ is a descendant of $\matA$, $(\matB, \vv{v})$ is a very small pair, and $p \equiv 1 \bmod d$, then $\udeficit(\matB, \vv{v}, p) = \degree(\matB,\vv{v})$.
-\end{claim}
-
-Let $\vv{s}$ be a special point for $(\matB, \vv{v})$ with denominator $\denom$, so that $\norm{\vv{s}} = \degree(\matB,\vv{v}) \leq 1$, and $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.
-Since $p \equiv 1 \bmod \denom$, this means that $\tail{s_i}_p$ equals $\lpr{t_i p}{d}/d = t_i/d$ if $s_i \neq 0$, and equals $0$ otherwise; \ie $\tail{\vv{s}}_p = \vv{s}$.
-If $\ip = \ip(\matB, \vv{v}, \vv{s}, p)$, we have that $0 \leq \val \ip < \norm{\vv{s}} = \degree(\matB,\vv{v}) \leq 1$  by \Cref{bounded value: P}, forcing the value of the integer program $\ip$ to be $0$.
-Hence $\udeficit(\matB, \vv{v}, p) = \deficit \ip = \norm{\vv{s}} - \val\ip = \degree(\matB,\vv{v})$, proving the claim.\\[2mm]
-Observe that if $(\matC, \vv{w})$ is a $p$-sprout of a pair $(\matB, \vv{v})$ as above, then $\degree(\matC,\vv{w}) \leq \udeficit(\matB, \vv{v}, p) = \degree(\matB,\vv{v})$ by \Cref{non-leading coefficients: L} and the above claim, so that $(\matC, \vv{w})$ is also very small.
-Hence $\S^\ast_{q}(\matA, \vv{u})$ is nonempty for every $q$, and consequently, $\Q_p(\matA,\vv{u})$ is infinite.
-
-Fix $(\matB, \vv{v}) \in \S_{q}^\ast(\matA,\vv{u})$ for some $q$, and let an overbar denote collapse along $\O = \mf(\matB, \vv{v})$.
-The proof of the claim shows that a special point $\vv{s}$ for $(\matB,\vv{v})$ with denominator $\denom$ satisfies $\tail{\vv{s}}_p = \vv{s}$, and $\vv{0} \in \opt \ip(\matB,\vv{v},\vv{s},p)$.
-Hence $\collapse{\vv{v}} = \collapse{\matB}\vv{s} = \collapse{\matB}\tail{\vv{s}}_p - \collapse{\matB} \, \vv{0} \in \ushort(\matB, \vv{v}, p)$, and $(\collapse{\matB}, \collapse{\vv{v}}) \in \S_{pq}(\matA, \vv{u})$.
-
-The claim implies that $\S^\ast_{pq}(\matA, \vv{u})$ consists of the pairs in $\S_{pq}(\matA, \vv{u})$ with maximum degree.
-We know $\degree(\collapse{\matB},\collapse{\vv{v}}) = \degree(\matB,\vv{v})$ by \Cref{collapse of mf and mc: P}, and
-that the degree of any $p$-sprout of $(\matB, \vv{v})$ is bounded above by $\degree(\matB,\vv{v})$ by our earlier observation.
-Hence $(\collapse{\matB}, \collapse{\vv{v}}) \in \S^\ast_{pq}(\matA, \vv{u})$.
-
-Inductively, we conclude that for each $e\ge 1$, there exists a path $(\matA,\vv{u}) = (\matA_1,\vv{u}_1) \to \cdots \to (\matA_e,\vv{u}_e)$ in $\sprout^*(\matA,\vv{u})$, where each pair is the collapse of the previous one along its minimal face.
-Consequently, $\udeficit(\matA_i,\vv{u}_i,p) = \degree(\matA_i,\vv{u}_i) = \degree(\matA,\vv{u})$, for each $1\le i \le e$.
-Then for each such $i$, $\epsilon_{p^i}(\matA,\vv{u}) = \delta_{p^i}(\matA,\vv{u}) = \degree(\matA,\vv{u})$, and the desired formula follows from
-\Cref{main theorem wrt diagonal: T}.
-\end{proof}
 
 \section{Frobenius powers of monomial ideals}
 \label{frobenius-powers-monomial-ideals: S}
