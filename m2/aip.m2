@@ -238,6 +238,10 @@ lcmMinors := A ->
     lcm ( minors( d, A ) )_*
 )
 
+-- This version of univDenom is based on the previous version of 
+-- the proof in the paper (see, e.g., version 20).
+-- It sometimes returns smaller denominators, making it better
+-- than the other version.
 univDenom2 = method()
 univDenom2 Matrix := A ->
 (
@@ -816,13 +820,3 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, p0, variables ) ->
 
 -------------------------------------------------
 
--- TODO: 
-
--- Searching small not very small points should be a separate command
-
--- criticalExponents should return just the sorted list of exponents;
--- the current implementation should be an intenal command
-
--- Continue with the use of types.
-
--- Make SolveIP a method that uses cacheValue     
