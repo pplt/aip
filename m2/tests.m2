@@ -915,6 +915,29 @@ univDenom A
 print \ criticalExponents( A, 11, Verbose => true );
 print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
 
+--- Example from Daniel's binomial paper
+A = matrix{ {7,5}, {2,6} }
+--- homogeneous degree 16 (deg x = 2; deg y = 1), so 16 is a univ denom
+QQ[x,y]
+print \ frobeniusPowers( A, 1, {x,y} );
+print \ frobeniusPowers( A, 2, {x,y} );
+print \ frobeniusPowers( A, 3, {x,y} );
+print \ frobeniusPowers( A, 5, {x,y} ); -- p = 37
+print \ frobeniusPowers( A, 7, {x,y} );
+print \ frobeniusPowers( A, 9, {x,y} );
+print \ frobeniusPowers( A, 11, {x,y} ); -- p = 43
+print \ frobeniusPowers( A, 13, {x,y} );
+print \ frobeniusPowers( A, 15, {x,y} );
+
+-- Cusp
+A = matrix{ {2,0}, {0,3} }
+-- deg 6
+QQ[x,y]
+print \ frobeniusPowers( A, 1, {x,y} );
+print \ frobeniusPowers( A, 2, {x,y} );
+print \ frobeniusPowers( A, 3, {x,y} );
+print \ frobeniusPowers( A, 5, {x,y} ); 
+
 ---------------------------------------------------------------------------------------------
 --- Our running example
 ---------------------------------------------------------------------------------------------
@@ -966,3 +989,10 @@ matrixToIdeal(A,R)
 matrixToIdeal(A,{x,y,z})
 
 maximize({-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6},x -> abs(x))
+
+criticalExponents(transpose matrix {{4,7,3}},11)
+
+QQ[x,y,z]
+
+frobeniusPowers(transpose matrix {{4,7,3}},11,{x,y,z})
+print \ oo

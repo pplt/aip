@@ -2068,7 +2068,7 @@ The main result of this subsection is the following.
 \end{theorem}
 
 \begin{remark}
-   In \Cref{non-leading coefficients: P}, we will show that the non-leading coefficients of this polynomial are nonpositive.
+   In \Cref{finishing-with-the-fundamental-sequences: P} we will show that the non-leading coefficients of this polynomial are nonpositive.
    The proof below, however, will only show that the constant coefficient is negative.
 \end{remark}
 
@@ -2156,7 +2156,7 @@ We are now ready to prove the above theorem.
    where each $G_e(\pp)$ is a polynomial in $\pp$ such that
    \[ \val \IP_p(\matA,\vv{u},p^e) = G_e(p)\]
    for any sufficiently large prime $p\equiv r\bmod \denom$.
-   Moreover, if $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala,\ideald)$, then for all such primes the critical exponent $\crit(\ideala,\ideald)$ can be obtained by evaluating $G(\pp,\tt)(1-\pp\tt)$ at $\big(p,\frac1p\big)$.
+   Moreover, in view of \Cref{prop: value of fractal program is crit} the value of the fractal linear program $\fip_p(\matA,\vv{u})$ can be obtained by evaluating $G(\pp,\tt)(1-\pp\tt)$ at $\big(p,\frac1p\big)$.
 
   This algorithm relies on the ability to solve several linear programs---each time a degree is evaluated---and several integer programs---each time a universal deficit or shortfall is computed.
    Given the computational complexity of solving such programs, our algorithm is bound to be highly inefficient or impractical for large matrices or large $r$.
@@ -2231,7 +2231,7 @@ This graph's construction relies on a positive integer $r$, and its powers, wher
 \subsection{The sprouting graph of a monomial matrix} 
 
 \begin{definition}[Descendant]
-   A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its columns.
+   A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its rows.
 \end{definition}
 
 \begin{definition}[$r$-sprout]
@@ -2973,8 +2973,9 @@ In these lemmas, $\matA$ is a monomial matrix, $\O$ is an unbounded standard fac
 %   We will prove that if $\rb(\O) \subseteq \rb(\L)$, then $\O =\L$.
    Suppose  $\rb(\O) \subseteq \rb(\L)$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \degree(\matA,\vv{u})$.
    Then $\lambda^{-1} \vv{u} \in \L$, and so $\lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\L}$.
-   Since $\collapse{\L}$ is a face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and $\lambda = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P}, the minimality of $\collapse{\O} = \mf(\collapse{\matA}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\L}$, and invoking \Cref{collapse of Newton polyhedron: P} again we conclude that $\O \subseteq \L$.
-
+   Since $\collapse{\L}$ is a face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P},
+%   and $\lambda = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P},
+   the minimality of $\collapse{\O} = \mf(\collapse{\matA}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\L}$, and invoking \Cref{collapse of Newton polyhedron: P} again we conclude that $\O \subseteq \L$.
    On the other hand, we have 
    \[ \lambda = \degree(\collapse{\matA},\vv{w}) = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \]
    and as $\lambda^{-1} \vv{u} \in \L \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$.
@@ -3101,14 +3102,19 @@ The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+eta
    \label{crits of mon ideals: P}
    Let $\matA$ be a monomial matrix, and let $\setW$ and $\beta$ be as in \Cref{finite-representatives-small-crits: P}.
    If $\ideala$ is a monomial ideal in characteristic $p>\beta$ associated to $\matA$, then for each $t\in [0,1)$ we have
-   \[ \ideala^{[t]} = \ideal{x^{\vv{u}-\vv{1}} : \vv{u} \in \setW\text{ and }\crit(\matA,\vv{u},p) > t}.\]	
+   \begin{equation}
+   \ideala^{[t]} = \ideal{x^{\vv{u}-\vv{1}} : \vv{u} \in \setW\text{ and }\crit(\ideala, \ideald_\vv{u}) > t}\label{eq: description of frobenius powers in terms of crits}   
+\end{equation}
+where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive point $\vv{u}$.
 \end{proposition}
 
-\begin{proof}\ 
-   \todo[inline]{TBC}
-	% If a monomial $x^{\vv{u}-\vv{1}}$ lies in $\ideala^{[t]}$, then $\crit(\ideala,\ideald_\vv{u}) > t$, as $x^{\vv{u}-\vv{1}}\notin \ideald_\vv{u}$.
-	% Conversely, if $\crit(\ideala, \ideald_\vv{u}) > t$, then $\ideala^{[t]}\not\subseteq \ideald_\vv{u}$, so there exists a monomial $x^{\vv{v}} \in \ideala^{[t]}$ with $\vv{v} < \vv{u}$.
-	% Equivalently, $\vv{v} \leq \vv{u}-\vv{1}$, hence $x^{\vv{u}-\vv{1}}\in \ideal{x^{\vv{v}}}\subseteq \ideala^{[t]}$. 
+\begin{proof}
+   If $\vv{u} \in \setW$ and $\crit(\ideala, \ideald_\vv{u}) > t$, then $\ideala^{[t]}\not\subseteq \ideald_\vv{u}$, so there exists a monomial $x^{\vv{v}} \in \ideala^{[t]}$ with $\vv{v} < \vv{u}$.
+   Equivalently, $\vv{v} \leq \vv{u}-\vv{1}$, hence $x^{\vv{u}-\vv{1}}\in \ideal{x^{\vv{v}}}\subseteq \ideala^{[t]}$.
+   
+   Conversely, if $x^{\vv{v}} \in \ideala^{[t]}$, then $\crit(\ideala,\ideald_{\vv{v}+\vv{1}}) > t$, as $x^{\vv{v}}\notin \ideald_{\vv{v}+\vv{1}}$.
+   If $\crit(\ideala, \ideald_{\vv{v}+\vv{1}}) \le 1$, then \Cref{finite-representatives-small-crits: P} shows that there exists $\vv{u} \in \setW$ with $\vv{u} \le \vv{v} +\vv{1}$ with $\crit(\ideala,\ideald_{\vv{u}}) = \crit(\ideala, \ideald_{\vv{v}+\vv{1}}) > t$.
+   Since $\vv{v} \ge \vv{u} - \vv{1}$, $x^\vv{v}$ lies in the right hand side of \eqref{eq: description of frobenius powers in terms of crits}.
 \end{proof}
 
 \begin{example}[Running example: Frobenius powers]
