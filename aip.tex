@@ -2863,17 +2863,13 @@ $\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} 
 We also record another consequence of the fact that $\val \Theta = 0$, namely, that 
 \begin{equation}
 \label{1-deficit-equals-degree-for-very-small-pairs: e}
-\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{\vv{s}} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u}).
+\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{\tail{\vv{s}}_1} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u}).
 \end{equation}
 
 Next, suppose that $(\matB, \vv{v})$ is an arbitrary $1$-sprout of $(\matA, \vv{u})$.  Then
 \[ \deg(\matB, \vv{v}) \leq \udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})  \]
-where the inequality follows from \Cref{fundamental-sequences: L}, and the equality from \eqref{1-deficit-equals-degree-for-very-small-pairs: e}.  This implies that $(\matB, \vv{v})$ is also very small, and invoking the equality of the outer terms of \eqref{1-deficit-equals-degree-for-very-small-pairs: e} for this very small pair shows that $\deg(\matB, \vv{v}) = \udeficit(\matB, \vv{v}, 1)$.
+where the inequality follows from \Cref{fundamental-sequences: L}, and the equality from \eqref{1-deficit-equals-degree-for-very-small-pairs: e}.  This implies that $(\matB, \vv{v})$ is also very small, and invoking the equality of the outer terms of \eqref{1-deficit-equals-degree-for-very-small-pairs: e} for this very small pair shows that $ \udeficit(\matB, \vv{v}, 1) = \deg(\matB, \vv{v})$.
 \end{proof}
-
-
-
-\newpage
 
 \begin{proposition}
 	\label{important-special: P}
@@ -2886,7 +2882,7 @@ By definition, $\S^{\ast}_{r}(\matA, \vv{u})$ consists of the single vertex $(\m
 
 Next, suppose that $e$ is greater than $1$, and that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S^{\ast}_{r^e}(\matA, \vv{u})$.   Lemma \ref{1-sprouts: L} tells us that $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of itself, and hence, lies in $\S_{r^{e+1}}(\matA, \vv{u})$.  In fact, Lemma \ref{1-sprouts: L} also implies that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S^{\ast}_{r^{e+1}}(\matA, \vv{u})$.  We leave the verification of this, which is similar to the base case considered above, to the reader.
 
-We have just seen that $(\matA, \vv{u}) \in \S_r^{\ast}(\matA, \vv{u})$, and that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S_{r^e}^{\ast}(\matA, \vv{u})$ for every $e>1$  Using these points, we compute that $\epsilon_{p^e}(\matA,\vv{u}) = \delta_{p^e}(\matA,\vv{u}) = \degree(\matA,\vv{u})$ for all positive $e$, and asserted values for the fundamental sequences follow.
+We have just seen that $(\matA, \vv{u}) \in \S_r^{\ast}(\matA, \vv{u})$, and that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S_{r^e}^{\ast}(\matA, \vv{u})$ for every $e>1$  Using these points, we compute that $\epsilon_{p^e}(\matA,\vv{u}) = \delta_{p^e}(\matA,\vv{u}) = \degree(\matA,\vv{u})$ for all positive $e$, and the asserted values of the fundamental sequences follow.
 \end{proof}
 
 
