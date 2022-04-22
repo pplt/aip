@@ -2552,9 +2552,9 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    On the other hand, if $(\matC, \vv{z}) \in \S^{\ast}_{qp}(\matA,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(\matA,\vv{u})$ as $(\matA_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)$ and the point $(\matC, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
-\begin{theorem}[Main Theorem for AIPs]
+\begin{theorem}[Main theorem on AIPs]
    \label{main theorem wrt diagonal: T}
-   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exist a positive integer $\beta = \beta(\matA)$, and a function that associates to every unit $r$ in $\ZZ/d\ZZ$ and monomial pair $(\matA, \vv{u})$, a pair of eventually periodic sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ of rational numbers% determined by the graph $\sprout^{\ast}_r(\matA, \vv{u})$, 
+   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exist a positive integer $\beta = \beta(\matA)$, and a function that associates to every unit $r$ in $\ZZ/d\ZZ$ and very small monomial pair $(\matA, \vv{u})$, a pair of eventually periodic sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ of rational numbers% determined by the graph $\sprout^{\ast}_r(\matA, \vv{u})$, 
    , with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive, satisfying the following condition:  If $p > \beta$ and $\lpr{p}{d} = r$, and $e$ is a positive integer, then
 %
 \[
@@ -2677,7 +2677,7 @@ $\{ \lambda_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ and $\{ \eta_{r^s}(\matA, \v
  \newpage
 \begin{definition}[Fundamental sequences]
 	\label{fundamental-sequences: D}	
-The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a positive integer $r$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ referred to in the statement of \Cref{main theorem wrt diagonal: T}, and explicitly defined in its proof.  In other words,
+The \emph{fundamental sequences} associated to a very small pair $(\matA, \vv{u})$ and a positive integer $r$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ referred to in the statement of \Cref{main theorem wrt diagonal: T}, and explicitly defined in its proof.  In other words,
 	%
 \begin{align*}
 \lambda_{r^s}(\matA, \vv{u}) & = \begin{cases} 
@@ -2702,6 +2702,181 @@ The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a posi
 \begin{proof}  \Cref{elementary2: R}\eqref{collapse sprout star graphs same} implies that the fundamental sequences associated to $(\matA, \vv{u})$ and $(\overline{\matA}, \overline{\vv{u}})$ coincide, and our claim then follows from \Cref{main theorem wrt diagonal: T}.
 \end{proof}
 
+
+
+\newpage
+\subsection{The fundamental sequences}
+
+We now our focus on the fundamental sequences described in \Cref{fundamental-sequences: D}.  More precisely, our goals are to demonstrate that these sequences behave as asserted in \Cref{main theorem wrt diagonal: T}, and also derive some important special cases of  \Cref{main theorem wrt diagonal: T}.   We start with a preliminary result.
+\newcommand{\rr}{{r}}
+
+
+
+\begin{lemma}
+   \label{fundamental-sequences: L}
+   If $(\matB, \vv{v})$ is a $\rr$-sprout of $(\matA, \vv{u})$, then $\degree(\matB,\vv{v}) \leq \udeficit(\matA, \vv{u}, \rr) $.  
+\end{lemma}
+
+\begin{proof}
+   Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
+   By definition, $\matB$ is the collapse of $\matA$ along $\O$, and $\vv{v} \in \ushort(\matA,\vv{u},\rr)$.
+   \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB=\collapse{\matA}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
+   
+   
+   On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we may write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
+%
+%\begin{equation}
+%\label{lemma-fundamental-sequences-nonnegative: e}
+\[ 
+ \iprod{\collapse{\vv{c}}}{\vv{v}} = \iprod{\collapse{\vv{c}}}{ \matB \tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} = \norm{\tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} \leq \norm{\tail{\vv{s}}_{\rr}} - \val \ip 
+\]
+%\end{equation}
+%
+where the first equality follows from our description of $\vv{v}$, the second equality from \eqref{norm of tail: e}, and the inequality from \eqref{bound in inner product: e}.  However, by definition, the right-most term equals  $\udeficit(\matA, \vv{u}, \rr)$, and so $\deg(\matB, \vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}} \leq \udeficit(\matA, \vv{u}, \rr)$.
+\end{proof}
+
+\begin{proposition}
+\label{finishing-with-the-fundamental-sequences: P}
+Given a very small pair $(\matA, \vv{u})$, and positive integer $r$, the fundamental sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ satisfy the conditions described in \Cref{main theorem wrt diagonal: T}.  That is, each is an eventually periodic sequence of rational numbers, with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive.
+\daniel[inline]{Add that these sequences only depend on $r$ modulo a universal denominator for $\matA$, and all of its descendants?  Or be much more explicit in \Cref{main theorem wrt diagonal: T}, and less so here?  Should we include information on invariance of fundamental sequences under collapsing?}
+\end{proposition}
+
+\begin{proof}
+   Fix $(\matA,\vv{u})$ and $r$ as above, and set $\mathcal{E}=\mathcal{E}_r(\matA,\vv{u})$ and $\Q = \Q_r(\matA,\vv{u})$.  
+   
+   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\mathcal{E} \neq \infty$,  each such term is eventually constant, and when $\mathcal{E} = \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
+   
+Furthermore, each $\eta_{r^s}(\matA, \vv{u})$ is either $1$, or equal to $\delta_{r^s}(\matA, \vv{u})$, which is a universal deficit, and hence, must be positive.  Thus, to conclude, it remains to prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\mathcal{E} \neq \infty$ and $1 \leq s \leq \mathcal{E}$.
+
+We first consider the situation when $\mathcal{E} \neq \infty$ and $1 \leq s < \mathcal{E}$.   In this case, by definition of $\mathcal{E}$, both $\S_{r^{s}}^{\ast}(\matA, \vv{u})$ and $\S_{r^{s+1}}^{\ast}(\matA, \vv{u})$ are non-empty, and hence, there exists a pair $(\matC, \vv{z})$ in the latter set that is a $r$-sprout of a pair $(\matB, \vv{v})$ in the former.  In this case, \Cref{fundamental-sequences: D} then tells us that 
+\[ \lambda_{r^s}(\matA, \vv{u}) = \delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) = \udeficit(\matB, \vv{v}, r) - \deg(\matC, \vv{z}) \]  
+ and \Cref{fundamental-sequences: L} then implies that the right-most difference must be nonnegative.  
+ 
+Finally, we consider the case that $s = \mathcal{E} \neq \infty$.  In this case,  $\S^{\ast}_{r^{\mathcal{E}+1}}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{p^{\mathcal{E}}}(\matA,\vv{u})$, and whose terminal pair is not very small. Thus, 
+\[ \lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) = \delta_{r^{\mathcal{E}}}(\matA, \vv{u}) - 1 = \udeficit(\matB, \vv{v}, r) - 1 \geq \deg(\matC, \vv{z}) - 1   \] where the last inequality follows from \Cref{fundamental-sequences: L}.   However, as $(\matC, \vv{z})$ is not very small, the right-most term above must be positive.
+\end{proof}
+
+We now focus on determining the values of the terms $\lambda_{r^s}(\matA, \vv{u})$ and $ \eta_{r^s}(\matA, \vv{u})$ in some important special cases.  
+
+\begin{lemma} \label{1-sprouts: L}
+The collapse of a very small pair $(\matA, \vv{u})$ along its minimal face $\O = \mf(\matA, \vv{u})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore,  $\udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})$.
+\end{lemma}
+
+\begin{proof}
+Consider a rational special point $\vv{s}$ for $(\matA, \vv{u})$ with denominator $\denom$.  Then $\norm{\vv{s}} = \degree(\matA ,\vv{u}) \leq 1$, and so each $s_i$ is of the form $s_i = t_i/d$ for some $t_i \in \ZZ$ with $0 \leq t_i \leq d$.  Thus, $\tail{s_i}_1 = \lpr{t_i}{d}/d = t_i/d = s_i$ if $t_i \neq 0$.  In other words, $\tail{\vv{s}}_1 = \vv{s}$.
+
+Thus, if we set $\ip = \ip(\matA, \vv{u}, \vv{s}, 1)$, then $0 \leq \val \ip <  \norm{\vv{s}} = \degree(\matA, \vv{u}) \leq 1$   where the strict inequality follows from \Cref{bounded value: P}.   We conclude that  $\val \ip = 0$.
+
+ Hence,  $\vv{0} \in \opt \Theta$, and so $\collapse{A} \tail{\vv{s}}_1 - \collapse{A} \vv{0} \in \short \Theta = \ushort(\matA, \vv{u}, 1)$, where the overbar denotes collapse along $\O$. However, as $\tail{\vv{s}}_1 = \vv{s}$, this point may be rewritten as 
+$\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} \vv{s} = \collapse{\matA \vv{s}} = \collapse{\vv{u}}$ where the last equality follows from the choice of  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.   Thus, $\collapse{\vv{u}} \in \ushort(\matA, \vv{u}, 1)$, and so $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore, $\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{{\vv{s}}} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u})$.
+%\begin{equation}
+%\label{1-deficit-equals-degree-for-very-small-pairs: e}
+%\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{\tail{\vv{s}}_1} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u}).
+%\end{equation}
+%Next, suppose that $(\matB, \vv{v})$ is an arbitrary $1$-sprout of $(\matA, \vv{u})$.  Then
+%\[ \deg(\matB, \vv{v}) \leq \udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})  \]
+%where the inequality follows from \Cref{fundamental-sequences: L}, and the equality from \eqref{1-deficit-equals-degree-for-very-small-pairs: e}.  This implies that $(\matB, \vv{v})$ is also very small, and invoking the equality of the outer terms of \eqref{1-deficit-equals-degree-for-very-small-pairs: e} for this very small pair shows that $ \udeficit(\matB, \vv{v}, 1) = \deg(\matB, \vv{v})$.
+\end{proof}
+
+\begin{proposition}
+	\label{important-special: P}
+   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exists $\beta = \beta(\matA)$ such that if $(\matA, \vv{u})$ is very small, $p>\beta$, and $p \equiv 1 \bmod \denom$, then
+\[
+ \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
+\]
+for all positive integers  $e$.  In particular, in this setting,
+$\val \fip_p (\matA,\vv{u}) = \degree(\matA,\vv{u})$.
+	\end{proposition}
+
+\begin{proof}  Let $(\matA, \vv{u})$ and $p \equiv 1 \bmod d$ be as above.  Below, we will prove that 
+\begin{equation}
+\label{delta-equals-epsilon-when-r-is-1: e}
+\delta_{p^e}(\matA, \vv{u}) = \epsilon_{p^e}(\matA, \vv{u}) = \deg(\matA, \vv{u})
+\end{equation}
+for every positive integer $e$, which would imply that $\lambda_{p^e}(\matA, \vv{u}) = 0 \text{ and } \eta_{p^e}(\matA, \vv{u}) = \deg(\matA, \vv{u})$ for every such $e$.  The proposition would then follow from \Cref{main theorem wrt diagonal: T}. 
+
+We start by observing that \Cref{pair periodicity: R}, along with the assumption that $\lpr{p}{d} = 1$,  implies that $\udeficit(\matB, \vv{v}, p) = \udeficit(\matB, \vv{v}, 1)$ and $\ushort(\matB, \vv{v}, p) = \ushort(\matB, \vv{v}, 1)$ for every $(\matB, \vv{v})$ with $\matB$ is a descendant of $\matA$.  In particular, in this context, the notions of $r$-sprout and $1$-sprout coincide. 
+
+We now address the case of $e=1$ in \eqref{delta-equals-epsilon-when-r-is-1: e}.  By definition, $\S_p(\matA, \vv{u}) = \S_p^{\ast}(\matA, \vv{u})$ consists solely of the pair $(\matA, \vv{u})$.  It then follows from \Cref{1-sprouts: L} that
+\[ \delta_p(\matA, \vv{u}) = \deg(\matA, \vv{u}) = \udeficit(\matA, \vv{u}, 1) = \epsilon_p(\matA, \vv{u}).\] 
+
+Next, suppose that \eqref{delta-equals-epsilon-when-r-is-1: e} holds for some positive integer $e$.  Then
+\[ \deg(\matB, \vv{v}) = \udeficit(\matB, \vv{v}, 1) = \deg(\matA, \vv{u}) \] 
+ for every $(\matB, \vv{v}) \in \S_{p^e}^{\ast}(\matA, \vv{u})$.  By definition, every $(\matC, \vv{z}) \in \S_{p^{e+1}}(\matA, \vv{u})$ is a $1$-sprout of such a $(\matB, \vv{v})$, and so the above identities, along with \Cref{fundamental-sequences: L}, imply that
+$\deg(\matC, \vv{z}) \leq \udeficit(\matB, \vv{v}, 1) = \deg(\matA, \vv{u})$.  This bound shows that $(\matC, \vv{z})$ must be very small, and thus, this same bound, along with \Cref{1-sprouts: L}, implies that
+\begin{equation}
+\label{describing-next-level-of-graph-p-congruent-to-1: e}
+ \udeficit(\matC, \vv{z}) = \deg(\matC, \vv{z}) \leq \deg(\matA, \vv{u}).
+\end{equation}
+
+Thus, \eqref{describing-next-level-of-graph-p-congruent-to-1: e} implies that $\S_{p^{e+1}}^{\ast}(\matA, \vv{u})$ consists of all pairs $(\matC, \vv{z})$ that are $1$-sprouts of some $(\matB, \vv{v}) \in \S_{p^{e}}^{\ast}(\matA, \vv{u})$ with $\deg(\matC, \vv{z}) = \deg(\matB, \vv{v}) = \deg(\matA, \vv{u})$, provided that such a pair $(\matC, \vv{z})$ exists.  However,  \Cref{1-sprouts: L} implies that the $1$-sprout of $(\matB, \vv{v})$ obtained from this pair by collapsing along its minimal face is such a $(\matC, \vv{z})$.  Finally, using this pair to compute $\epsilon_{p^{e+1}}(\matA, \vv{u})$ and $\delta_{p^{e+1}}(\matA, \vv{u})$, we conclude that \eqref{delta-equals-epsilon-when-r-is-1: e} holds for $e+1$.  By induction, \eqref{delta-equals-epsilon-when-r-is-1: e} must hold for all $e$.
+\end{proof}
+
+\begin{lemma}
+Suppose that $\ideala$ is an $\idealm$-primary ideal generated by monomials that are all of the same degree $d$, with respect to some positive $\ZZ$-grading.  If $\matA$ is the monomial matrix associated to these generators, then every $r$-sprout of a pair $(\matA, \vv{u})$ is of the form $(\matA, \vv{v})$, and satisfies  $\degree(\matA,\vv{v}) = \udeficit(\matA, \vv{u}, \rr)$. 
+\end{lemma}
+
+\begin{proof}  Suppose that the ambient ring of $\ideala$ involves $m$ variables.  Let $\vv{b} \in \ZZ^m$ be the positive weight vector that defines the grading on the ambient polynomial ring of $\ideala$.  By assumption, the inner product of $\vv{b}$ with each column of $\matA$ equals $d$, and if we normalize  by dividing $\vv{b}$ by $d$, we obtain a positive vector $\vv{c} \in \QQ^m$ whose inner product with every column of $\matA$ is $1$.  Furthermore, as $\ideala$ is assumed to be $\idealm$-primary, every coordinate axis of $\RR^m$ contains some column of $\matA$.   
+
+All of this shows the Newton polyhedron $\N$ associated to $\matA$ contains a unique standard face, namely, the face $\O$ defined by $\vv{c}$, which is compact, as $\vv{c}$ is positive.  
+
+In particular, the collapse along $\O$ is the identity.  Thus, if $(\matB, \vv{v})$ is an $r$-sprout of $(\matA, \vv{u})$, then $\matB = \matA$, and $\vv{v} \in \ushort(\matA, \vv{u}, r)$.  To realize $\vv{v}$,  we fix a special point $\vv{s}$ for $(\matA, \vv{u})$, and write $\vv{v} = \matA \tail{\vv{s}}_r - A \vv{h}$ for some $\vv{h}$ that is optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, r)$.   
+
+As $\O$ is the unique standard face of $\N$,  \Cref{FT descriptions: P}\ref{new ip} that $\deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}}$.  Therefore, as the inner product of $\vv{c}$ with every column of $\matA$ is $1$, 
+\[ \deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\matA \tail{\vv{s}}_r} - \iprod{\vv{c}}{\matA \vv{h}} = \norm{\tail{\vv{s}}_r} - \tail{\vv{h}} = \norm{\tail{\vv{s}_r}} - \val \ip.\]
+However, by definition, the right-most term above equals $\udeficit(\matA, \vv{u}, r)$. 
+\end{proof}
+
+
+Th following result explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
+
+
+\begin{proposition}  Suppose that $\ideala$ is an $\idealm$-primary ideal generated by monomials that are all of the same degree, with respect to some positive $\ZZ$-grading.  If $\matA$ is the monomial matrix associated to these generators, then there exists $\beta = \beta(\matA)$ with the following property:  If $(\matA, \vv{u})$ is very small, and $p>\beta$, then either \[ \fip_p(\matA, \vv{u}) = \deg(\matA, \vv{u}) \] which occurs if and only if $\Q_p = \Q_p(\matA, \vv{u})$ is infinite, or 
+\[ \fip_p(\matA, \vv{u}) = \deg(\matA, \vv{u}) - \frac{\lambda_{\Q_p}(\matA, \vv{u})}{\Q_p} \] 
+in which case the numerator $\lambda_{\Q_p}(\matA, \vv{u})$ above is positive. 
+
+\daniel[inline]{This still needs some work.  The original statement appears below.}
+   Consider a very small pair $(\matA,\vv{u})$ associated to an ideal pair $(\ideala,\ideald)$, where $\ideala$ is an $\idealm$-primary ideal generated by monomials of the same degree $d$ under some positive $\ZZ$-grading, as in \Cref{ex: m-primary homogeneous case}.
+   \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(\matA,\vv{u})-\epsilon_{p^{s+1}}(\matA,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
+   Thus, for sufficiently large~$p$, $\crit(\ideala,\ideald)$ is either equal to $\ft{\ideala}{\ideald} = \deg \vv{u}/d$, if $\Q=\Q(\matA,\vv{u})$ is infinite, or it is a rational number with denominator a power of $p$ otherwise.
+   To make this more explicit, note that $d$ is a universal denominator for $\matA$, as shown in \Cref{ex: m-primary homogeneous case 2}, and hence a denominator for $\delta_\Q(\matA,\vv{u})$.
+   Thus, we have
+   \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q} \]
+   where $r$ is a positive integer congruent to $\Q\deg\vv{u}$ modulo $d$.
+\end{proposition}
+
+
+\newpage
+\daniel[inline]{I think the rest of this needs to be more general, that is, about critical exponents of a monomial ideal with respect to an arbitrary ideal.  This will be where we add the analogue fo the main result of BMS for the $\mu$'s.  The rest of this section will also, eventually, be absorbed into the next section.}
+
+\subsection{Critical exponents versus $F$-thresholds}
+\label{crit versus ft: SS}
+
+Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.
+Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold of $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.
+
+Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial matrix~$\matA$.
+Consider a very small monomial pair $(\matA,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(\matA,\vv{u})$.
+If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
+\begin{equation}\label{eq: crit infinite case}
+\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{i=1}^{\infty} \frac{\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})}{p^i}.
+\end{equation}
+In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})$ are eventually periodic in $i$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
+
+On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
+\begin{align*}
+\crit(\ideala,\ideald)& = \frac{\mu(\ideala,\ideald, \Q) +1}{\Q} \\
+& = \ft{\ideala}{\ideald} -  \!\! \sum_{1 \le i < \log_p\!\! \Q} \!\!\! \frac{\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})}{p^i} -  \frac{ \delta_{\Q}(\matA,\vv{u})-1}{\Q}
+\end{align*}
+and so $\crit(\ideala,\ideald)$ is again rational, with denominator a power of $p$.
+
+Thus, if $p \gg 0$ and $(\matA,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then
+\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \sum_{i=1}^{\infty} \frac{ \sigma_{p^i}(\ideala,\ideald)}{p^i} \]
+where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(\matA,\vv{u})$ and on the class of $p$ modulo any universal denominator for $\matA$, but not on the value of $p$ itself.
+
+
+\newpage
+\subsection{An algorithm, and some examples}
 
 \begin{remark}[An algorithm]
    \label{algorithm: R}
@@ -2795,155 +2970,9 @@ The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a posi
 \end{example}
 
 
-\newpage
-\subsection{The fundamental sequences}
-
-We now our focus on the fundamental sequences described in \Cref{fundamental-sequences: D}.  More precisely, our goals are to demonstrate that these sequences behave as asserted in \Cref{main theorem wrt diagonal: T}, and also to determine their values in some important special cases.    We start with a preliminary result.
-\newcommand{\rr}{{r}}
-
-
-\begin{lemma}
-   \label{fundamental-sequences: L}
-   If $(\matB, \vv{v})$ is a $\rr$-sprout of $(\matA, \vv{u})$, then $\degree(\matB,\vv{v}) \leq \udeficit(\matA, \vv{u}, \rr) $.  Furthermore, if $\ideala$ is an $\idealm$-primary monomial ideal generated by monomials that are all of the same degree, with respect to some positive $\ZZ$-grading, and $\matA$ is the monomial matrix associated to these generators, then $\degree(\matB,\vv{v}) = \udeficit(\matA, \vv{u}, \rr)$. 
-\end{lemma}
-
-\begin{proof}
-   Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
-   By definition, $\matB$ is the collapse of $\matA$ along $\O$, and $\vv{v} \in \ushort(\matA,\vv{u},\rr)$.
-   \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB=\collapse{\matA}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\eqref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
-   
-   
-   On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we may write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
-%
-\begin{equation}
-\label{lemma-fundamental-sequences-nonnegative: e}
-\iprod{\collapse{\vv{c}}}{\vv{v}} = \iprod{\collapse{\vv{c}}}{ \matB \tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} = \norm{\tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} \leq \norm{\tail{\vv{s}}_{\rr}} - \val \ip 
-\end{equation}
-%
-where the first equality follows from our description of $\vv{v}$, the second equality from \eqref{norm of tail: e}, and the inequality from \eqref{bound in inner product: e}.  However, by definition, the right-most term above equals  $\udeficit(\matA, \vv{u}, \rr)$.  In summary, we have just demonstrated that \[ \deg(\matB, \vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}} \leq \udeficit(\matA, \vv{u}, \rr).\]  
-
-To address the second assertion, we will show that, whenever $\matA$ is the monomial matrix associated to such a generating set,  each of these inequalities is an equality.
-
-To start, note that, in this context, the Newton polyhedron $\N$ is particularly simple.  Indeed, it has a unique standard face $\O$, which is compact, being defined by the positive point $\vv{c}$ that is a rescaling of the weight vector associated to the ambient positive $\ZZ$-grading.   In particular, the collapse along $\O$ is the identity, and so $\matB = \matA$, and $\collapse{\vv{c}} = \vv{c}$.  Furthermore, as $\O$ is the unique standard face of $\N = \collapse{\N}$, it follows from \Cref{FT descriptions: P}\eqref{new ip} that $\deg(\matB, \vv{v}) = \deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}}$.  On the other hand, as every column of $\matB = \matA$ lies on $\O$, a direct calculation shows that $\iprod{\overline{\vv{c}}}{\matB \vv{h}} = \norm{\vv{h}}$, and substituting this into \eqref{lemma-fundamental-sequences-nonnegative: e} implies that $\iprod{\vv{c}}{\vv{v}} = \udeficit(\matA, \vv{u}, \rr)$.  
-\end{proof}
-
-\begin{proposition}
-\label{finishing-with-the-fundamental-sequences: P}
-Given a pair $(\matA, \vv{u})$ and positive integer $r$, the fundamental sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ satisfy the conditions described in \Cref{main theorem wrt diagonal: T}.  That is, each is an eventually periodic sequence of rational numbers, with each term $\lambda_{r^s}(\matA, \vv{u})$  nonnegative, and each term $\eta_{r^s}(\matA, \vv{u})$  positive.
-\daniel[inline]{Add that these sequences only depend on $r$ modulo a universal denominator for $\matA$, and all of its descendants?}
-\end{proposition}
-
-\begin{proof}
-   Fix $(\matA,\vv{u})$ and $r$ as above, and set $\mathcal{E}=\mathcal{E}_r(\matA,\vv{u})$ and $\Q = \Q_r(\matA,\vv{u})$.  
-   
-   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\mathcal{E} = \infty$,  each such term is eventually constant, and when $\mathcal{E} \neq \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
-   
-Furthermore, each $\eta_{r^s}(\matA, \vv{u})$ is either $1$, or equal to $\delta_{r^s}(\matA, \vv{u})$, which is a universal deficit, and hence, must be positive.  Thus, to conclude, it remains to prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\mathcal{E} \neq \infty$ and $1 \leq s \leq \mathcal{E}$.
-
-We first consider the situation when $\mathcal{E} \neq \infty$ and $1 \leq s < \mathcal{E}$.   In this case, by definition of $\mathcal{E}$, both $\S_{r^{s}}^{\ast}(\matA, \vv{u})$ and $\S_{r^{s+1}}^{\ast}(\matA, \vv{u})$ are non-empty, and hence, there exists a pair $(\matC, \vv{z})$ in the latter set that is a $r$-sprout of a pair $(\matB, \vv{v})$ in the former.  In this case, \Cref{fundamental-sequences: D} then tells us that 
-\[ \lambda_{r^s}(\matA, \vv{u}) = \delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) = \udeficit(\matB, \vv{v}, r) - \deg(\matC, \vv{z}) \]  
- and \Cref{fundamental-sequences: L} then implies that the right-most difference must be nonnegative.  
- 
-Finally, we consider the case that $s = \mathcal{E} \neq \infty$.  In this case,  $\S^{\ast}_{r^{\mathcal{E}+1}}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{p^{\mathcal{E}}}(\matA,\vv{u})$, and whose terminal pair is not very small. Thus, 
-\[ \lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) = \delta_{r^{\mathcal{E}}}(\matA, \vv{u}) - 1 = \udeficit(\matB, \vv{v}, r) - 1 \geq \deg(\matC, \vv{z}) - 1   \] where the last inequality follows from \Cref{fundamental-sequences: L}.   However, as $(\matC, \vv{z})$ is not very small, the right-most term above must be positive.
-\end{proof}
-
-We now focus on determining the values of the terms $\lambda_{r^s}(\matA, \vv{u})$ and $ \eta_{r^s}(\matA, \vv{u})$ in some important special cases.  To do so, we require another preliminary result.
-
-\begin{lemma}[On $1$-sprouts of very small pairs] 
-\label{1-sprouts: L}
-The collapse of a very small pair $(\matA, \vv{u})$ along its minimal face $\O = \mf(\matA, \vv{u})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore, if $(\matB, \vv{v})$ is any $1$-sprout of $(\matA, \vv{u})$, then $\udeficit(\matB, \vv{v}, 1) = \deg(\matB, \vv{v}) \leq \deg(\matA, \vv{u})$.
-\end{lemma}
-
-\begin{proof}
-Fix a rational special point $\vv{s}$  for $(\matA, \vv{u})$ with denominator $\denom$.  Then, as $(\matA, \vv{u})$ is very small, we have that $\norm{\vv{s}} = \degree(\matA ,\vv{u}) \leq 1$, and so that we can write $\vv{s} = \vv{t}/\denom$, where $\vv{t}$ has nonnegative integer coordinates bounded above by $\denom$.  Thus,  by definition, $\tail{s_i}_1$ equals $\lpr{t_i}{d}/d = t_i/d = s_i$ if $t_i \neq 0$, and equals $0$ otherwise.
-
-In other words, $\tail{\vv{s}}_1 = \vv{s}$.  Thus, if we set $\ip = \ip(\matA, \vv{u}, \vv{s}, 1)$, then \[ 0 \leq \val \ip < \norm{\tail{\vv{s}}_1} = \norm{\vv{s}} = \degree(\matA, \vv{u}) \leq 1\]   where the strict inequality follows from \Cref{bounded value: P}.   We conclude that  $\val \ip = 0$.
-
- Hence,  $\vv{0}$ is optimal for $\Theta$, and so by definition, the point $\collapse{A} \tail{\vv{s}}_1 - \collapse{A} \vv{0}$ lies in $\short \Theta = \ushort(\matA, \vv{u}, 1)$, where the overbar denotes collapse along $\O$. However, as $\tail{\vv{s}}_1 = \vv{s}$, this point may be rewritten as 
-$\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} \vv{s} = \collapse{\matA \vv{s}} = \collapse{\vv{u}}$ where the last equality follows from the fact that $\vv{s}$ is special for $(\matA, \vv{u})$.   In any case, we see that $\vv{u} \in \ushort(\matA, \vv{u}, 1)$, and so by definition, $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of $(\matA, \vv{u})$.
-
-We also record another consequence of the fact that $\val \Theta = 0$, namely, that 
-\begin{equation}
-\label{1-deficit-equals-degree-for-very-small-pairs: e}
-\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{\tail{\vv{s}}_1} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u}).
-\end{equation}
-
-Next, suppose that $(\matB, \vv{v})$ is an arbitrary $1$-sprout of $(\matA, \vv{u})$.  Then
-\[ \deg(\matB, \vv{v}) \leq \udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})  \]
-where the inequality follows from \Cref{fundamental-sequences: L}, and the equality from \eqref{1-deficit-equals-degree-for-very-small-pairs: e}.  This implies that $(\matB, \vv{v})$ is also very small, and invoking the equality of the outer terms of \eqref{1-deficit-equals-degree-for-very-small-pairs: e} for this very small pair shows that $ \udeficit(\matB, \vv{v}, 1) = \deg(\matB, \vv{v})$.
-\end{proof}
-
-\begin{proposition}
-	\label{important-special: P}
-	   Consider a monomial matrix $\matA$, a universal denominator $d$ for $\matA$, and also for each of its finitely many descendants, and a positive integer $r$ with $r \equiv 1 \bmod d$.  If $(\matA, \vv{u})$ is very small, then collapse of this pair along its minimal face $\O = \mf(\matA, \vv{u})$ lies in $\S^{\ast}_{r^e}(\matA, \vv{u})$ for every integer $e>1$.  Consequently, \[ \lambda_{r^e}(\matA, \vv{u}) = 0 \text{ and } \eta_{r^e}(\matA, \vv{u}) = \deg(\matA, \vv{u})\] for every pair $(\matA, \vv{u})$ that is very small, and every positive integer $e$.
-	\end{proposition}
-
-\begin{proof}  Let an overbar denote collapse along $\O = \mf(\matA, \vv{u})$, and fix an integer $r$ as above.  Note that \Cref{pair periodicity: R}, along with the assumption that $r \equiv 1 \bmod d$, implies that $\udeficit(\matB, \vv{v}, r) = \udeficit(\matB, \vv{v}, 1)$ for every pair $(\matB, \vv{v})$ with $\matB$ is a descendant of $\matA$.  Thus, in this context, the notions of $r$-sprout and $1$-sprout coincide.  
-
-By definition, $\S^{\ast}_{r}(\matA, \vv{u})$ consists of the single vertex $(\matA, \vv{u})$, and $\S_{r^2}(\matA, \vv{u})$ consists of every $1$-sprout $(\matB, \vv{v})$ of $(\matA, \vv{u})$.   Lemma \ref{1-sprouts: L} then implies that every such $(\matB, \vv{v})$ is very small, and so by definition, $\S^{\ast}_{r^2}(\matA, \vv{u})$ consists of all $1$-sprouts $(\matB, \vv{v})$ of $(\matA, \vv{u})$ that maximize $\deg(\matB, \vv{v})$, and only then minimize $\udeficit(\matB, \vv{v})$.  Invoking Lemma \ref{1-sprouts: L} again, we see that the $1$-sprout $(\collapse{\matA}, \collapse{\vv{u}})$ of $(\matA, \vv{u})$ satisfies these criteria.
-
-Next, suppose that $e$ is greater than $1$, and that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S^{\ast}_{r^e}(\matA, \vv{u})$.   Lemma \ref{1-sprouts: L} tells us that $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of itself, and hence, lies in $\S_{r^{e+1}}(\matA, \vv{u})$.  In fact, Lemma \ref{1-sprouts: L} also implies that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S^{\ast}_{r^{e+1}}(\matA, \vv{u})$.  We leave the verification of this, which is similar to the base case considered above, to the reader.
-
-We have just seen that $(\matA, \vv{u}) \in \S_r^{\ast}(\matA, \vv{u})$, and that $(\collapse{\matA}, \collapse{\vv{u}})$ lies in $\S_{r^e}^{\ast}(\matA, \vv{u})$ for every $e>1$  Using these points, we compute that $\epsilon_{p^e}(\matA,\vv{u}) = \delta_{p^e}(\matA,\vv{u}) = \degree(\matA,\vv{u})$ for all positive $e$, and the asserted values of the fundamental sequences follow.
-\end{proof}
-
-
-The next result is an immediate corollary of \Cref{main theorem wrt diagonal: T} and \Cref{important-special: P}.
-
-\begin{corollary}[An important special case]
-	\label{important-special: C}
-   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exists $\beta = \beta(\matA)$ such that if $p>\beta$ and $p \equiv 1 \bmod \denom$, then
-\[
- \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
-\]
-for every very small $\matA$-pair $(\matA, \vv{u})$, and all $e \geq 1$.
-In particular, for such $p$,
-\[ \val \fip_p (\matA,\vv{u}) = \degree(\matA,\vv{u}).\]
-\end{corollary}
-
-\daniel[inline]{Another special case might be considered below}
-
-\begin{remark}
-   Consider a very small pair $(\matA,\vv{u})$ associated to an ideal pair $(\ideala,\ideald)$, where $\ideala$ is an $\idealm$-primary ideal generated by monomials of the same degree $d$ under some positive $\ZZ$-grading, as in \Cref{ex: m-primary homogeneous case}.
-   \Cref{non-leading coefficients: L} shows that the terms $\delta_{p^s}(\matA,\vv{u})-\epsilon_{p^{s+1}}(\matA,\vv{u})$ appearing in \eqref{eq: crit infinite case} are all zero.
-   Thus, for sufficiently large~$p$, $\crit(\ideala,\ideald)$ is either equal to $\ft{\ideala}{\ideald} = \deg \vv{u}/d$, if $\Q=\Q(\matA,\vv{u})$ is infinite, or it is a rational number with denominator a power of $p$ otherwise.
-   To make this more explicit, note that $d$ is a universal denominator for $\matA$, as shown in \Cref{ex: m-primary homogeneous case 2}, and hence a denominator for $\delta_\Q(\matA,\vv{u})$.
-   Thus, we have
-   \[\crit(\ideala,\ideald) = \frac{\deg \vv{u}}{d} - \frac{r}{d\Q} \]
-   where $r$ is a positive integer congruent to $\Q\deg\vv{u}$ modulo $d$.
-   This explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
-\end{remark}
 
 
 \newpage
-\daniel[inline]{I think the rest of this needs to be more general, that is, about critical exponents of a monomial ideal with respect to an arbitrary ideal.  This will be where we add the analogue fo the main result of BMS for the $\mu$'s.  The rest of this section will also, eventually, be absorbed into the next section.}
-
-\subsection{Critical exponents versus $F$-thresholds}
-\label{crit versus ft: SS}
-
-Let us now investigate what \Cref{main theorem wrt diagonal: T} tells us about the difference between critical exponents and $F$-thresholds of monomial ideals, at least from the perspective of reduction to sufficiently large prime characteristic.
-Recall that if $\ideala$ and $\idealb$ are ideals in an $F$-finite regular ring, then whenever these numbers are defined, the critical exponent of $\ideala$ with respect to $\idealb$ is at most the $F$-threshold of $\ideala$ with respect to $\idealb$, and both are known to be rational \cite[Corollary~5.8]{hernandez+etal.frobenius_powers}.
-
-Suppose that $p \gg 0$ so that the conclusions of \Cref{main theorem wrt diagonal: T} hold for some fixed monomial matrix~$\matA$.
-Consider a very small monomial pair $(\matA,\vv{u})$, associated to an ideal pair $(\ideala,\ideald)$, and set $\Q = \Q_p(\matA,\vv{u})$.
-If $\Q$ is infinite, then  \Cref{main theorem wrt diagonal: T} implies that
-\begin{equation}\label{eq: crit infinite case}
-\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{i=1}^{\infty} \frac{\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})}{p^i}.
-\end{equation}
-In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})$ are eventually periodic in $i$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
-
-On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
-\begin{align*}
-\crit(\ideala,\ideald)& = \frac{\mu(\ideala,\ideald, \Q) +1}{\Q} \\
-& = \ft{\ideala}{\ideald} -  \!\! \sum_{1 \le i < \log_p\!\! \Q} \!\!\! \frac{\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})}{p^i} -  \frac{ \delta_{\Q}(\matA,\vv{u})-1}{\Q}
-\end{align*}
-and so $\crit(\ideala,\ideald)$ is again rational, with denominator a power of $p$.
-
-Thus, if $p \gg 0$ and $(\matA,\vv{u})$ is associated to an ideal pair $(\ideala, \ideald)$, then
-\[ \ft{\ideala}{\ideald} - \crit(\ideala, \ideald) = \sum_{i=1}^{\infty} \frac{ \sigma_{p^i}(\ideala,\ideald)}{p^i} \]
-where $\big(\sigma_{p^i}(\ideala,\ideald) \big)_{i=1}^{\infty}$ is a sequence of nonnegative rational numbers that is eventually periodic, and depends on the pair $(\matA,\vv{u})$ and on the class of $p$ modulo any universal denominator for $\matA$, but not on the value of $p$ itself.
-
 
 \section{Frobenius powers of monomial ideals}
 \label{frobenius-powers-monomial-ideals: S}
