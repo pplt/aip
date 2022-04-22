@@ -2712,7 +2712,7 @@ The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a posi
    All of the considerations made in \Cref{m-primary algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply here.
 \end{remark}
 
-\begin{example}[Running example: values of $\IP_p$]
+\begin{example}[Running example: values of $\IP_p$ and $\fip_p$]
    \label{ex: ft.5}
    \Cref{table: running example data} shows the data associated to the pair $(\matA,\vv{u})$ in our running example, whose sprouting subgraph is shown in \Cref{fig: sprouting graph}.
    \begin{table}
@@ -2743,8 +2743,8 @@ The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a posi
        = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
     \]
     for sufficiently large $p$ congruent to $11$ modulo a universal denominator for~$\matA$.
-    If $(\matA,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$, then for $p$ as above we have
-    \[\crit(\ideala,\ideald) = \frac{4}{17} - \frac{3}{17p^3}.\]
+    Consequently, for $p$ as above we have
+    \[\val \fip_p(\matA,\vv{u}) = \lim_{e\to \infty}  \frac{\val\IP_p(\matA,\vv{u},p^e)}{p^e} = \frac{4}{17} - \frac{3}{17p^3}.\]
 \end{example}
 
 \begin{example}[Another illustration of \Cref{main theorem wrt diagonal: T}]
@@ -2790,8 +2790,8 @@ The \emph{fundamental sequences} associated to pair $(\matA, \vv{u})$ and a posi
       \end{cases}
    \]
    for any sufficiently large prime $p$ congruent to $11$ modulo a universal denominator for $\matA$.
-   If $(\matA,\vv{u})$ is associated to an ideal pair $(\ideala,\ideald)$ and $p$ is as above, then
-   \[\crit(\ideala,\ideald) = \frac{624}{773} - \frac{\num{1551}}{\num{681013} p} - \frac{\num{2794}}{\num{22025} p^3}.\]
+   For such $p$ we have
+   \[\val \fip_p(\matA,\vv{u}) = \lim_{e\to \infty}  \frac{\val\IP_p(\matA,\vv{u},p^e)}{p^e}  = \frac{624}{773} - \frac{\num{1551}}{\num{681013} p} - \frac{\num{2794}}{\num{22025} p^3}.\]
 \end{example}
 
 
