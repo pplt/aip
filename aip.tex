@@ -130,7 +130,8 @@ The following examples give a taste of the formulas obtained.
    \[
       \mu(\ideala_p,\idealm_p,p^e) = \frac{4}{17}p^e - \frac{3}{17}p^{e-3}  - 1
     \]
-    for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $\num{2170560}$.
+    for each $e\ge 3$ and each sufficiently large prime $p$ congruent to $11$ modulo $\num{542640}$.
+    % $\num{2170560}$.
 \end{example}
 
 \begin{example}[See \Cref{ex: new example.2}]
@@ -212,7 +213,7 @@ Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ whose radica
 %    \[
 %       \crit(\ideala_p,\idealm_p) = \frac{4}{17} - \frac{3}{17p^3}
 %     \]
-%     for each sufficiently large prime $p$ congruent to $11$ modulo $\num{2170560}$.
+%     for each sufficiently large prime $p$ congruent to $11$ modulo $\num{542640}$.
 % \end{example}
 
 \begin{example}
@@ -3252,7 +3253,8 @@ where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive poi
 \begin{example}[Running example: Frobenius powers]
    \label{ex: ft.6}
    Let $\kk$ be a field of positive characteristic $p$, and $\ideala = \ideal{x^5 y^5 z^2, x^3 y^4 z^8, x^4 y^3 z^5} \subseteq \kk[x,y,z]$.
-   \Cref{table: main example} shows the Frobenius powers $\ideala^{[t]}$ for $t \in [0,1)$, when $p$ is sufficiently large and congruent to $11$ modulo $\num{2170560}$.
+   \Cref{table: main example} shows the Frobenius powers $\ideala^{[t]}$ for $t \in [0,1)$, when $p$ is sufficiently large and congruent to $11$ modulo $\num{542640}$.
+  % $\num{2170560}$.
 %   \begin{center}
 %      \begingroup
 %      \setlength{\tabcolsep}{8pt} % Default value: 6pt
@@ -3392,6 +3394,13 @@ where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive poi
 }
 \end{example}
 
+\pedro[inline]{
+   I was able to compute all Frobenius powers for \Cref{ex: new example}, in a few ($\sim 3$) hours.
+   The output is insane, and there are lots of crits involving several (8; maybe more) powers of $1/p$.
+   It takes a long time because the Newton polyhedron is far from the origin, and therefore there are LOTS of very small pairs to consider.
+   But the computation of each crit is pretty fast, and I was surprised that the whole thing is doable.
+   Three hours is not bad at all; I'm used to running computations for several days!
+}
 
 \section{Applications to generic hypersurfaces}
 \label{generic-hypersurfaces: S}

@@ -991,6 +991,8 @@ print \ frobeniusPowers( A, 3, {x,y,z} );
 
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
 
+universalDenominator A
+
 QQ[x,y,z]
 print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
 
@@ -1002,6 +1004,17 @@ peek P#cache
 peek P#matrix#cache
 
 ---------------------------------------------------------------------------------------------
+--- Othe example from paper
+---------------------------------------------------------------------------------------------
+
+A = matrix{ {36, 10, 31}, {19,46,31}, {47,25,36} }
+
+universalDenominator A
+
+QQ[x,y,z]
+print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
+
+
 ---------------------------------------------------------------------------------------------
 
 QQ[x,y]
