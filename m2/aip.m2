@@ -202,20 +202,6 @@ newton MonomialMatrix := ( cacheValue symbol newton )( A ->
 )
 newton Matrix := A -> newton monomialMatrix A
 
--- univDenon(A) returns a universal denominator for the matrix A.
-univDenom = method()
-univDenom MonomialMatrix := ( cacheValue symbol univDenom )( M ->
-(
-    A := M#matrix;    
-    n := rank source A;
-    m := rank target A;
-    I := identityMatrix n;
-    B := A || -A || I || -I;
-    allMinors := ( minors( n, B ) )_*;
-    ( m-1 )*( lcm allMinors )
-))
-univDenom Matrix := A -> univDenom monomialMatrix A
-
 -- properFaces(P) returns a list of all proper faces of the polyhedron P.
 properFaces = method() 
 properFaces Polyhedron := ( cacheValue symbol properFaces )( P -> 
@@ -238,7 +224,7 @@ lcmMinors := A ->
     lcm ( minors( d, A ) )_*
 )
 
--- This version of univDenom is based on the previous version of 
+-- This version of universalDenominator is based on the previous version of 
 -- the proof in the paper (see, e.g., version 20).
 -- It sometimes returns smaller denominators, making it better
 -- than the other version.
@@ -256,6 +242,21 @@ univDenom2 Matrix := A ->
     );
     ( numRows( A ) - 1 )*lcm apply( matrices, M -> lcmMinors M )
 ) 
+
+-- univDenon(A) returns a universal denominator for the matrix A.
+universalDenominator = method()
+universalDenominator MonomialMatrix := ( cacheValue symbol universalDenominator )( M ->
+(
+    A := M#matrix;    
+    n := rank source A;
+    m := rank target A;
+    I := identityMatrix n;
+    B := A || -A || I || -I;
+    allMinors := ( minors( n, B ) )_*;
+    denom := ( m-1 )*( lcm allMinors );
+    gcd( univDenom2 A, denom)
+))
+universalDenominator Matrix := A -> universalDenominator monomialMatrix A
 
 -- ft(A,u) returns the F-threshold of the monomial pair (A,u), that is, the unique 
 -- scalar lambda such that u/lambda lies in the boudary of the Newton polyhedron of A.
@@ -383,6 +384,20 @@ isStandard Polyhedron := ( cacheValue symbol isStandard )( P ->
     not any(coordSpaces, S -> contains(S,P))
 ))
 
+isSmall = method()
+isSmall MonomialPair := ( cacheValue symbol isSmall )( pair ->
+(
+    u := pair#point;
+    cols := columns pair#matrix#matrix;
+    not any( cols, a -> all( first entries transpose( u - a ), x -> x > 0 ) ) 
+))
+
+isVerySmall = method()
+isVerySmall MonomialPair := ( cacheValue symbol isVerySmall )( pair -> ft( pair ) <= 1 )
+
+isSmallNotVerySmall = method()
+isSmallNotVerySmall MonomialPair := pair -> isSmall( pair) and not isVerySmall( pair )
+
 properStandardFaces = method()
 properStandardFaces Polyhedron := ( cacheValue symbol properStandardFaces )( P -> 
     select( properFaces P, isStandard )
@@ -492,6 +507,16 @@ pointsAimedAtUnboundedFace := L ->
 
 pointsAimedAtFace := L -> 
     if isCompact L then pointsAimedAtCompactFace L else pointsAimedAtUnboundedFace L
+
+minimalSmallNotVerySmall = method()
+minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVerySmall)( M ->
+(
+    A := M#matrix;
+    P := convexHull( A ) + hypercube( numRows A, 0, 2 );
+    -- select positive lattice points
+    pts := select( latticePoints P, u -> all( first entries transpose u, x -> x > 0 ) );
+    minimalPoints select( pts, u -> isSmallNotVerySmall monomialPair( A, u ) ) 
+))
 
 -- Feasible region of the auxiliary integer program Theta;
 -- not used in code below
@@ -754,7 +779,6 @@ crit = memoize crit
 
 criticalExponents = method( Options => { Verbose => false } )
 criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) -> 
-
 (
     N := newton A;
     F := properStandardFaces N;
@@ -785,23 +809,25 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, p0 ) ->
     m := numRows A; 
     -- Here, I'm gathering small but not very small points.
     -- These should be listed as points realizing crit exp 1
-    aa := matrixToIdeal A;
-    ic := integralClosure aa;
-    bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
-    -- if a point is not in ri(N), move in every direction that takes to the interior
-    bb = flatten apply( bb, u -> 
-        if not inInterior(u,N) then 
-            select( apply( cube m, e -> u+e ), v -> inInterior( v, N ) ) 
-        else u 
-    ); 
-    bb = minimalPoints bb;
+    smallNotVerySmall := minimalSmallNotVerySmall monomialMatrix A; 
+    -- OLD VERSION, with integral closure
+    -- aa := matrixToIdeal A;
+    -- ic := integralClosure aa;
+    -- bb := apply( ic_*, m -> transpose matrix exponents m ); -- make points
+    -- -- if a point is not in ri(N), move in every direction that takes to the interior
+    -- bb = flatten apply( bb, u -> 
+    --     if not inInterior(u,N) then 
+    --         select( apply( cube m, e -> u+e ), v -> inInterior( v, N ) ) 
+    --     else u 
+    -- ); 
+    -- bb = minimalPoints bb;
     lastCrit := last crits;
     if lastCrit#0 == 1_(R2()) then 
         -- if 1 as already in crit list, add small not very small points to its list
-        crits = append( drop( crits, {#crits - 1,#crits - 1} ), { 1_(R2()), join( lastCrit#1, bb ) } )
+        crits = append( drop( crits, {#crits - 1,#crits - 1} ), { 1_(R2()), join( lastCrit#1, smallNotVerySmall ) } )
     else 
         -- if not, add one more entry to crits
-        crits = append( crits, { 1_(R2()), bb } );
+        crits = append( crits, { 1_(R2()), smallNotVerySmall } );
     crits
 )
 

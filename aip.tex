@@ -657,6 +657,10 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
 To conclude, we will show that the feasible sets of $\IP_p(\matA, \vv{u}, p^e)$ and $\IP_p(\matB, \vv{v}, p^e)$ coincide for all $p$ and $e$.  First, note that the arithmetic constraints of these programs are identical, and that each linear constraint of $\IP_p(\matB, \vv{v}, p^e)$ is a linear constraint of $\IP_p(\matA, \vv{u},p^e)$.  Thus, $\feas \IP_p(\matA, \vv{u}, p^e)$ is contained in $\feas \IP_p(\matB, \vv{v}, p^e)$.  On the other hand, if $\vv{k} \in \feas \IP_p(\matB, \vv{v}, p^e)$, then the normalized point $\vv{k}/p^e$ lies in $\feas \LP(\matB, \vv{v})$, and so if $\ell < i \leq m$, its inner product with the $i$-th row of $\matA$ is less than $\omega$, and thus, less than $u_i$, which demonstrates that $\vv{k} \in \feas \IP_p(\matA, \vv{u}, p^e)$.  
 \end{proof}
 
+\todo[inline]{
+   Point out that, having established the connection between our main goals and optimization problems, we will now dive into the study of these programs.
+   With the exception of a few remarks and algebraic interpretations here and there, it won't be until \Cref{frobenius-powers-monomial-ideals: S} that we will return to algebraland.
+}
 
 \section{Connections with Newton polyhedra}
 \label{s: newton}
@@ -752,6 +756,24 @@ This convention leads to the following useful observation, whose simple proof us
    Then $\iprod{\defpt}{\matA\vv{s}} \ge \norm{\vv{s}}$, and equality holds if and only if $s_i = 0$ whenever the $i$-th column of $\matA$ is not in $\O$.
    \qed
 \end{proposition}
+
+\begin{proposition}
+   \label{prop: a property of the boundary}
+\pedro{I need this for \Cref{computibility of W: R}}
+   Let $\N$ be the Newton polyhedron of a monomial matrix, and suppose points $\vv{u} \le \vv{v}$ lie in the boundary of $\N$.
+   Let $I$ denote the set of indices $i$ such that $u_i < v_i$.
+   Then $\vv{u}$ and $\vv{v}$ lie in a common face $\O$ of $\N$ such that $\canvec_i \in \rb(\O)$ for each $i\in I$.
+   In particular, $\vv{u} + \cone(\canvec_i: i\in I)$ is contained in $\O$.
+\end{proposition}
+
+\begin{proof}
+   As $\vv{u} \le \vv{v}$ lie in the boundary of $\N$, so does the entire line segment connecting those points---or else $\vv{v}$ would be an interior point.
+   Since there are only finitely many faces, there must be distinct points $\vv{w}_1 < \vv{w}_2$ in this line segment that lie in the same face $\O$.
+   If $\defpt$ is a point defining $\O$ in $\N$, then $\iprod{\defpt}{\vv{w}_2- \vv{w}_1}$ must be zero.
+   This inner product is a positive linear combination of the components $c_i$ of $\defpt$ with $i\in I$.
+   The nonnegativity of the $c_i$ then implies that $c_i = 0$, and hence $\canvec_i \in \rb(\O)$, for all $i \in I$.
+   This implies that $\vv{v} \in \O$, and so does $\vv{u}$, as $\vv{u}$ lies in $\N$ and $\iprod{\defpt}{\vv{u}} = \iprod{\defpt}{\vv{v}}$.
+\end{proof}
 
 \subsection{The Newton degree of a monomial pair}
 
@@ -932,11 +954,43 @@ It is clear from these interpretations that a very small pair must also be small
    If $\vv{u}$ is any of the gray points, the monomial pair $(\matA,\vv{u})$ is very small.
    If $\vv{u}$ is any of the black points, $(\matA,\vv{u})$ is small, but not very small.
    Finally, if $\vv{u}$ is any of the white points, $(\matA,\vv{u})$ is not small.
-
-   It is interesting to notice that if we were to make this a three-dimensional example by adding a nonzero constant row to the matrix $\matA$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and consequently we would have infinitely many small but not very small pairs.
-   Indeed, this behavior can occur for $\numvars \times n$ monomial matrices $\matA$ for which $m > 2$.
-   For a perhaps simpler (but similar) example, notice that a monomial pair $(\matA, \vv{u})$ associated to the ideal pair $(\ideala, \ideald)$, where $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$, is small but not very small for every $t > 1$.
 \end{example}
+
+\begin{remark}[There may exist infinitely many small but not very small pairs]
+   \label{rem: there may be infinitely many small but not very small pairs}
+   \Cref{ex: small vs very small} may misleadingly suggest that there are always only finitely many small but not very small pairs associated with a monomial matrix.
+   However, if we were to make that a three-dimensional example by adding a nonzero constant row to the matrix $\matA$, we would then have infinitely many ``layers'' looking exactly like \Cref{fig: small vs very small}, and we would have infinitely many small but not very small pairs.
+
+   Indeed, this behavior can occur for monomial matrices $\matA$ with more than two rows.
+   For a perhaps simpler (but similar) example, notice that a monomial pair $(\matA, \vv{u})$ associated to the ideal pair $(\ideala, \ideald)$, where $\ideala= \ideal{x^3 z, y^2z}$ and $\ideald = \ideal{x^2, y, z^t}$, is small but not very small for every $t > 1$.
+\end{remark}
+
+Although there may exist infinitely many points $\vv{u}$ such that the monomial pair $(\matA,\vv{u})$ is small but not very small, only a finite number of those points are minimal with respect to componentwise inequality, by Dickson's Lemma \cite[Lemma~A]{dickson}.
+From the computational perspective, it will be important to know where to look for these minimal points.
+This is accomplished by the following proposition, which concretely describes a bounded set containing all such minimal points.
+
+\begin{proposition}
+   \label{prop: where to find minimal smal but not very small points}
+   \pedro{Will need this in \Cref{computibility of W: R}}
+   Let $\matA$ be a monomial matrix with $\numvars$ rows.
+   Let $S$ be the collection of all positive points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small, and let $\min S$ be the subset of $S$ consisting of the minimal elements with respect to componentwise inequality.
+   Then
+   \[\min S \subseteq \conv(\col(\matA)) + [0,2)^\numvars.\]
+\end{proposition}
+
+\begin{proof}
+   We must show that for each point $\vv{v} \in S$ there exists a point $\vv{u}$ in the intersection of $S$ and $\conv(\col(\matA)) + [0,2)^\numvars$ such that $\vv{u}\le \vv{v}$.
+   Fix $\vv{v} \in S$ and note that, as $(\matA,\vv{v})$ is small but not very small, $\vv{v}$ lies in the interior of the Newton polyhedron $\N$ associated with $\matA$.
+   This in particular implies the existence of $\vv{w} \in \conv(\col(\matA)) \subseteq \N$ such that $\vv{w} \le \vv{v}$.
+   Now consider the point $\up{\vv{w}}$ obtained by rounding up the components of $\vv{w}$.
+   Note that $\up{\vv{w}}$ lies in $\conv(\col(\matA)) + [0,1)^\numvars$ and that, because $\up{\vv{w}} \le \vv{v}$, the pair $(\matA,\up{\vv{w}})$ is necessarily small.
+   If $\up{\vv{w}}$ lies in the interior of $\N$, then $(\matA,\up{\vv{w}})$ is not very small, and we may take $\vv{u} = \up{\vv{w}}$.
+
+   If, on the other hand, $\up{\vv{w}}$ lies in the boundary of $\N$, let $I$ be the set of indices~$i$ such that $\up{\vv{w}}$ and $\vv{v}$ differ in the $i$th coordinate, and $\vv{u} \coloneqq \up{\vv{w}} + \sum_{i\in I} \canvec_i \in \N$.
+   Then $\vv{u} \le \vv{v}$ and $\vv{u}$ lies in $\conv(\col(\matA)) + [0,2)^\numvars$ by construction.
+   Moreover, $\vv{u}$ cannot lie in the boundary of $\N$, or else so would $\vv{v}$ by \Cref{prop: a property of the boundary}.
+   Thus, $(\matA,\vv{u})$ is small but not very small, and hence  $\vv{u} \in S$. 
+\end{proof}
 
 \begin{remark}[Degrees of small pairs]
    \label{rem: finitely many F-thresholds of small pairs}
@@ -2047,7 +2101,7 @@ Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(\matA, \
 
 The following theorem allows us to reduce even further, to the very small case; a related statement appears as \cite[Theorem~6.4]{hernandez+etal.frobenius_powers}.
 Notice that \Cref{fig: small vs very small} may be misleading, in the sense that in this case there are only finitely many $\vv{u} \in \NN^2$ for which $(\matA, \vv{u})$ is small, but not very small, so that the existence of $\beta$ in \Cref{small not very small value: T} is immediate.
-However, as mentioned in \Cref{ex: small vs very small}, given a monomial matrix $\matA$, there may be infinitely many small pairs $(\matA, \vv{u})$ that are not very small.
+However, as mentioned in \Cref{rem: there may be infinitely many small but not very small pairs}, given a monomial matrix $\matA$, there may be infinitely many small pairs $(\matA, \vv{u})$ that are not very small.
 
 \begin{theorem}[Value of $\IP_p$ for small but not very small pairs]
    \label{small not very small value: T}
@@ -2985,9 +3039,9 @@ In fact, the pseudocode presented in Algorithm~\ref{alg} applies to the general 
 $\S_{\pp^e}$ should be defined as the set consisting of all $p$-sprout of all elements in $\S^*_{\pp^{e-1}}$ in line \ref{line1}, and $\matA$ should be replaced with a descendant $\matB$ in lines \ref{line2}--\ref{line5}.
 This algorithm terminates because $\sprout^*_p(\matA,\vv{u})$ is either finite or its levels eventually repeat cyclically, as pointed out in \Cref{elementary2: R}\eqref{elementary2 periodic in e}.
 
-All of the considerations made in \Cref{convenient algorithm: R} about the potential inefficiency and impracticality of the algorithm for the $\idealm$-primary case still apply here.
+All of the considerations made in \Cref{convenient algorithm: R} about the potential inefficiency and impracticality of the algorithm for the convenient case still apply here.
 We are, however, able to compute small examples in a matter of a few seconds.
-We show off this ability here, in \Cref{ex: ft.5,ex: new example.2}, and in \Cref{ex: ft.6}
+We show off this ability here, in \Cref{ex: ft.5,ex: new example.2}, and in \Cref{ex: ft.6,ex: new homogeneous example},
 \todo{And possibly others; update later}
 in the context of the computation of Frobenius powers of monomial ideals.
 
@@ -3152,9 +3206,6 @@ Our goal is to prove the following theorem.
    This set is computable (\eg using the package \emph{Polyhedra} for \emph{Macaulay2} \cite{PolyhedraSource,M2}), 
    and coincides with the union of the sets $\setW_\O$, where $\O$ ranges over all standard faces of $\N$ contained in $\L$.
    \details[inline]{
-      \pedro[inline]{
-         Will write down all the details here, as I intend to use this in the M2 code, and want to make sure it's right.
-      }
       Let $\vv{v}_1,\ldots,\vv{v}_k$ be the vertices of $\L$.
       Let $\vv{u} \in \conv(\L\cup\{\vv{0}\}) \cap \ZZpos^\numvars$.
       Then $\vv{u}$ is a convex combination of $\vv{v}_1, \ldots, \vv{v}_k$ and $\vv{0}$, and therefore $\vv{u} = \sum_{i=1}^k \lambda_i\vv{v}_i$ for some nonnegative $\lambda_i$ with $\lambda \coloneqq \sum_{i=1}^k \lambda_i \le 1$.
@@ -3168,7 +3219,9 @@ Our goal is to prove the following theorem.
       Thus, we can write $\lambda^{-1} \vv{u} = \sum_{i=1}^kt_i \vv{v}_i$, where $t_i \ge 0$ and  $\sum_{i=1}^k t_i = 1$.
       Then $\vv{u} = \sum_{i=1}^k (\lambda t_i) \vv{v}_i +(1-\lambda)\vv{0}$, a convex combination of $\vv{v}_1, \ldots, \vv{v}_k$ and $\vv{0}$, whence $\vv{u} \in \conv(\L\cup \{\vv{0}\})$.
    }
-   \todo[inline]{TBC}
+   \todo[inline]{Discuss unbounded faces}
+   Finally, \Cref{prop: where to find minimal smal but not very small points} tells us that the set $\setW^*$ of minimal points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small is contained in the polytope $\conv(\col(\matA))+[0,2]^\numvars$.
+   So we can effectively gather the elements of $\setW^*$ by testing the finitely many positive lattice points of this polytope.
 \end{remark}
 
 The following proposition---a refinement of \cite[Proposition~2.5]{hernandez+etal.frobenius_examples}---describes the Frobenius powers of a monomial ideal in terms of critical exponents.

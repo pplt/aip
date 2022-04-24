@@ -98,7 +98,7 @@ search2 := (r,m,n,M,maxTries) ->
     (
         print count;
         (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
-        while gcd(univDenom A,r) != 1 do (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
+        while gcd(universalDenominator A,r) != 1 do (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
         num = {(ft(A,u),uDeficit(A,u,r))};
         graph = {{(A,u)}};
         i = 0;
@@ -196,7 +196,7 @@ ft(A,u)
 -- my favorite so far
 -- Currently in paper; UNFORTUNATELY r = 5 divides the universal denominator!
 
-univDenom A
+universalDenominator A
 
 univDenom2 A
 
@@ -592,7 +592,7 @@ r = 11
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 u = columnVector {1,1,1}
 
-univDenom A
+universalDenominator A
 
 ------------------------------
 (A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {9}, {6}, {3}})  
@@ -617,13 +617,13 @@ num
 
 apply(graph, x -> #x)
 
--- In search of smaller univDenom
+-- In search of smaller universalDenominator
 
 -- running example
 
 A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 
-univDenom A
+universalDenominator A
 univDenom2 A
 
 facesOfN = properFaces newton A
@@ -650,7 +650,7 @@ A = matrix{ {36,10,31},{19,46,31},{47,25,36} }
 u = columnVector {29,24,30}
 
 univDenom2 A
-univDenom A
+universalDenominator A
 
 mu(A,u,11)
 crit(A,u,11)
@@ -662,7 +662,7 @@ A = matrix { {5,3,4}, {5,4,3}, {2,8,5} }
 u = columnVector {1,1,1}
 
 univDenom2 A
-univDenom A
+universalDenominator A
 
 mu(A,u,11)
 toString oo
@@ -690,7 +690,7 @@ regions = apply( propfaces, F -> convexHull {F, columnVector {0,0}})
 compactregions = select(regions,isCompact)
 apply(compactregions,latticePoints)
 
-univDenom A
+universalDenominator A
 
 G = mu(A,columnVector {3,4},11)
 
@@ -799,15 +799,14 @@ A == B
 -- test types
 
 timing newton matrix{ {5,3,4}, {5,4,3}, {2,8,5} }
-timing univDenom monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
+timing universalDenominator monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 peek A#cache
 timing newton A
-timing univDenom A
+timing universalDenominator A
 
 properFaces newton A
-n = first keys (A#cache)
-peek A#cache#n#cache
+peek A#cache#(symbol newton)#cache
 
 timing ft monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
@@ -825,6 +824,27 @@ timing specialPoint( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 peek P#cache
 timing specialPoint P
+
+-- test isSmall, isVerySmall, isSmallNotVerySmall
+
+A = transpose matrix { {1,10},{3,6},{7,3},{10,2} }
+
+pt = {6,5}
+isSmall monomialPair( A, columnVector pt )
+isVerySmall monomialPair( A, columnVector pt )
+isSmallNotVerySmall monomialPair( A, columnVector pt )
+peek (monomialPair( A, columnVector pt ))#cache
+
+-- test minimalSmallNotVerySmall
+
+A = transpose matrix { {1,10},{3,6},{7,3},{10,2} }
+
+minimalSmallNotVerySmall monomialMatrix A
+peek (monomialMatrix A)#cache
+
+A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
+minimalSmallNotVerySmall A
+peek A#cache
 
 ----------
 
@@ -896,22 +916,42 @@ print \ frobeniusPowers( A, 3, {x,y} );
 
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
-print \ criticalExponents( A, 3, Verbose => true );
 QQ[x,y,z]
-print \ frobeniusPowers( A, 3, {x,y,z} );
--- taking too long
+print \ frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
+print \ frobeniusPowers( A, 7, {x,y,z}, Verbose => true );
+print \ frobeniusPowers( A, 5, {x,y,z}, Verbose => true  );
 
 --- A homogeneous trinomial in 3 vars
+A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
+
+QQ[x,y,z]
+ideals = frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
+
+minimalSmallNotVerySmall monomialMatrix A
+peek (monomialMatrix A)#cache
+
+print \ ideals;
+
+toString( first  \ ideals )
+toString( last \ ideals )
+ideals = last \ ideals
+m = monomialIdeal(x,y,z)
+ideals_0 == m
+ideals_1 == m^2
+ideals_2 + monomialIdeal(x^2,y^2,z^2) == m^2
+ideals_3 + monomialIdeal(x^3,y^3,z^3) == m^3
+    
+--- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
-print \ criticalExponents( A, 7, Verbose => true );
+print \ frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
 
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {8,7,0}, {0,9,6}, {5,0,10} };
-print \ criticalExponents( A, 3, Verbose => true );
+print \ frobeniusPowers( A, 2, {x,y,z}, Verbose => true  );
 
 --- Trevor's example
 A = matrix{ {0,3,2}, {6,0,2} }
-univDenom A
+universalDenominator A
 print \ criticalExponents( A, 11, Verbose => true );
 print \ frobeniusPowers( A, 5, {x,y}, Verbose => true );
 
@@ -938,15 +978,23 @@ print \ frobeniusPowers( A, 2, {x,y} );
 print \ frobeniusPowers( A, 3, {x,y} );
 print \ frobeniusPowers( A, 5, {x,y} ); 
 
+-- Klein Quartic
+A = transpose matrix { {3,1,0}, {0,3,1}, {1,0,3} }
+QQ[x,y,z]
+print \ frobeniusPowers( A, 1, {x,y,z} );
+print \ frobeniusPowers( A, 2, {x,y,z} );
+print \ frobeniusPowers( A, 3, {x,y,z} );
+
 ---------------------------------------------------------------------------------------------
 --- Our running example
 ---------------------------------------------------------------------------------------------
 
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
-print \ criticalExponents( A, 11, Verbose => true );
 
 QQ[x,y,z]
-print \ frobeniusPowers( A, 11, {x,y,z} );
+print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
+
+peek (monomialMatrix A)#cache
 
 -- checking random pair
 P = monomialPair( A, columnVector {1,1,1} )
@@ -996,3 +1044,5 @@ QQ[x,y,z]
 
 frobeniusPowers(transpose matrix {{4,7,3}},11,{x,y,z})
 print \ oo
+
+viewHelp "numRows"
