@@ -3233,7 +3233,10 @@ where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive poi
 %      \end{tabular}
 %   \endgroup
 %   \end{center}
-\begin{table}
+\afterpage{
+   \clearpage% Flush earlier floats (otherwise order might not be correct)
+    \thispagestyle{empty}% empty page style (?)      
+   \begin{table}
    \begin{center} 
       \begingroup
       \setlength{\tabcolsep}{8pt} % Default value: 6pt
@@ -3277,18 +3280,21 @@ where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive poi
    \caption{Frobenius powers for \Cref{ex: ft.6}}
    \label{table: main example}
 \end{table}
+\clearpage
+}
 \end{example}
 
 \begin{example}
    \label{ex: new homogeneous example}
    Now consider the ideal $\ideala = \ideal{x^3y^5,y^3z^5,z^3x^5}$ of $\kk[x,y,z]$, where $\kk$ is a field of positive characteristic $p$.
    \Cref{table: new homogeneous example} shows the Frobenius powers $\ideala^{[t]}$ for $t \in [0,1)$, when $p$ is sufficiently large and congruent to $3$ modulo $8$.
-\begin{sidewaystable}
-%   \begingroup
-   \centering
-%      \setlength{\tabcolsep}{8pt} % Default value: 6pt
-%      \renewcommand{\arraystretch}{1.4} % Default value: 1
-%\fbox{
+\afterpage{%
+    \clearpage% Flush earlier floats (otherwise order might not be correct)
+    \thispagestyle{empty}% empty page style (?)
+    \begin{landscape}% Landscape page
+      \centering % Center table
+      \setlength{\tabcolsep}{8pt} % Default value: 6pt
+      \renewcommand{\arraystretch}{1.4} % Default value: 1
       \begin{tabular}{ll}
         \toprule
         Interval & $\ideala^{[t]}$\\
@@ -3324,12 +3330,11 @@ where $\ideald_\vv{u}$ denotes the diagonal ideal associated to the positive poi
                  &$\ideal{y^2 z^4,x y z^4,y^3 z^3,x y^2 z^3,x^2 y z^3,x^3 z^3,x y^3 z^2,x^2 y^2z^2,x^3 y z^2,x^4 z^2,x y^4 z,x^2 y^3 z,x^3 y^2 z,x^4 y z,x^2 y^4,x^3 y^3}$ \\
         \bottomrule
       \end{tabular}
-%}
-%      \endgroup
-   \caption{Frobenius powers for \Cref{ex: new homogeneous example}}
-   \label{table: new homogeneous example}
-\end{sidewaystable}
-   
+      \captionof{table}{Frobenius powers for \Cref{ex: new homogeneous example}}
+      \label{table: new homogeneous example}
+    \end{landscape}
+    \clearpage% Flush page
+}
 \end{example}
 
 
