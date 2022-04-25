@@ -1856,6 +1856,16 @@ where  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
    whenever $q \equiv r \bmod \denom$.
 \end{remark}
 
+\begin{remark}[An integrality property]
+\label{integrailty-property-of-universal-deficits: R}  The quanitity
+\[ \deg(\matA, \vv{u}) \cdot q - \udeficit(\matA, \vv{u}, q) \]
+is a natural number for all $(\matA, \vv{u})$ and $q$.   Indeed, as we have already see, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, which is also a natural number, we see that 
+\[ \norm{\vv{s}q} - \norm{\tail{\vv{s}}_q} + \val \ip = \deg(\matA, \vv{u}) \cdot q + \udeficit(\matA, \vv{u}, q) \] is a natural number.
+\end{remark}
+
+
+\daniel[inline]{What do you think about merging every remark appearing after \Cref{independence: D} into a single lemma?}
+
 We record another application of universal denominators below.
 
 \begin{theorem}[Deficit and shortfall of $\IP$ \vs $\udeficit$ and $\ushort$]
