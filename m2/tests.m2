@@ -23,10 +23,10 @@ while notCool do (
    a = toList apply(3, i -> toList apply(4, j -> 1 + random(15))); -- 3x4
    A = transpose matrix a;
    B = collapse(A,u);
-   notCool = ( rank target B ) < 2 or ft(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2) --or comp(a_0,a_3) or comp(a_1,a_3) or comp(a_2,a_3)
+   notCool = ( rank target B ) < 2 or degree(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2) --or comp(a_0,a_3) or comp(a_1,a_3) or comp(a_2,a_3)
 );
 S2 = uShort(A,u,r); 
-L = apply(S2, v -> ft(B,v));
+L = apply(S2, v -> degree(B,v));
 eps = max L;
 print(deficit = uDeficit(A,u,r), eps, ramif = #(select(L,x->x==eps)) );
 found = (deficit != eps)  and ramif > 1;
@@ -65,14 +65,14 @@ minimalBy := (L,f) ->
 
 init := () ->
 (
-num = {(ft(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
 )
 
 iterate := () -> (
 S = last graph;
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
-( eps, S ) = maximalBy( S, pair -> ft pair); 
+( eps, S ) = maximalBy( S, pair -> degree pair); 
 ( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
 graph = append(graph, S);
 print S;
@@ -99,7 +99,7 @@ search2 := (r,m,n,M,maxTries) ->
         print count;
         (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
         while gcd(universalDenominator A,r) != 1 do (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
-        num = {(ft(A,u),uDeficit(A,u,r))};
+        num = {(degree(A,u),uDeficit(A,u,r))};
         graph = {{(A,u)}};
         i = 0;
         cool = num_0_0 <= 1;
@@ -108,7 +108,7 @@ search2 := (r,m,n,M,maxTries) ->
         (
             S = last graph;
             S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
-            ( eps, S ) = maximalBy( S, pair -> ft pair); 
+            ( eps, S ) = maximalBy( S, pair -> degree pair); 
             if eps > 1 then cool = false
             else
             ( 
@@ -185,7 +185,7 @@ mu(A,u,11,p,t)
 
 toString oo
 
-ft(A,u)
+degree(A,u)
 
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------
@@ -225,26 +225,26 @@ QQ[p,t]
 mu(A,u,11,p,t)
 
 S1 = {(A,u)}
-M1 = ft(A,u)*p - uDeficit(A,u,11)
+M1 = degree(A,u)*p - uDeficit(A,u,11)
 
 B = collapse(A,u)
 
 S2 = uShort(A,u,11)
-numeric apply(S2,v->ft(B,v)) -- last one wins
+numeric apply(S2,v->degree(B,v)) -- last one wins
 
 u2 = S2_2
-M2 = ft(B,u2)*p-uDeficit(B,u2,11)
+M2 = degree(B,u2)*p-uDeficit(B,u2,11)
 S2 = {(B,u2)}
 
 S3 = uShort(B,u2,11)
-numeric apply(S3,v->ft(B,v)) -- first one wins
+numeric apply(S3,v->degree(B,v)) -- first one wins
 
 u3 = S3_0
-M3 = ft(B,u3)*p-uDeficit(B,u3,11)
+M3 = degree(B,u3)*p-uDeficit(B,u3,11)
 S3 = {(B,u3)}
 
 S4 = uShort(B,u3,11)
-numeric apply(S4,v->ft(B,v)) -- last two are not very small; S5 is empty
+numeric apply(S4,v->degree(B,v)) -- last two are not very small; S5 is empty
  
 gf = (M1*t + M2*t^2 + M3*t^3)/(1-p*t) + (p-1)*t^4/((1-p*t)*(1-t)) 
 toString gf
@@ -316,37 +316,37 @@ Abar = collapse(A,u)
 QQ[p,t]
 
 S1 = {u}
-M1 = ft(A,u)*p - uDeficit(A,u,12)
+M1 = degree(A,u)*p - uDeficit(A,u,12)
 
 B = collapse(A,u)
 
 S2 = uShort(A,u,12)
-numeric apply(S2,v->ft(B,v)) -- second and 4th
+numeric apply(S2,v->degree(B,v)) -- second and 4th
 S2 = {S2_1,S2_3}
 numeric apply(S2,v->uDeficit(B,v,12)) -- tie
 
-M2 = ft(B,S2_0)*p-uDeficit(B,S2_0,12)
+M2 = degree(B,S2_0)*p-uDeficit(B,S2_0,12)
 
 uShort(B,S2_0,12)
 uShort(B,S2_1,12)
 S3 = uShort(B,S2_0,12)
-numeric apply(S3,v->ft(B,v)) -- second and third
+numeric apply(S3,v->degree(B,v)) -- second and third
 S3 = {S3_1,S3_2}
 numeric apply(S3,v->uDeficit(B,v,12)) -- tie
 
-M3 = ft(B,S3_1)*p-uDeficit(B,S3_1,12)
+M3 = degree(B,S3_1)*p-uDeficit(B,S3_1,12)
 
 uShort(B,S3_0,12)
 uShort(B,S3_1,12)
 S4 = uShort(B,S3_0,12)
-numeric apply(S4,v->ft(B,v)) -- second and third
+numeric apply(S4,v->degree(B,v)) -- second and third
 S4 = {S4_1}
 -- numeric apply(S3,v->uDeficit(B,v,12)) -- tie
 
-M4 = ft(B,S4_0)*p-uDeficit(B,S4_0,12)
+M4 = degree(B,S4_0)*p-uDeficit(B,S4_0,12)
 
 S5 = uShort(B,S4_0,12)
-numeric apply(S5,v->ft(B,v)) -- second and third
+numeric apply(S5,v->degree(B,v)) -- second and third
  
 -- has one more level, no intermediary terms
 
@@ -358,7 +358,7 @@ A = matrix {{9, 7, 8}, {2, 8, 5}, {0, 1, 3}}
 u = columnVector {6,3,1}
 r = 3
 S1 = {u}
-M1 = ft(A,u)*p - uDeficit(A,u,r)
+M1 = degree(A,u)*p - uDeficit(A,u,r)
 
 solveIP theta(A,u,specialPt(A,u),3)
 solveIP theta(collapse(A,u),collapseMap(A,u)*u,specialPt(A,u),3)
@@ -366,49 +366,49 @@ solveIP theta(collapse(A,u),collapseMap(A,u)*u,specialPt(A,u),3)
 A2 = collapse(A,u)
 S2 = uShort(A,u,r)
 
-M2 = ft(A2,S2_0)*p-uDeficit(A2,S2_0,r)
+M2 = degree(A2,S2_0)*p-uDeficit(A2,S2_0,r)
 
 S3 = uShort(A2,S2_0,r)
 A3 = collapse(A2,S2_0)
-numeric apply(S3,v->ft(A3,v)) -- first
+numeric apply(S3,v->degree(A3,v)) -- first
 S3={S3_0}
-M3 = ft(A3,S3_0)*p-uDeficit(A3,S3_0,r)
+M3 = degree(A3,S3_0)*p-uDeficit(A3,S3_0,r)
 
 S4 = uShort(A3,S3_0,r)
 A4 = collapse(A3,S3_0)
-numeric apply(S4,v->ft(A4,v)) -- first
+numeric apply(S4,v->degree(A4,v)) -- first
 S4={S4_0}
-M4 = ft(A4,S4_0)*p-uDeficit(A4,S4_0,r)
+M4 = degree(A4,S4_0)*p-uDeficit(A4,S4_0,r)
 
 S5 = uShort(A4,S4_0,r)
 A5 = collapse(A4,S4_0)
-numeric apply(S5,v->ft(A5,v)) -- first
+numeric apply(S5,v->degree(A5,v)) -- first
 S5={S5_0}
-M5 = ft(A5,S5_0)*p-uDeficit(A5,S5_0,r)
+M5 = degree(A5,S5_0)*p-uDeficit(A5,S5_0,r)
 
 S6 = uShort(A5,S5_0,r)
 A6 = collapse(A5,S5_0)
-numeric apply(S6,v->ft(A6,v)) -- first
+numeric apply(S6,v->degree(A6,v)) -- first
 S6={S6_0}
-M6 = ft(A6,S6_0)*p-uDeficit(A6,S6_0,r)
+M6 = degree(A6,S6_0)*p-uDeficit(A6,S6_0,r)
 
 S7 = uShort(A6,S6_0,r)
 A7 = collapse(A6,S6_0)
-numeric apply(S7,v->ft(A7,v)) -- first
+numeric apply(S7,v->degree(A7,v)) -- first
 S7={S7_0}
-M7 = ft(A7,S7_0)*p-uDeficit(A7,S7_0,r)
+M7 = degree(A7,S7_0)*p-uDeficit(A7,S7_0,r)
 
 S8 = uShort(A7,S7_0,r)
 A8 = collapse(A7,S7_0)
-numeric apply(S8,v->ft(A8,v)) -- first
+numeric apply(S8,v->degree(A8,v)) -- first
 S8={S8_0}
-M8 = ft(A8,S8_0)*p-uDeficit(A8,S8_0,r)
+M8 = degree(A8,S8_0)*p-uDeficit(A8,S8_0,r)
 
 S9 = uShort(A8,S8_0,r)
 A9 = collapse(A8,S8_0)
-numeric apply(S9,v->ft(A9,v)) -- first
+numeric apply(S9,v->degree(A9,v)) -- first
 S9={S9_0}
-M9 = ft(A9,S9_0)*p-uDeficit(A9,S9_0,r)
+M9 = degree(A9,S9_0)*p-uDeficit(A9,S9_0,r)
 
 (M1,M2,M3,M4,M5,M6,M7,M8,M9)
 
@@ -423,12 +423,12 @@ r = 3
 A = matrix {{3, 4, 6}, {3, 7, 3}, {8, 2, 6}}
 u = columnVector {2,4,3}
 graph = {{(A,u)}}
-num = {(ft(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),uDeficit(A,u,r))}
 
 S = last graph
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
-eps = max apply(S,pair->ft pair) 
-S= select(S, pair -> ft pair == eps )
+eps = max apply(S,pair->degree pair) 
+S= select(S, pair -> degree pair == eps )
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
@@ -459,12 +459,12 @@ r = 3
 A = matrix {{7, 7, 5}, {10, 9, 4}, {7, 10, 8}}
 u = columnVector {9,3,3}
 graph = {{(A,u)}}
-num = {(ft(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),uDeficit(A,u,r))}
 
 S = last graph
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
-eps = max apply(S,pair->ft pair) 
-S= select(S, pair -> ft pair == eps )
+eps = max apply(S,pair->degree pair) 
+S= select(S, pair -> degree pair == eps )
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
@@ -477,12 +477,12 @@ r = 3
 A = matrix {{10, 9, 5}, {3, 5, 9}, {4, 4, 7}}
 u = columnVector {6,6,10}
 graph = {{(A,u)}}
-num = {(ft(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),uDeficit(A,u,r))}
 
 S = last graph
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
-eps = max apply(S,pair->ft pair) 
-S= select(S, pair -> ft pair == eps )
+eps = max apply(S,pair->degree pair) 
+S= select(S, pair -> degree pair == eps )
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
@@ -530,12 +530,12 @@ r = 17 -- 13c
 
 r = 18
 graph = {{(A,u)}}
-num = {(ft(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),uDeficit(A,u,r))}
 
 S = last graph
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
-eps = max apply(S,pair->ft pair) 
-S= select(S, pair -> ft pair == eps )
+eps = max apply(S,pair->degree pair) 
+S= select(S, pair -> degree pair == eps )
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
@@ -544,13 +544,13 @@ num = append(num,(eps,delta))
 ---------------------------------------------------
 r = 5
 (A,u) = search(r)
-num = {(ft(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
 
 S = last graph;
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
-eps = max apply(S,pair->ft pair); 
-S= select(S, pair -> ft pair == eps );
+eps = max apply(S,pair->degree pair); 
+S= select(S, pair -> degree pair == eps );
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S);
@@ -599,13 +599,13 @@ universalDenominator A
 
 r = 5
 (A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {5}, {6}, {5}})  
-num = {(ft(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),uDeficit(A,u,r))};
 graph = {{(A,u)}}
 
 S = last graph;
 S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
-eps = max apply(S,pair->ft pair); 
-S= select(S, pair -> ft pair == eps );
+eps = max apply(S,pair->degree pair); 
+S= select(S, pair -> degree pair == eps );
 delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
 S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S);
@@ -634,7 +634,7 @@ apply( facesOfN, F -> selectColumnsInFace( A, F ) | rb F )
 
 A = matrix{ {2,1,0,2},{0,1,2,2} }
 u = columnVector {1,1}
-ft(A,u)
+degree(A,u)
 s = specialPt(A,u)
 bracket(s,4)
 
@@ -643,7 +643,7 @@ uDeficit(A,u,4)
 solveIP theta(A,u,s,4)
 
 A = matrix{{3,0},{0,2},{1,1}}
-apply(2..20,i->numeric ft(A,columnVector{2,1,i}))
+apply(2..20,i->numeric degree(A,columnVector{2,1,i}))
 ------------------------
 
 A = matrix{ {36,10,31},{19,46,31},{47,25,36} }
@@ -707,30 +707,39 @@ peek N#cache
 halfspaces N
 faces N
 
---- test isStandard, properStandardFaces
+--- test isStandard, standardFaces, (un)boundedFaces
 
 N = newton transpose matrix {{0,4},{2,2},{5,1}}
 facesOfN = properFaces N
 isStandard \ facesOfN
 
-properStandardFaces N
+standardFaces N
 
 N = newton transpose matrix {{4,0,0},{0,3,0},{0,0,5}}
-properStandardFaces N
+standardFaces N
 isStandard \ properFaces N
+
+A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
+N = newton A
+
+properFaces N == standardFaces N -- all faces are standard
+dim \ boundedFaces N -- three vertices, 2 edges
+dim \ maximalBoundedFaces N -- 2 edges
+dim \ unboundedFaces N -- 6 2D, 6 edges
+peek N#cache
 
 --- test pointsAimedAtCompactFace
 
 N = newton transpose matrix {{4,0},{0,4}}
-L = first properStandardFaces N
+L = first standardFaces N
 pointsAimedAtCompactFace L
 
 N = newton matrix { {2,4,7}, {6,4,3} }
-L = select( properStandardFaces N, isCompact)
+L = select( standardFaces N, isCompact)
 pts = apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
 
 N = newton transpose matrix {{3, 11}, {4, 8}, {6, 5}, {10, 4}}
-L = select( properStandardFaces N, isCompact)
+L = select( standardFaces N, isCompact)
 toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
 
 --- tests collapseMap, collapse
@@ -740,7 +749,7 @@ collapseMap { columnVector {1,0,0,0}, columnVector {0,0,1,0}}
 
 A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
-L = properStandardFaces N
+L = standardFaces N
 rb \ L
 collapseMap \ L
 
@@ -808,11 +817,11 @@ timing universalDenominator A
 properFaces newton A
 peek A#cache#(symbol newton)#cache
 
-timing ft monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
+timing degree monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 peek P#cache
 peek P#matrix#cache
-timing ft P
+timing degree P
 
 timing minimalFace( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
@@ -846,6 +855,24 @@ A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 minimalSmallNotVerySmall A
 peek A#cache
 
+-- test pointsAimedAtCompactFacet
+
+A = matrix { {5,3,0}, {0,5,3}, {3,0,5} }
+pts = pointsAimedAtCompactFacet convexHull A
+
+-- test maximalSets, minimalSets
+
+A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
+N = newton A
+F = properFaces N
+#F
+maximalFaces = maximalSets F
+#maximalFaces
+
+#(minimalSets F)
+#(select(F, O -> not isCompact O ) )
+#(minimalSets select(F, O -> not isCompact O ) )
+
 ----------
 
 --- From Examples paper
@@ -859,21 +886,16 @@ print \  criticalExponents( A, 5, Verbose => true );
 
 --  5.11, 5.12
 A = 7*identityMatrix(3);
-print \  criticalExponents( A, 6 );
-print \  criticalExponents( A, 5 );
--- got all crits!
 QQ[x,y,z];
 m=ideal(x,y,z);
-print \ (ideals6 = frobeniusPowers( A, 6, {x,y,z} ) );
-print \ (ideals5 = frobeniusPowers( A, 5, {x,y,z} ) );
+print \ (ideals6 = frobeniusPowers( A, 6, {x,y,z}, Verbose => true ) );
+print \ (ideals5 = frobeniusPowers( A, 5, {x,y,z}, Verbose => true ) );
 (last \ ideals6) == { m, m^2, m^3, m^4, m^5 }
 (last \ ideals5) == { m, m^2, m^3, m^4 + ideal( x*y*z, x^2*y, x*y^2, x^2*z, x*z^2, y^2*z, y*z^2), m^4, m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2, x^2*y^2, x^2*z^2, y^2*z^2), m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2), m^5}
 -- PERFECT! 
     
 -- 5.15
 A = matrix {{6,0},{0,4}};
-print \ criticalExponents( A, 5 );
--- got all crits!
 QQ[x,y]
 print \ frobeniusPowers( A, 5, {x,y} );
 -- PERFECT!
@@ -887,31 +909,26 @@ print \ criticalExponents( A, 7, Verbose => true );
 
 peek (monomialPair( A, columnVector {4,42} ))#cache
 peek (monomialMatrix A)#cache
+
 --- FROM Frobenius paper
 
 -- 3.24
 QQ[x,y];
 m=ideal(x,y);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
-print \ criticalExponents( A, 4, Verbose => true );
--- got all crits!
-print \ frobeniusPowers( A, 4, {x,y});
+print \ frobeniusPowers( A, 4, {x,y}, Verbose => true );
 -- PERFECT!
 
 -- 3.25
 QQ[x,y];
 m=ideal(x,y);
 A = transpose matrix apply( (m^5)_*, f -> first exponents f );
-print \ criticalExponents( A, 3, Verbose => true );
--- got all crits!
-print \ frobeniusPowers( A, 3, {x,y} );
+print \ frobeniusPowers( A, 3, {x,y}, Verbose => true );
 -- PERFECT!
 
 A = 5*identityMatrix(2);
-print \ criticalExponents( A, 3, Verbose => true );
--- got all crits!
 QQ[x,y]
-print \ frobeniusPowers( A, 3, {x,y} );
+print \ frobeniusPowers( A, 3, {x,y}, Verbose => true );
 -- PERFECT!
 
 --- A homogeneous trinomial in 3 vars (INTERESTING!)
@@ -921,11 +938,11 @@ print \ frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
 print \ frobeniusPowers( A, 7, {x,y,z}, Verbose => true );
 print \ frobeniusPowers( A, 5, {x,y,z}, Verbose => true  );
 
---- A homogeneous trinomial in 3 vars
+--- A homogeneous trinomial in 3 vars -- new example in AIP
 A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
-
 QQ[x,y,z]
 ideals = frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
+print \ ideals;
 
 minimalSmallNotVerySmall monomialMatrix A
 peek (monomialMatrix A)#cache
@@ -1058,4 +1075,4 @@ QQ[x,y,z]
 frobeniusPowers(transpose matrix {{4,7,3}},11,{x,y,z})
 print \ oo
 
-viewHelp "numRows"
+viewHelp "Polyhedra"
