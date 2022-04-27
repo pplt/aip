@@ -25,10 +25,10 @@ while notCool do (
    B = collapse(A,u);
    notCool = ( rank target B ) < 2 or degree(A,u) >= 1 or comp(a_0,a_1) or comp(a_0,a_2) or comp(a_1,a_2) --or comp(a_0,a_3) or comp(a_1,a_3) or comp(a_2,a_3)
 );
-S2 = uShort(A,u,r); 
+S2 = shortfall(A,u,r); 
 L = apply(S2, v -> degree(B,v));
 eps = max L;
-print(deficit = uDeficit(A,u,r), eps, ramif = #(select(L,x->x==eps)) );
+print(deficit = deficit(A,u,r), eps, ramif = #(select(L,x->x==eps)) );
 found = (deficit != eps)  and ramif > 1;
 count = count + 1;
 );
@@ -65,15 +65,15 @@ minimalBy := (L,f) ->
 
 init := () ->
 (
-num = {(degree(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),deficit(A,u,r))};
 graph = {{(A,u)}}
 )
 
 iterate := () -> (
 S = last graph;
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
 ( eps, S ) = maximalBy( S, pair -> degree pair); 
-( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
+( delta, S ) = minimalBy( S, pair -> deficit(pair_0,pair_1,r));
 graph = append(graph, S);
 print S;
 num = append(num,(eps,delta))
@@ -99,7 +99,7 @@ search2 := (r,m,n,M,maxTries) ->
         print count;
         (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
         while gcd(universalDenominator A,r) != 1 do (A,u) = ( randomMat(m,n,M), randomVec(m,M) );
-        num = {(degree(A,u),uDeficit(A,u,r))};
+        num = {(degree(A,u),deficit(A,u,r))};
         graph = {{(A,u)}};
         i = 0;
         cool = num_0_0 <= 1;
@@ -107,12 +107,12 @@ search2 := (r,m,n,M,maxTries) ->
         -- looking at 8 levels
         (
             S = last graph;
-            S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+            S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
             ( eps, S ) = maximalBy( S, pair -> degree pair); 
             if eps > 1 then cool = false
             else
             ( 
-                ( delta, S ) = minimalBy( S, pair -> uDeficit(pair_0,pair_1,r));
+                ( delta, S ) = minimalBy( S, pair -> deficit(pair_0,pair_1,r));
                 graph = append(graph, S);
                 num = append(num,(eps,delta));
                 i = i + 1
@@ -225,25 +225,25 @@ QQ[p,t]
 mu(A,u,11,p,t)
 
 S1 = {(A,u)}
-M1 = degree(A,u)*p - uDeficit(A,u,11)
+M1 = degree(A,u)*p - deficit(A,u,11)
 
 B = collapse(A,u)
 
-S2 = uShort(A,u,11)
+S2 = shortfall(A,u,11)
 numeric apply(S2,v->degree(B,v)) -- last one wins
 
 u2 = S2_2
-M2 = degree(B,u2)*p-uDeficit(B,u2,11)
+M2 = degree(B,u2)*p-deficit(B,u2,11)
 S2 = {(B,u2)}
 
-S3 = uShort(B,u2,11)
+S3 = shortfall(B,u2,11)
 numeric apply(S3,v->degree(B,v)) -- first one wins
 
 u3 = S3_0
-M3 = degree(B,u3)*p-uDeficit(B,u3,11)
+M3 = degree(B,u3)*p-deficit(B,u3,11)
 S3 = {(B,u3)}
 
-S4 = uShort(B,u3,11)
+S4 = shortfall(B,u3,11)
 numeric apply(S4,v->degree(B,v)) -- last two are not very small; S5 is empty
  
 gf = (M1*t + M2*t^2 + M3*t^3)/(1-p*t) + (p-1)*t^4/((1-p*t)*(1-t)) 
@@ -316,36 +316,36 @@ Abar = collapse(A,u)
 QQ[p,t]
 
 S1 = {u}
-M1 = degree(A,u)*p - uDeficit(A,u,12)
+M1 = degree(A,u)*p - deficit(A,u,12)
 
 B = collapse(A,u)
 
-S2 = uShort(A,u,12)
+S2 = shortfall(A,u,12)
 numeric apply(S2,v->degree(B,v)) -- second and 4th
 S2 = {S2_1,S2_3}
-numeric apply(S2,v->uDeficit(B,v,12)) -- tie
+numeric apply(S2,v->deficit(B,v,12)) -- tie
 
-M2 = degree(B,S2_0)*p-uDeficit(B,S2_0,12)
+M2 = degree(B,S2_0)*p-deficit(B,S2_0,12)
 
-uShort(B,S2_0,12)
-uShort(B,S2_1,12)
-S3 = uShort(B,S2_0,12)
+shortfall(B,S2_0,12)
+shortfall(B,S2_1,12)
+S3 = shortfall(B,S2_0,12)
 numeric apply(S3,v->degree(B,v)) -- second and third
 S3 = {S3_1,S3_2}
-numeric apply(S3,v->uDeficit(B,v,12)) -- tie
+numeric apply(S3,v->deficit(B,v,12)) -- tie
 
-M3 = degree(B,S3_1)*p-uDeficit(B,S3_1,12)
+M3 = degree(B,S3_1)*p-deficit(B,S3_1,12)
 
-uShort(B,S3_0,12)
-uShort(B,S3_1,12)
-S4 = uShort(B,S3_0,12)
+shortfall(B,S3_0,12)
+shortfall(B,S3_1,12)
+S4 = shortfall(B,S3_0,12)
 numeric apply(S4,v->degree(B,v)) -- second and third
 S4 = {S4_1}
--- numeric apply(S3,v->uDeficit(B,v,12)) -- tie
+-- numeric apply(S3,v->deficit(B,v,12)) -- tie
 
-M4 = degree(B,S4_0)*p-uDeficit(B,S4_0,12)
+M4 = degree(B,S4_0)*p-deficit(B,S4_0,12)
 
-S5 = uShort(B,S4_0,12)
+S5 = shortfall(B,S4_0,12)
 numeric apply(S5,v->degree(B,v)) -- second and third
  
 -- has one more level, no intermediary terms
@@ -358,57 +358,57 @@ A = matrix {{9, 7, 8}, {2, 8, 5}, {0, 1, 3}}
 u = columnVector {6,3,1}
 r = 3
 S1 = {u}
-M1 = degree(A,u)*p - uDeficit(A,u,r)
+M1 = degree(A,u)*p - deficit(A,u,r)
 
 solveIP theta(A,u,specialPt(A,u),3)
 solveIP theta(collapse(A,u),collapseMap(A,u)*u,specialPt(A,u),3)
 
 A2 = collapse(A,u)
-S2 = uShort(A,u,r)
+S2 = shortfall(A,u,r)
 
-M2 = degree(A2,S2_0)*p-uDeficit(A2,S2_0,r)
+M2 = degree(A2,S2_0)*p-deficit(A2,S2_0,r)
 
-S3 = uShort(A2,S2_0,r)
+S3 = shortfall(A2,S2_0,r)
 A3 = collapse(A2,S2_0)
 numeric apply(S3,v->degree(A3,v)) -- first
 S3={S3_0}
-M3 = degree(A3,S3_0)*p-uDeficit(A3,S3_0,r)
+M3 = degree(A3,S3_0)*p-deficit(A3,S3_0,r)
 
-S4 = uShort(A3,S3_0,r)
+S4 = shortfall(A3,S3_0,r)
 A4 = collapse(A3,S3_0)
 numeric apply(S4,v->degree(A4,v)) -- first
 S4={S4_0}
-M4 = degree(A4,S4_0)*p-uDeficit(A4,S4_0,r)
+M4 = degree(A4,S4_0)*p-deficit(A4,S4_0,r)
 
-S5 = uShort(A4,S4_0,r)
+S5 = shortfall(A4,S4_0,r)
 A5 = collapse(A4,S4_0)
 numeric apply(S5,v->degree(A5,v)) -- first
 S5={S5_0}
-M5 = degree(A5,S5_0)*p-uDeficit(A5,S5_0,r)
+M5 = degree(A5,S5_0)*p-deficit(A5,S5_0,r)
 
-S6 = uShort(A5,S5_0,r)
+S6 = shortfall(A5,S5_0,r)
 A6 = collapse(A5,S5_0)
 numeric apply(S6,v->degree(A6,v)) -- first
 S6={S6_0}
-M6 = degree(A6,S6_0)*p-uDeficit(A6,S6_0,r)
+M6 = degree(A6,S6_0)*p-deficit(A6,S6_0,r)
 
-S7 = uShort(A6,S6_0,r)
+S7 = shortfall(A6,S6_0,r)
 A7 = collapse(A6,S6_0)
 numeric apply(S7,v->degree(A7,v)) -- first
 S7={S7_0}
-M7 = degree(A7,S7_0)*p-uDeficit(A7,S7_0,r)
+M7 = degree(A7,S7_0)*p-deficit(A7,S7_0,r)
 
-S8 = uShort(A7,S7_0,r)
+S8 = shortfall(A7,S7_0,r)
 A8 = collapse(A7,S7_0)
 numeric apply(S8,v->degree(A8,v)) -- first
 S8={S8_0}
-M8 = degree(A8,S8_0)*p-uDeficit(A8,S8_0,r)
+M8 = degree(A8,S8_0)*p-deficit(A8,S8_0,r)
 
-S9 = uShort(A8,S8_0,r)
+S9 = shortfall(A8,S8_0,r)
 A9 = collapse(A8,S8_0)
 numeric apply(S9,v->degree(A9,v)) -- first
 S9={S9_0}
-M9 = degree(A9,S9_0)*p-uDeficit(A9,S9_0,r)
+M9 = degree(A9,S9_0)*p-deficit(A9,S9_0,r)
 
 (M1,M2,M3,M4,M5,M6,M7,M8,M9)
 
@@ -423,14 +423,14 @@ r = 3
 A = matrix {{3, 4, 6}, {3, 7, 3}, {8, 2, 6}}
 u = columnVector {2,4,3}
 graph = {{(A,u)}}
-num = {(degree(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),deficit(A,u,r))}
 
 S = last graph
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
 eps = max apply(S,pair->degree pair) 
 S= select(S, pair -> degree pair == eps )
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r))
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
 num = append(num,(eps,delta))
 
@@ -448,8 +448,8 @@ toString gf
       (C,3) cycle to itself
       
 B = collapse(A,u)
-uShort(B,columnVector{2,6},r)      
-uShort(B,columnVector{2,7},r)      
+shortfall(B,columnVector{2,6},r)      
+shortfall(B,columnVector{2,7},r)      
 
 
 ---------------------------------------------------
@@ -459,14 +459,14 @@ r = 3
 A = matrix {{7, 7, 5}, {10, 9, 4}, {7, 10, 8}}
 u = columnVector {9,3,3}
 graph = {{(A,u)}}
-num = {(degree(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),deficit(A,u,r))}
 
 S = last graph
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
 eps = max apply(S,pair->degree pair) 
 S= select(S, pair -> degree pair == eps )
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r))
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
 num = append(num,(eps,delta))
 
@@ -477,14 +477,14 @@ r = 3
 A = matrix {{10, 9, 5}, {3, 5, 9}, {4, 4, 7}}
 u = columnVector {6,6,10}
 graph = {{(A,u)}}
-num = {(degree(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),deficit(A,u,r))}
 
 S = last graph
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
 eps = max apply(S,pair->degree pair) 
 S= select(S, pair -> degree pair == eps )
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r))
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
 num = append(num,(eps,delta))
 
@@ -530,29 +530,29 @@ r = 17 -- 13c
 
 r = 18
 graph = {{(A,u)}}
-num = {(degree(A,u),uDeficit(A,u,r))}
+num = {(degree(A,u),deficit(A,u,r))}
 
 S = last graph
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )) 
 eps = max apply(S,pair->degree pair) 
 S= select(S, pair -> degree pair == eps )
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r))
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r))
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S)
 num = append(num,(eps,delta))
 
 ---------------------------------------------------
 r = 5
 (A,u) = search(r)
-num = {(degree(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),deficit(A,u,r))};
 graph = {{(A,u)}}
 
 S = last graph;
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
 eps = max apply(S,pair->degree pair); 
 S= select(S, pair -> degree pair == eps );
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r));
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S);
 num = append(num,(eps,delta))
 
@@ -599,15 +599,15 @@ universalDenominator A
 
 r = 5
 (A,u) = (matrix {{14, 3, 11}, {10, 4, 15}, {2, 14, 5}, {7, 1, 11}},matrix {{3}, {5}, {6}, {5}})  
-num = {(degree(A,u),uDeficit(A,u,r))};
+num = {(degree(A,u),deficit(A,u,r))};
 graph = {{(A,u)}}
 
 S = last graph;
-S =  unique flatten apply( S, t -> apply(uShort(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
 eps = max apply(S,pair->degree pair); 
 S= select(S, pair -> degree pair == eps );
-delta = min apply(S,pair-> uDeficit(pair_0,pair_1,r));
-S= select(S, pair -> uDeficit(pair_0,pair_1,r) == delta )
+delta = min apply(S,pair-> deficit(pair_0,pair_1,r));
+S= select(S, pair -> deficit(pair_0,pair_1,r) == delta )
 graph = append(graph, S);
 num = append(num,(eps,delta))
 
@@ -638,7 +638,7 @@ degree(A,u)
 s = specialPt(A,u)
 bracket(s,4)
 
-uDeficit(A,u,4)
+deficit(A,u,4)
 
 solveIP theta(A,u,s,4)
 
@@ -957,7 +957,17 @@ ideals_0 == m
 ideals_1 == m^2
 ideals_2 + monomialIdeal(x^2,y^2,z^2) == m^2
 ideals_3 + monomialIdeal(x^3,y^3,z^3) == m^3
-    
+
+universalDenominator A
+
+p = 3;
+R = ZZ/p[x,y,z,a,b,c]
+h = a*x^3*y^5 + b*y^3*z^5 + c*z^3*x^5
+testIdeal( (3*p-1)/(8*p), h )
+testIdeal( (p-1)/(2*p), h )
+testIdeal( (8*p-9)/(15*p), h )
+testIdeal( (5*p^2-5)/(8*p^2), h )
+        
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
 print \ frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
@@ -1020,8 +1030,19 @@ P = monomialPair( A, columnVector {1,1,1} )
 peek P#cache
 peek P#matrix#cache
 
+timing deficitAndShortfall( P, 23 )
+
+p = 11;
+R = ZZ/p[x,y,z,a,b,c]
+h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5
+testIdeal( (4*p^3-3)/(17*p^3), h )
+testIdeal( 5/19, h )
+testIdeal( (2*p-1)/(7*p), h )
+testIdeal( (5*p^4-3)/(17*p^4), h )
+testIdeal( 1/3, h )
+
 ---------------------------------------------------------------------------------------------
---- Othe example from paper
+--- Other example from paper
 ---------------------------------------------------------------------------------------------
 
 A = matrix{ {36, 10, 31}, {19,46,31}, {47,25,36} }

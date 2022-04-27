@@ -7,6 +7,8 @@ loadPackage("Polyhedra", Reload => true)
 MonomialMatrix = new Type of HashTable
 
 -- Creates a MonomialMatrix from a Matrix or a List.
+-- TODO: should check if matrix is indeed a monomial matrix
+-- (nonzero rows/columns, nonnegative integer coords)
 monomialMatrix = method()
 monomialMatrix Matrix := A -> new MonomialMatrix from { matrix => A, cache => new CacheTable }
 monomialMatrix List := A -> monomialMatrix matrix A
@@ -17,7 +19,9 @@ monomialMatrix = memoize monomialMatrix
 MonomialPair = new Type of HashTable
 
 -- Creates a MonomialPair from a MonomialMatrix and a column vector, from a Matrix and a 
--- column vector, or from two Lists.
+-- column vector, or from two Lists. 
+-- TODO: should check if it is indeed a monomial pair
+-- (compatible dim, positive integer point)
 monomialPair = method()
 monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
    new MonomialPair from { matrix => A, ( symbol point ) => u, cache => new CacheTable }
@@ -171,16 +175,19 @@ isSubset ( Polyhedron, Polyhedron ) := ( P, Q ) -> contains( Q, P )
 
 -- selects the minimal elements of a list L of sets or lists or polyhedra,
 -- with respect to containment
+-- Used in pointsAimedAtUnboundedFace
 minimalSets := L -> 
     select( L, A -> select( L, B -> isSubset( B, A ) ) == { A } )
 
 -- selects the minimal elements of a list L of sets or lists or polyhedra
 -- with respect to containment
+-- Used in maximalBoundedFaces
 maximalSets := L -> 
     select( L, A -> select( L, B -> isSubset( A, B ) ) == { A } )
 
 -- Finds elements in a list that maximize a function f.
 -- Returns the max value of f, and the elements of the list at which the max is attained
+-- Used in mu
 maximize := ( L, f ) ->
 (
     vals := apply( L, f );
@@ -190,6 +197,7 @@ maximize := ( L, f ) ->
 
 -- Finds elements in a list that minimize a function f.
 -- Returns the min value of f, and the elements of the list at which the min is attained
+-- Used in mu
 minimize := ( L, f ) ->
 (
     vals := apply( L, f );
@@ -260,7 +268,8 @@ selectColumnsInFace ( Matrix, Polyhedron ) := ( A, P ) ->
 lcmMinors := A -> 
 (
     d := min( numRows A, rank source A );
-    lcm ( minors( d, A ) )_*
+    theMinors := ( minors( d, A ) )_*;
+    if theMinors == {} then 0 else lcm theMinors 
 )
 
 -- This version of universalDenominator is based on the previous version of 
@@ -358,6 +367,7 @@ collapseMap Matrix := A -> collapseMap( A, constantVector( 1, rank target A ) )
 
 -- collapse(A,u) returns the collapse of matrix A along mf(A,u)
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
+-- TODO: adapt to work with MonomialPair; cache value
 collapse = method()
 collapse ( Matrix, Matrix ) := ( A, u ) -> collapseMap( A, u ) * A
 collapse ( Matrix, List ) := ( A, u ) -> collapse( A, columnVector u )
@@ -542,11 +552,9 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
     "signs" => s
 }
 
-solveIP := IP ->
+-- returns the value of an integer program, along with an optimal point
+solveIP := (cacheValue symbol solveIP)( IP ->
 (
-    -- if the result is already cached, just return it
-    if IP#cache#?"value" then return ( IP#cache#"value", IP#cache#"optimalPoint" );
-    -- if not, now let's compute things...
     ( m, n ) := IP#"dim";
 --    path242 := prefixDirectory | currentLayout#"programs";
     path242 := "/usr/local/bin/";
@@ -577,37 +585,31 @@ solveIP := IP ->
     opt := getMatrix( file | ".min" );
     value := first first entries (opt*( IP#"weights" || zeroMatrix( m, 1 ) ) );
     -- will also return an optimal point
-    optPt := transpose( opt*(identityMatrix( n ) || zeroMatrix( m, n ) ) );
-    IP#cache#"value" = value;
-    IP#cache#"optimalPoint" = optPt;
+    optPt := transpose( opt * ( identityMatrix( n ) || zeroMatrix( m, n ) ) );
     ( value, optPt )
-)    
+))    
 
---- Probably useless, since we cache results
-solveIP = memoize solveIP
+-- We can get the entire optimal set, if finite, if we wish.
+-- -- TO DO: Check for compactness to see if this is finite
+-- optSetIP := (cacheValue symbol optSetIP)( IP ->
+-- (
+--     ( m, n ) := IP#"dim";
+--     value := valueIP IP;
+--     M := IP#"matrix" || - identityMatrix n;
+--     uu := IP#"RHS" || zeroMatrix( n, 1 );
+--     N := transpose IP#"weights";
+--     vv := matrix {{ value }};
+--     -- optPts := 
+--     latticePoints polyhedronFromHData( M, uu, N, vv )
+--     -- optImage := unique apply( optPts, u -> A * u );
+--     -- IP#cache#"optimalSet" = optPts;
+--     -- IP#cache#"optimalImage" = optImage;
+--     -- optPts
+-- ))    
 
 valueIP := IP -> first solveIP IP
 
 optPtIP := IP -> last solveIP IP
-
--- TO DO: Check for compactness to see if this is finite
-optSetIP := IP ->
-(
-    -- if the result is already cached, just return it
-    if IP#cache#?"optimalSet" then return IP#cache#"optimalSet";
-    -- if not, now let's compute things...
-    ( m, n ) := IP#"dim";
-    value := valueIP IP;
-    M := IP#"matrix" || - identityMatrix n;
-    uu := IP#"RHS" || zeroMatrix( n, 1 );
-    N := transpose IP#"weights";
-    vv := matrix {{ value }};
-    optPts := latticePoints polyhedronFromHData( M, uu, N, vv );
-    optImage := unique apply( optPts, u -> A * u );
-    IP#cache#"optimalSet" = optPts;
-    IP#cache#"optimalImage" = optImage;
-    optPts
-)    
 
 -- this just sets up the integer program Theta
 theta := ( A, u, s, q ) -> (
@@ -620,12 +622,14 @@ theta := ( A, u, s, q ) -> (
     integerProgram( Abar, rhs, weights, signs )
 )
 
--- Transform the thing below into a general optimal image command
-
 -- returns the universal deficit and shortfall
-uData := ( A, u, q ) -> 
+deficitAndShortfall = method()
+deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) -> 
 (
-    s := specialPoint( A, u );
+    dsInternal := ( cacheValue (symbol deficitAndShortfall, q) )( pair -> (
+    A := pair#matrix#matrix;
+    u := pair#point;
+    s := specialPoint pair;
     sq := bracket( s, q );
     Abar := collapse( A, u );
     Asq := Abar * sq;
@@ -668,25 +672,20 @@ uData := ( A, u, q ) ->
     proj := zeroMatrix( m, n ) | identityMatrix( m );
     im  = apply( im, v -> proj * v );
     ( sum( first entries transpose sq ) - val, apply( im, v -> Asq - v ) )
+    ));
+    dsInternal P
 )
+deficitAndShortfall ( Matrix, Matrix, ZZ ) := ( A, u, q ) -> 
+    deficitAndShortfall( monomialPair( A, u ), q )
 
-uDeficit := ( A, u, q ) -> first uData( A, u, q )
+deficit := method()
+deficit ( MonomialPair, ZZ ) := ( pair, q ) -> first deficitAndShortfall( pair, q )
+deficit ( Matrix, Matrix, ZZ ) := ( A, u, q ) -> deficit( monomialPair( A, u ), q )
 
-uShort := ( A, u, q ) -> last uData( A, u, q )
+shortfall := method()
+shortfall ( MonomialPair, ZZ ) := ( pair, q ) -> last deficitAndShortfall( pair, q )
+shortfall ( Matrix, Matrix, ZZ ) := ( A, u, q ) -> shortfall( monomialPair( A, u ), q )
     
--- -- This solves the integer program Pi from the paper
--- solveMyIP := ( A, u, q ) ->
--- (
---     rhs := q*u - columnVector constantList( 1, numRows A );
---     weights := columnVector constantList( 1, rank source A );
---     IP := integerProgram( A, rhs, weights );
---     solveIP IP
--- )    
-    
--- valueMyIP := ( A, u, q ) -> first solveMyIP( A, u, q)
-
--- optPtMyIP := ( A, u, q ) -> last solveMyIP( A, u, q)
-
 ----------------------------------------------------------------------------------
 -- mus, crits, and Frobenius powers
 ----------------------------------------------------------------------------------
@@ -695,17 +694,15 @@ uShort := ( A, u, q ) -> last uData( A, u, q )
 R1 := memoize ( () -> QQ( monoid[ getSymbol "p", getSymbol "t" ] ) );
 R2 := memoize ( () -> QQ[ ( ( R1() )_* )#0, MonomialOrder => Lex, Inverses => true ] )
 
+-- TODO: adapt to work with MonomialPair; cache value; remove memoize
 mu := ( A, u, r ) ->
 (
     ( p, t ) := toSequence ( R1() )_*;
-    localUShort := memoize uShort;
-    localUDeficit := memoize uDeficit;
-    localDegree := memoize degree;
     localCollapse := memoize collapse;
     S := { set{}, set{ ( A, u ) } };
     SStar := S;
     e := 1;
-    M := { 0, localDegree( A, u ) * p - localUDeficit( A, u, r ) };
+    M := { 0, degree( A, u ) * p - deficit( A, u, r ) };
     local newS;
     local newSStar;
     local k;
@@ -714,14 +711,14 @@ mu := ( A, u, r ) ->
     while true do 
     (
         e = e + 1;
-        newS = apply( toList SStar#(e-1), pair -> apply( localUShort( pair_0, pair_1, r ), v -> ( localCollapse pair, v ) ) );
+        newS = apply( toList SStar#(e-1), pair -> apply( shortfall( pair_0, pair_1, r ), v -> ( localCollapse pair, v ) ) );
         newS = unique flatten newS;
         if ( k = position( S, x -> x === set newS ) ) =!= null then 
             return sum( 1..(k-1), i -> M_i * t^i ) / ( 1 - p*t ) + sum( k..(e-1), i -> M_i * t^i ) / ( ( 1 - p*t ) * ( 1 - t^(e-k) ) );
-        ( epsilon, newSStar ) = maximize( newS, v -> localDegree v );
+        ( epsilon, newSStar ) = maximize( newS, v -> degree v );
         if epsilon > 1 then 
            return sum( 1..(e-1), i -> M_i * t^i ) / ( 1 - p*t ) + ( p - 1 ) * t^e / ( ( 1 - p*t ) * ( 1 - t ) );
-        ( delta, newSStar ) = minimize( newSStar, pair -> localUDeficit( pair_0, pair_1, r ) );
+        ( delta, newSStar ) = minimize( newSStar, pair -> deficit( pair_0, pair_1, r ) );
         S = append( S, set newS );
         SStar = append( SStar, set newSStar );
         M = append( M, epsilon * p - delta )
@@ -729,6 +726,7 @@ mu := ( A, u, r ) ->
 )
 mu = memoize mu
 
+-- TODO: adapt to work with MonomialPair; cache value
 crit := ( A, u, r ) -> 
 (
     G := mu( A, u, r );
@@ -747,7 +745,7 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) ->
     N := newton A;
     m := numRows A;
     -- pick only maximal compact faces and unbounded standard faces
-    faces := join( maximalSets boundedFaces N, unboundedFaces N);    
+    faces := join( maximalBoundedFaces N, unboundedFaces N);    
     pts := unique flatten( pointsAimedAtFace \ faces );
     local c;
     local ptsRealizingC;
@@ -772,7 +770,6 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) ->
             { c, ptsRealizingC }
         )
     );
-    m := numRows A; 
     -- Gathering small but not very small points.
     -- These should be listed as points realizing crit exp 1
     smallNotVerySmall := minimalSmallNotVerySmall monomialMatrix A; 
