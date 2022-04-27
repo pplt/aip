@@ -360,20 +360,21 @@ collapseMap Polyhedron := P ->
     if rbasis == {} then identityMatrix ambDim P else collapseMap rbasis
 ) 
 -- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
--- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
+-- u can be a column matrix or plain list
 collapseMap ( Matrix, Matrix ) := ( A, u ) -> collapseMap minimalFace( A, u )
-collapseMap ( Matrix, List ) := ( A, u ) -> collapseMap(A,columnVector u)
-collapseMap Matrix := A -> collapseMap( A, constantVector( 1, rank target A ) )
+collapseMap ( Matrix, List ) := ( A, u ) -> collapseMap( A, columnVector u )
 
 -- collapse(A,u) returns the collapse of matrix A along mf(A,u)
 -- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
 -- TODO: adapt to work with MonomialPair; cache value
 collapse = method()
 collapse ( Matrix, Matrix ) := ( A, u ) -> collapseMap( A, u ) * A
+collapse MonomialPair := ( cacheValue symbol collapse )( pair -> 
+    collapseMap( pair#matrix#matrix, pair#point ) * pair#matrix#matrix )
 collapse ( Matrix, List ) := ( A, u ) -> collapse( A, columnVector u )
 collapse Matrix := A -> collapseMap( A ) * A
 -- the collapse of a polyhedron along its own recession basis
-collapse Polyhedron := P -> affineImage( collapseMap P, P )
+collapse Polyhedron := ( cacheValue symbol collapse )( P -> affineImage( collapseMap P, P ) )
 collapse ( Matrix, Polyhedron ) := ( A, P ) -> collapseMap( P ) * A
         
 -- a special point
@@ -626,12 +627,12 @@ theta := ( A, u, s, q ) -> (
 deficitAndShortfall = method()
 deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) -> 
 (
-    dsInternal := ( cacheValue (symbol deficitAndShortfall, q) )( pair -> (
+    dsInternal := ( cacheValue ( symbol deficitAndShortfall, q ) )( pair -> (
     A := pair#matrix#matrix;
     u := pair#point;
     s := specialPoint pair;
     sq := bracket( s, q );
-    Abar := collapse( A, u );
+    Abar := collapse pair;
     Asq := Abar * sq;
     m := numRows Abar;
     n := rank source Abar;
@@ -694,15 +695,14 @@ shortfall ( Matrix, Matrix, ZZ ) := ( A, u, q ) -> shortfall( monomialPair( A, u
 R1 := memoize ( () -> QQ( monoid[ getSymbol "p", getSymbol "t" ] ) );
 R2 := memoize ( () -> QQ[ ( ( R1() )_* )#0, MonomialOrder => Lex, Inverses => true ] )
 
--- TODO: adapt to work with MonomialPair; cache value; remove memoize
-mu := ( A, u, r ) ->
-(
+frobeniusMu = method()
+frobeniusMu ( MonomialPair, ZZ ) := ( P, r ) ->
+(   muInternal := ( cacheValue ( symbol frobeniusMu, r ) )( pair -> (
     ( p, t ) := toSequence ( R1() )_*;
-    localCollapse := memoize collapse;
-    S := { set{}, set{ ( A, u ) } };
+    S := { set{}, set{ pair } };
     SStar := S;
     e := 1;
-    M := { 0, degree( A, u ) * p - deficit( A, u, r ) };
+    M := { 0, degree( pair ) * p - deficit( pair, r ) };
     local newS;
     local newSStar;
     local k;
@@ -711,25 +711,27 @@ mu := ( A, u, r ) ->
     while true do 
     (
         e = e + 1;
-        newS = apply( toList SStar#(e-1), pair -> apply( shortfall( pair_0, pair_1, r ), v -> ( localCollapse pair, v ) ) );
+        newS = apply( toList SStar#(e-1), pp -> apply( shortfall( pp, r ), v -> monomialPair( collapse pp, v ) ) );
         newS = unique flatten newS;
         if ( k = position( S, x -> x === set newS ) ) =!= null then 
             return sum( 1..(k-1), i -> M_i * t^i ) / ( 1 - p*t ) + sum( k..(e-1), i -> M_i * t^i ) / ( ( 1 - p*t ) * ( 1 - t^(e-k) ) );
         ( epsilon, newSStar ) = maximize( newS, v -> degree v );
         if epsilon > 1 then 
            return sum( 1..(e-1), i -> M_i * t^i ) / ( 1 - p*t ) + ( p - 1 ) * t^e / ( ( 1 - p*t ) * ( 1 - t ) );
-        ( delta, newSStar ) = minimize( newSStar, pair -> deficit( pair_0, pair_1, r ) );
+        ( delta, newSStar ) = minimize( newSStar, pp -> deficit( pp, r ) );
         S = append( S, set newS );
         SStar = append( SStar, set newSStar );
         M = append( M, epsilon * p - delta )
     )
+    ));
+    muInternal P
 )
-mu = memoize mu
+frobeniusMu ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> frobeniusMu( monomialPair( A, u ), r )
 
 -- TODO: adapt to work with MonomialPair; cache value
 crit := ( A, u, r ) -> 
 (
-    G := mu( A, u, r );
+    G := frobeniusMu( A, u, r );
     (p,t) := toSequence (R1())_*;
     G = G * ( 1 - p*t );
     G = sub( numerator G, t => 1/p ) / sub( denominator G, t => 1/p );

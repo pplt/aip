@@ -181,7 +181,7 @@ univDenom2 A
 
 QQ[p,t]
 
-mu(A,u,11,p,t)
+frobeniusMu(A,u,11,p,t)
 
 toString oo
 
@@ -203,7 +203,7 @@ univDenom2 A
 (r,A,u) = (5, matrix {{9, 6, 12}, {6, 9, 0}, {0, 6, 2}, {8, 11, 3}},matrix {{10}, {2}, {14}, {4}})
 
 QQ[p,t]
-toString mu(A,u,r,p,t)
+toString frobeniusMu(A,u,r,p,t)
 
 ------------------------------------------------------------------------------
 
@@ -222,7 +222,7 @@ u = columnVector {1,1,1}
 r = 11
 
 QQ[p,t]
-mu(A,u,11,p,t)
+frobeniusMu(A,u,11,p,t)
 
 S1 = {(A,u)}
 M1 = degree(A,u)*p - deficit(A,u,11)
@@ -652,7 +652,7 @@ u = columnVector {29,24,30}
 univDenom2 A
 universalDenominator A
 
-mu(A,u,11)
+frobeniusMu(A,u,11)
 crit(A,u,11)
 
 toString oo
@@ -664,7 +664,7 @@ u = columnVector {1,1,1}
 univDenom2 A
 universalDenominator A
 
-mu(A,u,11)
+frobeniusMu(A,u,11)
 toString oo
 
 crit(A,u,11)
@@ -682,7 +682,7 @@ latticePoints c1
 A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
 
-mu(A,columnVector {3,4},11)
+frobeniusMu(A,columnVector {3,4},11)
 crit(A,columnVector {3,4},11)
 
 propfaces = properFaces N
@@ -692,7 +692,7 @@ apply(compactregions,latticePoints)
 
 universalDenominator A
 
-G = mu(A,columnVector {3,4},11)
+G = frobeniusMu(A,columnVector {3,4},11)
 
 g = G*(1-p*t)
 sub(numerator g, t => 1/p)/sub(denominator g, t => 1/p)
