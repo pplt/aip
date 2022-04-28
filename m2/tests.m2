@@ -626,7 +626,7 @@ A = matrix {{5,3,4},{5,4,3},{2,8,5}}
 universalDenominator A
 univDenom2 A
 
-facesOfN = properFaces newton A
+facesOfN = properFaces newtonPolyhedon A
 
 apply( facesOfN, F -> selectColumnsInFace( A, F ) | rb F )
 
@@ -669,10 +669,10 @@ toString oo
 
 criticalExponent(A,u,11)
 
-N = newton A
+N = newtonPolyhedon A
 vertices N
 
-Nbar = newton collapse(A,u)
+Nbar = newtonPolyhedon collapse(A,u)
 vertices Nbar
 
 c1 = convexHull matrix{{0,5,3},{0,2,8}}
@@ -680,7 +680,7 @@ latticePoints c1
 
 ------------------------------------
 A = matrix { {2,4,7}, {6,4,3} }
-N = newton A
+N = newtonPolyhedon A
 
 frobeniusMu(A,columnVector {3,4},11)
 criticalExponent(A,columnVector {3,4},11)
@@ -709,18 +709,18 @@ faces N
 
 --- test isStandard, standardFaces, (un)boundedFaces
 
-N = newton transpose matrix {{0,4},{2,2},{5,1}}
+N = newtonPolyhedon transpose matrix {{0,4},{2,2},{5,1}}
 facesOfN = properFaces N
 isStandard \ facesOfN
 
 standardFaces N
 
-N = newton transpose matrix {{4,0,0},{0,3,0},{0,0,5}}
+N = newtonPolyhedon transpose matrix {{4,0,0},{0,3,0},{0,0,5}}
 standardFaces N
 isStandard \ properFaces N
 
 A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
-N = newton A
+N = newtonPolyhedon A
 
 properFaces N == standardFaces N -- all faces are standard
 dim \ boundedFaces N -- three vertices, 2 edges
@@ -730,15 +730,15 @@ peek N#cache
 
 --- test pointsAimedAtCompactFace
 
-N = newton transpose matrix {{4,0},{0,4}}
+N = newtonPolyhedon transpose matrix {{4,0},{0,4}}
 L = first standardFaces N
 pointsAimedAtCompactFace L
 
-N = newton matrix { {2,4,7}, {6,4,3} }
+N = newtonPolyhedon matrix { {2,4,7}, {6,4,3} }
 L = select( standardFaces N, isCompact)
 pts = apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
 
-N = newton transpose matrix {{3, 11}, {4, 8}, {6, 5}, {10, 4}}
+N = newtonPolyhedon transpose matrix {{3, 11}, {4, 8}, {6, 5}, {10, 4}}
 L = select( standardFaces N, isCompact)
 toString apply( pointsAimedAtCompactFace \ L, x -> apply(x, y -> first entries transpose y))
 
@@ -748,7 +748,7 @@ collapseMap { columnVector {1,0,0}}
 collapseMap { columnVector {1,0,0,0}, columnVector {0,0,1,0}}
 
 A = matrix { {2,4,7}, {6,4,3} }
-N = newton A
+N = newtonPolyhedon A
 L = standardFaces N
 rb \ L
 collapseMap \ L
@@ -807,15 +807,15 @@ A == B
 
 -- test types
 
-timing newton matrix{ {5,3,4}, {5,4,3}, {2,8,5} }
+timing newtonPolyhedon matrix{ {5,3,4}, {5,4,3}, {2,8,5} }
 timing universalDenominator monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
 peek A#cache
-timing newton A
+timing newtonPolyhedon A
 timing universalDenominator A
 
-properFaces newton A
-peek A#cache#(symbol newton)#cache
+properFaces newtonPolyhedon A
+peek A#cache#(symbol newtonPolyhedon)#cache
 
 timing degree monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
 P = monomialPair( { {5,3,4}, {5,4,3}, {2,8,5} }, {1,1,1} )
@@ -863,7 +863,7 @@ pts = pointsAimedAtCompactFacet convexHull A
 -- test maximalSets, minimalSets
 
 A = monomialMatrix { {5,3,4}, {5,4,3}, {2,8,5} }
-N = newton A
+N = newtonPolyhedon A
 F = properFaces N
 #F
 maximalFaces = maximalSets F
@@ -1026,12 +1026,13 @@ time (ideals = frobeniusPowers( A, 11, {x,y,z}, Verbose => true ));
 
 print \ ideals;
 
+print \ toString \ criticalExponents( A, 11 );
+
 peek (monomialMatrix A)#cache
 
 -- checking random pair
-P = monomialPair( A, columnVector {2,1,1} )
+P = monomialPair( A, columnVector {3,3,3} )
 peek P#cache
-peek P#matrix#cache
 
 timing deficitAndShortfall( P, 23 )
 

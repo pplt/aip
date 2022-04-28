@@ -211,12 +211,12 @@ minimize := ( L, f ) ->
 -- Polyhedral Stuff
 -------------------------------------------------------------------------------
 
--- newton(A) returns the newton polyhedron of a matrix A.
-newton = method()
-newton MonomialMatrix := ( cacheValue symbol newton )( A -> 
+-- newtonPolyhedon(A) returns the newton polyhedron of a matrix A.
+newtonPolyhedon = method()
+newtonPolyhedon MonomialMatrix := ( cacheValue symbol newtonPolyhedon )( A -> 
     convexHull( A#matrix ) + posOrthant( rank target A#matrix ) 
 )
-newton Matrix := A -> newton monomialMatrix A
+newtonPolyhedon Matrix := A -> newtonPolyhedon monomialMatrix A
 
 -- properFaces(P) returns a list of all proper nonempty nfaces of the polyhedron P.
 properFaces = method() 
@@ -282,7 +282,7 @@ univDenom2 = method()
 univDenom2 Matrix := A ->
 (
     local rbasis;
-    faces := properFaces newton A;
+    faces := properFaces newtonPolyhedon A;
     matrices := apply( faces, F -> 
         (
             rbasis = recessionBasis F;
@@ -313,7 +313,7 @@ universalDenominator Matrix := A -> universalDenominator monomialMatrix A
 -- u can be a column matrix or a list.
 degree MonomialPair := ( cacheValue degree )( P ->
 (
-    N := newton P#matrix;
+    N := newtonPolyhedon P#matrix;
     u := P#point;
     -- the intersection point of the ray spanned by u and the newton polyhedron of A:
     intPt := first entries vertices intersection( coneFromVData u, N );
@@ -327,7 +327,7 @@ degree ( Matrix, Matrix ) := ( A, u ) -> degree monomialPair( A, u )
 minimalFace = method()
 minimalFace MonomialPair := ( cacheValue symbol minimalFace )( P ->
 (
-    N := newton P#matrix;
+    N := newtonPolyhedon P#matrix;
     u := P#point;
     int := intersection( coneFromVData u, N );
     smallestFace( vertices int, N )
@@ -710,7 +710,7 @@ criticalExponent ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> criticalExponent( mono
 criticalExponents = method( Options => { Verbose => false, ReturnPoints => false } )
 criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) -> 
 (  
-    N := newton M;
+    N := newtonPolyhedon M;
     A := M#matrix;
     m := numRows A;
     -- pick only maximal compact faces and unbounded standard faces
