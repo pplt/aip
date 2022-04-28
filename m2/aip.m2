@@ -1,4 +1,4 @@
-loadPackage("Polyhedra", Reload => true)
+ loadPackage("Polyhedra", Reload => true)
 
 -------------------------------------------------------------------------------
 -- Types
@@ -46,17 +46,6 @@ identityMatrix := n -> id_( ZZ^n )
 -- In other words, L = numerator(L)/denominator(L).
 denominator List := L -> lcm apply( L, denominator )
 numerator List := L -> denominator( L ) * L
-
--- posRes(a,d) returns the least positive residue of a modulo D.
--- If the first entry is a list, this operation is carried out in a 
--- componentwise fashion.
--- posRes = method()
--- posRes ( ZZ, ZZ ) := ( a, d ) -> 
--- (
---     residue := a % d;
---     if residue == 0 then d else residue
--- )
--- posRes ( List, ZZ ) := ( L, d ) -> apply( L, x -> posRes( x, d ) )
 
 -- If t = a/b is a rational number, and q is an integer, then 
 -- bracket(t,q) = (positive residue of aq module b)/b (or 0, if t is 0).
@@ -331,11 +320,10 @@ degree MonomialPair := ( cacheValue degree )( P ->
     u_(0,0) / intPt#0
 ))
 degree ( Matrix, Matrix ) := ( A, u ) -> degree monomialPair( A, u ) 
-degree ( List, List ) := ( A, u ) -> degree monomialPair( A, u ) 
 
 -- minimalFace(A,u) returns the minimal face mf(A,u), that is, the smallest
 -- face of the Newton polyhedron of A containing the scaled point u/degree(A,u).
--- u can be a column matrix or plain list.
+-- u is a column matrix.
 minimalFace = method()
 minimalFace MonomialPair := ( cacheValue symbol minimalFace )( P ->
 (
@@ -345,15 +333,10 @@ minimalFace MonomialPair := ( cacheValue symbol minimalFace )( P ->
     smallestFace( vertices int, N )
 ))
 minimalFace ( Matrix, Matrix ) := ( A, u ) -> minimalFace monomialPair( A, u ) 
-minimalFace ( List, List ) := ( A, u ) -> minimalFace monomialPair( A, u ) 
 
--- recession basis for minimal face or polyhedron
+-- recession basis for polyhedron
 -- returns list of points (expressed as column matrices)     
 recessionBasis = method()
--- recessionBasis MonomialPair := ( cacheValue symbol recessionBasis )( P -> 
---     columns rays tailCone minimalFace P )
--- recessionBasis ( Matrix, Matrix ) := ( A, u ) -> recessionBasis monomialPair( A, u )
--- recessionBasis ( List, List ) := ( A, u ) -> recessionBasis monomialPair( A, u )
 recessionBasis Polyhedron := P -> columns rays tailCone P
 
 collapseMap = method()
@@ -373,19 +356,15 @@ collapseMap Polyhedron := P ->
     if rbasis == {} then identityMatrix ambDim P else collapseMap rbasis
 ) 
 -- collapseMap(A,u) returns the matrix of the collapsing map along mf(A,u).
--- u can be a column matrix or plain list
+-- u is a column matrix
 collapseMap ( Matrix, Matrix ) := ( A, u ) -> collapseMap minimalFace( A, u )
-collapseMap ( Matrix, List ) := ( A, u ) -> collapseMap( A, columnVector u )
 
 -- collapse(A,u) returns the collapse of matrix A along mf(A,u)
--- u can be a column matrix or plain list; if not provided, assumed to be {1,...,1}.
--- TODO: adapt to work with MonomialPair; cache value
+-- u is a column matrix.
 collapse = method()
 collapse ( Matrix, Matrix ) := ( A, u ) -> collapseMap( A, u ) * A
 collapse MonomialPair := ( cacheValue symbol collapse )( pair -> 
     collapseMap( pair#matrix#matrix, pair#point ) * pair#matrix#matrix )
-collapse ( Matrix, List ) := ( A, u ) -> collapse( A, columnVector u )
-collapse Matrix := A -> collapseMap( A ) * A
 -- the collapse of a polyhedron along its own recession basis
 collapse Polyhedron := ( cacheValue symbol collapse )( P -> affineImage( collapseMap P, P ) )
 collapse ( Matrix, Polyhedron ) := ( A, P ) -> collapseMap( P ) * A
@@ -409,7 +388,6 @@ specialPoint MonomialPair := ( cacheValue symbol specialPoint )( P ->
     interiorPoint optimalSet
 ))
 specialPoint ( Matrix, Matrix ) := ( A, u ) -> specialPoint monomialPair ( A, u )
-specialPoint ( List, List ) := ( A, u ) -> specialPoint monomialPair ( A, u )
 
 isSmall = method()
 isSmall MonomialPair := ( cacheValue symbol isSmall )( pair ->
@@ -467,8 +445,6 @@ minimalLifts := ( u, F ) ->
     rel := "1 " | toString( numEqns + numIneqs );
     scan( numEqns, x -> rel = rel | " =" );
     scan( numIneqs, x -> rel = rel | " <" );
---    path242 := prefixDirectory | currentLayout#"programs";
---    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store matrix
     MAT := openOut( file | ".mat" );
@@ -483,7 +459,7 @@ minimalLifts := ( u, F ) ->
     REL << rel;
     close REL;
     -- run 4ti2
-    runProgram( fourTiTwo, "zsolve", "--quiet " | rootPath | file );
+    runProgram( fourTiTwo, "zsolve", "--quiet --precision=64 " | rootPath | file );
     sol := getMatrix( file | ".zinhom" );
     columns transpose sol
 )
@@ -566,11 +542,9 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
 integerProgram = memoize integerProgram
 
 -- returns the value of an integer program, along with an optimal point
-solveIP := (cacheValue symbol solveIP)( IP ->
+solveIP := ( cacheValue symbol solveIP )( IP ->
 (
     ( m, n ) := IP#"dim";
---    path242 := prefixDirectory | currentLayout#"programs";
---    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store the augmented matrix
     M := openOut( file | ".mat");
@@ -639,8 +613,6 @@ deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) ->
     sign := "1 " | toString( m + n ) | "\n";
     scan( n, i -> sign = sign | toString( if s_0_i == 0 then 1 else 0 ) | " ");
     scan( m, i -> sign = sign | "0 " );
-    --    path242 := prefixDirectory | currentLayout#"programs";
-    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store the augmented matrix
     M := openOut( file | ".mat" );
@@ -735,7 +707,7 @@ criticalExponent ( MonomialPair, ZZ ) := ( pp, r ) ->
 )
 criticalExponent ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> criticalExponent( monomialPair( A, u ), r )
 
-criticalExponents = method( Options => { Verbose => false } )
+criticalExponents = method( Options => { Verbose => false, ReturnPoints => false } )
 criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) -> 
 (  
     N := newton M;
@@ -760,6 +732,7 @@ criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) ->
     crits =  last \ sort apply( crits, c -> 
         append( apply( 0..(-minOrder), i -> coefficient( p^(-i), c ) ) , c ) 
     );
+    if not o.ReturnPoints then return crits;
     crits = apply( crits, c -> 
         (
             ptsRealizingC = select( ptsAndCrits, u -> u#1 == c );
@@ -783,9 +756,9 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) ->
     criticalExponents( monomialMatrix A, r, o )
  
 frobeniusPowers = method( Options => { Verbose => false } )
-frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, variables ) ->
+frobeniusPowers ( MonomialMatrix, ZZ, List ) := o -> ( A, r, variables ) ->
 (
-    crits := criticalExponents( A, r, o );
+    crits := criticalExponents( A, r, o, ReturnPoints => true );
     I := ideal 0_( ring variables#0 );
     skewedList :=apply( reverse crits, 
          c -> { c#0, I = trim (I + makeIdeal( variables, c#1 )) } );
@@ -794,6 +767,7 @@ frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, variables ) ->
     answer := reverse transpose( { drop( u, { 0, 0 } ), drop( v, { #v - 1, #v - 1 } ) } );
     apply( answer, u -> u#0 => u#1 )
 )
+frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, var ) -> frobeniusPowers( monomialMatrix A, r, var, o )
 
 -------------------------------------------------
 
