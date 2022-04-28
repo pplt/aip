@@ -124,6 +124,17 @@ getFilename := () ->
     filename
 )
 
+fourTiTwo = findProgram(
+    "4ti2", 
+    "markov -h",
+    Prefix => {
+        (".*", "4ti2-"), -- debian
+        (".*", "4ti2_")}, -- suse
+    AdditionalPaths => {"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"} -- fedora
+)
+
+path242 = fourTiTwo#"path"
+
 -- builds a monomial from a list of variables and a list (or column matrix) of exponents
 makeMonomial = method()
 makeMonomial ( List, List ) := ( variables, exps ) -> product( variables, exps, ( x, a ) -> x^a )  
@@ -455,7 +466,7 @@ minimalLifts := ( u, F ) ->
     scan( numEqns, x -> rel = rel | " =" );
     scan( numIneqs, x -> rel = rel | " <" );
 --    path242 := prefixDirectory | currentLayout#"programs";
-    path242 := "/usr/local/bin/";
+--    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store matrix
     MAT := openOut( file | ".mat" );
@@ -506,8 +517,10 @@ pointsAimedAtUnboundedFace := L ->
     pts
 )
 
-pointsAimedAtFace := L -> 
+pointsAimedAtFace = method()
+pointsAimedAtFace Polyhedron := ( cacheValue symbol pointsAimedAtFace )( L -> 
     if isCompact L then pointsAimedAtCompactFace L else pointsAimedAtUnboundedFace L
+)
 
 minimalSmallNotVerySmall = method()
 minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVerySmall )( M ->
@@ -558,7 +571,7 @@ solveIP := (cacheValue symbol solveIP)( IP ->
 (
     ( m, n ) := IP#"dim";
 --    path242 := prefixDirectory | currentLayout#"programs";
-    path242 := "/usr/local/bin/";
+--    path242 := "/usr/local/bin/";
     file := getFilename();
     -- store the augmented matrix
     M := openOut( file | ".mat");
@@ -589,24 +602,6 @@ solveIP := (cacheValue symbol solveIP)( IP ->
     optPt := transpose( opt * ( identityMatrix( n ) || zeroMatrix( m, n ) ) );
     ( value, optPt )
 ))    
-
--- We can get the entire optimal set, if finite, if we wish.
--- -- TO DO: Check for compactness to see if this is finite
--- optSetIP := (cacheValue symbol optSetIP)( IP ->
--- (
---     ( m, n ) := IP#"dim";
---     value := valueIP IP;
---     M := IP#"matrix" || - identityMatrix n;
---     uu := IP#"RHS" || zeroMatrix( n, 1 );
---     N := transpose IP#"weights";
---     vv := matrix {{ value }};
---     -- optPts := 
---     latticePoints polyhedronFromHData( M, uu, N, vv )
---     -- optImage := unique apply( optPts, u -> A * u );
---     -- IP#cache#"optimalSet" = optPts;
---     -- IP#cache#"optimalImage" = optImage;
---     -- optPts
--- ))    
 
 valueIP := IP -> first solveIP IP
 
@@ -729,22 +724,27 @@ frobeniusMu ( MonomialPair, ZZ ) := ( P, r ) ->
 frobeniusMu ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> frobeniusMu( monomialPair( A, u ), r )
 
 -- TODO: adapt to work with MonomialPair; cache value
-crit := ( A, u, r ) -> 
+criticalExponent = method()
+criticalExponent ( MonomialPair, ZZ ) := ( pp, r ) -> 
 (
-    G := frobeniusMu( A, u, r );
+    critInternal := ( cacheValue ( symbol criticalExponent, r ) )( pair -> (
+    G := frobeniusMu( pair, r );
     (p,t) := toSequence (R1())_*;
     G = G * ( 1 - p*t );
     G = sub( numerator G, t => 1/p ) / sub( denominator G, t => 1/p );
     f = sub( numerator G, R2() );
     g = sub( denominator G, R2() );
     f * g^(-1)
+    ));
+    critInternal pp
 )
-crit = memoize crit
+criticalExponent ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> criticalExponent( monomialPair( A, u ), r )
 
 criticalExponents = method( Options => { Verbose => false } )
-criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) -> 
-(
-    N := newton A;
+criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) -> 
+(  
+    N := newton M;
+    A := M#matrix;
     m := numRows A;
     -- pick only maximal compact faces and unbounded standard faces
     faces := join( maximalBoundedFaces N, unboundedFaces N);    
@@ -753,7 +753,7 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) ->
     local ptsRealizingC;
     ptsAndCrits := apply( pts, u -> 
         ( 
-            c = crit( A, u, r );
+            c = criticalExponent( A, u, r );
             if o.Verbose then print toString ( first entries transpose u, c );
             { u, c }
         )
@@ -777,14 +777,16 @@ criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) ->
     smallNotVerySmall := minimalSmallNotVerySmall monomialMatrix A; 
     lastCrit := last crits;
     if lastCrit#0 == 1_(R2()) then 
-        -- if 1 as already in crit list, add small not very small points to its list
+        -- if 1 is already in crit list, add small not very small points to its list
         crits = append( drop( crits, { #crits - 1, #crits - 1 } ), { 1_(R2()), join( lastCrit#1, smallNotVerySmall ) } )
     else 
         -- if not, add one more entry to crits
         crits = append( crits, { 1_(R2()), smallNotVerySmall } );
     crits
 )
-
+criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) -> 
+    criticalExponents( monomialMatrix A, r, o )
+ 
 frobeniusPowers = method( Options => { Verbose => false } )
 frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, variables ) ->
 (

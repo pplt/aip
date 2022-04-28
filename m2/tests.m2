@@ -653,7 +653,7 @@ univDenom2 A
 universalDenominator A
 
 frobeniusMu(A,u,11)
-crit(A,u,11)
+criticalExponent(A,u,11)
 
 toString oo
 
@@ -667,7 +667,7 @@ universalDenominator A
 frobeniusMu(A,u,11)
 toString oo
 
-crit(A,u,11)
+criticalExponent(A,u,11)
 
 N = newton A
 vertices N
@@ -683,7 +683,7 @@ A = matrix { {2,4,7}, {6,4,3} }
 N = newton A
 
 frobeniusMu(A,columnVector {3,4},11)
-crit(A,columnVector {3,4},11)
+criticalExponent(A,columnVector {3,4},11)
 
 propfaces = properFaces N
 regions = apply( propfaces, F -> convexHull {F, columnVector {0,0}})
@@ -880,8 +880,8 @@ maximalFaces = maximalSets F
 QQ[x,y,z];
 m=ideal(x,y,z);
 A = transpose matrix apply( (m^7)_*, f -> first exponents f );
-print \  criticalExponents( A, 6, Verbose => true );
-print \  criticalExponents( A, 5, Verbose => true );
+print \  frobeniusPowers( A, 6, {x,y,z}, Verbose => true );
+print \  frobeniusPowers( A, 5, {x,y,z}, Verbose => true );
 -- taking way too long (even after several hours, could not 
 
 --  5.11, 5.12
@@ -890,7 +890,8 @@ QQ[x,y,z];
 m=ideal(x,y,z);
 print \ (ideals6 = frobeniusPowers( A, 6, {x,y,z}, Verbose => true ) );
 print \ (ideals5 = frobeniusPowers( A, 5, {x,y,z}, Verbose => true ) );
-(last \ ideals6) == { m, m^2, m^3, m^4, m^5 }
+
+(last \  ideals6) == { m, m^2, m^3, m^4, m^5 }
 (last \ ideals5) == { m, m^2, m^3, m^4 + ideal( x*y*z, x^2*y, x*y^2, x^2*z, x*z^2, y^2*z, y*z^2), m^4, m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2, x^2*y^2, x^2*z^2, y^2*z^2), m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2), m^5}
 -- PERFECT! 
     
@@ -1026,7 +1027,7 @@ print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
 peek (monomialMatrix A)#cache
 
 -- checking random pair
-P = monomialPair( A, columnVector {1,1,1} )
+P = monomialPair( A, columnVector {2,1,1} )
 peek P#cache
 peek P#matrix#cache
 
@@ -1040,6 +1041,11 @@ testIdeal( 5/19, h )
 testIdeal( (2*p-1)/(7*p), h )
 testIdeal( (5*p^4-3)/(17*p^4), h )
 testIdeal( 1/3, h )
+
+p = 23;
+R = ZZ/p[x,y,z,a,b,c]
+h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5
+testIdeal( (4*p^11-3)/(17*p^11), h )
 
 ---------------------------------------------------------------------------------------------
 --- Other example from paper
@@ -1097,3 +1103,11 @@ frobeniusPowers(transpose matrix {{4,7,3}},11,{x,y,z})
 print \ oo
 
 viewHelp "Polyhedra"
+
+fourTiTwo = findProgram("4ti2", "markov -h",
+	    Prefix => {(".*", "4ti2-"), -- debian
+		       (".*", "4ti2_")}, -- suse
+	    AdditionalPaths =>
+		{"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"})
+
+fourTiTwo#"path"            
