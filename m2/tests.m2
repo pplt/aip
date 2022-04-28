@@ -1022,7 +1022,9 @@ A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
 universalDenominator A
 
 QQ[x,y,z]
-print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
+time (ideals = frobeniusPowers( A, 11, {x,y,z}, Verbose => true ));
+
+print \ ideals;
 
 peek (monomialMatrix A)#cache
 

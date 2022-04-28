@@ -11,7 +11,6 @@ MonomialMatrix = new Type of HashTable
 -- (nonzero rows/columns, nonnegative integer coords)
 monomialMatrix = method()
 monomialMatrix Matrix := A -> new MonomialMatrix from { matrix => A, cache => new CacheTable }
-monomialMatrix List := A -> monomialMatrix matrix A
 monomialMatrix = memoize monomialMatrix
 -- If monomialMatrix is called multiple times with the same matrix, memoize
 -- will prevent the creation of a copy, therefore keeping the cached values
@@ -26,7 +25,6 @@ monomialPair = method()
 monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
    new MonomialPair from { matrix => A, ( symbol point ) => u, cache => new CacheTable }
 monomialPair ( Matrix, Matrix ) := ( A, u ) -> monomialPair( monomialMatrix A, u )
-monomialPair ( List, List ) := ( A, u ) -> monomialPair( monomialMatrix A, transpose matrix { u } )
 monomialPair = memoize monomialPair
 -- If monomialPair is called multiple times with the same pair, memoize
 -- will prevent the creation of a copy, therefore keeping the cached values
@@ -119,6 +117,12 @@ getFilename := () ->
         fileExists( filename | ".min" ) 
         or 
         fileExists( filename | ".sign" ) 
+        or 
+        fileExists( filename | ".rhs" ) 
+        or 
+        fileExists( filename | ".rel" ) 
+        or 
+        fileExists( filename | ".zinhom" ) 
     )    
     do filename = temporaryFileName();
     filename
@@ -132,8 +136,6 @@ fourTiTwo = findProgram(
         (".*", "4ti2_")}, -- suse
     AdditionalPaths => {"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"} -- fedora
 )
-
-path242 = fourTiTwo#"path"
 
 -- builds a monomial from a list of variables and a list (or column matrix) of exponents
 makeMonomial = method()
@@ -481,9 +483,7 @@ minimalLifts := ( u, F ) ->
     REL << rel;
     close REL;
     -- run 4ti2
-    execstr := path242 | "zsolve --quiet " | rootPath | file;
-    ret := run execstr;
-    if ret =!= 0 then error "minimalLifts: error occurred while executing external program 4ti2/zsolve";
+    runProgram( fourTiTwo, "zsolve", "--quiet " | rootPath | file );
     sol := getMatrix( file | ".zinhom" );
     columns transpose sol
 )
@@ -544,7 +544,6 @@ IntegerProgram = new Type of HashTable
 -- (the RHS of the linear constraint inequality), and a column vector w 
 -- (the weights/cost defining the linear function to be maximized) 
 integerProgram = method()
-
 integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram from
 {
     cache => new CacheTable,
@@ -554,7 +553,6 @@ integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram f
     "dim" => ( numRows A, rank source A ),
     "augmentedMatrix" => A | identityMatrix numRows A -- adds columns corresponding to slack variables
 }
-
 integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new IntegerProgram from
 {
     cache => new CacheTable,
@@ -565,6 +563,7 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
     "augmentedMatrix" => A | identityMatrix numRows A, -- adds columns corresponding to slack variables
     "signs" => s
 }
+integerProgram = memoize integerProgram
 
 -- returns the value of an integer program, along with an optimal point
 solveIP := (cacheValue symbol solveIP)( IP ->
@@ -593,9 +592,7 @@ solveIP := (cacheValue symbol solveIP)( IP ->
         close signs
     );
     -- run 4ti2
-    execstr := path242 | "minimize --quiet --precision=64 " | rootPath | file;
-    ret := run execstr;
-    if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/minimize";
+    runProgram( fourTiTwo, "minimize", "--quiet --precision=64 " | rootPath | file );
     opt := getMatrix( file | ".min" );
     value := first first entries (opt*( IP#"weights" || zeroMatrix( m, 1 ) ) );
     -- will also return an optimal point
@@ -659,9 +656,7 @@ deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) ->
     Rels << rel;
     close Rels;
     -- run 4ti2
-    execstr := path242 | "zsolve --quiet --precision=64 " | rootPath | file;
-    ret := run execstr;
-    if ret =!= 0 then error "solveIP: error occurred while executing external program 4ti2/zsolve";
+    runProgram( fourTiTwo, "zsolve", "--quiet --precision=64 " | rootPath | file);
     -- process image
     im := getMatrix( file | ".zinhom" );
     im = apply( entries im, x -> columnVector x ); 
