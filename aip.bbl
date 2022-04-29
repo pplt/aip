@@ -5,6 +5,78 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{}
+\begin{thebibliography}{HTW20b}
+
+\bibitem[BK]{PolyhedraSource}
+R.~Birkner and L.~Kastner, \emph{{Polyhedra: convex polyhedra. Version~1.10}},
+  A \emph{Macaulay2} package available at
+  \url{https://github.com/Macaulay2/M2/tree/master/M2/Macaulay2/packages}.
+
+\bibitem[BMS06]{budur+mustata+saito.roots_bs_polys_monomial}
+N.~Budur, M.~Musta{\c{t}}\u{a}, and M.~Saito, \emph{Roots of {B}ernstein-{S}ato
+  polynomials for monomial ideals\textup: {A} positive characteristic
+  approach}, Math.\ Res.\ Lett. \textbf{13} (2006), no.~1, 125--142.
+
+\bibitem[BMS08]{blickle+mustata+smith.discr_rat_FPTs}
+M.~Blickle, M.~Musta{\c{t}}\u{a}, and K.~E. Smith, \emph{Discreteness and
+  rationality of {$F$}-thresholds}, Michigan Math.\ J. \textbf{57} (2008),
+  43--61.
+
+\bibitem[Bou98]{bourbaki.commalg}
+N.~Bourbaki, \emph{Commutative {A}lgebra. {C}hapters 1--7}, Elements of
+  Mathematics, Springer-Verlag, Berlin, 1998.
+
+\bibitem[CCZ14]{conforti+etal.integer_programming}
+M.~Conforti, G.~Cornu\'ejols, and G.~Zambelli, \emph{{I}nteger {P}rogramming},
+  Graduate Texts in Mathematics, no. 271, Springer, Berlin, 2014.
+
+\bibitem[Dic02]{dickson.multinomial}
+L.~E. Dickson, \emph{Theorems on the residues of multinomial coefficients with
+  respect to a prime modulus}, Quart.\ J.\ Pure Appl.\ Math. \textbf{33}
+  (1902), 378--384.
+
+\bibitem[Dic13]{dickson}
+\bysame, \emph{Finiteness of the odd perfect and primitive abundant numbers
+  with n distinct prime factors}, Amer.\ J.\ Math. \textbf{35} (1913), no.~4,
+  413--422.
+
+\bibitem[GS]{M2}
+D.~R. Grayson and M.~E. Stillman, \emph{Macaulay2, a software system for
+  research in algebraic geometry}, available at
+  \url{http://www.math.uiuc.edu/Macaulay2/}.
+
+\bibitem[Her11]{hernandez.thesis}
+D.~J. Hern\'andez, \emph{{$F$}-purity of hypersurfaces}, Ph.D. thesis,
+  University of Michigan, 2011, available at
+  \url{http://hdl.handle.net/2027.42/86491}.
+
+\bibitem[HTW20a]{hernandez+etal.frobenius_powers}
+D.~J. Hern\'andez, P.~Teixeira, and E.~E. Witt, \emph{Frobenius powers}, Math.\
+  Z. \textbf{296} (2020), 541--572.
+
+\bibitem[HTW20b]{hernandez+etal.frobenius_examples}
+\bysame, \emph{Frobenius powers of some monomial ideals}, J.\ Pure Appl.\
+  Algebra \textbf{224} (2020), no.~1, 66--85.
+
+\bibitem[Laz04]{lazarsfeld.positivity-II}
+R.~Lazarsfeld, \emph{Positivity in {A}lgebraic {G}eometry {II}},
+  Springer--Verlag, Berlin, 2004.
+
+\bibitem[Mat89]{matsumura}
+H.~Matsumura, \emph{Commutative {R}ing {T}heory}, second ed., Cambridge Studies
+  in Advanced Mathematics, vol.~8, Cambridge University Press, Cambridge, 1989.
+
+\bibitem[MS05]{miller+sturmfels.combinatorial_CA}
+E.~Miller and B.~Sturmfels, \emph{Combinatorial {C}ommutative {A}lgebra},
+  Graduate Texts in Mathematics, no. 227, Springer-Verlag, New York, 2005.
+
+\bibitem[MTW05]{mustata+takagi+watanabe.F-thresholds}
+M.~Musta{\c{t}}\u{a}, S.~Takagi, and {K.-i.} Watanabe, \emph{{F}-thresholds and
+  {B}ernstein--{S}ato polynomials}, European {C}ongress of {M}athematics
+  (Z{\"u}rich), Eur.\ Math.\ Soc., 2005, pp.~341--364.
+
+\bibitem[VT84]{vantiel.convex_analysis}
+J.~Van~Tiel, \emph{Convex {A}nalysis\textup: {A}n {I}ntroductory {T}ext},
+  Wiley, New York, 1984.
 
 \end{thebibliography}

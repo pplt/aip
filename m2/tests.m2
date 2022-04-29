@@ -1031,7 +1031,7 @@ print \ toString \ criticalExponents( A, 11 );
 peek (monomialMatrix A)#cache
 
 -- checking random pair
-P = monomialPair( A, columnVector {3,3,3} )
+P = monomialPair( A, columnVector {2,1,1} )
 peek P#cache
 
 timing deficitAndShortfall( P, 23 )
@@ -1050,6 +1050,29 @@ R = ZZ/p[x,y,z,a,b,c]
 h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5
 testIdeal( (4*p^11-3)/(17*p^11), h )
 
+L = minimalFace( A, columnVector {3,5,9} )
+F = feasLP( collapse( A, L ), collapse( columnVector {3,5,9}, L ) )  
+
+pts := apply(1..200, i -> {3,4,8}+{0,random(10),random(10)});
+unique apply( pts, u -> F == feasLP( A, u ) )
+
+
+L = minimalFace( A, columnVector {3,5,9} )
+F = feasLP( collapse( A, L ), collapse( columnVector {2,5,9}, L ) )  
+
+pts = apply(1..200, i -> {2,4,8}+{0,random(10),random(10)});
+unique apply( pts, u -> F == feasLP( A, u ) )
+
+F = feasLP( A, columnVector {1,1,1} )
+
+pts = apply(1..200, i -> {1,1,1}+{0,random(10),0});
+unique apply( pts, u -> F == feasLP( A, u ) )
+    
+recessionBasis minimalFace( A, columnVector {1,1,1} )
+    
+criticalExponent( A, columnVector {1,1,4}, 11 )
+criticalExponent( A, columnVector {3,3,7}, 11 )
+    
 ---------------------------------------------------------------------------------------------
 --- Other example from paper
 ---------------------------------------------------------------------------------------------
