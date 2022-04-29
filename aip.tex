@@ -19,18 +19,18 @@ TO DO LIST:
 	\item[$\Box$] Have a discussion about using $\degree(\matA,\vv{u})$. In the meantime, use the macro ``degree.''
         \emily[inline]{I believe that I replaced the current instances of ``deg'' with ``degree,'' but need to do the same for ``ft.''}
         \pedro[inline]{I replaced all the ``ft of a monomial pair'' with ``degree''.}
-	\item[$\Box$] Address Pedro's comment after the proof of \ref{fundamental-sequences: L}. 
+        \emily[inline]{Daniel mentioned he has been using the macro ``deg,'' so we should make sure those are updated at some point when there is no chance for conflicts.}
+	\item[$\CheckedBox$] Address Pedro's comment after the proof of \ref{fundamental-sequences: L}. 
 	\daniel[inline]{Done, but please check out the updated proof.}
+	\emily[inline]{Looks good to me.}
 	\item[$\Box$]  Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{small compatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 
-	\item[$\Box$] Update \Cref{sprouting: S} to remove dependence on $p$ to $r$ when we don't require a prime.  Explain this distinction at the beginning of the section.
-	\emily[inline]{I did this, but I will check it over with fresh eyes once more.}	
+	\item[$\CheckedBox$] Update \Cref{sprouting: S} to remove dependence on $p$ to $r$ when we don't require a prime.  Explain this distinction at the beginning of the section.
 	\item[$\Box$]  Move the work on critical exponents vs. $F$-thresholds from \Cref{sprouting: S} to \Cref{frobenius-powers-monomial-ideals: S}. 
  \item[$\Box$] Describe the critical exponents of monomial ideals in \Cref{frobenius-powers-monomial-ideals: S}.  
  \item[$\Box$] In intro, ``complain" that this paper would have been \textbf{much} shorter if we had only focused on the $\idealm$-primary case.
  \item[$\Box$] Put ``titles'' in new statements, maybe remove some?
  \item[$\Box$] Address request after \Cref{computing nu for large q: C} (wrap up proof of BMS result). \daniel[inline]{Working on it\ldots}
  \item[$\Box$] To make the next point easier: Update \Cref{depth-of-graph: D} to include $\mathcal{E}_p(A, \vv{u})$, and update \Cref{main theorem wrt diagonal: T}.  Look for other things that will need updates. \daniel[inline]{Working on it\ldots}
-\item[$\Box$]  What do you think about Daniel's comment before \Cref{p-sprout: D}?  Maybe we can discuss how to proceed during the Friday meeting.
  \item[$\Box$] Do the same as above, replacing $\nu$ with $\mu$.
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
   \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
@@ -38,16 +38,21 @@ TO DO LIST:
  \details[inline]{
  	TO DO LIST:
  	\begin{enumerate}
+ 	\item[$\Box$]{Address Pedro's questions:
+\begin{itemize}
+\item If a positive u lies in the boundary of the Newton polyhedron, and $u+e_i$ also lies in the boundary, for every $i$, is the associated ideal principal?
+\item If there are no small-but-not-very-small pairs, is the associated ideal principal?
+\end{itemize}	
+}	
  \item[$\CheckedBox$] Prove \Cref{finite-representatives-small-crits: P}. 
  \pedro[inline]{This is now done, but I'm sure the proof can be improved.}
+ \emily[inline]{I think it is well-explained; I made a few very minor changes.}
  \item[$\Box$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Produce examples describing $\ideala^{[\lambda]}$.  Candidates include our running example, and taking $\idealm^d$, and removing generators close to the axes.
  \pedro[inline]{
     I included a homogeneous but not $\idealm$-primary example (\Cref{ex: new homogeneous example}).
     If you guys have any suggestions of examples to be added or to replace this one---maybe something less random; something with some mathematical meaning to you---please let me know.
  }
- \item[$\Box$] A $\kk$-generic hypersurface with support $x^{\vv{a}_1}, \ldots, x^{\vv{a}_n}$ will refer to any linear combination of these monomials $g = z_1 x^{\vv{a}_1} + \cdots + z_n x^{\vv{a}_n}$, which may be thought of as an element of either $\kk[z][x]$ or $\kk(z)[x]$.  If $S$ denotes either of these rings, then Theorem 5.3/Corollary 5.7 in Frobenius Powers implies that $\tau(f^t) = \ideala^{[t]} S$.  Thus, we have the following result:  \emph{If the supporting monomials are fixed beforehand, and $p \gg 0$, then any the test ideals of any $\kk$-generic hypersurface, where $\kk$ is a field of characteristic $p$, with those supporting exponents are well-behaved and can be described explicitly}.
-  \emily[inline]{I put a draft statement/proof as \Cref{generic-test-ideals-main: T}.}
  \item[$\Box$] Reduction to prime characteristic:  Consider a field $\mathsf{L}$ of characteristic zero, and an $\mathsf{L}$-generic hypersurface $g$ with support $x^{\vv{a}_1}, \ldots, x^{\vv{a}_n}$.  If we consider the ambient ring of $g$ to be $\kk[z][x]$, then $g$ is supported by $\ZZ$, and so $g \bmod p \in (\ZZ/p\ZZ)[z][x]$ is generic, in the same sense, for all $p$ We then understand its test ideals for $p \gg 0$, and invoking \Cref{important-special: P} will allow us to settle the big conjecture relating test ideals and multiplier ideals for generic hypersurfaces.
  \item[$\Box$]  This is just a note: Consider $\mathscr{A} = \ZZ[z_1, \ldots, z_n]$.  If $\wp$ is a maximal ideal of $\mathscr{A}$, then the images of the variables in $\mathscr{A}/\wp$ are never algebraically independent.  In fact, the image of each variable is algebraic:  Let $\mathscr{A}_i= \ZZ[z_i] \hookrightarrow \mathscr{A}$.  Then $\wp \cap \mathscr{A}_i$ is maximal, and hence, generated by $p$ and $h \in \ZZ[z_i]$ that is irreducible modulo $p$, and so $h(z_i \bmod \wp) = 0$ in $\mathscr{A}/\wp$.  This goes to show is that if we consider a generic hypersurface $g \in \kk(z)[x]$, then its reduction is never generic in the same way.  
  \item[$\Box$] Work out consequences on Bernstein-Sato polynomials. 
@@ -2533,7 +2538,7 @@ This graph's construction relies on a positive integer $r$, and its powers, wher
     \[
        \vv{u}_{i+1} \in \ushort(\matA_i, \vv{u}_i, r)= \matA_{i+1} \tail{\vv{s}_i}_r - \matA_{i+1}(\opt \ip( \matA_i, \vv{u}_i, \vv{s}_i, r)).
     \]
-    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( \matA_i, \vv{u}_i, \vv{s}_i, r)$ such that $\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_p - \matA_{i+1} \vv{h}_i$.
+    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( \matA_i, \vv{u}_i, \vv{s}_i, r)$ such that $\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_r - \matA_{i+1} \vv{h}_i$.
     Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( \matA_e, \vv{u}_e, \vv{s}_e, r)$.
 
     Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i = \vv{s}_i r - [\vv{s}_i]_r + \vv{h}_i$.
@@ -2641,7 +2646,6 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \label{ex: new example}
    \begin{figure}
       \centering
-%      \daniel[inline]{Pedro:  Can you place a copy of this in the dropbox folder?  In the meantime, I am omitting this, so that the document will compile.}
       \includegraphics[width=.6\textwidth]{pictures/sprouting_graph_4.pdf}
       \caption{The sprouting subgraph for \Cref{ex: new example}}
       \label{fig: sprouting graph 2}
@@ -2917,11 +2921,12 @@ We now our focus on the fundamental sequences described in \Cref{fundamental-seq
 
 \begin{proof}
    Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
-   By definition, $\matB$ is the collapse of $\matA$ along $\O$, and $\vv{v} \in \ushort(\matA,\vv{u},\rr)$.
-   \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB=\collapse{\matA}$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
+   By definition, $\matB=\collapse{\matA}$ and $\vv{v} \in \ushort(\matA,\vv{u},\rr)$.
+   \Cref{collapse of Newton polyhedron: P} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
+  
    
    
-   On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we may write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
+   On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we can write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
 %
 %\begin{equation}
 %\label{lemma-fundamental-sequences-nonnegative: e}
@@ -3207,8 +3212,8 @@ Our goal is to prove the following theorem.
    
    If $\O$ is a \emph{bounded} standard face of $\N$, set
    \[\setW_\O \coloneqq \{\vv{u} \in \ZZpos^\numvars : (\matA,\vv{u})\text{ is very small and }\mf(\matA,\vv{u}) = \O\}.\]
-   Observe that if $\vv{u} \in \setW_\O$, then $\lambda \coloneqq \degree(\matA,\vv{u}) \le 1$ and $\lambda^{-1} \vv{u}\in \O$, and consequently $\vv{u}$ lies in the convex hull of $\O \cup \{\vv{0}\}$.
-   Since $\O$ is bounded, so is this convex hull, and consequently the set $\setW_\O$ is finite.
+   Observe that if $\vv{u} \in \setW_\O$, then $\lambda \coloneqq \degree(\matA,\vv{u}) \le 1$ and $\lambda^{-1} \vv{u}\in \O$, and consequently, $\vv{u}$ lies in the convex hull of $\O \cup \{\vv{0}\}$.
+   Since $\O$ is bounded, so is this convex hull, and hence the set $\setW_\O$ is finite.
    \pedro[inline]{
       I believe $\setW_\O = (\ri \O \cup \ri \conv(\O\cup \{\vv{0}\})) \cap \ZZpos^\numvars$, but we don't need this level of precision here.
    }
@@ -3217,7 +3222,7 @@ Our goal is to prove the following theorem.
    Denoting collapsing along $\O$ by an overbar, $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{collapse of Newton polyhedron: P}, and we construct a finite set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
    For each point $\vv{w}$ in $\setW_{\collapse{\O}}$, we set
    \[ S_\vv{w} \coloneqq \{ \vv{u} \in \ZZpos^\numvars: \collapse{\vv{u}} = \vv{w}\text{ and }\mf(\matA,\vv{u}) = \O \}.\]
-   Note that if $\vv{u} \in S_\vv{w}$, then $(\matA,\vv{u})$ is very small, since $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P} and $(\collapse{\matA},\vv{w})$ is very small by construction.
+   Note that if $\vv{u} \in S_\vv{w}$, then $(\matA,\vv{u})$ is very small since $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P},  and $(\collapse{\matA},\vv{w})$ is very small by construction.
    \Cref{lem: lifting pairs 2} tells us that $S_\vv{w}$ is nonempty, and Dickson's Lemma \cite[Lemma~A]{dickson} tells us that the set $\min S_\vv{w}$  of minimal elements of $S_\vv{w}$ under componentwise inequality is finite.
    Set
    \[\setW_\O \coloneqq \bigcup_{\vv{w}} \min S_\vv{w} \]
