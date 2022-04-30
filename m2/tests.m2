@@ -948,6 +948,8 @@ print \ ideals;
 minimalSmallNotVerySmall monomialMatrix A
 peek (monomialMatrix A)#cache
 
+universalDenominator A
+
 print \ ideals;
 
 toString( first  \ ideals )
@@ -1065,8 +1067,10 @@ unique apply( pts, u -> F == feasLP( A, u ) )
 
 F = feasLP( A, columnVector {1,1,1} )
 
-pts = apply(1..200, i -> {1,1,1}+{0,random(10),0});
+pts = apply(1..20, i -> {1,1,1} + {0,random(10),0} );
 unique apply( pts, u -> F == feasLP( A, u ) )
+
+apply( pts, u -> criticalExponent( A, columnVector u, 11 ) == criticalExponent( A, columnVector {1,1,1}, 11 ))
     
 recessionBasis minimalFace( A, columnVector {1,1,1} )
     
@@ -1082,8 +1086,28 @@ A = matrix{ {36, 10, 31}, {19,46,31}, {47,25,36} }
 universalDenominator A
 
 QQ[x,y,z]
-print \ frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
+ideals = frobeniusPowers( A, 11, {x,y,z}, Verbose => true );
 
+({10, 9,
+13},4215/12851-(217173/9933823)*p^(-1)-(2475/681013)*p^(-2)-(1848/681013)*p^(-3)-(5181/681013)*p^(-4)-(1155/681013)*p^(-5)-(2112/681013)*p^(-9)-(5841/681013)*p^(-10)-(5874/681013)*p^(-13)-(2343/681013)*p^(-16)-(348/14687)*p^(-18))
+
+criticalExponent( A, columnVector {10,9,13}, 11 )
+-- depth 23, with 3-cycle repeating starting at level 20
+   
+-- checking pair
+P = monomialPair( A, columnVector {10,9,13} )
+peek P#cache
+
+#ideals -- 3742
+
+max apply( first \ ideals, u -> #terms(u) ) -- 11
+select( ideals, u -> #terms(first u) == 11 )
+
+viewHelp openOut
+
+file = openOut("~/Repository/aip_Hg/m2/crazy_example_output.txt")
+apply( ideals, u -> file << toString(u) | "\n" );
+file << close
 
 ---------------------------------------------------------------------------------------------
 

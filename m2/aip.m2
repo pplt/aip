@@ -1,5 +1,18 @@
 loadPackage("Polyhedra", Reload => true)
 
+
+-- DELETE
+feasLP = method() 
+feasLP ( Matrix, Matrix ) := ( A, u ) -> 
+(
+    n := rank source A;
+    M := A || - identityMatrix n; 
+    v := u || zeroVector n;
+    polyhedronFromHData( M, v )
+)
+feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, columnVector u ) 
+feasLP Matrix := A -> feasLP( A, constantVector( 1, rank target A) )
+
 -------------------------------------------------------------------------------
 -- Types
 -------------------------------------------------------------------------------
@@ -670,11 +683,11 @@ frobeniusMu ( MonomialPair, ZZ ) := ( P, r ) ->
         e = e + 1;
         newS = apply( toList SStar#(e-1), pp -> apply( shortfall( pp, r ), v -> monomialPair( collapse pp, v ) ) );
         newS = unique flatten newS;
-        if ( k = position( S, x -> x === set newS ) ) =!= null then 
-            return sum( 1..(k-1), i -> M_i * t^i ) / ( 1 - p*t ) + sum( k..(e-1), i -> M_i * t^i ) / ( ( 1 - p*t ) * ( 1 - t^(e-k) ) );
+        if ( k = position( S, x -> x === set newS ) ) =!= null then ( -- print(k,e); 
+            return sum( 1..(k-1), i -> M_i * t^i ) / ( 1 - p*t ) + sum( k..(e-1), i -> M_i * t^i ) / ( ( 1 - p*t ) * ( 1 - t^(e-k) ) ) ); 
         ( epsilon, newSStar ) = maximize( newS, v -> degree v );
-        if epsilon > 1 then 
-           return sum( 1..(e-1), i -> M_i * t^i ) / ( 1 - p*t ) + ( p - 1 ) * t^e / ( ( 1 - p*t ) * ( 1 - t ) );
+        if epsilon > 1 then ( -- print(e); 
+           return sum( 1..(e-1), i -> M_i * t^i ) / ( 1 - p*t ) + ( p - 1 ) * t^e / ( ( 1 - p*t ) * ( 1 - t ) ) ); 
         ( delta, newSStar ) = minimize( newSStar, pp -> deficit( pp, r ) );
         S = append( S, set newS );
         SStar = append( SStar, set newSStar );
