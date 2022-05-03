@@ -502,9 +502,17 @@ pointsAimedAtUnboundedFace := L ->
 )
 
 pointsAimedAtFace = method()
-pointsAimedAtFace Polyhedron := ( cacheValue symbol pointsAimedAtFace )( L -> 
+pointsAimedAtFace Polyhedron := L -> 
     if isCompact L then pointsAimedAtCompactFace L else pointsAimedAtUnboundedFace L
-)
+
+gatherPoints = method()
+gatherPoints MonomialMatrix := ( cacheValue symbol points )( M ->
+(
+    N := newtonPolyhedon M;
+    -- pick only maximal compact faces and unbounded standard faces
+    faces := join( maximalBoundedFaces N, unboundedFaces N);    
+    unique flatten( pointsAimedAtFace \ faces )
+))
 
 minimalSmallNotVerySmall = method()
 minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVerySmall )( M ->
@@ -718,30 +726,25 @@ criticalExponent ( Matrix, Matrix, ZZ ) := ( A, u, r ) -> criticalExponent( mono
 criticalExponents = method( Options => { Verbose => false, ReturnPoints => false } )
 criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) -> 
 (  
-    N := newtonPolyhedon M;
-    A := M#matrix;
-    m := numRows A;
-    -- pick only maximal compact faces and unbounded standard faces
-    faces := join( maximalBoundedFaces N, unboundedFaces N);    
-    pts := unique flatten( pointsAimedAtFace \ faces );
-    local c;
+    pts := gatherPoints M;
+    local crit;
     local ptsRealizingC;
     ptsAndCrits := apply( pts, u -> 
         ( 
-            c = criticalExponent( A, u, r );
-            if o.Verbose then print toString ( first entries transpose u, c );
-            { u, c }
+            crit = criticalExponent( monomialPair( M, u), r );
+            if o.Verbose then print toString ( first entries transpose u, crit );
+            { u, crit }
         )
     );
     -- Take all distinct crits and sort them
-    crits := unique apply( ptsAndCrits, last );
-    minOrder := min( ord \ crits );
+    allcrits := unique apply( ptsAndCrits, last );
+    minOrder := min( ord \ allcrits );
     p := first (R2())_*;
-    crits =  last \ sort apply( crits, c -> 
+    allcrits =  last \ sort apply( allcrits, c -> 
         append( apply( 0..(-minOrder), i -> coefficient( p^(-i), c ) ) , c ) 
     );
-    if not o.ReturnPoints then return crits;
-    crits = apply( crits, c -> 
+    if not o.ReturnPoints then return allcrits;
+    allcrits = apply( allcrits, c -> 
         (
             ptsRealizingC = select( ptsAndCrits, u -> u#1 == c );
             ptsRealizingC = apply( ptsRealizingC, first );
@@ -750,15 +753,14 @@ criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) ->
     );
     -- Gathering small but not very small points.
     -- These should be listed as points realizing crit exp 1
-    smallNotVerySmall := minimalSmallNotVerySmall monomialMatrix A; 
-    lastCrit := last crits;
+    smallNotVerySmall := minimalSmallNotVerySmall M; 
+    lastCrit := last allcrits;
     if lastCrit#0 == 1_(R2()) then 
         -- if 1 is already in crit list, add small not very small points to its list
-        crits = append( drop( crits, { #crits - 1, #crits - 1 } ), { 1_(R2()), join( lastCrit#1, smallNotVerySmall ) } )
+        append( drop( allcrits, { #allcrits - 1, #allcrits - 1 } ), { 1_(R2()), join( lastCrit#1, smallNotVerySmall ) } )
     else 
         -- if not, add one more entry to crits
-        crits = append( crits, { 1_(R2()), smallNotVerySmall } );
-    crits
+        append( allcrits, { 1_(R2()), smallNotVerySmall } )
 )
 criticalExponents ( Matrix, ZZ ) := o -> ( A, r ) -> 
     criticalExponents( monomialMatrix A, r, o )
@@ -775,7 +777,8 @@ frobeniusPowers ( MonomialMatrix, ZZ, List ) := o -> ( A, r, variables ) ->
     answer := reverse transpose( { drop( u, { 0, 0 } ), drop( v, { #v - 1, #v - 1 } ) } );
     apply( answer, u -> u#0 => u#1 )
 )
-frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, var ) -> frobeniusPowers( monomialMatrix A, r, var, o )
+frobeniusPowers ( Matrix, ZZ, List ) := o -> ( A, r, var ) -> 
+    frobeniusPowers( monomialMatrix A, r, var, o )
 
 -------------------------------------------------
 

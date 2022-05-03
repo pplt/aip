@@ -1032,6 +1032,8 @@ print \ toString \ criticalExponents( A, 11 );
 
 peek (monomialMatrix A)#cache
 
+time gatherPoints monomialMatrix A
+
 -- checking random pair
 P = monomialPair( A, columnVector {2,1,1} )
 peek P#cache
