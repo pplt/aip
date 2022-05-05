@@ -1242,26 +1242,6 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    In particular, the columns of $\collapse{\matA}$ are nonzero.
 \end{remark}
 
-% \begin{proposition}[Faces under collapsing]
-%    \label{collapse of Newton polyhedron: P}
-%    Let $\O$ be a face of the Newton polyhedron $\N$ of a monomial matrix $\matA$.
-%    As above, we use an overbar to denote collapse along $\O$.
-%    Then $\collapse{\N}$ is the Newton polyhedron of $\collapse{\matA}$, and $\collapse{\O}$ is a bounded face of $\collapse{\N}$.
-%    In addition, if $\defpt \in \RR^\numvars$ defines $\O$ in $\N$, then $ \collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$.
-% \end{proposition}
-
-% \begin{proof}
-%    Taking the equation defining $\N$ and collapsing it along $\O$, we obtain
-%    \[ \collapse{\N} = \ol{\conv( \col(\matA))} + \ol{\cone(\canvec_1, \ldots, \canvec_\numvars)} = \conv( \col(\collapse{\matA}) ) + \cone(\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars).\]
-%    The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{\matA}$.
-
-%    Given \Cref{collapse of a defining vector: R}, it is not difficult to verify that $\collapse{\defpt}$ defines $\collapse{\O}$ in $\collapse{\N}$ whenever $\defpt \in \RR^\numvars$ defines $\O$ in $\N$.
-%    The positivity of $\collapse{\defpt}$ then implies that $\collapse{\O}$ is bounded.
-%    Alternatively, one may collapse the identity in \Cref{prop: MW for faces} along $\O$ to see that the collapsed face $\collapse{\O}$ is the polytope $\conv( \collapse{ \col(\matA) \cap \O}) = \conv( \col(\collapse{\matA}) \cap \collapse{\O})$.
-% \end{proof}
-
-\pedro[inline]{Previous version of following proposition is commented out.}
-
 \begin{proposition}[Faces under collapsing]
    \label{collapse of Newton polyhedron: P}
    Let $\O$ and $\L$ be proper faces of the Newton polyhedron $\N$ of a monomial matrix $\matA$, defined by points $\defpt$ and $\vv{b}$, respectively.
@@ -1392,18 +1372,6 @@ In these lemmas, $\matA$ is a monomial matrix, $\O$ is an unbounded standard fac
    and as $\lambda^{-1} \vv{u} \in \L \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$.
    Finally, the minimality of $\L = \mf(\matA, \vv{u})$ implies that $\L \subseteq \O$.
 \end{proof}
-
-% \begin{lemma}
-%    \label{lem: minimality property of minimal face}
-%    Let $\N$ be the Newton polyhedron of a monomial matrix $\matA$, let $\O$ be the minimal face of a monomial pair $(\matA,\vv{u})$, and let $\L$ be a standard face of $\N$.
-%    If $\O$ and $\L$ are defined in $\N$ by points $\defpt$ and $\vv{b}$, respectively, then $\iprod{\defpt}{\vv{u}} \le \iprod{\vv{b}}{\vv{u}}$.
-% \end{lemma}
-
-% \begin{proof}
-%    Let $\lambda = \degree(\matA,\vv{u}) = \iprod{\defpt}{\vv{u}}$.
-%    Then $\lambda^{-1}\vv{u} \in \O \subseteq \N$, and so $\iprod{\vv{b}}{\lambda^{-1}\vv{u}} \ge 1$.
-%    Thus, $\iprod{\vv{b}}{\vv{u}} \ge \lambda = \iprod{\vv{c}}{\vv{u}}$, as desired.
-% \end{proof}
 
 \begin{lemma}
    \label{lem: lifting pairs 2}
@@ -1911,7 +1879,7 @@ Thus, $\collapse{\ideala}$ and $\collapse{\ideald}$ are the images of $\ideala$ 
 
 We note that the collapsed ideal pair $(\collapse{\ideala},\collapse{\ideald})$ depends on the choice of the associated monomial pair $(\matA,\vv{u})$ associated to $(\ideala,\ideald)$.
 If this choice is irrelevant or clear from the context, then we shall omit the reference to the minimal face $\O$ when referring to collapsed ideal pairs.
-
+ 
 \begin{corollary}
 \label{computing nu for large q: C}
    Given a monomial ideal $\ideala$, there exists an integer $\beta = \beta(\ideala)$ with the following property\textup:
@@ -3259,7 +3227,7 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
    where the union ranges over all standard faces $\O$ of $\N$.
 
    We now prove that the set $\setW$ just constructed does the job.
-   Fix an integer $\beta$ for which the conclusions of both \Cref{small not very small value: T,value-of-aip-invariant-under-collapse: C} hold for all $p > \beta$, and a monomial ideal $\ideala$ in a polynomial ring of characteristic $p>\beta$ associated to $\matA$.
+   Fix an integer $\beta$ for which the conclusions of both \Cref{small not very small value: T,value-of-aip-invariant-under-collapse: C} hold for all $p > \beta$, and a monomial ideal $\ideala$ associated to $\matA$ in a polynomial ring of characteristic $p>\beta$.
 
    Property $(1)$ follows from \Cref{trivial small value bound: P}, as $(\matA,\vv{u})$ is small for every $\vv{u} \in \setW$.
    Toward $(2)$, let $\vv{v}$ be a positive point such that $\crit(\ideala,\vv{v}) \le 1$.
