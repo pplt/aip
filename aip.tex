@@ -305,6 +305,8 @@ If $\matA$ is an $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \
    An \emph{ideal pair} $(\ideala, \ideald)$ consists of a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$, along with a diagonal ideal $\ideald$ of the same ambient polynomial ring.
 \end{definition}
 
+\daniel[inline]{Define a monomial triple $(\matA, \vv{u}, q)$ to consist of the data of a monomial pair, along with a positive integer $q$}
+
 \begin{remark}[Association of pairs]
 \label{associate of pairs: R}
  As in \Cref{monomial matrix ideal: R}, we may associate to each ideal pair $(\ideala, \ideald)$ in $\kk[x_1, \ldots, x_{\numvars}]$ a monomial pair $(\matA, \vv{u})$.  Observe that, though there need not be a canonical choice for the $\numvars \times n$ matrix $\matA$, the positive point $\vv{u} \in \ZZ^\numvars$ is uniquely determined by the diagonal ideal $\ideald$.
@@ -1234,13 +1236,17 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    Consequently, $\iprod{\defpt}{\vv{u}} = \iprod{\collapse{\defpt}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^\numvars$. \daniel[inline]{Restate this?}
 \end{remark}
 
-\begin{remark}
-   \label{collapse of monomial is monomial: R}
-   The collapsed matrix $\collapse{\matA}$ is monomial.
-   Indeed, each row of $\collapse{\matA}$ is a row of $\matA$, and hence is nonzero.
-   On the other hand, if $\defpt \in \RR^\numvars$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\defpt}$ with every column of $\collapse{\matA}$ is at least $1$.
-   In particular, the columns of $\collapse{\matA}$ are nonzero.
-\end{remark}
+
+\daniel[inline]{I updated the following remark, elevated it to a lemma.}
+\begin{lemma}
+
+   \label{collapse of monomial is monomial: L}
+   Let  $(\matA, \vv{u})$ be a monomial pair.  If an overbar denotes collapse along the minimal face $ \O = \mf(\matA, \vv{u})$, then  $(\collapse{\matA}, \collapse{\vv{u}})$ is also a monomial pair.
+
+\end{lemma}
+
+\begin{proof} As it is clear that $\collapse{\vv{u}}$ is positive, we must show that $\collapse{\matA}$ is monomial.  Towards this, note that each row of $\collapse{\matA}$ is a row of $\matA$, and hence is nonzero.  Furthermore, if $\defpt \in \RR^\numvars$ defines $\O$, then \Cref{collapse of a defining vector: R} implies that the inner product of $\collapse{\defpt}$ with every column of $\collapse{\matA}$ is at least $1$.  In particular, the columns of $\collapse{\matA}$ are also nonzero.
+\end{proof}
 
 \begin{proposition}[Faces under collapsing]
    \label{collapse of Newton polyhedron: P}
@@ -1281,7 +1287,7 @@ Below, we describe the relationship between collapses and other notions introduc
    Consider a monomial pair $(\matA, \vv{u})$, and let an overbar denote collapse along $\O = \mf(\matA, \vv{u})$.
    Then the following hold.
    \begin{enumerate}[$(1)$]
-      \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\O}$ and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
+      \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\O}$, which is compact, and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
       \item Each optimal point for $\LP(\matA, \vv{u})$ is also optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
       \item Each special point for $(\matA, \vv{u})$ is a special point for $(\collapse{\matA}, \collapse{\vv{u}})$.
    \end{enumerate}
@@ -1337,6 +1343,7 @@ Below, we describe the relationship between collapses and other notions introduc
 \daniel[inline]{I think we'll need this for the section on applications to generic hypersurfaces}
 
 \begin{proposition}
+\label{iterated-collapse-is-a-collapse: P}
 \label{collapse of a collapse is a collapse: P} Every composition of collapsings is a collapsing.
 \end{proposition}
 
@@ -1413,16 +1420,14 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 \begin{definition}[The bracket operation]
    \label{tail: D}
    Let $q$ be a positive integer.
-   If $\lambda = a/b$ for some \emph{positive} integers $a$ and $b$, then we define
-   \[ \tail{\lambda}_q = \frac{ \lpr{aq}{b}}{b}. \]
-   This expression is clearly independent of the choice of the integers $a$ and $b$.
+   If $\lambda = a/b$ for some \emph{positive} integers $a$ and $d$, then we define
+   \[ \tail{\lambda}_q = \frac{ \lpr{aq}{d}}{d}. \]
+   This expression is clearly independent of the choice of the integers $a$ and $d$.
    In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
 \end{definition}
 
 \begin{remark}
-   \label{tail-basics: R}
-   If $q \in \ZZ$ is positive and $\lambda = a/b$ with $a$ and $b$ positive integers, then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on  $q$ modulo $b$, but not on $q$ itself.
-   Furthermore,
+   \label{tail-basics: R}  Suppose that $q$ is a positive integer, and that $\lambda = a/d$ with $a$ and $d$ positive integer.  Then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on $q$ modulo $d$, but not on $q$ itself, i.e., if $r = \lpr{q}{d}$, then $\tail{\lambda}_q = \tail{\lambda}_r$.  Furthermore,
    \[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \]
    is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, that is, $\up{\lambda q} - 1$.
    This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an integer.
@@ -1481,6 +1486,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \subsection{Another integer program}
 
+\daniel[inline]{Define an $\matA$ triple to be $(\matA, \vv{u}, q)$, and an $\matA$ list to be $(\matA, \vv{u}, q, \vv{s})$ } 
+
 \begin{definition}[Monomial list]
    A \emph{monomial list} $(\matA, \vv{u}, \vv{s}, q)$ consists of the following data.
    \begin{enumerate}
@@ -1492,12 +1499,29 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 \end{definition}
 
 \begin{definition}[The auxiliary integer program $\ip$]
-   \label{aux program: D}
+   \label{secondary program: D}
    If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(\matA, \vv{u}, \vv{s}, q)$ in the domain lattice of $\matA$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$, where the overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
 \end{definition}
 
 Recall that since each row of $\collapse{\matA}$ is a row of $\matA$, the inequalities determined by $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ are a subset of those in $\matA \vv{h}  < \matA \tail{\vv{s}}_q$.
 Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(\matA, \vv{u}, \vv{s}, q)$ has a well-defined value.
+
+\begin{lemma} 
+\label{secondary-program-invariant-under-collapse: L}
+If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial  list, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list, and $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
+\end{lemma}
+
+\begin{proof}  \Cref{collapse of monomial is monomial: L,collapse of mf and mc: P} together imply that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
+\end{proof}
+
+\begin{lemma} 
+\label{secondary-program-invariant-depends-on-residue: L}
+Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator for the rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.  If $\lpr{q}{d} = r$, then $\ip(\matA, \vv{u}, \vv{s}, q) = \ip({\matA}, {\vv{u}}, \vv{s}, r)$
+\end{lemma}
+
+\begin{proof} \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree.  Hence, by \Cref{secondary program: D}, the secondary programs associated to  $(\matA, \vv{u}, \vv{s}, q)$ and $(\matA, \vv{u}, \vv{s}, r)$ coincide.
+\end{proof}
+
 
 \begin{example}[Running example: an auxiliary integer program]
    \label{ex: ft.3}
@@ -1622,6 +1646,8 @@ The following theorem underlies some of our later finiteness results.
    This follows from \eqref{norm of tail: e} and the proof of \Cref{finitely many secondary programs: T}.
 \end{proof}
 
+
+\newpage
 \section{Toward solving $\IP$}
 \label{solving: S}
 
@@ -1629,6 +1655,8 @@ Throughout this section, $(\matA, \vv{u})$ is a monomial pair and $q$ is positiv
 Our goal here is to demonstrate that the value and the image of $\opt\IP(\matA, \vv{u}, q)$ under $\matA$
 \pedro{Replaced ``optimal image'' with this; maybe we'll want to rephrase this.}
 vary with $q$ in a uniform way as $q$ tends to infinity.
+
+\daniel[inline]{The stuff on $\IP$ and $\IP_p$ has got to move}
 
 \subsection{Shortfall and deficit}
 
@@ -1675,27 +1703,38 @@ The notion of \emph{deficit} is introduced to measure how far those values are f
    The deficit of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
 \end{definition}
 
-We now extend the definitions of shortfall and deficit to the auxiliary integer program $\ip(\matA,\vv{u},\vv{s},q)$.
+
+\newpage
+We now extend the definitions of shortfall and deficit to the secondary program.
 
 \begin{definition}[Shortfall and deficit for $\ip$]
    \label{deficit and shortfall ip: D}
-   The \emph{shortfall} of the integer program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ is the set
-   \[ \short \ip = \collapse{\matA} \tail{\vv{s}}_q - \collapse{\matA} (\opt \ip)\]
-   where the overbar denotes collapse along $\mf(\matA, \vv{u})$.
-   The \emph{deficit} of $\ip$ is the positive rational number
-   \[ \deficit \ip = \norm{\tail{\vv{s}}_q} - \val \ip. \]
+   
+  The \emph{shortfall} and \emph{deficit} associated to the secondary integer program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ are the quantities 
+   \begin{align*}
+  \short \ip & = \collapse{\matA} \tail{\vv{s}}_q - \collapse{\matA} (\opt \ip) \\ 
+  \deficit \ip & = \norm{\tail{\vv{s}}_q} - \val \ip
+ \end{align*}
+   where the overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
 \end{definition}
 
-\Cref{tail projection: L} and the constraints of $\ip$ imply that the shortfall of $\ip$ consists of positive lattice points, while \Cref{bounded value: P} shows that the deficit of $\ip$ is indeed positive.
-Moreover, every universal denominator for $\matA$ is also a denominator for the deficit of $\ip$.
+\begin{lemma} 
+\label{positivity-of-deficits-shortfalls-of-Theta: L}
+The deficit associated to the secondary integer program $\ip(\matA, \vv{u}, \vv{s}, q)$ is a positive rational number.  Furthermore, once $\matA$ is fixed, but as the list $(\matA, \vv{u}, \vv{s}, q)$ otherwise varies,  there are only finitely many numbers of the form $\deficit \ip(\matA, \vv{u}, \vv{s}, q)$.
+\end{lemma}
 
-Our next proposition will show that, even though the optimal set of an integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
+\begin{proof}  Our assertions follow from  \Cref{bounded value: P} and \Cref{finitely many secondary programs: T}. 
+\end{proof}
+
+
+
+Our next proposition will show that, even though the optimal set of a secondary integer program $\ip$ may be infinite, as shown in \Cref{ex: ft.3}, its shortfall is always finite.
 For that, we shall need the following simple boundedness result.
 
 \begin{lemma}
    \label{bounded polytope: L}
-   Let $\vv{c}$ and $\vv{u}$ be points in $\RR^\numvars$, and suppose that $\vv{c}$ has positive coordinates.
-   If $\alpha$ is any real number, then the polyhedron consisting of all points $\vv{v} \in \RR^\numvars$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
+   Suppose $\vv{c}, \vv{u}$ are points in $\RR^\numvars$, with $\vv{c}$  positive.
+   If $\alpha \in \RR$, then the polyhedron consisting of all $\vv{v} \in \RR^\numvars$ such that  $\vv{v} \le \vv{u}$ and $\iprod{\vv{c}}{\vv{v}} \geq \alpha$ is bounded.
 \end{lemma}
 
 \begin{proof}
@@ -1705,12 +1744,11 @@ For that, we shall need the following simple boundedness result.
 \end{proof}
 
 \begin{proposition}%[Finiteness of shortfalls]
-   \label{finite image: P}
-   The shortfall of $\ip(\matA, \vv{u}, \vv{s}, q)$ is finite.
+   \label{finite image: P}  Let $(\matA, \vv{u}, \vv{s} ,q)$ be a monomial a list, and let an overbar denote collapse along $\mf(\matA, \vv{u})$.  Then the shortfall of the secondary program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ is a nonempty, finite set of positive points \hl{in the target lattice} of $\collapse{\matA}$.
 \end{proposition}
 
-\begin{proof}
-   Suppose $\defpt$ defines $\O  = \mf(\matA, \vv{u})$ in the Newton polyhedron of $\matA$, and let an overbar denote collapse along $\O$.
+\begin{proof} \Cref{tail projection: L} and the constraints of $\ip$ imply that  $\short \ip$ consists of positive lattice points in the target lattice of $\collapse{\matA}$.  It remains to show that $\short \ip$ is finite.  Towards this, suppose $\defpt$ defines $\O$ in the Newton polyhedron of $\matA$.
+
    If $\vv{h}$ is optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} tells us that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{\matA} \vv{h}}$, and so $\collapse{\matA} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{\matA} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
    Thus, $\collapse{\matA}(\opt \ip)$ is finite, and therefore so is $\short \ip$.
@@ -1736,19 +1774,48 @@ For that, we shall need the following simple boundedness result.
 %   Thus, in this case $\short\ip = \{(3,1),(2,4),(1,7)\}$.
 \end{example}
 
-\Cref{finite image: P,finitely many secondary programs: T} give us the following result.
+Below, we derive a much stronger finiteness property of the shortfalls of $\ip$.
 
 \begin{theorem}[Existence of finite sets of representatives]
    \label{fsr-exist: T}
-   Given a monomial matrix $\matA$, there exists a finite subset $\fsr = \fsr(\matA)$ of the domain lattice of $\matA$ such that for each integer program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ we have
-   \[\short \ip = \collapse{\matA}\tail{\vv{s}}_q - \collapse{\matA}(\fsr \cap \opt \ip).\]
+   Given a monomial matrix $\matA$, there exists a finite subset $\fsr = \fsr(\matA)$ of the domain lattice of $\matA$ with the following property:  For each secondary program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ we have
+   that \[ \short \ip = \collapse{\matA}\tail{\vv{s}}_q - \collapse{\matA}(\fsr \cap \opt \ip) \] where an overbar denotes collapse along the minimal face $\O = \mf(\matA, \vv{u})$.
 \end{theorem}
 
 \begin{proof}
    \Cref{finite image: P} implies that for every monomial list $(\matA, \vv{u}, \vv{s}, q)$,  there exists a \emph{finite} subset $\fsr(\matA, \vv{u}, \vv{s}, q)$ of $\opt \ip (\matA, \vv{u}, \vv{s}, q)$ such that
    \[  \collapse{\matA}(\opt \ip (\matA, \vv{u}, \vv{s}, q) ) = \collapse{\matA}(\fsr(\matA, \vv{u}, \vv{s}, q)). \]
+   
    \Cref{finitely many secondary programs: T} then implies that these sets may be chosen in such a way so that $\fsr(\matA) = \bigcup \fsr(\matA, \vv{u}, \vv{s}, q)$ is finite, where the union is over all $\matA$-lists.
 \end{proof}
+
+\begin{corollary}
+\label{union-of-secondary-shortfalls: C}  If $\matA$ is a monomial matrx,  then the union over all $\matA$-lists
+$\cup \, \short \ip(\matA, \vv{u}, \vv{s}, q)$ is a nonempty, finite set of positive lattice points. \qed
+\end{corollary}
+
+\hl{We stress that, unless $\matA$ is convenient, in which case the only collapse of $\matA$ is $\matA$ itself, the above union will contain positive lattice points of different dimensions.}
+
+
+\daniel[inline]{This got moved here from Section 9, and upgraded from a remark to a lemma, and modified the proof so that it proves the one that we actually use.  Should we expand this to include the obvious statement for the shortfall of $\IP_p$, and then maybe move part of this up, and then claim that the situation for the secondary program is similar, and not prove it here?}
+
+\begin{lemma}[Small pairs from shortfalls] \ 
+\label{small pairs from shortfalls: L}
+\begin{enumerate}[$(1)$]
+\item  If $\vv{v}$ is a point in the shortfall of $\IP(\matA, \vv{u}, q)$, then $(\matA, \vv{v})$ is small.
+%\item  If $\vv{v}$ is a point in the shortfall of $\IP_q(\matA, \vv{u}, q^e)$, then $(\matA, \vv{v})$ is small.
+\item  If $\vv{v}$ is a point in the shortfall of $\ip(\matA, \vv{u}, \vv{s}, q)$, then $(\collapse{\matA}, {\vv{v}})$ is small, where here, an overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}  As the arguments are similar, we only prove the second point.  Towards this, let $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$.  
+As noted in \Cref{finite image: P}, if $\vv{v}$ is in the shortfall of $\ip$,  then $\vv{v}$ is a positive point in the target lattice of $\collapse{\matA}$.  Furthermore, by definition, we may realize $\vv{v}$ by writing  $\vv{v} =\collapse{\matA} \tail{\vv{s}}_q -\collapse{\matA}\vv{h}$ for some $\vv{h} \in \opt \ip$.  Subtracting the collapse of $\vv{a}_i$, the $i$-column of $\matA$, from both sides of this expression for $\vv{v}$ then yields
+%
+\[ \vv{v}-\collapse{\vv{a}}_i = \collapse{\matA} \tail{\vv{s}}_q -\collapse{\matA}\vv{h} -\collapse{\vv{a}}_i = \collapse{\matA} \tail{\vv{s}}_q -\collapse{\matA}(\vv{h}  + \canvec_i). \]
+
+The optimality of $\vv{h}$ for $\ip$ implies that $\vv{h}+\canvec_i$ cannot satisfy the linear constraint of $\ip$, which shows that the right-hand side above is not positive.  In other words, $\vv{v} \not > \collapse{\vv{a}}_i$, and as $i$ was arbitrary, this allows us to conclude that $(\collapse{\matA}, \vv{v})$ is small.
+\end{proof}
+
 
 \subsection{Relating the two integer programs}
 \label{relating-programs: ss}
@@ -1785,35 +1852,78 @@ For that, we shall need the following simple boundedness result.
 
 The above result leads to a fundamental observation.
 
-\begin{corollary}[Non-dependence on the special point]
+\begin{corollary}
    \label{independence: C}
-   The deficit and the shortfall of $\ip(\matA, \vv{u}, \vv{s}, q)$ do not depend on $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
+   The deficit and the shortfall of the secondary integer program $\ip(\matA, \vv{u}, \vv{s}, q)$ do not depend on the choice of the point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
 \end{corollary}
 
 \begin{proof}
-   Fix $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(\matA, \vv{u})$, as well as a common denominator $\denom$ for these points.
-   As the deficits and shortfalls of $\ip(\matA,\vv{u},\vv{s},q)$  and $\ip(\matA,\vv{u},\vv{s}',q)$ clearly depend only on $q$ modulo $\denom$, it suffices to show that they agree whenever $q \gg 0$, but this follows from \Cref{uniform value and image: P}.
-\end{proof}
+   Fix a common denominator $d$ for points $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(\matA, \vv{u})$.  
+    \Cref{secondary-program-invariant-depends-on-residue: L} tells us $\ip(\matA,\vv{u},\vv{s},q)$  and $\ip(\matA,\vv{u},\vv{s}',q)$ are unaffected if we replace $q$ with any larger integer with the same residue modulo $d$.  However, \Cref{uniform value and image: P} tells us that once we increase $q$, the deficit and shortfall of associated to these programs coincide.  
+    \end{proof}
 
 The above corollary and \Cref{uniform value and image: P} motivate the following definition.
 
-\begin{definition}[Universal deficit and shortfall]
-\label{independence: D}
-Given a monomial pair $(\matA, \vv{u})$ and positive integer $q$, we define the \emph{universal deficit} and \emph{universal shortfall} of $(\matA,\vv{u},q)$ as follows\textup:
- \[ \udeficit(\matA, \vv{u}, q) = \deficit\ip( \matA, \vv{u}, \vv{s}, q)\] and
-\[\ushort(\matA, \vv{u}, q) = \short\ip( \matA, \vv{u}, \vv{s}, q)\]
-where  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
+\begin{definition}
+\label{independence: D}  The \emph{universal shorfall} and the \emph{universal deficit} associated to a \hl{monomial triple} $(\matA, \vv{u}, q)$ are the quantities
+ \begin{align*}
+  \ushort(\matA, \vv{u}, q) & = \short\ip( \matA, \vv{u}, \vv{s}, q) \\ 
+  \udeficit(\matA, \vv{u}, q) & = \deficit\ip( \matA, \vv{u}, \vv{s}, q)  
+ \end{align*}
+where  $\vv{s}$ is any point in $\sp_{\QQ}(\matA, \vv{u})$.  As noted in \Cref{independence: C}, these definitions do not depend on the choice of the rational special point $\vv{s}$.
 \end{definition}
+
+
+\begin{proposition}[Basic facts about universal deficits and shortfalls] \ 
+\label{fundamental-properties-deficits-shortfalls: P}
+\begin{enumerate}[$(1)$]
+\item If $\matA$ is a monomial matrix, then the set of all $\udeficit(\matA, \vv{u}, q)$, with $(\matA, \vv{u}, q)$  an $\matA$-triple,  is is a nonempty, finite set of positive rational numbers. 
+\item \label{finitely-many-A-universal-shortfalls: i} The universal shortfall associated to a triple is a nonempty, finite set of positive lattice points, all of the same dimension.  In fact, once $\matA$ is fixed, then the union over all $\matA$-triples 
+$\cup  \ushort \ip(\matA, \vv{u},  q)$ is a finite set of positive lattice points,  \hl{though not all of the same dimension, unless $\matA$ is convenient.}
+
+ \item  \label{universal-stuff-invariant-under-collapse: i}  If $(\matA, \vv{u})$ is a pair, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then  
+  $\udeficit(\matA, \vv{u}, q) = \udeficit(\collapse{\matA}, \collapse{\vv{u}}, q)$ and  
+   $\ushort(\matA, \vv{u},q)  = \ushort(\collapse{\matA}, \collapse{\vv{u}}, q)$.
+
+
+%  \begin{align*} 
+%  \udeficit(\matA, \vv{u}, q) & = \udeficit(\collapse{\matA}, \collapse{\vv{u}}, q) \\ 
+%   \ushort(\matA, \vv{u},q)  & = \ushort(\collapse{\matA}, \collapse{\vv{u}}, q).
+%  \end{align*}
+  
+  \item  \label{universal-stuff-depends-on-q-mod-d: i} If $d$ is a universal denominator for a monomial matrix $\matA$, and $r = \lpr{q}{d}$, then 
+  $\udeficit(\matA, \vv{u}, q)  = \udeficit({\matA}, {\vv{u}}, r)$ and 
+  $ \ushort(\matA, \vv{u},q)   = \ushort({\matA}, {\vv{u}}, r)$.
+
+%    \begin{align*} 
+%  \udeficit(\matA, \vv{u}, q) & = \udeficit({\matA}, {\vv{u}}, r) \\ 
+%   \ushort(\matA, \vv{u},q)  & = \ushort({\matA}, {\vv{u}}, r).
+%  \end{align*}
+
+ \item  If $(\matA, \vv{u}, q)$ is a triple, then $\deg(\matA, \vv{u}) \, q - \udeficit(\matA, \vv{u}) $ is a natural number.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}  The first statement follows from \Cref{positivity-of-deficits-shortfalls-of-Theta: L}, \Cref{finite image: P}, and \Cref{independence: D},  the second statement from \Cref{union-of-secondary-shortfalls: C,independence: D}, the third statement follows from \Cref{secondary-program-invariant-under-collapse: L,independence: D},  and the fourth statement follows from \Cref{secondary-program-invariant-depends-on-residue: L,independence: D}.    For the last statement, as we have already seen, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, also a natural number, we see that 
+\[ \norm{\vv{s}q} - \norm{\tail{\vv{s}}_q} + \val \ip = \deg(\matA, \vv{u}) \, q - \udeficit(\matA, \vv{u}, q) \] is a natural number.
+\end{proof}
+
+
 
 \begin{remark}[A finiteness property]
    \label{finitely many deltas for a fixed A: R}
-   Given a monomial matrix $\matA$, there are only finitely many universal deficits $\udeficit(\matA, \vv{u}, q)$ and universal shortfalls $\ushort(\matA, \vv{u}, q)$, as we vary over all $\matA$-pairs $(\matA,\vv{u})$ and all positive integers $q$.
+   Given a monomial matrix $\matA$, the sets
+ \begin{align*}
+   \{ \udeficit(\matA, \vv{u}, q) &: (\matA, \vv{u}) \text{ is a monomial pair, and $q$ is a positive integer} \} \\ 
+      \{ \ushort(\matA, \vv{u}, q) &: (\matA, \vv{u}) \text{ is a monomial pair, and $q$ is a positive integer} \}
+   \end{align*}  
+    are only finitely many universal deficits $\udeficit(\matA, \vv{u}, q)$ and universal shortfalls $\ushort(\matA, \vv{u}, q)$, as we vary over all $\matA$-pairs $(\matA,\vv{u})$ and all positive integers $q$.
    Indeed, this follows immediately from \Cref{finitely many secondary programs: T}.
 \end{remark}
 
 \begin{remark}[Invariance under collapse]
    \label{comparing deltas: R}
-   If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{\matA}, \collapse{\vv{u}})$ is the collapse of $(\matA ,\vv{u})$ along $\mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{aux program: D} that $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
+   If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $(\collapse{\matA}, \collapse{\vv{u}})$ is the collapse of $(\matA ,\vv{u})$ along $\mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is also a monomial list, and it is then clear from \Cref{secondary program: D} that $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
    Consequently,
    \[ \udeficit(\matA, \vv{u}, q) = \udeficit(\collapse{\matA}, \collapse{\vv{u}}, q)\]
    and
@@ -1839,7 +1949,7 @@ where  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
 \begin{remark}[An integrality property]
 \label{integrailty-property-of-universal-deficits: R}  The quantity
 \[ \deg(\matA, \vv{u}) \cdot q - \udeficit(\matA, \vv{u}, q) \]
-is a natural number for all $(\matA, \vv{u})$ and $q$.   Indeed, as we have already see, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, which is also a natural number, we see that 
+is a natural number for all $(\matA, \vv{u})$ and $q$.   Indeed, as we have already see, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ is nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, which is also a natural number, we see that 
 \[ \norm{\vv{s}q} - \norm{\tail{\vv{s}}_q} + \val \ip = \deg(\matA, \vv{u}) \cdot q + \udeficit(\matA, \vv{u}, q) \] is a natural number.
 \end{remark}
 
@@ -2068,14 +2178,6 @@ and also, that these formulas are swapped after replacing $\vv{u}_1$ with $\vv{u
 Recall that a monomial pair $(\matA, \vv{u})$ is \emph{small} if $\vv{u}$ is not greater than any column of $\matA$, and is \emph{very small} if $\degree(\matA,\vv{u}) \le 1$ (\Cref{defn: small and very small pairs}).
 In this subsection we show how the computation of the values of the arithmetic integer programs $\IP_p(\matA,\vv{u},p^e)$ can be reduced to the case of very small pairs.
 
-\begin{remark}[Small pairs from shortfalls]
-\label{small pairs from shortfalls: R}
-If $\vv{v}$ is any point in the shortfall of some integer program $\IP = \IP(\matA, \vv{u}, q)$, then the pair $(\matA, \vv{v})$ is small.  Indeed, by definition of shortfalls, we may write $\vv{v} = \vv{u}q-\matA\vv{h}$ for some $\vv{h} \in \opt \IP$.  Subtracting $\vv{a}_i$, the $i$-column of $\matA$, from both sides of this identity yields
-\[ \vv{v}-\vv{a}_i = \vv{u}q-\matA\vv{h}-\vv{a}_i = \vv{u}q-\matA(\vv{h}+\canvec_i). \]
-The optimality of $\vv{h}$ implies that $\vv{h}+\canvec_i$ cannot satisfy the linear constraint of $\IP$, which shows that the right-hand side above is not positive.  In other words, $\vv{v} \not > \vv{a}_i$, and as $i$ was arbitrary, this shows that $(\matA, \vv{v})$ is small.
-
-Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(\matA, \vv{u}, q)$, then $(\collapse{\matA}, \vv{v})$ is also small, where the overbar denotes collapse along $\O = \mf(\matA, \vv{u})$.
-\end{remark}
 
 \pedro[inline]{
    The next proposition could also go to \Cref{ss: special matrices and pairs}, though in that section we don't talk about $\IP$ and $\fip$.
@@ -2110,7 +2212,7 @@ Similarly, if $\vv{v}$ is any point in the universal shortfall $\ushort(\matA, \
    For what follows, fix a pair $(\matA, \vv{u})$, and suppose that $p$ is larger than the value of the standard integer program $\IP(\matA, \vv{u},1)$.
    The arithmetic constraint of $\IP_p(\matA,\vv{u},1)$ is thus automatically satisfied, and so $\IP_p(\matA, \vv{u}, 1) = \IP(\matA, \vv{u}, 1)$.
 
-   If $\vv{v} \in \short \IP(\matA,\vv{u},1)$, \Cref{small pairs from shortfalls: R} tells us that $(\matA, \vv{v})$ is small, and \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(\matA, \vv{v}, p^e) \le p^e-1$.
+   If $\vv{v} \in \short \IP(\matA,\vv{u},1)$, \Cref{small pairs from shortfalls: L} tells us that $(\matA, \vv{v})$ is small, and \Cref{trivial small value bound: P}  then tells us that $\val \IP_p(\matA, \vv{v}, p^e) \le p^e-1$.
    Setting $q=1$ in the statement of \Cref{general AIP: T}, this observation tells us that quantity $M$ defined therein is at most $p^e-1$, and that same theorem shows that
    \[ \val \IP_p(\matA, \vv{u},p^e) = \val \IP(\matA, \vv{u},1)p^e + \max \{ \val \IP_p(\matA, \vv{v}, p^e) \}\]
    where the maximum is over all $\vv{v} \in \short \IP(\matA, \vv{u},1)$.
@@ -2292,7 +2394,7 @@ We are now ready to prove the above theorem.
    \[\short \IP_p(\matA,\vv{u},p^{e}) = \bigcup_{(\matA,\vv{v}) \in \S^*_{p^e}} \short \IP_p(\matA,\vv{v}, p)
       = \bigcup_{(\matA,\vv{v}) \in \S^*_{p^e}} \ushort(\matA,\vv{v}, p).\]
    Since $\S^*_{p^e}$ and each $\ushort(\matA,\vv{v}, p)$ only depend on $p$ modulo $\denom$, so does $\S_{p^{e+1}} = \{(\matA,\vv{v}): \vv{v}\in \short \IP_p(\matA,\vv{u},p^{e})\}$.
-   Moreover, since $\S^*_{p^e}$ consists of very small pairs, the above decomposition, \Cref{small pairs from shortfalls: R}, and \Cref{arithmetic uniform value and image: T} tell us that every pair in $\S_{p^{e+1}}$ is small.
+   Moreover, since $\S^*_{p^e}$ consists of very small pairs, the above decomposition, \Cref{small pairs from shortfalls: L}, and \Cref{arithmetic uniform value and image: T} tell us that every pair in $\S_{p^{e+1}}$ is small.
    We have therefore verified most of claim \ref{c2}, except that $\S_{p^{e+1}}$ might contain a small but not very small pair.
 
    Suppose that is not the case.
@@ -2395,58 +2497,115 @@ $M_1 \leftarrow \degree(\matA,\vv{u})\pp - \udeficit(\matA,\vv{u},r)$\;
 }
 \end{algorithm}
 
+
+\newpage
+\ 
+
+\newpage
+
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\q}{q}
+\newcommand{\matE}{\mathbf{E}}
+
+\daniel[inline]{
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{$}c<{$} | >{$}c<{$} | l }
+ \text{old}  & \text{new} & comments  \\ \hline
+r 					& \q 						& This is now a macro \\
+\text{descendant} & \text{collapse} &  Every descendant is a collapse \\
+\mathfrak{S}_{r^e}(\matA) & \mathfrak{S}_{\q}^e(\matA) 	&  \\ 
+\sprout_r(\matA) & \graph_{\q}^{\infty}(\matA)  \text{ or } \graph_{\q}(\matA) &  Easier to recall connection with $\graph_{\q}^e(\matA, \vv{u})$ \\ 
+\S_{r^e}(\matA, \vv{u}) & \T_{\q}^e(\matA, \vv{u}) &  \\ 
+\S_{r^e}^{\ast}(\matA, \vv{u}) & \S_{\q}^e(\matA, \vv{u}) &  $\S_{\q}^e(\matA, \vv{u}) \hookrightarrow \T_{\q}^e(\matA, \vv{u}) \hookrightarrow \graph_{\q}^e(\matA, \vv{u})$ \\ 
+\sprout^{\ast}_r(\matA, \vv{u}) & \S_{\q}(\matA) & Easier to recall connection with $\S_{\q}^e(\matA, \vv{u})$ \\ 
+%\E_r(\matA, \vv{u}) & \E_q(\matA, \vv{u}) & \\ 
+%\Q_r(\matA, \vv{u}) & \emptyset & Maybe used in a proof, but not globally \\ 
+%\delta_{r^e}(\matA, \vv{u}) & \eta_{\q}^e(\matA, \vv{u}) & Now defined for all $e$ \\ 
+%\epsilon_{r^e}(\matA, \vv{u}) & \delta_{\q}^e(\matA, \vv{u})  &  Superscript $e$ with $\epsilon$ was hard to read\\ 
+%		 &			& Now defined for all $e$ \\ 
+%\lambda_{r^e}(\matA, \vv{u}) & \lambda_{\q}^e(\matA, \vv{u}) & Defined as $\eta_{\q}^e(\matA, \vv{u})-\delta_{\q}^{e+1}(\matA, \vv{u})$ for all $e$ \\ 
+%\ushort(\matA, \vv{u}, q) & \ushort_q(\matA, \vv{u}) & Not so sure about this one \\ 
+\end{tabular}
+\end{center}
+}
+
 \section{Sprouting graphs} \label{sprouting: S}
 Now that we have a grasp on the value of the arithmetic integer program $\IP_p(\matA, \vv{u}, p^e)$ when the matrix $\matA$ is associated to a convenient monomial ideal, we broaden our scope to address the case of an arbitrary monomial matrix.
 In order to do so, we first build a technical framework in which to carry out our investigation, starting with the \emph{directed sprouting graph}.
 
-This graph's construction relies on a positive integer $r$, and its powers, where $r$ need not be prime.  Indeed, they are defined in terms of shortfalls and universal shortfalls, and deficits and universal deficits, which we remind the reader are defined in terms of an arbitrary positive integer $q$.  We choose ``$r$'' because it will ultimately represent a residue class modulo an integer. 
+This graph's construction relies on a positive integer $\q$, and its powers, where $\q$ need not be prime.  Indeed, they are defined in terms of shortfalls and universal shortfalls, and deficits and universal deficits, which we remind the reader are defined in terms of an arbitrary positive integer $\q$.  %We choose ``$\q$'' because it will ultimately represent a residue class modulo an integer. 
 
 
 
 
 \subsection{The sprouting graph of a monomial matrix} 
 
+\daniel[inline]{The only descendants that we look at are collapses of collapses of \ldots  collapses of $\matA$, which is just a collapse of $\matA$.  So let's get rid of this terminology.}
 \begin{definition}[Descendant]
    A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its rows.
 \end{definition}
 
-\begin{definition}[$r$-sprout]
-   \label{r-sprout: D}
-   Consider a monomial pair $(\matA,\vv{u})$, and let an overbar denote collapse along $\mf(\matA,\vv{u})$.
-   We say that $(\matB, \vv{v})$ is a \emph{$r$-sprout} of $(\matA, \vv{u})$ whenever the following conditions are satisfied.
-   \begin{enumerate}
-      \item $\matB = \collapse{\matA}$, the collapse of $\matA$ along $\O = \mf(\matA, \vv{u})$.
-      \item $\vv{v}$ is any point in $\ushort(\matA, \vv{u}, r) = \ushort(\matB, \collapse{\vv{u}}, r)$.
-   \end{enumerate}
+Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept that was implicitly introduced, though not explicitly defined, in \Cref{small pairs from shortfalls: L}.
+
+\begin{definition}[$\q$-sprout]
+   \label{sprout: D}
+   Consider a monomial pair $(\matA,\vv{u})$, and let an overbar denote collapse along the minimal face $\O = \mf(\matA,\vv{u})$.
+   We say that $(\matB, \vv{v})$ is a \emph{$\q$-sprout} of $(\matA, \vv{u})$ whenever $\matB = \collapse{\matA}$, and $\vv{v}$ lies in $\ushort(\matA, \vv{u}, \q) = \ushort(\matB, \collapse{\vv{u}}, \q)$.
 \end{definition}
 
-\begin{remark}
-   \label{r-sprout: R}
-   As noted in \Cref{collapse of monomial is monomial: R}, the collapse of a monomial matrix along a face of its Newton polyhedron is again a monomial matrix.
-   This and the positivity of points in shortfalls show that the $r$-sprout of a monomial pair is also a monomial pair.  Furthermore,  \Cref{finite image: P} tells us that there are only finitely many $r$-sprouts of a fixed monomial pair, while \Cref{small pairs from shortfalls: R} tells us that each such sprouted pair is small.
- \end{remark}
+\begin{proposition}
+   \label{sprout: P}  Every $\q$-sprout of monomial pair is a small monomial pair. 
+ \end{proposition}
+
+\begin{proof} 
+This is a translation of \Cref{small pairs from shortfalls: L}.
+\end{proof}
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
    \label{sprouts as collapsed shortfall pairs: R}
+   \daniel[inline]{Update this remark, refer to \Cref{small pairs from shortfalls: L}.  }
    Throughout this remark, suppose that $p$ is large enough relative to $\matA$ so that the conclusion of \Cref{arithmetic uniform value and image: T} holds.
-   Let us call an $\matA$-pair $(\matA,\vv{w})$ a \emph{$p$-shortfall pair associated to $(\matA,\vv{u})$} if $\vv{w} \in \short \IP_p(\matA,\vv{u},p)$.
-%   \daniel{I don't think this is an equality unless $\mf(\matA,\vv{u})$ is bounded.  Am I missing something?}
-%   \emily{No, I removed the ``$= \ushort(\matA,\vv{u},p)$'' since our intention is to choose a point in the actual shortfall.}
-   Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(\matA,\vv{u},p^e)$ described in \Cref{convenient: SS} when $\matA$ is convenient.
+   Let us call an $\matA$-pair $(\matA,\vv{w})$ a \emph{$p$-shortfall pair associated to $(\matA,\vv{u})$} if $\vv{w} \in \short \IP_p(\matA,\vv{u},p)$.   Recall that $p$-shortfall pairs played an important role in the process for computing $\val \IP_p(\matA,\vv{u},p^e)$ described in \Cref{convenient: SS} when $\matA$ is convenient.
 
-   It follows immediately from \Cref{r-sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
+   It follows immediately from \Cref{sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
 \end{remark}
 
-\begin{definition}[The directed sprouting graph]
-   Let $\matA$ be a monomial matrix.
-   We define $\graph_r(\matA)$ to be the set consisting of all very small $\matA$-pairs, and once $\graph_q(\matA)$ has been defined for some $q$ a power of $r$, we then define $\graph_{qr}(\matA)$ to be the set consisting of all $r$-sprouts of all pairs in $\graph_q(\matA)$.
 
-   We define the vertices of the graph $\sprout_r(\matA)$ to be the disjoint union
-   \[ \bigsqcup_{e=1}^{\infty} \graph_{r^e}(\matA). \]
-   A vertex in the $r^e$-th component of the above disjoint union is said to be of \emph{level} $r^e$.
-   The directed edges in $\sprout_r(\matA)$ are defined only between points of consecutive levels:
-   There is a directed edge from a vertex of level $q$ to one of level $qr$ if the latter is a $r$-sprout of the former.
+\newpage
+\begin{definition}[The directed sprouting graph]
+   Consider a monomial matrix $\matA$.
+   
+   \begin{itemize}
+   \item $\graph_{\q}^1(\matA)$ is the set consisting of all very small $\matA$-pairs.
+   \item $\graph_{\q}^{e+1}(\matA)$ is the set consisting of all $\q$-sprouts of all pairs in $\graph_{\q}^e(\matA)$.
+   \item $\graph_{\q}^{\infty}(\matA)$ is the graph whose vertex set is the disjoint union
+   \[ \bigsqcup_{e=1}^{\infty} \graph_{\q}^e(\matA). \]
+   A vertex in the $e$-th component of this disjoint union is said to be of \emph{level} $e$.
+   \item    The directed edges in $\graph_{\q}^{\infty}(\matA)$ exist only between vertices of consecutive levels, and are defined in the natural way:  There is a directed edge from a vertex of level $e$ to one of level $e+1$ exactly when the latter is a $\q$-sprout of the former.
+\end{itemize}
 \end{definition}
+
+We gather some fundamental properties of this graph below.
+
+\begin{proposition}
+   \label{elementary1: P}
+   Let $\matA$ be a momomial matrix.
+\begin{enumerate}[$(1)$]
+\item Every vertex of the graph $\graph_{\q}^{\infty}(\matA)$ is a small monomial pair, and the first entry of every such pair is a collapse of $\matA$. 
+\item \hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, the sets $\graph_{\q}^e(\matA)$ are nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
+\item If $d$ is a \daniel{I think that \emph{universal denominator} implies \emph{collapsed universal denominator}, which is a ud for each of the collapses.}\hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\graph_{\q}^{\infty}(\matA)$ and $\graph_r^{\infty}(\matA)$ --- that is, their vertices {and} arrows--- coincide.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}  \Cref{sprout: P} implies that every vertex of the sprouting graph $\graph_q^{\infty}(\matA)$ is a small monomial pair, and by definition, the first term of every such pair is a monomial obtained from $\matA$ by a finite sequence of collapses.  It then follows from \Cref{iterated-collapse-is-a-collapse: P} that such a monomial matrix is, itself, a collapse of $\matA$.
+
+For the second assertion, let $\mathrm{L}$ be the set consisting of the finitely many collapses of $\matA$, fix an integer $e$ greater than $1$, and a vertex $(\matC, \vv{z})$ in $\graph_{\q}^e(\matA)$.  The first assertion tells us that both $\matC$, and the first entry of any vertex of level $e-1$ that $(\matC, \vv{z})$ sprouts from, lie in $\mathrm{L}$.  Thus, by definition of $\q$-sprout, the point $\vv{z}$ must lie in the double union $\mathrm{M} = \cup \cup \ushort(\matB, \vv{v}, \q)$, where the outer union is over all $\matB \in \mathrm{L}$, and the inner union is over all $\matB$-triples.    As $\mathrm{L}$ is finite, \Cref{fundamental-properties-deficits-shortfalls: P}\ref{finitely-many-A-universal-shortfalls: i}  implies that $\mathrm{M}$ is a nonempty, finite set of lattice points.   Thus, there is a finite set $\mathrm{H}$ such \ $\graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for each $e>1$.  By the pigeon-hole principle, there must then exist indices $t > s > 1$ such that $\graph_{\q}^s(\matA) = \graph_{\q}^t(\matA)$, and the recursive nature of the definition of the sets $\graph_{\q}^i(\matA)$ then implies that $\graph_{\q}^{s+i}(\matA) = \graph_{\q}^{t+i}(\matA)$ for all $i \geq 0$.
+
+Finally, the third assertion follows from \Cref{fundamental-properties-deficits-shortfalls: P}\ref{universal-stuff-depends-on-q-mod-d: i}, which implies that, in this context, the notions of $\q$-sprout and $r$-sprout coincide.
+\end{proof}
 
 \begin{remark}[Elementary observations]
    \label{elementary1: R}
@@ -2455,7 +2614,7 @@ This graph's construction relies on a positive integer $r$, and its powers, wher
 \begin{enumerate}
 \item The set $\graph_r(\matA)$ of very small $\matA$-pairs is independent of $r$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
 
-\item \label{elementary1 small pairs} \Cref{r-sprout: R} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
+\item \label{elementary1 small pairs} \Cref{sprout: P} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
 
 \item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{r^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{r^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
 
@@ -2558,9 +2717,34 @@ This graph's construction relies on a positive integer $r$, and its powers, wher
 \end{proof}
 
 
+
+\newpage
 \subsection{Subgraphs associated to pairs}
 
 We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the convenient setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{convenient algorithm: R} is built from.
+
+
+\begin{definition}[Subgraphs associated to very small pairs]
+   Let $(\matA, \vv{u})$ be a very small pair.  We inductively define the sets $\S_{\q}^e(\matA) \subseteq \T_{\q}^e(\matA, \vv{u})$ as follows.
+   
+   \begin{itemize}
+   \item $\T_{\q}^1(\matA, \vv{u})$ is the singleton consisting of the very small pair $(\matA, \vv{u})$.  
+   \item Next, suppose that $\T_{\q}^e(\matA, \vv{u})$ has been defined for some $e \geq 1$.
+   \begin{itemize}
+   \item  If $\T_{\q}^e(\matA, \vv{u}) \neq \emptyset$ and consists only of very small pairs, then $
+   \S_{\q}^e(\matA, \vv{u})$ is defined to be the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},\q)$.  We then define $\T_{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
+      \item Otherwise, we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
+   \end{itemize}
+   \end{itemize}
+   
+   By definition, if $e$ is a natural number, then $\S_{\q}^e(\matA,\vv{u}) \subseteq \T_{\q}^e(\matA,\vv{u}) \subseteq \graph_{\q}^e(\matA)$.  Identifying the right-most set with the vertices of $\graph_q^{\infty}(\matA)$ of level $e$, we then define $\S_{\q}^{\infty}(\matA,\vv{u})$ to be the induced subgraph of $\graph_{\q}^{\infty}(\matA)$ on the set of vertices
+   \[ \bigsqcup_{e=1}^{\infty} \S_{\q}^e(\matA,\vv{u}). \]
+
+
+\end{definition}
+
+
+
 
 \begin{definition}[Subgraphs associated to very small pairs]
    Suppose that $(\matA,\vv{u})$ is very small, and define $\S_r(\matA,\vv{u}) = \{ (\matA,\vv{u}) \}$.
@@ -2573,6 +2757,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    We then define $\sprout_r^{\ast}(\matA,\vv{u})$ to be the induced subgraph of $\sprout_r(\matA)$ on the set of vertices
    \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u}). \]
 \end{definition}
+
+\daniel[inline]{In the process of consolidating the next remark into a proposition}
 
 \begin{remark}[Elementary observations]
    \label{elementary2: R}
@@ -2634,23 +2820,65 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    Unlike the previous example, here $\sprout^*_p(\matA,\vv{u})$ does not terminate---the last five levels shown in the picture repeat indefinitely.
 \end{example}
 
+
+\newpage \ 
+\newpage
+
+
+
+\daniel[inline]{FYI:  I rearranged the order of \Cref{depth-of-graph: D} and \Cref{epsilon delta: D}.}
+\begin{definition}[Depth of a sprouting subgraph]
+\label{depth-of-graph: D}
+   If $(\matA,\vv{u})$ is very small, then the extended natural number $\E_{\q}(\matA, \vv{u})$ 
+ describes the largest level of any vertex in the graph $\sprout_{\q}^{\ast}(\matA,\vv{u})$.  Formally, $\E_{\q}(\matA,\vv{u})  = \inf \{ e :  \S^{\ast}_{\q^{e+1}}(\matA,\vv{u}) = \emptyset \}$.\end{definition}
+
+\begin{proposition}
+\label{curly-E-basic-facts: P}
+If $(\matA, \vv{u})$ is very small, then the following hold.
+\begin{enumerate}[$(1)$]
+\item $\E_{\q}(\matA, \vv{u})$ is at least $1$, and is effectively computable, even when infinite.
+\item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\E_{\q}(\matA, \vv{u}) = \E_{r}(\matA, \vv{u})$.
+\item If an overbar denotes collapse along $\O = \mf(\matA, \vv{u})$, then $\E_q(\matA, \vv{u}) = \E_q(\collapse{\matA}, \collapse{\vv{u}})$.
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proof}
+As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(\matA,\vv{u})$ is very small, then $\S^{\ast}_{\q}(\matA,\vv{u}) = \{ (\matA,\vv{u} )\}$, which shows that $\E_{\q}(\matA,\vv{u})$ is at least $1$.
+Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\E_{\q}(\matA, \vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_{\q}^*(\matA,\vv{u})$.
+Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in r} implies that if $d$ is a universal  denominator for $\matA$, and each of its finitely many descendants, and $r = \lpr{\q}{d}$, then $\E_{\q}(\matA,\vv{u}) = \E_r(\matA,\vv{u})$.  \hl{Update this, address last point.}
+\end{proof}
+
+
 \begin{definition}%[Numbers associated to the levels of $\sprout^*_p(\matA,\vv{u})$]
    \label{epsilon delta: D}
-   If $(\matA,\vv{u})$ is very small, and $\S^{\ast}_{p^e}(\matA,\vv{u}) \neq \emptyset$, then we define
+   If $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
    \begin{align*}
-     \epsilon_{r^e}(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
-     \delta_{r^e}(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},r)
+     \epsilon_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
+     \delta_{\q}^e(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},\q)
    \end{align*}
-   where $(\matB,\vv{v})$ is any pair in $\S^{\ast}_{r^e}(\matA,\vv{u})$.
-   Observe that, by definition of $\S^{\ast}_{r^e}(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S^{\ast}_{r^e}(\matA,\vv{u})$.
+   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$.
+   Observe that, by definition of $\S_{\q}^e(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S_{\q}^e(\matA,\vv{u})$.  
+   
+   Furthermore, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\epsilon_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\matA, \vv{u}) = 1.\]
 \end{definition}
+
+\begin{proposition}
+If $(\matA, \vv{u})$ is very small, then the following hold.
+\begin{enumerate}[$(1)$]
+\item  The sequences $\{ \epsilon_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ and $\{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ are eventually period, and their terms consist of positive rational numbers.
+\item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\epsilon_{\q}^e(\matA, \vv{u}) = \epsilon_{r^e}(\matA, \vv{u})$ and $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r^e}(\matA, \vv{u})$ for every $e$.
+\item If an overbar denotes collapse along the minimal face $\O = \mf(\matA, \vv{u})$, then
+$\epsilon_{\q}^e(\matA, \vv{u}) = \epsilon_{r^e}(\collapse{\matA}, \collapse{\vv{u}})$ and $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r^e}(\collapse{\matA}, \collapse{\vv{u}})$ for every $e$.
+\end{enumerate}
+\end{proposition}
 
 \begin{proposition}
    \label{p large graph: P}
    Given a monomial matrix $\matA$, there exists $\beta = \beta(\matA)$ with the following property\textup:
-   If $p > \beta$, $(\matA,\vv{u})$ is very small, and $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, then
+   If $p > \beta$, $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_p(\matA,\vv{u})$, then
    \[
-      \max \{ \val \IP_p(\matB,\vv{v},p) : (\matB,\vv{v}) \in \S_{p^e}(\matA,\vv{u}) \} = \epsilon_{p^e}(\matA,\vv{u}) p-\delta_{p^e}(\matA,\vv{u})
+      \max \{ \val \IP_p(\matB,\vv{v},p) : (\matB,\vv{v}) \in \S_{p^e}(\matA,\vv{u}) \} = \epsilon_{p^e}(\matA,\vv{u}) \cdot p-\delta_{p^e}(\matA,\vv{u})
    \]
    and the subset of $\S_{p^e}(\matA,\vv{u})$ of pairs that achieve this maximum is $\S^{\ast}_{p^e}(\matA,\vv{u})$.
 \end{proposition}
@@ -2660,24 +2888,9 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    In particular, for such primes, $\val \IP_p(\matB,\vv{v},p) = \degree(\matB,\vv{v})p-\udeficit(\matB,\vv{v},p)$  for each vertex $(\matB,\vv{v})$ of $\sprout_p^{\ast}(\matA,\vv{u})$, and the existence of $\beta(\matA)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
 \end{proof}
 
-\begin{definition}[Depth of a sprouting subgraph]
-\label{depth-of-graph: D}
-   If $(\matA,\vv{u})$ is very small, then $\mathcal{Q}_r(\matA,\vv{u})$ denotes the largest level of any vertex in the graph $\sprout_r^{\ast}(\matA,\vv{u})$, and $\mathcal{E}_r(\matA, \vv{u})$ is the exponent $e$ such that $\mathcal{Q}_p(A, \vv{u}) = r^{e}$.  Formally,
-   \begin{align*}
-      \mathcal{Q}_r(\matA,\vv{u}) & = \inf \{ q :  \S^{\ast}_{qr}(\matA,\vv{u}) = \emptyset \} \\       
-      \mathcal{E}_r(\matA,\vv{u}) & = \log_r \mathcal{Q}_r(\matA, \vv{u})
-   \end{align*}
-   where we adopt the convention that $\log_r (\infty) = \infty$.
-\end{definition}
 
-\begin{remark}
-\label{curly-Q-E-basic-facts: R}
-As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(\matA,\vv{u})$ is very small, then $\S^{\ast}_p(\matA,\vv{u}) = \{ (\matA,\vv{u} )\}$, which shows that $\Q_p(\matA,\vv{u})$ is at least $p$.
-Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\mathcal{E}_p(\matA, \vv{u}) = \Q_p(\matA,\vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_p^*(\matA,\vv{u})$.
-Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in r} implies that $\mathcal{E}_p(\matA,\vv{u}) = \log_p \Q_p(\matA,\vv{u})$ depends only on $(\matA,\vv{u})$, and on the class of $p$ modulo any universal denominator for $\matA$, but not on $p$ itself.
 
-\end{remark}
-
+\newpage
 \subsection{The main theorem}
 
 Having the necessary concepts and definitions in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices.
@@ -2730,6 +2943,13 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 
 \newpage
 
+\daniel[inline]{  In the proof.
+\begin{itemize} 
+\item Track $\Q$, possibly eliminate it.  If not, define it at the start
+\item Update reference to the arithmetic condition in $\IP_p$ in proof.
+\end{itemize}
+}
+
 \begin{theorem}[Main theorem on AIPs]
    \label{main theorem wrt diagonal: T}
    Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exist a positive integer $\beta = \beta(\matA)$, and a function that associates to every unit $r$ in $\ZZ/d\ZZ$ and very small monomial pair $(\matA, \vv{u})$, a pair of eventually periodic sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ of rational numbers% determined by the graph $\sprout^{\ast}_r(\matA, \vv{u})$, 
@@ -2764,9 +2984,9 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 %Below we prove all claims above except the nonpositivity of the non-leading coefficients in $\val \IP_p(\matA,\vv{u},p^e)$, which is postponed until \Cref{non-leading coefficients: P}.
 
 \begin{proof}
-   Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid, and also so that $p$ does not divide $d$.  Set $r = \lpr{p}{d}$, which is a unit in $\ZZ/d\ZZ$, and also set $\Q = \Q_p(\matA,\vv{u})$ and $\mathcal{E} = \mathcal{E}_p(\matA, \vv{u})$.  
+   Choose $p \gg 0$ so that the conclusions of \Cref{ILL: T,small not very small value: T,arithmetic uniform value and image: T,lem: upper bound for higher mu} are valid, and also so that $p$ does not divide $d$.  Set $r = \lpr{p}{d}$, which is a unit in $\ZZ/d\ZZ$, and also set $\Q = \Q_p(\matA,\vv{u})$ and $\E = \E_p(\matA, \vv{u})$.  
    
-   If $e$ is an integer satisfying $1 \leq e \leq \mathcal{E}$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
+   If $e$ is an integer satisfying $1 \leq e \leq \E$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
    This is also a path in $\sprout_p(\matA)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i, p)$ for $1 \le i \le e$ such that the point $\vv{k} \coloneqq \sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for the standard integer program $\IP(\matA, \vv{u}, p^e)$.
 
    However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(\matA_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(\matA_i,\vv{u}_i,p) = \IP_p(\matA_i, \vv{u}_i, p)$.
@@ -2787,65 +3007,65 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 \[
      \val \IP_p(\matA,\vv{u},p^e) = \degree(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \boxed{\delta_{p^i}(\matA, \vv{u}) - \epsilon_{p^{i+1}}(\matA, \vv{u})} \cdot p^{e-i} - \boxed{\delta_{p^e}(\matA, \vv{u})}
 \]
-   for every integer $e$ with $1 \leq e \leq \mathcal{E}$.  
+   for every integer $e$ with $1 \leq e \leq \E$.  
    
-   We now use this expression to define our sequences:  As recorded in \Cref{curly-Q-E-basic-facts: R}, the value of $\mathcal{E}$ depends only on $r$, but not $p$, and \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the same is true for the boxed coefficients above.  Thus, if we define 
+   We now use this expression to define our sequences:  As recorded in \Cref{curly-E-basic-facts: P}, the value of $\E$ depends only on $r$, but not $p$, and \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the same is true for the boxed coefficients above.  Thus, if we define 
    \begin{align*}
-   \lambda_{r^i}(\matA, \vv{u}) & = \delta_{p^i}(\matA, \vv{u}) - \epsilon_{r^{i+1}}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i  < \mathcal{E} \\ 
-   \eta_{r^i}(\matA, \vv{u}) & = \delta_{r^i}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i \leq \mathcal{E}
+   \lambda_{r^i}(\matA, \vv{u}) & = \delta_{p^i}(\matA, \vv{u}) - \epsilon_{r^{i+1}}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i  < \E \\ 
+   \eta_{r^i}(\matA, \vv{u}) & = \delta_{r^i}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i \leq \E
   \end{align*}   
-   we have shown above that, if $e$ is an integer with $1 \leq e \leq \mathcal{E}$, then
+   we have shown above that, if $e$ is an integer with $1 \leq e \leq \E$, then
    \begin{equation}
    \label{val-up-to-curly-e-via-two-sequences: e}
    \val \IP_p(\matA,\vv{u},p^e) = \degree(\matA, \vv{u}) \cdot p^e - \sum_{1 \leq i < e} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{e-i} - {\eta_{r^e}(\matA, \vv{u})}.
    \end{equation}
    
-   If $\mathcal{E} = \infty$, then we have defined the terms $\lambda_{r^i}(\matA, \vv{u})$ and $\eta_{r^i}(\matA, \vv{u})$ for all natural numbers $i$. Next, we consider the situation when $\mathcal{E}$, and hence $\mathcal{Q} = p^{\mathcal{E}}$, is finite.
+   If $\E = \infty$, then we have defined the terms $\lambda_{r^i}(\matA, \vv{u})$ and $\eta_{r^i}(\matA, \vv{u})$ for all natural numbers $i$. Next, we consider the situation when $\E$, and hence $\mathcal{Q} = p^{\E}$, is finite.
    
-   By definition of $\Q$, we know that $\S_{\Q}^{\ast}(\matA,\vv{u}) \neq \emptyset$ and $\S^{\ast}_{\Q p}(\matA,\vv{u}) = \emptyset$, and $\S_{\Q p}(\matA,\vv{u})$ must contain a pair that is not very small.  As $\mathcal{E} = \log_p \Q$, there is a path
+   By definition of $\Q$, we know that $\S_{\Q}^{\ast}(\matA,\vv{u}) \neq \emptyset$ and $\S^{\ast}_{\Q p}(\matA,\vv{u}) = \emptyset$, and $\S_{\Q p}(\matA,\vv{u})$ must contain a pair that is not very small.  As $\E = \log_p \Q$, there is a path
    \begin{equation}\label{eq: first path}
-      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\mathcal{E}}, \vv{v}_{\mathcal{E}})
+      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\E}, \vv{v}_{\E})
    \end{equation}
    in $\sprout_p^{\ast}(\matA,\vv{u})$, which extends to a path
    \[
-      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\mathcal{E}}, \vv{v}_{\mathcal{E}}) \to (\matB_{\mathcal{E}+1}, \vv{v}_{\mathcal{E}+1})
+      (\matA,\vv{u}) = (\matB_1,\vv{v}_1) \to \cdots \to (\matB_{\E}, \vv{v}_{\E}) \to (\matB_{\E+1}, \vv{v}_{\E+1})
    \]
    in $\sprout_p(\matA)$ whose terminal vertex is small, but not very small.
    
    \Cref{ILL: T}, applied to this second path, tells us that there exist points $\vv{h}_i \in \opt \IP(\matB_i, \vv{v}_i, p)$ for $1\le i\le l+1$ such that
    \[
-      \vv{h} \coloneqq \sum_{i=1}^{\mathcal{E}+1} \vv{h}_i p^{\mathcal{E}+1-i} \in \feas \IP(\matA,\vv{u}, \Q p) = \feas \IP(\matA,\vv{u}, p^{\mathcal{E}+e}).
+      \vv{h} \coloneqq \sum_{i=1}^{\E+1} \vv{h}_i p^{\E+1-i} \in \feas \IP(\matA,\vv{u}, \Q p) = \feas \IP(\matA,\vv{u}, p^{\E+e}).
    \] 
    
-   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that $\norm{\vv{h}_{\mathcal{E}+1}} = \val\IP(\matB_{\mathcal{E}+1}, \vv{v}_{\mathcal{E}+1},p) > p$, and so there exists a point $\vv{g} \leq \vv{h}_{\mathcal{E}+1}$ with $\norm{\vv{g}} = p-1$.
-   Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{\mathcal{E}+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{h}_{\mathcal{E}+1}$.
+   Arguing as in the proof of \Cref{small not very small value: T}, our choice of $p \gg 0$ guarantees that $\norm{\vv{h}_{\E+1}} = \val\IP(\matB_{\E+1}, \vv{v}_{\E+1},p) > p$, and so there exists a point $\vv{g} \leq \vv{h}_{\E+1}$ with $\norm{\vv{g}} = p-1$.
+   Without loss of generality, suppose that the inequality $\vv{g} \leq \vv{h}_{\E+1}$ is strict in the first entry, so that $\vv{0} \leq \vv{g} + \canvec_1 \leq \vv{h}_{\E+1}$.
 
    Fix an integer $e \geq 1$, and consider the point
    \[
-      \vv{m} \coloneqq \sum_{i=1}^{\mathcal{E}} \vv{h}_i p^{\mathcal{E} + e-i} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1
+      \vv{m} \coloneqq \sum_{i=1}^{\E} \vv{h}_i p^{\E + e-i} + (\vv{g}+\canvec_1)p^{e-1} - \canvec_1
    \]
-   which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{\mathcal{E}+1}p^{e-1}$ with  $(\vv{g}+\canvec_1)p^{e-1} - \canvec_1$, which is less than or equal to $\vv{h}_{\mathcal{E}+1} p^{e-1}$, by our choice of $\vv{g}$.
-   Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(\matA,\vv{u}, p^{\mathcal{E}+1})$ then implies that $\vv{m} \in \feas \IP(\matA,\vv{u}, p^{\mathcal{E}+e})$.
+   which is obtained from $\vv{h}p^{e-1}$ by replacing $\vv{h}_{\E+1}p^{e-1}$ with  $(\vv{g}+\canvec_1)p^{e-1} - \canvec_1$, which is less than or equal to $\vv{h}_{\E+1} p^{e-1}$, by our choice of $\vv{g}$.
+   Therefore, $\vv{m} \leq \vv{h}p^{e-1}$, and the feasibility of $\vv{h}$ for $\IP(\matA,\vv{u}, p^{\E+1})$ then implies that $\vv{m} \in \feas \IP(\matA,\vv{u}, p^{\E+e})$.
 
-   To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(\matA,\vv{u}, p^{\mathcal{E}+e})$, observe that the base $p$ expansion of $\vv{m}$ is given by
+   To see that $\vv{m}$ satisfies the arithmetic constraint of $\IP_p(\matA,\vv{u}, p^{\E+e})$, observe that the base $p$ expansion of $\vv{m}$ is given by
    \[
-      \vv{m} = \sum_{i=1}^{\mathcal{E}} \vv{h}_i p^{\mathcal{E} + e-i} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
+      \vv{m} = \sum_{i=1}^{\E} \vv{h}_i p^{\E + e-i} + \vv{g}p^{e-1} + (p-1) \canvec_1 \cdot p^{e-2} + \cdots + (p-1)\canvec_1
    \]
-   and note that $\norm{\vv{h}_i} = \epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u}) < p$ for each $1 \leq i \leq \mathcal{E}$, as the path in \eqref{eq: first path} lies entirely in $\sprout_p^{\ast}(\matA,\vv{u})$.
-   Thus, $\vv{m}$ is feasible for $\IP_p(\matA,\vv{u}, p^{\mathcal{E}+e})$, and invoking the formula for $\norm{\vv{h}_i}$ just recalled, we see that
+   and note that $\norm{\vv{h}_i} = \epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u}) < p$ for each $1 \leq i \leq \E$, as the path in \eqref{eq: first path} lies entirely in $\sprout_p^{\ast}(\matA,\vv{u})$.
+   Thus, $\vv{m}$ is feasible for $\IP_p(\matA,\vv{u}, p^{\E+e})$, and invoking the formula for $\norm{\vv{h}_i}$ just recalled, we see that
    \begin{align*}
-     \val \IP_p(\matA,\vv{u}, p^{\mathcal{E}+e}) \geq \norm{\vv{m}} & = \sum_{i=1}^{\mathcal{E}} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\mathcal{E} + e-i} + p^e-1 \\
-%         & = \Big ( \sum_{i=1}^{\mathcal{E}} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\mathcal{E}-i} \Big ) p^e + p^e-1 \\
-         & = \val \IP_p(\matA,\vv{u}, p^{\mathcal{E}}) \cdot p^e + p^e-1
+     \val \IP_p(\matA,\vv{u}, p^{\E+e}) \geq \norm{\vv{m}} & = \sum_{i=1}^{\E} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\E + e-i} + p^e-1 \\
+%         & = \Big ( \sum_{i=1}^{\E} (\epsilon_{p^i}(\matA,\vv{u})p-\delta_{p^i}(\matA,\vv{u})) p^{\E-i} \Big ) p^e + p^e-1 \\
+         & = \val \IP_p(\matA,\vv{u}, p^{\E}) \cdot p^e + p^e-1
    \end{align*}
    where the last equality above follows from \eqref{value-for-e-at-most-curly-E: q}.
    
-   Comparing this with \Cref{general AIP: T}, we see that inequality above must be an equality.  Then, invoking the description of $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}})$ given in \eqref{val-up-to-curly-e-via-two-sequences: e}, we conclude that if $\mathcal{E} \neq \infty$ and $e \geq 1$, then  $\val \IP_p(\matA, \vv{u}, p^{\mathcal{E}+e})$ coincides with
+   Comparing this with \Cref{general AIP: T}, we see that inequality above must be an equality.  Then, invoking the description of $\val \IP_p(\matA, \vv{u}, p^{\E})$ given in \eqref{val-up-to-curly-e-via-two-sequences: e}, we conclude that if $\E \neq \infty$ and $e \geq 1$, then  $\val \IP_p(\matA, \vv{u}, p^{\E+e})$ coincides with
    \[
-   \degree(\matA, \vv{u}) \cdot p^{\mathcal{E}+e} - \sum_{1 \leq i < \mathcal{E}} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{\mathcal{E} + e -i} - \boxed{{\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1} \cdot p^e  - \boxed{1}.  
+   \degree(\matA, \vv{u}) \cdot p^{\E+e} - \sum_{1 \leq i < \E} \lambda_{r^i}(\matA, \vv{u}) \cdot p^{\E + e -i} - \boxed{{\eta_{r^{\E}}(\matA, \vv{u})}-1} \cdot p^e  - \boxed{1}.  
 	\]
 
-Using the boxed terms above, we may now complete the definition of our sequences when $\mathcal{E}$ is finite.  In this case, define $\lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) =  {\eta_{r^{\mathcal{E}}}(\matA, \vv{u})}-1 = {\delta_{p^{\mathcal{E}}}(\matA, \vv{u})}-1$ and define $\lambda_{r^s}(\matA, \vv{u})= 0$ and $\eta_{r^s}(\matA, \vv{u}) = 1$ for all $s > \mathcal{E}$.  Finally, with these definitions, and as the reader may verify, we obtain the following formula:  If $e \geq 1$, then
+Using the boxed terms above, we may now complete the definition of our sequences when $\E$ is finite.  In this case, define $\lambda_{r^{\E}}(\matA, \vv{u}) =  {\eta_{r^{\E}}(\matA, \vv{u})}-1 = {\delta_{p^{\E}}(\matA, \vv{u})}-1$ and define $\lambda_{r^s}(\matA, \vv{u})= 0$ and $\eta_{r^s}(\matA, \vv{u}) = 1$ for all $s > \E$.  Finally, with these definitions, and as the reader may verify, we obtain the following formula:  If $e \geq 1$, then
 \[
 \val \IP_p(\matA,\vv{u}, p^e) =  \degree(\matA,\vv{u}) \cdot p^e - \sum_{1 \leq s < e} \lambda_{r^s}(\matA, \vv{u}) \cdot  p^{e-s} - \eta_{r^e}(\matA,\vv{u}).
 \]
@@ -2861,13 +3081,13 @@ The \emph{fundamental sequences} associated to a very small pair $(\matA, \vv{u}
 	%
 \begin{align*}
 \lambda_{r^s}(\matA, \vv{u}) & = \begin{cases} 
-\delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) & \text{if }1 \leq s < \mathcal{E}_r(\matA, \vv{u}) \\ 
-\delta_{r^s}(\matA, \vv{u}) - 1 & \text{if } s = \mathcal{E}_r(\matA, \vv{u}) \\ 
-0 	&  \text{if }  s > \mathcal{E}_r(\matA, \vv{u})
+\delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) & \text{if }1 \leq s < \E_r(\matA, \vv{u}) \\ 
+\delta_{r^s}(\matA, \vv{u}) - 1 & \text{if } s = \E_r(\matA, \vv{u}) \\ 
+0 	&  \text{if }  s > \E_r(\matA, \vv{u})
 \end{cases} \\
 \eta_{r^s}(\matA, \vv{u}) & = \begin{cases} 
-\delta_{r^s}(\matA, \vv{u}) & \hspace{61pt} \text{if }1 \leq s \leq \mathcal{E}_r(\matA, \vv{u}) \\ 
-1 & \hspace{61pt} \text{if } s >  \mathcal{E}_r(\matA, \vv{u}) \\ 
+\delta_{r^s}(\matA, \vv{u}) & \hspace{61pt} \text{if }1 \leq s \leq \E_r(\matA, \vv{u}) \\ 
+1 & \hspace{61pt} \text{if } s >  \E_r(\matA, \vv{u}) \\ 
 \end{cases}
 \end{align*}
 
@@ -2917,21 +3137,21 @@ The fundamental sequences associated to a very small pair satisfy the conditions
 \end{proposition}
 
 \begin{proof} \daniel[inline]{Update proof}
-   Fix $(\matA,\vv{u})$ and $r$ as above, and set $\mathcal{E}=\mathcal{E}_r(\matA,\vv{u})$ and $\Q = \Q_r(\matA,\vv{u})$.  
+   Fix $(\matA,\vv{u})$ and $r$ as above, and set $\E=\E_r(\matA,\vv{u})$ and $\Q = \Q_r(\matA,\vv{u})$.  
    
-   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\mathcal{E} \neq \infty$,  each such term is eventually constant, and when $\mathcal{E} = \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
+   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\E \neq \infty$,  each such term is eventually constant, and when $\E = \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
    
-Furthermore, each $\eta_{r^s}(\matA, \vv{u})$ is either $1$, or equal to $\delta_{r^s}(\matA, \vv{u})$, which is a universal deficit, and hence, must be positive.  Thus, to conclude, it remains to prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\mathcal{E} \neq \infty$ and $1 \leq s \leq \mathcal{E}$.
+Furthermore, each $\eta_{r^s}(\matA, \vv{u})$ is either $1$, or equal to $\delta_{r^s}(\matA, \vv{u})$, which is a universal deficit, and hence, must be positive.  Thus, to conclude, it remains to prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\E \neq \infty$ and $1 \leq s \leq \E$.
 
-We first consider the situation when $\mathcal{E} \neq \infty$ and $1 \leq s < \mathcal{E}$.   In this case, by definition of $\mathcal{E}$, both $\S_{r^{s}}^{\ast}(\matA, \vv{u})$ and $\S_{r^{s+1}}^{\ast}(\matA, \vv{u})$ are non-empty, and hence, there exists a pair $(\matC, \vv{z})$ in the latter set that is a $r$-sprout of a pair $(\matB, \vv{v})$ in the former.  In this case, \Cref{fundamental-sequences: D} then tells us that 
+We first consider the situation when $\E \neq \infty$ and $1 \leq s < \E$.   In this case, by definition of $\E$, both $\S_{r^{s}}^{\ast}(\matA, \vv{u})$ and $\S_{r^{s+1}}^{\ast}(\matA, \vv{u})$ are non-empty, and hence, there exists a pair $(\matC, \vv{z})$ in the latter set that is a $r$-sprout of a pair $(\matB, \vv{v})$ in the former.  In this case, \Cref{fundamental-sequences: D} then tells us that 
 \[ \lambda_{r^s}(\matA, \vv{u}) = \delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) = \udeficit(\matB, \vv{v}, r) - \deg(\matC, \vv{z}) \]  
  and \Cref{fundamental-sequences: L} then implies that the right-most difference must be nonnegative.  
  
-Finally, we consider the case that $s = \mathcal{E} \neq \infty$.  In this case,  $\S^{\ast}_{r^{\mathcal{E}+1}}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{p^{\mathcal{E}}}(\matA,\vv{u})$, and whose terminal pair is not very small. Thus, 
-\[ \lambda_{r^{\mathcal{E}}}(\matA, \vv{u}) = \delta_{r^{\mathcal{E}}}(\matA, \vv{u}) - 1 = \udeficit(\matB, \vv{v}, r) - 1 \geq \deg(\matC, \vv{z}) - 1   \] where the last inequality follows from \Cref{fundamental-sequences: L}.   However, as $(\matC, \vv{z})$ is not very small, the right-most term above must be positive.
+Finally, we consider the case that $s = \E \neq \infty$.  In this case,  $\S^{\ast}_{r^{\E+1}}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{p^{\E}}(\matA,\vv{u})$, and whose terminal pair is not very small. Thus, 
+\[ \lambda_{r^{\E}}(\matA, \vv{u}) = \delta_{r^{\E}}(\matA, \vv{u}) - 1 = \udeficit(\matB, \vv{v}, r) - 1 \geq \deg(\matC, \vv{z}) - 1   \] where the last inequality follows from \Cref{fundamental-sequences: L}.   However, as $(\matC, \vv{z})$ is not very small, the right-most term above must be positive.
 \end{proof}
 
-We now focus on determining the values of the terms $\lambda_{r^s}(\matA, \vv{u})$ and $ \eta_{r^s}(\matA, \vv{u})$ in some important special cases.  
+We now focus on deriving some important special cases of \Cref{main theorem wrt diagonal: T}.   
 
 \begin{lemma} \label{1-sprouts: L}
 The collapse of a very small pair $(\matA, \vv{u})$ along its minimal face $\O = \mf(\matA, \vv{u})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore,  $\udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})$.
@@ -2995,19 +3215,21 @@ If $\matA$ is \hl{convenient and planar}, then every $r$-sprout of a pair $(\mat
 \begin{proof}  As noted in \Cref{ex: convenient planar case},  the minimal face $\O = \mf(\matA, \vv{u})$ is compact, and contains every column of $\matA$.  Hence, the collapse along $\O$ is the identity, and the inner product of the point $\vv{c}$ that defines $\O$ with every column of $\matA$ equals $1$.
 
 Thus, if $(\matB, \vv{v})$ is an $r$-sprout of $(\matA, \vv{u})$, then $\matB = \matA$, and $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$.  To realize $\vv{v}$,  fix a special point $\vv{s}$ for $(\matA, \vv{u})$, and write $\vv{v} = \matA \tail{\vv{s}}_{\rr} - \matA \vv{h}$ for some $\vv{h}$ that is optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  \Cref{FT descriptions: P}\ref{new ip} tells us that $\deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}}$, and as the inner product of $\vv{c}$ with every column of $\matA$ is $1$, we see that
-\[ \deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\matA \tail{\vv{s}}_{\rr}} - \iprod{\vv{c}}{\matA \vv{h}} = \norm{\tail{\vv{s}}_{\rr}} - \tail{\vv{h}} = \norm{\tail{\vv{s}_{\rr}}} - \val \ip.\]
+\[ \deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\matA \tail{\vv{s}}_{\rr}} - \iprod{\vv{c}}{\matA \vv{h}} = \norm{\tail{\vv{s}}_{\rr}} - \norm{\vv{h}} = \norm{\tail{\vv{s}_{\rr}}} - \val \ip.\]
 However, by definition, the right-most term above equals $\udeficit(\matA, \vv{u}, \rr)$. 
 \end{proof}
 
 
 Th following result explains the form of the various formulas obtained by the authors in \cite[Theorems~3.6, 4.8, and~5.5]{hernandez+etal.frobenius_examples}.
 
-\begin{proposition}  If $\matA$ is \hl{convenient and planar}, then there exists $\beta = \beta(\matA)$ with the following property:  If $(\matA, \vv{u})$ is very small, and $p>\beta$, then the value of $\fip_p(\matA, \vv{u})$ either coincides with $\deg(\matA, \vv{u})$, which occurs if and only if $\mathcal{E}_p(\matA, \vv{u})$ is infinite, or is rational number with denominator $\Q_p(\matA, \vv{u})$, a power of $p$.
+\begin{proposition}  If $\matA$ is \hl{convenient and planar}, then there exists $\beta = \beta(\matA)$ with the following property:  If $(\matA, \vv{u})$ is very small, and $p>\beta$, then the value of $\fip_p(\matA, \vv{u})$ either coincides with $\deg(\matA, \vv{u})$, which occurs if and only if $\E_p(\matA, \vv{u})$ is infinite, or is rational number with denominator $\Q_p(\matA, \vv{u})$, a power of $p$.
+\daniel[inline]{Actually, this isn't what we want to say.  If $\E_p(\matA, \vv{u}) = \infty$, then 
+\[ \val \fip_p(\matA, \vv{u}) = \deg(\matA, \vv{u}) -  {\Omega}/{\Q} \] which is a rational number whose denominator is $\Q$.  The point is that all the intermediate terms vanish.}
 
-\begin{proof}  Let $\beta = \beta(\matA)$ be as in \Cref{main theorem wrt diagonal: T}.  Fix $p$ greater than $\beta$, a very small pair  $(\matA, \vv{u})$, and set $\mathcal{E} = \mathcal{E}_p(\matA, \vv{u})$ and $\Q = \Q_p(\matA, \vv{u})$.  We will prove below that
+\begin{proof}  Let $\beta = \beta(\matA)$ be as in \Cref{main theorem wrt diagonal: T}.  Fix $p$ greater than $\beta$, a very small pair  $(\matA, \vv{u})$, and set $\E = \E_p(\matA, \vv{u})$ and $\Q = \Q_p(\matA, \vv{u})$.  We will prove below that
 \begin{equation}
 \label{delta-epsilon-for-convenient-planar-pairs: e}
-\delta_{p^e}(\matA, \vv{u}) = \epsilon_{p^{e+1}}(\matA, \vv{u}) \text{ for every }1 \leq e < \mathcal{E}.
+\delta_{p^e}(\matA, \vv{u}) = \epsilon_{p^{e+1}}(\matA, \vv{u}) \text{ for every }1 \leq e < \E.
 \end{equation}
 
 \end{proof}
