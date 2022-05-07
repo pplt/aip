@@ -942,9 +942,9 @@ print \ frobeniusPowers( A, 5, {x,y,z}, Verbose => true  );
 --- A homogeneous trinomial in 3 vars -- new example in AIP
 A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
 QQ[x,y,z]
-ideals = frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
+ideals = frobeniusPowers( A, 13, {x,y,z}, Verbose => true  );
 print \ ideals;
-
+     
 minimalSmallNotVerySmall monomialMatrix A
 peek (monomialMatrix A)#cache
 
