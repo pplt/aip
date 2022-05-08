@@ -1075,6 +1075,33 @@ This is accomplished by the following proposition, which concretely describes a 
    The smallness of the pair and the positivity of $\vv{u}$ then imply that $s_i \le 1$ for each $i$, whence $\degree(\matA,\vv{u}) = \norm{\vv{s}}$ is at most the number of columns of $\matA$. 
 \end{remark}
 
+In the next proposition, we characterize small pairs in terms of values of the arithmetic integer program $\IP_p$ and the fractal linear program $\fip_p$.
+
+\begin{proposition}
+   \label{trivial small value bound: P}
+   For a monomial pair $(\matA,\vv{u})$, the following statements are equivalent\textup:   
+   \begin{enumerate}[$(1)$]
+      \item $(\matA, \vv{u})$ is small.
+      \item $\val \IP_p(\matA, \vv{u}, p^e) \leq p^e-1$ for some \textup(equivalently, every\textup) prime $p$ and for each $e\in \NN$.
+      \item $\val \fip_p(\matA,\vv{u}) \le 1$ for some \textup(equivalently, every\textup) prime $p$.
+   \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+   We give an algebraic proof.
+   Suppose $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$ in positive characteristic $p$.
+   If $(\matA, \vv{u})$ is small, then $\ideala \subseteq \ideald$ by \Cref{algebraic small and very small: R}.
+   For each $e\in \NN$, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(\matA, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
+   This shows that $(1)$ implies $(2)$.
+
+   The implication $(2) \Rightarrow (3)$ follows directly from \eqref{crit as limit of normalized program values: eq} and \Cref{prop: value of fractal program is crit}, which tell us that
+   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \lim_{e \to \infty} \frac{\val \IP_p(\matA, \vv{u}, p^e)}{p^e}.\]
+   Finally, note that if $(\matA,\vv{u})$ is not small, then $\ideala^{[1]} = \ideala  \not\subseteq \ideald$, and therefore
+   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \min\{t\in \RRnn: \ideala^{[t]} \subseteq \ideald\} > 1\]
+   showing that $(3)$ implies $(1)$.
+   Finally, notice that as $(1)$ is independent of the characteristic $p$, $(2)$ and $(3)$ must necessarily hold in any characteristic.
+\end{proof}
+
 \subsection{Characterizing optimal points of $\LP(\matA,\vv{u})$}
 
 \Cref{prop: MW for faces} above implies that $\vv{u}$ is a conical combination of the columns of $\matA$ lying in $\O = \mf(\matA,\vv{u})$ and the standard basis vectors in the recession basis of $\O$.
@@ -1946,9 +1973,6 @@ If this choice is irrelevant or clear from the context, then we shall omit the r
 
 Recall that a pair of ideals $(\ideala, \idealb)$ of a polynomial ring over a field are called \emph{\compatible} if $\ideala$ is contained in $\sqrt{\idealb}$, that is, there exists a positive integer $t$ such that $\ideala^t \subseteq \idealb$.
 
-% \daniel{Defined outside of appendix?}
-% \pedro{Appears as ``radically compatible'' in intro, and in certain places of the appendix}
-
 \begin{corollary}
 \label{cor: BMS result}
    Consider a \compatible\ pair of ideals $(\ideala, \idealb)$ of $\QQ[x]$, with $\ideala$ monomial, and fix a pair of ideals $(\ideala_{\ZZ}, \idealb_{\ZZ})$ of $\ZZ[x]$ such that $\ideala_{\ZZ} \QQ[x] = \ideala$ and $\idealb_{\ZZ} \QQ[x] = \idealb$.    Then, there exist positive integers $\beta$ and $d$, a positive rational number $\lambda$, and a finite sequence of positive rational numbers $\{ \eta_r \}_r$ indexed by the units of $\ZZ/d\ZZ$, with the following properties:  If $p > \beta$, and $e$ is a positive integer with $\lpr{p^e}{d} = r$, then 
@@ -2078,26 +2102,6 @@ We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{genera
    \end{align*}
 \end{proof}
 
-%\begin{remark}
-%The integer programs $\IP$ do not always satisfy the uniform comparison property of the arithmetic integer programs $\IP_p$ in  \Cref{cor: mu comparison}.
-%For instance, suppose that $p \equiv 3 \bmod 4$, and let
-%\[
-% \matA = \begin{bmatrix} 4 & 0 \\ 0 & 4\end{bmatrix},  \
-% \vv{u} = \begin{bmatrix}3\\ 3\end{bmatrix}, \text{ and }
-% \vv{v} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
-%\]
-%Then for $e \geq 1$, $\IP(\matA, \vv{u}, p^e)$ has optimal point $\big( \frac{3p^e-1}{4},  \frac{3p^e-1}{4} \big)$ when $e$ is odd and $\big( \frac{3p^e-3}{4}, \frac{3p^e-3}{4}\big)$ when $e$ is even, and so 
-%\[
-%\val\IP(\matA, \vv{u}, p^e) = \begin{cases}
-%\frac{3 p^e - 1}{2} & \text{if } e \text{ is odd} \\
-%\frac{3 p^e - 3}{2} & \text{if } e \text{ is even}
-%\end{cases}
-%\]
-%These values, however, are switched for $\IP(\matA, \vv{v}, p^e)$: $\big( \frac{5p^e-3}{4}, \frac{p^e-3}{4} \big)$ is an optimal point for odd $e$,  and $\big( \frac{5p^e-1}{4},\frac{p^e-1}{4} \big)$ is one for even $e$, 
-%so that 
-%the program's value is $\frac{3p^e-3}{2}$ when $e$ is odd, and $\frac{3p^e-1}{2}$ when $e$ is even.
-%\end{remark}
-
 \begin{example}
 \label{max depends on p and e: E}  The uniform comparison property described in \Cref{cor: mu comparison} may fail if we replace the arithmetic program $\IP_p$ with the standard program $\IP$.  For instance, suppose that $\matA$ is the $2 \times 2$ diagonal matrix with $4$ in each diagonal entry, and let $\vv{u}_1=(3,3)$ and $\vv{u}_2=(5,1)$;  note that $\degree(\matA,\vv{u}_1) = \degree(\matA,\vv{u}_2) = 3/2$.
 
@@ -2122,35 +2126,6 @@ and also, that these formulas are swapped after replacing $\vv{u}_1$ with $\vv{u
 
 Recall that a monomial pair $(\matA, \vv{u})$ is \emph{small} if $\vv{u}$ is not greater than any column of $\matA$, and is \emph{very small} if $\degree(\matA,\vv{u}) \le 1$ (\Cref{defn: small and very small pairs}).
 In this subsection we show how the computation of the values of the arithmetic integer programs $\IP_p(\matA,\vv{u},p^e)$ can be reduced to the case of very small pairs.
-
-
-\pedro[inline]{
-   The next proposition could also go to \Cref{ss: special matrices and pairs}, though in that section we don't talk about $\IP$ and $\fip$.
-}
-\begin{proposition}
-   \label{trivial small value bound: P}
-   \pedro{Made this a TFAE statement, and included formulation in terms of crit.}
-   For a monomial pair $(\matA,\vv{u})$, the following statements are equivalent\textup:   
-   \begin{enumerate}[$(1)$]
-      \item $(\matA, \vv{u})$ is small.
-      \item $\val \IP_p(\matA, \vv{u}, p^e) \leq p^e-1$ for each $e\in \NN$.
-      \item $\val \fip_p(\matA,\vv{u}) \le 1$.
-   \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-   For a change of pace, we give an algebraic proof.
-   Suppose $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala, \ideald)$ in positive characteristic $p$.
-   If $(\matA, \vv{u})$ is small, then $\ideala \subseteq \ideald$ by \Cref{algebraic small and very small: R}.
-   For each $e\in \NN$, this containment implies that $\ideala^{[p^e]} \subseteq \ideald^{[p^e]}$, which shows that $\val \IP_p(\matA, \vv{u}, p^e) = \mu(\ideala, \ideald, p^e) \leq p^e-1$.
-   This shows that $(1)$ implies $(2)$.
-
-   The implication $(2) \Rightarrow (3)$ follows directly from \eqref{crit as limit of normalized program values: eq} and \Cref{prop: value of fractal program is crit}, which tell us that
-   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \lim_{e \to \infty} \frac{\val \IP_p(\matA, \vv{u}, p^e)}{p^e}.\]
-   Finally, note that if $(\matA,\vv{u})$ is not small, then $\ideala^{[1]} = \ideala  \not\subseteq \ideald$, and therefore
-   \[\val \fip_p(\matA,\vv{u}) = \crit(\ideala,\ideald) = \min\{t\in \RRnn: \ideala^{[t]} \subseteq \ideald\} > 1\]
-   showing that $(3)$ implies $(1)$.
-\end{proof}
 
 \begin{remark}[Reduction to the small case]
    We now describe how to reduce the computation of the values of the arithmetic integer programs $\IP_p(\matA, \vv{u}, p^e)$ for all $e \geq 1$ to the small case, at least when $p$ is large relative to the pair $(\matA, \vv{u})$.
