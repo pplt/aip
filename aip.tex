@@ -302,14 +302,13 @@ If $\matA$ is an $\numvars \times n$ monomial matrix, then we call $\ZZ^n$ the \
    In this case,  we call $\ideald$ the diagonal ideal associated to the \emph{positive} point $\vv{u} = (u_1, \ldots, u_{\numvars}) \in \ZZ^{\numvars}$.
 \end{definition}
 
-\begin{definition}[Pairs]
+\begin{definition}[Pairs and triples]
 \label{pairs: D}
-   A \emph{monomial pair} $(\matA, \vv{u})$ consists of an $\numvars \times n$ monomial matrix $\matA$, and a positive point $\vv{u}$ of $\ZZ^\numvars$, the target lattice of $\matA$.
-    An \emph{$\matA$-pair} is a monomial pair whose first entry is $\matA$.
+A \emph{monomial pair} $(\matA, \vv{u})$ consists of an $\numvars \times n$ monomial matrix $\matA$, and a positive point $\vv{u}$ of $\ZZ^\numvars$, the target lattice of $\matA$.
+A \emph{monomial triple} $(\matA,\vv{u},q)$ consists of the data of a monomial pair, along with a positive integer $q$.
+    An \emph{$\matA$-pair} or \emph{$\matA$-triple} is a monomial pair or triple whose first entry is $\matA$.
    An \emph{ideal pair} $(\ideala, \ideald)$ consists of a proper monomial ideal $\ideala$ of $\kk[x_1, \ldots, x_{\numvars}]$, along with a diagonal ideal $\ideald$ of the same ambient polynomial ring.
 \end{definition}
-
-\daniel[inline]{Define a monomial triple $(\matA, \vv{u}, q)$ to consist of the data of a monomial pair, along with a positive integer $q$}
 
 \begin{remark}[Association of pairs]
 \label{associate of pairs: R}
@@ -660,6 +659,60 @@ On the other hand, if $p=2$, $3$, or $7$, then $\val \fip_p < \val \LP$.
    Restated,  $ \val \fip_p(\matA, \vv{u})$ is at most $\crit(\ideala,  \ideald)$, and so equality holds.
 \end{proof}
 
+\subsection{Shortfall and deficit}
+\label{ss: shortfall and deficit}
+
+The constraints of the integer program $\IP(\matA,\vv{u},q)$ and of the arithmetic integer program $\IP_p(\matA,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of their feasible sets, the image of $\mathcal{F}$ under $\matA$, denoted $\matA(\mathcal{F})$, consists of points in the target lattice of $\matA$ that are less than $\vv{u}q$.
+In particular, the Minkowski difference
+\[\vv{u}q-\matA(\mathcal{F}) = \{\vv{u}q - \matA \vv{s}: \vv{s}\in \mathcal{F}\}\]
+consists of positive lattice points in the target lattice of $\matA$.
+
+\begin{definition}[Shortfall for $\IP$ and $\IP_p$]
+   The \emph{shortfall} of the integer program $\IP(\matA, \vv{u}, q)$ is the Minkowski difference
+   \[ \short \IP(\matA, \vv{u}, q) = \vv{u}q - \matA( \opt \IP(\matA, \vv{u}, q)).\]
+   The shortfall of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
+\end{definition}
+
+The preceding discussion shows that the shortfall of either program consists of positive lattice points in the target lattice of $\matA$.
+
+\begin{remark}[Algebraic interpretation of shortfalls]
+\label{shortfall motivation: R}
+Let $(\matA,\vv{u})$ be a monomial pair associated to an ideal pair $(\ideala,\ideald)$.
+If $q$ is a power of $p$, $\IP = \IP(\matA,\vv{u},q)$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP$, then the shortfall of $\IP$ can be interpreted as the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
+
+More precisely, the discussion preceding \Cref{IP: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\matA \vv{k}}$, with $\vv{k}$ in the domain lattice of $\matA$ satisfying $\norm{\vv{k}} = \nu$ and $\matA\vv{k}<\vv{u}q$.
+Keeping in mind that $\nu= \val \IP$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP$.
+Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $\matA(\opt \IP) = \vv{u}q - \short \IP$.
+In other words,
+\begin{equation}
+\label{algebraic shortfall PI general: e}
+ \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(\matA,\vv{u},q)} \bmod \ideald^{[q]}.
+ \end{equation}
+Likewise, one can show that
+\begin{equation}
+\label{algebraic shortfall PI_p general: e}
+\ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(\matA,\vv{u},q)} \bmod \ideald^{[q]}
+\end{equation}
+giving us an algebraic interpretation for the shortfall of the arithmetic integer program $\IP_p(\matA,\vv{u},q)$.
+\end{remark}
+
+If $\vv{k}$ is optimal for $\IP = \IP(\matA,\vv{u},q)$ or $\IP_p = \IP_p(\matA,\vv{u},q)$, then $\matA\vv{k} < \vv{u}q$.
+For sufficiently small positive $\epsilon$, we have $\matA(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(\matA,\vv{u})$.
+Thus, $\norm{\vv{k}}/q < \val \LP(\matA,\vv{u}) = \degree(\matA,\vv{u})$, showing that the values of $\IP$ and $\IP_p$ are strictly less than $\degree(\matA,\vv{u})q$.
+The notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
+
+\begin{definition}[Deficit for $\IP$ and $\IP_p$]
+   The \emph{deficit} of the integer program $\IP(\matA, \vv{u}, q)$ is positive rational number
+   \[ \deficit \IP(\matA, \vv{u}, q) = \degree(\matA,\vv{u})q - \val \IP(\matA, \vv{u}, q).\]
+   The deficit of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
+\end{definition}
+
+\pedro[inline]{
+   Maybe include an example?
+}
+\todo[inline]{
+   Find an appropriate place for the following result.
+}
 \daniel[inline]{This isolates an argument from the appendix that I felt was more appropriate here.}
 \begin{lemma} 
    \label{lifted-programs: L}
@@ -1637,60 +1690,11 @@ The following theorem underlies some of our later finiteness results.
 \label{solving: S}
 
 Throughout this section, $(\matA, \vv{u})$ is a monomial pair and $q$ is positive integer.
-Our goal here is to demonstrate that the value and the image of $\opt\IP(\matA, \vv{u}, q)$ under $\matA$
-\pedro{Replaced ``optimal image'' with this; maybe we'll want to rephrase this.}
-vary with $q$ in a uniform way as $q$ tends to infinity.
+Our goal here is to demonstrate that the value and the image of $\opt\IP(\matA, \vv{u}, q)$ under $\matA$ vary with $q$ in a uniform way as $q$ tends to infinity.
 
-\daniel[inline]{The stuff on $\IP$ and $\IP_p$ has got to move}
+\subsection{Deficit and shortfall of $\ip$}
 
-\subsection{Shortfall and deficit}
-
-The constraints of the integer program $\IP(\matA,\vv{u},q)$ and of the arithmetic integer program $\IP_p(\matA,\vv{u},q)$ imply that for every subset $\mathcal{F}$ of their feasible sets, the image of $\mathcal{F}$ under $\matA$, denoted $\matA(\mathcal{F})$, consists of points in the target lattice of $\matA$ that are less than $\vv{u}q$.
-In particular, the Minkowski difference $\vv{u}q-\matA(\mathcal{F})$ consists of positive lattice points in the target lattice of $\matA$.
-
-\begin{definition}[Shortfall for $\IP$ and $\IP_p$]
-   The \emph{shortfall} of the integer program $\IP(\matA, \vv{u}, q)$ is the Minkowski difference
-   \[ \short \IP(\matA, \vv{u}, q) = \vv{u}q - \matA( \opt \IP(\matA, \vv{u}, q)).\]
-   The shortfall of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
-\end{definition}
-
-The preceding discussion shows that the shortfall of either program consists of positive lattice points in the target lattice of $\matA$.
-
-\begin{remark}[Algebraic interpretation of shortfalls]
-\label{shortfall motivation: R}
-Let $(\matA,\vv{u})$ be a monomial pair associated to an ideal pair $(\ideala,\ideald)$.
-If $q$ is a power of $p$, $\IP = \IP(\matA,\vv{u},q)$, and $\nu = \nu(\ideala,\ideald,q) = \val \IP$, then the shortfall of $\IP$ can be interpreted as the ``leftovers'' of $\ideala^\nu$ modulo $\ideald^{[q]}$.
-
-More precisely, the discussion preceding \Cref{IP: D} tells us that the generators of $\ideala^{\nu}$ not contained in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\matA \vv{k}}$, with $\vv{k}$ in the domain lattice of $\matA$ satisfying $\norm{\vv{k}} = \nu$ and $\matA\vv{k}<\vv{u}q$.
-Keeping in mind that $\nu= \val \IP$, these conditions on $\vv{k}$ are equivalent to $\vv{k}$ being optimal for $\IP$.
-Thus, the generators of $\ideala^{\nu}$ not in $\ideald^{[q]}$ are precisely the monomials of the form $x^{\vv{w}}$, with the exponent vector $\vv{w}$ lying in $\matA(\opt \IP) = \vv{u}q - \short \IP$.
-In other words,
-\begin{equation}
-\label{algebraic shortfall PI general: e}
- \ideala^{\nu(\ideala, \ideald, q)} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP(\matA,\vv{u},q)} \bmod \ideald^{[q]}.
- \end{equation}
-Likewise, one can show that
-\begin{equation}
-\label{algebraic shortfall PI_p general: e}
-\ideala^{[\mu(\ideala, \ideald, q)]} \equiv \ideal{x^{\vv{u}q-\vv{v}}: \vv{v} \in \short \IP_p(\matA,\vv{u},q)} \bmod \ideald^{[q]}
-\end{equation}
-giving us an algebraic interpretation for the shortfall of the arithmetic integer program $\IP_p(\matA,\vv{u},q)$.
-\end{remark}
-
-If $\vv{k}$ is optimal for $\IP = \IP(\matA,\vv{u},q)$ or $\IP_p = \IP_p(\matA,\vv{u},q)$, then $\matA\vv{k} < \vv{u}q$.
-For sufficiently small positive $\epsilon$, we have $\matA(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(\matA,\vv{u})$.
-Thus, $\norm{\vv{k}}/q < \val \LP(\matA,\vv{u}) = \degree(\matA,\vv{u})$, showing that the values of $\IP$ and $\IP_p$ are strictly less than $\degree(\matA,\vv{u})q$.
-The notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
-
-\begin{definition}[Deficit for $\IP$ and $\IP_p$]
-   The \emph{deficit} of the integer program $\IP(\matA, \vv{u}, q)$ is positive rational number
-   \[ \deficit \IP(\matA, \vv{u}, q) = \degree(\matA,\vv{u})q - \val \IP(\matA, \vv{u}, q).\]
-   The deficit of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
-\end{definition}
-
-
-\newpage
-We now extend the definitions of shortfall and deficit to the secondary program.
+In this section we extend the definitions of shortfall and deficit, introduced in \Cref{ss: shortfall and deficit}, to the secondary program $\ip$, and investigate their properties.
 
 \begin{definition}[Shortfall and deficit for $\ip$]
    \label{deficit and shortfall ip: D}
