@@ -24,7 +24,6 @@ TO DO LIST:
       The term ``\compatible'' appears in the intro, while ``\smallcompatible'' is only used in the appendix, and has not been officially introduced yet.
       ``Very small compatible'' is not used anywhere.
    } 
-   % Set some notation early on, possibly in the introduction:  A pair of ideals is $(\ideala, \idealb)$ is \emph{\compatible} if $\ideala \subseteq \sqrt{\idealb}$, is \emph{\smallcompatible} if $\ideala \subseteq \idealb$, and is \emph{very small} if it is compatible and the $F$-threshold of $\ideala$ with respect to $\idealb$ is less than one.  These things appear throughout so should be updated, especially throughout the appendix and remove the definition after \Cref{computing nu for large q: C}. 
 	\item[$\Box$]  Move the work on critical exponents vs. $F$-thresholds from \Cref{sprouting: S} to \Cref{frobenius-powers-monomial-ideals: S}.
         \pedro[inline]{I think we decided to get rid of that.}
  \item[$\Box$] Describe the critical exponents of monomial ideals in \Cref{crits: SS}.  
@@ -39,24 +38,6 @@ TO DO LIST:
  \item[$\Box$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Check for consistent use of ``Lemma'' and ``Proposition''.
  If it's used right away, ``Lemma'' is OK; if there's no use in sight, use ``Proposition''.
-% 	\item[$\CheckedBox$]{Address Pedro's questions:
-%\begin{itemize}
-%    \item If a positive $\vv{u}$ lies in the boundary of the Newton polyhedron, and $\vv{u}+\canvec_i$ also lies in the boundary, for every $i$, is the associated ideal principal?
-%    \pedro[inline]{
-%       No.
-%       Emily gave an example with a non-positive point, and just shifting things we get a counterexample:
-%       $\ideala=\ideal{x^3yx,xy^3z^3}$; $\vv{u} = (3,1,1)$.\\[2mm]
-%       The conclusion holds if we require $\vv{u}+ \sum_{i\ne j} \canvec_i$ to be in the boundary, for every $j$.
-%       In fact, I'm now using this in the proof of \Cref{finite-representatives-small-crits: P}(3).
-%    }
-%    \item If there are no small-but-not-very-small pairs, is the associated ideal principal?
-%    \pedro[inline]{
-%       This is true.
-%       If $x^\vv{u}$ is a minimal generator, then $\vv{u}$ lies in the boundary of $\N$, and so does $\vv{u}+ \sum_{i\ne j} \canvec_i$ for every $j$ (if not, $\vv{u}+ \sum_{i\ne j} \canvec_i$ would give us a small-but-not-very-small pair).
-%       \Cref{prop: a property of the boundary} then implies that $\N = \vv{u} + \cone(\canvec_1,\ldots,\canvec_\numvars)$.
-%    }
-% \end{itemize}	
-%}	
 \end{enumerate}}
  \details[inline]{
  	TO DO LIST:
@@ -150,12 +131,6 @@ The following examples give a taste of the formulas obtained.
 \begin{example}[See \Cref{ex: new example.2}]
    \label{ex2 intro}
    If $\ideala = \ideal{x^{36} y^{19} z^{47}, x^{10} y^{46} z^{25}, x^{31} y^{31} z^{36}}$ and $\ideald = \ideal{x^{29},y^{24},z^{30}}$, we shall see that
-%   \[
-%      \mu(\ideala_p,\ideald_p,p^e) =
-%      \frac{624}{773}p^{e} - \frac{\num{1551}}{\num{681013}}p^{e-1} - \frac{\num{2794}}{\num{22025}}p^{e-3} - \frac{\lpr{21+10e}{25}}{25}
-%   \]
-%   for all $e\ge 4$ and all but finitely many primes $p$ in a certain arithmetic progression.
-%
    \[
     \mu(\ideala_p,\ideald_p,p^e) =
     \begin{cases}
@@ -167,15 +142,6 @@ The following examples give a taste of the formulas obtained.
     \end{cases}
  \]
  whenever $p \gg 0$  and $p \equiv 11 \bmod \num{752523984455421061348766569800}$.
- % \pedro{
- %    This is a bit ridiculous;
- %    probably it makes sense to be less precise here, and just say that this holds for infinitely many $p$ in some congruence class.
- % }
- % \daniel{I actually really like the precision.  It gives a real taste of what we can do.  Maybe we can hold off to see if Emily weighs in, but in order to appreciate the glory, I restored the old version (the shortened one is still commented out here)}
- % \pedro{
- %    I'm OK with keeping it annoyingly precise :-)
- %    Maybe we should include an example after \Cref{universal-denominators-exist:  T} where this monstrous number is ``computed'' (we'll just say that following the steps in the proof, this is what we get).  
- % }
 \end{example}
 
 \subsection{Frobenius powers}
@@ -189,11 +155,6 @@ For example, if $\ideala$ is a monomial ideal in a polynomial ring in positive c
 Aiming at understanding how the Frobenius singularities of an ideal in positive characteristic relate to those of a generic element of the ideal, in \cite{hernandez+etal.frobenius_powers} the authors developed a new theory of Frobenius singularities of pairs in prime characteristic called \emph{\textup{(}generalized\textup{)} Frobenius powers}. 
 If $\kk$ is a field of prime characteristic $p$ with $[\kk:\kk^p] <\infty$, and $\ideala$ is an ideal of $\kk[x_1, \ldots, x_\numvars]$, then the Frobenius powers of $\ideala$ are a family of ideals $\ideala^{[t]}$ indexed by a nonnegative real parameter $t$, which agrees with standard Frobenius powers or the ``Frobenius roots'' of \cite{blickle+mustata+smith.discr_rat_FPTs} when $t$ is an integral power of $p$, agrees with test ideals when $\ideala$ is principal, and in general mimics much of the behavior of multiplier ideals and test ideals.
 
-% \textcolor{nicered}{When the exponent is an integer, then the corresponding Frobenius power can be described concretely in terms of generators:
-%    If $\ell$ is a natural number, and $\ideala$ is generated by polynomials $f_1, \ldots, f_n$, then $\ideala^{[\ell]}$ is the ideal generated by the products $f^{\vv{u}} = f_1^{u_1}\cdots f_n^{u_n}$, ranging over all points $\vv{u} \in \NN^n$ for which the multinomial coefficient $\binom{\ell}{\vv{u}}$ is nonzero modulo~$p$ \cite[Proposition~3.5]{hernandez+etal.frobenius_powers}.}
-% \pedro{This may be omitted; if so, just remember to remove the ``as seen in the introduction'' in Section~3, when this is brought up again.}
-% \emily{I think we can omit it, since it will be described when we use it.  Do you prefer to keep it?}
-% \pedro{No, I think I prefer to omit it; will remove it for now.}
 Suppose now that $\ideala$ is generated by monomials $x^{\vv{a}_1},\ldots,x^{\vv{a}_n}$.
 Unlike the test ideals $\tau(\ideala^t)$, the Frobenius powers $\ideala^{[t]}$ strongly depend on the characteristic~$p$.
 Moreover, if $f=\alpha_1x^{\vv{a}_1}+\cdots+\alpha_nx^{\vv{a}_n}$ for some $\alpha_1,\ldots,\alpha_n \in \kk$ that are algebraically independent over $\FF_p$ and generate $\kk$ over $\FF_p$, then for each $t \in (0,1)$ we have
@@ -220,14 +181,6 @@ Given a proper ideal $\idealb \subseteq \QQ[x_1,\ldots,x_\numvars]$ whose radica
    Maybe make this an official theorem?
    We could also introduce another definition, ``crit-uniform'', or is that too much?
 }
-
-% \begin{example}
-%    If $\ideala$ and $\idealm$ are as in \Cref{ex1 intro}, then 
-%    \[
-%       \crit(\ideala_p,\idealm_p) = \frac{4}{17} - \frac{3}{17p^3}
-%     \]
-%     for each sufficiently large prime $p$ congruent to $11$ modulo $\num{542640}$.
-% \end{example}
 
 \begin{example}
    If $\ideala$ and $\ideald$ are as in \Cref{ex2 intro}, then 
@@ -828,7 +781,6 @@ This convention leads to the following useful observation, whose simple proof us
 
 \begin{proposition}
    \label{prop: a property of the boundary}
-\pedro{I need this for \Cref{computibility of W: R}}
    Let $\N$ be the Newton polyhedron of a monomial matrix, and suppose points $\vv{u} \le \vv{v}$ lie in the boundary of $\N$.
    Let $I$ denote the set of indices $i$ such that $u_i < v_i$.
    Then $\vv{u}$ and $\vv{v}$ lie in a common face $\O$ of $\N$ such that $\canvec_i \in \rb(\O)$ for each $i\in I$.
@@ -1041,7 +993,6 @@ This is accomplished by the following proposition, which concretely describes a 
 
 \begin{proposition}
    \label{prop: where to find minimal smal but not very small points}
-   \pedro{Will need this in \Cref{computibility of W: R}}
    Let $\matA$ be a monomial matrix with $\numvars$ rows.
    Let $S$ be the collection of all positive points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small, and let $\min S$ be the subset of $S$ consisting of the minimal elements with respect to componentwise inequality.
    Then
@@ -2149,7 +2100,6 @@ However, as mentioned in \Cref{rem: there may be infinitely many small but not v
    If $(\matA, \vv{u})$ is small, but not very small, then
    \[ \val \IP_p(\matA, \vv{u}, p^e) = p^e-1\]
    for every $p > \beta$ and $e \geq 1$, and consequently $\val \fip_p(\matA,\vv{u}) = 1$.
-   \pedro{Added conclusion about crit.}
 \end{theorem}
 
 \begin{proof}
@@ -2172,29 +2122,6 @@ However, as mentioned in \Cref{rem: there may be infinitely many small but not v
 
 With these reductions in hand, we now describe how to compute the value of $\IP_p(\matA, \vv{u}, p)$ when $(\matA, \vv{u})$ is very small,  by appealing to our earlier work on the standard integer programs $\IP(\matA, \vv{u}, p^e)$.
 
-% \pedro[inline]{
-%    I modified the statement and proof of the following theorem to isolate the part that depends on $p\gg 0$.
-%    Original statement and proof were commented out.
-% }
-% \daniel[inline]{This is better.  In this light, is it true that if $p \gg 0$ relative to $\matA$ and $(\matA,\vv{u})$ is small, then $\IP_p(\matA,\vv{u},p) = \IP(\matA,\vv{u},p)$ if and only if $(\matA,\vv{u})$ is very small?}
-% \pedro[inline]{
-%    If $\degree(\matA,\vv{u}) > 1$, then $\val \IP(\matA,\vv{u},p) >  p$, for $p \gg 0$ as in the proof of the previous theorem.
-%    But if that is the case \emph{and} $\IP_p(\matA,\vv{u},p) = \IP(\matA,\vv{u},p)$, then the scarcity of points with norm $p$ satisfying the arithmetic constraint of $\IP_p$ will show that a point of the form $p \canvec_i$ is feasible for these programs.
-%    This would imply that $p\vv{a}_i < p \vv{u}$, hence $\vv{a}_i < \vv{u}$, so the pair isn't even small, a contradiction.
-%    (Or maybe it's easier to just argue algebraically.)\\[2mm]
-%    Maybe this could be a lemma? Something like\ldots
-%    \begin{lemma}
-%       If $(\matA,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(\matA, \vv{u}, p)$ agrees with the standard integer program $\IP(\matA, \vv{u}, p)$.
-%       Moreover, the converse is true for $p$ sufficiently large, depending solely on $\matA$.
-%    \end{lemma}
-%    Then we can remove this from the theorem, and eliminate its proof (simply say it follows from the lemma and \Cref{uniform uniform value and image: T}).
-% }
-% \emily[inline]{Sounds good to me.}
-% \daniel[inline]{Me too.  We could then just refer to this later, when using $p \gg 0$ toward the end of the proof of \Cref{main theorem wrt diagonal: T}, when we need to use that $\norm{\vv{h}_{l+1}}$ is at least $p$}
-% \pedro[inline]{
-%    I added the lemma below.
-%    I did not modify the proof of \Cref{main theorem wrt diagonal: T}, though, since the fact that $\val \IP > p$ still does not appear in any statement.
-% }
 \begin{lemma}
    \label{ip = aip: L}
    If $(\matA,\vv{u})$ is very small, then the arithmetic integer program $\IP_p(\matA, \vv{u}, p)$ agrees with the standard integer program $\IP(\matA, \vv{u}, p)$.
@@ -2280,9 +2207,6 @@ Before presenting the proof, we clarify our requirements for $p\gg 0$.
 
    For a very small pair $(\matA,\vv{u})$, \Cref{arithmetic uniform value and image: T} shows that
    \[ \val \IP_p(\matA,\vv{u},p) = \degree(\matA,\vv{u})p-\udeficit(\matA,\vv{u},p).\]
-   % \pedro{This is actually unnecessary, as in this case there are only finitely many small pairs.}
-   % \daniel{You are right, it doesn't seem necessary here.  But, this is the kind of argument we will need later on in the most general case.  Should we just make this observation then?  Maybe we could just give the simple justification here, but also point out the general justification.}
-   % \pedro{Done. Had to rearrange things a bit.}
    \Cref{finitely many deltas for a fixed A: R} tells us that, as we vary over all such pairs, $\udeficit(\matA,\vv{u},p)$ takes on only finitely many values, while \Cref{pair periodicity: R} tells us that its value, once $(\matA,\vv{u})$ is fixed, depends only on the class of $p$ modulo a universal denominator $\denom$ for $\matA$.
    Moreover, as in this convenient case there are only finitely many very small pairs, $\degree(\matA,\vv{u})$ also takes on only finitely many values.\footnote{For later use, note that this conclusion remains valid in general: when restricted to very small pairs, $\degree(\matA,\vv{u})$ is bounded above by $1$, and thus takes on only finitely many values by \Cref{discreteness: P}.}
    Thus, by choosing $p\gg 0$, with lower bound dependent only on $\matA$, we can select the very small pairs $(\matA,\vv{u}) \in \S$ to be included in $\S^*$ by first selecting those with maximal $\degree(\matA,\vv{u})$ (which is independent of~$p$), and then selecting among those the pairs with minimal $\udeficit(\matA,\vv{u},p)$ (which only depends on $p$ modulo $\denom$).
@@ -2360,20 +2284,6 @@ We are now ready to prove the above theorem.
    Given the computational complexity of solving such programs, our algorithm is bound to be highly inefficient or impractical for large matrices or large $r$.
    Somewhat surprisingly, a preliminary implementation in \emph{Macaulay2} \cite{M2} by the authors actually fares well on small examples.
 \end{remark}
-
-% \pedro[inline]{
-%    Should we get into more details?
-%    E.g., present pseudo-code such as Algorithm~\ref{alg}, or discuss practical (or impractical) matters like the computability of the shortfalls?
-% }
-% \emily[inline]{The pseudocode looks good.  If we can find a succinct way to touch on computability, I'm for it.}
-% \pedro[inline]{
-%    I gave it a shot.
-%    I changed the notation in the pseudo-code a bit: I'm using $r$ to denote the representative of the congruence class mod $\denom$, to emphasize that it need not be prime.
-%    I'm now using $\S_e$ (and likewise for $\S^*$), as $\S_{p^e}$ does not make sense anymore, and $\S_{r^e}$ causes confusion then $r=1$, as it does not tell us the level we are in.
-%    I guess $\S_{\pp^e}$ would be another option.
-% }
-% \daniel[inline]{I prefer the second option, to keep things consistent with upcoming notation.}
-% \pedro[inline]{Went with second one.}
 
 \setlength{\algomargin}{0em}
 \begin{algorithm}\caption{The convenient case}
@@ -2569,7 +2479,6 @@ Finally, the third assertion follows from \Cref{fundamental-properties-deficits-
    Fix a positive integer $\denom$ that is a universal denominator for all $\matM_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(\matM_i)$ for each $\matM_i$, as in \Cref{fsr-exist: T}; set $\fsr = \fsr(\matM_1) \cup \cdots \cup \fsr(\matM_l)$.
    By \Cref{rem: finitely many F-thresholds of small pairs} the set consisting of the degrees of all small $\matM_i$-pairs for $i=1,\ldots,l$ is finite, and consequently so is the set $S$ consisting of all special points with denominator $\denom$ of all those pairs.
    Let $\Omega$ be the set consisting of all coordinates of all points in $\matA(\fsr+S\cup\{\vv{0}\})$.
-   \pedro{$\vv{0}$ included so that this set contains $\matA(\fsr)$}
    We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $\matA$, and do not depend in any way on $r$.
 
    The finiteness of $\fsr$  and \Cref{positive-polynomial: L}
@@ -2715,10 +2624,6 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    The overbar represents collapse along $\mf(\matA,\vv{u})$.
    The figure shows $\S_{p^e}(\matA,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(\matA,\vv{u})$ highlighted.
    The two framed nodes are pairs that are not very small, which cause $\sprout^*_p(\matA,\vv{u})$ to terminate, as $\S_{p^e}(\matA,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(\matA,\vv{u})$ is empty for $e\ge 4$.
-   % \daniel[inline]{So what is the critical exponent?  This has a denominator a power of $p$, because of terminal red points.  Does it have the kind of intermediary powers of $p$ what we don't see in our examples paper?}
-   % \pedro[inline]{
-   %    No intermediate powers here; the critical exponent is $\frac4{17}-\frac3{17 p^3}$.
-   % }
 \end{example}
 
 \begin{example}[Another sprouting subgraph]
@@ -3335,7 +3240,6 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
       \item $\crit(\ideala,\vv{u}) \le 1$ for all $\vv{u} \in \setW$.
       \item If $\crit(\ideala,\vv{v}) \le 1$ for some $\vv{v}$, then there exists $\vv{u} \in \setW$ with $\vv{u} \le \vv{v}$ such that $\crit(\ideala,\vv{v}) = \crit(\ideala,\vv{u})$.
       \item If $\crit(\ideala,\vv{v}) > 1$ for some $\vv{v}$, then there exists $\vv{u} \in \setW$ with $\vv{u}\le \vv{v}$ such that $\crit(\ideala, \vv{u}) = 1$.
-      \pedro{Need this in \Cref{crits of mon ideals: P}}
    \end{enumerate}
 \end{proposition}
 
@@ -3347,9 +3251,6 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
    \[\setW_\O \coloneqq \{\vv{u} \in \ZZpos^\numvars : (\matA,\vv{u})\text{ is very small and }\mf(\matA,\vv{u}) = \O\}.\]
    Observe that if $\vv{u} \in \setW_\O$, then $\lambda \coloneqq \degree(\matA,\vv{u}) \le 1$ and $\lambda^{-1} \vv{u}\in \O$, and consequently, $\vv{u}$ lies in the convex hull of $\O \cup \{\vv{0}\}$.
    Since $\O$ is bounded, so is this convex hull, and hence the set $\setW_\O$ is finite.
-   \pedro[inline]{
-      I believe $\setW_\O = (\ri \O \cup \ri \conv(\O\cup \{\vv{0}\})) \cap \ZZpos^\numvars$, but we don't need this level of precision here.
-   }
    
    If $\O$ is an unbounded standard face of $\N$, the set of all positive points $\vv{u}$ such that $(\matA,\vv{u})$ is very small and $\mf(\matA,\vv{u}) = \O$ is infinite, so we need to be more selective, and settle for a finite subset of ``minimal representatives''.
    Denoting collapsing along $\O$ by an overbar, $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$ by \Cref{cor: O bar is bounded}, and we construct a finite set $\setW_{\collapse{\O}}$ of positive points in the target lattice of $\collapse{\matA}$ as in the previous paragraph.
@@ -3553,20 +3454,6 @@ We close this section with some examples illustrating \Cref{frobenius-powers-mai
 }
 \end{example}
 
-\pedro[inline]{
-   I was able to compute all Frobenius powers for \Cref{ex: new example}, in a few ($\sim 3$) hours.
-   % The output is insane, and there are lots of crits involving several (8; maybe more) powers of $1/p$.
-   % It takes a long time because the Newton polyhedron is far from the origin, and therefore there are LOTS of very small pairs to consider.
-   % But the computation of each crit is pretty fast, and I was surprised that the whole thing is doable.
-   % Three hours is not bad at all; I'm used to running computations for several days!
-}
-\pedro[inline]{
-   After some improvements in the code, that computation now takes just over an hour.
-   I put the output in the repository (\texttt{m2/crazy\_example\_output.txt}).
-   A crazy crit and some stats are included in the next example.
-   We might also include a table of crits and ideals in some reasonable interval. 
-}
-
 \begin{example}
    \label{ex: new homogeneous example}
    Let $\kk$ be a field of positive characteristic $p$, and let $\ideala \subseteq \kk[x,y,z]$ be the monomial ideal associated with the matrix $\matA$ in \Cref{ex: new example}.
@@ -3620,8 +3507,6 @@ $R = \kk[z]$
 Throughout this appendix, we focus on polynomial rings in the string of variables $x = x_1, \ldots, x_\numvars$, and in an attempt to simplify notation,  given a ring $\LL$, we will {consistently} use $\LL[x]$ to denote the polynomial ring $\LL[x_1, \ldots, x_\numvars]$.
 
 Recall, from {the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{\compatible}
-% \daniel{I want to switch, and in some places have switched, \emph{radically compatible} $\to$ \emph{compatible} and \emph{compatible} $\to$ \emph{small compatible} to emphasize the connection with small monomial pairs.  I have probably failed to update this in various spots}
-% \pedro{How about simply ``small''?}
 if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ is contained in the radical of $\idealb$.  
 Our purpose in this appendix is twofold:  First, we show that if $(\ideala, \idealb)$ is a \compatible\ pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: T}.
 Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
@@ -3660,18 +3545,6 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
    Therefore, $x^{\vv{v}} \in \idealb$, so $x^{\vv{v}} \in \mon(\idealb) = \idealc$, and we conclude that $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
-% \pedro[inline]{
-%    We can also make the argument more explicit (but longer) and avoid $[1/q]$-th powers:
-%    As $x^{\vv{u}} = x^{\vv{v}q} x^{\vv{w}} \in \idealb^{[q]}$, we can write
-%    \[x^{\vv{v}q} x^{\vv{w}} = \sum_i f_i g_i^q\]
-%    for some $f_i \in \ringR$ and $g_i \in \idealb$.
-%    Observing that $x^{\vv{w}}$ is part of a basis for $\ringR$ over $\ringR^q$, for each $i$ let $a_i^q\in \ringR^q$ be the $x^\vv{w}$-coordinate of $f_i$ in that basis.
-%    Comparing $x^\vv{w}$-coordinates in the above equation we see that
-%    \[x^{\vv{v}q} = \sum_i a_i^q g_i^q\]
-%    and taking $q$-th roots we see that $x^\vv{v} \in \idealb$.
-% }
-
-
 Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic; due to this, we also choose to work generally when reducing to prime characteristic.
 
 \pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
@@ -3709,10 +3582,6 @@ We now consider the case where $\mathcal{C}$ is general.   According to \cite[Le
 where each set of monomials $\mathcal{C}_i = \{ x_s^{v_s(i)} : v_s(i) \neq 0 \}$ is associated to the nonzero point $\vv{v}_i = (v_1(i), \ldots, v_\numvars(i)) \in \NN^\numvars$. Furthermore, the points $\vv{v}_1, \ldots, \vv{v}_{\ell}$ arising in this way depend only on $\mathcal{C}$, but are independent of the choice of field $\LL$.  In addition, as the pair $(\matA, \mathcal{C})$ is \compatible, then so is each pair $(\matA, \mathcal{C}_i)$.
 
 By the special case considered above, for each $1\le i \le \ell$ there is a pair $(\matA_i, \vv{u}_i)$ such that, when $\LL=\kk$ is a field of characteristic $p>0$, then $\nu(\ideala, \idealc_i, p^e) = \val \IP(\matA_i, \vv{u}_i, p^e)$ and $\mu(\ideala, \idealc_i, p^e) = \val \IP_p(\matA_i, \vv{u}_i, p^e)$ for every positive integer $e$, where $\idealc_i = \mathcal{C}_i \LL[x]$.    It follows from this, \eqref{irreducible-decomposition: e}, and the fact that standard Frobenius powers commute with intersection in $\kk[x]$---since finite intersections commute with extensions under flat maps \cite[Theorem~7.4(ii)]{matsumura}, and the Frobenius is flat over $\kk[x]$---that
-% \pedro{Maybe include reference?} 
-% \daniel{I included one to paper in which fractional Frobenius powers were first defined.  But, it is overkill, since it deals with arbitrary intersections.  In this case, we only need to deal with finitely many terms in the intersection.  If you know of an reference for the fact that such intersections commute with flat base change, then we would only need to remind the reader that Frobenius is flat in this case}
-% \pedro{Sounds good; I did that.}
-%
 \[ \mu(\ideala, \mathfrak{c}, p^e) = \max  \mu(\ideala, \idealc_i, p^e)  = \max \val \IP_p(\matA_i, \vv{u}_i, p^e) \] and likewise for $\nu(\ideala, \mathfrak{c}, p^e)$.  Finally,  \Cref{cor: mu comparison} guarantees that, in the case of $\mu(\ideala, \mathfrak{c}, p^e)$, there is a single such index that achieves this maximum for every $e$.
 \end{proof}
 
@@ -3943,11 +3812,9 @@ for every $\ringA[\ell^{-1}]$-algebra $\ringB$ {that happens to be a field}.
    As $\ringB$ is a field, this simply means that $x^{\vv{u}} \in J \ringB[x]$, and \Cref{all monomial colons: C} allows us to rewrite this as
    \[(J:_{\ringA[x]} x^{\vv{u}}) \ringB[x] = (J \ringB[x] :_{\ringB[x]} x^{\vv{u}}) = \ringB[x].\]
    \Cref{comparing expansions:  P} and our choice of $\ell$ then imply that \[(J:_{\ringA[x]} x^{\vv{u}}) \ringA[\ell^{-1}][x] = \ringA[\ell^{-1}][x].\]
-%   \pedro{or $\ringA[\ell^{-1}][x]$; I prefer the simpler notation} \daniel{OK.  I exchanged $\ringA[\ell^{-1},x] \leftrightarrow \ringA[\ell^{-1}][x]$}
    Thus, $\ell^n \in (J:_{\ringA[x]} x^{\vv{u}})$ for some $n$, so that $\ell^n x^{\vv{u}} \in J$, and hence $x^{\vv{u}} \in \mon(J)$.
 \end{proof}
 
-%In the same way that \Cref{colon mod p: P} implies \Cref{colon mod p: C}, 
 \Cref{mon-operation-general-expansion: T} immediately implies the following result.
 
 \begin{theorem}[The $\mon$ operation commutes with most reductions to prime characteristic]
