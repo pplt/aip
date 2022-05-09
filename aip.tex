@@ -1250,7 +1250,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \begin{proposition}[Faces under collapsing]
    \label{faces under collapsing: P}
-   Let $\O$ be a standard face of the Newton polyhedron $\N$ of a monomial matrix $\matA$.
+   Let $\O$ be a standard face of the Newton polyhedron $\N \subseteq \RR^\numvars$.
    As above, we use an overbar to denote collapse along $\O$.
    Let $\pi: \N \to \collapse{\N}$ be the collapsing along $\O$, restricted to $\N$.
    Then $\pi$ induces a one-to-one correspondence between the faces of $\N$ whose recession bases contain $\rb(\O)$ and the faces of $\collapse{\N}$, which associates standard faces to standard faces.
@@ -1265,7 +1265,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \begin{proof}
    Let $\G$ and $\vv{g}$ be as in $(1)$, and suppose $\iprod{\vv{g}}{\vv{u}} \ge \alpha$ whenever $\vv{u} \in \N$, with equality if and only if $\vv{u} \in \G$.
-   The point $\collapse{\vv{g}}$ is obtained by deleting zero coordinates from~$\vv{g}$, so $\iprod{\vv{g}}{\vv{u}} = \iprod{\collapse{\vv{g}}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^\numvars$.
+   Because $\rb(\O) \subseteq \rb(\G)$, the point $\collapse{\vv{g}}$ is obtained by deleting zero coordinates from~$\vv{g}$, so $\iprod{\vv{g}}{\vv{u}} = \iprod{\collapse{\vv{g}}}{\collapse{\vv{u}}}$ for every $\vv{u} \in \RR^\numvars$.
    Let $\vv{v} \in \collapse{\N}$, and choose $\vv{u} \in \N$ such that $\collapse{\vv{u}} = \vv{v}$.
    Then
    \begin{equation}
@@ -1313,7 +1313,7 @@ The composition of collapsing maps is a collapsing.
    Since $\vv{c}$ is the point defining the standard face $\pi^{-1}(\H) \cap \N$ of $\N$, $\rho\circ \pi$ is the collapsing along that face.
 \end{proof}
 
-Below, we describe the relationship between collapses and other notions introduced in \Cref{sec: LPs,s: newton}.
+Below, we describe the relationship between collapses and notions associated to monomial pairs.
 
 \begin{proposition}[Minimal face, degree, special and optimal points under collapsing]
    \label{collapse of mf and mc: P}
