@@ -1,18 +1,5 @@
 loadPackage("Polyhedra", Reload => true)
 
-
--- DELETE
-feasLP = method() 
-feasLP ( Matrix, Matrix ) := ( A, u ) -> 
-(
-    n := rank source A;
-    M := A || - identityMatrix n; 
-    v := u || zeroVector n;
-    polyhedronFromHData( M, v )
-)
-feasLP ( Matrix, List ) := ( A, u ) -> feasLP( A, columnVector u ) 
-feasLP Matrix := A -> feasLP( A, constantVector( 1, rank target A) )
-
 -------------------------------------------------------------------------------
 -- Types
 -------------------------------------------------------------------------------
