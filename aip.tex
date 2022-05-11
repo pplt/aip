@@ -3311,7 +3311,27 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
       Thus, we can write $\lambda^{-1} \vv{u} = \sum_{i=1}^kt_i \vv{v}_i$, where $t_i \ge 0$ and  $\sum_{i=1}^k t_i = 1$.
       Then $\vv{u} = \sum_{i=1}^k (\lambda t_i) \vv{v}_i +(1-\lambda)\vv{0}$, a convex combination of $\vv{v}_1, \ldots, \vv{v}_k$ and $\vv{0}$, whence $\vv{u} \in \conv(\L\cup \{\vv{0}\})$.
    }
-   \todo[inline]{Discuss unbounded faces}
+
+   Concerning the construction of the set $\setW_\O$ when $\O$ is unbounded, for each point~$\vv{w}$ in the finite set $\setW_{\collapse{\O}}$ we consider the polyhedron $\P$ obtained by intersecting the convex hull of $\O \cup \{\vv{0}\}$ and the polyhedron consisting of all $\vv{x}\in \RR^\numvars$ such that $\collapse{\vv{x}} = \vv{w}$.
+   Although $\P$ is unbounded, we can find the set $M$ of all its minimal lattice points using, for example, the software \emph{4ti2} \cite{4ti2}.
+   If $\vv{u} \in M$, it is possible for $\mf(\matA,\vv{u})$ to be not $\O$, but a proper face of $\O$.
+   Regardless, there are always points of the form $\vv{u}_S = \vv{u} + \sum_{\canvec_i \in S} \canvec_i$ that satisfy $\mf(\matA,\vv{u}_S) = \O$, where $S$ ranges over the subsets of $\rb(\O)$ (e.g., take $S=\rb(\O)$).
+   In the end, $\min S_\vv{w}$ is the union of the sets
+   \[\min \Big\{\vv{u}_S = \vv{u} + \sum_{\canvec_i \in S} \canvec_i : S \subseteq \rb(\O)\text{ and }\mf(\matA,\vv{u}_S) = \O\Big\}\]
+   where $\vv{u}$ ranges over all points of $M$.
+   (Note that the set displayed above equals the singleton $\{\vv{u}\}$ if and only if $\mf(\matA,\vv{u}) = \O$.)
+   
+   \details[inline]{
+      Let $\canvec$ be the sum of the vectors in $\rb(\O)$.
+      Since $\mf(\matA,\vv{u}) \subseteq \O$, there exists a positive scalar $\lambda$ such that $\lambda \vv{u} \in \O$.
+      Then $\lambda(\vv{u} + \canvec ) = \lambda\vv{u} + \lambda \canvec$ lies in the interior of $\O$, since $\lambda\canvec$ is positive in $\rs(\O)$.
+      Thus, $\mf(\matA,\vv{u} +\canvec) = \O$.\\[2mm] 
+      Suppose $\vv{v} \in S_\vv{w}$.
+      Then $\vv{v} \in \P$, so there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
+      Let $S$ consist of the vectors $\canvec_i \in \rb(\O)$ such that $\vv{v}$ and $\vv{u}$ differ in the $i$-th coordinate.
+      Then $\vv{v} \ge \vv{u}_S$, and $\vv{u}_S$ satisfies $\mf(\matA,\vv{u}_S) = \O$.
+      Thus $\vv{v}$ lies above some point of the set in display above.
+   }
    Finally, \Cref{prop: where to find minimal smal but not very small points} tells us that the set $\setW^*$ of minimal points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small is contained in the polytope $\conv(\col(\matA))+[0,2]^\numvars$.
    So we can effectively gather the elements of $\setW^*$ by testing the finitely many positive lattice points of this polytope.
 \end{remark}
