@@ -1231,6 +1231,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    The remark/lemma stated that collapses of monomial pairs are monomial pairs.
    The less trivial part of it---that collapses of monomial matrices along standard faces are monomial matrices---is now in the following proposition, along with part of the old  \Cref{faces under collapsing: P}, that I thought would fit better here.
 }
+\daniel[inline]{Should we explicitly add it as a corollary, maybe right after \Cref{collapse of Newton polyhedron: P}?  I think we should state it, and I think it might be called later}
 
 \begin{proposition}[Collapse of a Newton polyhedron]
    \label{collapse of monomial is monomial: L}
@@ -1292,7 +1293,8 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
 
 \pedro[inline]{
    I separated the following from the previous proposition, as it was buried too deep in a very long statement.
-}
+} 
+\daniel[inline]{Should we say that it is, in essence, the same defining point?}
 
 Taking $\G = \O$ in \Cref{faces under collapsing: P}(1), we see that $\collapse{\O}$ is a face of $\N$ defined by a positive point, which gives us the following corollary.
 
@@ -1851,7 +1853,7 @@ where  $\vv{s}$ is any point in $\sp_{\QQ}(\matA, \vv{u})$.  As noted in \Cref{i
    \label{integrailty-property-of-universal-deficits: R} % 5
 \todo{Find all cross-references pointing to the various labels here, and have them point to the appropriate items}
    \begin{enumerate}[$(1)$]
-\item If $\matA$ is a monomial matrix, then the set of all $\udeficit(\matA, \vv{u}, q)$, with $(\matA, \vv{u}, q)$  an $\matA$-triple,  is is a nonempty, finite set of positive rational numbers. 
+\item \label{udeficits-positive-and-few: i} If $\matA$ is a monomial matrix, then the set of all $\udeficit(\matA, \vv{u}, q)$, with $(\matA, \vv{u}, q)$  an $\matA$-triple,  is is a nonempty, finite set of positive rational numbers. 
 \item \label{finitely-many-A-universal-shortfalls: i} The universal shortfall associated to a triple is a nonempty, finite set of positive lattice points, all of the same dimension.  In fact, once $\matA$ is fixed, then the union over all $\matA$-triples 
 $\cup  \ushort \ip(\matA, \vv{u},  q)$ is a finite set of positive lattice points,  \hl{though not all of the same dimension, unless $\matA$ is convenient.}
 
@@ -2349,15 +2351,15 @@ $M_1 \leftarrow \degree(\matA,\vv{u})\pp - \udeficit(\matA,\vv{u},r)$\;
 r 					& \q 						& This is now a macro \\
 \text{descendant} & \text{collapse} &  Every descendant is a collapse \\
 \mathfrak{S}_{r^e}(\matA) & \mathfrak{S}_{\q}^e(\matA) 	&  \\ 
-\sprout_r(\matA) & \graph_{\q}^{\infty}(\matA)  \text{ or } \graph_{\q}(\matA) &  Easier to recall connection with $\graph_{\q}^e(\matA, \vv{u})$ \\ 
+\sprout_r(\matA) & \graph_{\q}(\matA) &  Easier to recall connection with $\graph_{\q}^e(\matA, \vv{u})$ \\ 
 \S_{r^e}(\matA, \vv{u}) & \T_{\q}^e(\matA, \vv{u}) &  \\ 
 \S_{r^e}^{\ast}(\matA, \vv{u}) & \S_{\q}^e(\matA, \vv{u}) &  $\S_{\q}^e(\matA, \vv{u}) \hookrightarrow \T_{\q}^e(\matA, \vv{u}) \hookrightarrow \graph_{\q}^e(\matA, \vv{u})$ \\ 
 \sprout^{\ast}_r(\matA, \vv{u}) & \S_{\q}(\matA) & Easier to recall connection with $\S_{\q}^e(\matA, \vv{u})$ \\ 
-%\E_r(\matA, \vv{u}) & \E_q(\matA, \vv{u}) & \\ 
-%\Q_r(\matA, \vv{u}) & \emptyset & Maybe used in a proof, but not globally \\ 
-%\delta_{r^e}(\matA, \vv{u}) & \eta_{\q}^e(\matA, \vv{u}) & Now defined for all $e$ \\ 
-%\epsilon_{r^e}(\matA, \vv{u}) & \delta_{\q}^e(\matA, \vv{u})  &  Superscript $e$ with $\epsilon$ was hard to read\\ 
-%		 &			& Now defined for all $e$ \\ 
+\E_r(\matA, \vv{u}) & \E_q(\matA, \vv{u}) & \\ 
+\Q_r(\matA, \vv{u}) & \emptyset & Maybe used in a proof, but not globally \\ 
+\delta_{r^e}(\matA, \vv{u}) & \eta_{\q}^e(\matA, \vv{u}) & Now defined for all $e$ \\ 
+\epsilon_{r^e}(\matA, \vv{u}) & \delta_{\q}^e(\matA, \vv{u})  &  Superscript $e$ with $\epsilon$ was hard to read\\ 
+		 &			& Now defined for all $e$ \\ 
 %\lambda_{r^e}(\matA, \vv{u}) & \lambda_{\q}^e(\matA, \vv{u}) & Defined as $\eta_{\q}^e(\matA, \vv{u})-\delta_{\q}^{e+1}(\matA, \vv{u})$ for all $e$ \\ 
 %\ushort(\matA, \vv{u}, q) & \ushort_q(\matA, \vv{u}) & Not so sure about this one \\ 
 \end{tabular}
@@ -2375,10 +2377,10 @@ This graph's construction relies on a positive integer $\q$, and its powers, whe
 
 \subsection{The sprouting graph of a monomial matrix} 
 
-\daniel[inline]{The only descendants that we look at are collapses of collapses of \ldots  collapses of $\matA$, which is just a collapse of $\matA$.  So let's get rid of this terminology.}
-\begin{definition}[Descendant]
-   A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its rows.
-\end{definition}
+%\daniel[inline]{The only descendants that we look at are collapses of collapses of \ldots  collapses of $\matA$, which is just a collapse of $\matA$.  So let's get rid of this terminology.}
+%\begin{definition}[Descendant]
+%   A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its rows.
+%\end{definition}
 
 Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept that was implicitly introduced, though not explicitly defined, in \Cref{small pairs from shortfalls: L}.
 
@@ -2388,12 +2390,16 @@ Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept 
    We say that $(\matB, \vv{v})$ is a \emph{$\q$-sprout} of $(\matA, \vv{u})$ whenever $\matB = \collapse{\matA}$, and $\vv{v}$ lies in $\ushort(\matA, \vv{u}, \q) = \ushort(\matB, \collapse{\vv{u}}, \q)$.
 \end{definition}
 
-\begin{proposition}
-   \label{sprout: P}  Every $\q$-sprout of monomial pair is a small monomial pair. 
- \end{proposition}
+\begin{proposition} \label{sprout: P}  Consider an arbitrary monomial pair $(\matA, \vv{u})$.
+ \begin{enumerate}[$(1)$]
+ 	\item Every $\q$-sprout of $(\matA, \vv{u})$ is a small monomial pair.
+    \item If an overbar denotes collapse along $\mf(\matA, \vv{u})$, then a pair is a $\q$-sprout of $(\matA, \vv{u})$ if and only if it is a $\q$-sprout of $(\collapse{\matA}, \collapse{\vv{u}})$.
+    \item If $d$ is a universal denominator for $\matA$, and $r = \lpr{q}{d}$, then a pair is a $q$-sprout of $(\matA, \vv{u})$ if and only if it is an $r$-sprout of $(\matA, \vv{u})$.
+ \end{enumerate} 
+\end{proposition}
 
 \begin{proof} 
-This is a translation of \Cref{small pairs from shortfalls: L}.
+The first point is a translation of \Cref{small pairs from shortfalls: L}, and the remaining points follow from \Cref{sprout: D} and \Cref{fundamental-properties-deficits-shortfalls: P}.
 \end{proof}
 
 \begin{remark}[Sprouts as collapsed shortfall pairs]
@@ -2405,18 +2411,16 @@ This is a translation of \Cref{small pairs from shortfalls: L}.
    It follows immediately from \Cref{sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
 \end{remark}
 
-
-\newpage
 \begin{definition}[The directed sprouting graph]
    Consider a monomial matrix $\matA$.
    
    \begin{itemize}
    \item $\graph_{\q}^1(\matA)$ is the set consisting of all very small $\matA$-pairs.
    \item $\graph_{\q}^{e+1}(\matA)$ is the set consisting of all $\q$-sprouts of all pairs in $\graph_{\q}^e(\matA)$.
-   \item $\graph_{\q}^{\infty}(\matA)$ is the graph whose vertex set is the disjoint union
-   \[ \bigsqcup_{e=1}^{\infty} \graph_{\q}^e(\matA). \]
+   \item $\graph_{\q}(\matA)$ is the graph whose vertex set is the disjoint union
+   \[ \bigsqcup_{e=1} \graph_{\q}^e(\matA). \]
    A vertex in the $e$-th component of this disjoint union is said to be of \emph{level} $e$.
-   \item    The directed edges in $\graph_{\q}^{\infty}(\matA)$ exist only between vertices of consecutive levels, and are defined in the natural way:  There is a directed edge from a vertex of level $e$ to one of level $e+1$ exactly when the latter is a $\q$-sprout of the former.
+   \item    The directed edges in $\graph_{\q}(\matA)$ exist only between vertices of consecutive levels, and are defined in the natural way:  There is a directed edge from a vertex of level $e$ to one of level $e+1$ exactly when the latter is a $\q$-sprout of the former.
 \end{itemize}
 \end{definition}
 
@@ -2426,58 +2430,66 @@ We gather some fundamental properties of this graph below.
    \label{elementary1: P}
    Let $\matA$ be a momomial matrix.
 \begin{enumerate}[$(1)$]
-\item Every vertex of the graph $\graph_{\q}^{\infty}(\matA)$ is a small monomial pair, and the first entry of every such pair is a collapse of $\matA$. 
-\item \hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, the sets $\graph_{\q}^e(\matA)$ are nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
-\item If $d$ is a \daniel{I think that \emph{universal denominator} implies \emph{collapsed universal denominator}, which is a ud for each of the collapses.}\hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\graph_{\q}^{\infty}(\matA)$ and $\graph_r^{\infty}(\matA)$ --- that is, their vertices {and} arrows--- coincide.
+
+\item \label{elementary1 small pairs} 
+Every vertex of the graph $\graph_{\q}(\matA)$ is a small monomial pair, and the first entry of every such pair is a collapse of $\matA$. 
+
+\item \label{elementary1 periodic in e}
+\hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, the sets $\graph_{\q}^e(\matA)$ are nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
+
+\item \label{elementary1 periodic in r}
+If $d$ is a \daniel{I think that \emph{universal denominator} implies \emph{collapsed universal denominator}, which is a ud for each of the collapses.}\hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\graph_{\q}(\matA)$ and $\graph_r(\matA)$ --- that is, their vertices {and} arrows--- coincide.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}  \Cref{sprout: P} implies that every vertex of the sprouting graph $\graph_q^{\infty}(\matA)$ is a small monomial pair, and by definition, the first term of every such pair is a monomial obtained from $\matA$ by a finite sequence of collapses.  It then follows from \Cref{iterated-collapse-is-a-collapse: P} that such a monomial matrix is, itself, a collapse of $\matA$.
+\begin{proof}  \Cref{sprout: P} implies that every vertex of the sprouting graph $\graph_q(\matA)$ is a small monomial pair, and by definition, the first term of every such pair is a monomial obtained from $\matA$ by a finite sequence of collapses.  It then follows from \Cref{iterated-collapse-is-a-collapse: P} that such a monomial matrix is, itself, a collapse of $\matA$.
 
-For the second assertion, let $\mathrm{L}$ be the set consisting of the finitely many collapses of $\matA$, fix an integer $e$ greater than $1$, and a vertex $(\matC, \vv{z})$ in $\graph_{\q}^e(\matA)$.  The first assertion tells us that both $\matC$, and the first entry of any vertex of level $e-1$ that $(\matC, \vv{z})$ sprouts from, lie in $\mathrm{L}$.  Thus, by definition of $\q$-sprout, the point $\vv{z}$ must lie in the double union $\mathrm{M} = \cup \cup \ushort(\matB, \vv{v}, \q)$, where the outer union is over all $\matB \in \mathrm{L}$, and the inner union is over all $\matB$-triples.    As $\mathrm{L}$ is finite, \Cref{fundamental-properties-deficits-shortfalls: P}\ref{finitely-many-A-universal-shortfalls: i}  implies that $\mathrm{M}$ is a nonempty, finite set of lattice points.   Thus, there is a finite set $\mathrm{H}$ such \ $\graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for each $e>1$.  By the pigeon-hole principle, there must then exist indices $t > s > 1$ such that $\graph_{\q}^s(\matA) = \graph_{\q}^t(\matA)$, and the recursive nature of the definition of the sets $\graph_{\q}^i(\matA)$ then implies that $\graph_{\q}^{s+i}(\matA) = \graph_{\q}^{t+i}(\matA)$ for all $i \geq 0$.
+For the second assertion, let $\mathrm{L}$ be the set consisting of the finitely many collapses of $\matA$, fix an integer $e$ greater than $1$, and a vertex $(\matC, \vv{z})$ in $\graph_{\q}^e(\matA)$.  The first assertion tells us that both $\matC$, and the first entry $\matB$ of any vertex of level $e-1$ that $(\matC, \vv{z})$ sprouts from, lie in $\mathrm{L}$.  Thus, by definition of $\q$-sprout, the point $\vv{z}$ must lie in the double union $\mathrm{M} = \cup \cup \ushort(\matB, \vv{v}, \q)$, where the outer union is over all $\matB \in \mathrm{L}$, and the inner union is over all $\matB$-triples.    As $\mathrm{L}$ is finite, \Cref{fundamental-properties-deficits-shortfalls: P}\ref{finitely-many-A-universal-shortfalls: i}  implies that $\mathrm{M}$ is a nonempty, finite set of lattice points.   Thus, there is a finite set $\mathrm{H}$ such \ $\graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for each $e>1$.  By the pigeon-hole principle, there must then exist indices $t > s > 1$ such that $\graph_{\q}^s(\matA) = \graph_{\q}^t(\matA)$, and the recursive nature of the definition of the sets $\graph_{\q}^i(\matA)$ then implies that $\graph_{\q}^{s+i}(\matA) = \graph_{\q}^{t+i}(\matA)$ for all $i \geq 0$.
 
-Finally, the third assertion follows from \Cref{fundamental-properties-deficits-shortfalls: P}\ref{universal-stuff-depends-on-q-mod-d: i}, which implies that, in this context, the notions of $\q$-sprout and $r$-sprout coincide.
+Finally, the third assertion follows from \Cref{sprout: P}, {which implies that, in this context, the notions of $\q$-sprout and $r$-sprout coincide.}
 \end{proof}
 
-\begin{remark}[Elementary observations]
-   \label{elementary1: R}
-   Consider a monomial matrix $\matA$.
-   In this remark, we gather some basic facts concerning the graph $\sprout_r(\matA)$.
-\begin{enumerate}
-\item The set $\graph_r(\matA)$ of very small $\matA$-pairs is independent of $r$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
-
-\item \label{elementary1 small pairs} \Cref{sprout: P} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
-
-\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{r^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{r^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
-
-\item \label{elementary1 periodic in r} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $\matA$ and all of its finitely many descendants, then the sprouting graph  $\sprout_r(\matA)$---all of its vertices \emph{and} arrows---depends only on the class of $r$ modulo $\denom$.
-\end{enumerate}
-\end{remark}
+%\begin{remark}[Elementary observations]
+%   \label{elementary1: R}
+%   Consider a monomial matrix $\matA$.
+%   In this remark, we gather some basic facts concerning the graph $\sprout_r(\matA)$.
+%\begin{enumerate}
+%\item The set $\graph_r(\matA)$ of very small $\matA$-pairs is independent of $r$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
+%
+%\item \label{elementary1 small pairs} \Cref{sprout: P} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
+%
+%\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{r^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{r^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
+%
+%\item \label{elementary1 periodic in r} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $\matA$ and all of its finitely many descendants, then the sprouting graph  $\sprout_r(\matA)$---all of its vertices \emph{and} arrows---depends only on the class of $r$ modulo $\denom$.
+%\end{enumerate}
+%\end{remark}
 
 \begin{lemma}
    \label{positive-polynomial: L}
    Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
-   If $r > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $wr^{e} >  \omega_1 r^{e-1} + \cdots + \omega_{e-1} r + \omega_e$.
+   If $\q > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $w\q^{e} >  \omega_1 \q^{e-1} + \cdots + \omega_{e-1} \q + \omega_e$.
 \end{lemma}
 
 \begin{proof}
    Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
-   Then for $r>\beta$, $\omega_1 r^{e-1} + \cdots + \omega_{e-1}  r + \omega_e$ is at most $\lambda(r^{e-1} + r^{e-2} + \cdots + 1) = \lambda \cdot \frac{r^e-1}{r-1}$, which, in turn, is less than $\lambda (r^e-1) \cdot w/\lambda < w r^e$.
+   Then for $\q>\beta$, $\omega_1 \q^{e-1} + \cdots + \omega_{e-1}  \q + \omega_e$ is at most $\lambda(\q^{e-1} + \q^{e-2} + \cdots + 1) = \lambda \cdot \frac{\q^e-1}{\q-1}$, which, in turn, is less than $\lambda (\q^e-1) \cdot w/\lambda < w \q^e$.
 \end{proof}
+
+\daniel[inline]{Update $r \to \q$, revisit proof}
 
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
    For each monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
-   If $r>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\sprout_r(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(\matA_i, \vv{u}_i,r)$  such that
+   If $\q>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\graph_{\q}(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(\matA_i, \vv{u}_i, \q)$  such that
    \[
-      \vv{k}_1 r^{e-1} + \vv{k}_2 r^{e-2} + \cdots + \vv{k}_{e-1} r + \vv{k}_e
+      \vv{k}_1 \q^{e-1} + \vv{k}_2 \q^{e-2} + \cdots + \vv{k}_{e-1} r + \vv{k}_e
    \]
-   is feasible for $\IP(\matA_1, \vv{u}_1, r^e)$.
+   is feasible for $\IP(\matA_1, \vv{u}_1, \q^e)$.
  \end{theorem}
 
 \begin{proof}
-   We start by describing what it means for $r$ to be large.
-   Toward this, let $\matM_1, \ldots, \matM_l$ be the finitely many descendants of  $\matA$.
+   We start by describing what it means for $\q$ to be large.
+   Toward this, let $\matM_1, \ldots, \matM_l$ be the finitely many \hl{collapses} of  $\matA$.
    Fix a positive integer $\denom$ that is a universal denominator for all $\matM_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(\matM_i)$ for each $\matM_i$, as in \Cref{fsr-exist: T}; set $\fsr = \fsr(\matM_1) \cup \cdots \cup \fsr(\matM_l)$.
    By \Cref{rem: finitely many F-thresholds of small pairs} the set consisting of the degrees of all small $\matM_i$-pairs for $i=1,\ldots,l$ is finite, and consequently so is the set $S$ consisting of all special points with denominator $\denom$ of all those pairs.
    Let $\Omega$ be the set consisting of all coordinates of all points in $\matA(\fsr+S\cup\{\vv{0}\})$.
@@ -2556,20 +2568,21 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 
 
 \begin{definition}[Subgraphs associated to very small pairs]
+	\label{subgraph: D}
    Let $(\matA, \vv{u})$ be a very small pair.  We inductively define the sets $\S_{\q}^e(\matA) \subseteq \T_{\q}^e(\matA, \vv{u})$ as follows.
    
    \begin{itemize}
    \item $\T_{\q}^1(\matA, \vv{u})$ is the singleton consisting of the very small pair $(\matA, \vv{u})$.  
    \item Next, suppose that $\T_{\q}^e(\matA, \vv{u})$ has been defined for some $e \geq 1$.
    \begin{itemize}
-   \item  If $\T_{\q}^e(\matA, \vv{u}) \neq \emptyset$ and consists only of very small pairs, then $
-   \S_{\q}^e(\matA, \vv{u})$ is defined to be the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},\q)$.  We then define $\T_{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
-      \item Otherwise, we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
+   \item  If $\T_{\q}^e(\matA, \vv{u})$ is nonempty, and consists only of very small pairs, then $
+   \S_{\q}^e(\matA, \vv{u})$ is the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},\q)$.  We then define $\T_{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
+      \item Otherwise, if $\T_{\q}^e(\matA, \vv{u})$ is empty,  or contains a pair that is not very small, then we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
    \end{itemize}
    \end{itemize}
    
-   By definition, if $e$ is a natural number, then $\S_{\q}^e(\matA,\vv{u}) \subseteq \T_{\q}^e(\matA,\vv{u}) \subseteq \graph_{\q}^e(\matA)$.  Identifying the right-most set with the vertices of $\graph_q^{\infty}(\matA)$ of level $e$, we then define $\S_{\q}^{\infty}(\matA,\vv{u})$ to be the induced subgraph of $\graph_{\q}^{\infty}(\matA)$ on the set of vertices
-   \[ \bigsqcup_{e=1}^{\infty} \S_{\q}^e(\matA,\vv{u}). \]
+   By definition, if $e$ is a natural number, then $\S_{\q}^e(\matA,\vv{u}) \subseteq \T_{\q}^e(\matA,\vv{u}) \subseteq \graph_{\q}^e(\matA)$.  Identifying the right-most set with the vertices of $\graph_q(\matA)$ of level $e$, we then define $\S_{\q}(\matA,\vv{u})$ to be the induced subgraph of $\graph_{\q}(\matA)$ on the set of vertices
+   \[ \bigsqcup_{e=1} \S_{\q}^e(\matA,\vv{u}). \]
 
 
 \end{definition}
@@ -2577,42 +2590,73 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 
 
 
-\begin{definition}[Subgraphs associated to very small pairs]
-   Suppose that $(\matA,\vv{u})$ is very small, and define $\S_r(\matA,\vv{u}) = \{ (\matA,\vv{u}) \}$.
-   Next, suppose that $\S_q(\matA,\vv{u})$ has been defined for some $q=r^e$.
-   \begin{enumerate}
-      \item If $\S_q(\matA,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(\matA,\vv{u})$ to be the subset of $\S_q(\matA,\vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},r)$.  We then~define~$\S_{qr}(\matA,\vv{u})$ to be the set of all $r$-sprouts of all pairs in $\S^{\ast}_q(\matA,\vv{u})$.
-      \item Otherwise, we define $\S_q^{\ast}(\matA,\vv{u})=\S_{qr}(\matA,\vv{u}) = \emptyset$.
-   \end{enumerate}
-   By definition, each $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ is a subset of $\graph_{r^e}(\matA)$, which we identify with the vertices of $\sprout_r(\matA)$ of level $r^e$.
-   We then define $\sprout_r^{\ast}(\matA,\vv{u})$ to be the induced subgraph of $\sprout_r(\matA)$ on the set of vertices
-   \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u}). \]
-\end{definition}
+%\begin{definition}[Subgraphs associated to very small pairs]
+%   Suppose that $(\matA,\vv{u})$ is very small, and define $\S_r(\matA,\vv{u}) = \{ (\matA,\vv{u}) \}$.
+%   Next, suppose that $\S_q(\matA,\vv{u})$ has been defined for some $q=r^e$.
+%   \begin{enumerate}
+%      \item If $\S_q(\matA,\vv{u})$ is nonempty and consists only of very small pairs, then define $\S^{\ast}_q(\matA,\vv{u})$ to be the subset of $\S_q(\matA,\vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},r)$.  We then~define~$\S_{qr}(\matA,\vv{u})$ to be the set of all $r$-sprouts of all pairs in $\S^{\ast}_q(\matA,\vv{u})$.
+%      \item Otherwise, we define $\S_q^{\ast}(\matA,\vv{u})=\S_{qr}(\matA,\vv{u}) = \emptyset$.
+%   \end{enumerate}
+%   By definition, each $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ is a subset of $\graph_{r^e}(\matA)$, which we identify with the vertices of $\sprout_r(\matA)$ of level $r^e$.
+%   We then define $\sprout_r^{\ast}(\matA,\vv{u})$ to be the induced subgraph of $\sprout_r(\matA)$ on the set of vertices
+%   \[ \bigsqcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u}). \]
+%\end{definition}
 
-\daniel[inline]{In the process of consolidating the next remark into a proposition}
+\begin{proposition}
+	\label{elementary2: P}
+	Let $(\matA,\vv{u})$ be a very small monomial pair.
+	\begin{enumerate}[$(1)$]
+		\item \label{elementary2 small pairs}
+		 $\S_q^e(\matA,\vv{u})$ is either empty, or is a finite set consisting of very small pairs, and the first entry of every such pair is a collapse of $\matA$. 
+		
+		\item \label{elementary2 periodic in e}
+	    The sequence of sets $\{ \S_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
+		
+		\item \label{elementary2 periodic in r} If $d$ is a \hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\S_{\q}(\matA, \vv{u})$ and $\S_{r}(\matA, \vv{u})$ --- that is, their vertices {and} arrows--- coincide.
+		
+		\item \label{subgraph-invariant-under-collapse}  If an overbar denotes collapse along $\O = \mf(\matA, \vv{u})$, then the graphs $\S_{\q}(\matA,\vv{u})$ and $\S_{\q}(\collapse{\matA},\collapse{\vv{u}})$ are canonically isomorphic:  The first level of $\S_{\q}(\matA, \vv{u})$ consists of the vertex $(\matA, \vv{u})$, while the first level of $\S_{\q}(\collapse{\matA}, \collapse{\vv{u}})$ consists of the collapsed vertex $(\collapse{\matA}, \collapse{\vv{u}})$. The vertices on the remaining levels of these graphs coincide, and after identifying the vertices at the first level, 
+		all edges also agree.
+	\end{enumerate}
+\end{proposition}
 
-\begin{remark}[Elementary observations]
-   \label{elementary2: R}
-   Suppose $(\matA,\vv{u})$ is very small.
-   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_r(\matA,\vv{u})$.
-   \begin{enumerate}
-      \item  \label{elementary2 lowest level}
-      The only vertex of $\sprout_r^{\ast}(\matA,\vv{u})$ of level $r$ is $(\matA,\vv{u})$.
-      \item \label{elementary2 small pairs}
-      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(\matA,\vv{u})$, when nonempty, consists of small pairs whose monomial matrix is among the finitely many descendants of $\matA$.
-      Furthermore, $\S_{qr}(\matA,\vv{u}) = \emptyset$ if and only if $\S_q(\matA,\vv{u}) = \emptyset$ or $\S_q(\matA,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(\matA,\vv{u})= \emptyset$.
-      Moreover, $\S_q^{\ast}(\matA,\vv{u})$ is either empty, or contains only very small pairs.
-      \item \label{elementary2 periodic in e}
-      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{r^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ are eventually periodic in $e$.
-      \item \label{elementary2 periodic in r}
-      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in r}, the graph $\sprout_r^{\ast}(\matA,\vv{u})$ depends only on $r$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
-      \item \label{collapse sprout star graphs same}
-      The graphs $\sprout^{\ast}_r(\matA,\vv{u})$ and $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
-      The first level of $\sprout^{\ast}_r(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\degree(\matA, \vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
-      all edges also agree.
-\end{enumerate}
-\end{remark}
+\begin{proof}
+By definition, $\S_{\q}^e(\matA, \vv{u})$ is either empty, or consists of very small pairs, in which case the containment $\S_{\q}^e(\matA, \vv{u}) \subseteq \graph_{\q}^e(\matA)$ and    \Cref{elementary1: P}\ref{elementary1 small pairs} imply that the first entry of every such pair is a collapse of $\matA$.   The first assertion follows.
 
+For the second assertion, in the proof of \Cref{elementary1: P}\ref{elementary1 periodic in e}, we saw that there is a finite set $\mathrm{H}$ such that $\S_{\q}^e(\matA, \vv{u}) \subseteq \T_{\q}^e(\matA, \vv{u}) \subseteq \graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for all positive $e$.  If $\T_{\q}^e(\matA, \vv{u}) = \emptyset$ for some $e$, then $\S_{\q}^h(\matA, \vv{u}) = \T_{\q}^h(\matA, \vv{u}) = \emptyset$ for all $h \geq e$.  
+
+Otherwise, if $\T_{\q}^e(\matA, \vv{u})$ is nonempty for every $e \geq 1$, then by the pigeonhole principle, there must exist indices $t > s > 1$ such that $\T_{\q}^s(\matA) = \T_{\q}^t(\matA) \neq \emptyset$, and then it follows from \Cref{subgraph: D} and a straightforward induction that $\S_{\q}^{s+i}(\matA, \vv{u}) = \S_{\q}^{t+i}(\matA, \vv{u})$ and  $\T_{\q}^{s+i}(\matA, \vv{u}) = \T_{\q}^{t+i}(\matA, \vv{u})$ for all $i \geq 0$.
+
+The remaining assertions follow from \Cref{subgraph: D} and \Cref{sprout: P}.
+\end{proof}
+
+%\begin{remark}[Elementary observations]
+%   \label{elementary2: P}
+%   Suppose $(\matA,\vv{u})$ is very small.
+%   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_r(\matA,\vv{u})$.
+%   \begin{enumerate}
+%      \item  \label{elementary2 lowest level}
+%      The only vertex of $\sprout_r^{\ast}(\matA,\vv{u})$ of level $r$ is $(\matA,\vv{u})$.
+%      \item \label{elementary2 small pairs}
+%      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(\matA,\vv{u})$, when nonempty, consists of small pairs whose monomial matrix is among the finitely many descendants of $\matA$.
+%      Furthermore, $\S_{qr}(\matA,\vv{u}) = \emptyset$ if and only if $\S_q(\matA,\vv{u}) = \emptyset$ or $\S_q(\matA,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(\matA,\vv{u})= \emptyset$.
+%      Moreover, $\S_q^{\ast}(\matA,\vv{u})$ is either empty, or contains only very small pairs.
+%      \item \label{elementary2 periodic in e}
+%      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{r^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ are eventually periodic in $e$.
+%      \item \label{elementary2 periodic in r}
+%      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in r}, the graph $\sprout_r^{\ast}(\matA,\vv{u})$ depends only on $r$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
+%      \item \label{subgraph-invariant-under-collapse}
+%      The graphs $\sprout^{\ast}_r(\matA,\vv{u})$ and $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
+%      The first level of $\sprout^{\ast}_r(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\degree(\matA, \vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
+%      all edges also agree.
+%\end{enumerate}
+%\end{remark}
+
+
+
+\newpage
+
+
+\daniel[inline]{Should we define a graph $\T_{\q}(\matA, \vv{u})$?  It only seems to come up here.}
 \begin{example}[Running example: a sprouting subgraph]
    \label{ex: ft.4}
    \begin{figure}
@@ -2622,12 +2666,13 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       \label{fig: sprouting graph}
    \end{figure}
    \Cref{fig: sprouting graph} shows the sprouting subgraph associated to the pair $(\matA,\vv{u})$ in our running example, initiated in \Cref{ex: ft}.
-   As in \Cref{ex: ft.3}, we consider the case where $p$ is congruent to $11$ modulo a universal denominator for $\matA$.
+   As in \Cref{ex: ft.3}, we consider the case where $\q$ is congruent to $11$ modulo a universal denominator for $\matA$.
    The overbar represents collapse along $\mf(\matA,\vv{u})$.
-   The figure shows $\S_{p^e}(\matA,\vv{u})$ for $1 \le e \le 4$, with $\sprout^*_p(\matA,\vv{u})$ highlighted.
-   The two framed nodes are pairs that are not very small, which cause $\sprout^*_p(\matA,\vv{u})$ to terminate, as $\S_{p^e}(\matA,\vv{u})$ is empty for $e\ge 5$, and $\S_{p^e}^*(\matA,\vv{u})$ is empty for $e\ge 4$.
+   The figure shows the levels $\T_{\q}^e(\matA,\vv{u})$ for $1 \le e \le 4$, with the levels $\S_{\q}^e(\matA,\vv{u})$ highlighted for $1 \leq e \leq 3$.
+   The two framed nodes in $\T_{\q}^4(\matA, \vv{u})$ are pairs that are not very small, which force $\S_{\q}^e(\matA,\vv{u}) = \T_{\q}^{e+1}(\matA, \vv{u}) = \emptyset$ for all $e \geq 4$.
 \end{example}
 
+\daniel[inline]{Is the graph $\T_{\q}(\matA, \vv{u})$ just omitted here, or is it the same as $\S_{\q}(\matA, \vv{u})$?}
 \begin{example}[Another sprouting subgraph]
    \label{ex: new example}
    \begin{figure}
@@ -2636,15 +2681,15 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
       \caption{The sprouting subgraph for \Cref{ex: new example}}
       \label{fig: sprouting graph 2}
    \end{figure}
-   \Cref{fig: sprouting graph 2} shows the first nine levels of $\sprout^*_p(\matA,\vv{u})$, where
+   \Cref{fig: sprouting graph 2} shows the first nine levels of $\S_{\q}(\matA,\vv{u})$, where
    \[
       \matA = \begin{bmatrix} 36&10&31 \\ 19&46&31 \\ 47&25&36 \end{bmatrix}
       \quad\text{and} \quad
       \vv{u} =\begin{bmatrix} 29 \\ 24 \\ 30 \end{bmatrix}
    \]
-   when $p$ is congruent to $11$ modulo a universal denominator for $\matA$.
+   when $\q$ is congruent to $11$ modulo a universal denominator for $\matA$.
    The matrix $\matB$ consists of the last two rows of $\matA$, while $\matC$ consists of the last row.
-   Unlike the previous example, here $\sprout^*_p(\matA,\vv{u})$ does not terminate---the last five levels shown in the picture repeat indefinitely.
+   Unlike the previous example, here $\S_{\q}(\matA,\vv{u})$ does not terminate---the last five levels shown in the picture repeat indefinitely.
 \end{example}
 
 
@@ -2652,72 +2697,71 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
 \newpage
 
 
-
-\daniel[inline]{FYI:  I rearranged the order of \Cref{depth-of-graph: D} and \Cref{epsilon delta: D}.}
 \begin{definition}[Depth of a sprouting subgraph]
 \label{depth-of-graph: D}
    If $(\matA,\vv{u})$ is very small, then the extended natural number $\E_{\q}(\matA, \vv{u})$ 
- describes the largest level of any vertex in the graph $\sprout_{\q}^{\ast}(\matA,\vv{u})$.  Formally, $\E_{\q}(\matA,\vv{u})  = \inf \{ e :  \S^{\ast}_{\q^{e+1}}(\matA,\vv{u}) = \emptyset \}$.\end{definition}
+ describes the largest level of any vertex in the graph $\S_{\q}(\matA,\vv{u})$.  Formally, $\E_{\q}(\matA,\vv{u})  = \inf \{ e :  \S_{\q}^{e+1}(\matA,\vv{u}) = \emptyset \}$.\end{definition}
 
 \begin{proposition}
 \label{curly-E-basic-facts: P}
 If $(\matA, \vv{u})$ is very small, then the following hold.
 \begin{enumerate}[$(1)$]
 \item $\E_{\q}(\matA, \vv{u})$ is at least $1$, and is effectively computable, even when infinite.
-\item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\E_{\q}(\matA, \vv{u}) = \E_{r}(\matA, \vv{u})$.
+\item If $d$ is a universal denominator for $\matA$, then $\E_{\q}(\matA, \vv{u}) = \E_{\lpr{q}{d}}(\matA, \vv{u})$.
 \item If an overbar denotes collapse along $\O = \mf(\matA, \vv{u})$, then $\E_q(\matA, \vv{u}) = \E_q(\collapse{\matA}, \collapse{\vv{u}})$.
 \end{enumerate}
 \end{proposition}
 
 
 \begin{proof}
-As noted in \Cref{elementary2: R}\eqref{elementary2 lowest level}, if $(\matA,\vv{u})$ is very small, then $\S^{\ast}_{\q}(\matA,\vv{u}) = \{ (\matA,\vv{u} )\}$, which shows that $\E_{\q}(\matA,\vv{u})$ is at least $1$.
-Furthermore, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that one can determine whether $\E_{\q}(\matA, \vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\sprout_{\q}^*(\matA,\vv{u})$.
-Finally, \Cref{elementary2: R}\eqref{elementary2 periodic in r} implies that if $d$ is a universal  denominator for $\matA$, and each of its finitely many descendants, and $r = \lpr{\q}{d}$, then $\E_{\q}(\matA,\vv{u}) = \E_r(\matA,\vv{u})$.  \hl{Update this, address last point.}
+\Cref{elementary2: P}\ref{subgraph-invariant-under-collapse} tells us that $\S_{\q}^1(\matA,\vv{u})$ is the singleton $\{ (\matA,\vv{u} )\}$, which shows that $\E_{\q}(\matA,\vv{u})$ is at least $1$, and \Cref{elementary2: P}\ref{elementary2 periodic in e} implies that one can determine whether $\E_{\q}(\matA, \vv{u}) = \infty$, as in \Cref{ex: new example}, by computing only finitely many levels of $\S_{\q}(\matA,\vv{u})$.  The rest follows from \ref{elementary2 periodic in r} and \ref{subgraph-invariant-under-collapse} of \Cref{elementary2: P}.
 \end{proof}
 
 
-\begin{definition}%[Numbers associated to the levels of $\sprout^*_p(\matA,\vv{u})$]
-   \label{epsilon delta: D}
-   If $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
+\begin{definition}[The fundamental sequences]
+   \label{fundamental-sequences: D}
+   Let $(\matA,\vv{u})$ be a very small monomial pair.  If $e$ is an integer satisfying $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
    \begin{align*}
-     \epsilon_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
-     \delta_{\q}^e(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},\q)
+     \delta_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
+     \eta_{\q}^e(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},\q)
    \end{align*}
    where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$.
    Observe that, by definition of $\S_{\q}^e(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S_{\q}^e(\matA,\vv{u})$.  
    
-   Furthermore, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\epsilon_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\matA, \vv{u}) = 1.\]
+   Furthermore, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
 \end{definition}
 
 \begin{proposition}
 If $(\matA, \vv{u})$ is very small, then the following hold.
 \begin{enumerate}[$(1)$]
-\item  The sequences $\{ \epsilon_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ and $\{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ are eventually period, and their terms consist of positive rational numbers.
-\item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\epsilon_{\q}^e(\matA, \vv{u}) = \epsilon_{r^e}(\matA, \vv{u})$ and $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r^e}(\matA, \vv{u})$ for every $e$.
+\item  The sequences $\{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ and $\{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ are sequences of positive rational numbers, and are eventually periodic in $e$.
+\item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r}^e(\matA, \vv{u})$ and $\eta_{\q}^e(\matA, \vv{u}) = \eta_{r}^e(\matA, \vv{u})$ for every $e$.
 \item If an overbar denotes collapse along the minimal face $\O = \mf(\matA, \vv{u})$, then
-$\epsilon_{\q}^e(\matA, \vv{u}) = \epsilon_{r^e}(\collapse{\matA}, \collapse{\vv{u}})$ and $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r^e}(\collapse{\matA}, \collapse{\vv{u}})$ for every $e$.
+$\delta_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}})$ and $\eta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}})$ for every $e$.
 \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+	Each term $\delta_{\q}^e(\matA, \vv{u})$ is the Newton degree of a monomial pair, and hence, is a positive rational number.  On the other hand, each term $\eta_{\q}^e(\matA, \vv{u})$ is a universal deficit associated to a monomial triple, which \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} tells us  is also a positive rational number. The rest follows from \Cref{elementary2: P} and \Cref{fundamental-sequences: D}.
+\end{proof}
 
 \begin{proposition}
    \label{p large graph: P}
    Given a monomial matrix $\matA$, there exists $\beta = \beta(\matA)$ with the following property\textup:
-   If $p > \beta$, $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_p(\matA,\vv{u})$, then
+   If $\q > \beta$, $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_\q(\matA,\vv{u})$, then
    \[
-      \max \{ \val \IP_p(\matB,\vv{v},p) : (\matB,\vv{v}) \in \S_{p^e}(\matA,\vv{u}) \} = \epsilon_{p^e}(\matA,\vv{u}) \cdot p-\delta_{p^e}(\matA,\vv{u})
+      \max \{ \val \IP_\q(\matB,\vv{v},\q) : (\matB,\vv{v}) \in \T_{\q}^e(\matA,\vv{u}) \} = \delta_{\q}^e(\matA,\vv{u}) \, \q -\eta_{\q}^e(\matA,\vv{u})
    \]
-   and the subset of $\S_{p^e}(\matA,\vv{u})$ of pairs that achieve this maximum is $\S^{\ast}_{p^e}(\matA,\vv{u})$.
+   and the subset of $\T_{\q}^e(\matA,\vv{u})$ of pairs that achieve this maximum is $\S_{\q}^e(\matA,\vv{u})$.
 \end{proposition}
 
+\daniel[inline]{I tried updating this, but got confused at the end.}
 \begin{proof}
-   First, choose $p$ to be large enough so that the conclusion of \Cref{arithmetic uniform value and image: T} holds for $\matA$, as well as for each of its finitely many descendants.
-   In particular, for such primes, $\val \IP_p(\matB,\vv{v},p) = \degree(\matB,\vv{v})p-\udeficit(\matB,\vv{v},p)$  for each vertex $(\matB,\vv{v})$ of $\sprout_p^{\ast}(\matA,\vv{u})$, and the existence of $\beta(\matA)$ as above then follows from arguments similar to those made in \Cref{p large m-primary: R}.
+   To start, choose $\q$ to be large enough so that the conclusion of \Cref{arithmetic uniform value and image: T} holds for $\matA$, as well as for each of its finitely many collapses.
+   
+   The assumed bounds on $e$ imply that $\S_{\q}^e(\matA, \vv{u})$ is nonempty. \Cref{subgraph: D} and \Cref{elementary1: P}\ref{elementary1 small pairs} then imply that $\T_{\q}^e(\matA, \vv{u})$ is also nonempty, and in fact, consists of very small pairs $(\matB, \vv{v})$ with $\matB$ a collapse of $\matA$.  Thus, given our choice of $\q$, \Cref{arithmetic uniform value and image: T} implies that $\val \IP_\q(\matB,\vv{v}, \q) = \degree(\matB,\vv{v})\, \q-\udeficit(\matB,\vv{v}, \q)$  for each vertex $(\matB,\vv{v})$ in $\T_{\q}(\matA,\vv{u})$, \hl{and the existence of $\beta(\matA)$ as above then follows from arguments similar to those made in} \Cref{p large m-primary: R}. \daniel{¿Que?}
 \end{proof}
 
-
-
-\newpage
 \subsection{The main theorem}
 
 Having the necessary concepts and definitions in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices.
@@ -2767,9 +2811,6 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    On the other hand, if $(\matC, \vv{z}) \in \S^{\ast}_{qp}(\matA,\vv{u})$, then it is on the same level in $\sprout_p^{\ast}(\matA,\vv{u})$ as $(\matA_2, \vv{u}_2)$, and  our induction hypothesis applied to the path $(\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)$ and the point $(\matC, \vv{z})$ once again gives us \eqref{ineq}, completing the proof.
 \end{proof}
 
-
-\newpage
-
 \daniel[inline]{  In the proof.
 \begin{itemize} 
 \item Track $\Q$, possibly eliminate it.  If not, define it at the start
@@ -2816,7 +2857,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
    If $e$ is an integer satisfying $1 \leq e \leq \E$, then $\S_{p^e}^{\ast}(\matA,\vv{u})$ is nonempty, and by the construction of $\sprout_p^{\ast}(\matA,\vv{u})$, there exists a path $(\matA,\vv{u}) = (\matA_1, \vv{u}_1) \to \cdots \to (\matA_e, \vv{u}_e)$ in this graph.
    This is also a path in $\sprout_p(\matA)$, and so \Cref{ILL: T} tells us that there exist points $\vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i, p)$ for $1 \le i \le e$ such that the point $\vv{k} \coloneqq \sum_{i=1}^e \vv{k}_i p^{e-i}$ is feasible for the standard integer program $\IP(\matA, \vv{u}, p^e)$.
 
-   However, as noted in \Cref{elementary2: R}\eqref{elementary2 small pairs}, each of the vertices $(\matA_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(\matA_i,\vv{u}_i,p) = \IP_p(\matA_i, \vv{u}_i, p)$.
+   However, as noted in \Cref{elementary2: P}\eqref{elementary2 small pairs}\daniel{Update this}, each of the vertices $(\matA_i, \vv{u}_i)$ is very small, so \Cref{ip = aip: L} shows that $\IP(\matA_i,\vv{u}_i,p) = \IP_p(\matA_i, \vv{u}_i, p)$.
    \Cref{trivial small value bound: P} then tells us that $\norm{\vv{k}_i} \le p - 1$, and \Cref{dickson: R} shows that the point $\vv{k}$ satisfies the arithmetic constraint of the arithmetic program $\IP_p(\matA,\vv{u},p^e)$, so that
    \[
 	\val \IP_p(\matA,\vv{u},p^e) \geq  \norm{\vv{k}} = \sum_{i=1}^e \val \IP_p(\matA_i,\vv{u}_i,p) p^{e-i}
@@ -2836,7 +2877,7 @@ Having the necessary concepts and definitions in hand, we now turn to the proof 
 \]
    for every integer $e$ with $1 \leq e \leq \E$.  
    
-   We now use this expression to define our sequences:  As recorded in \Cref{curly-E-basic-facts: P}, the value of $\E$ depends only on $r$, but not $p$, and \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the same is true for the boxed coefficients above.  Thus, if we define 
+   We now use this expression to define our sequences:  As recorded in \Cref{curly-E-basic-facts: P}, the value of $\E$ depends only on $r$, but not $p$, and \Cref{elementary2: P}\eqref{elementary2 periodic in e} implies that the same is true for the boxed coefficients above.  Thus, if we define 
    \begin{align*}
    \lambda_{r^i}(\matA, \vv{u}) & = \delta_{p^i}(\matA, \vv{u}) - \epsilon_{r^{i+1}}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i  < \E \\ 
    \eta_{r^i}(\matA, \vv{u}) & = \delta_{r^i}(\matA, \vv{u}) & \text{ for every integer } 1 \leq i \leq \E
@@ -2903,7 +2944,7 @@ $\{ \lambda_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ and $\{ \eta_{r^s}(\matA, \v
  
  
 \begin{definition}[Fundamental sequences]
-	\label{fundamental-sequences: D}	
+	\label{not-really-fundamental-sequences: D}	
 The \emph{fundamental sequences} associated to a very small pair $(\matA, \vv{u})$ and a positive integer $r$ are the sequences $\{ \lambda_{r^s}(\matA, \vv{u})\}_{s=1}^{\infty}$  and $\{ \eta_{r^s}(\matA, \vv{u}) \}_{s=1}^{\infty}$ referred to in the statement of \Cref{main theorem wrt diagonal: T}, and explicitly defined in its proof.  In other words,
 	%
 \begin{align*}
@@ -2926,7 +2967,7 @@ The \emph{fundamental sequences} associated to a very small pair $(\matA, \vv{u}
 	\[ \val \fip_p(\matA,\vv{u}) = \val \fip_p(\collapse{\matA},\collapse{\vv{u}}). \]
 	\end{corollary} 
 
-\begin{proof}  \Cref{elementary2: R}\eqref{collapse sprout star graphs same} implies that the fundamental sequences associated to $(\matA, \vv{u})$ and $(\overline{\matA}, \overline{\vv{u}})$ coincide, and our claim then follows from \Cref{main theorem wrt diagonal: T}.
+\begin{proof}  \Cref{elementary2: P}\eqref{subgraph-invariant-under-collapse} implies that the fundamental sequences associated to $(\matA, \vv{u})$ and $(\overline{\matA}, \overline{\vv{u}})$ coincide, and our claim then follows from \Cref{main theorem wrt diagonal: T}.
 \end{proof}
 
 \subsection{The fundamental sequences}
@@ -2966,7 +3007,7 @@ The fundamental sequences associated to a very small pair satisfy the conditions
 \begin{proof} \daniel[inline]{Update proof}
    Fix $(\matA,\vv{u})$ and $r$ as above, and set $\E=\E_r(\matA,\vv{u})$ and $\Q = \Q_r(\matA,\vv{u})$.  
    
-   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\E \neq \infty$,  each such term is eventually constant, and when $\E = \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
+   By definition, every $\delta_{r^s}(\matA, \vv{u})$ and $\delta_{r^s}(\matA, \vv{u})$ is rational, and thus, so is each term $\eta_{r^s}(\matA, \vv{u})$ and $\lambda_{r^s}(\matA, \vv{u})$.  When $\E \neq \infty$,  each such term is eventually constant, and when $\E = \infty$,  the eventually periodicity of the graph $\sprout_r^{\ast}(\matA, \vv{u})$ described by \Cref{elementary2: P}\eqref{elementary2 periodic in e} implies that each such term is eventually periodic in $s$.  
    
 Furthermore, each $\eta_{r^s}(\matA, \vv{u})$ is either $1$, or equal to $\delta_{r^s}(\matA, \vv{u})$, which is a universal deficit, and hence, must be positive.  Thus, to conclude, it remains to prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\E \neq \infty$ and $1 \leq s \leq \E$.
 
@@ -3087,7 +3128,7 @@ Th following result explains the form of the various formulas obtained by the au
 %\begin{equation}\label{eq: crit infinite case}
 %\crit(\ideala,\ideald)=\ft{\ideala}{\ideald} - \sum_{i=1}^{\infty} \frac{\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})}{p^i}.
 %\end{equation}
-%In this case, \Cref{elementary2: R}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})$ are eventually periodic in $i$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
+%In this case, \Cref{elementary2: P}\eqref{elementary2 periodic in e} implies that the terms $\delta_{p^i}(\matA,\vv{u})-\epsilon_{p^{i+1}}(\matA,\vv{u})$ are eventually periodic in $i$, which demonstrates that $\crit(\ideala,\ideald)$ is rational.
 %
 %On the other hand, when $\Q$ is finite, \Cref{main theorem wrt diagonal: T} instead implies that
 %\begin{align*}
@@ -3108,7 +3149,7 @@ Th following result explains the form of the various formulas obtained by the au
 Like in the convenient case, our methods provide us with an algorithm that, at least in theory, returns the formulas given in \Cref{main theorem wrt diagonal: T} for \emph{all} $e \ge 1$.
 In fact, the pseudocode presented in Algorithm~\ref{alg} applies to the general case with minimal modifications:
 $\S_{\pp^e}$ should be defined as the set consisting of all $p$-sprout of all elements in $\S^*_{\pp^{e-1}}$ in line \ref{line1}, and $\matA$ should be replaced with a descendant $\matB$ in lines \ref{line2}--\ref{line5}.
-This algorithm terminates because $\sprout^*_p(\matA,\vv{u})$ is either finite or its levels eventually repeat cyclically, as pointed out in \Cref{elementary2: R}\eqref{elementary2 periodic in e}.
+This algorithm terminates because $\sprout^*_p(\matA,\vv{u})$ is either finite or its levels eventually repeat cyclically, as pointed out in \Cref{elementary2: P}\eqref{elementary2 periodic in e}.
 
 All of the considerations made in \Cref{convenient algorithm: R} about the potential inefficiency and impracticality of the algorithm for the convenient case still apply here.
 We are, however, able to compute small examples in a matter of a few seconds.
