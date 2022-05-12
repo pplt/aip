@@ -3203,7 +3203,9 @@ in the context of the computation of Frobenius powers of monomial ideals.
 
 \newpage
 
-\section{Critical exponents and Frobenius powers of monomial ideals}
+%\section{Critical exponents and Frobenius powers of monomial ideals}
+\section{The triumphant return to algebra}
+\pedro{Just kidding about the title\ldots Or not! :-)}
 \label{frobenius-powers-monomial-ideals: S}
 
 In this section we study the algebraic consequences of the results obtained in \Cref{sprouting: S} concerning critical exponents and Frobenius powers of monomial ideals.
@@ -3324,8 +3326,9 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
    \details[inline]{
       Let $\canvec$ be the sum of the vectors in $\rb(\O)$.
       Since $\mf(\matA,\vv{u}) \subseteq \O$, there exists a positive scalar $\lambda$ such that $\lambda \vv{u} \in \O$.
-      Then $\lambda(\vv{u} + \canvec ) = \lambda\vv{u} + \lambda \canvec$ lies in the interior of $\O$, since $\lambda\canvec$ is positive in $\rs(\O)$.
-      Thus, $\mf(\matA,\vv{u} +\canvec) = \O$.\\[2mm] 
+      Since $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\O}$, the proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+ k\canvec) = \O$.
+      Thus, $\lambda \vv{u} + \lambda k \canvec$ lies in the interior of $\O$, and so does any interior point of the line segment from that point to $\lambda\vv{u}$.
+      In particular, $\lambda(\vv{u} + \canvec ) = \lambda\vv{u} + \lambda \canvec$ lies in the interior of $\O$, so $\mf(\matA,\vv{u} +\canvec) = \O$.\\[2mm] 
       Suppose $\vv{v} \in S_\vv{w}$.
       Then $\vv{v} \in \P$, so there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
       Let $S$ consist of the vectors $\canvec_i \in \rb(\O)$ such that $\vv{v}$ and $\vv{u}$ differ in the $i$-th coordinate.
