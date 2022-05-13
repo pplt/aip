@@ -3365,8 +3365,8 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
    (Note that the set displayed above equals the singleton $\{\vv{u}\}$ if and only if $\mf(\matA,\vv{u}) = \O$.)
    
    \details[inline]{
-      Let $\canvec$ be the sum of the vectors in $\rb(\O)$.
-      Since $\mf(\matA,\vv{u}) \subseteq \O$, there exists a positive scalar $\lambda$ such that $\lambda \vv{u} \in \O$.
+      Let $\canvec = \sum_{\canvec_i \in \rb(\O)} \canvec_i$.
+      As $\mf(\matA,\vv{u}) \subseteq \O$, there exists  $\lambda> 0$ such that $\lambda \vv{u}$ lies in $\O$, and so does any point of the form $\lambda \vv{u} + t \canvec$, with $t\ge 0$.
       Since $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\O}$, the proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+ k\canvec) = \O$.
       Thus, $\lambda \vv{u} + \lambda k \canvec$ lies in the interior of $\O$, and so does any interior point of the line segment from that point to $\lambda\vv{u}$.
       In particular, $\lambda(\vv{u} + \canvec ) = \lambda\vv{u} + \lambda \canvec$ lies in the interior of $\O$, so $\mf(\matA,\vv{u} +\canvec) = \O$.\\[2mm] 
@@ -3374,8 +3374,7 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
       Then $\vv{v} \in \P$, so there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
       Let $S$ consist of the vectors $\canvec_i \in \rb(\O)$ such that $\vv{v}$ and $\vv{u}$ differ in the $i$-th coordinate.
       Then $\vv{v} \ge \vv{u}_S$, and $\vv{u}_S$ satisfies $\mf(\matA,\vv{u}_S) = \O$.
-      Thus $\vv{v}$ lies above some point of the set in display above.
-   }
+      Thus $\vv{v}$ lies above some point of the set in display above.   }
    Finally, \Cref{prop: where to find minimal smal but not very small points} tells us that the set $\setW^*$ of minimal points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small is contained in the polytope $\conv(\col(\matA))+[0,2]^\numvars$.
    So we can effectively gather the elements of $\setW^*$ by testing the finitely many positive lattice points of this polytope.
 \end{remark}
