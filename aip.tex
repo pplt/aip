@@ -35,7 +35,7 @@ TO DO LIST:
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
  \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
  \item [$\Box$] Look for ways to find smaller universal denominators.
- \item[$\Box$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
+ \item[$\CheckedBox$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Check for consistent use of ``Lemma'' and ``Proposition''.
  If it's used right away, ``Lemma'' is OK; if there's no use in sight, use ``Proposition''.
 \end{enumerate}}
@@ -779,22 +779,60 @@ This convention leads to the following useful observation, whose simple proof us
    \qed
 \end{proposition}
 
+We end this subsection putting together some properties of faces that will be helpful later on.
+
 \begin{proposition}
    \label{prop: a property of the boundary}
-   Let $\N$ be the Newton polyhedron of a monomial matrix, and suppose points $\vv{u} \le \vv{v}$ lie in the boundary of $\N$.
-   Let $I$ denote the set of indices $i$ such that $u_i < v_i$.
-   Then $\vv{u}$ and $\vv{v}$ lie in a common face $\O$ of $\N$ such that $\canvec_i \in \rb(\O)$ for each $i\in I$.
-   In particular, $\vv{u} + \cone(\canvec_i: i\in I)$ is contained in $\O$.
+   Let $\N$ be a Newton polyhedron, and consider points $\vv{u} \le \vv{v}$ where $\vv{u}$ lies in  $\N$ and $\vv{v}$ lies in a face $\O$ of $\N$.
+   Let $S = \{\canvec_i : u_i < v_i\}$.
+   Then $\vv{u}\in\O$, and $S \subseteq \rb(\O)$.
+   In particular, $\vv{u} + \cone(S) \subseteq \O$.
+   Moreover, if $\vv{v}\in \ri\O$, then $\vv{u} + \ri \cone(S) \subseteq \ri\O$.
 \end{proposition}
 
 \begin{proof}
-   The result holds trivially when $\vv{u} = \vv{v}$, so suppose that is not the case, and consequently the set $I$ described in the statement is nonempty.
-   As $\vv{u} \le \vv{v}$ lie in the boundary of $\N$, so does the entire line segment connecting those points---or else $\vv{v}$ would be an interior point.
-   Since there are only finitely many faces, there must be distinct points $\vv{s} \le \vv{t}$ in this line segment that lie in the same face $\O$.
-   If $\defpt$ is a point defining $\O$ in $\N$, then $\iprod{\defpt}{\vv{t}- \vv{s}}$ must be zero.
-   As $s_i < t_i$ for each $i\in I$, and $s_i=t_i$ otherwise, this inner product is a positive linear combination of the components $c_i$ of $\defpt$ with $i\in I$.
-   The nonnegativity of the $c_i$ then implies that $c_i = 0$, and hence $\canvec_i \in \rb(\O)$, for all $i \in I$.
-   This implies that $\vv{v} \in \O$, and so does $\vv{u}$, as $\vv{u}$ lies in $\N$ and $\iprod{\defpt}{\vv{u}} = \iprod{\defpt}{\vv{v}}$.
+%   The result holds trivially when $\vv{u} = \vv{v}$, so suppose that is not the case, and consequently the set $S$ described in the statement is nonempty.
+   Let $\defpt$ be a point defining $\O$ in $\N$.
+   As $\vv{u} \in \N$ and $\vv{v}\in \O$, we have $\iprod{\defpt}{\vv{v}} \le \iprod{\defpt}{\vv{u}}$.
+   But $\vv{u} \le \vv{v}$ and $\defpt \ge \vv{0}$, and this implies that $\iprod{\defpt}{\vv{v}} = \iprod{\defpt}{\vv{u}}$, showing that $\vv{u} \in \O$.
+   Furthermore, as $\defpt \ge \vv{0}$, $\vv{v} - \vv{u} \ge \vv{0}$, and $\iprod{\defpt}{\vv{v}-\vv{u}} = 0$, it must be the case that $c_i = 0$ whenever $u_i<v_i$, and hence $S\subseteq \rb(\O)$.
+
+   Let $\vv{w} \in \ri\cone(S)$.
+   Then $\vv{u}+\vv{w} \in \O$, by the result proven in the previous paragraph.
+   If $\vv{u}+\vv{w}$ lies in a proper face of $\O$, then so does $\vv{u}$, and so does $\vv{v}$, again by the result already proven.
+   Consequently, if $\vv{v}$ lies in the relative interior of $\O$, then so does any point in the Minkowski sum $\vv{u} + \ri \cone(S)$.
+\end{proof}
+
+% \begin{proposition}
+%    \label{prop: a property of the boundary}
+%    Let $\N$ be the Newton polyhedron of a monomial matrix, and suppose points $\vv{u} \le \vv{v}$ lie in the boundary of $\N$.
+%    Let $I$ denote the set of indices $i$ such that $u_i < v_i$.
+%    Then $\vv{u}$ and $\vv{v}$ lie in a common face $\O$ of $\N$ such that $\canvec_i \in \rb(\O)$ for each $i\in I$.
+%    In particular, $\vv{u} + \cone(\canvec_i: i\in I)$ is contained in $\O$.
+% \end{proposition}
+
+% \begin{proof}
+%    The result holds trivially when $\vv{u} = \vv{v}$, so suppose that is not the case, and consequently the set $I$ described in the statement is nonempty.
+%    As $\vv{u} \le \vv{v}$ lie in the boundary of $\N$, so does the entire line segment connecting those points---or else $\vv{v}$ would be an interior point.
+%    Since there are only finitely many faces, there must be distinct points $\vv{s} \le \vv{t}$ in this line segment that lie in the same face $\O$.
+%    If $\defpt$ is a point defining $\O$ in $\N$, then $\iprod{\defpt}{\vv{t}- \vv{s}}$ must be zero.
+%    As $s_i < t_i$ for each $i\in I$, and $s_i=t_i$ otherwise, this inner product is a positive linear combination of the components $c_i$ of $\defpt$ with $i\in I$.
+%    The nonnegativity of the $c_i$ then implies that $c_i = 0$, and hence $\canvec_i \in \rb(\O)$, for all $i \in I$.
+%    This implies that $\vv{v} \in \O$, and so does $\vv{u}$, as $\vv{u}$ lies in $\N$ and $\iprod{\defpt}{\vv{u}} = \iprod{\defpt}{\vv{v}}$.
+% \end{proof}
+
+\begin{corollary}
+   \label{cor: a property of minimal faces}
+   Let $\matA$ be a monomial matrix, and let $\vv{u} \le \vv{v}$ be positive points in the target lattice of $\matA$ such that $\mf(\matA,\vv{u}) \subseteq \O \coloneqq \mf(\matA,\vv{v})$.
+   Set $S = \{\canvec_i : u_i < v_i\}$, and suppose $S\subseteq \rb(\O)$.
+   Then for any lattice point $\vv{w} \in \vv{u} + \ri \cone(S)$ we have $\mf(\matA,\vv{w}) = \O$.
+\end{corollary}
+
+\begin{proof}
+   As $\mf(\matA,\vv{u}) \subseteq \O$, there exists $\lambda > 0$ such that $\lambda\vv{u} \in \O$.
+   The assumption that $S \subseteq \rb(\O)$ implies that $\lambda \vv{v} \in \O$ and, since $\mf(\matA,\vv{v}) = \O$, we in fact have $\lambda\vv{v} \in \ri\O$.
+   \Cref{prop: a property of the boundary} then shows that $\lambda \vv{u} + \ri\cone(S) \subseteq \ri\O$.
+   If $\vv{w}$ is a lattice point in $\vv{u} + \ri\cone(S)$, then $\lambda\vv{w} \in \lambda \vv{u} + \ri\cone(S) \subseteq \ri\O$, so $\mf(\matA,\vv{w}) = \O$.
 \end{proof}
 
 \subsection{The Newton degree of a monomial pair}
@@ -1424,6 +1462,18 @@ In their statements, $\matA$ is a monomial matrix, $\O$ is an unbounded standard
 
    Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the finitely many standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
    With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must be $\O$.
+\end{proof}
+
+\begin{corollary}
+   \label{cor: when the lift is almost there}
+   Suppose $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and let $\vv{u}$ be a positive point in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) \subseteq \O$.
+   Let $\canvec$ be the sum of the standard basis vectors in $\rb(\O)$.
+   Then $\mf(\matA,\vv{u}+\canvec) = \O$.
+\end{corollary}
+
+\begin{proof}
+   The proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+k\canvec) = \O$.
+   The result then follows from \Cref{cor: a property of minimal faces}.
 \end{proof}
 
 \section{An auxiliary integer program}
@@ -3357,24 +3407,27 @@ While parts (1) and (2) of this theorem follow immediately from our results on c
 
    Concerning the construction of the set $\setW_\O$ when $\O$ is unbounded, for each point~$\vv{w}$ in the finite set $\setW_{\collapse{\O}}$ we consider the polyhedron $\P$ obtained by intersecting the convex hull of $\O \cup \{\vv{0}\}$ and the polyhedron consisting of all $\vv{x}\in \RR^\numvars$ such that $\collapse{\vv{x}} = \vv{w}$.
    Although $\P$ is unbounded, we can find the set $M$ of all its minimal lattice points using, for example, the software \emph{4ti2} \cite{4ti2}.
-   If $\vv{u} \in M$, it is possible for $\mf(\matA,\vv{u})$ to be not $\O$, but a proper face of $\O$.
-   Regardless, there are always points of the form $\vv{u}_S = \vv{u} + \sum_{\canvec_i \in S} \canvec_i$ that satisfy $\mf(\matA,\vv{u}_S) = \O$, where $S$ ranges over the subsets of $\rb(\O)$ (e.g., take $S=\rb(\O)$).
-   In the end, $\min S_\vv{w}$ is the union of the sets
+   If $\vv{u} \in M$, then $\vv{u} \in \conv(\O\cup\{\vv{0}\})$, so the minimal face  $\mf(\matA,\vv{u})$ is contained in~$\O$.
+   It could, however, be a proper face of~$\O$.
+   Regardless, there are always points of the form $\vv{u}_S = \vv{u} + \sum_{\canvec_i \in S} \canvec_i$ that satisfy $\mf(\matA,\vv{u}_S) = \O$, where $S$ ranges over the subsets of $\rb(\O)$---\eg this is the case for $S=\rb(\O)$ by \Cref{cor: when the lift is almost there}---and we shall see that $\min S_\vv{w}$ is the union of the sets
    \[\min \Big\{\vv{u}_S = \vv{u} + \sum_{\canvec_i \in S} \canvec_i : S \subseteq \rb(\O)\text{ and }\mf(\matA,\vv{u}_S) = \O\Big\}\]
    where $\vv{u}$ ranges over all points of $M$.
-   (Note that the set displayed above equals the singleton $\{\vv{u}\}$ if and only if $\mf(\matA,\vv{u}) = \O$.)
+%   (Note that the set displayed above equals the singleton $\{\vv{u}\}$ if and only if $\mf(\matA,\vv{u}) = \O$.)
+      Indeed, suppose $\vv{v} \in S_\vv{w}$, so that $\mf(\matA,\vv{v}) = \O$ and $\collapse{\vv{v}} = \vv{w}$.
+      As $\vv{v} \in \P$, there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
+      Let $S = \{\canvec_i : u_i < v_i \}$, and note that, since $\collapse{\vv{u}} = \vv{w} = \collapse{\vv{v}}$, we have $S\subseteq \rb(\O)$.
+      Then $\vv{v} \ge \vv{u}_S$, and $\mf(\matA,\vv{u}_S) = \O$ by \Cref{cor: a property of minimal faces}.
    
-   \details[inline]{
-      Let $\canvec = \sum_{\canvec_i \in \rb(\O)} \canvec_i$.
-      As $\mf(\matA,\vv{u}) \subseteq \O$, there exists  $\lambda> 0$ such that $\lambda \vv{u}$ lies in $\O$, and so does any point of the form $\lambda \vv{u} + t \canvec$, with $t\ge 0$.
-      Since $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\O}$, the proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+ k\canvec) = \O$.
-      Thus, $\lambda \vv{u} + \lambda k \canvec$ lies in the interior of $\O$, and so does any interior point of the line segment from that point to $\lambda\vv{u}$.
-      In particular, $\lambda(\vv{u} + \canvec ) = \lambda\vv{u} + \lambda \canvec$ lies in the interior of $\O$, so $\mf(\matA,\vv{u} +\canvec) = \O$.\\[2mm] 
-      Suppose $\vv{v} \in S_\vv{w}$.
-      Then $\vv{v} \in \P$, so there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
-      Let $S$ consist of the vectors $\canvec_i \in \rb(\O)$ such that $\vv{v}$ and $\vv{u}$ differ in the $i$-th coordinate.
-      Then $\vv{v} \ge \vv{u}_S$, and $\vv{u}_S$ satisfies $\mf(\matA,\vv{u}_S) = \O$.
-      Thus $\vv{v}$ lies above some point of the set in display above.   }
+   % \details[inline]{
+   %    Let $\canvec = \sum_{\canvec_i \in \rb(\O)} \canvec_i$.
+   %    As $\vv{u} \in \conv(\O\cup \{\vv{0}\})$, we have $\mf(\matA,\vv{u}) \subseteq \O$.
+   %    Since $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\O}$, the proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+ k\canvec) = \O$.
+   %    Thus, $\mf(\matA,\vv{u} +\canvec) = \O$ by \Cref{cor: a property of minimal faces}.\\[2mm] 
+   %    Suppose $\vv{v} \in S_\vv{w}$, so that $\mf(\matA,\vv{v}) = \O$ and $\collapse{\vv{v}} = \vv{w}$.
+   %    Then $\vv{v} \in \P$, so there exists $\vv{u} \in M$ such that $\vv{u} \le \vv{v}$.
+   %    Let $S = \{\canvec_i : u_i < v_i \}$, and note that, since $\collapse{\vv{u}} = \vv{w} = \collapse{\vv{v}}$, we have $S\subseteq \rb(\O)$.
+   %    Then $\vv{v} \ge \vv{u}_S$, and $\mf(\matA,\vv{u}_S) = \O$ by \Cref{cor: a property of minimal faces}.
+   % }
    Finally, \Cref{prop: where to find minimal smal but not very small points} tells us that the set $\setW^*$ of minimal points $\vv{u}$ such that $(\matA,\vv{u})$ is small but not very small is contained in the polytope $\conv(\col(\matA))+[0,2]^\numvars$.
    So we can effectively gather the elements of $\setW^*$ by testing the finitely many positive lattice points of this polytope.
 \end{remark}
@@ -3574,10 +3627,10 @@ Throughout this appendix, we focus on polynomial rings in the string of variable
 Recall, from {the introduction}, that a pair of ideals $(\ideala, \idealb)$ of $\LL[x]$ is called \emph{\compatible}
 if $\ideala$ is nonzero, $\idealb$ is proper, and $\ideala$ is contained in the radical of $\idealb$.  
 Our purpose in this appendix is twofold:  First, we show that if $(\ideala, \idealb)$ is a \compatible\ pair of ideals of $\kk[x]$, where $\kk$ is a field of positive characteristic $p$, then when determining the values of $\mu(\ideala, \idealb, p^e)$, one may always assume that $\idealb$ is the diagonal ideal associated to a positive point.   This is, in essence, the content of \Cref{reduce-to-monomial-case: T}.  Second, we show that a similar statement holds in the context of \emph{reduction to large prime characteristic}, which is the content of \Cref{invariants associated to a monomial ideal in large characteristic: T}.
-Let us also note that none of the results here rely on any of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
-\pedro{Except for \Cref{cor: mu comparison}}
-\daniel{This will need to be clarified (there are more exceptions now).The point is that it is logically independent of all of the nitty-gritty details that we used to solve AIP and fractal programs.}
-\pedro{Maybe we should just say that the appendix is ``mostly independent'' of the in-depth examination of \ldots}
+Let us also note that most of this appendix is independent of the in-depth examination of arithmetic integer programs and fractal programs conducted in the main text. 
+% \pedro{Except for \Cref{cor: mu comparison}}
+% \daniel{This will need to be clarified (there are more exceptions now).The point is that it is logically independent of all of the nitty-gritty details that we used to solve AIP and fractal programs.}
+% \pedro{Maybe we should just say that the appendix is ``mostly independent'' of the in-depth examination of \ldots}
 
 Our approach is based on framework established in \cite[Appendix]{budur+mustata+saito.roots_bs_polys_monomial}.  For example, the \emph{monomialization operator} in \Cref{monomialization: D} below plays an important role in our arguments, and though this operator was not formally defined in \loccit, it appears, along with a natural variant, in \cite[Proposition 6.1 and Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}.  After introducing this operator, we establish some of its basic properties.
 
@@ -3610,10 +3663,11 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
    Therefore, $x^{\vv{v}} \in \idealb$, so $x^{\vv{v}} \in \mon(\idealb) = \idealc$, and we conclude that $x^{\vv{u}} \in \langle x^{\vv{v}q} \rangle \subseteq \idealc^{[q]}$.
 \end{proof}
 
-Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic; due to this, we also choose to work generally when reducing to prime characteristic.
+Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic.
+Due to this, we also choose to work in greater generality when reducing to prime characteristic, as opposed to simply discussing the reduction of ideals in $\QQ[x]$ modulo a prime $p$.
 
-\pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
-\daniel{Besides globally (as in, not looking at monomialization in local rings, I also meant that we aren't just reducing ideals in $\QQ[x]$ modulo $p$, which is what I think they focus on in that paper.  Feel free to remove/restate this.}
+% \pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
+% \daniel{Besides globally (as in, not looking at monomialization in local rings, I also meant that we aren't just reducing ideals in $\QQ[x]$ modulo $p$, which is what I think they focus on in that paper.  Feel free to remove/restate this.}
 
 We also provide examples illustrating that the uniformity properties established here for the $\mu$-invariants attached to a monomial ideal are strictly stronger than the ones for their $\nu$-counterparts established in \loccit, both over a field of fixed positive characteristic, and when reducing to positive characteristic.  
 
@@ -3689,7 +3743,8 @@ Furthermore, it is not hard to see that there is no positive point $\vv{v} \in \
 
 We now briefly recall the process of reduction to prime characteristic, in the context of polynomial rings.
 
-To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.  We provide formal references for their proofs, though the reader may also consult the first author's thesis \cite[Chapter~3]{hernandez.thesis} for more details.
+To start, we recall some fundamental facts, both of which may be thought of as corollaries of Noether Normalization.
+We provide formal references for their proofs, when available, though the reader may also consult the first author's thesis \cite[Chapter~3]{hernandez.thesis} for more details.
 
 \begin{remark}[Generic freeness]\label{generic-freeness}
    Consider a Noetherian domain $\ringA$, and a finitely generated $\ringA$-algebra $\ringS$.
@@ -3699,9 +3754,9 @@ To start, we recall some fundamental facts, both of which may be thought of as c
 \begin{remark}[Maximal ideals of domains finitely generated over $\ZZ$]
    \label{maximal ideals: R}
    Let $\ringA$ be a domain of characteristic zero that is finitely generated as an algebra over $\ZZ$.
-   Then every maximal ideal of $\ringA$ contains a positive prime integer,
-   \pedro{The previous claim follows from \cite[V.3.4, Theorem~3(ii)]{bourbaki.commalg}, and does not depend on $\ringA$ being a domain.} \daniel{OK.  In the proof I know, I thought this was important.}  
-    and all but finitely many prime integers are contained in some maximal ideal of $\ringA$.
+   Then every maximal ideal of $\ringA$ contains a positive prime integer \cite[V.3.4, Theorem~3(ii)]{bourbaki.commalg},
+   % \pedro{The previous claim follows from \cite[V.3.4, Theorem~3(ii)]{bourbaki.commalg}, and does not depend on $\ringA$ being a domain.} \daniel{OK.  In the proof I know, I thought this was important.}  
+    and all but finitely many prime integers are contained in some maximal ideal of $\ringA$ \cite[Corollary~3.2]{hernandez.thesis}.
     \pedro{Does anyone know a reference for this in the standard literature?} 
     \daniel{I don't.  Mel and Craig have a \emph{Tight closure in equal characteristic zero} paper, and there is a lot of stuff in there, but I haven't looked at that since I was writing my thesis, and it all seemed overly technical at the time}
    Furthermore, the quotient of $\ringA$ by any maximal ideal is a finite field \cite[V.3.4, Corollary~1]{bourbaki.commalg}.
