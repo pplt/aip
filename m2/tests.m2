@@ -71,11 +71,14 @@ graph = {{(A,u)}}
 
 iterate := () -> (
 S = last graph;
-S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) )); 
+S =  unique flatten apply( S, t -> apply(shortfall(t_0,t_1,r),v -> (collapse(t_0,t_1),v) ));
+print "\nT";
+print \ toString \ S; 
 ( eps, S ) = maximalBy( S, pair -> degree pair); 
 ( delta, S ) = minimalBy( S, pair -> deficit(pair_0,pair_1,r));
 graph = append(graph, S);
-print S;
+print "\nS";
+print \ toString \ S; 
 num = append(num,(eps,delta))
 )
 
@@ -188,6 +191,15 @@ toString oo
 degree(A,u)
 
 ----------------------------------------------------------------------------------------------------------
+
+-- Main example
+
+(r,A,u) = ( 11, matrix{{5,3,4},{5,4,3},{2,8,5}}, matrix{{1},{1},{1}} )
+
+init()
+
+iterate() 
+
 ----------------------------------------------------------------------------------------------------------
 
 
