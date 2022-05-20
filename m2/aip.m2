@@ -45,7 +45,9 @@ identityMatrix := n -> id_( ZZ^n )
 -- with denominator D. 
 -- In other words, L = numerator(L)/denominator(L).
 denominator List := L -> lcm apply( L, denominator )
+denominator Matrix := M -> denominator flatten entries M
 numerator List := L -> denominator( L ) * L
+numerator Matrix := LM -> denominator( M ) * M
 
 -- If t = a/b is a rational number, and q is an integer, then 
 -- bracket(t,q) = (positive residue of aq module b)/b (or 0, if t is 0).
@@ -510,6 +512,18 @@ minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVe
     pts := select( latticePoints P, u -> all( first entries transpose u, x -> x > 0 ) );
     minimalPoints select( pts, u -> isSmallNotVerySmall monomialPair( A, u ) ) 
 ))
+
+-- Maybe cache value
+-- hilbertBasis Cone := o -> C -> 
+-- (
+--     M := - halfspaces C;
+--     m := rank target M;
+--     n := numcols M;
+--     M = M | identityMatrix m; add slack columns
+--     HB := (hilbertBasis M)_{0..(n-1)}; remove slack
+--     columns transpose HB
+-- )
+hilbertBasis Polyhedron := o -> P -> hilbertBasis( coneFromVData P, o )
 
 --------------------------------------------
 -- Integer Programs

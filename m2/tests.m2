@@ -1175,3 +1175,38 @@ fourTiTwo = findProgram("4ti2", "markov -h",
 		{"/usr/lib/4ti2/bin", "/usr/lib64/4ti2/bin"})
 
 fourTiTwo#"path"            
+
+------------------------
+-- searching for better univ denom
+
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+A = matrix{ {36, 10, 31}, {19,46,31}, {47,25,36} }
+A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
+A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
+A = 7*identityMatrix(3);
+
+F = select( facesAsPolyhedra( 1, newtonPolyhedon A ), isStandard )
+
+SP = unique( flatten apply( F, O -> apply( hilbertBasis O, u -> specialPoint( A, u ) ) ) );
+
+denom = lcm( denominator \ SP )
+
+(universalDenominator A)/ denom
+
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+u = columnVector{1,1,1};
+M = A || - identityMatrix 3; 
+v = u || zeroVector 3;
+feasibleRegion = polyhedronFromHData( M, v );
+-- Now, the optimal set:
+optimalSet = maxFace( transpose matrix { constantList( 1, 3 ) }, feasibleRegion );
+interiorPoint optimalSet
+vertices optimalSet
+
+apply(1..34,i -> interiorLatticePoints(i*optimalSet) )
+
+ehrhart optimalSet
+
+vertices(17*optimalSet)
+latticePoints(17*optimalSet)
+isCompact(17*optimalSet)
