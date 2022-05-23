@@ -723,6 +723,7 @@ where $\col(\matA)$ is the set of columns of $\matA$, and $\canvec_1, \ldots, \c
    The requirement that the number $\alpha$ in \Cref{defn: face} be nonnegative is an arbitrary convention, which will play a role in \Cref{alpha=1: convention} below.
    We observe that the defining point $\defpt$ must be nonnegative as well.
    Indeed, if $\vv{v} \in \O$, then $\vv{v} + \canvec_i \in \N$, and thus $c_i = \iprod{\defpt}{\vv{v} + \canvec_i} - \iprod{\defpt}{\vv{v}} \ge 0$, for each $i$.
+   Note also that, because $\O$ is a proper subset of $\N$, the defining point $\defpt$ is necessarily nonzero.
 \end{remark}
 
 \begin{remark}
@@ -1224,13 +1225,11 @@ Recall that if a face $\O$ of a Newton polyhedron in $\RR^\numvars$ is defined b
 
 \begin{definition}[Collapsing]
 \label{collapse: D}
-Suppose that $\O$ is a \hl{proper}
-\pedro{Our faces are proper by definition. I suggest we require the face to be standard---or else the collapse of a monomial matrix need not be monomial.}
-face of the Newton polyhedron $\N$ of a monomial matrix $\matA$ with $\numvars$ rows.
+Suppose that $\O$ is a standard face of the Newton polyhedron $\N$ of a monomial matrix $\matA$ with $\numvars$ rows.
 
 \begin{enumerate}
    \item The set $\rb(\O)^{\perp}$ is the complement of $\rb(\O)$ in $\{ \canvec_1, \ldots, \canvec_\numvars \}$, and $\rs(\O)^\perp$ is the subspace of $\RR^\numvars$ spanned by $\rb(\O)^\perp$, that is, the orthogonal complement of $\rs(\O)$ in $\RR^\numvars$.
-   (The assumption that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.)
+   (The fact that $\O \neq \N$ implies that $\rb(\O)^{\perp} \neq \emptyset$.)
    \item The \emph{collapsing along $\O$} is the projection map $\RR^\numvars \to \RR^{\#\rb(\O)^\perp}$ that deletes the $i$-th coordinate of a point whenever $\canvec_i \in \rb(\O)$, while preserving the order of the remaining coordinates.
    The images of points or sets under this projection are called \emph{collapses} of these objects along $\O$.
    \item The \emph{collapse} of $\matA$ along $\O$ is the matrix obtained from $\matA$ by collapsing each of its columns along $\O$, or in other words, the matrix obtained by deleting the $i$-th row of $\matA$ whenever $\canvec_i\in \rb(\O)$.
@@ -1284,7 +1283,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    \begin{enumerate}[$(1)$]
       \item If $\G$ is a face of $\N$ such that $\rb(\O) \subseteq \rb(\G)$, defined in $\N$ by a point $\vv{g}$, then $\collapse{\G} = \pi(\G)$ is a face of $\collapse{\N}$, defined by the point $\collapse{\vv{g}}$.
       Moreover, $\G$ is standard if and only if $\collapse{\G}$ is standard, and $\pi^{-1}(\collapse{\G}) = \G$.
-      \item If $\H$ is a face of $\collapse{\N}$ defined by a point $\vv{h}$, then $\pi^{-1}(\H)$ is a face of $\N$ defined by the unique point $\vv{c}\in\rs(\O)^\perp$ such that $\collapse{\vv{c}} = \vv{h}$.
+      \item If $\H$ is a face of $\collapse{\N}$ defined by a point $\vv{h}$, then $\pi^{-1}(\H)$ is a face of $\N$ defined by the unique point $\vv{k}\in\rs(\O)^\perp$ such that $\collapse{\vv{k}} = \vv{h}$.
       The recession basis of $\pi^{-1}(\H)$ contains $\rb(\O)$, $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard, and $\collapse{\pi^{-1}(\H)} = \H$.
    \end{enumerate}
 \end{proposition}
@@ -1303,28 +1302,25 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    The fact that $\G$ is standard if and only if $\collapse{\G}$ is standard follows from our using the same scalar $\alpha$ in the definition of these faces (see \Cref{rmk: standard faces}).
    The containment $\G \subseteq \pi^{-1}(\collapse{\G})$ is immediate, and to verify the reverse containment, note that if $\vv{u} \in \pi^{-1}(\collapse{\G})$, then $\collapse{\vv{u}} \in \collapse{\G}$, so we have $\iprod{\vv{g}}{\vv{u}} = \iprod{\collapse{\vv{g}}}{\collapse{\vv{u}}} = \alpha$, which implies that $\vv{u} \in \G$.
    
-   Now let $\H$, $\vv{h}$, and $\vv{c}$ be as in $(2)$, and suppose $\iprod{\vv{h}}{\vv{v}} \ge \beta$ whenever $\vv{v} \in \collapse{\N}$, with equality if and only if $\vv{v} \in \H$.
-   Note that the point $\vv{h} = \collapse{\vv{c}}$ is obtained by deleting zero coordinates from~$\vv{c}$.
+   Now let $\H$, $\vv{h}$, and $\vv{k}$ be as in $(2)$, and suppose $\iprod{\vv{h}}{\vv{v}} \ge \beta$ whenever $\vv{v} \in \collapse{\N}$, with equality if and only if $\vv{v} \in \H$.
+   Note that the point $\vv{h} = \collapse{\vv{k}}$ is obtained by deleting zero coordinates from~$\vv{k}$.
    If $\vv{u} \in \N$, then $\collapse{\vv{u}} \in \collapse{\N}$, so
    \begin{equation*}
-      \iprod{\vv{c}}{\vv{u}} = \iprod{\vv{h}}{\collapse{\vv{u}}} \ge \beta
+      \iprod{\vv{k}}{\vv{u}} = \iprod{\vv{h}}{\collapse{\vv{u}}} \ge \beta
    \end{equation*}
    with equality attained if and only if $\collapse{\vv{u}} \in \H$, or equivalently, $\vv{u} \in \pi^{-1}(\H)$.
-   This shows that $\pi^{-1}(\H)$ is a face of $\N$ defined by the point $\vv{c}$, and the fact that the recession basis of this face contains $\rb(\O)$ follows immediately from our choice of $\vv{c} \in \rb(\O)^\perp$.
+   This shows that $\pi^{-1}(\H)$ is a face of $\N$ defined by the point $\vv{k}$, and the fact that the recession basis of this face contains $\rb(\O)$ follows immediately from our choice of $\vv{k} \in \rb(\O)^\perp$.
 
    The fact that $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard follows from our using the same $\beta$ in the definition of these faces, and the identity $\collapse{\pi^{-1}(\H)} = \H$ is simply a consequence of the surjectivity of $\pi$.
 \end{proof}
 
-\pedro[inline]{
-   I separated the following from the previous proposition, as it was buried too deep in a very long statement.
-} 
-\daniel[inline]{Should we say that it is, in essence, the same defining point?}
-
-Taking $\G = \O$ in \Cref{faces under collapsing: P}(1), we see that $\collapse{\O}$ is a face of $\N$ defined by a positive point, which gives us the following corollary.
+Taking $\G = \O$ in \Cref{faces under collapsing: P}(1), we obtain the following useful result.
 
 \begin{corollary}
    \label{cor: O bar is bounded}
-   If $\O$ is a standard face of a Newton polyhedron $\N$, then $\collapse{\O}$ is a bounded standard face of $\collapse{\N}$, where the overbar denotes collapse along $\O$.
+   Let $\O$ be a standard face of a Newton polyhedron $\N$, defined by a point $\defpt$, and let overbars denote collapsing along $\O$.
+   Then $\collapse{\O}$ is a standard face of $\collapse{\N}$, defined by the point $\collapse{\defpt}$ obtained by deleting the zero coordinates of $\defpt$.
+   In particular, as $\collapse{\defpt}$ is positive, $\collapse{\O}$ is bounded. 
    \qed
 \end{corollary}
 
@@ -1336,8 +1332,8 @@ The composition of collapsing maps is a collapsing.
 
 \begin{proof}
    Let $\pi$ be the collapsing map along a standard face $\O$ of a Newton polyhedron $\N$, and $\rho$ the collapsing along a standard face $\H$ of $\pi(\N)$.
-   Using the notation of \Cref{faces under collapsing: P}, it is easy to see that the composition $\rho\circ \pi$ deletes the $i$-th coordinate of a point if and only if the $i$-th coordinate of $\vv{c}$ is zero.
-   Since $\vv{c}$ is the point defining the standard face $\pi^{-1}(\H) \cap \N$ of $\N$, $\rho\circ \pi$ is the collapsing along that face.
+   Using the notation of \Cref{faces under collapsing: P}, it is easy to see that the composition $\rho\circ \pi$ deletes the $i$-th coordinate of a point if and only if the $i$-th coordinate of $\vv{k}$ is zero.
+   Since $\vv{k}$ is the point defining the standard face $\pi^{-1}(\H) \cap \N$ of $\N$, $\rho\circ \pi$ is the collapsing along that face.
 \end{proof}
 
 Below, we describe the relationship between collapses and notions associated to monomial pairs.
@@ -1400,67 +1396,110 @@ Below, we describe the relationship between collapses and notions associated to 
    Thus, the containment established in \Cref{collapse of mf and mc: P}(2) may be proper---in which case so is the one in (3), since every optimal point for $\LP(\collapse{\matA},\collapse{\vv{u}})$ is special for $(\collapse{\matA},\collapse{\vv{u}})$, due to the boundedness of $\collapse{\O}$.
 \end{example}
 
-We end this section with a couple of technical results concerning the lifting of collapsed monomial pairs.
-In their statements, $\matA$ is a monomial matrix, $\O$ is an unbounded standard face of the Newton polyhedron $\N$ of $\matA$, and overbars denote collapsing along~$\O$.
+\pedro[inline]{
+   I replaced the three results about liftings with one that is more general, and simplified the proof.
+   The original results are, for now, commented out.
+}
+We close this section with a result concerning the lifting of collapsed monomial pairs.
+Let $\N$ be the Newton polyhedron of a monomial matrix $\matA$ with $\numvars$ rows, and $\O$ a standard face of $\N$.
+Denote the collapsing along $\O$ by an overbar.
+As shown in \Cref{faces under collapsing: P}, any standard face of $\collapse{\N}$ is of the form $\collapse{\L}$, for some standard face $\L$ of $\N$ with $\rb(\O) \subseteq \rb(\L)$.
+We show that we can lift a pair whose minimal face is $\collapse{\L}$ to one whose minimal face is $\L$.
 
-\begin{lemma}
-   \label{lem: lifting pairs}
-   % Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
-   % Let $\O$ be a standard face of $\N$, and let an overbar denote the collapse along~$\O$.
-   Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and fix a pair $(\matA, \vv{u})$ with $\collapse{\vv{u}} = \vv{w}$.
-   If we set $\L \coloneqq \mf(\matA, \vv{u})$, then $\O = \L$ if and only if $\rb(\O) \subseteq \rb(\L)$.
-\end{lemma}
-
-\begin{proof}
-%   We will prove that if $\rb(\O) \subseteq \rb(\L)$, then $\O =\L$.
-   Suppose  $\rb(\O) \subseteq \rb(\L)$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \degree(\matA,\vv{u})$.
-   Then $\lambda^{-1} \vv{u} \in \L$, and so $\lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\L}$.
-   Since $\collapse{\L}$ is a face of $\collapse{\N}$ by \Cref{faces under collapsing: P},
-%   and $\lambda = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P},
-   the minimality of $\collapse{\O} = \mf(\collapse{\matA}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\L}$, and invoking \Cref{faces under collapsing: P} again we conclude that $\O \subseteq \L$.
-   On the other hand, we have 
-   \[ \lambda = \degree(\collapse{\matA},\vv{w}) = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \]
-   and as $\lambda^{-1} \vv{u} \in \L \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$.
-   Finally, the minimality of $\L = \mf(\matA, \vv{u})$ implies that $\L \subseteq \O$.
-\end{proof}
-
-\begin{proposition}
+\begin{proposition}[Lifting pairs]
    \label{prop: lifting pairs}
-   % Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
-   % Let $\O$ be a standard unbounded face of $\N$, and let an overbar denote the collapse along~$\O$.
-   Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$.
-   Then there exists a positive point $\vv{u}$ in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$.
+   \label{cor: when the lift is almost there}
+   With notation as in the previous paragraph, let $(\collapse{\matA},\vv{w})$ be a monomial pair with $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$.
+   Let $\canvec$ denote the sum of the standard basis vectors in $\rb(\O)$.
+   Then the following hold\textup:
+   \begin{enumerate}[$(1)$]
+      \item There exists a positive point $\vv{u}\in \ZZ^\numvars$  such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \L$.
+      \item If $\vv{v}$ is any positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$, then $\mf(\matA,\vv{v}+k\canvec) = \L$ for every sufficiently large integer $k$.
+      \pedro{We could remove (2); it's only used to get (3)}
+      \item If $\vv{v}$ is a positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$ and $\mf(\matA,\vv{v}) \subseteq \L$, then $\mf(\matA,\vv{v}+\canvec) = \L$.
+   \end{enumerate}
 \end{proposition}
 
+\pedro[inline]{
+   With notation as above, let $\widehat{\ }$ denote collapse along $\collapse{\L}$, so $\widehat{\collapse{\phantom{x}}}$ is the collapse along $\L$.
+   Then $\udeficit(\collapse{\matA},\vv{w},q) = \udeficit(\widehat{\collapse{\matA}},\widehat{\vv{w}},q) =
+   \udeficit(\widehat{\collapse{\matA}},\widehat{\collapse{\vv{u}}},q) = \udeficit(\matA,\vv{u},q)$.
+}
+
 \begin{proof}
-   Let $\vv{v}$ be a positive point in the target lattice of $\matA$ such that $\collapse{\vv{v}}=\vv{w}$.
-   Consider a standard face $\L$ of $\N$ such that $\rb(\O) \not\subseteq \rb(\L)$.
-   We start by showing that we can modify $\vv{v}$, producing another lift $\vv{u}$ of $\vv{w}$ so that $\mf(\matA,\vv{u}) \ne \L$.
+   As $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$, there exists a positive scalar $\lambda$ such that $\lambda \vv{w} \in \ri\collapse{\L}$.
+   Since $\ri\collapse{\L} = \collapse{\ri\L}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), there exists $\vv{t} \in \ri\L$ such that $\lambda\vv{w} = \collapse{\vv{t}}$.
+   Let $\vv{u} = \up{\lambda^{-1}\vv{t}}$.
+   Note that for indices $i$ such that $\canvec_i \in \rb(\O)^\perp$ we have $u_i = \up{\lambda^{-1}t_i} = \up{\lambda^{-1}\lambda w_i} = w_i$, so $\collapse{\vv{u}} = \vv{w}$.
+   Moreover, $\lambda \vv{u} \ge \vv{t}$, and $\lambda u_i > t_i$ only when $\canvec_i \in \rb(\O) \subseteq \rb(\L)$.
+   Since $\vv{t} \in\ri \L$, this implies that $\lambda \vv{u} \in \ri \L$ as well, so $\mf(\matA,\vv{u}) = \L$, giving (1).
+
+   Suppose $\vv{v}$ is a positive point of $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$.
+   For a sufficiently large integer $k$ we have $\vv{v} +k\canvec \ge  \vv{u}$, and arguing as above we see that $\lambda(\vv{v}+k\canvec) \in \ri\L$.
+   Thus, for all such $k$ we have $\mf(\matA,\vv{v}+k\canvec) = \L$, giving (2).
+   This and \Cref{cor: a property of minimal faces} give (3).
+\end{proof}
+
+% In their statements, $\matA$ is a monomial matrix, $\O$ is an unbounded standard face of the Newton polyhedron $\N$ of $\matA$, and overbars denote collapsing along~$\O$.
+
+% \begin{lemma}
+%    \label{lem: lifting pairs}
+%    % Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
+%    % Let $\O$ be a standard face of $\N$, and let an overbar denote the collapse along~$\O$.
+%    Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and fix a pair $(\matA, \vv{u})$ with $\collapse{\vv{u}} = \vv{w}$.
+%    If we set $\L \coloneqq \mf(\matA, \vv{u})$, then $\O = \L$ if and only if $\rb(\O) \subseteq \rb(\L)$.
+% \end{lemma}
+
+% \begin{proof}
+% %   We will prove that if $\rb(\O) \subseteq \rb(\L)$, then $\O =\L$.
+%    Suppose  $\rb(\O) \subseteq \rb(\L)$, fix a point $\vv{c}$ defining $\O$ in $\N$, and set $\lambda = \degree(\matA,\vv{u})$.
+%    Then $\lambda^{-1} \vv{u} \in \L$, and so $\lambda^{-1} \vv{w} = \lambda^{-1} \collapse{\vv{u}} \in \collapse{\L}$.
+%    Since $\collapse{\L}$ is a face of $\collapse{\N}$ by \Cref{faces under collapsing: P},
+% %   and $\lambda = \degree(\collapse{\matA},\vv{w})$ by \Cref{collapse of mf and mc: P},
+%    the minimality of $\collapse{\O} = \mf(\collapse{\matA}, \vv{w})$ implies $\collapse{\O} \subseteq \collapse{\L}$, and invoking \Cref{faces under collapsing: P} again we conclude that $\O \subseteq \L$.
+%    On the other hand, we have 
+%    \[ \lambda = \degree(\collapse{\matA},\vv{w}) = \iprod{\collapse{\vv{c}}}{\vv{w}} = \iprod{\vv{c}}{\vv{u}} \]
+%    and as $\lambda^{-1} \vv{u} \in \L \subseteq \N$, the identity $\lambda = \iprod{\vv{c}}{\vv{u}}$ implies that $\lambda^{-1} \vv{u} \in \O$.
+%    Finally, the minimality of $\L = \mf(\matA, \vv{u})$ implies that $\L \subseteq \O$.
+% \end{proof}
+
+% \begin{proposition}
+%    \label{prop: lifting pairs}
+%    % Let $\N$ be the Newton polyhedron associated to a monomial matrix~$\matA$.
+%    % Let $\O$ be a standard unbounded face of $\N$, and let an overbar denote the collapse along~$\O$.
+%    Consider a pair  $(\collapse{\matA}, \vv{w})$ with $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$.
+%    Then there exists a positive point $\vv{u}$ in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \O$.
+% \end{proposition}
+
+% \begin{proof}
+%    Let $\vv{v}$ be a positive point in the target lattice of $\matA$ such that $\collapse{\vv{v}}=\vv{w}$.
+%    Consider a standard face $\L$ of $\N$ such that $\rb(\O) \not\subseteq \rb(\L)$.
+%    We start by showing that we can modify $\vv{v}$, producing another lift $\vv{u}$ of $\vv{w}$ so that $\mf(\matA,\vv{u}) \ne \L$.
    
-   Let $\vv{b}$ and $\defpt$ be points that define $\L$ and $\O$ in $\N$, and let $\vv{e}$ denote the sum of the standard basis vectors in $\rb(\O)$.
-   The assumption on the recession basis of $\L$ implies that $\iprod{\vv{b}}{\vv{e}} \ne 0$.
-   Let $k$ be a positive integer with
-   \[ k > \frac{\iprod{\vv{c}}{\vv{v}} - \iprod{\vv{b}}{\vv{v}}}{\iprod{\vv{b}}{\vv{e}}}\]
-   and set $\vv{u} = \vv{v} + k\vv{e}$.
-   We then have
-   \[\iprod{\vv{b}}{\vv{u}} = \iprod{\vv{b}}{\vv{v}} + k\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{u}} \]
-   which, in view of the equivalence of \ref{new ip} and \ref{min} in \Cref{FT descriptions: P}, shows that $\mf(\matA,\vv{u})$ cannot be $\L$.
+%    Let $\vv{b}$ and $\defpt$ be points that define $\L$ and $\O$ in $\N$, and let $\vv{e}$ denote the sum of the standard basis vectors in $\rb(\O)$.
+%    The assumption on the recession basis of $\L$ implies that $\iprod{\vv{b}}{\vv{e}} \ne 0$.
+%    Let $k$ be a positive integer with
+%    \[ k > \frac{\iprod{\vv{c}}{\vv{v}} - \iprod{\vv{b}}{\vv{v}}}{\iprod{\vv{b}}{\vv{e}}}\]
+%    and set $\vv{u} = \vv{v} + k\vv{e}$.
+%    We then have
+%    \[\iprod{\vv{b}}{\vv{u}} = \iprod{\vv{b}}{\vv{v}} + k\iprod{\vv{b}}{\vv{e}} > \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\vv{u}} \]
+%    which, in view of the equivalence of \ref{new ip} and \ref{min} in \Cref{FT descriptions: P}, shows that $\mf(\matA,\vv{u})$ cannot be $\L$.
 
-   Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the finitely many standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
-   With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must be $\O$.
-\end{proof}
+%    Clearly, the integer $k$ used in the construction of the point $\vv{u}$ can be chosen to ensure that the minimal face of $(\matA,\vv{u})$ is \emph{none} of the finitely many standard faces $\L$ of $\N$ with $\rb(\O) \not\subseteq \rb(\L)$.
+%    With this choice of $k$, the recession basis of $\mf(\matA,\vv{u})$ contains $\rb(\O)$, and \Cref{lem: lifting pairs} shows that this minimal face must be $\O$.
+% \end{proof}
 
-\begin{corollary}
-   \label{cor: when the lift is almost there}
-   Suppose $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and let $\vv{u}$ be a positive point in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) \subseteq \O$.
-   Let $\canvec$ be the sum of the standard basis vectors in $\rb(\O)$.
-   Then $\mf(\matA,\vv{u}+\canvec) = \O$.
-\end{corollary}
+% \begin{corollary}
+%    \label{cor: when the lift is almost there}
+%    Suppose $\mf(\collapse{\matA}, \vv{w}) = \collapse{\O}$, and let $\vv{u}$ be a positive point in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) \subseteq \O$.
+%    Let $\canvec$ be the sum of the standard basis vectors in $\rb(\O)$.
+%    Then $\mf(\matA,\vv{u}+\canvec) = \O$.
+% \end{corollary}
 
-\begin{proof}
-   The proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+k\canvec) = \O$.
-   The result then follows from \Cref{cor: a property of minimal faces}.
-\end{proof}
+% \begin{proof}
+%    The proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+k\canvec) = \O$.
+%    The result then follows from \Cref{cor: a property of minimal faces}.
+% \end{proof}
 
 \section{An auxiliary integer program}
 
