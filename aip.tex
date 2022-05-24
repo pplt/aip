@@ -1282,6 +1282,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    More precisely,
    \begin{enumerate}[$(1)$]
       \item If $\G$ is a face of $\N$ such that $\rb(\O) \subseteq \rb(\G)$, defined in $\N$ by a point $\vv{g}$, then $\collapse{\G} = \pi(\G)$ is a face of $\collapse{\N}$, defined by the point $\collapse{\vv{g}}$.
+      The recession basis of $\collapse{\G}$ consists of the nonzero vectors in $\collapse{\rb(\G)}$.
       Moreover, $\G$ is standard if and only if $\collapse{\G}$ is standard, and $\pi^{-1}(\collapse{\G}) = \G$.
       \item If $\H$ is a face of $\collapse{\N}$ defined by a point $\vv{h}$, then $\pi^{-1}(\H)$ is a face of $\N$ defined by the unique point $\vv{k}\in\rs(\O)^\perp$ such that $\collapse{\vv{k}} = \vv{h}$.
       The recession basis of $\pi^{-1}(\H)$ contains $\rb(\O)$, $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard, and $\collapse{\pi^{-1}(\H)} = \H$.
@@ -1297,7 +1298,8 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
       \iprod{\collapse{\vv{g}}}{\vv{v}} = \iprod{\vv{g}}{\vv{u}} \ge \alpha\label{ineq1}
    \end{equation}
    If equality is attained in \eqref{ineq1}, then $\vv{u} \in \G$, and $\vv{v} = \collapse{\vv{u}} \in \collapse{\G}$.
-   Conversely, if $\vv{v} \in \collapse{\G}$, then we may assume that $\vv{u} \in \G$, and equality is attained in \eqref{ineq1}, and this completes the proof that $\collapse{\G}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{g}}$.
+   Conversely, if $\vv{v} \in \collapse{\G}$, then we may assume that $\vv{u} \in \G$, and equality is attained in \eqref{ineq1}.
+   This completes the proof that $\collapse{\G}$ is a face of $\collapse{\N}$ defined by $\collapse{\vv{g}}$, and the claim about the recession basis of $\collapse{\G}$ follows at once.
 
    The fact that $\G$ is standard if and only if $\collapse{\G}$ is standard follows from our using the same scalar $\alpha$ in the definition of these faces (see \Cref{rmk: standard faces}).
    The containment $\G \subseteq \pi^{-1}(\collapse{\G})$ is immediate, and to verify the reverse containment, note that if $\vv{u} \in \pi^{-1}(\collapse{\G})$, then $\collapse{\vv{u}} \in \collapse{\G}$, so we have $\iprod{\vv{g}}{\vv{u}} = \iprod{\collapse{\vv{g}}}{\collapse{\vv{u}}} = \alpha$, which implies that $\vv{u} \in \G$.
