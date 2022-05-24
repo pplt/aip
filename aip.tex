@@ -1342,7 +1342,7 @@ Below, we describe the relationship between collapses and notions associated to 
 
 \begin{proposition}[Minimal face, degree, special and optimal points under collapsing]
    \label{collapse of mf and mc: P}
-   Consider a monomial pair $(\matA, \vv{u})$\textup; let $\G = \mf(\matA,\vv{u})$, and let an overbar denote collapse along a standard face $\O$ of the Newton polyhedron $\N$ of $\matA$ such that  $\rb(\O)\subseteq \rb(\G)$.
+   Consider a monomial pair $(\matA, \vv{u})$\textup; let $\G = \mf(\matA,\vv{u})$, and let an overbar denote collapse along a standard face $\O$ of the Newton polyhedron of $\matA$ with  $\rb(\O)\subseteq \rb(\G)$.
    Then the following hold.
    \begin{enumerate}[$(1)$]
       \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\G}$ and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
@@ -1352,8 +1352,8 @@ Below, we describe the relationship between collapses and notions associated to 
 \end{proposition}
 
 \begin{proof}
-   Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\G$.
-   Since $\collapse{\ri\G} = \ri{\collapse{\G}}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\G}$, a  face of $\collapse{\N}$ by \Cref{faces under collapsing: P}.
+   Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u} \in \ri\G$.
+   As $\collapse{\ri\G} = \ri{\collapse{\G}}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\G}$, a  face of the Newton polyhedron of~$\collapse{\matA}$ by \Cref{faces under collapsing: P}.
    This shows that $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\G}$ and $\degree(\collapse{\matA},\collapse{\vv{u}}) = \lambda$, giving~(1).
 
    Since each row of $\collapse{\matA}$ is a row of $\matA$, the constraints of $\LP(\collapse{\matA}, \collapse{\vv{u}})$ are a subset of those of $\LP(\matA, \vv{u})$, and hence $\feas \LP(\matA,\vv{u})$ is a subset of $\feas \LP(\collapse{\matA},\collapse{\vv{u}})$.
