@@ -1185,12 +1185,8 @@ A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
 A = transpose matrix { {5,7,0}, {0,5,7}, {7,0,5} };
 A = 7*identityMatrix(3);
 
-F = select( facesAsPolyhedra( 1, newtonPolyhedon A ), isStandard )
-
-SP = unique( flatten apply( F, O -> apply( hilbertBasis O, u -> specialPoint( A, u ) ) ) );
-
-denom = lcm( denominator \ SP )
-
+denom = universalDenominator2 A
+universalDenominator A
 (universalDenominator A)/ denom
 
 A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };

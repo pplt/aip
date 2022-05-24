@@ -378,10 +378,10 @@ specialPoint MonomialPair := ( cacheValue symbol specialPoint )( P ->
     u := P#point;
     n := rank source A;
     M := A || - identityMatrix n; 
-    v := u || zeroVector( n );
+    v := u || zeroVector n;
     feasibleRegion := polyhedronFromHData( M, v );
     -- Now, the optimal set:
-    optimalSet := maxFace( transpose matrix { constantList( 1, rank source A ) }, feasibleRegion );
+    optimalSet := maxFace( constantVector( 1, n ), feasibleRegion );
     -- an interior point of the optimal set is a special point:
     interiorPoint optimalSet
 ))
@@ -513,17 +513,19 @@ minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVe
     minimalPoints select( pts, u -> isSmallNotVerySmall monomialPair( A, u ) ) 
 ))
 
--- Maybe cache value
--- hilbertBasis Cone := o -> C -> 
--- (
---     M := - halfspaces C;
---     m := rank target M;
---     n := numcols M;
---     M = M | identityMatrix m; add slack columns
---     HB := (hilbertBasis M)_{0..(n-1)}; remove slack
---     columns transpose HB
--- )
-hilbertBasis Polyhedron := o -> P -> hilbertBasis( coneFromVData P, o )
+-- experimental implementation of univ denom using Hilbert bases.
+universalDenominator2 = method()
+universalDenominator2 MonomialMatrix := A -> 
+(
+    -- standard facets:
+    F := select( facesAsPolyhedra( 1, newtonPolyhedon A ), isStandard );
+    -- now take the union of the Hilbert bases for the cones over all these facets
+    hilbBases := unique flatten apply( F, O -> hilbertBasis coneFromVData O );
+    -- the special points 
+    specialPts = apply( hilbBases, u -> specialPoint( A, u ) );
+    lcm( denominator \ specialPts )
+)
+universalDenominator2 Matrix := A -> universalDenominator2 monomialMatrix A
 
 --------------------------------------------
 -- Integer Programs
