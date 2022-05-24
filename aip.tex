@@ -1342,29 +1342,54 @@ Below, we describe the relationship between collapses and notions associated to 
 
 \begin{proposition}[Minimal face, degree, special and optimal points under collapsing]
    \label{collapse of mf and mc: P}
-   Consider a monomial pair $(\matA, \vv{u})$, and let an overbar denote collapse along $\O = \mf(\matA, \vv{u})$.
+   Consider a monomial pair $(\matA, \vv{u})$\textup; let $\G = \mf(\matA,\vv{u})$, and let an overbar denote collapse along a standard face $\O$ of the Newton polyhedron $\N$ of $\matA$ such that  $\rb(\O)\subseteq \rb(\G)$.
    Then the following hold.
    \begin{enumerate}[$(1)$]
-      \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\O}$, which is compact, and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
+      \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\G}$ and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
       \item Each optimal point for $\LP(\matA, \vv{u})$ is also optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
       \item Each special point for $(\matA, \vv{u})$ is a special point for $(\collapse{\matA}, \collapse{\vv{u}})$.
    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-   Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$.
-   It is clear that a projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, a  face of $\collapse{\N}$ by \Cref{cor: O bar is bounded}.
-   This shows that $\collapse{\O}= \mf(\collapse{\matA},\collapse{\vv{u}})$ and $\lambda = \degree(\collapse{\matA},\collapse{\vv{u}})$.
-   Consequently,
-   \[ \val \LP(\matA, \vv{u}) = \degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}}) = \val \LP(\collapse{\matA}, \collapse{\vv{u}}). \]
+   Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\G$.
+   Since $\collapse{\ri\G} = \ri{\collapse{\G}}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\G}$, a  face of $\collapse{\N}$ by \Cref{faces under collapsing: P}.
+   This shows that $\mf(\collapse{\matA},\collapse{\vv{u}}) = \collapse{\G}$ and $\degree(\collapse{\matA},\collapse{\vv{u}}) = \lambda$, giving~(1).
+
    Since each row of $\collapse{\matA}$ is a row of $\matA$, the constraints of $\LP(\collapse{\matA}, \collapse{\vv{u}})$ are a subset of those of $\LP(\matA, \vv{u})$, and hence $\feas \LP(\matA,\vv{u})$ is a subset of $\feas \LP(\collapse{\matA},\collapse{\vv{u}})$.
-   It follows that any optimal point for $\LP(\matA, \vv{u})$ must be optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
-   The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
-   \begin{equation*}
-      \sp(\matA, \vv{u}) \subseteq \opt \LP(\matA, \vv{u}) \subseteq \opt \LP(\collapse{\matA}, \collapse{\vv{u}}) = \sp(\collapse{\matA}, \collapse{\vv{u}}).
-   \qedhere
-\end{equation*}
+   As 
+   \[ \val \LP(\matA, \vv{u}) = \degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}}) = \val \LP(\collapse{\matA}, \collapse{\vv{u}})\]
+   it follows that any optimal point for $\LP(\matA, \vv{u})$ must be optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$, giving~(2).
+
+   If $\vv{s}$ is a special point for $(\matA,\vv{u})$, then $\vv{s}$ is optimal for $\LP(\matA,\vv{u})$, and therefore for $\LP(\collapse{\matA},\collapse{\vv{u}})$, and $\vv{u} = \matA\vv{s}+\vv{w}$, where $\vv{w} \in \ri\cone(\rb(\G))$.
+   Collapsing this equation, we get $\collapse{\vv{u}} = \collapse{\matA} \vv{s} + \collapse{\vv{w}}$, and \Cref{faces under collapsing: P} shows that $\collapse{\vv{w}} \in \ri\cone(\rb(\collapse{\G}))$, so $\vv{s}$ is special for $(\collapse{\matA},\collapse{\vv{u}})$. 
 \end{proof}
+
+% \begin{proposition}[Minimal face, degree, special and optimal points under collapsing]
+%    \label{collapse of mf and mc: P}
+%    Consider a monomial pair $(\matA, \vv{u})$, and let an overbar denote collapse along $\O = \mf(\matA, \vv{u})$.
+%    Then the following hold.
+%    \begin{enumerate}[$(1)$]
+%       \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\O}$, which is compact, and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
+%       \item Each optimal point for $\LP(\matA, \vv{u})$ is also optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
+%       \item Each special point for $(\matA, \vv{u})$ is a special point for $(\collapse{\matA}, \collapse{\vv{u}})$.
+%    \end{enumerate}
+% \end{proposition}
+
+% \begin{proof}
+%    Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$.
+%    It is clear that a projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, a  face of $\collapse{\N}$ by \Cref{cor: O bar is bounded}.
+%    This shows that $\collapse{\O}= \mf(\collapse{\matA},\collapse{\vv{u}})$ and $\lambda = \degree(\collapse{\matA},\collapse{\vv{u}})$.
+%    Consequently,
+%    \[ \val \LP(\matA, \vv{u}) = \degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}}) = \val \LP(\collapse{\matA}, \collapse{\vv{u}}). \]
+%    Since each row of $\collapse{\matA}$ is a row of $\matA$, the constraints of $\LP(\collapse{\matA}, \collapse{\vv{u}})$ are a subset of those of $\LP(\matA, \vv{u})$, and hence $\feas \LP(\matA,\vv{u})$ is a subset of $\feas \LP(\collapse{\matA},\collapse{\vv{u}})$.
+%    It follows that any optimal point for $\LP(\matA, \vv{u})$ must be optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
+%    The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
+%    \begin{equation*}
+%       \sp(\matA, \vv{u}) \subseteq \opt \LP(\matA, \vv{u}) \subseteq \opt \LP(\collapse{\matA}, \collapse{\vv{u}}) = \sp(\collapse{\matA}, \collapse{\vv{u}}).
+%    \qedhere
+% \end{equation*}
+% \end{proof}
 
 \begin{example}[Running example: collapsing]
    \label{ex: ft.2}
@@ -1502,6 +1527,18 @@ We show that we can lift a pair whose minimal face is $\collapse{\L}$ to one who
 %    The proof of \Cref{prop: lifting pairs} shows that for a sufficiently large integer $k$ we have $\mf(\matA,\vv{u}+k\canvec) = \O$.
 %    The result then follows from \Cref{cor: a property of minimal faces}.
 % \end{proof}
+
+\begin{proposition}
+   If $\denom$ is a universal denominator for a monomial matrix $\matA$, then~$\denom$ is a universal denominator for all collapses of $\matA$.
+\end{proposition}
+
+\begin{proof}
+   Let $\O$ be a standard face of the Newton polyhedron $\N$ of $\matA$, and let overbars denote collapsing along $\O$.
+   Consider a monomial pair $(\collapse{\matA},\vv{w})$.
+   By \Cref{faces under collapsing: P}, $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$ for some standard face $\L$ of $\N$ such that $\rb(\O) \subseteq \rb(\L)$.
+   By \Cref{prop: lifting pairs}, there exists $\vv{u}$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \L$.
+   Finally, by \Cref{collapse of mf and mc: P} every special point for $(\matA,\vv{u})$ is a special point for $(\collapse{\matA},\vv{w})$, so $(\collapse{\matA},\vv{w})$ has a special point with denominator $\denom$.
+\end{proof}
 
 \section{An auxiliary integer program}
 
