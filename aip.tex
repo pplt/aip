@@ -38,6 +38,7 @@ TO DO LIST:
  \item[$\CheckedBox$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Check for consistent use of ``Lemma'' and ``Proposition''.
  If it's used right away, ``Lemma'' is OK; if there's no use in sight, use ``Proposition''.
+ \item[$\Box$] Change the order of items in a monomial list from $(\matA,\vv{u},\vv{s},q)$ to $(\matA,\vv{u},q,\vv{s})$ (so it is a monomial triple plus something extra).
 \end{enumerate}}
  \details[inline]{
  	TO DO LIST:
@@ -1041,7 +1042,7 @@ This is accomplished by the following proposition, which concretely describes a 
 
 \begin{remark}[Degrees of small pairs]
    \label{rem: finitely many F-thresholds of small pairs}
-   Even though there may exist infinitely many small $\matA$-pairs, as shown in the previous example, the degrees of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$, and consequently there are only finitely many such degrees by \Cref{discreteness: P}.
+   Even though there may exist infinitely many small $\matA$-pairs, as shown in \Cref{ex: small vs very small}, the degrees of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$, and consequently there are only finitely many such degrees by \Cref{discreteness: P}.
    
    \daniel[inline]{Here is an argument that may produce a much tighter bound (e.g., if $\numvars$ is small):
    
@@ -1282,10 +1283,11 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    More precisely,
    \begin{enumerate}[$(1)$]
       \item If $\G$ is a face of $\N$ such that $\rb(\O) \subseteq \rb(\G)$, defined in $\N$ by a point $\vv{g}$, then $\collapse{\G} = \pi(\G)$ is a face of $\collapse{\N}$, defined by the point $\collapse{\vv{g}}$.
-      The recession basis of $\collapse{\G}$ consists of the nonzero vectors in $\collapse{\rb(\G)}$.
+      The recession basis of $\collapse{\G}$ consists of the nonzero vectors in $\collapse{\rb(\G)}$, so $\collapse{\G}$ is bounded if and only if $\rb(\G) = \rb(\O)$.
       Moreover, $\G$ is standard if and only if $\collapse{\G}$ is standard, and $\pi^{-1}(\collapse{\G}) = \G$.
       \item If $\H$ is a face of $\collapse{\N}$ defined by a point $\vv{h}$, then $\pi^{-1}(\H)$ is a face of $\N$ defined by the unique point $\vv{k}\in\rs(\O)^\perp$ such that $\collapse{\vv{k}} = \vv{h}$.
-      The recession basis of $\pi^{-1}(\H)$ contains $\rb(\O)$, $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard, and $\collapse{\pi^{-1}(\H)} = \H$.
+      The recession basis of $\pi^{-1}(\H)$ is the union of $\rb(\O)$ with the set $\{\canvec_i\in \ZZ^\numvars: \pi(\canvec_i)\in \rb(\H)\}$.
+      Moreover, $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard, and $\collapse{\pi^{-1}(\H)} = \H$.
    \end{enumerate}
 \end{proposition}
 
@@ -1311,7 +1313,7 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
       \iprod{\vv{k}}{\vv{u}} = \iprod{\vv{h}}{\collapse{\vv{u}}} \ge \beta
    \end{equation*}
    with equality attained if and only if $\collapse{\vv{u}} \in \H$, or equivalently, $\vv{u} \in \pi^{-1}(\H)$.
-   This shows that $\pi^{-1}(\H)$ is a face of $\N$ defined by the point $\vv{k}$, and the fact that the recession basis of this face contains $\rb(\O)$ follows immediately from our choice of $\vv{k} \in \rb(\O)^\perp$.
+   This shows that $\pi^{-1}(\H)$ is a face of $\N$ defined by the point $\vv{k}$, and the claim about the recession basis of this face follows immediately from the fact that $\vv{k} \in \rb(\O)^\perp$ and $\collapse{\vv{k}}=\vv{h}$.
 
    The fact that $\H$ is standard if and only if $\pi^{-1}(\H)$ is standard follows from our using the same $\beta$ in the definition of these faces, and the identity $\collapse{\pi^{-1}(\H)} = \H$ is simply a consequence of the surjectivity of $\pi$.
 \end{proof}
@@ -1427,43 +1429,43 @@ Below, we describe the relationship between collapses and notions associated to 
    I replaced the three results about liftings with one that is more general, and simplified the proof.
    The original results are, for now, commented out.
 }
-We close this section with a result concerning the lifting of collapsed monomial pairs.
+
 Let $\N$ be the Newton polyhedron of a monomial matrix $\matA$ with $\numvars$ rows, and $\O$ a standard face of $\N$.
 Denote the collapsing along $\O$ by an overbar.
-As shown in \Cref{faces under collapsing: P}, any standard face of $\collapse{\N}$ is of the form $\collapse{\L}$, for some standard face $\L$ of $\N$ with $\rb(\O) \subseteq \rb(\L)$.
-We show that we can lift a pair whose minimal face is $\collapse{\L}$ to one whose minimal face is $\L$.
+As shown in \Cref{faces under collapsing: P}, any standard face of $\collapse{\N}$ is of the form $\collapse{\G}$, for some standard face $\G$ of $\N$ with $\rb(\O) \subseteq \rb(\G)$.
+We show that we can lift a pair whose minimal face is $\collapse{\G}$ to one whose minimal face is $\G$.
 
 \begin{proposition}[Lifting pairs]
    \label{prop: lifting pairs}
    \label{cor: when the lift is almost there}
-   With notation as in the previous paragraph, let $(\collapse{\matA},\vv{w})$ be a monomial pair with $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$.
+   With notation as in the previous paragraph, let $(\collapse{\matA},\vv{w})$ be a monomial pair with $\mf(\collapse{\matA},\vv{w}) = \collapse{\G}$.
    Let $\canvec$ denote the sum of the standard basis vectors in $\rb(\O)$.
    Then the following hold\textup:
    \begin{enumerate}[$(1)$]
-      \item There exists a positive point $\vv{u}\in \ZZ^\numvars$  such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \L$.
-      \item If $\vv{v}$ is any positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$, then $\mf(\matA,\vv{v}+k\canvec) = \L$ for every sufficiently large integer $k$.
+      \item There exists a positive point $\vv{u}\in \ZZ^\numvars$  such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \G$.
+      \item If $\vv{v}$ is any positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$, then $\mf(\matA,\vv{v}+k\canvec) = \G$ for every sufficiently large integer $k$.
       \pedro{We could remove (2); it's only used to get (3)}
-      \item If $\vv{v}$ is a positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$ and $\mf(\matA,\vv{v}) \subseteq \L$, then $\mf(\matA,\vv{v}+\canvec) = \L$.
+      \item If $\vv{v}$ is a positive point in $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$ and $\mf(\matA,\vv{v}) \subseteq \G$, then $\mf(\matA,\vv{v}+\canvec) = \G$.
    \end{enumerate}
 \end{proposition}
 
 \pedro[inline]{
-   With notation as above, let $\widehat{\ }$ denote collapse along $\collapse{\L}$, so $\widehat{\collapse{\phantom{x}}}$ is the collapse along $\L$.
+   With notation as above, let $\widehat{\ }$ denote collapse along $\collapse{\G}$, so $\widehat{\collapse{\phantom{x}}}$ is the collapse along $\G$.
    Then $\udeficit(\collapse{\matA},\vv{w},q) = \udeficit(\widehat{\collapse{\matA}},\widehat{\vv{w}},q) =
    \udeficit(\widehat{\collapse{\matA}},\widehat{\collapse{\vv{u}}},q) = \udeficit(\matA,\vv{u},q)$.
 }
 
 \begin{proof}
-   As $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$, there exists a positive scalar $\lambda$ such that $\lambda \vv{w} \in \ri\collapse{\L}$.
-   Since $\ri\collapse{\L} = \collapse{\ri\L}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), there exists $\vv{t} \in \ri\L$ such that $\lambda\vv{w} = \collapse{\vv{t}}$.
+   As $\mf(\collapse{\matA},\vv{w}) = \collapse{\G}$, there exists a positive scalar $\lambda$ such that $\lambda \vv{w} \in \ri\collapse{\G}$.
+   Since $\ri\collapse{\G} = \collapse{\ri\G}$ (see, \eg \cite[4.9]{vantiel.convex_analysis}), there exists $\vv{t} \in \ri\G$ such that $\lambda\vv{w} = \collapse{\vv{t}}$.
    Let $\vv{u} = \up{\lambda^{-1}\vv{t}}$.
    Note that for indices $i$ such that $\canvec_i \in \rb(\O)^\perp$ we have $u_i = \up{\lambda^{-1}t_i} = \up{\lambda^{-1}\lambda w_i} = w_i$, so $\collapse{\vv{u}} = \vv{w}$.
-   Moreover, $\lambda \vv{u} \ge \vv{t}$, and $\lambda u_i > t_i$ only when $\canvec_i \in \rb(\O) \subseteq \rb(\L)$.
-   Since $\vv{t} \in\ri \L$, this implies that $\lambda \vv{u} \in \ri \L$ as well, so $\mf(\matA,\vv{u}) = \L$, giving (1).
+   Moreover, $\lambda \vv{u} \ge \vv{t}$, and $\lambda u_i > t_i$ only when $\canvec_i \in \rb(\O) \subseteq \rb(\G)$.
+   Since $\vv{t} \in\ri \G$, this implies that $\lambda \vv{u} \in \ri \G$ as well, so $\mf(\matA,\vv{u}) = \G$, giving (1).
 
    Suppose $\vv{v}$ is a positive point of $\ZZ^\numvars$ such that $\collapse{\vv{v}} = \vv{w}$.
-   For a sufficiently large integer $k$ we have $\vv{v} +k\canvec \ge  \vv{u}$, and arguing as above we see that $\lambda(\vv{v}+k\canvec) \in \ri\L$.
-   Thus, for all such $k$ we have $\mf(\matA,\vv{v}+k\canvec) = \L$, giving (2).
+   For a sufficiently large integer $k$ we have $\vv{v} +k\canvec \ge  \vv{u}$, and arguing as above we see that $\lambda(\vv{v}+k\canvec) \in \ri\G$.
+   Thus, for all such $k$ we have $\mf(\matA,\vv{v}+k\canvec) = \G$, giving (2).
    This and \Cref{cor: a property of minimal faces} give (3).
 \end{proof}
 
@@ -1535,8 +1537,8 @@ We show that we can lift a pair whose minimal face is $\collapse{\L}$ to one who
 \begin{proof}
    Let $\O$ be a standard face of the Newton polyhedron $\N$ of $\matA$, and let overbars denote collapsing along $\O$.
    Consider a monomial pair $(\collapse{\matA},\vv{w})$.
-   By \Cref{faces under collapsing: P}, $\mf(\collapse{\matA},\vv{w}) = \collapse{\L}$ for some standard face $\L$ of $\N$ such that $\rb(\O) \subseteq \rb(\L)$.
-   By \Cref{prop: lifting pairs}, there exists $\vv{u}$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \L$.
+   By \Cref{faces under collapsing: P}, $\mf(\collapse{\matA},\vv{w}) = \collapse{\G}$ for some standard face $\G$ of $\N$ such that $\rb(\O) \subseteq \rb(\G)$.
+   By \Cref{prop: lifting pairs}, there exists a positive point $\vv{u}$ in the target lattice of $\matA$ such that $\collapse{\vv{u}} = \vv{w}$ and $\mf(\matA,\vv{u}) = \G$.
    Finally, by \Cref{collapse of mf and mc: P} every special point for $(\matA,\vv{u})$ is a special point for $(\collapse{\matA},\vv{w})$, so $(\collapse{\matA},\vv{w})$ has a special point with denominator $\denom$.
 \end{proof}
 
@@ -1620,15 +1622,8 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \subsection{Another integer program}
 
-\daniel[inline]{Define an $\matA$ triple to be $(\matA, \vv{u}, q)$, and an $\matA$ list to be $(\matA, \vv{u}, q, \vv{s})$ } 
-
 \begin{definition}[Monomial list]
-   A \emph{monomial list} $(\matA, \vv{u}, \vv{s}, q)$ consists of the following data.
-   \begin{enumerate}
-      \item A monomial pair $(\matA, \vv{u})$.
-      \item A rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
-      \item A positive integer $q$.
-   \end{enumerate}
+   A \emph{monomial list} $(\matA, \vv{u}, q, \vv{s})$ consists of a monomial triple $(\matA, \vv{u}, q)$ along with a rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.
    We call a monomial list whose first term is the matrix $\matA$ an \emph{$\matA$-list}.
 \end{definition}
 
