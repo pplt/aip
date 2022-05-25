@@ -35,10 +35,11 @@ TO DO LIST:
  \item[$\Box$] Do the same as above, replacing $\ideala$ with generic hypersurface.
  \item[$\Box$]  Refine the statement of, and prove \Cref{frobenius-powers-main: T}.
  \item [$\Box$] Look for ways to find smaller universal denominators.
- \item[$\CheckedBox$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
+ % \item[$\CheckedBox$] Figure out how to effectively compute the integral closure of a monomial ideal in \emph{Macaulay2}, or otherwise figure out how to address computability in \Cref{computibility of W: R}.
  \item[$\Box$] Check for consistent use of ``Lemma'' and ``Proposition''.
  If it's used right away, ``Lemma'' is OK; if there's no use in sight, use ``Proposition''.
  \item[$\Box$] Change the order of items in a monomial list from $(\matA,\vv{u},\vv{s},q)$ to $(\matA,\vv{u},q,\vv{s})$ (so it is a monomial triple plus something extra).
+ So far this has been done only in the definition.
 \end{enumerate}}
  \details[inline]{
  	TO DO LIST:
@@ -1274,9 +1275,9 @@ Below, we adopt the notation established in \Cref{collapse: D}, and we use an ov
    The nonzero vectors among $\collapse{\canvec}_1,\ldots,\collapse{\canvec}_\numvars$ are precisely the standard basis vectors in  $\RR^{\#\rb(\O)^\perp}$, so this agrees with the definition of the Newton polyhedron of $\collapse{\matA}$.
 \end{proof}
 
-\begin{definition}
+\begin{definition}[Collapsible faces and pairs]
    Let $\N$ be the Newton polyhedron of a monomial matrix~$\matA$, and~$\O$ a standard face of~$\N$.
-   A face $\G$ of $\N$ is \emph{collapsible along $\O$} if $\rb(\O) \subseteq \rb(\G)$.
+   A face $\G$ of $\N$ is \emph{collapsible along~$\O$} if $\rb(\O) \subseteq \rb(\G)$.
    A monomial pair $(\matA,\vv{u})$ is collapsible along $\O$ if its minimal face is collapsible along~$\O$.
    If the face $\O$ along which we are collapsing is clear from the context, we shall simply say that a face or monomial pair is \emph{collapsible}.
 \end{definition}
@@ -1290,7 +1291,7 @@ The next proposition is the motivation behind this definition and our choice of 
    Then $\pi$ induces a one-to-one correspondence between the collapsible faces of $\N$ and the faces of $\collapse{\N}$, which associates standard faces to standard faces.
    More precisely,
    \begin{enumerate}[$(1)$]
-      \item If $\G$ is a collapsible face of $\N$, defined in $\N$ by a point $\vv{g}$, then $\collapse{\G} = \pi(\G)$ is a face of $\collapse{\N}$, defined by the point $\collapse{\vv{g}}$.
+      \item If $\G$ is a collapsible face of $\N$ defined by a point $\vv{g}$, then $\collapse{\G} = \pi(\G)$ is a face of $\collapse{\N}$, defined by the point $\collapse{\vv{g}}$.
       The recession basis of $\collapse{\G}$ consists of the nonzero vectors in $\collapse{\rb(\G)}$, so $\collapse{\G}$ is bounded if and only if $\rb(\G) = \rb(\O)$.
       Moreover, $\G$ is standard if and only if $\collapse{\G}$ is standard, and $\pi^{-1}(\collapse{\G}) = \G$.
       \item If $\H$ is a face of $\collapse{\N}$ defined by a point $\vv{h}$, then $\pi^{-1}(\H)$ is a collapsible face of $\N$ defined by the unique point $\vv{k}\in\rs(\O)^\perp$ such that $\collapse{\vv{k}} = \vv{h}$.
