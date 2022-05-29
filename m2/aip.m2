@@ -5,6 +5,13 @@ loadPackage("Polyhedra", Reload => true)
 -------------------------------------------------------------------------------
 
 MonomialMatrix = new Type of HashTable
+-- A type to store monomial matrices, and cache info that is computed.
+-- keys: matrix, cache
+-- cached info: 
+--   newtonPolyhedon
+--   universalDenominator
+--   points
+--   minimalSmallNotVerySmall
 
 -- Creates a MonomialMatrix from a Matrix or a List.
 -- TODO: should check if matrix is indeed a monomial matrix
@@ -16,6 +23,7 @@ monomialMatrix = memoize monomialMatrix
 -- will prevent the creation of a copy, therefore keeping the cached values
 
 MonomialPair = new Type of HashTable
+-- cached stuff {specialPoint, (frobeniusMu, 11), collapse, minimalFace, (deficitAndShortfall, 11), degree, (criticalExponent, 11)}
 
 -- Creates a MonomialPair from a MonomialMatrix and a column vector, from a Matrix and a 
 -- column vector, or from two Lists. 
@@ -75,7 +83,7 @@ pointsToMatrix := L -> fold( ( x, y ) -> x | y, L )
 
 --columns returns the columns of a matrix in a list 
 --(the reverse of what pointsToMatrix does)
-columns := M -> apply( rank source M, i -> M_{i} )
+columns := M -> apply( numColumns M, i -> M_{i} )
 
 standardBasis := n -> columns identityMatrix n
 
@@ -134,7 +142,7 @@ fourTiTwo = findProgram(
 -- builds a monomial from a list of variables and a list (or column matrix) of exponents
 makeMonomial = method()
 makeMonomial ( List, List ) := ( variables, exps ) -> product( variables, exps, ( x, a ) -> x^a )  
-makeMonomial ( List, Matrix ) := ( v, e ) -> makeMonomial( v, first entries transpose e )
+makeMonomial ( List, Matrix ) := ( v, e ) -> makeMonomial( v, flatten entries e )
 
 -- Makes the ideal associated to a monomial matrix.
 -- If a ring or variables are not given, it creates a ring.
@@ -145,7 +153,7 @@ matrixToIdeal ( Matrix, List ) := ( A, variables ) ->
 matrixToIdeal ( Matrix, Ring ) := ( A, R ) -> matrixToIdeal( A, R_* )
 matrixToIdeal Matrix := A -> 
 (
-    m := rank target A;
+    m := numRows A;
     X := getSymbol "X";
     R := QQ( monoid[ X_1..X_m ] );
     matrixToIdeal( A, R )
@@ -212,7 +220,7 @@ minimize := ( L, f ) ->
 -- newtonPolyhedon(A) returns the newton polyhedron of a matrix A.
 newtonPolyhedon = method()
 newtonPolyhedon MonomialMatrix := ( cacheValue symbol newtonPolyhedon )( A -> 
-    convexHull( A#matrix ) + posOrthant( rank target A#matrix ) 
+    convexHull( A#matrix ) + posOrthant( numRows A#matrix ) 
 )
 newtonPolyhedon Matrix := A -> newtonPolyhedon monomialMatrix A
 
@@ -260,14 +268,14 @@ unboundedFaces Polyhedron := ( cacheValue symbol unboundedFaces )( P ->
 selectColumnsInFace = method()
 selectColumnsInFace ( Matrix, Polyhedron ) := ( A, P ) ->
 (
-   I := select( rank source A, i -> contains( P, A_{i} ) );
+   I := select( numColumns A, i -> contains( P, A_{i} ) );
    A_I
 )
 
 -- lcmMinors(A) returns the lcm of all maximal minors of A.
 lcmMinors := A -> 
 (
-    d := min( numRows A, rank source A );
+    d := min( numRows A, numColumns A );
     theMinors := ( minors( d, A ) )_*;
     if theMinors == {} then 0 else lcm theMinors 
 )
@@ -296,8 +304,8 @@ universalDenominator = method()
 universalDenominator MonomialMatrix := ( cacheValue symbol universalDenominator )( M ->
 (
     A := M#matrix;    
-    n := rank source A;
-    m := rank target A;
+    n := numColumns A;
+    m := numRows A;
     I := identityMatrix n;
     B := A || -A || I || -I;
     allMinors := ( minors( n, B ) )_*;
@@ -342,9 +350,9 @@ collapseMap = method()
 -- Assumes basis is nonempty, because othewise it can't possibly know the size of the identity matrix.
 collapseMap List := rbasis ->
 (
-    d := rank target first rbasis;
+    d := numRows first rbasis;
     idMat := entries identityMatrix d;
-    rb := apply( rbasis, x -> first entries transpose x );
+    rb := apply( rbasis, x -> flatten entries x );
     matrix select( idMat, v -> not member( v, rb ) )    
 )
 -- collapse along recession basis of a polyhedron
@@ -376,7 +384,7 @@ specialPoint MonomialPair := ( cacheValue symbol specialPoint )( P ->
     -- such that Ax <= u.
     A := P#matrix#matrix;
     u := P#point;
-    n := rank source A;
+    n := numColumns A;
     M := A || - identityMatrix n; 
     v := u || zeroVector n;
     feasibleRegion := polyhedronFromHData( M, v );
@@ -392,7 +400,7 @@ isSmall MonomialPair := ( cacheValue symbol isSmall )( pair ->
 (
     u := pair#point;
     cols := columns pair#matrix#matrix;
-    not any( cols, a -> all( first entries transpose( u - a ), x -> x > 0 ) ) 
+    not any( cols, a -> all( flatten entries( u - a ), x -> x > 0 ) ) 
 ))
 
 isVerySmall = method()
@@ -414,16 +422,16 @@ pointsAimedAtCompactFace := L ->
     P := convexHull { O, L };
     pts := latticePoints P;
     -- select positive points
-    select( pts, u -> all( first entries transpose u, x -> x > 0 ) )
+    select( pts, u -> all( flatten entries u, x -> x > 0 ) )
 )
 
 -- the preimage of a collapsed point
 liftPoint := ( u, rbasis ) ->
 (
-    n := rank target first rbasis; -- ambient dimension
+    n := numRows first rbasis; -- ambient dimension
     rbPerp := select( standardBasis n, x -> not member( x, rbasis ) );
     -- lift u inserting zeros in coordinates corresponding to basis vectors in rbasis
-    v := sum( first entries transpose u, rbPerp, ( i, j ) -> i * j );
+    v := sum( flatten entries u, rbPerp, ( i, j ) -> i * j );
     convexHull( { v } ) + coneFromVData( rbasis )
 )
 
@@ -435,8 +443,8 @@ minimalLifts := ( u, F ) ->
     P := intersection( liftPoint( u, rbasis ), convexHull( { constantVector( 0, n ), F } ) );
     eqns := hyperplanes P;
     ineqs := halfspaces P;
-    numEqns := rank target first eqns;
-    numIneqs := rank target first ineqs;
+    numEqns := numRows first eqns;
+    numIneqs := numRows first ineqs;
     -- build matrix, rhs, and relations
     mat := eqns#0 || ineqs#0;
     rhs := eqns#1 || ineqs#1;
@@ -509,7 +517,7 @@ minimalSmallNotVerySmall MonomialMatrix := ( cacheValue symbol minimalSmallNotVe
     A := M#matrix;
     P := convexHull( A ) + hypercube( numRows A, 0, 2 );
     -- select positive lattice points
-    pts := select( latticePoints P, u -> all( first entries transpose u, x -> x > 0 ) );
+    pts := select( latticePoints P, u -> all( flatten entries u, x -> x > 0 ) );
     minimalPoints select( pts, u -> isSmallNotVerySmall monomialPair( A, u ) ) 
 ))
 
@@ -522,7 +530,7 @@ universalDenominator2 MonomialMatrix := A ->
     -- now take the union of the Hilbert bases for the cones over all these facets
     hilbBases := unique flatten apply( F, O -> hilbertBasis coneFromVData O );
     -- the special points 
-    specialPts = apply( hilbBases, u -> specialPoint( A, u ) );
+    specialPts = apply( hilbBases, u -> specialPoint monomialPair( A, u ) );
     lcm( denominator \ specialPts )
 )
 universalDenominator2 Matrix := A -> universalDenominator2 monomialMatrix A
@@ -545,7 +553,7 @@ integerProgram ( Matrix, Matrix, Matrix ) := ( A, u, w ) -> new IntegerProgram f
     "matrix" => A,
     "RHS" => u,
     "weights" => w,
-    "dim" => ( numRows A, rank source A ),
+    "dim" => ( numRows A, numColumns A ),
     "augmentedMatrix" => A | identityMatrix numRows A -- adds columns corresponding to slack variables
 }
 integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new IntegerProgram from
@@ -554,7 +562,7 @@ integerProgram ( Matrix, Matrix, Matrix, Matrix ) := ( A, u, w, s ) -> new Integ
     "matrix" => A,
     "RHS" => u,
     "weights" => w,
-    "dim" => ( numRows A, rank source A ),
+    "dim" => ( numRows A, numColumns A ),
     "augmentedMatrix" => A | identityMatrix numRows A, -- adds columns corresponding to slack variables
     "signs" => s
 }
@@ -601,7 +609,7 @@ optPtIP := IP -> last solveIP IP
 theta := ( A, u, s, q ) -> (
     Abar := collapse( A, u );
     m := numRows Abar;
-    n := rank source Abar;
+    n := numColumns Abar;
     rhs := Abar*bracket( s, q ) - constantVector( 1, m );
     signs := columnVector apply(n, i -> if s_0_i == 0 then 1 else 0 );
     weights := constantVector( 1, n );
@@ -620,7 +628,7 @@ deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) ->
     Abar := collapse pair;
     Asq := Abar * sq;
     m := numRows Abar;
-    n := rank source Abar;
+    n := numColumns Abar;
     val := first solveIP theta( A, u, s, q );
     eqsMat := (Abar | -identityMatrix m) || (zeroMatrix( m, n ) | identityMatrix m);    
     eqsMat = eqsMat || matrix { join( constantList( 1, n ), constantList( 0, m ) ) };
@@ -653,7 +661,7 @@ deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) ->
     im = apply( entries im, x -> columnVector x ); 
     proj := zeroMatrix( m, n ) | identityMatrix( m );
     im  = apply( im, v -> proj * v );
-    ( sum( first entries transpose sq ) - val, apply( im, v -> Asq - v ) )
+    ( sum( flatten entries sq ) - val, apply( im, v -> Asq - v ) )
     ));
     dsInternal P
 )
@@ -735,7 +743,7 @@ criticalExponents ( MonomialMatrix, ZZ ) := o -> ( M, r ) ->
     ptsAndCrits := apply( pts, u -> 
         ( 
             crit = criticalExponent( monomialPair( M, u), r );
-            if o.Verbose then print toString ( first entries transpose u, crit );
+            if o.Verbose then print toString ( flatten entries u, crit );
             { u, crit }
         )
     );

@@ -906,7 +906,7 @@ print \ (ideals5 = frobeniusPowers( A, 5, {x,y,z}, Verbose => true ) );
 (last \  ideals6) == { m, m^2, m^3, m^4, m^5 }
 (last \ ideals5) == { m, m^2, m^3, m^4 + ideal( x*y*z, x^2*y, x*y^2, x^2*z, x*z^2, y^2*z, y*z^2), m^4, m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2, x^2*y^2, x^2*z^2, y^2*z^2), m^5+ideal(x^2*y*z, x*y^2*z, x*y*z^2), m^5}
 -- PERFECT! 
-    
+
 -- 5.15
 A = matrix {{6,0},{0,4}};
 QQ[x,y]
@@ -1206,3 +1206,8 @@ ehrhart optimalSet
 vertices(17*optimalSet)
 latticePoints(17*optimalSet)
 isCompact(17*optimalSet)
+
+v = columnVector{1,2,3}
+
+first entries transpose v
+flatten entries v
