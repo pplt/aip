@@ -6,32 +6,62 @@ loadPackage("Polyhedra", Reload => true)
 
 MonomialMatrix = new Type of HashTable
 -- A type to store monomial matrices, and cache info that is computed.
--- keys: matrix, cache
--- cached info: 
+-- Keys: matrix, cache
+-- Cached info: 
 --   newtonPolyhedon
---   universalDenominator
+--   universalDenominator (*)
 --   points
 --   minimalSmallNotVerySmall
+--
+-- (*): transferable to collapses
 
--- Creates a MonomialMatrix from a Matrix or a List.
--- TODO: should check if matrix is indeed a monomial matrix
--- (nonzero rows/columns, nonnegative integer coords)
+-- monomialMatrix creates a MonomialMatrix from a Matrix
 monomialMatrix = method()
-monomialMatrix Matrix := A -> new MonomialMatrix from { matrix => A, cache => new CacheTable }
+monomialMatrix Matrix := A ->
+(
+    if not all( columns A, x -> x != 0 ) then 
+        error "monomialMatrix: expected a matrix with nonzero columns";    
+    if not all( columns transpose A, x -> x != 0 ) then 
+        error "monomialMatrix: expected a matrix with nonzero rows";    
+   try A = lift( A, ZZ ) else 
+       error "monomialMatrix: expected a matrix with integer entries";
+   if not all( flatten entries A, x -> x >= 0 ) then
+       error "monomialMatrix: expected a matrix with nonnegative entries";
+    new MonomialMatrix from { matrix => A, cache => new CacheTable }
+)
 monomialMatrix = memoize monomialMatrix
 -- If monomialMatrix is called multiple times with the same matrix, memoize
 -- will prevent the creation of a copy, therefore keeping the cached values
 
 MonomialPair = new Type of HashTable
--- cached stuff {specialPoint, (frobeniusMu, 11), collapse, minimalFace, (deficitAndShortfall, 11), degree, (criticalExponent, 11)}
+-- A type to store monomial pairs, and cache info that is computed.
+-- Keys: matrix, point, cache
+-- Cached info: 
+--   degree (*)
+--   specialPoint (*)
+--   minimalFace 
+--   collapse
+--   (deficitAndShortfall, r) where r is an integer (*)
+--   (frobeniusMu, r) where r is an integer (*)
+--   (criticalExponent, r) where r is an integer (*)
+--
+-- (*): transferable to collapses
 
--- Creates a MonomialPair from a MonomialMatrix and a column vector, from a Matrix and a 
--- column vector, or from two Lists. 
--- TODO: should check if it is indeed a monomial pair
--- (compatible dim, positive integer point)
+-- monomialPair creates a MonomialPair from a MonomialMatrix or a matrix, and a column vector
 monomialPair = method()
 monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+(  
+   m1 := numRows A#matrix;
+   m2 := numRows u;
+   n := numColumns u;
+   if n != 1 then error "monomialPair: expected second argument to be a matrix with one column";
+   if m1 != m2 then error "monomialPair: incompatible dimensions";
+   try u = lift( u, ZZ ) else 
+       error "monomialPair: expected second argument to be an integer vector";
+   if not all( flatten entries u, x -> x > 0 ) then
+       error "monomialPair: expected second argument to be a positive vector";
    new MonomialPair from { matrix => A, ( symbol point ) => u, cache => new CacheTable }
+)
 monomialPair ( Matrix, Matrix ) := ( A, u ) -> monomialPair( monomialMatrix A, u )
 monomialPair = memoize monomialPair
 -- If monomialPair is called multiple times with the same pair, memoize

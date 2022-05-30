@@ -1049,6 +1049,7 @@ time gatherPoints monomialMatrix A
 -- checking random pair
 P = monomialPair( A, columnVector {2,1,1} )
 peek P#cache
+keys P#cache
 
 timing deficitAndShortfall( P, 23 )
 
@@ -1211,3 +1212,36 @@ v = columnVector{1,2,3}
 
 first entries transpose v
 flatten entries v
+
+--- test monomialPair, monomialMatrix
+
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+
+monomialPair( A, columnVector {1,1,1} )
+monomialPair( A, columnVector {1,1,0} )
+monomialPair( A, columnVector {1,1,1/2} )
+monomialPair( A, columnVector {1,1,4/2} )
+monomialPair( A, columnVector {1,1} )
+monomialPair( A, A )
+
+A = matrix { {0,1,2},{0,3,4},{0,5,6} } 
+B = matrix { {0,1,2},{0,0,0},{1,1,1} }
+C = matrix { {0,1,2},{0,6/2,0},{1,1,1} }
+D = matrix { {0,1,2},{0,6/4,0},{1,1,1} }
+E = matrix { {0,1,2},{0,-3,0},{1,1,1} }
+
+monomialMatrix A
+monomialMatrix B
+monomialMatrix C
+monomialMatrix D
+monomialMatrix E
+
+viewHelp cacheValue
+
+Point = new Type of Matrix
+
+u = new Point from columnVector {1,2,3}
+instance( u, Vector )
+
+(columnVector {0,0,1}) == 0
+{0,0,0} == 0
