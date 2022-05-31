@@ -982,7 +982,45 @@ testIdeal( (3*p-1)/(8*p), h )
 testIdeal( (p-1)/(2*p), h )
 testIdeal( (8*p-9)/(15*p), h )
 testIdeal( (5*p^2-5)/(8*p^2), h )
-        
+
+--- comparing with test ideals
+loadPackage "TestIdeals"
+
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+factor universalDenominator A
+
+A = transpose matrix { {3,5,0}, {0,3,5}, {5,0,3} };
+factor universalDenominator A
+
+r = 67
+QQ[x,y,z];
+ideals = frobeniusPowers( A, r, {x,y,z}, Verbose => true );
+R = ZZ/r[x,y,z,a,b,c];
+h = a*x^3*y^5 + b*y^3*z^5 + c*z^3*x^5;
+crits = first \ ideals;
+p = first (ring first crits)_*;
+crits = apply( crits, c -> sub( c, p => r ) );
+frobPowers = apply( last \ ideals, I -> sub( I, R ) );
+testIdeals = apply( crits, c -> testIdeal( c, h ) );    
+apply( testIdeals, frobPowers, (x,y) -> x == y )
+frobPowers == testIdeals
+
+-- 7: 3 wrong
+-- 11: 3 wrong 
+-- 13: 3 wrong
+-- 17: 3 wrong
+-- 23: YAY!
+-- 29: 2 wrong
+-- 31: YAY!
+-- 37: 1 wrong
+-- 41: 1 wrong
+-- 43: 1 wrong        
+-- 47: YAY!
+-- 53: YAY!
+-- 59: 1 wrong
+-- 61: YAY!
+-- 67: 1 wrong
+
 --- A homogeneous trinomial in 3 vars
 A = transpose matrix { {10,0,0}, {1,6,3}, {0,3,7} };
 print \ frobeniusPowers( A, 3, {x,y,z}, Verbose => true  );
@@ -1053,19 +1091,34 @@ keys P#cache
 
 timing deficitAndShortfall( P, 23 )
 
-p = 11;
-R = ZZ/p[x,y,z,a,b,c]
-h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5
-testIdeal( (4*p^3-3)/(17*p^3), h )
-testIdeal( 5/19, h )
-testIdeal( (2*p-1)/(7*p), h )
-testIdeal( (5*p^4-3)/(17*p^4), h )
-testIdeal( 1/3, h )
+--- comparing with test ideals
+loadPackage "TestIdeals"
 
-p = 23;
-R = ZZ/p[x,y,z,a,b,c]
-h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5
-testIdeal( (4*p^11-3)/(17*p^11), h )
+A = matrix { {5,3,4}, {5,4,3}, {2,8,5} };
+factor universalDenominator A
+
+r = 47
+QQ[x,y,z];
+ideals = frobeniusPowers( A, r, {x,y,z}, Verbose => true );
+R = ZZ/r[x,y,z,a,b,c];
+h = a*x^5*y^5*z^2 + b*x^3*y^4*z^8 + c*x^4*y^3*z^5;
+crits = first \ ideals;
+p = first (ring first crits)_*;
+crits = apply( crits, c -> sub( c, p => r ) );
+frobPowers = apply( last \ ideals, I -> sub( I, R ) );
+testIdeals = apply( crits, c -> testIdeal( c, h ) );    
+apply( testIdeals, frobPowers, (x,y) -> x == y )
+frobPowers == testIdeals
+
+-- 11: YAY!
+-- 13: 3 wrong
+-- 23: 1 wrong
+-- 29: YAY!
+-- 31: YAY!
+-- 37: YAY!
+-- 41: YAY!
+-- 43: YAY!
+-- 47: YAY!
 
 L = minimalFace( A, columnVector {3,5,9} )
 F = feasLP( collapse( A, L ), collapse( columnVector {3,5,9}, L ) )  
@@ -1245,3 +1298,11 @@ instance( u, Vector )
 
 (columnVector {0,0,1}) == 0
 {0,0,0} == 0
+
+T = new MutableHashTable from {a => 1, b => 2, c => 3}
+remove(T, d)
+peek T
+remove(T, b)
+peek T
+
+dimension A

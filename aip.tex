@@ -1566,7 +1566,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 \begin{definition}[The bracket operation]
    \label{tail: D}
    Let $q$ be a positive integer.
-   If $\lambda = a/b$ for some \emph{positive} integers $a$ and $d$, then we define
+   If $\lambda = a/d$ for some \emph{positive} integers $a$ and $d$, then we define
    \[ \tail{\lambda}_q = \frac{ \lpr{aq}{d}}{d}. \]
    This expression is clearly independent of the choice of the integers $a$ and $d$.
    In addition, we set  $[0]_q = 0$, and if $\vv{s} \in \QQ^n$ is nonnegative, we define $\tail{\vv{s}}_q$ as the point in $\QQ^n$ obtained by applying this operation to each coordinate of $\vv{s}$.
@@ -1574,7 +1574,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
 
 \begin{remark}
    \label{tail-basics: R}  Suppose that $q$ is a positive integer, and that $\lambda = a/d$ with $a$ and $d$ positive integer.  Then $\tail{\lambda}_q$ is positive and rational, at most $1$,  and depends on $q$ modulo $d$, but not on $q$ itself, i.e., if $r = \lpr{q}{d}$, then $\tail{\lambda}_q = \tail{\lambda}_r$.  Furthermore,
-   \[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{b}}{b} \]
+   \[ \lambda q - \tail{\lambda}_q = \frac{aq-\lpr{aq}{d}}{d} \]
    is an integer, and in fact, is the \emph{greatest integer less than $\lambda q$}, that is, $\up{\lambda q} - 1$.
    This number agrees with $\down{ \lambda q}$ if and only if $\lambda q$ is not an integer.
 \end{remark}
@@ -1589,7 +1589,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Set $\O = \mf(\matA, \vv{u})$.
    As $\vv{s} \in \sp(\matA, \vv{u})$, we can write $\vv{u} = \matA \vv{s} + \vv{w}$,
    where $\vv{w}$ is a positive point of $\rs(\O)$.
-   The inequality $\vv{t} \leq \vv{s}$ induces the bound $\matA \vv{t} \leq \matA \vv{s} = \vv{u} - \vv{w}$, which shows that $\matA\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$ (recall that by this, we mean that the $i$-th coordinate of $\matA\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$).
+   The inequality $\vv{t} \leq \vv{s}$ induces the bound $\matA \vv{t} \leq \matA \vv{s} = \vv{u} - \vv{w}$, which shows that $\matA\vv{t}$ is less than $\vv{u}$ in $\rs(\O)$ (recall that by this we mean that the $i$-th coordinate of $\matA\vv{t}$ is less than $u_i$ whenever $\canvec_i\in \rs(\O)$).
    To conclude the proof, it suffices to show that the same is true in the complementary subspace $\rs(\O)^{\perp}$.
 
    Let an overbar denote collapse along $\O$.
@@ -1650,7 +1650,7 @@ Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $
 If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial  list, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list, and $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
 \end{lemma}
 
-\begin{proof}  \Cref{collapse of monomial is monomial: L,collapse of mf and mc: P} together imply that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
+\begin{proof}  \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
 \end{proof}
 
 \begin{lemma} 
@@ -1664,7 +1664,7 @@ Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator f
 
 \begin{example}[Running example: an auxiliary integer program]
    \label{ex: ft.3}
-   Let $\matA$ and $\vv{u}$ be as in \Cref{ex: ft,ex: ft.1,ex: ft.2}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
+   Let $\matA$ and $\vv{u}$ be as in \Cref{ex: ft}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
    The constraints for $\ip = \ip(\matA,\vv{u},\vv{s},q)$ in this case are $h_2 \ge 0$ and $\collapse{\matA}\vv{h} < \collapse{\matA}\tail{\vv{s}}_q$, where
    \[\collapse{\matA} = \begin{bmatrix}5&3&4\\ 2&8&5\end{bmatrix}. \]
    \begin{figure}
@@ -1678,7 +1678,7 @@ Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator f
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
-\Cref{comparison: R} tells us that if $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $\vv{k}$ is feasible for $\IP(\matA, \vv{u}, q)$, then $\vv{k} - \vv{s}q + \tail{\vv{s}}_q$ is feasible for  $\ip (\matA, \vv{u}, \vv{s}, q)$.
+\Cref{comparison: R} tells us that if $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $\vv{k}$ is feasible for $\IP(\matA, \vv{u}, q)$, then $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for some $\vv{h}$ feasible for  $\ip (\matA, \vv{u}, \vv{s}, q)$.
 In particular,
 \begin{equation}
    \label{ineq between deficits}
@@ -1711,7 +1711,7 @@ The next proposition gives conditions under which equality holds.
    \end{equation}
    and prove using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
    As $\vv{u}=\matA\vv{s}+\vv{w}$ has integer coordinates, it follows that $\denom$ is also a denominator for $\vv{w}$.
-   This and the positivity of $\vv{w}$ in $\rs(\O)$ imply that $\vv{w}q$ is greater than $q\vv{1}/d$ in $\rs(\O)$, which in turn is greater than $\matA\vv{h}$, by assumption.
+   This and the positivity of $\vv{w}$ in $\rs(\O)$ imply that $\vv{w}q$ is greater than or equal to $q\vv{1}/d$ in $\rs(\O)$, which in turn is greater than $\matA\vv{h}$, by assumption.
    Thus, \eqref{equivalent ineq: e} holds in $\rs(\O)$.
    Collapsing along $\O$, on the other hand, \eqref{equivalent ineq: e} becomes $\collapse{\matA} \vv{h} < \collapse{\matA} \tail{\vv{s}}_q$, which holds by the feasibility of $\vv{h}$ for $\ip$, and shows that \eqref{equivalent ineq: e} also holds in $\rs(\O)^\perp$.
 
@@ -1740,7 +1740,7 @@ We now move toward establishing a useful bound for the value of $\ip(\matA, \vv{
 \end{proposition}
 
 \begin{proof}
-   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(\matA, \vv{u})$ in the Newton polyhedron of $\matA$, and let an overbar denote collapse along $\O$.
+   Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(\matA, \vv{u})$ in the Newton polyhedron of~$\matA$, and let an overbar denote collapse along $\O$.
    Let $\vv{h}$ be optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$.
    If the $i$-th column of $\matA$ does not lie in $\O$, then $s_i$ is zero, and consequently $h_i$ is nonnegative.
    \Cref{prop: inner product with columns of A,rmk: collapse of a matrix,collapse of a defining vector: R} then tell us that
