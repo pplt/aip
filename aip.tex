@@ -1642,24 +1642,53 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(\matA, \vv{u}, \vv{s}, q)$ in the domain lattice of $\matA$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$, where the overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
 \end{definition}
 
-Recall that since each row of $\collapse{\matA}$ is a row of $\matA$, the inequalities determined by $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ are a subset of those in $\matA \vv{h}  < \matA \tail{\vv{s}}_q$.
-Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(\matA, \vv{u}, \vv{s}, q)$ has a well-defined value.
+% Recall that since each row of $\collapse{\matA}$ is a row of $\matA$, the inequalities determined by $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ are a subset of those in $\matA \vv{h}  < \matA \tail{\vv{s}}_q$.
+% Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(\matA, \vv{u}, \vv{s}, q)$ has a well-defined value.
 
-\begin{lemma} 
-\label{secondary-program-invariant-under-collapse: L}
-If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial  list, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list, and $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
-\end{lemma}
+\pedro[inline]{
+   In the next proposition, I gathered a couple of lemmas, the fact that $\ip$ has a well-defined value (which was mentioned in prose), and the feasibility of $\ip$ (not explicitly mentioned before). 
+}
 
-\begin{proof}  \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
+\begin{proposition}[Basic properties of $\ip$]
+   \label{prop: basic properties of Theta}
+   Let $(\matA,\vv{u},\vv{s},q)$ be a monomial list, and let overbars denote collapse along $\O = \mf(\matA,\vv{u})$.
+   Let $d$ be a denominator for the rational special point $\vv{s}$.
+   Then the following hold\textup:
+   \begin{enumerate}[$(1)$]
+      \item \label{item: Theta is feasible and has well-defined value}
+      $\ip(\matA,\vv{u},\vv{s},q)$ is feasible and has a well-defined value.
+      \item \label{secondary-program-invariant-under-collapse: L}
+      $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
+      \item \label{secondary-program-invariant-depends-on-residue: L}
+      $\ip(\matA, \vv{u}, \vv{s}, q) = \ip({\matA}, {\vv{u}}, \vv{s}, \lpr{q}{d})$.
+   \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+   \Cref{comparison: R} shows that any feasible point for $\IP(\matA,\vv{u},q)$ yields a feasible point for $\ip(\matA,\vv{u},\vv{s},q)$, and because $\collapse{\matA}$ is a monomial matrix, the inequality $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(\matA,\vv{u},\vv{s},q)$ has a well-defined value.
+
+   \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.
+   Furthermore, \Cref{cor: O bar is bounded,collapse of mf and mc: P} tells us that $\collapse{\O} = \mf(\collapse{\matA}, \collapse{\vv{u}})$ is compact, and so the collapse along $\collapse{\O}$ is the identity.
+   Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms of its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
+
+   Setting $r = \lpr{q}{d}$, \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree, so $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\matA, \vv{u}, \vv{s}, r)$ coincide.
 \end{proof}
 
-\begin{lemma} 
-\label{secondary-program-invariant-depends-on-residue: L}
-Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator for the rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.  If $\lpr{q}{d} = r$, then $\ip(\matA, \vv{u}, \vv{s}, q) = \ip({\matA}, {\vv{u}}, \vv{s}, r)$
-\end{lemma}
+% \begin{lemma} 
+% \label{secondary-program-invariant-under-collapse: L}
+% If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial  list, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list, and $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
+% \end{lemma}
 
-\begin{proof} \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree.  Hence, by \Cref{secondary program: D}, the secondary programs associated to  $(\matA, \vv{u}, \vv{s}, q)$ and $(\matA, \vv{u}, \vv{s}, r)$ coincide.
-\end{proof}
+% \begin{proof}  \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
+% \end{proof}
+
+% \begin{lemma} 
+% \label{secondary-program-invariant-depends-on-residue: L}
+% Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator for the rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.  If $\lpr{q}{d} = r$, then $\ip(\matA, \vv{u}, \vv{s}, q) = \ip({\matA}, {\vv{u}}, \vv{s}, r)$
+% \end{lemma}
+
+% \begin{proof} \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree.  Hence, by \Cref{secondary program: D}, the secondary programs associated to  $(\matA, \vv{u}, \vv{s}, q)$ and $(\matA, \vv{u}, \vv{s}, r)$ coincide.
+% \end{proof}
 
 
 \begin{example}[Running example: an auxiliary integer program]
@@ -1729,8 +1758,7 @@ We now move toward establishing a useful bound for the value of $\ip(\matA, \vv{
 
 \begin{proof}
    By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity $\collapse{\vv{u}} q =\collapse{\matA} \vv{s} q = \collapse{\matA} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{\matA} \tail{\vv{s}}_q$ then shows that $\collapse{\matA} \tail{\vv{s}}_q$ must also have integer coordinates.
-   To see that this point is positive, note that $\collapse{\vv{u}} = \collapse{\matA} \vv{s}$ and $\collapse{\matA} \tail{\vv{s}}_q$ are both linear combinations with positive coefficients of the same set of columns of $\collapse{\matA}$.
-   It is then easy to see that since $\collapse{\vv{u}} = \collapse{\matA} \vv{s}$ is positive, so is $\collapse{\matA} \tail{\vv{s}}_q$.
+   Taking $\vv{k} = \vv{s}q-\tail{\vv{s}}_q$ in \Cref{comparison: R}, we see that $\vv{0}$ is feasible for $\ip(\matA,\vv{u},\vv{s},q)$, so $\collapse{\matA} \tail{\vv{s}}_q>\matA \vv{0} = \vv{0}$.
 \end{proof}
 
 \begin{proposition}[Bounds on the value of $\ip$]
@@ -1740,6 +1768,7 @@ We now move toward establishing a useful bound for the value of $\ip(\matA, \vv{
 \end{proposition}
 
 \begin{proof}
+   As observed in the proof of \Cref{tail projection: L}, $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
    Fix a point $\defpt \in \RR^\numvars$ that defines $\O  = \mf(\matA, \vv{u})$ in the Newton polyhedron of~$\matA$, and let an overbar denote collapse along $\O$.
    Let $\vv{h}$ be optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$.
    If the $i$-th column of $\matA$ does not lie in $\O$, then $s_i$ is zero, and consequently $h_i$ is nonnegative.
@@ -1754,8 +1783,7 @@ We now move toward establishing a useful bound for the value of $\ip(\matA, \vv{
       \norm{\tail{\vv{s}}_q} =  \iprod{\defpt}{\matA \tail{\vv{s}}_q} = \iprod{\collapse{\defpt}}{\collapse{\matA} \tail{\vv{s}}_q}.
    \end{equation}
    These observations and the constraint $\collapse{\matA}\vv{h} <\collapse{\matA} \tail{\vv{s}_q}$ combine to tell us that
-   \[ \val\ip \leq \iprod{\collapse{\defpt}}{\collapse{\matA} \vv{h}} < \iprod{\collapse{\defpt}}{\collapse{\matA} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q}.\]
-   Finally, the positivity of $\collapse{\matA}\tail{\vv{s}}_q$ established in \Cref{tail projection: L} implies that $\vv{0}$ is feasible for $\ip$, and thus $\val \ip \ge 0$.
+   \[ \val\ip \leq \iprod{\collapse{\defpt}}{\collapse{\matA} \vv{h}} < \iprod{\collapse{\defpt}}{\collapse{\matA} \tail{\vv{s}}_q} = \norm{\tail{\vv{s}}_q}. \qedhere\]
 \end{proof}
 
 \subsection{Some finiteness properties}
@@ -1790,7 +1818,7 @@ The following theorem underlies some of our later finiteness results.
 \section{Toward solving $\IP$}
 \label{solving: S}
 
-Throughout this section, $(\matA, \vv{u})$ is a monomial pair and $q$ is positive integer.
+Throughout this section, $(\matA, \vv{u},q)$ is a monomial triple.
 Our goal here is to demonstrate that the value and the image of $\opt\IP(\matA, \vv{u}, q)$ under $\matA$ vary with $q$ in a uniform way as $q$ tends to infinity.
 
 \subsection{Deficit and shortfall of $\ip$}
@@ -1805,7 +1833,7 @@ In this section we extend the definitions of shortfall and deficit, introduced i
   \short \ip & = \collapse{\matA} \tail{\vv{s}}_q - \collapse{\matA} (\opt \ip) \\ 
   \deficit \ip & = \norm{\tail{\vv{s}}_q} - \val \ip
  \end{align*}
-   where the overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
+   where the overbar denotes collapse along the minimal face of $(\matA, \vv{u})$.
 \end{definition}
 
 \begin{lemma} 
@@ -1837,7 +1865,7 @@ For that, we shall need the following simple boundedness result.
    \label{finite image: P}  Let $(\matA, \vv{u}, \vv{s} ,q)$ be a monomial a list, and let an overbar denote collapse along $\mf(\matA, \vv{u})$.  Then the shortfall of the secondary program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ is a nonempty, finite set of positive points \hl{in the target lattice} of $\collapse{\matA}$.
 \end{proposition}
 
-\begin{proof} \Cref{tail projection: L} and the constraints of $\ip$ imply that  $\short \ip$ consists of positive lattice points in the target lattice of $\collapse{\matA}$.  It remains to show that $\short \ip$ is finite.  Towards this, suppose $\defpt$ defines $\O$ in the Newton polyhedron of $\matA$.
+\begin{proof} \Cref{tail projection: L} and the constraints of $\ip$ imply that  $\short \ip$ consists of positive lattice points in the target lattice of $\collapse{\matA}$.  It remains to show that $\short \ip$ is finite.  Towards this, suppose $\defpt$ defines $\mf(\matA,\vv{u})$ in the Newton polyhedron of $\matA$.
 
    If $\vv{h}$ is optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, then \eqref{bound in inner product: e} tells us that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{\matA} \vv{h}}$, and so $\collapse{\matA} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{\matA} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
@@ -1868,8 +1896,8 @@ Below, we derive a much stronger finiteness property of the shortfalls of $\ip$.
 
 \begin{theorem}[Existence of finite sets of representatives]
    \label{fsr-exist: T}
-   Given a monomial matrix $\matA$, there exists a finite subset $\fsr = \fsr(\matA)$ of the domain lattice of $\matA$ with the following property:  For each secondary program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ we have
-   that \[ \short \ip = \collapse{\matA}\tail{\vv{s}}_q - \collapse{\matA}(\fsr \cap \opt \ip) \] where an overbar denotes collapse along the minimal face $\O = \mf(\matA, \vv{u})$.
+   Given a monomial matrix $\matA$, there exists a finite subset $\fsr = \fsr(\matA)$ of the domain lattice of $\matA$ with the following property\textup:  For each secondary program $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$ we have
+   that \[ \short \ip = \collapse{\matA}\tail{\vv{s}}_q - \collapse{\matA}(\fsr \cap \opt \ip) \] where an overbar denotes collapse along the minimal face of $(\matA, \vv{u})$.
 \end{theorem}
 
 \begin{proof}
@@ -1950,7 +1978,7 @@ The above result leads to a fundamental observation.
 
 \begin{proof}
    Fix a common denominator $d$ for points $\vv{s}$ and $\vv{s}'$ in $\sp_{\QQ}(\matA, \vv{u})$.  
-    \Cref{secondary-program-invariant-depends-on-residue: L} tells us $\ip(\matA,\vv{u},\vv{s},q)$  and $\ip(\matA,\vv{u},\vv{s}',q)$ are unaffected if we replace $q$ with any larger integer with the same residue modulo $d$.  However, \Cref{uniform value and image: P} tells us that once we increase $q$, the deficit and shortfall of associated to these programs coincide.  
+    \Cref{prop: basic properties of Theta}\ref{secondary-program-invariant-depends-on-residue: L} tells us $\ip(\matA,\vv{u},\vv{s},q)$  and $\ip(\matA,\vv{u},\vv{s}',q)$ are unaffected if we replace $q$ with any larger integer with the same residue modulo $d$.  However, \Cref{uniform value and image: P} tells us that once we increase $q$, the deficit and shortfall of associated to these programs coincide.  
     \end{proof}
 
 The above corollary and \Cref{uniform value and image: P} motivate the following definition.
@@ -2000,7 +2028,9 @@ where  $\vv{s}$ is any point in $\sp_{\QQ}(\matA, \vv{u})$.  As noted in \Cref{i
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}  The first statement follows from \Cref{positivity-of-deficits-shortfalls-of-Theta: L}, \Cref{finite image: P}, and \Cref{independence: D},  the second statement from \Cref{union-of-secondary-shortfalls: C,independence: D}, the third statement follows from \Cref{secondary-program-invariant-under-collapse: L,independence: D},  and the fourth statement follows from \Cref{secondary-program-invariant-depends-on-residue: L,independence: D}.    For the last statement, as we have already seen, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, also a natural number, we see that 
+\begin{proof}
+   The first statement follows from \Cref{positivity-of-deficits-shortfalls-of-Theta: L,finite image: P}, the second statement from \Cref{union-of-secondary-shortfalls: C}, the third statement follows from \Cref{prop: basic properties of Theta}\ref{secondary-program-invariant-under-collapse: L},  and the fourth statement follows from \Cref{prop: basic properties of Theta}\ref{secondary-program-invariant-depends-on-residue: L}.
+   For the last statement, as we have already seen, if $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$, then the associated \hl{canonical feasible point} $\vv{s}q - \tail{\vv{s}}_q$ has nonnegative entries.  Thus, its norm is a a natural integer, and adding to this the value of $\ip = \ip(\matA, \vv{u}, \vv{s}, q)$, also a natural number, we see that 
 \[ \norm{\vv{s}q} - \norm{\tail{\vv{s}}_q} + \val \ip = \deg(\matA, \vv{u}) \, q - \udeficit(\matA, \vv{u}, q) \] is a natural number.
 \end{proof}
 
