@@ -1357,32 +1357,6 @@ Below, we describe the relationship between collapses and notions associated to 
    Collapsing this equation, we get $\collapse{\vv{u}} = \collapse{\matA} \vv{s} + \collapse{\vv{w}}$, and \Cref{faces under collapsing: P} shows that $\collapse{\vv{w}}$ is a positive point of $\rs(\collapse{\G})$, so $\vv{s}$ is special for $(\collapse{\matA},\collapse{\vv{u}})$. 
 \end{proof}
 
-% \begin{proposition}[Minimal face, degree, special and optimal points under collapsing]
-%    \label{collapse of mf and mc: P}
-%    Consider a monomial pair $(\matA, \vv{u})$, and let an overbar denote collapse along $\O = \mf(\matA, \vv{u})$.
-%    Then the following hold.
-%    \begin{enumerate}[$(1)$]
-%       \item $\mf(\collapse{\matA}, \collapse{\vv{u}}) = \collapse{\O}$, which is compact, and $\degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.
-%       \item Each optimal point for $\LP(\matA, \vv{u})$ is also optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
-%       \item Each special point for $(\matA, \vv{u})$ is a special point for $(\collapse{\matA}, \collapse{\vv{u}})$.
-%    \end{enumerate}
-% \end{proposition}
-
-% \begin{proof}
-%    Set $\lambda = \degree(\matA,\vv{u})$, so that $\lambda^{-1} \vv{u}$ lies in the relative interior of $\O$.
-%    It is clear that a projection preserves relative interiors, and so $\lambda^{-1}\collapse{\vv{u}}$ must lie in the relative interior of $\collapse{\O}$, a  face of $\collapse{\N}$ by \Cref{cor: O bar is bounded}.
-%    This shows that $\collapse{\O}= \mf(\collapse{\matA},\collapse{\vv{u}})$ and $\lambda = \degree(\collapse{\matA},\collapse{\vv{u}})$.
-%    Consequently,
-%    \[ \val \LP(\matA, \vv{u}) = \degree(\matA,\vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}}) = \val \LP(\collapse{\matA}, \collapse{\vv{u}}). \]
-%    Since each row of $\collapse{\matA}$ is a row of $\matA$, the constraints of $\LP(\collapse{\matA}, \collapse{\vv{u}})$ are a subset of those of $\LP(\matA, \vv{u})$, and hence $\feas \LP(\matA,\vv{u})$ is a subset of $\feas \LP(\collapse{\matA},\collapse{\vv{u}})$.
-%    It follows that any optimal point for $\LP(\matA, \vv{u})$ must be optimal for $\LP(\collapse{\matA}, \collapse{\vv{u}})$.
-%    The boundedness of $\collapse{\O}$, \Cref{opt versus mc: P}, and the preceding observation allows us to conclude that
-%    \begin{equation*}
-%       \sp(\matA, \vv{u}) \subseteq \opt \LP(\matA, \vv{u}) \subseteq \opt \LP(\collapse{\matA}, \collapse{\vv{u}}) = \sp(\collapse{\matA}, \collapse{\vv{u}}).
-%    \qedhere
-% \end{equation*}
-% \end{proof}
-
 \begin{example}[Running example: collapsing]
    \label{ex: ft.2}
    Let $\matA$ and $\vv{u}$ be as in \Cref{ex: ft}.
@@ -1557,10 +1531,6 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list, the integer program $\ip(\matA, \vv{u}, \vv{s}, q)$ in the domain lattice of $\matA$ consists of maximizing the function $\vv{h} \mapsto \norm{\vv{h}}$, subject to the constraints that the $i$-th coordinate of $\vv{h}$ is nonnegative whenever the $i$-th coordinate of $\vv{s}$ is zero, and $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$, where the overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
 \end{definition}
 
-% Recall that since each row of $\collapse{\matA}$ is a row of $\matA$, the inequalities determined by $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ are a subset of those in $\matA \vv{h}  < \matA \tail{\vv{s}}_q$.
-% Also note that because $\collapse{\matA}$ is a monomial matrix, the inequality $\collapse{\matA} \vv{h}  < \collapse{\matA} \tail{\vv{s}}_q$ imposes upper bounds on all coordinates of $\vv{h}$, and thus $\ip(\matA, \vv{u}, \vv{s}, q)$ has a well-defined value.
-
-
 \begin{proposition}[Basic properties of $\ip$]
    \label{prop: basic properties of Theta}
    Let $(\matA,\vv{u},\vv{s},q)$ be a monomial list, and let overbars denote collapse along $\O = \mf(\matA,\vv{u})$.
@@ -1590,23 +1560,6 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    Setting $r = \lpr{q}{d}$, \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree, so $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\matA, \vv{u}, \vv{s}, r)$ coincide.
 \end{proof}
 
-% \begin{lemma} 
-% \label{secondary-program-invariant-under-collapse: L}
-% If $(\matA, \vv{u}, \vv{s}, q)$ is a monomial  list, and an overbar denotes collapse along $\mf(\matA, \vv{u})$, then $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list, and $\ip(\matA, \vv{u}, \vv{s}, q) = \ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$.
-% \end{lemma}
-
-% \begin{proof}  \Cref{collapse of mf and mc: P} implies that $(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ is a monomial list.  Furthermore, if $\O = \mf(\matA, \vv{u})$, then \Cref{collapse of mf and mc: P} also tells us that $\collapse{\O} = \mf(\matA, \vv{u})$ is compact, and so the collapse along $\collapse{\O}$ is the identity. Thus, the programs $\ip(\matA, \vv{u}, \vv{s}, q)$ and $\ip(\collapse{\matA}, \collapse{\vv{u}}, \vv{s}, q)$ coincide, as the constraints of the former program are defined in terms its collapse $\collapse{\matA}$ along $\O$, and the collapse of $\collapse{\matA}$ along $\collapse{\O}$ is itself.
-% \end{proof}
-
-% \begin{lemma} 
-% \label{secondary-program-invariant-depends-on-residue: L}
-% Let $(\matA, \vv{u}, \vv{s}, q)$ be a monomial  list, and $d$ be a denominator for the rational special point $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.  If $\lpr{q}{d} = r$, then $\ip(\matA, \vv{u}, \vv{s}, q) = \ip({\matA}, {\vv{u}}, \vv{s}, r)$
-% \end{lemma}
-
-% \begin{proof} \Cref{tail-basics: R} tells us that $\tail{\vv{s}}_q$ and $\tail{\vv{s}}_r$ agree.  Hence, by \Cref{secondary program: D}, the secondary programs associated to  $(\matA, \vv{u}, \vv{s}, q)$ and $(\matA, \vv{u}, \vv{s}, r)$ coincide.
-% \end{proof}
-
-
 \begin{example}[Running example: a secondary integer program]
    \label{ex: ft.3}
    Let $\matA$ and $\vv{u}$ be as in \Cref{ex: ft}, and consider the special point $\vv{s}=(1/17,0,3/17)$.
@@ -1624,7 +1577,7 @@ As a part of this, we call upon some basic notions from modular arithmetic.
    The situation is analogous for $q$ in every other congruence class modulo $17$.
 \end{example}
 
-\Cref{comparison: R} tells us that if $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $\vv{k}$ is feasible for $\IP(\matA, \vv{u}, q)$, then $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for some $\vv{h}$ feasible for  $\ip (\matA, \vv{u}, \vv{s}, q)$.
+\Cref{prop: basic properties of Theta}\ref{item: Theta is feasible} tells us that if $(\matA, \vv{u}, \vv{s}, q)$ is a monomial list and $\vv{k}$ is feasible for $\IP(\matA, \vv{u}, q)$, then $\vv{k} = \vv{s}q - \tail{\vv{s}}_q + \vv{h}$ for some $\vv{h}$ feasible for  $\ip (\matA, \vv{u}, \vv{s}, q)$.
 In particular,
 \begin{equation}
    \label{ineq between deficits}
@@ -1678,7 +1631,7 @@ We now move toward establishing a useful bound for the value of $\ip(\matA, \vv{
 
 \begin{proof}
    By construction, $\vv{s}q - \tail{\vv{s}}_q $ has nonnegative integer coordinates, and the identity $\collapse{\vv{u}} q =\collapse{\matA} \vv{s} q = \collapse{\matA} ( \vv{s}q - \tail{\vv{s}}_q ) +\collapse{\matA} \tail{\vv{s}}_q$ then shows that $\collapse{\matA} \tail{\vv{s}}_q$ must also have integer coordinates.
-   Taking $\vv{k} = \vv{s}q-\tail{\vv{s}}_q$ in \Cref{comparison: R}, we see that $\vv{0}$ is feasible for $\ip(\matA,\vv{u},\vv{s},q)$, so $\collapse{\matA} \tail{\vv{s}}_q>\matA \vv{0} = \vv{0}$.
+   Taking $\vv{k} = \vv{s}q-\tail{\vv{s}}_q$ in \Cref{prop: basic properties of Theta}\ref{item: Theta is feasible}, we see that $\vv{0}$ is feasible for $\ip(\matA,\vv{u},\vv{s},q)$, so $\collapse{\matA} \tail{\vv{s}}_q>\matA \vv{0} = \vv{0}$.
 \end{proof}
 
 \begin{proposition}[Bounds on the value of $\ip$]
@@ -1799,21 +1752,6 @@ For that, we shall need the following simple boundedness result.
 \begin{example}[Running example: shortfall]
    In the situation of \Cref{ex: ft.3}, we have seen that the optimal set for $\ip = \ip(\matA,\vv{u},\vv{s},q)$ consists of three infinite families of points.
    A direct computation shows that each of those families provides a unique point in the shortfall of $\ip$, and that $\short\ip = \{(3,1),(2,4),(1,7)\}$.
-   % \begin{align*}
-   %   P_1 &= \{(k,k,1-2k): k\in \NN\},\\
-   %   P_2 &= \{(k+1,k,-2k): k\in \NN\},\\
-   %   P_3 &= \{(k+2,k,-1-2k): k\in \NN\}.
-   % \end{align*}
-   % For $\vv{h} \in \opt\ip$ we have
-   % \[
-   %    \collapse{\matA}\tail{\vv{s}}_p -\collapse{\matA}\vv{h} =
-   %    \begin{cases}
-   %       (3,1) & \text{if $\vv{h}\in P_1$}\\
-   %       (2,4) & \text{if $\vv{h}\in P_2$}\\
-   %       (1,7) & \text{if $\vv{h}\in P_3$}
-   %    \end{cases}
-   % \]
-%   Thus, in this case $\short\ip = \{(3,1),(2,4),(1,7)\}$.
 \end{example}
 
 Below, we derive a much stronger finiteness property of the shortfalls of $\ip$.
@@ -1845,7 +1783,6 @@ Below, we derive a much stronger finiteness property of the shortfalls of $\ip$.
 \label{small pairs from shortfalls: L}
 \begin{enumerate}[$(1)$]
 \item  If $\vv{v}$ is a point in the shortfall of $\IP(\matA, \vv{u}, q)$, then $(\matA, \vv{v})$ is small.
-%\item  If $\vv{v}$ is a point in the shortfall of $\IP_q(\matA, \vv{u}, q^e)$, then $(\matA, \vv{v})$ is small.
 \item  If $\vv{v}$ is a point in the shortfall of $\ip(\matA, \vv{u}, \vv{s}, q)$, then $(\collapse{\matA}, {\vv{v}})$ is small, where here, an overbar denotes collapse along the minimal face $\mf(\matA, \vv{u})$.
 \end{enumerate}
 \end{proposition}
@@ -1888,7 +1825,7 @@ The optimality of $\vv{h}$ for $\ip$ implies that $\vv{h}+\canvec_i$ cannot sati
    \begin{equation}\label{eq: comparing differences}
    \collapse{\vv{u}}q - \collapse{\matA}\vv{k} = \collapse{\matA}\tail{\vv{s}}_q - \collapse{\matA} \vv{h}.
    \end{equation}
-   If $\vv{k}\in \opt\IP$, then $\vv{h}$ is feasible for $\ip$ by \Cref{comparison: R}, and therefore optimal for $\ip$ by \eqref{eq: comparing values}.
+   If $\vv{k}\in \opt\IP$, then $\vv{h}$ is feasible for $\ip$ by \Cref{prop: basic properties of Theta}\ref{item: Theta is feasible}, and therefore optimal for $\ip$ by \eqref{eq: comparing values}.
    Equation~\eqref{eq: comparing differences} then shows that $\ol{\short\IP}\subseteq \short \ip$.
    Conversely, if $\vv{h} \in \fsr \cap \opt\ip$, then \Cref{uniform value: P} shows that $\vv{k}\in \opt \IP$.
    \Cref{fsr-exist: T} and \eqref{eq: comparing differences} then give us the reverse containment, $\short \ip \subseteq \ol{\short\IP}$.
@@ -3308,9 +3245,6 @@ The $\mon$ operation commutes with standard Frobenius powers for ideals of any p
 Though we closely follow \cite{budur+mustata+saito.roots_bs_polys_monomial}, there are some notable differences between our results.   For example, in \cref{mon-operation-modulo-p: T}, we prove that the monomialization operator commutes with reduction to large characteristic in polynomial rings, generalizing \cite[Lemma 6.2]{budur+mustata+saito.roots_bs_polys_monomial}, which concerns a related operator in certain localizations of polynomial rings.  To accomplish this, we require some standard, but technical, results from the framework that supports reduction to prime characteristic.
 Due to this, we also choose to work in greater generality when reducing to prime characteristic, as opposed to simply discussing the reduction of ideals in $\QQ[x]$ modulo a prime $p$.
 
-% \pedro{Not sure I understand this sentence. Is ``generally'' being used for ``globally''?}
-% \daniel{Besides globally (as in, not looking at monomialization in local rings, I also meant that we aren't just reducing ideals in $\QQ[x]$ modulo $p$, which is what I think they focus on in that paper.  Feel free to remove/restate this.}
-
 We also provide examples illustrating that the uniformity properties established here for the $\mu$-invariants attached to a monomial ideal are strictly stronger than the ones for their $\nu$-counterparts established in \loccit, both over a field of fixed positive characteristic, and when reducing to positive characteristic.  
 
 \subsection{Reducing to monomial pairs}
@@ -3514,12 +3448,6 @@ and so $(J :_{\ringA[x]} f) \ringB[x]$, the image of the first map, coincides wi
 
  \begin{proof}
     Suppose that $\ell \in \ringA \setminus \{0\}$ satisfies the conclusion of \Cref{colon mod p: P} relative to the ideals $I_\ringA$ and $J_\ringA$ of $\ringR_\ringA=\ringA[x]$.  Our claim then follows from invoking \Cref{colon mod p: P} with $\ringB=\kk$, and with $\ringB=\ringA/\idealm$ for every point $\idealm$ in the dense open set $\mathcal{U} = \{\idealm \in \mspec(\ringA) : \operatorname{char}(\ringA/\idealm) \nmid \ell\}$ of $\mspec(\ringA)$. 
-%     We may then take $\ringB=\kk$ in \Cref{colon mod p: P} to see that $(J_\ringA:_{\ringR_\ringA} I_\ringA)\ringR = (J :_{\ringR} I)$, which shows that $(J_\ringA :_{\ringR_\ringA} I_\ringA)$ is an $\ringA$-model for $(J :_\ringR I)$.
-%    Now, if $\mathcal{U} = \{\idealm \in \mspec(\ringA) : \operatorname{char}(\ringA/\idealm) \nmid \ell\}$, then for each $\idealm \in \mathcal{U}$ we may instead take $\ringB=\ringA/\idealm$ in \Cref{colon mod p: P} to see that
-%    \[
-%       (J_\ringA:_{\ringR_\ringA} I_\ringA)\ringR_\ringA(\idealm) = (J_\ringA(\idealm) :_{\ringR_\ringA(\idealm)} I_\ringA(\idealm)).
-%       \qedhere
-%    \]
 \end{proof}
 
 In \Cref{all monomial colons: C} {below, we will show that, once $J$ is fixed, the element} $\ell$ in \Cref{colon mod p: P} can be chosen independently of $I$, {as long as $I$ is a principal monomial ideal.   In our proof, we will use a basic property of colon ideals:  If $J$ is an ideal of an arbitrary commutative ring $\ringR$, then}
