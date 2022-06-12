@@ -499,13 +499,13 @@ Thus,  $\opt \fip_p$ is simply the intersection of the blue points and green poi
 
 \begin{figure}
   \centering
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.495\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{pictures/ex4_char2.pdf}\hskip .04\textwidth
    \captionsetup{labelformat=empty}
    \caption{$p=2$}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.495\textwidth}
 \centering
 \includegraphics[width=.9\textwidth]{pictures/ex4_char3.pdf}
   \captionsetup{labelformat=empty}
@@ -514,13 +514,13 @@ Thus,  $\opt \fip_p$ is simply the intersection of the blue points and green poi
 
 \bigskip
 
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.495\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{pictures/ex4_char5.pdf}\hskip .04\textwidth
   \captionsetup{labelformat=empty}
   \caption{$p=5$}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
+\begin{subfigure}{.495\textwidth}
 \centering
   \includegraphics[width=.9\textwidth]{pictures/ex4_char7.pdf}
   \captionsetup{labelformat=empty}
@@ -617,6 +617,10 @@ consists of positive lattice points in the target lattice of $\matA$.
 \end{definition}
 
 The preceding discussion shows that the shortfall of either program consists of positive lattice points in the target lattice of $\matA$.
+\todo[inline]{
+   Mention finiteness of shortfalls.
+   Maybe gather properties of these guys in  proposition.
+}
 
 \begin{remark}[Algebraic interpretation of shortfalls]
 \label{shortfall motivation: R}
@@ -641,12 +645,14 @@ giving us an algebraic interpretation for the shortfall of the arithmetic intege
 
 If $\vv{k}$ is optimal for $\IP = \IP(\matA,\vv{u},q)$ or $\IP_p = \IP_p(\matA,\vv{u},q)$, then $\matA\vv{k} < \vv{u}q$.
 For sufficiently small positive $\epsilon$, we have $\matA(\vv{k}+\epsilon\vv{1}) < \vv{u}q$, so $(\vv{k}+\epsilon \vv{1})/q$ is feasible for $\LP(\matA,\vv{u})$.
-Thus, $\norm{\vv{k}}/q < \val \LP(\matA,\vv{u}) = \degree(\matA,\vv{u})$, showing that the values of $\IP$ and $\IP_p$ are strictly less than $\degree(\matA,\vv{u})q$.
+Thus, $\norm{\vv{k}}/q < \val \LP(\matA,\vv{u})$,
+\pedro{Degree hasn't been defined yet, so I reformulated things using the value of $\LP$ instead.}
+showing that the values of $\IP$ and $\IP_p$ are strictly less than $q\val \LP(\matA,\vv{u})$.
 The notion of \emph{deficit} is introduced to measure how far those values are from this natural upper bound.
 
 \begin{definition}[Deficit for $\IP$ and $\IP_p$]
    The \emph{deficit} of the integer program $\IP(\matA, \vv{u}, q)$ is positive rational number
-   \[ \deficit \IP(\matA, \vv{u}, q) = \degree(\matA,\vv{u})q - \val \IP(\matA, \vv{u}, q).\]
+   \[ \deficit \IP(\matA, \vv{u}, q) = q\val \LP(\matA,\vv{u}) - \val \IP(\matA, \vv{u}, q).\]
    The deficit of the arithmetic integer program $\IP_p(\matA, \vv{u}, q)$ is defined likewise, replacing $\IP$ with $\IP_p$.
 \end{definition}
 
@@ -1742,7 +1748,7 @@ For that, we shall need the following simple boundedness result.
 
 \begin{proof}
    \Cref{tail projection: L} and the constraints of $\ip$ imply that  $\short \ip$ consists of positive lattice points in the target lattice of $\collapse{\matA}$.  It remains to show that $\short \ip$ is finite.
-   Towards this, suppose $\defpt$ defines $\mf(\matA,\vv{u})$ in the Newton polyhedron of $\matA$.
+   Towards this, suppose $\defpt$ defines $\mf(\matA,\vv{u})$ in the Newton polyhedron of~$\matA$.
 
    If $\vv{h}$ is optimal for $\ip$, then \eqref{bound in inner product: e} tells us that $\val \ip = \norm{\vv{h}} \leq \iprod{\collapse{\defpt}}{\collapse{\matA} \vv{h}}$, and so $\collapse{\matA} \vv{h}$ is a lattice point in the polyhedron of all points $\vv{v}$ with $\vv{v} \le \collapse{\matA} \tail{\vv{s}}_q$ and $\iprod{\collapse{\defpt}}{\vv{v}} \geq \val \ip$.
    The positivity of $\collapse{\defpt}$ and \Cref{bounded polytope: L} then tell us that this polyhedron is bounded.
