@@ -2770,23 +2770,26 @@ $\delta_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}
 \begin{proposition}
    \label{p large graph: P}
    Given a monomial matrix $\matA$, there exists $\beta = \beta(\matA)$ with the following property\textup:
-   If $\q > \beta$, $(\matA,\vv{u})$ is very small, and $1 \leq e \leq \E_\q(\matA,\vv{u})$, then
+   If $\q$ is greater than $\beta$, $(\matA,\vv{u})$ is a very small monomial pair, and $1 \leq e \leq \E_\q(\matA,\vv{u})$, then
    \[
-      \max \{ \val \IP_\q(\matB,\vv{v},\q) : (\matB,\vv{v}) \in \T_{\q}^e(\matA,\vv{u}) \} = \delta_{\q}^e(\matA,\vv{u}) \, \q -\eta_{\q}^e(\matA,\vv{u})
+      \max \{ \val \AIP^1_\q(\matB,\vv{v}) : (\matB,\vv{v}) \in \T_{\q}^e(\matA,\vv{u}) \} = \delta_{\q}^e(\matA,\vv{u}) \, \q -\eta_{\q}^e(\matA,\vv{u})
    \]
    and the subset of $\T_{\q}^e(\matA,\vv{u})$ of pairs that achieve this maximum is $\S_{\q}^e(\matA,\vv{u})$.
 \end{proposition}
 
-\daniel[inline]{I tried updating this, but got confused at the end.}
 \begin{proof}
-   To start, choose $\q$ to be large enough so that the conclusion of \Cref{arithmetic uniform value and image: T} holds for $\matA$, as well as for each of its finitely many collapses.
+   Let $\beta$ satisfy the conclusion of \Cref{arithmetic uniform value and image: T} for $\matA$, as well as for each of its finitely many collapses, as well as the conclusion of \Cref{easy-to-compare-values-of-first-AIP: C}  for $\matA$.
+
+The assumed bounds on $e$ imply that $\S_{\q}^e(\matA, \vv{u})$ is nonempty. Hence, by \Cref{subgraph: D}, the set  $\T_{\q}^e(\matA, \vv{u})$ consists of very small pairs, and as noted in \Cref{elementary1: P}\ref{elementary1 small pairs}, the first component of every such pair is a collapse of $\matA$. 
    
-   The assumed bounds on $e$ imply that $\S_{\q}^e(\matA, \vv{u})$ is nonempty. \Cref{subgraph: D} and \Cref{elementary1: P}\ref{elementary1 small pairs} then imply that $\T_{\q}^e(\matA, \vv{u})$ is also nonempty, and in fact, consists of very small pairs $(\matB, \vv{v})$ with $\matB$ a collapse of $\matA$.  Thus, given our choice of $\q$, \Cref{arithmetic uniform value and image: T} implies that $\val \IP_\q(\matB,\vv{v}, \q) = \degree(\matB,\vv{v})\, \q-\udeficit(\matB,\vv{v}, \q)$  for each vertex $(\matB,\vv{v})$ in $\T_{\q}(\matA,\vv{u})$, \hl{and the existence of $\beta(\matA)$ as above then follows from arguments similar to those made in} \Cref{p large m-primary: R}. \daniel{¿Que?}
+Thus, we may apply \Cref{easy-to-compare-values-of-first-AIP: C} to see that the maximum under consideration is achieved precisely by the pairs $(\matB, \vv{v}) \in \S_q^e(\matA, \vv{u}) \subseteq \T_q^e(\matA, \vv{u})$.  Finally, for such a pair, it follows from \Cref{arithmetic uniform value and image: T} and \Cref{fundamental-sequences: D} that 
+$\val \AIP_\q^1(\matB,\vv{v}) = \degree(\matB,\vv{v})\, \q-\udeficit_q(\matB,\vv{v}) =   \delta_{\q}^e(\matA,\vv{u}) \, \q -\eta_{\q}^e(\matA,\vv{u})$. 
 \end{proof}
 
-\subsection{The main theorem}
+\section{Solving the arithmetic and fractal programs}
 
 \todo[inline]{Daniel, please split this off here.}
+\daniel[inline]{Done.}
 
 Having the necessary concepts and definitions in hand, we now turn to the proof of our main theorem, which extends \Cref{m-primary AIP: T} to arbitrary monomial matrices.
 
