@@ -1,6 +1,7 @@
 \documentclass{article}
 \input{preamble.tex}
 \usepackage{soul}
+\newcommand{\AIP}{\Pi}
 
 \begin{document}
 
@@ -44,6 +45,25 @@ TO DO LIST:
  So far this has been done only in the definition.
  \item[$\Box$] Make notation in \Cref{convenient: SS} consistent with the new notation used in \Cref{sprouting: S} (after it stabilizes).
 \end{enumerate}}
+
+\daniel[inline]{  Some other possible changes.
+
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{$}c<{$} | >{$}c<{$} | l }
+ \text{old}  & \text{new} & comments  \\ \hline
+\backslash \textrm{IP} 	&  \backslash \textrm{AIP} & only when referencing an AIP \\
+\IP(\matA, \vv{u}, q) & \IP_q(\matA, \vv{u}) &  Confusion between $\IP_q(\matA, \vv{u})$ and $\IP_q^1(\matA, \vv{u})$?\\ 
+\AIP_q(\matA, \vv{u}, q^e) & \AIP_q^e(\matA, \vv{u})   & Update arithmetic constraint of $\AIP_q^e(\matA, \vv{u})$ \\ 
+\ip(\matA, \vv{u}, \vv{s}, q) & \ip_q(\matA, \vv{u}, \vv{s}) & \\ 
+\udeficit(\matA, \vv{u}, q) & \udeficit_q(\matA, \vv{u}) & \\ 
+\ushort(\matA, \vv{u}, q) & \ushort_q(\matA, \vv{u}) & \\ 
+\end{tabular}
+\end{center}
+}
+
+
  \details[inline]{
  	TO DO LIST:
  	\begin{enumerate}
@@ -52,6 +72,9 @@ TO DO LIST:
  \item[$\Box$] Work out consequences on Bernstein-Sato polynomials. 
 \end{enumerate}
 }
+
+
+
 \newpage
 
 %\setcounter{tocdepth}{1}
@@ -2131,9 +2154,8 @@ With these reductions in hand, we now describe how to compute the value of $\IP_
    From here on, we argue algebraically: If the pair $(\matA,\vv{u})$ is associated to the ideal pair $(\ideala,\ideald)$, our last finding tells us that $\ideala^{[p]} \not\subseteq \ideald^{[p]}$, and hence $\ideala \not\subseteq \ideald$, so the pair $(\matA,\vv{u})$ is not even small---a contradiction.
 \end{proof}
 
-In view of the above lemma, \Cref{uniform uniform value and image: T} immediately gives us the following result.
+\Cref{ip = aip: L} and \Cref{uniform uniform value and image: T} immediately yields the following result.
 
-\daniel[inline]{Update this}
 \begin{theorem}[Uniformity of deficit and shortfall for very small pairs]
    \label{arithmetic uniform value and image: T}
    Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
@@ -2142,12 +2164,26 @@ In view of the above lemma, \Cref{uniform uniform value and image: T} immediatel
    and
    \[ \collapse{\short \IP_p(\matA,{\vv{u}},p)}= \collapse{\short \IP(\matA,{\vv{u}},p)}= \ushort(\matA,\vv{u},p) \]
    where the overbar denotes collapse along $\mf(\matA, \vv{u})$.
+   \daniel[inline]{Update this so that it states 
+$\val \AIP_q^1(\matA, \vv{u}) = \deg(\matA, \vv{u}) \cdot q - \udeficit_q(\matA, \vv{u})$
+}
    \qed
+
+
 \end{theorem}
 
 \begin{remark} \label{program behavior small: R}
    \Cref{arithmetic uniform value and image: T}, together with the periodicity of universal deficits and shortfalls shown in \Cref{pair periodicity: R}, shows that for a very small pair $(\matA,\vv{u})$, the deficit and the collapse of the shortfall of  $\IP_p(\matA,\vv{u},p)$ along $\mf(\matA, \vv{u})$ do not depend on $p$,  but rather on the class of $p$ modulo a universal denominator for $\matA$.
 \end{remark}
+
+\begin{corollary}
+\label{easy-to-compare-values-of-first-AIP: C}  
+\hl{Given a monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:  If $q$ is greater than $\beta$, and $(\matB, \vv{v})$ and $(\matC, \vv{w})$ are very small monomial pairs with $\matB, \matC$ collapses of $\matA$, then the value of $\AIP_q^1(\matB, \vv{v})$ is at least the value of $\AIP_q^1(\matC, \vv{w})$ if and only if  $\deg (\matB, \vv{v})$ is greater than $\deg (\matC, \vv{w})$, or these degrees coincide and $\udeficit_q(\matB, \vv{v})$ is at most  $\udeficit_q(\matC, \vv{w})$.}
+\end{corollary}
+
+\begin{proof}  
+\Cref{ip = aip: L} implies that there is a $\beta = \beta(\matA)$ such that if $q > \beta$,  then the value of each arithmetic integer program under consideration is of the form $\epsilon q - \omega$, where $\epsilon$ is the degree of a very small monomial pair whose initial term is among the finitely many collapses of $\matA$, and $\omega$ is the $q$-th universal deficit of such a pair.  As, by definition, the degree of a very small pair is at most $1$, it follows from \Cref{discreteness: P} and \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} that there is a finite set $\mathrm{M} = \mathrm{M}(\matA)$ of positive rational numbers that contains every such $\epsilon$ and $\omega$.  Finally, after increasing $q$, if necessary, comparing two linear polynomials in $q$ of the form $\epsilon q - \omega$ with $\epsilon, \omega \in \mathrm{M}$ is equivalent to first comparing their leading terms, and then if these agree, their constant terms.
+\end{proof}
 
 \begin{example}[$\IP(\matA,\vv{u},p)$ \vs $\IP_p(\matA,\vv{u},p)$ for a small but not very small pair]
    If $(\matA, \vv{u})$ is small but not very small, $\IP = \IP(\matA,\vv{u},p)$ and $\IP_p = \IP_p(\matA,\vv{u},p)$ need not agree.
@@ -2189,6 +2225,7 @@ The main result of this subsection is the following.
 
 Before presenting the proof, we clarify our requirements for $p\gg 0$.
 
+\daniel[inline]{Eventually the following remark in the subsequent proof with \Cref{easy-to-compare-values-of-first-AIP: C}.  In that proof, also update $\S^{\ast} \subseteq \S$ with $\S \subseteq \mathcal{T}$, to make it consistent with next section.}
 \begin{remark}[On $p$ being sufficiently large]
    \label{p large m-primary: R} 
    First off, we assume that $p$ is large enough so that the conclusions of \Cref{small not very small value: T,arithmetic uniform value and image: T} are valid.
