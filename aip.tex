@@ -1,17 +1,31 @@
-\documentclass{article}
+\documentclass{amsart}
 \input{preamble.tex}
 \usepackage{soul}
 \newcommand{\AIP}{\Pi}
 
+% https://latex.org/forum/viewtopic.php?t=10536
+
+\setcounter{tocdepth}{3}% to get subsubsections in toc
+
+\let\oldtocsection=\tocsection
+
+\let\oldtocsubsection=\tocsubsection
+
+\let\oldtocsubsubsection=\tocsubsubsection
+
+\renewcommand{\tocsection}[2]{\hspace{0em}\oldtocsection{#1}{#2}}
+\renewcommand{\tocsubsection}[2]{\hspace{2em}\oldtocsubsection{#1}{#2}}
+\renewcommand{\tocsubsubsection}[2]{\hspace{2em}\oldtocsubsubsection{#1}{#2}}
+
 \begin{document}
 
-% \title[Fractal and arithmetic programs]{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
-% \author{Daniel J.~Hern\'andez}
-% \author{Pedro Teixeira}
-% \author{Emily E.~Witt}
+ \title[Fractal and arithmetic programs]{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
+ \author{Daniel J.~Hern\'andez}
+ \author{Pedro Teixeira}
+ \author{Emily E.~Witt}
 
-\title{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
-\author{Daniel J.~Hern\'andez, Pedro Teixeira, and Emily E.~Witt}
+%\title{Fractal programs, arithmetic programs, and the Frobenius powers of monomial ideals}
+%\author{Daniel J.~Hern\'andez, Pedro Teixeira, and Emily E.~Witt}
 \maketitle
 
 \newcommand{\CheckedBox}{\text{\rlap{$\checkmark$}}\Box}
@@ -2396,12 +2410,8 @@ This graph's construction relies on a positive integer $\q$, and its powers, whe
 
 
 
-\subsection{The sprouting graph of a monomial matrix} 
 
-%\daniel[inline]{The only descendants that we look at are collapses of collapses of \ldots  collapses of $\matA$, which is just a collapse of $\matA$.  So let's get rid of this terminology.}
-%\begin{definition}[Descendant]
-%   A \emph{descendant} of a monomial matrix $\matA$ is any monomial matrix $\matB$ obtained from $\matA$ by deleting some (possibly none) of its rows.
-%\end{definition}
+\subsection{Sprouts} \ \\ 
 
 Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept that was implicitly introduced, though not explicitly defined, in \Cref{small pairs from shortfalls: L}.
 
@@ -2410,6 +2420,8 @@ Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept 
    Consider a monomial pair $(\matA,\vv{u})$, and let an overbar denote collapse along the minimal face $\O = \mf(\matA,\vv{u})$.
    We say that $(\matB, \vv{v})$ is a \emph{$\q$-sprout} of $(\matA, \vv{u})$ whenever $\matB = \collapse{\matA}$, and $\vv{v}$ lies in $\ushort(\matA, \vv{u}, \q) = \ushort(\matB, \collapse{\vv{u}}, \q)$.
 \end{definition}
+
+\daniel[inline]{Shorten this}
 
 \begin{proposition} \label{sprout: P}  Consider an arbitrary monomial pair $(\matA, \vv{u})$.
  \begin{enumerate}[$(1)$]
@@ -2423,6 +2435,49 @@ Below, we introduce the notion of a \emph{sprout} of a monomial pair, a concept 
 The first point is a translation of \Cref{small pairs from shortfalls: L}, and the remaining points follow from \Cref{sprout: D} and \Cref{fundamental-properties-deficits-shortfalls: P}.
 \end{proof}
 
+\begin{lemma}
+   \label{fundamental-sequences: L}
+   If $(\matB, \vv{v})$ is a $\q$-sprout of $(\matA, \vv{u})$, then $\degree(\matB,\vv{v}) \leq \udeficit(\matA, \vv{u}, \q) $.  
+\end{lemma}
+
+\begin{proof}
+   Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
+   By definition, $\matB=\collapse{\matA}$ and $\vv{v} \in \ushort(\matA,\vv{u},\q)$.
+   \Cref{cor: O bar is bounded} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
+
+On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \q)$, we can write $ \vv{v} = \matB \tail{\vv{s}}_{\q} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \q)$.  Then
+\[ 
+ \iprod{\collapse{\vv{c}}}{\vv{v}} = \iprod{\collapse{\vv{c}}}{ \matB \tail{\vv{s}}_{\q}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} = \norm{\tail{\vv{s}}_{\q}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} \leq \norm{\tail{\vv{s}}_{\q}} - \val \ip 
+\]
+where the first equality follows from our description of $\vv{v}$, the second equality from \eqref{norm of tail: e}, and the inequality from \eqref{bound in inner product: e}.  However, by definition, the right-most term equals  $\udeficit(\matA, \vv{u}, \q)$, and so $\deg(\matB, \vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}} \leq \udeficit(\matA, \vv{u}, \q)$.
+\end{proof}
+
+\begin{lemma} \label{1-sprouts: L}
+The collapse of a very small pair $(\matA, \vv{u})$ along its minimal face $\O = \mf(\matA, \vv{u})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore,  $\udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})$.
+\end{lemma}
+
+\begin{proof}
+Consider a rational special point $\vv{s}$ for $(\matA, \vv{u})$ with denominator $\denom$.  Then $\norm{\vv{s}} = \degree(\matA ,\vv{u}) \leq 1$, and so each $s_i$ is of the form $s_i = t_i/d$ for some $t_i \in \ZZ$ with $0 \leq t_i \leq d$.  Thus, $\tail{s_i}_1 = \lpr{t_i}{d}/d = t_i/d = s_i$ if $t_i \neq 0$.  In other words, $\tail{\vv{s}}_1 = \vv{s}$.
+
+Thus, if we set $\ip = \ip(\matA, \vv{u}, \vv{s}, 1)$, then $0 \leq \val \ip <  \norm{\vv{s}} = \degree(\matA, \vv{u}) \leq 1$   where the strict inequality follows from \Cref{bounded value: P}.   We conclude that  $\val \ip = 0$.
+
+ Hence,  $\vv{0} \in \opt \Theta$, and so $\collapse{A} \tail{\vv{s}}_1 - \collapse{A} \vv{0} \in \short \Theta = \ushort(\matA, \vv{u}, 1)$, where the overbar denotes collapse along $\O$. However, as $\tail{\vv{s}}_1 = \vv{s}$, this point may be rewritten as 
+$\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} \vv{s} = \collapse{\matA \vv{s}} = \collapse{\vv{u}}$ where the last equality follows from the choice of  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.   Thus, $\collapse{\vv{u}} \in \ushort(\matA, \vv{u}, 1)$, and so $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore, $\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{{\vv{s}}} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u})$.
+\end{proof}
+
+\begin{lemma}
+\label{sprouts-in-convenient-planar-case: L}
+If $\matA$ is \hl{convenient and planar}, then every $r$-sprout of a pair $(\matA, \vv{u})$ is of the form $(\matA, \vv{v})$, and satisfies  $\degree(\matA,\vv{v}) = \udeficit(\matA, \vv{u}, \q)$. 
+\end{lemma}
+
+\begin{proof}  As noted in \Cref{ex: convenient planar case},  the minimal face $\O = \mf(\matA, \vv{u})$ is compact, and contains every column of $\matA$.  Hence, the collapse along $\O$ is the identity, and the inner product of the point $\vv{c}$ that defines $\O$ with every column of $\matA$ equals $1$.
+
+Thus, if $(\matB, \vv{v})$ is an $r$-sprout of $(\matA, \vv{u})$, then $\matB = \matA$, and $\vv{v} \in \ushort(\matA, \vv{u}, \q)$.  To realize $\vv{v}$,  fix a special point $\vv{s}$ for $(\matA, \vv{u})$, and write $\vv{v} = \matA \tail{\vv{s}}_{\q} - \matA \vv{h}$ for some $\vv{h}$ that is optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \q)$.  \Cref{FT descriptions: P}\ref{new ip} tells us that $\deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}}$, and as the inner product of $\vv{c}$ with every column of $\matA$ is $1$, we see that
+\[ \deg(\matA, \vv{v}) = \iprod{\vv{c}}{\vv{v}} = \iprod{\vv{c}}{\matA \tail{\vv{s}}_{\q}} - \iprod{\vv{c}}{\matA \vv{h}} = \norm{\tail{\vv{s}}_{\q}} - \norm{\vv{h}} = \norm{\tail{\vv{s}_{\q}}} - \val \ip.\]
+However, by definition, the right-most term above equals $\udeficit(\matA, \vv{u}, \q)$. 
+\end{proof}
+
+\daniel[inline]{The next remark may be deleted.  The purpose was to motivate the definition of sprout.}
 \begin{remark}[Sprouts as collapsed shortfall pairs]
    \label{sprouts as collapsed shortfall pairs: R}
    \daniel[inline]{Update this remark, refer to \Cref{small pairs from shortfalls: L}.  }
@@ -2432,16 +2487,20 @@ The first point is a translation of \Cref{small pairs from shortfalls: L}, and t
    It follows immediately from \Cref{sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
 \end{remark}
 
+\subsection{The sprouting graph} 
+
+
 \begin{definition}[The directed sprouting graph]
-   Consider a monomial matrix $\matA$.
+   Consider a monomial matrix $\matA$.   We inductively define the sets $\graph_{\q}^e(\matA)$ as follows.
+
    
    \begin{itemize}
    \item $\graph_{\q}^1(\matA)$ is the set consisting of all very small $\matA$-pairs.
    \item $\graph_{\q}^{e+1}(\matA)$ is the set consisting of all $\q$-sprouts of all pairs in $\graph_{\q}^e(\matA)$.
    \item $\graph_{\q}(\matA)$ is the graph whose vertex set is the disjoint union
    \[ \bigsqcup_{e=1} \graph_{\q}^e(\matA). \]
-   A vertex in the $e$-th component of this disjoint union is said to be of \emph{level} $e$.
-   \item    The directed edges in $\graph_{\q}(\matA)$ exist only between vertices of consecutive levels, and are defined in the natural way:  There is a directed edge from a vertex of level $e$ to one of level $e+1$ exactly when the latter is a $\q$-sprout of the former.
+   A vertex in the $e$-th component of this union is said to be of \emph{level} $e$.
+   \item    The directed edges in $\graph_{\q}(\matA)$ exist only between vertices of consecutive levels, in the natural way:  There is a directed edge from a vertex of level $e$ to one of level $e+1$ exactly when the latter is a $\q$-sprout of the former.
 \end{itemize}
 \end{definition}
 
@@ -2583,12 +2642,9 @@ Finally, the third assertion follows from \Cref{sprout: P}, {which implies that,
 
 
 \newpage
-\subsection{Subgraphs associated to pairs}
+\subsection{Canonical subgraphs associated to very small pairs}
 
-We now consider certain subgraphs of the directed sprouting graph, whose definitions are motivated by the sets with the same names used in the convenient setting, which appear in the proof of \Cref{m-primary AIP: T}, and from which \Cref{convenient algorithm: R} is built from.
-
-
-\begin{definition}[Subgraphs associated to very small pairs]
+\begin{definition}[Canonical subgraphs]
 	\label{subgraph: D}
    Let $(\matA, \vv{u})$ be a very small pair.  We inductively define the sets $\S_{\q}^e(\matA) \subseteq \T_{\q}^e(\matA, \vv{u})$ as follows.
    
@@ -2596,8 +2652,8 @@ We now consider certain subgraphs of the directed sprouting graph, whose definit
    \item $\T_{\q}^1(\matA, \vv{u})$ is the singleton consisting of the very small pair $(\matA, \vv{u})$.  
    \item Next, suppose that $\T_{\q}^e(\matA, \vv{u})$ has been defined for some $e \geq 1$.
    \begin{itemize}
-   \item  If $\T_{\q}^e(\matA, \vv{u})$ is nonempty, and consists only of very small pairs, then $
-   \S_{\q}^e(\matA, \vv{u})$ is the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit(\matB,\vv{v},\q)$.  We then define $\T_{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
+   \item  If $\T_{\q}^e(\matA, \vv{u})$ is nonempty, and consists only of very small pairs, then we define $
+   \S_{\q}^e(\matA, \vv{u})$ to be the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit_\q(\matB,\vv{v})$.  We then define $\T_\q^{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
       \item Otherwise, if $\T_{\q}^e(\matA, \vv{u})$ is empty,  or contains a pair that is not very small, then we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
    \end{itemize}
    \end{itemize}
@@ -2650,33 +2706,6 @@ Otherwise, if $\T_{\q}^e(\matA, \vv{u})$ is nonempty for every $e \geq 1$, then 
 The remaining assertions follow from \Cref{subgraph: D} and \Cref{sprout: P}.
 \end{proof}
 
-%\begin{remark}[Elementary observations]
-%   \label{elementary2: P}
-%   Suppose $(\matA,\vv{u})$ is very small.
-%   In this remark, we gather some basic facts concerning the graph $\sprout^{\ast}_r(\matA,\vv{u})$.
-%   \begin{enumerate}
-%      \item  \label{elementary2 lowest level}
-%      The only vertex of $\sprout_r^{\ast}(\matA,\vv{u})$ of level $r$ is $(\matA,\vv{u})$.
-%      \item \label{elementary2 small pairs}
-%      It follows from \Cref{elementary1: R}\eqref{elementary1 small pairs} that $\S_{q}(\matA,\vv{u})$, when nonempty, consists of small pairs whose monomial matrix is among the finitely many descendants of $\matA$.
-%      Furthermore, $\S_{qr}(\matA,\vv{u}) = \emptyset$ if and only if $\S_q(\matA,\vv{u}) = \emptyset$ or $\S_q(\matA,\vv{u})$ contains a pair that is not very small, which itself holds if and only if $\S_{q}^{\ast}(\matA,\vv{u})= \emptyset$.
-%      Moreover, $\S_q^{\ast}(\matA,\vv{u})$ is either empty, or contains only very small pairs.
-%      \item \label{elementary2 periodic in e}
-%      Arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in e}, we see that $\bigcup_{e=1}^{\infty} \S_{r^e}(\matA,\vv{u})$ and  $\bigcup_{e=1}^{\infty} \S^{\ast}_{r^e}(\matA,\vv{u})$ are finite, and that each of the sets $\S_{r^e}(\matA,\vv{u})$ and $\S^{\ast}_{r^e}(\matA,\vv{u})$ are eventually periodic in $e$.
-%      \item \label{elementary2 periodic in r}
-%      Similarly, arguing as in \Cref{elementary1: R}\eqref{elementary1 periodic in r}, the graph $\sprout_r^{\ast}(\matA,\vv{u})$ depends only on $r$ modulo any universal denominator $\denom$ for $\matA$  and all of its finitely many descendants.
-%      \item \label{subgraph-invariant-under-collapse}
-%      The graphs $\sprout^{\ast}_r(\matA,\vv{u})$ and $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$, where the overbar denotes the collapse along $\O = \mf(\matA, \vv{u})$, are canonically isomorphic:
-%      The first level of $\sprout^{\ast}_r(\matA,\vv{u})$ consists of the single vertex $(\matA, \vv{u})$, while the first level of $\sprout_r^{\ast}(\collapse{\matA},\collapse{\vv{u}})$ has unique vertex $(\collapse{\matA}, \collapse{\vv{u}})$; moreover, $\degree(\matA, \vv{u}) = \degree(\collapse{\matA},\collapse{\vv{u}})$.  The vertices on the remaining levels of the two graphs coincide, and after identifying the vertices on the first level with one another, 
-%      all edges also agree.
-%\end{enumerate}
-%\end{remark}
-
-
-
-\newpage
-
-
 \daniel[inline]{Should we define a graph $\T_{\q}(\matA, \vv{u})$?  It only seems to come up here.}
 \begin{example}[Running example: a sprouting subgraph]
    \label{ex: ft.4}
@@ -2715,13 +2744,14 @@ The remaining assertions follow from \Cref{subgraph: D} and \Cref{sprout: P}.
 \end{example}
 
 
-\subsection{The canonical sequences}
+\subsection{The fundamental sequences}
 
 \begin{definition}[Depth of a sprouting subgraph]
 \label{depth-of-graph: D}
    If $(\matA,\vv{u})$ is very small, then the extended natural number $\E_{\q}(\matA, \vv{u})$ 
  describes the largest level of any vertex in the graph $\S_{\q}(\matA,\vv{u})$.  Formally, $\E_{\q}(\matA,\vv{u})  = \inf \{ e :  \S_{\q}^{e+1}(\matA,\vv{u}) = \emptyset \}$.\end{definition}
 
+\daniel[inline]{Shorten this}
 \begin{proposition}
 \label{curly-E-basic-facts: P}
 If $(\matA, \vv{u})$ is very small, then the following hold.
@@ -2740,18 +2770,23 @@ If $(\matA, \vv{u})$ is very small, then the following hold.
 
 \begin{definition}[The fundamental sequences]
    \label{fundamental-sequences: D}
-   Let $(\matA,\vv{u})$ be a very small monomial pair, and $e$ be an integer.  If $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
+   If $(\matA,\vv{u})$ is a very small monomial pair, and $q$ is a positive integer, then the three fundamental sequences 
+   \[ \{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \{ \lambda_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty} \]  are defined as follows:   If $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then
    \begin{align*}
      \delta_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
      \eta_{\q}^e(\matA,\vv{u}) & = \udeficit_\q(\matB,\vv{v})
    \end{align*}
-   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$;  this is well-defined, by definition of $\S_{\q}^e(\matA,\vv{u})$.  Finally, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
+   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$ | this is well-defined, by definition of $\S_{\q}^e(\matA,\vv{u})$ | and if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
+
+Finally,  $\lambda_q^e(\matA, \vv{u})$ is the difference
+$\lambda_q^e(\matA, \vv{u}) = \eta_q^e(\matA, \vv{u}) - \delta_q^{e+1}(\matA, \vv{u})$.
 \end{definition}
 
+\daniel[inline]{Shorten this}
 \begin{proposition}
 If $(\matA, \vv{u})$ is very small, then the following hold.
 \begin{enumerate}[$(1)$]
-\item  The sequences $\{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ and $\{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ are sequences of positive rational numbers, and are eventually periodic in $e$.
+\item  The fundamental sequences $\{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ and $\{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ are sequences of positive rational numbers, and are eventually periodic in $e$.
 \item If $d$ is a universal denominator for each of the collapses of $\matA$, and $r= \lpr{\q}{d}$, then $\delta_{\q}^e(\matA, \vv{u}) = \delta_{r}^e(\matA, \vv{u})$ and $\eta_{\q}^e(\matA, \vv{u}) = \eta_{r}^e(\matA, \vv{u})$ for every $e$.
 \item If an overbar denotes collapse along the minimal face $\O = \mf(\matA, \vv{u})$, then
 $\delta_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}})$ and $\eta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}})$ for every $e$.
@@ -2760,6 +2795,57 @@ $\delta_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}
 
 \begin{proof}
 	Each term $\delta_{\q}^e(\matA, \vv{u})$ is the Newton degree of a monomial pair, and hence, is a positive rational number, while each term $\eta_{\q}^e(\matA, \vv{u})$ is a universal deficit associated to a monomial triple, which \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} tells us  is also a positive rational number. The rest follows from \Cref{elementary2: P} and \Cref{fundamental-sequences: D}.
+\end{proof}
+
+\begin{proposition}
+\label{finishing-with-the-fundamental-sequences: P}
+\hl{The fundamental sequence $\{ \lambda_q^e(\matA, \vv{u}) \}_{e=1}^{\infty}$ is a sequence of nonnegative rational numbers, eventually periodic in $e$.  Furthermore, it is unaffected by replacing $q$ with $\lpr{q}{d}$, where $d$ is any universal denominator for $\matA$, and also by replacing $(\matA, \vv{u})$ with its collapse along its associated minimal face.}
+\end{proposition}
+
+\begin{proof} \daniel[inline]{Update proof}
+We must prove that each $\lambda_{r^s}(\matA, \vv{u})$ is nonnegative whenever $\E \neq \infty$ and $1 \leq s \leq \E$.
+
+We first consider the situation when $\E \neq \infty$ and $1 \leq s < \E$.   In this case, by definition of $\E$, both $\S_{r^{s}}^{\ast}(\matA, \vv{u})$ and $\S_{r^{s+1}}^{\ast}(\matA, \vv{u})$ are non-empty, and hence, there exists a pair $(\matC, \vv{z})$ in the latter set that is a $r$-sprout of a pair $(\matB, \vv{v})$ in the former.  In this case, \Cref{fundamental-sequences: D} then tells us that 
+\[ \lambda_{r^s}(\matA, \vv{u}) = \delta_{r^s}(\matA, \vv{u}) - \epsilon_{r^{s+1}}(\matA, \vv{u}) = \udeficit(\matB, \vv{v}, r) - \deg(\matC, \vv{z}) \]  
+ and \Cref{fundamental-sequences: L} then implies that the right-most difference must be nonnegative.  
+ 
+Finally, we consider the case that $s = \E \neq \infty$.  In this case,  $\S^{\ast}_{r^{\E+1}}(\matA,\vv{u})$ is empty, and so there is an edge $(\matB,\vv{v}) \to (\matC,\vv{z})$ in $\sprout_p(\matA)$ whose initial pair lies in $\S^{\ast}_{p^{\E}}(\matA,\vv{u})$, and whose terminal pair is not very small. Thus, 
+\[ \lambda_{r^{\E}}(\matA, \vv{u}) = \delta_{r^{\E}}(\matA, \vv{u}) - 1 = \udeficit(\matB, \vv{v}, r) - 1 \geq \deg(\matC, \vv{z}) - 1   \] where the last inequality follows from \Cref{fundamental-sequences: L}.   However, as $(\matC, \vv{z})$ is not very small, the right-most term above must be positive.
+\end{proof}
+
+\daniel[inline]{Update statement}
+\begin{proposition}
+	\label{important-special: P}
+   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exists $\beta = \beta(\matA)$ such that if $(\matA, \vv{u})$ is very small, $p>\beta$, and $p \equiv 1 \bmod \denom$, then
+\[
+ \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
+\]
+for all positive integers  $e$.  In particular, in this setting,
+$\val \fip_p (\matA,\vv{u}) = \degree(\matA,\vv{u})$.
+	\end{proposition}
+
+\begin{proof}  Let $(\matA, \vv{u})$ and $p \equiv 1 \bmod d$ be as above.  Below, we will prove that 
+\begin{equation}
+\label{delta-equals-epsilon-when-r-is-1: e}
+\delta_{p^e}(\matA, \vv{u}) = \epsilon_{p^e}(\matA, \vv{u}) = \deg(\matA, \vv{u})
+\end{equation}
+for every positive integer $e$, which would imply that $\lambda_{p^e}(\matA, \vv{u}) = 0 \text{ and } \eta_{p^e}(\matA, \vv{u}) = \deg(\matA, \vv{u})$ for every such $e$.  The proposition would then follow from \Cref{main theorem wrt diagonal: T}. 
+
+We start by observing that \Cref{pair periodicity: R}, along with the assumption that $\lpr{p}{d} = 1$,  implies that $\udeficit(\matB, \vv{v}, p) = \udeficit(\matB, \vv{v}, 1)$ and $\ushort(\matB, \vv{v}, p) = \ushort(\matB, \vv{v}, 1)$ for every $(\matB, \vv{v})$ with $\matB$ is a descendant of $\matA$.  In particular, in this context, the notions of $r$-sprout and $1$-sprout coincide. 
+
+We now address the case of $e=1$ in \eqref{delta-equals-epsilon-when-r-is-1: e}.  By definition, $\S_p(\matA, \vv{u}) = \S_p^{\ast}(\matA, \vv{u})$ consists solely of the pair $(\matA, \vv{u})$.  It then follows from \Cref{1-sprouts: L} that
+\[ \delta_p(\matA, \vv{u}) = \deg(\matA, \vv{u}) = \udeficit(\matA, \vv{u}, 1) = \epsilon_p(\matA, \vv{u}).\] 
+
+Next, suppose that \eqref{delta-equals-epsilon-when-r-is-1: e} holds for some positive integer $e$.  Then
+\[ \deg(\matB, \vv{v}) = \udeficit(\matB, \vv{v}, 1) = \deg(\matA, \vv{u}) \] 
+ for every $(\matB, \vv{v}) \in \S_{p^e}^{\ast}(\matA, \vv{u})$.  By definition, every $(\matC, \vv{z}) \in \S_{p^{e+1}}(\matA, \vv{u})$ is a $1$-sprout of such a $(\matB, \vv{v})$, and so the above identities, along with \Cref{fundamental-sequences: L}, imply that
+$\deg(\matC, \vv{z}) \leq \udeficit(\matB, \vv{v}, 1) = \deg(\matA, \vv{u})$.  This bound shows that $(\matC, \vv{z})$ must be very small, and thus, this same bound, along with \Cref{1-sprouts: L}, implies that
+\begin{equation}
+\label{describing-next-level-of-graph-p-congruent-to-1: e}
+ \udeficit(\matC, \vv{z}) = \deg(\matC, \vv{z}) \leq \deg(\matA, \vv{u}).
+\end{equation}
+
+Thus, \eqref{describing-next-level-of-graph-p-congruent-to-1: e} implies that $\S_{p^{e+1}}^{\ast}(\matA, \vv{u})$ consists of all pairs $(\matC, \vv{z})$ that are $1$-sprouts of some $(\matB, \vv{v}) \in \S_{p^{e}}^{\ast}(\matA, \vv{u})$ with $\deg(\matC, \vv{z}) = \deg(\matB, \vv{v}) = \deg(\matA, \vv{u})$, provided that such a pair $(\matC, \vv{z})$ exists.  However,  \Cref{1-sprouts: L} implies that the $1$-sprout of $(\matB, \vv{v})$ obtained from this pair by collapsing along its minimal face is such a $(\matC, \vv{z})$.  Finally, using this pair to compute $\epsilon_{p^{e+1}}(\matA, \vv{u})$ and $\delta_{p^{e+1}}(\matA, \vv{u})$, we conclude that \eqref{delta-equals-epsilon-when-r-is-1: e} holds for $e+1$.  By induction, \eqref{delta-equals-epsilon-when-r-is-1: e} must hold for all $e$.
 \end{proof}
 
 \begin{proposition}
@@ -3008,18 +3094,11 @@ We now our focus on the fundamental sequences described in \Cref{fundamental-seq
    Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
    By definition, $\matB=\collapse{\matA}$ and $\vv{v} \in \ushort(\matA,\vv{u},\rr)$.
    \Cref{cor: O bar is bounded} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
-  
-   
-   
-   On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we can write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
-%
-%\begin{equation}
-%\label{lemma-fundamental-sequences-nonnegative: e}
+
+On the other hand, since $\vv{v} \in \ushort(\matA, \vv{u}, \rr)$, we can write $ \vv{v} = \matB \tail{\vv{s}}_{\rr} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip(\matA, \vv{u}, \vv{s}, \rr)$.  Then
 \[ 
  \iprod{\collapse{\vv{c}}}{\vv{v}} = \iprod{\collapse{\vv{c}}}{ \matB \tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} = \norm{\tail{\vv{s}}_{\rr}} - \iprod{\collapse{\vv{c}}}{\matB \vv{h}} \leq \norm{\tail{\vv{s}}_{\rr}} - \val \ip 
 \]
-%\end{equation}
-%
 where the first equality follows from our description of $\vv{v}$, the second equality from \eqref{norm of tail: e}, and the inequality from \eqref{bound in inner product: e}.  However, by definition, the right-most term equals  $\udeficit(\matA, \vv{u}, \rr)$, and so $\deg(\matB, \vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}} \leq \udeficit(\matA, \vv{u}, \rr)$.
 \end{proof}
 
@@ -3056,13 +3135,6 @@ Thus, if we set $\ip = \ip(\matA, \vv{u}, \vv{s}, 1)$, then $0 \leq \val \ip <  
 
  Hence,  $\vv{0} \in \opt \Theta$, and so $\collapse{A} \tail{\vv{s}}_1 - \collapse{A} \vv{0} \in \short \Theta = \ushort(\matA, \vv{u}, 1)$, where the overbar denotes collapse along $\O$. However, as $\tail{\vv{s}}_1 = \vv{s}$, this point may be rewritten as 
 $\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} \vv{s} = \collapse{\matA \vv{s}} = \collapse{\vv{u}}$ where the last equality follows from the choice of  $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$.   Thus, $\collapse{\vv{u}} \in \ushort(\matA, \vv{u}, 1)$, and so $(\collapse{\matA}, \collapse{\vv{u}})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore, $\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{{\vv{s}}} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u})$.
-%\begin{equation}
-%\label{1-deficit-equals-degree-for-very-small-pairs: e}
-%\udeficit(\matA, \vv{u}, 1) = \deficit \ip = \norm{\tail{\vv{s}}_1} - \val\ip = \norm{\vv{s}} =  \degree(\matA, \vv{u}).
-%\end{equation}
-%Next, suppose that $(\matB, \vv{v})$ is an arbitrary $1$-sprout of $(\matA, \vv{u})$.  Then
-%\[ \deg(\matB, \vv{v}) \leq \udeficit(\matA, \vv{u}, 1) = \deg(\matA, \vv{u})  \]
-%where the inequality follows from \Cref{fundamental-sequences: L}, and the equality from \eqref{1-deficit-equals-degree-for-very-small-pairs: e}.  This implies that $(\matB, \vv{v})$ is also very small, and invoking the equality of the outer terms of \eqref{1-deficit-equals-degree-for-very-small-pairs: e} for this very small pair shows that $ \udeficit(\matB, \vv{v}, 1) = \deg(\matB, \vv{v})$.
 \end{proof}
 
 \begin{proposition}
