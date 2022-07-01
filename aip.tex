@@ -2456,7 +2456,7 @@ We gather some fundamental properties of this graph below.
 Every vertex of the graph $\graph_{\q}(\matA)$ is a small monomial pair, and the first entry of every such pair is a collapse of $\matA$. 
 
 \item \label{elementary1 periodic in e}
-\hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, the sets $\graph_{\q}^e(\matA)$ are nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
+\hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, $\graph_{\q}^e(\matA)$ is nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
 
 \item \label{elementary1 periodic in r}
 If $d$ is a \daniel{I think that \emph{universal denominator} implies \emph{collapsed universal denominator}, which is a ud for each of the collapses.}\hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\graph_{\q}(\matA)$ and $\graph_r(\matA)$ --- that is, their vertices {and} arrows--- coincide.
@@ -2715,9 +2715,7 @@ The remaining assertions follow from \Cref{subgraph: D} and \Cref{sprout: P}.
 \end{example}
 
 
-\newpage \ 
-\newpage
-
+\subsection{The canonical sequences}
 
 \begin{definition}[Depth of a sprouting subgraph]
 \label{depth-of-graph: D}
@@ -2742,15 +2740,12 @@ If $(\matA, \vv{u})$ is very small, then the following hold.
 
 \begin{definition}[The fundamental sequences]
    \label{fundamental-sequences: D}
-   Let $(\matA,\vv{u})$ be a very small monomial pair.  If $e$ is an integer satisfying $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
+   Let $(\matA,\vv{u})$ be a very small monomial pair, and $e$ be an integer.  If $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then we define
    \begin{align*}
      \delta_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
-     \eta_{\q}^e(\matA,\vv{u}) & = \udeficit(\matB,\vv{v},\q)
+     \eta_{\q}^e(\matA,\vv{u}) & = \udeficit_\q(\matB,\vv{v})
    \end{align*}
-   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$.
-   Observe that, by definition of $\S_{\q}^e(\matA,\vv{u})$, these numbers are independent of the choice of $(\matB,\vv{v}) \in \S_{\q}^e(\matA,\vv{u})$.  
-   
-   Furthermore, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
+   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$;  this is well-defined, by definition of $\S_{\q}^e(\matA,\vv{u})$.  Finally, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then we define \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
 \end{definition}
 
 \begin{proposition}
@@ -2764,7 +2759,7 @@ $\delta_{\q}^e(\matA, \vv{u}) = \delta_{\q}^e(\collapse{\matA}, \collapse{\vv{u}
 \end{proposition}
 
 \begin{proof}
-	Each term $\delta_{\q}^e(\matA, \vv{u})$ is the Newton degree of a monomial pair, and hence, is a positive rational number.  On the other hand, each term $\eta_{\q}^e(\matA, \vv{u})$ is a universal deficit associated to a monomial triple, which \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} tells us  is also a positive rational number. The rest follows from \Cref{elementary2: P} and \Cref{fundamental-sequences: D}.
+	Each term $\delta_{\q}^e(\matA, \vv{u})$ is the Newton degree of a monomial pair, and hence, is a positive rational number, while each term $\eta_{\q}^e(\matA, \vv{u})$ is a universal deficit associated to a monomial triple, which \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} tells us  is also a positive rational number. The rest follows from \Cref{elementary2: P} and \Cref{fundamental-sequences: D}.
 \end{proof}
 
 \begin{proposition}
@@ -2786,6 +2781,8 @@ Thus, we may apply \Cref{easy-to-compare-values-of-first-AIP: C} to see that the
 $\val \AIP_\q^1(\matB,\vv{v}) = \degree(\matB,\vv{v})\, \q-\udeficit_q(\matB,\vv{v}) =   \delta_{\q}^e(\matA,\vv{u}) \, \q -\eta_{\q}^e(\matA,\vv{u})$. 
 \end{proof}
 
+
+\newpage
 \section{Solving the arithmetic and fractal programs}
 
 \todo[inline]{Daniel, please split this off here.}
