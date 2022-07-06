@@ -1111,9 +1111,9 @@ This is accomplished by the following proposition, which concretely describes a 
    Thus, $(\matA,\vv{u})$ is small but not very small, and hence  $\vv{u} \in S$. 
 \end{proof}
 
-\begin{remark}[Degrees of small pairs]
+\begin{remark}[Finitely many degrees of small pairs]
    \label{rem: finitely many F-thresholds of small pairs}
-   Even though there may exist infinitely many small $\matA$-pairs, as shown in \Cref{ex: small vs very small}, the degrees of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$, and consequently there are only finitely many such degrees by \Cref{discreteness: P}.
+   Even though there may exist infinitely many small $\matA$-pairs, as shown in \Cref{ex: small vs very small}, the degrees of small $\matA$-pairs are bounded above, by a bound dependent solely on $\matA$.  Consequently, there are only finitely many such degrees by \Cref{discreteness: P}.
    
    \daniel[inline]{Here is an argument that may produce a much tighter bound (e.g., if $\numvars$ is small):
    
@@ -1515,6 +1515,7 @@ We now show that we can lift a pair whose minimal face is $\collapse{\G}$ to one
 \end{proof}
 
 \begin{corollary}
+\label{universal-denominator-for-collapses: C}
    If $\denom$ is a universal denominator for a monomial matrix $\matA$, then~$\denom$ is a universal denominator for all collapses of $\matA$.
 \end{corollary}
 
@@ -2241,7 +2242,9 @@ $\val \AIP_q^1(\matA, \vv{u}) = \deg(\matA, \vv{u}) \cdot q - \udeficit_q(\matA,
 \end{corollary}
 
 \begin{proof}  
-\Cref{ip = aip: L} implies that there is a $\beta = \beta(\matA)$ such that if $q > \beta$,  then the value of each arithmetic integer program under consideration is of the form $\epsilon q - \omega$, where $\epsilon$ is the degree of a very small monomial pair whose initial term is among the finitely many collapses of $\matA$, and $\omega$ is the $q$-th universal deficit of such a pair.  As, by definition, the degree of a very small pair is at most $1$, it follows from \Cref{discreteness: P} and \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} that there is a finite set $\mathrm{M} = \mathrm{M}(\matA)$ of positive rational numbers that contains every such $\epsilon$ and $\omega$.  Finally, after increasing $q$, if necessary, comparing two linear polynomials in $q$ of the form $\epsilon q - \omega$ with $\epsilon, \omega \in \mathrm{M}$ is equivalent to first comparing their leading terms, and then if these agree, their constant terms.
+\Cref{ip = aip: L} implies that there is a $\beta = \beta(\matA)$ such that if $q > \beta$,  then the value of each arithmetic integer program under consideration is of the form $\epsilon q - \omega$, where $\epsilon$ is the degree of a very small monomial pair whose initial term is among the finitely many collapses of $\matA$, and $\omega$ is the $q$-th universal deficit of such a pair.  
+
+As the degree of a very small pair is at most $1$, it follows from \Cref{discreteness: P} and \Cref{fundamental-properties-deficits-shortfalls: P}\ref{udeficits-positive-and-few: i} that there is a finite set $\mathrm{M} = \mathrm{M}(\matA)$ of positive rational numbers that contains every such $\epsilon$ and $\omega$.  Finally, after possibly increasing $q$, comparing two expressions of the form $\epsilon q - \omega$ with $\epsilon, \omega \in \mathrm{M}$ is equivalent to first comparing their leading terms, and then if these agree, their constant terms.
 \end{proof}
 
 \begin{example}[$\IP(\matA,\vv{u},p)$ \vs $\IP_p(\matA,\vv{u},p)$ for a small but not very small pair]
@@ -2459,9 +2462,11 @@ This graph's construction relies on a positive integer $\q$, and its powers, whe
 
 
 
-\subsection{Sprouts} \ \\ 
+\subsection{Sprouts}
 
-We introduce here the notion of a \emph{sprout} of a monomial pair, a concept that was implicitly introduced, though not explicitly defined, in \Cref{small pairs from shortfalls: L}.  Generally speaking, a sprout of a monomial pair is another monomial pair constructed from the original one, in a natural way, using universal shortfalls. 
+We introduce here the notion of a \emph{sprout} of a monomial pair, a concept that was implicitly introduced, though not explicitly defined, in \Cref{small pairs from shortfalls: L}.  
+
+Generally speaking, a sprout of a monomial pair is another monomial pair constructed from the original one, in a natural way, using universal shortfalls. 
 
 \begin{definition}[$\q$-sprout]
    \label{sprout: D}
@@ -2471,7 +2476,7 @@ We introduce here the notion of a \emph{sprout} of a monomial pair, a concept th
 
 We gather some basic properties below.
 
-\begin{proposition} \label{sprout: P}  Let $(\matA, \vv{u})$ be a monomial pair,  let an overbar denote collase along $\mf(\matA, \vv{u})$, and let $d$ be a universal denominator for $\matA$.  
+\begin{proposition} \label{sprout: P}  Let $(\matA, \vv{u})$ be a monomial pair,  let an overbar denote collapse along the minimal face $\O = \mf(\matA, \vv{u})$, and let $d$ be a universal denominator for $\matA$.  
 
 Then every $\q$-sprout of $(\matA, \vv{u})$ is a small monomial pair.  Furthermore, a pair is a $\q$-sprout of $(\matA, \vv{u})$ if and only if it is a $\q$-sprout of the collapsed pair $(\collapse{\matA}, \collapse{\vv{u}})$, and a pair is a $\q$-sprout of $(\matA, \vv{u})$ if and only if it is a $\lpr{q}{d}$-sprout of $(\matA, \vv{u})$.
 
@@ -2487,7 +2492,7 @@ The first assertion is a translation of \Cref{small pairs from shortfalls: L}, a
 \end{proof}
 
 
-In \Cref{1-sprouts: P}, we see that for very small pairs, and when $q=1$, the notion of a sprout extends that of collapsing along the associated minimal face, and the universal deficit coincides with the  Newton degree.  In \Cref{nonnegativity-fundamenta-sequence: P}, we relate the Newton degree of a sprout with the universal deficit of the original pair, and in \Cref{sprouts-in-convenient-planar-case: P}, we consider the convenient and planar case.
+In \Cref{1-sprouts: P} below, we see that for very small pairs, when $q=1$, the notion of a sprout extends that of collapsing along the associated minimal face, and the universal deficit coincides with the  Newton degree.  In \Cref{nonnegativity-fundamenta-sequence: P}, we relate the Newton degree of a sprout and the universal deficit of the pair it sprouted from, and in \Cref{sprouts-in-convenient-planar-case: P}, we consider the convenient and planar case.
 
 \begin{proposition} \label{1-sprouts: P}
 The collapse of a very small pair $(\matA, \vv{u})$ along its minimal face $\O = \mf(\matA, \vv{u})$ is a $1$-sprout of $(\matA, \vv{u})$.  Furthermore,  $\udeficit_1(\matA, \vv{u}) = \deg(\matA, \vv{u})$.
@@ -2509,9 +2514,8 @@ $\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} 
 \end{proposition}
 
 \begin{proof}
-   Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and choose a point~$\defpt$ that defines the face $\O$ in $\N$.
-   By definition, $\matB=\collapse{\matA}$ and $\vv{v} \in \ushort_{\q}(\matA,\vv{u})$.
-   \Cref{cor: O bar is bounded} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB$, defined in $\collapse{\N}$ by the collapsed point $\collapse{\vv{c}}$.  It then follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
+   Let $\N$ be the Newton polyhedron of $\matA$, let an overbar denote collapse along $\O=\mf(\matA,\vv{u})$, and let $\defpt$ define $\O$ in $\N$.   By definition, $\matB=\collapse{\matA}$ and $\vv{v} \in \ushort_{\q}(\matA,\vv{u})$.
+   \Cref{cor: O bar is bounded} tells us that $\collapse{\O}$ is a face of $\collapse{\N}$, the Newton polyhedron of $\matB$, defined in $\collapse{\N}$ by $\collapse{\vv{c}}$.  It follows from \Cref{FT descriptions: P}\ref{min} that $ \degree(\matB,\vv{v}) \leq \iprod{\collapse{\vv{c}}}{\vv{v}}$. 
 
 On the other hand, since $\vv{v} \in \ushort_{\q}(\matA,\vv{u})$, we can write $ \vv{v} = \matB \tail{\vv{s}}_{\q} - \matB \vv{h}$ for some $\vv{s} \in \sp_{\QQ}(\matA, \vv{u})$ and $\vv{h}$  optimal for $\ip = \ip_{\q}(\matA, \vv{u}, \vv{s})$.  Then
 \[ 
@@ -2543,10 +2547,10 @@ However, by definition, the right-most term above equals $\udeficit_\q(\matA, \v
 %   It follows immediately from \Cref{sprout: D} and \Cref{arithmetic uniform value and image: T} that a $p$-sprout of a pair $(\matA,\vv{u})$ is the same as the collapse of a $p$-shortfall pair of $(\matA,\vv{u})$ along the face $\O=\mf(\matA,\vv{u})$.  In particular, when $\O$ is bounded there is no difference between $p$-sprouts and $p$-shortfall pairs of $(\matA,\vv{u})$.
 %\end{remark}
 
-\subsection{The sprouting graph} 
+\subsection{The sprouting graph}   We now introduce the sprouting graph associated to a monomial matrix.  Generally speaking, this construction tracks all mononomial pairs that one obtains by successive sprouting.
 
 
-\begin{definition}[The directed sprouting graph]
+\begin{definition}[The directed sprouting graph]  
    Consider a monomial matrix $\matA$.   We inductively define the sets $\graph_{\q}^e(\matA)$ as follows.
 
    
@@ -2563,134 +2567,139 @@ However, by definition, the right-most term above equals $\udeficit_\q(\matA, \v
 We gather some fundamental properties of this graph below.
 
 \begin{proposition}
-   \label{elementary1: P}
-   Let $\matA$ be a momomial matrix.
+\label{elementary1: P}
+Let $\matA$ be a monomial matrix, with universal denominator $d$.
+
 \begin{enumerate}[$(1)$]
 
 \item \label{elementary1 small pairs} 
 Every vertex of the graph $\graph_{\q}(\matA)$ is a small monomial pair, and the first entry of every such pair is a collapse of $\matA$. 
 
 \item \label{elementary1 periodic in e}
-\hl{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}\daniel{Will not be used, but provides context for the second part of this statement.  No proof yet.}  In contrast, $\graph_{\q}^e(\matA)$ is nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
+{The set $\graph_{\q}^1(\matA)$, which is independent of $q$, is finite if and only if $\matA$ is convenient.}  In contrast, $\graph_{\q}^e(\matA)$ is nonempty and finite for every $e$ greater than $1$, and the sequence of sets $\{ \graph_{\q}^e(\matA) \}_{e=1}^{\infty}$ is eventually periodic in $e$.
 
-\item \label{elementary1 periodic in r}
-If $d$ is a \daniel{I think that \emph{universal denominator} implies \emph{collapsed universal denominator}, which is a ud for each of the collapses.}\hl{collapsed universal denominator} for $\matA$, and $r= \lpr{\q}{d}$, then the graphs $\graph_{\q}(\matA)$ and $\graph_r(\matA)$ --- that is, their vertices {and} arrows--- coincide.
+\item \label{elementary1 periodic in r} $\graph_{\q}(\matA)$ and $\graph_{\lpr{q}{d}}(\matA)$ --- that is, their vertices {and} arrows--- coincide.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}  \Cref{sprout: P} implies that every vertex of the sprouting graph $\graph_q(\matA)$ is a small monomial pair, and by definition, the first term of every such pair is a monomial obtained from $\matA$ by a finite sequence of collapses.  It then follows from \Cref{iterated-collapse-is-a-collapse: P} that such a monomial matrix is, itself, a collapse of $\matA$.
 
-For the second assertion, let $\mathrm{L}$ be the set consisting of the finitely many collapses of $\matA$, fix an integer $e$ greater than $1$, and a vertex $(\matC, \vv{z})$ in $\graph_{\q}^e(\matA)$.  The first assertion tells us that both $\matC$, and the first entry $\matB$ of any vertex of level $e-1$ that $(\matC, \vv{z})$ sprouts from, lie in $\mathrm{L}$.  Thus, by definition of $\q$-sprout, the point $\vv{z}$ must lie in the double union $\mathrm{M} = \cup \cup \ushort(\matB, \vv{v}, \q)$, where the outer union is over all $\matB \in \mathrm{L}$, and the inner union is over all $\matB$-triples.    As $\mathrm{L}$ is finite, \Cref{fundamental-properties-deficits-shortfalls: P}\ref{finitely-many-A-universal-shortfalls: i}  implies that $\mathrm{M}$ is a nonempty, finite set of lattice points.   Thus, there is a finite set $\mathrm{H}$ such \ $\graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for each $e>1$.  By the pigeon-hole principle, there must then exist indices $t > s > 1$ such that $\graph_{\q}^s(\matA) = \graph_{\q}^t(\matA)$, and the recursive nature of the definition of the sets $\graph_{\q}^i(\matA)$ then implies that $\graph_{\q}^{s+i}(\matA) = \graph_{\q}^{t+i}(\matA)$ for all $i \geq 0$.
+For the second assertion, let $\mathrm{L}$ be the set consisting of the finitely many collapses of $\matA$, fix an integer $e$ greater than $1$, and a vertex $(\matC, \vv{z})$ in $\graph_{\q}^e(\matA)$.  The first assertion tells us that both $\matC$, and the first entry $\matB$ of any vertex of level $e-1$ that $(\matC, \vv{z})$ sprouts from, lie in $\mathrm{L}$.  Thus, by definition of $\q$-sprout, the point $\vv{z}$ must lie in the double union $\mathrm{M} = \cup \cup \ushort_\q(\matB, \vv{v})$, where the outer union is over all $\matB \in \mathrm{L}$, and the inner union is over all $\matB$-triples.    As $\mathrm{L}$ is finite, \Cref{fundamental-properties-deficits-shortfalls: P}\ref{finitely-many-A-universal-shortfalls: i}  implies that $\mathrm{M}$ is a nonempty, finite set of lattice points.   Thus, there is a finite set $\mathrm{H}$ such \ $\graph_{\q}^e(\matA) \subseteq \mathrm{H}$ for each $e>1$.  By the pigeon-hole principle, there must then exist indices $t > s > 1$ such that $\graph_{\q}^s(\matA) = \graph_{\q}^t(\matA)$, and the recursive nature of the definition of the sets $\graph_{\q}^i(\matA)$ then implies that $\graph_{\q}^{s+i}(\matA) = \graph_{\q}^{t+i}(\matA)$ for all $i \geq 0$.
 
-Finally, the third assertion follows from \Cref{sprout: P}, {which implies that, in this context, the notions of $\q$-sprout and $r$-sprout coincide.}
+Finally, the third assertion follows from \Cref{sprout: P}, {which implies that, in this context, the notions of $\q$-sprout and $\lpr{q}{d}$-sprout coincide.}
 \end{proof}
 
-%\begin{remark}[Elementary observations]
-%   \label{elementary1: R}
-%   Consider a monomial matrix $\matA$.
-%   In this remark, we gather some basic facts concerning the graph $\sprout_r(\matA)$.
-%\begin{enumerate}
-%\item The set $\graph_r(\matA)$ of very small $\matA$-pairs is independent of $r$, and can be infinite, depending on the geometry of the Newton polyhedron of $\matA$.
-%
-%\item \label{elementary1 small pairs} \Cref{sprout: P} tells us that every vertex of $\sprout_r(\matA)$ is a small monomial pair.  Furthermore, if $(\matB,\vv{v})$ is a vertex of $\sprout_r(\matA)$, then $\matB$ must be among the finitely many descendants of $\matA$.
-%
-%\item \label{elementary1 periodic in e} Applying \Cref{finitely many deltas for a fixed A: R} and the finiteness of each universal shortfall to $\matA$ and to each of its descendant monomial matrices, we see that $\bigcup_{e>1} \graph_{r^e}(\matA)$ is a finite set, and the recursive nature of the construction of the sets $\graph_{r^e}(\matA)$ then implies that these sets are eventually periodic in $e$.
-%
-%\item \label{elementary1 periodic in r} Furthermore, \Cref{pair periodicity: R} tells us that if $\denom$ is a universal denominator for $\matA$ and all of its finitely many descendants, then the sprouting graph  $\sprout_r(\matA)$---all of its vertices \emph{and} arrows---depends only on the class of $r$ modulo $\denom$.
-%\end{enumerate}
-%\end{remark}
+An important feature of the sprouting graph is that paths within it can be used to construct feasible points for certain standard integer programs;  this is the content of \Cref{ILL: T} below.  Though this result concerns \emph{standard} integer programs, we will eventually invoke it to help solve \emph{arithmetic} integer programs.
+
+To prove \Cref{ILL: T}, we require some further finiteness results.
+
+\begin{lemma}
+\label{finitely-many-special-points-with-fixed-denom-in-graph: L}
+Given a positive integer $d$ and monomial matrix $\matA$, the set of all special points with denominator $d$ associated to a vertex of some $\graph_q(\matA)$ is finite.
+\end{lemma}
+
+\begin{proof}   
+\Cref{elementary1: P}\ref{elementary1 small pairs} tells us that every vertex of some $\graph_q(\matA)$ is a small pair whose  matrix component is a collapse of $\matA$.  This, in combination with \Cref{rem: finitely many F-thresholds of small pairs}, implies that there are only finitely many possibilities for the degree of such a vertex.   
+
+Thus, a special point with denominator $d$ associated to such a vertex is of the form $\vv{t}/d$ for some $\vv{t}$ with coordinates in the natural numbers, and as there are only finitely many possibilities for $\norm{\vv{t}}$, there are only finitely many possibilities for $\vv{t}$.
+\end{proof}
 
 \begin{lemma}
    \label{positive-polynomial: L}
-   Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ satisfying the following condition\textup:
-   If $\q > \beta$, then for every integer $e \geq 1$, and for every $\omega_1, \ldots, \omega_e \in \Omega$, we have that $w\q^{e} >  \omega_1 \q^{e-1} + \cdots + \omega_{e-1} \q + \omega_e$.
-\end{lemma}
+   Given a real number $w > 0$, and a set $\Omega$ of real numbers that is bounded from above, there exists an integer $\beta = \beta(w, \Omega)$ such that if $\q > \beta$, then $w\q^{e} >  \omega_1 \q^{e-1} + \cdots + \omega_{e-1} \q + \omega_e$ for every $e \geq 1$, and for all $\omega_1, \ldots, \omega_e$ in $\Omega$ 
+   \end{lemma}
 
 \begin{proof}
-   Given a positive upper bound $\lambda$ for $\Omega$, let $\beta = \lambda/w  + 1$.
-   Then for $\q>\beta$, $\omega_1 \q^{e-1} + \cdots + \omega_{e-1}  \q + \omega_e$ is at most $\lambda(\q^{e-1} + \q^{e-2} + \cdots + 1) = \lambda \cdot \frac{\q^e-1}{\q-1}$, which, in turn, is less than $\lambda (\q^e-1) \cdot w/\lambda < w \q^e$.
+   Let $\lambda$ be a positive upper bound for $\Omega$, and let $\beta = \lambda/w  + 1$.
+   Then for $\q>\beta$, $\omega_1 \q^{e-1} + \cdots + \omega_{e-1}  \q + \omega_e$ is at most $\lambda(\q^{e-1} + \q^{e-2} + \cdots + 1) = \lambda \cdot \frac{\q^e-1}{\q-1}$, which, as $q-1$ is greater than $\beta -1 = \lambda/w$, is less than $\lambda (\q^e-1) \cdot w/\lambda = (q^e - 1)w$.
 \end{proof}
-
-\daniel[inline]{Update $r \to \q$, revisit proof}
 
 \begin{theorem}[Iterated lifting]
 \label{ILL: T}
    For each monomial matrix $\matA$, there exists an integer $\beta = \beta(\matA)$ with the following property\textup:
-   If $\q>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\graph_{\q}(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP(\matA_i, \vv{u}_i, \q)$  such that
+   If $\q>\beta$ and \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e)\] is a path in $\graph_{\q}(\matA)$, then for every $1 \leq i \leq e$, there exists a point $\vv{k}_i$ in the optimal set of the standard integer program $\IP_\q(\matA_i, \vv{u}_i)$  such that
    \[
-      \vv{k}_1 \q^{e-1} + \vv{k}_2 \q^{e-2} + \cdots + \vv{k}_{e-1} r + \vv{k}_e
+      \vv{k}_1 \q^{e-1} + \vv{k}_2 \q^{e-2} + \cdots + \vv{k}_{e-1} \q + \vv{k}_e
    \]
-   is feasible for $\IP(\matA_1, \vv{u}_1, \q^e)$.
+   is feasible for $\IP_{\q^e}(\matA_1, \vv{u}_1)$.
  \end{theorem}
 
 \begin{proof}
-   We start by describing what it means for $\q$ to be large.
-   Toward this, let $\matM_1, \ldots, \matM_l$ be the finitely many \hl{collapses} of  $\matA$.
-   Fix a positive integer $\denom$ that is a universal denominator for all $\matM_i$, as guaranteed by \Cref{universal-denominators-exist:  T}, and a finite set of representatives $\fsr(\matM_i)$ for each $\matM_i$, as in \Cref{fsr-exist: T}; set $\fsr = \fsr(\matM_1) \cup \cdots \cup \fsr(\matM_l)$.
-   By \Cref{rem: finitely many F-thresholds of small pairs} the set consisting of the degrees of all small $\matM_i$-pairs for $i=1,\ldots,l$ is finite, and consequently so is the set $S$ consisting of all special points with denominator $\denom$ of all those pairs.
-   Let $\Omega$ be the set consisting of all coordinates of all points in $\matA(\fsr+S\cup\{\vv{0}\})$.
-   We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $\matA$, and do not depend in any way on $r$.
+   We start by describing what it means for $\q$ to be large:  Let $d$ be a universal denominator for $\matA$, and recall that, by \Cref{universal-denominator-for-collapses: C}, the same $d$ is also a universal denominator for each of the finitely many collapses $\matM_1, \ldots, \matM_l$ of $\matA$.  Fix a finite set of representatives $\fsr(\matM_i)$ for each $\matM_i$, as in \Cref{fsr-exist: T}, and set \[\fsr = \fsr(\matM_1) \cup \cdots \cup \fsr(\matM_l).\]
+   
+   \Cref{finitely-many-special-points-with-fixed-denom-in-graph: L} tells us that the set of all special points with denominator $d$ associated to a vertex of some $\graph_q(\matA)$ is a finite set.  Let $S$ denote the union of this finite set with the singleton consisting of the zero vector in the domain lattice of $\matA$, and let $\Omega$ be the set consisting of all coordinates of all points in $\matA(\fsr+S)$.  We stress that $\fsr$, $S$, and $\Omega$ are finite sets determined by $\matA$, and are independent of $\q$.
 
-   The finiteness of $\fsr$  and \Cref{positive-polynomial: L}
-   imply that there exists an integer $\beta = \beta(\denom, \fsr)$ for which the following conditions hold for $r > \beta$.
+   This, along with  \Cref{positive-polynomial: L}, 
+   implies that there exists an integer $\beta = \beta(\denom, \fsr)$ such that for all $\q$ greater than $\beta$, the following hold.
     \begin{align}
       \tag{$\heartsuit$} \label{r-big-1}
-      &\text{$\frac{r}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
+      &\text{$\frac{\q}{\denom}$ is greater than any coordinate of any point in $\vv{1} - \fsr$;}\qquad\qquad\quad \\
       \tag{$\diamondsuit$} \label{r-big-2}
-      &\text{$\frac{r^e}{\denom} > \sum_{i=1}^e \omega_i r^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
+      &\text{$\frac{\q^e}{\denom} > \sum_{i=1}^e \omega_i \q^{e-i}$ for every $e \geq 1$ and $\omega_1, \ldots, \omega_e \in \Omega$.}
     \end{align}
 
-    In what follows, we assume that $r > \beta$.
+    In what follows, we assume that $\q > \beta$.
     Consider a finite path
     \[ (\matA_1, \vv{u}_1) \to (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e) \]
-    in $\sprout_r(\matA)$.
-    For every $1 \leq i \leq e$, set $\O_i = \mf(\matA_i, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(\matA_i, \vv{u}_i)$ with denominator $\denom$.
+    in $\graph_\q(\matA)$. Set $\O_i = \mf(\matA_i, \vv{u}_i)$, and fix a special point $\vv{s}_i \in \sp(\matA_i, \vv{u}_i)$ with denominator $\denom$.
     If $1 \leq i < e$, then the sprouting $(\matA_i, \vv{u}_i) \to (\matA_{i+1}, \vv{u}_{i+1})$ tells us that $\matA_{i+1}$ is the collapse of $\matA_i$ along $\O_i$, and that
     \[
-       \vv{u}_{i+1} \in \ushort(\matA_i, \vv{u}_i, r)= \matA_{i+1} \tail{\vv{s}_i}_r - \matA_{i+1}(\opt \ip( \matA_i, \vv{u}_i, \vv{s}_i, r)).
+       \vv{u}_{i+1} \in \ushort_\q(\matA_i, \vv{u}_i)= \matA_{i+1} \tail{\vv{s}_i}_\q - \matA_{i+1}(\opt \ip_\q( \matA_i, \vv{u}_i, \vv{s}_i)).
     \]
-    \Cref{fsr-exist: T} and our choice of $\fsr$ then allow us to choose $\vv{h}_i \in \fsr \cap \opt \ip ( \matA_i, \vv{u}_i, \vv{s}_i, r)$ such that $\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_r - \matA_{i+1} \vv{h}_i$.
-    Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip ( \matA_e, \vv{u}_e, \vv{s}_e, r)$.
+    
+\Cref{fsr-exist: T}, along with the definition of the finite set of representatives $\fsr$, then implies that if $1 \leq i < e$, then there exists $\vv{h}_i \in \fsr \cap \opt \ip_q ( \matA_i, \vv{u}_i, \vv{s}_i)$ such that 
+%
+\begin{equation}
+\label{realization-of-u-sub-i: e}
+\vv{u}_{i+1} = \matA_{i+1} \tail{\vv{s}_i}_\q - \matA_{i+1} \vv{h}_i.
+\end{equation} Finally, let $\vv{h}_e$ be any point in the nonempty set $\fsr \cap \opt \ip_\q ( \matA_e, \vv{u}_e, \vv{s}_e)$.
 
-    Next, for every $1 \leq i \leq e$,  we define $\vv{k}_i = \vv{s}_i r - [\vv{s}_i]_r + \vv{h}_i$.
-    Observe that \eqref{r-big-1} and \eqref{r-big-2} imply that for every $1 \leq i \leq e$, the quantity $r/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $\matA_i \vv{h}_i$.
+    Next, for every $1 \leq i \leq e$,  define $\vv{k}_i = \vv{s}_i \q - [\vv{s}_i]_\q + \vv{h}_i$.
+    Observe that \eqref{r-big-1} and \eqref{r-big-2} imply that for every $1 \leq i \leq e$, the quantity $\q/\denom$ is greater than every coordinate of $\vv{1}-\vv{h}_i$ and every coordinate of $\matA_i \vv{h}_i$.
     It then follows from \Cref{uniform value: P} that
     \begin{equation}
        \label{optimality-for-each-component: e}
-       \vv{k}_i \in \opt \IP(\matA_i, \vv{u}_i,r).
+       \vv{k}_i \coloneqq \vv{s}_i \q - [\vv{s}_i]_\q + \vv{h}_i  \in \opt \IP_\q(\matA_i, \vv{u}_i).
     \end{equation}
 
-    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i r^{e-i} \in \feas\IP(\matA_1, \vv{u}_1, r^e)$.
-    When $e = 1$, this follows from \eqref{optimality-for-each-component: e}.
+    We will now induce on $e$ to prove that $\sum_{i=1}^e \vv{k}_i \q^{e-i} \in \feas\IP_{\q^e}(\matA_1, \vv{u}_1)$.
+    The base case $e = 1$ is simply a restatement of \eqref{optimality-for-each-component: e}.
     Next, suppose that $e \geq 2$.
     Our induction hypothesis applied to the truncated path
     \[ (\matA_2, \vv{u}_2) \to \cdots \to (\matA_e, \vv{u}_e) \]
-    tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i r^{e-i} \in \feas \IP(\matA_2, \vv{u}_2, r^{e-1})$.
-    To complete the induction step, we must show that $\vv{k}_1 r^{e-1} + \vv{k}^{\ast} \in \feas\IP(\matA_1, \vv{u}_1, r^e)$.
-    However, as \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, it remains to show that $\matA_1 ( \vv{k}_1 r^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 r^e$.
+    tells us that $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \q^{e-i} \in \feas \IP_{\q^{e-1}}(\matA_2, \vv{u}_2)$.
+    To complete the induction step, we must show that $\vv{k}_1 \q^{e-1} + \vv{k}^{\ast} \in \feas\IP_{\q^e}(\matA_1, \vv{u}_1)$.
+    However, \eqref{optimality-for-each-component: e} implies that this point has nonnegative integer coordinates, and so it remains to show that 
+    %
+    \begin{equation}
+    \label{iterated-lifting-target-0: e}
+    \matA_1 ( \vv{k}_1 \q^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 \q^e.
+    \end{equation}
 
     To do so, recall that our choice of $\vv{s}_1 \in \sp(\matA_1, \vv{u}_1)$ allows us to write $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$, where $\vv{w}$ is a positive point of $\rs(\O_1)$.
-    It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that the inequality $\matA_1 ( \vv{k}_1 r^{e-1} + \vv{k}^{\ast} ) < \vv{u}_1 r^e$ is equivalent to
+    It then follows from the definition of $\vv{k}_1$ and this expression for $\vv{u}_1$ that \eqref{iterated-lifting-target-0: e} is equivalent to the condition
     \begin{equation}
        \label{target-inequality: e}
-       \matA_1( - \tail{\vv{s}_1}_r + \vv{h}_1 ) r^{e-1} + \matA_1\vv{k}^{\ast} < \vv{w} r^e.
+       \matA_1( - \tail{\vv{s}_1}_\q + \vv{h}_1 ) \q^{e-1} + \matA_1\vv{k}^{\ast} < \vv{w} \q^e.
     \end{equation}
 
-    We prove this inequality using the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
-    First we verify that the inequality holds in $\rb(\O_1)^{\perp}$, by verifying that it holds after collapsing along $\O_1$.
+    We establish \eqref{target-inequality: e} via the technique outlined in \Cref{rmk: verifying inequalities using collapses}.
+    First we verify that the inequality holds in $\rb(\O_1)^{\perp}$ by verifying that it holds after collapsing along $\O_1$.
     As $\matA_2$ is the collapse of $\matA_1$ along $\O_1$ and $\vv{w}\in \rs(\O_1)$, this means verifying that
-    \[\matA_2( - \tail{\vv{s}_1}_r + \vv{h}_1 ) r^{e-1} + \matA_2\vv{k}^{\ast} < \vv{0}.\]
-    But $\matA_2( - \tail{\vv{s}_1}_r + \vv{h}_1 ) = -\vv{u}_2$, by our choice of $\vv{h}_1$, so this inequality reduces to $-\vv{u}_2 r^{e-1} + \matA_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(\matA_2, \vv{u}_2, r^{e-1})$.
+    \[\matA_2( - \tail{\vv{s}_1}_\q + \vv{h}_1 ) \q^{e-1} + \matA_2\vv{k}^{\ast} < \vv{0}.\]
+    %
+    But \eqref{realization-of-u-sub-i: e} tells us that $\matA_2( - \tail{\vv{s}_1}_\q + \vv{h}_1 ) = -\vv{u}_2$, so this inequality reduces to $-\vv{u}_2 \q^{e-1} + \matA_2 \vv{k}^{\ast} < \vv{0}$, which holds as $\vv{k}^{\ast} \in \feas \IP(\matA_2, \vv{u}_2, \q^{e-1})$.
 
-    We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$, by verifying that the stronger inequality
-    \begin{equation}
-       \matA_1 \vv{h}_1 r^{e-1} + \matA_1 (\vv{s}_2 r + \vv{h}_2)r^{e-2} + \cdots + \matA_1 (\vv{s}_e r + \vv{h}_e ) < \vv{w}r^e
+    We now prove that \eqref{target-inequality: e} holds in $\rs(\O_1)$.  To start, note that we may expand the left-hand side of \eqref{target-inequality: e} by substituting the definition of the $\vv{k}_i$ in \eqref{optimality-for-each-component: e} into the expression $\vv{k}^{\ast} = \sum_{i=2}^e \vv{k}_i \q^{e-i}$, and then ignore the resulting terms $- \matA_1 \tail{\vv{s}_i}_q$, each of which has nonpositive coordinates, to obtain an inequality 
+       \begin{equation}
+     \matA_1 \vv{h}_1 \q^{e-1} + \matA_1 (\vv{s}_2 \q + \vv{h}_2)\q^{e-2} + \cdots + \matA_1 (\vv{s}_e \q + \vv{h}_e ) < \vv{w}\q^e
        \label{eq: stronger ineq}
     \end{equation}
-    holds in $\rs(\O_1)$.
-    However, $\vv{w}$ is positive in $\rs(\O_1)$, and the equation $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and so $\vv{w} r^e$ is greater than or equal to $r^e \vv{1} / \denom$ in $\rs(\O_1)$.
-    On the other hand, every coordinate of the left-hand side of \eqref{eq: stronger ineq} is of the form $\sum_{i=1}^{e} \omega_i  r^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
-    Thus, the condition \eqref{r-big-2} tells us that this stronger inequality holds in $\rs(\O_1)$.
+    that is \emph{stronger} than \eqref{target-inequality: e}.  Thus, it suffices to verify \eqref{eq: stronger ineq} in $\rs(\O_1)$.
+    
+However, the equation $\vv{u}_1 = \matA_1 \vv{s}_1 + \vv{w}$ implies that the universal denominator $\denom$ is also a denominator for $\vv{w}$, and thus, the positivity of $\vv{w}$ implies that $\vv{w} \q^e$ is greater than or equal to $(\q^e/\denom) \vv{1}$ in $\rs(\O_1)$.
+However, by definition of $\Omega$, every coordinate of the left-hand side of \eqref{eq: stronger ineq} is of the form $\sum_{i=1}^{e} \omega_i  \q^{e-i}$ for some $\omega_1, \ldots, \omega_e \in \Omega$.
+    Thus, the condition \eqref{r-big-2} tells us that \eqref{eq: stronger ineq} holds in $\rs(\O_1)$.
 
     We have just verified that \eqref{target-inequality: e} holds throughout $\rs(\O_1) \oplus \rs(\O_1)^{\perp}$, which allows us to conclude the induction step, and hence our proof.
 \end{proof}
@@ -2698,7 +2707,7 @@ Finally, the third assertion follows from \Cref{sprout: P}, {which implies that,
 
 
 \newpage
-\subsection{Canonical subgraphs associated to very small pairs}
+\subsection{Canonical subgraphs associated to very small pairs}  Here, we introduce certain natural subgraphs of the sprouting graph.  We will eventually employ these subgraphs to solve our arithmetic and fractal programs.
 
 \begin{definition}[Canonical subgraphs]
 	\label{subgraph: D}
@@ -2709,15 +2718,15 @@ Finally, the third assertion follows from \Cref{sprout: P}, {which implies that,
    \item Next, suppose that $\T_{\q}^e(\matA, \vv{u})$ has been defined for some $e \geq 1$.
    \begin{itemize}
    \item  If $\T_{\q}^e(\matA, \vv{u})$ is nonempty, and consists only of very small pairs, then we define $
-   \S_{\q}^e(\matA, \vv{u})$ to be the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that first maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit_\q(\matB,\vv{v})$.  We then define $\T_\q^{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
-      \item Otherwise, if $\T_{\q}^e(\matA, \vv{u})$ is empty,  or contains a pair that is not very small, then we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
+   \S_{\q}^e(\matA, \vv{u})$ to be the subset of $\T_{\q}^e(\matA, \vv{u})$ consisting of all $(\matB,\vv{v})$ that maximize $\degree(\matB,\vv{v})$, and only then minimize $\udeficit_\q(\matB,\vv{v})$.  We then define $\T_\q^{e+1}(\matA,\vv{u})$ to be the set of all $\q$-sprouts of all pairs in $\S_{\q}^e(\matA,\vv{u})$.
+      \item Otherwise, if either $\T_{\q}^e(\matA, \vv{u})$ is empty,  or contains a pair that is not very small, then we define $\S_{\q}^e(\matA,\vv{u})=\T_{\q}^{e+1}(\matA,\vv{u}) = \emptyset$.
    \end{itemize}
    \end{itemize}
    
    By definition, if $e$ is a natural number, then $\S_{\q}^e(\matA,\vv{u}) \subseteq \T_{\q}^e(\matA,\vv{u}) \subseteq \graph_{\q}^e(\matA)$.  Identifying the right-most set with the vertices of $\graph_q(\matA)$ of level $e$, we then define $\S_{\q}(\matA,\vv{u})$ to be the induced subgraph of $\graph_{\q}(\matA)$ on the set of vertices
    \[ \bigsqcup_{e=1} \S_{\q}^e(\matA,\vv{u}). \]
 
-
+Finally, we define the subgraph $\T_\q(\matA, \vv{u})$ of $\graph_q(\matA)$ in the analogous way.
 \end{definition}
 
 
@@ -2827,12 +2836,14 @@ If $(\matA, \vv{u})$ is very small, then the following hold.
 \begin{definition}[The fundamental sequences]
    \label{fundamental-sequences: D}
    If $(\matA,\vv{u})$ is a very small monomial pair, and $q$ is a positive integer, then the three fundamental sequences 
-   \[ \{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \{ \lambda_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty} \]  are defined as follows:   If $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then
+   \[ \{ \delta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \, \{ \eta_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty}, \, \{ \lambda_{\q}^e(\matA, \vv{u}) \}_{e=1}^{\infty} \]  are defined as follows:   If $1 \leq e \leq \E_{\q}(\matA,\vv{u})$, then
    \begin{align*}
      \delta_{\q}^e(\matA,\vv{u}) & = \degree(\matB,\vv{v}) \\
      \eta_{\q}^e(\matA,\vv{u}) & = \udeficit_\q(\matB,\vv{v})
    \end{align*}
-   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$ | this is well-defined, by definition of $\S_{\q}^e(\matA,\vv{u})$ | and if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
+   where $(\matB,\vv{v})$ is any pair in $\S_{\q}^e(\matA,\vv{u})$, which is well-defined, by definition of $\S_{\q}^e(\matA,\vv{u})$.  
+   
+   On the other hand, if $\E_{\q}(\matA, \vv{u})$ is finite, and $e$ is greater than $\E_{\q}(\matA, \vv{u})$, then \[\delta_{\q}^e(\matA, \vv{u}) = \eta_{\q}^e(\matA, \vv{u}) = 1.\]
 
 Finally,  $\lambda_q^e(\matA, \vv{u})$ is the difference
 $\lambda_q^e(\matA, \vv{u}) = \eta_q^e(\matA, \vv{u}) - \delta_q^{e+1}(\matA, \vv{u})$.
@@ -3195,7 +3206,7 @@ $\collapse{\matA} \tail{\vv{s}}_1 - \collapse{\matA} \vv{0}  = \collapse{\matA} 
 
 \begin{proposition}
 	\label{important-special: P}
-   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and also for each of its finitely many descendants.  Then there exists $\beta = \beta(\matA)$ such that if $(\matA, \vv{u})$ is very small, $p>\beta$, and $p \equiv 1 \bmod \denom$, then
+   Consider a monomial matrix $\matA$, and let $d$ be a universal denominator for $\matA$, and \hl{also for each of its finitely many descendants}.  Then there exists $\beta = \beta(\matA)$ such that if $(\matA, \vv{u})$ is very small, $p>\beta$, and $p \equiv 1 \bmod \denom$, then
 \[
  \val\IP_p(\matA,\vv{u},p^e) = (p^e-1) \degree(\matA,\vv{u})
 \]
