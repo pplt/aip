@@ -1,73 +1,6 @@
 loadPackage("Polyhedra", Reload => true)
 
 -------------------------------------------------------------------------------
--- Types
--------------------------------------------------------------------------------
-
-MonomialMatrix = new Type of HashTable
--- A type to store monomial matrices, and cache info that is computed.
--- Keys: matrix, cache
--- Cached info: 
---   newtonPolyhedon
---   universalDenominator (*)
---   points
---   minimalSmallNotVerySmall
---
--- (*): transferable to collapses
-
--- monomialMatrix creates a MonomialMatrix from a Matrix
-monomialMatrix = method()
-monomialMatrix Matrix := A ->
-(
-    if not all( columns A, x -> x != 0 ) then 
-        error "monomialMatrix: expected a matrix with nonzero columns";    
-    if not all( columns transpose A, x -> x != 0 ) then 
-        error "monomialMatrix: expected a matrix with nonzero rows";    
-   try A = lift( A, ZZ ) else 
-       error "monomialMatrix: expected a matrix with integer entries";
-   if not all( flatten entries A, x -> x >= 0 ) then
-       error "monomialMatrix: expected a matrix with nonnegative entries";
-    new MonomialMatrix from { matrix => A, cache => new CacheTable }
-)
-monomialMatrix = memoize monomialMatrix
--- If monomialMatrix is called multiple times with the same matrix, memoize
--- will prevent the creation of a copy, therefore keeping the cached values
-
-MonomialPair = new Type of HashTable
--- A type to store monomial pairs, and cache info that is computed.
--- Keys: matrix, point, cache
--- Cached info: 
---   degree (*)
---   specialPoint (*)
---   minimalFace 
---   collapse
---   (deficitAndShortfall, r) where r is an integer (*)
---   (frobeniusMu, r) where r is an integer (*)
---   (criticalExponent, r) where r is an integer (*)
---
--- (*): transferable to collapses
-
--- monomialPair creates a MonomialPair from a MonomialMatrix or a matrix, and a column vector
-monomialPair = method()
-monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
-(  
-   m1 := numRows A#matrix;
-   m2 := numRows u;
-   n := numColumns u;
-   if n != 1 then error "monomialPair: expected second argument to be a matrix with one column";
-   if m1 != m2 then error "monomialPair: incompatible dimensions";
-   try u = lift( u, ZZ ) else 
-       error "monomialPair: expected second argument to be an integer vector";
-   if not all( flatten entries u, x -> x > 0 ) then
-       error "monomialPair: expected second argument to be a positive vector";
-   new MonomialPair from { matrix => A, ( symbol point ) => u, cache => new CacheTable }
-)
-monomialPair ( Matrix, Matrix ) := ( A, u ) -> monomialPair( monomialMatrix A, u )
-monomialPair = memoize monomialPair
--- If monomialPair is called multiple times with the same pair, memoize
--- will prevent the creation of a copy, therefore keeping the cached values
-
--------------------------------------------------------------------------------
 -- Auxiliary Functions
 -------------------------------------------------------------------------------
 
@@ -242,6 +175,73 @@ minimize := ( L, f ) ->
     minimum := min vals;
     ( minimum, L_( positions( vals, x -> x == minimum ) ) )
 )
+
+-------------------------------------------------------------------------------
+-- Types
+-------------------------------------------------------------------------------
+
+MonomialMatrix = new Type of HashTable
+-- A type to store monomial matrices, and cache info that is computed.
+-- Keys: matrix, cache
+-- Cached info: 
+--   newtonPolyhedon
+--   universalDenominator (*)
+--   points
+--   minimalSmallNotVerySmall
+--
+-- (*): transferable to collapses
+
+-- monomialMatrix creates a MonomialMatrix from a Matrix
+monomialMatrix = method()
+monomialMatrix Matrix := A ->
+(
+    if not all( columns A, x -> x != 0 ) then 
+        error "monomialMatrix: expected a matrix with nonzero columns";    
+    if not all( columns transpose A, x -> x != 0 ) then 
+        error "monomialMatrix: expected a matrix with nonzero rows";    
+   try A = lift( A, ZZ ) else 
+       error "monomialMatrix: expected a matrix with integer entries";
+   if not all( flatten entries A, x -> x >= 0 ) then
+       error "monomialMatrix: expected a matrix with nonnegative entries";
+    new MonomialMatrix from { matrix => A, cache => new CacheTable }
+)
+monomialMatrix = memoize monomialMatrix
+-- If monomialMatrix is called multiple times with the same matrix, memoize
+-- will prevent the creation of a copy, therefore keeping the cached values
+
+MonomialPair = new Type of HashTable
+-- A type to store monomial pairs, and cache info that is computed.
+-- Keys: matrix, point, cache
+-- Cached info: 
+--   degree (*)
+--   specialPoint (*)
+--   minimalFace 
+--   collapse
+--   (deficitAndShortfall, r) where r is an integer (*)
+--   (frobeniusMu, r) where r is an integer (*)
+--   (criticalExponent, r) where r is an integer (*)
+--
+-- (*): transferable to collapses
+
+-- monomialPair creates a MonomialPair from a MonomialMatrix or a matrix, and a column vector
+monomialPair = method()
+monomialPair ( MonomialMatrix, Matrix ) := ( A, u ) -> 
+(  
+   m1 := numRows A#matrix;
+   m2 := numRows u;
+   n := numColumns u;
+   if n != 1 then error "monomialPair: expected second argument to be a matrix with one column";
+   if m1 != m2 then error "monomialPair: incompatible dimensions";
+   try u = lift( u, ZZ ) else 
+       error "monomialPair: expected second argument to be an integer vector";
+   if not all( flatten entries u, x -> x > 0 ) then
+       error "monomialPair: expected second argument to be a positive vector";
+   new MonomialPair from { matrix => A, ( symbol point ) => u, cache => new CacheTable }
+)
+monomialPair ( Matrix, Matrix ) := ( A, u ) -> monomialPair( monomialMatrix A, u )
+monomialPair = memoize monomialPair
+-- If monomialPair is called multiple times with the same pair, memoize
+-- will prevent the creation of a copy, therefore keeping the cached values
 
 -------------------------------------------------------------------------------
 -- Polyhedral Stuff
@@ -442,14 +442,18 @@ isSmallNotVerySmall MonomialPair := pair -> isSmall( pair) and not isVerySmall( 
 pointsAimedAtInteriorOfCompactFace := L -> 
 (
     O := constantVector( 0, ambDim L );
-    P := convexHull { O, L };
+    -- P := convexHull { O, L };
+    -- convexHull of lists is currently broken
+    P := convexHull( convexHull O, L );
     join( interiorLatticePoints P, interiorLatticePoints L )
 )
 
 pointsAimedAtCompactFace := L -> 
 (
     O := constantVector( 0, ambDim L );
-    P := convexHull { O, L };
+    -- P := convexHull { O, L };
+    -- convexHull of lists is currently broken
+    P := convexHull( convexHull O, L );
     pts := latticePoints P;
     -- select positive points
     select( pts, u -> all( flatten entries u, x -> x > 0 ) )
@@ -462,7 +466,8 @@ liftPoint := ( u, rbasis ) ->
     rbPerp := select( standardBasis n, x -> not member( x, rbasis ) );
     -- lift u inserting zeros in coordinates corresponding to basis vectors in rbasis
     v := sum( flatten entries u, rbPerp, ( i, j ) -> i * j );
-    convexHull( { v } ) + coneFromVData( rbasis )
+    -- need the fold below because convexHull of lists is broken
+    convexHull( v ) + coneFromVData( fold(rbasis, (a,b) -> a|b ) )
 )
 
 -- u is a point collapsed along face F
@@ -470,7 +475,8 @@ minimalLifts := ( u, F ) ->
 (
     rbasis := recessionBasis F;
     n := ambDim F;
-    P := intersection( liftPoint( u, rbasis ), convexHull( { constantVector( 0, n ), F } ) );
+    P := intersection( liftPoint( u, rbasis ), convexHull( convexHull constantVector( 0, n ), F ) );
+    -- convexHull of lists currently broken; when fixed, modify above line.
     eqns := hyperplanes P;
     ineqs := halfspaces P;
     numEqns := numRows first eqns;
@@ -528,6 +534,7 @@ pointsAimedAtUnboundedFace := L ->
     pts
 )
 
+---- REMOVE PRINTS
 pointsAimedAtFace = method()
 pointsAimedAtFace Polyhedron := L -> 
     if isCompact L then pointsAimedAtCompactFace L else pointsAimedAtUnboundedFace L
@@ -635,6 +642,52 @@ valueIP := IP -> first solveIP IP
 
 optPtIP := IP -> last solveIP IP
 
+-- find optimal set
+-- should test if optimal set is finite, or return everything that zsolve returns
+-- the command below should be incorporated in solveIP, as an option.
+optimalSet = symbol optimalSet
+optimalSet = method()
+optimalSet IntegerProgram := integerprogram -> 
+(
+--    osInternal := ( cacheValue ( symbol optimalSet ) )( ip -> (
+    ip := integerprogram;
+    val := first solveIP ip;
+    A := ip#"matrix";
+    u := ip#"RHS";
+    w := ip#"weights";
+    (m, n) := ip#"dim";
+    mat := A || transpose w;
+    rhs := u || matrix {{val}};    
+    rel := "1 " | toString( m + 1 ) | "\n";
+    scan( m, i -> rel = rel | "< " );
+    rel = rel | "=";
+    sign := "1 " | toString( n ) | "\n";
+    scan( n, i -> sign = sign | "1 ");
+    -- prepare files for 4ti2
+    file := getFilename();
+    M := openOut( file | ".mat" );
+    putMatrix( M, mat );
+    close M;
+    RHS := openOut( file | ".rhs" );
+    putMatrix( RHS, transpose rhs );
+    close RHS; 
+    Signs := openOut( file | ".sign" );
+    Signs << sign;
+    close Signs;
+    Rels := openOut( file | ".rel" );
+    Rels << rel;
+    close Rels;
+    -- run 4ti2
+    runProgram( fourTiTwo, "zsolve", "--quiet --precision=64 " | rootPath | file);
+    os := getMatrix( file | ".zinhom" );
+    apply( entries os, columnVector ) 
+    -- proj := zeroMatrix( m, n ) | identityMatrix( m );
+    -- im  = apply( im, v -> proj * v );
+    -- ( sum( flatten entries sq ) - val, apply( im, v -> Asq - v ) )
+--    ));
+--    osInternal integerprogram 
+)
+
 -- this just sets up the integer program Theta
 theta := ( A, u, s, q ) -> (
     Abar := collapse( A, u );
@@ -688,7 +741,7 @@ deficitAndShortfall ( MonomialPair, ZZ ) := ( P, q ) ->
     runProgram( fourTiTwo, "zsolve", "--quiet --precision=64 " | rootPath | file);
     -- process image
     im := getMatrix( file | ".zinhom" );
-    im = apply( entries im, x -> columnVector x ); 
+    im = apply( entries im, columnVector); 
     proj := zeroMatrix( m, n ) | identityMatrix( m );
     im  = apply( im, v -> proj * v );
     ( sum( flatten entries sq ) - val, apply( im, v -> Asq - v ) )

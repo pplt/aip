@@ -1958,7 +1958,7 @@ where  $\vv{s}$ is any point in $\sp_{\QQ}(\matA, \vv{u})$.  As noted in \Cref{i
 
  \item  \label{universal-stuff-invariant-under-collapse: i}
  $\udeficit(\matA, \vv{u}, q) = \udeficit(\collapse{\matA}, \collapse{\vv{u}}, q)$ and  $\ushort(\matA, \vv{u},q)  = \ushort(\collapse{\matA}, \collapse{\vv{u}}, q)$, where the overbar denotes collapse along $\mf(\matA, \vv{u})$.
-  \item  \label{universal-stuff-depends-on-q-mod-d: i} If $d$ is a universal denominator for $\matA$, and $r = \lpr{q}{d}$, then 
+  \item  \label{universal-stuff-depends-on-q-mod-d: i} If $d$ is a universal denominator for the monomial matrix $\matA$, and $r = \lpr{q}{d}$, then 
   $\udeficit(\matA, \vv{u}, q)  = \udeficit({\matA}, {\vv{u}}, r)$ and 
   $ \ushort(\matA, \vv{u},q)   = \ushort({\matA}, {\vv{u}}, r)$.
  \item  $\deg(\matA, \vv{u}) \, q - \udeficit(\matA, \vv{u}) $ is a natural number.
@@ -2097,7 +2097,7 @@ where the union is over all $\vv{v} \in \short \IP_p(\matA, \vv{u}, q)$ with $\v
    To complete the proof, it remains to show that if $M\le p^e-1$, then the reverse containment holds and $L$ indeed equals~$M$.
    
    Suppose $M \le p^e-1$, let $\vv{v} \in \short \IP_p(\matA, \vv{u}, q)$ with $\val\IP_p(\matA,\vv{v},p^e)=M$, and write $\vv{v} = \vv{u}q - \matA \vv{h}$ for some $\vv{h} \in \opt \IP_p(\matA, \vv{u}, q)$.
-   If $\vv{k} \in \opt \IP_p(\matA, \vv{v}, p^e)$, then $\norm{\vv{k}} = M \leq p^e-1$, hence  $\vv{g} \coloneqq \vv{h} p^e + \vv{k} \in \feas \IP_p(\matA,\vv{u},qp^e)$ by \Cref{general AIP prep: L}.
+   If $\vv{k} \in \opt \IP_p(\matA, \vv{v}, p^e)$, then $\norm{\vv{k}} = M \leq p^e-1$, which implies that $\vv{k} < p^e\vv{1}$, and \Cref{general AIP prep: L} implies   $\vv{g} \coloneqq \vv{h} p^e + \vv{k} \in \feas \IP_p(\matA,\vv{u},qp^e)$.
    Thus,
    \[ L \geq \norm{\vv{g}} - \norm{\vv{h}}p^e = \norm{\vv{k}} = M \]
    and hence $L=M$, and $\vv{g}$ must be optimal for $\IP_p(\matA,\vv{u},qp^e)$.
@@ -2106,14 +2106,14 @@ where the union is over all $\vv{v} \in \short \IP_p(\matA, \vv{u}, q)$ with $\v
 
 We record below a consequence of the bounds $0 \le L \leq p^e-1$ in \Cref{general AIP: T}.
 
-\begin{corollary}
+\begin{corollary}[Universal comparison for $\val \IP_p$]
    \label{cor: mu comparison}
    Suppose that $(\matA,\vv{u})$ and $(\matB,\vv{v})$ are monomial pairs, not necessarily of the same dimension.
    If $\val \IP_p(\matA, \vv{u}, q)$ is greater than $\val \IP_p(\matB, \vv{v}, q)$ for some $q$, then $\val \IP_p(\matA, \vv{u}, qp^e)$ is greater than $\val \IP_p(\matB, \vv{v}, qp^e)$ for all $e$.
 \end{corollary}
 
 \begin{proof}
-   \Cref{general AIP: T} gives us
+   the bounds $0 \le L \leq p^e-1$ in \Cref{general AIP: T} give us
    \[
       \val \IP_p(\matA, \vv{u},q)p^e \leq \val \IP_p(\matA, \vv{u}, qp^e) < (\val \IP_p(\matA, \vv{u}, q)+1)p^e
    \]
